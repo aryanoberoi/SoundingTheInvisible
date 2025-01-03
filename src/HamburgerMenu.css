@@ -1,0 +1,68 @@
+/* Hamburger Menu Container */
+.hamburger-menu-container {
+    position: relative;
+  }
+  
+  /* Hamburger Icon */
+  .hamburger-icon {
+    font-size: 30px;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    background: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Hidden by default */
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    transition: all 0.3s ease;
+    z-index: 100;
+  }
+  
+  .sidebar.open {
+    left: 0; /* Slide in */
+  }
+  
+  /* Close Button */
+  .close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  /* Sidebar Menu Items */
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #444;
+    color: white;
+    cursor: pointer;
+  }
+  
+  /* Main Content Adjusts When Sidebar Opens */
+  .content {
+    transition: margin-left 0.3s ease;
+  }
+  
+  .content.shifted {
+    margin-left: 250px;
+  }
+  
