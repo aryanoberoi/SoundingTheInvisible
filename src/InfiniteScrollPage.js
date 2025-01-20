@@ -1,89 +1,55 @@
-import React, { useState, useEffect } from "react";
-import "./InfiniteScrollPage.css";
+import React, { useState } from 'react';
+import './pollutantPage.css';
 
-const InfiniteScrollPage = () => {
-  const [items, setItems] = useState([]);
-  const [hasMore, setHasMore] = useState(true);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar state
+const PollutantPage = () => {
+  const [sliderPosition, setSliderPosition] = useState(50);
 
-  useEffect(() => {
-    // Load initial items
-    fetchMoreData();
-  }, []);
-
-  const fetchMoreData = () => {
-    if (items.length >= 100) {
-      setHasMore(false); // No more items to load
-      return;
-    }
-
-    // Simulate fetching data
-    setTimeout(() => {
-      setItems((prevItems) => [
-        ...prevItems,
-        ...Array.from({ length: 10 }, (_, i) => prevItems.length + i + 1),
-      ]);
-    }, 1500);
-  };
-
-  const handleScroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop >=
-        document.documentElement.offsetHeight - 10 &&
-      hasMore
-    ) {
-      fetchMoreData();
+  const handleSliderMove = (e) => {
+    const container = document.getElementById('slider-container');
+    const rect = container.getBoundingClientRect();
+    const newPosition = ((e.clientX - rect.left) / rect.width) * 100;
+    if (newPosition >= 0 && newPosition <= 100) {
+      setSliderPosition(newPosition);
     }
   };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [items, hasMore]);
+  const handleMouseDown = () => {
+    document.addEventListener('mousemove', handleSliderMove);
+    document.addEventListener('mouseup', handleMouseUp);
+  };
+
+  const handleMouseUp = () => {
+    document.removeEventListener('mousemove', handleSliderMove);
+    document.removeEventListener('mouseup', handleMouseUp);
+  };
 
   return (
-    <div className="page-container">
-      {/* Hamburger Menu Icon */}
-      <button
-        className="hamburger-icon"
-        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-        aria-label="Toggle Menu"
+    <div id="slider-container" className="slider-container">
+      <div
+        className="left-panel"
+        style={{ width: `${sliderPosition}%` }}
+      ></div>
+      <div
+        className="right-panel"
+        style={{ width: `${100 - sliderPosition}%` }}
+      ></div>
+      <div
+        className="slider-bar"
+        style={{ left: `${sliderPosition}%` }}
+        onMouseDown={handleMouseDown}
       >
-        ☰
-      </button>
-
-      {/* Sidebar */}
-      {isSidebarOpen && (
-        <div className="sidebar">
-          <button
-            className="close-btn"
-            onClick={() => setIsSidebarOpen(false)}
-            aria-label="Close Menu"
-          >
-            ✕
-          </button>
-          <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
-          </ul>
+        <div className="slider-circle">
+          <div className="slider-half left-half">
+            <span className="arrow left-arrow">&#9664;</span>
+          </div>
+          <div className="slider-half right-half">
+            <span className="arrow right-arrow">&#9654;</span>
+          </div>
         </div>
-      )}
-
-      {/* Main Content */}
-      <div className="content">
-        <h1>Infinite Scrolling Page</h1>
-        <ul>
-          {items.map((item, index) => (
-            <li key={index} className="list-item">
-              Item {item}
-            </li>
-          ))}
-        </ul>
-        {!hasMore && <p className="no-more-items">No more items to load</p>}
       </div>
     </div>
   );
 };
 
-export default InfiniteScrollPage;
+export default PollutantPage;
+

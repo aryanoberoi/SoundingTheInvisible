@@ -1,10 +1,9 @@
 import React from "react";
-import InfiniteScrollPage from "./InfiniteScrollPage";
-import HamburgerMenu from "./HamburgerMenu";
+import PollutantPage from "./InfiniteScrollPage";
 
 const App = () => {
   return (
-      <InfiniteScrollPage />
+      <PollutantPage />
 
   );
 };
