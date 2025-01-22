@@ -1,4 +1,4 @@
-/* App.css */
+/* pollutantPage.css */
 
 .slider-container {
   position: relative;
@@ -28,7 +28,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 20px;
+  width: 40px;
   cursor: ew-resize;
   transform: translateX(-50%);
   display: flex;
@@ -41,13 +41,17 @@
   height: 40px;
   background-color: transparent;
   border-radius: 50%;
+  position: relative;
   display: flex;
-  overflow: hidden;
+  justify-content: center;
+  align-items: center;
 }
 
 .slider-half {
   width: 50%;
   height: 100%;
+  position: absolute;
+  top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,10 +59,16 @@
 
 .left-half {
   background-color: #000;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  left: 0;
 }
 
 .right-half {
   background-color: #fff;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  right: 0;
 }
 
 .arrow {
