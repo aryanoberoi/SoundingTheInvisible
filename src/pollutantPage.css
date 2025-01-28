@@ -8,20 +8,24 @@
   display: flex;
 }
 
-.left-panel {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  background-color: #fff;
-}
-
+.left-panel,
 .right-panel {
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 0;
+  width: 100%;
+}
+
+.left-panel {
+  left: 0;
   background-color: #000;
+  clip-path: polygon(0 0, var(--slider-position, 50%) 0, var(--slider-position, 50%) 100%, 0 100%);
+}
+
+.right-panel {
+  right: 0;
+  background-color: #fff;
+  clip-path: polygon(var(--slider-position, 50%) 0, 100% 0, 100% 100%, var(--slider-position, 50%) 100%);
 }
 
 .slider-bar {
@@ -29,27 +33,31 @@
   top: 0;
   bottom: 0;
   width: 40px;
+  left: var(--slider-position, 50%);
   cursor: ew-resize;
   transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10; /* Ensures the slider is above the panels */
 }
 
 .slider-circle {
-  width: 40px;
-  height: 40px;
-  background-color: transparent;
-  border-radius: 50%;
+  width: 40px; /* Diameter of the circle */
+  height: 40px; /* Diameter of the circle (equal to width) */
+  background-color: white; /* Ensures the circle has a visible background */
+  border: 2px solid black; /* Optional: Adds a black border to enhance visibility */
+  border-radius: 50%; /* Makes the element a perfect circle */
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow for a polished look */
 }
 
 .slider-half {
-  width: 50%;
-  height: 100%;
+  width: 50%; /* Half the width of the circle */
+  height: 100%; /* Full height of the circle */
   position: absolute;
   top: 0;
   display: flex;
@@ -58,18 +66,19 @@
 }
 
 .left-half {
-  background-color: #000;
-  border-top-left-radius: 50%;
+  background-color: black; /* Left half background color */
+  border-top-left-radius: 50%; /* Ensure smooth corners */
   border-bottom-left-radius: 50%;
   left: 0;
 }
 
 .right-half {
-  background-color: #fff;
-  border-top-right-radius: 50%;
+  background-color: white; /* Right half background color */
+  border-top-right-radius: 50%; /* Ensure smooth corners */
   border-bottom-right-radius: 50%;
   right: 0;
 }
+
 
 .arrow {
   font-size: 16px;
@@ -83,4 +92,47 @@
 
 .right-half .arrow {
   color: #000;
+}
+
+.pollutant-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%; /* Keeps the content centered vertically */
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  border: 2px solid white;
+  border-radius: 50%;
+  overflow: hidden; /* Keeps the image within the circle */
+  margin-bottom: 16px; /* Adds spacing between the circle and the text */
+}
+
+.circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image fits nicely inside the circle */
+}
+
+.pollutant-name {
+  text-align: center;
+  font-size: 1.25rem;
+  color: white;
+}
+
+.know-more-button {
+  margin-top: 8px; /* Adds spacing between the text and the button */
+  padding: 8px 16px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.know-more-button:hover {
+  background-color: #ccc; /* Adds a hover effect for better UX */
 }
