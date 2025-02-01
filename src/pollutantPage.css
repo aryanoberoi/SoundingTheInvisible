@@ -136,3 +136,41 @@
 .know-more-button:hover {
   background-color: #ccc; /* Adds a hover effect for better UX */
 }
+
+.sound-button {
+  position: absolute; /* Ensures it stays inside the page content */
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.sound-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.sound-icon span {
+  display: block;
+  width: 4px;
+  height: 15px;
+  background: black; /* Always black */
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Animation when sound is ON */
+.playing span:nth-child(1) { height: 5px; }
+.playing span:nth-child(2) { height: 10px; }
+.playing span:nth-child(3) { height: 15px; }
+.playing span:nth-child(4) { height: 10px; }
+
+/* Muted (small bars) */
+.muted span {
+  height: 5px !important;
+  opacity: 0.5;
+}
