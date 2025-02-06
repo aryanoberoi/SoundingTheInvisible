@@ -1,12 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
-const SoundToggle = () => {
-  const [isPlaying, setIsPlaying] = useState(true); // Sound ON by default
+const SoundToggle = ({ isWhiteBg }) => {
+  const [isPlaying, setIsPlaying] = useState(true);
   const audioRef = useRef(new Audio("/your-sound-file.mp3")); // Replace with actual file path
 
   useEffect(() => {
     const audio = audioRef.current;
-    audio.loop = true; // Enable looping
+    audio.loop = true;
 
     if (isPlaying) {
       audio.play().catch((err) => console.error("Audio play error:", err));
@@ -14,11 +14,11 @@ const SoundToggle = () => {
       audio.pause();
     }
 
-    return () => audio.pause(); // Stop audio on unmount
+    return () => audio.pause();
   }, [isPlaying]);
 
   return (
-    <button onClick={() => setIsPlaying(!isPlaying)} className="sound-button">
+    <button className={`sound-button ${isWhiteBg ? "white-bg" : ""}`} onClick={() => setIsPlaying(!isPlaying)}>
       <div className={`sound-icon ${isPlaying ? "playing" : "muted"}`}>
         <span></span>
         <span></span>

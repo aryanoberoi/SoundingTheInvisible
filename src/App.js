@@ -1,16 +1,22 @@
 import React from "react";
-import PollutantPage from "./InfiniteScrollPage";
-import SoundToggle from "./SoundToggle";
-import Navbar from "./Navbar";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./Homepage"; // Import the home page
+import PollutantPage from "./InfiniteScrollPage"; // Pollutant page
+import SoundToggle from "./SoundToggle"; // Sound button
+import Navbar from "./Navbar"; // Navbar
 
 const App = () => {
   return (
-    <div>
-      
-      <PollutantPage />
-      <Navbar />
-      <SoundToggle />
-    </div>
+    <Router>
+      <div>
+        <Navbar />
+        <SoundToggle />
+        <Routes>
+          <Route path="/" element={<HomePage />} /> {/* Default Home Page */}
+          <Route path="/pollutants" element={<PollutantPage />} /> {/* Pollutants Page */}
+        </Routes>
+      </div>
+    </Router>
   );
 };
 

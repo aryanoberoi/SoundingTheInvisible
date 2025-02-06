@@ -1,0 +1,65 @@
+.homepage {
+    width: 100vw;
+    overflow-x: hidden;
+    font-family: "Arial", sans-serif;
+  }
+  
+  /* Section Styling */
+  .section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  /* Background Colors */
+  .white {
+    background-color: white;
+    color: black;
+  }
+  
+  .black {
+    background-color: black;
+    color: white;
+  }
+  
+  /* Overlapping Image */
+  .overlapping-image {
+    max-width: 80%;
+    height: auto;
+    position: absolute;
+    z-index: 2;
+  }
+  
+  /* Overlapping Text */
+  .overlapping-text {
+    position: absolute;
+    z-index: 3;
+    font-size: 1.5rem;
+    text-align: center;
+    max-width: 60%;
+    line-height: 1.5;
+  }
+  
+  /* Navigate Button */
+  .navigate-button {
+    position: relative;
+    z-index: 3;
+    background: black;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .navigate-button:hover {
+    background: white;
+    color: black;
+    border: 2px solid black;
+  }
+  
