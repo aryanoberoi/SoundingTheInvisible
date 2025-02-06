@@ -1,5 +1,10 @@
 /* pollutantPage.css */
 
+body, html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 .slider-container {
   position: relative;
   width: 100%;
@@ -194,12 +199,18 @@
   gap: 5px;
 }
 
+/* Default White Icon */
 .hamburger span {
   display: block;
   width: 30px;
   height: 3px;
   background: white;
-  transition: 0.3s;
+  transition: background 0.3s;
+}
+
+/* Change to Black Icon When on White Background */
+.white-bg .hamburger span {
+  background: black;
 }
 
 /* Fullscreen Menu */
@@ -272,3 +283,15 @@
 .dropdown-icon {
   font-size: 20px;
 }
+
+/* Sound Button (Fixed on Top Right) */
+.sound-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+}
+
