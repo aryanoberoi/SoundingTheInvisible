@@ -1,65 +1,172 @@
 .homepage {
-    width: 100vw;
-    overflow-x: hidden;
-    font-family: "Arial", sans-serif;
-  }
-  
-  /* Section Styling */
-  .section {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
-  /* Background Colors */
-  .white {
-    background-color: white;
-    color: black;
-  }
-  
-  .black {
-    background-color: black;
-    color: white;
-  }
-  
-  /* Overlapping Image */
-  .overlapping-image {
-    max-width: 80%;
-    height: auto;
-    position: absolute;
-    z-index: 2;
-  }
-  
-  /* Overlapping Text */
-  .overlapping-text {
-    position: absolute;
-    z-index: 3;
-    font-size: 1.5rem;
-    text-align: center;
-    max-width: 60%;
-    line-height: 1.5;
-  }
-  
-  /* Navigate Button */
-  .navigate-button {
-    position: relative;
-    z-index: 3;
-    background: black;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  
-  .navigate-button:hover {
-    background: white;
-    color: black;
-    border: 2px solid black;
-  }
-  
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.homepage .div {
+  background-color: #ffffff;
+  height: 4898px;
+  overflow: hidden;
+  position: relative;
+  width: 1280px;
+}
+
+.homepage .overlap {
+  height: 1469px;
+  left: -22px;
+  position: absolute;
+  top: 0;
+  width: 1305px;
+}
+
+.homepage .overlap-2 {
+  height: 1469px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 1305px;
+}
+
+.homepage .frame {
+  height: 1101px;
+  left: 227px;
+  position: absolute;
+  top: 368px;
+  width: 930px;
+}
+
+.homepage .property-1-default {
+  left: 0 !important;
+  position: absolute !important;
+  top: 326px !important;
+}
+
+.homepage .property-default-instance {
+  left: 10887px !important;
+  top: -542px !important;
+}
+
+.homepage .property-1-default-instance {
+  left: 11236px !important;
+  top: -659px !important;
+}
+
+.homepage .frame-2 {
+  height: 804px;
+  left: 1223px;
+  mix-blend-mode: difference;
+  position: absolute;
+  top: 0;
+  width: 30px;
+}
+
+.homepage .text-wrapper {
+  color: #a5a5a5;
+  font-family: "Clash Grotesk-Light", Helvetica;
+  font-size: 12px;
+  font-weight: 300;
+  left: 483px;
+  letter-spacing: 0.24px;
+  line-height: 24.6px;
+  position: absolute;
+  text-align: center;
+  top: 177px;
+  width: 358px;
+}
+
+.homepage .overlap-3 {
+  height: 2630px;
+  left: -295px;
+  position: absolute;
+  top: 1532px;
+  width: 1800px;
+}
+
+.homepage .overlap-4 {
+  height: 2630px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 1800px;
+}
+
+.homepage .frame-3 {
+  height: 1156px;
+  left: 675px;
+  position: absolute;
+  top: 1474px;
+  width: 890px;
+}
+
+.homepage .rectangle-3 {
+  background-color: #000000;
+  height: 1056px;
+  left: 0;
+  position: absolute;
+  top: 372px;
+  width: 1800px;
+}
+
+.homepage .frame-4 {
+  height: 1304px;
+  left: 295px;
+  mix-blend-mode: difference;
+  position: absolute;
+  top: 255px;
+  width: 892px;
+}
+
+.homepage .p {
+  color: #ffffff;
+  font-family: "Clash Grotesk-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  left: 1187px;
+  letter-spacing: 0;
+  line-height: 28.7px;
+  mix-blend-mode: difference;
+  position: absolute;
+  top: 810px;
+  width: 288px;
+}
+
+.homepage .text-wrapper-2 {
+  color: #ffffff;
+  font-family: "Clash Grotesk-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  left: 770px;
+  letter-spacing: 0;
+  line-height: 28.7px;
+  mix-blend-mode: difference;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 288px;
+}
+
+.homepage .text-wrapper-3 {
+  color: #ffffff;
+  font-family: "Clash Grotesk-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  left: 365px;
+  letter-spacing: 0;
+  line-height: 28.7px;
+  mix-blend-mode: difference;
+  position: absolute;
+  top: 1979px;
+  width: 288px;
+}
+
+.homepage .group {
+  height: 35px !important;
+  left: 51px !important;
+  mix-blend-mode: difference !important;
+  position: fixed !important;
+  top: 38px !important;
+  width: 1187px !important;
+}
