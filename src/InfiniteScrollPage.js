@@ -94,7 +94,7 @@ const PollutantPage = () => {
               className={styles.frequencyImage}
               alt="Frequency visualization"
             />
-            <KnowMoreButton />
+            <KnowMoreButton className={styles.knowMoreButton} />
           </div>
           <div className={styles.sourcesTitle}>Sources In Venice Lagoon:</div>
           <div className={styles.sourcesDescription}>
