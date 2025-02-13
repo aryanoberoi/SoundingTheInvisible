@@ -1,3 +1,66 @@
+@font-face {
+  font-family: 'Nippo-Extralight';
+  src: url('/public/Nippo_Complete/fonts/Nippo-Extralight.woff2') format('woff2'),
+       url('/public/Nippo_Complete/fonts/Nippo-Extralight.woff') format('woff'),
+       url('/public/Nippo_Complete/fonts/Nippo-Extralight.ttf') format('truetype');
+  font-weight: 200;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Nippo-Light';
+  src: url('/public/Nippo_Complete/fonts/Nippo-Light.woff2') format('woff2'),
+       url('/public/Nippo_Complete/fonts/Nippo-Light.woff') format('woff'),
+       url('/public/Nippo_Complete/fonts/Nippo-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Nippo-Regular';
+  src: url('/public/Nippo_Complete/fonts/Nippo-Regular.woff2') format('woff2'),
+       url('/public/Nippo_Complete/fonts/Nippo-Regular.woff') format('woff'),
+       url('/public/Nippo_Complete/fonts/Nippo-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Nippo-Medium';
+  src: url('/public/Nippo_Complete/fonts/Nippo-Medium.woff2') format('woff2'),
+       url('/public/Nippo_Complete/fonts/Nippo-Medium.woff') format('woff'),
+       url('/public/Nippo_Complete/fonts/Nippo-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Nippo-Bold';
+  src: url('/public/Nippo_Complete/fonts/Nippo-Bold.woff2') format('woff2'),
+       url('/public/Nippo_Complete/fonts/Nippo-Bold.woff') format('woff'),
+       url('/public/Nippo_Complete/fonts/Nippo-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+/**
+* This is a variable font
+* You can control variable axes as shown below:
+* font-variation-settings: wght 700.0;
+*
+* available axes:
+'wght' (range from 200.0 to 700.0
+*/
+@font-face {
+  font-family: 'Nippo-Variable';
+  src: url('/public/Nippo_Complete/fonts/Nippo-Variable.woff2') format('woff2'),
+       url('/public/Nippo_Complete/fonts/Nippo-Variable.woff') format('woff'),
+       url('/public/Nippo_Complete/fonts/Nippo-Variable.ttf') format('truetype');
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: normal;
+}
+
 .container {
     background: #000;
     padding: 95px 69px;
@@ -28,7 +91,7 @@
     gap: 22px;
     color: #fff;
     letter-spacing: 1.2px;
-    font: 378 40px Nippo, sans-serif;
+    font: 400 48px 'Nippo-Regular', sans-serif;
   }
   
   .circle {
@@ -46,7 +109,30 @@
   .description {
     color: #fff;
     margin-top: 24px;
-    font: 400 10px/17px 'Chivo Mono', -apple-system, Roboto, Helvetica, sans-serif;
+    font: 300 12px/20px 'Nippo-Light', sans-serif;
+    padding-left: 15px;
+  }
+  
+  .descriptionTitle {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  
+  .descriptionLine {
+    position: relative;
+    padding-left: 12px;
+    margin: 4px 0;
+  }
+  
+  .descriptionLine::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+  }
+  
+  .descriptionKnowMore {
+    width: 100%;
+    justify-content: flex-start;
   }
   
   .knowMoreButton {
@@ -55,11 +141,19 @@
     text-align: right;
     text-transform: uppercase;
     letter-spacing: 1.4px;
-    margin: 29px 0 0 10px;
+    margin: 10px 0 20px auto;
     padding: 4px 10px;
-    font: 378 10px Nippo, sans-serif;
+    font: 500 12px 'Nippo-Medium', sans-serif;
     border: 1px solid #fff;
     cursor: pointer;
+    width: fit-content;
+  }
+
+  .knowMoreButtonLeft {
+    background: #d9d9d9;
+    color: #000 !important;
+    text-align: left;
+    margin: 10px 0 20px 0 !important;
   }
   
   .imageContainer {
@@ -87,7 +181,7 @@
     margin-left: 20px;
     color: #fff;
     text-align: right;
-    font: 378 10px Nippo, sans-serif;
+    font: 400 12px 'Nippo-Regular', sans-serif;
   }
   
   .sideContentWrapper {
@@ -98,33 +192,58 @@
   }
   
   .sectionTitle {
-    font-size: 18px;
+    font-size: 24px;
   }
   
   .titleList {
-    font-family: 'Clash Grotesk', -apple-system, Roboto, Helvetica, sans-serif;
-    font-weight: 400;
-    line-height: 33px;
-    letter-spacing: 1.4px;
-    margin: 7px 43px 0 0;
+    display: flex;
+    gap: 0px;
+    flex-wrap: wrap;
+  }
+  
+  .titleEntry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin: 4px;
+  }
+  
+  .bulletcircle {
+    width: 18px;
+    height: 18px;
+    border: 1px solid white;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+  .titleText {
+    flex-grow: 1;
+    font: 300 12px 'Nippo-Light', sans-serif;
+  }
+  
+  .titleEntry .circle {
+    margin-left: auto;
   }
   
   .frequencyImage {
     aspect-ratio: 1.77;
     object-fit: contain;
     width: 212px;
-    align-self: flex-start;
+    align-self: flex-end;
   }
   
   .sourcesTitle {
-    font-size: 18px;
-    margin: 48px 10px 0 19px;
+    font-size: 22px;
+    margin: 24px 10px 0 19px;
   }
   
   .sourcesDescription {
-    font-family: 'Chivo Mono', sans-serif;
-    font-weight: 400;
-    line-height: 17px;
+    font-family: 'Nippo-Light', sans-serif;
+    font-weight: 300;
+    line-height: 20px;
     margin-top: 6px;
   }
   

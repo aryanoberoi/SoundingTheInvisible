@@ -56,15 +56,12 @@ const PollutantPage = () => {
               <div className={styles.pollutantName}>Pollutant name</div>
             </div>
             <div className={styles.description}>
-              Pollutant Description:
-              <br />
-              Needs to contain physical description of the pollutant,
-              <br />
-              History and when it was created or found….or used by mankind
-              <br />
-              Half life
+              <div className={styles.descriptionTitle}>Pollutant Description:</div>
+              <div className={styles.descriptionLine}> Physical characteristics and properties</div>
+              <div className={styles.descriptionLine}> Historical context and usage timeline</div>
+              <div className={styles.descriptionLine}> Chemical half-life decomposition</div>
             </div>
-            <KnowMoreButton />
+            <KnowMoreButton className={`${styles.knowMoreButtonLeft} ${styles.descriptionKnowMore}`} />
             <div className={styles.imageContainer}>
               <img
                 loading="lazy"
@@ -79,17 +76,16 @@ const PollutantPage = () => {
           <div className={styles.sideContentWrapper}>
             <div className={styles.sectionTitle}>Effects on human health:</div>
             <div className={styles.titleList}>
-              Title here
-              <br />
-              Title here
-              <br />
-              Title here
-              <br />
-              Title here
+              {['Title here', 'Title here', 'Title here', 'Title here'].map((title, index) => (
+                <div key={index} className={styles.titleEntry}>
+                  <span className={styles.titleText}>{title}</span>
+                  <div className={styles.bulletcircle} />
+                </div>
+              ))}
             </div>
             <KnowMoreButton />
             <div className={styles.sectionTitle}>
-              Enthalpy and sound Frequency of Pollutant
+              Enthalpy and sound <br /> Frequency of Pollutant
               <br />
             </div>
             <img
@@ -102,13 +98,17 @@ const PollutantPage = () => {
           </div>
           <div className={styles.sourcesTitle}>Sources In Venice Lagoon:</div>
           <div className={styles.sourcesDescription}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing eli.
+            Lorem ipsum dolor sit amet, consectetur 
             <br />
-            Duis accumsan lacus sit amet sagittis feugiat.
+            adipiscing eli.
+            <br />
+            Duis accumsan lacus sit amet sagittis
+            <br />
+            feugiat.
             <br />
             Morbi et velit fringilla, maximus quam et,
           </div>
-          <KnowMoreButton />
+          <KnowMoreButton className={styles.knowMoreButton} />
         </div>
       </div>
     </div>
