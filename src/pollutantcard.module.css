@@ -169,6 +169,7 @@
   }
   
   .pollutantImage {
+    padding-right: 80px;
     aspect-ratio: 1.1;
     object-fit: contain;
     width: 100%;
@@ -228,12 +229,6 @@
     margin-left: auto;
   }
   
-  .frequencyImage {
-    aspect-ratio: 1.77;
-    object-fit: contain;
-    width: 212px;
-    align-self: flex-end;
-  }
   
   .sourcesTitle {
     font-size: 22px;

@@ -52,7 +52,7 @@ body, html {
   height: 40px; /* Diameter of the circle (equal to width) */
   background-color: white; /* Ensures the circle has a visible background */
   border: 2px solid black; /* Optional: Adds a black border to enhance visibility */
-  border-radius: 50%; /* Makes the element a perfect circle */
+  border-radius: 100%; /* Makes the element a perfect circle */
   position: relative;
   display: flex;
   justify-content: center;
@@ -72,15 +72,15 @@ body, html {
 
 .left-half {
   background-color: black; /* Left half background color */
-  border-top-left-radius: 50%; /* Ensure smooth corners */
-  border-bottom-left-radius: 50%;
+  border-top-left-radius: 100%; /* Ensure smooth corners */
+  border-bottom-left-radius: 100%;
   left: 0;
 }
 
 .right-half {
   background-color: white; /* Right half background color */
-  border-top-right-radius: 50%; /* Ensure smooth corners */
-  border-bottom-right-radius: 50%;
+  border-top-right-radius: 100%; /* Ensure smooth corners */
+  border-bottom-right-radius: 100%;
   right: 0;
 }
 
