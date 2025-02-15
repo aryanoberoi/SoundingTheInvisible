@@ -17,11 +17,11 @@ const PollutantPage = () => {
     },
     {
       title: "Common names of Plant:",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing eli. Duis accumsan lacus sit amet sagittis feugiat. Morbi et velit fringilla, maximus quam et, cursus odio. Donec quis sem gravida nisi malesuada fringilla. Duis ac erat vitae magna rutrum suscipit."
+      description: "Lorem ipsum dolor sit amet, \n consectetur adipiscing eli. \n Duis accumsan lacus sit amet sagittis feugiat. \n Morbi et velit fringilla, maximus quam et, \n cursus odio. \n Donec quis sem gravida nisi malesuada fringilla. \n Duis ac erat vitae magna rutrum suscipit."
     },
     {
       title: "Plant Habitat:",
-      description: "Temperature, humidity, soil type, what kind of areas it"
+      description: "Temperature,  \nhumidity, \nsoil type, \nwhat kind of areas it"
     }
   ];
 
@@ -124,13 +124,31 @@ const PollutantPage = () => {
         <div className={plantStyles.plantContainer}>
           <div className={plantStyles.contentWrapper}>
             <aside className={plantStyles.sidebar}>
-              {plantData.map((section, index) => (
-                <PlantInfoSection
-                  key={index}
-                  title={section.title}
-                  description={section.description}
-                />
-              ))}
+              {plantData.map((section, index) => {
+                if (index === plantData.length - 1) {
+                  return (
+                    <div key={index}>
+                      <div className={plantStyles.sectionTitle}>{section.title}</div>
+                      <div className={plantStyles.titleList}>
+                        {section.description.split('\n').map((line, lineIndex) => (
+                          <div key={lineIndex} className={plantStyles.titleEntry}>
+                            <div className={plantStyles.bulletcircle} />
+                            <span className={plantStyles.titleText}>{line}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <KnowMoreButton className={plantStyles.knowMoreButton} />
+                    </div>
+                  );
+                }
+                return (
+                  <PlantInfoSection
+                    key={index}
+                    title={section.title}
+                    description={section.description}
+                  />
+                );
+              })}
             </aside>
             
             <main className={plantStyles.mainContent}>
@@ -148,9 +166,9 @@ const PollutantPage = () => {
                     language so that the reader can visualize the plant. 
                     Reproduction of the plant needs to be explained.
                   </p>
+                  <KnowMoreButton className={plantStyles.knowMoreButton} />
                 </div>
               </div>
-              <KnowMoreButton />
             </main>
           </div>
         </div>

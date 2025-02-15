@@ -13,6 +13,7 @@
     width: 30%;
     display: flex;
     flex-direction: column;
+    margin-top: 60px;
   }
   
   .mainContent {
@@ -44,11 +45,12 @@
   
   .plantName {
     letter-spacing: 1.44px;
-    font: 378 48px Nippo, sans-serif;
+    font: 378 48px Nippo-Regular, sans-serif;
+    margin-bottom: 10px;
   }
   
   .plantDetails {
-    font: 300 10px/17px "Chivo Mono", -apple-system, Roboto, Helvetica, sans-serif;
+    font: 300 15px/23px 'Nippo-Regular', sans-serif;
   }
   
   .infoSection {
@@ -60,12 +62,43 @@
   
   .sectionTitle {
     letter-spacing: 0.72px;
-    font: 378 24px Nippo, sans-serif;
+    font: 300 24px 'Nippo-Regular', sans-serif;
+    margin-bottom: 15px;
   }
   
   .sectionDescription {
-    font: 300 10px/17px "Chivo Mono", -apple-system, Roboto, Helvetica, sans-serif;
+    font: 300 15px/23px 'Nippo-Light', -apple-system, Roboto, Helvetica, sans-serif;
     margin: 15px 0;
+    white-space: pre-line;
+  }
+  
+  .titleList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+  
+  .titleEntry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  .titleText {
+    flex-grow: 1;
+    font: 300 15px/23px 'Nippo-Light', sans-serif;
+  }
+  
+  .bulletcircle {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-block;
   }
   
   .knowMoreButton {
@@ -75,12 +108,33 @@
     text-transform: uppercase;
     letter-spacing: 1.4px;
     padding: 4px 10px;
-    font: 378 10px Nippo, sans-serif;
+    font: 378 10px 'Nippo-Light', sans-serif;
     border: none;
     cursor: pointer;
+    margin-top: 20px;
+    align-self: flex-end;
   }
   
   .knowMoreButton:focus {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+  }
+  
+  .knowMoreButtonInverted {
+    background-color: #000;
+    color: #fff;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    padding: 4px 10px;
+    font: 378 10px 'Nippo-Light', sans-serif;
+    border: 1px solid black;
+    cursor: pointer;
+    margin: 10px 0;
+    align-self: flex-start;
+  }
+
+  .knowMoreButtonInverted:focus {
     outline: 2px solid #000;
     outline-offset: 2px;
   }
