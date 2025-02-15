@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './pollutantPage.css';
-import styles from './pollutantcard.module.css'
+import leftStyles from './pollutantcard.module.css';
+import plantStyles from './PlantDetails.module.css';
 import { KnowMoreButton } from './Knowmorebutton';
 import { PlantInfoSection } from './PlantInfoSection';
 import SineWaveVisualizer from './sinwave';
@@ -56,54 +57,54 @@ const PollutantPage = () => {
   return (
     <div id="slider-container" className="slider-container">
       <div className="left-panel">
-        <div className={styles.container}>
-          <div className={styles.contentWrapper}>
-            <div className={styles.mainContent}>
-              <div className={styles.pollutantInfo}>
-                <div className={styles.headerWrapper}>
-                  <div className={styles.circle} />
-                  <div className={styles.pollutantName}>Pollutant name</div>
+        <div className={leftStyles.container}>
+          <div className={leftStyles.contentWrapper}>
+            <div className={leftStyles.mainContent}>
+              <div className={leftStyles.pollutantInfo}>
+                <div className={leftStyles.headerWrapper}>
+                  <div className={leftStyles.circle} />
+                  <div className={leftStyles.pollutantName}>Pollutant name</div>
                 </div>
-                <div className={styles.description}>
-                  <div className={styles.descriptionTitle}>Pollutant Description:</div>
-                  <div className={styles.descriptionLine}> Physical characteristics and properties</div>
-                  <div className={styles.descriptionLine}> Historical context and usage timeline</div>
-                  <div className={styles.descriptionLine}> Chemical half-life decomposition</div>
+                <div className={leftStyles.description}>
+                  <div className={leftStyles.descriptionTitle}>Pollutant Description:</div>
+                  <div className={leftStyles.descriptionLine}> Physical characteristics and properties</div>
+                  <div className={leftStyles.descriptionLine}> Historical context and usage timeline</div>
+                  <div className={leftStyles.descriptionLine}> Chemical half-life decomposition</div>
                 </div>
-                <KnowMoreButton className={`${styles.knowMoreButtonLeft} ${styles.descriptionKnowMore}`} />
-                <div className={styles.imageContainer}>
+                <KnowMoreButton className={`${leftStyles.knowMoreButtonLeft} ${leftStyles.descriptionKnowMore}`} />
+                <div className={leftStyles.imageContainer}>
                   <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/c05deecce1d9a93f6c5f23b1d4ff068c93611042f2fc0f83338c3006ad141976?placeholderIfAbsent=true&apiKey=e7c66450d645437e80b3c1918bb89cd7"
-                    className={styles.pollutantImage}
+                    className={leftStyles.pollutantImage}
                     alt="Pollutant visualization"
                   />
                 </div>
               </div>
             </div>
-            <div className={styles.sideContent}>
-              <div className={styles.sideContentWrapper}>
-                <div className={styles.sectionTitle}>Effects on human health:</div>
-                <div className={styles.titleList}>
+            <div className={leftStyles.sideContent}>
+              <div className={leftStyles.sideContentWrapper}>
+                <div className={leftStyles.sectionTitle}>Effects on human health:</div>
+                <div className={leftStyles.titleList}>
                   {['Title here', 'Title here', 'Title here', 'Title here'].map((title, index) => (
-                    <div key={index} className={styles.titleEntry}>
-                      <span className={styles.titleText}>{title}</span>
-                      <div className={styles.bulletcircle} />
+                    <div key={index} className={leftStyles.titleEntry}>
+                      <span className={leftStyles.titleText}>{title}</span>
+                      <div className={leftStyles.bulletcircle} />
                     </div>
                   ))}
                 </div>
                 <KnowMoreButton />
-                <div className={styles.sectionTitle} style={{paddingBottom: '10px'}}>
+                <div className={leftStyles.sectionTitle} style={{paddingBottom: '10px'}}>
                   Enthalpy and sound <br /> Frequency of Pollutant
                   <br />
                 </div>
                 <div style={{ border: '1px solid white'}}>
                   <SineWaveVisualizer />
                 </div>
-                <KnowMoreButton className={styles.knowMoreButton} />
+                <KnowMoreButton className={leftStyles.knowMoreButton} />
               </div>
-              <div className={styles.sourcesTitle}>Sources In Venice Lagoon:</div>
-              <div className={styles.sourcesDescription}>
+              <div className={leftStyles.sourcesTitle}>Sources In Venice Lagoon:</div>
+              <div className={leftStyles.sourcesDescription}>
                 Lorem ipsum dolor sit amet, consectetur 
                 <br />
                 adipiscing eli.
@@ -114,15 +115,15 @@ const PollutantPage = () => {
                 <br />
                 Morbi et velit fringilla, maximus quam et,
               </div>
-              <KnowMoreButton className={styles.knowMoreButton} />
+              <KnowMoreButton className={leftStyles.knowMoreButton} />
             </div>
           </div>
         </div>
       </div>
       <div className="right-panel">
-        <div className={styles.plantContainer}>
-          <div className={styles.contentWrapper}>
-            <aside className={styles.sidebar}>
+        <div className={plantStyles.plantContainer}>
+          <div className={plantStyles.contentWrapper}>
+            <aside className={plantStyles.sidebar}>
               {plantData.map((section, index) => (
                 <PlantInfoSection
                   key={index}
@@ -132,16 +133,16 @@ const PollutantPage = () => {
               ))}
             </aside>
             
-            <main className={styles.mainContent}>
-              <div className={styles.imageSection}>
+            <main className={plantStyles.mainContent}>
+              <div className={plantStyles.imageSection}>
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/16352f3f964c03ec54c661ca0da371220832b2c2f872538ebde3aa40d6a7628c?placeholderIfAbsent=true&apiKey=e7c66450d645437e80b3c1918bb89cd7"
                   alt="Detailed view of the plant"
-                  className={styles.plantImage}
+                  className={plantStyles.plantImage}
                 />
-                <div className={styles.plantDescription}>
-                  <h1 className={styles.plantName}>Plant name</h1>
-                  <p className={styles.plantDetails}>
+                <div className={plantStyles.plantDescription}>
+                  <h1 className={plantStyles.plantName}>Plant name</h1>
+                  <p className={plantStyles.plantDetails}>
                     Describe the plant from top to down so one can visualize it. 
                     Don't jump from different parts of the plant. Please use simple 
                     language so that the reader can visualize the plant. 
@@ -172,14 +173,14 @@ const PollutantPage = () => {
         </div>
       </div>
       <div className="scrollable-black">
-        <div className={styles.scrollableContent}>
+        <div className={leftStyles.scrollableContent}>
           <p>Additional scrollable content goes here...</p>
           <p>More information can be added here...</p>
           <p>Keep scrolling for more details...</p>
         </div>
       </div>
       <div className="additional-scroll-section">
-        <div className={styles.additionalContent}>
+        <div className={leftStyles.additionalContent}>
           <h2>Explore More Information</h2>
           <p>Here you can add more detailed information about the topic.</p>
           <p>Include any additional resources or links for further reading.</p>
