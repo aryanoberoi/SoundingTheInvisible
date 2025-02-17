@@ -12,20 +12,20 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Hamburger Button (Hidden when menu is open) */}
+      {/* Hamburger Button */}
       {!isOpen && (
         <button className="nav-button" onClick={() => setIsOpen(true)}>
           <div className="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span style={{ backgroundColor: 'black' }}></span>
+            <span style={{ backgroundColor: 'black' }}></span>
+            <span style={{ backgroundColor: 'black' }}></span>
           </div>
         </button>
       )}
 
       {/* Fullscreen Menu */}
       <div className={`nav-menu ${isOpen ? "open" : ""}`}>
-        <span className="close-btn" onClick={() => setIsOpen(false)}>✕</span>
+        <span className="close-btn" onClick={() => setIsOpen(false)} style={{ color: 'white' }}>✕</span>
 
         <ul className="nav-links">
           {["Agriculture waste", "Heavy metal waste", "Radioactive waste", "Sewage waste"].map((text, index) => (
