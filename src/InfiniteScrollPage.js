@@ -104,7 +104,7 @@ const PollutantPage = () => {
                   Enthalpy and sound <br /> Frequency of Pollutant
                   <br />
                 </div>
-                <div style={{ border: '1px solid white'}}>
+                <div style={{ border: '1px solid black'}}>
                   <SineWaveVisualizer />
                 </div>
                 <KnowMoreButton className={leftStyles.knowMoreButton} />

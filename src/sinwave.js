@@ -10,30 +10,43 @@ const SineWaveVisualizer = () => {
     const height = canvas.height;
     let animationFrameId;
 
-    // Sine wave parameters
-    const amplitude = height / 2; // Adjust amplitude to fit in frame
-    const frequency = (4 * Math.PI) / width; // Increase frequency for faster wave
-    const speed = 200; // Increase speed for faster animation
-    let offset = 0; // Phase shift
+    // Waveform parameters
+    const barWidth = 2; // Width of each vertical bar
+    const speed = 0.5; // Speed of the wave animation (lower is slower)
+    let offset = 3; // Phase shift
 
-    const drawSineWave = () => {
+    const drawWaveform = () => {
       ctx.clearRect(0, 0, width, height);
-      ctx.beginPath();
-      ctx.moveTo(0, height / 2);
 
+      // Loop through the canvas width and draw vertical bars for the top and bottom halves
       for (let x = 0; x < width; x++) {
-        const y = height / 2 + amplitude * Math.sin(frequency * (x + offset));
-        ctx.lineTo(x, y);
-      }
+        // Top half wave
+        const topY = height / 2 + Math.sin((x + offset) * speed) * (height / 2);
+        
+        // Bottom half wave mirrors the top half
+        const bottomY = height / 2 + Math.sin((x + offset) * speed) * -(height / 2);
 
-      ctx.strokeStyle = '#0077be';
-      ctx.lineWidth = 2;
-      ctx.stroke();
+        // Draw the top half
+        ctx.beginPath();
+        ctx.moveTo(x, height / 2);
+        ctx.lineTo(x, topY);
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = barWidth;
+        ctx.stroke();
+
+        // Draw the bottom half (mirrored)
+        ctx.beginPath();
+        ctx.moveTo(x, height / 2);
+        ctx.lineTo(x, bottomY);
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = barWidth;
+        ctx.stroke();
+      }
     };
 
     const animate = () => {
-      offset += speed / 60; // Adjust offset increment for smoother animation
-      drawSineWave();
+      offset += 15; // Control how quickly the wave shifts
+      drawWaveform();
       animationFrameId = requestAnimationFrame(animate);
     };
 
@@ -42,7 +55,7 @@ const SineWaveVisualizer = () => {
     return () => cancelAnimationFrame(animationFrameId);
   }, []);
 
-  return <canvas ref={canvasRef} width={300} height={200} />;
+  return <canvas ref={canvasRef} width={300} height={90} style={{ display: 'block' }} />;
 };
 
 export default SineWaveVisualizer;
