@@ -1,179 +1,179 @@
 .plantContainer {
-    background: #fff;
-    padding: 31px 61px 84px;
-    overflow: hidden;
-  }
-  
-  .contentWrapper {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .sidebar {
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    margin-top: 60px;
-  }
-  
-  .mainContent {
-    width: 70%;
-    margin-left: 20px;
-  }
-  
-  .imageSection {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .plantImage {
-    width: 67%;
-    aspect-ratio: 0.91;
-    object-fit: contain;
-    border-radius: 0;
-  }
-  
-  .plantDescription {
-    width: 33%;
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    text-align: right;
-    color: #000;
-  }
-  
-  .plantName {
-    letter-spacing: 1.44px;
-    font: 378 48px Nippo-Regular, sans-serif;
-    margin-bottom: 10px;
-  }
-  
-  .plantDetails {
-    font: 300 15px/23px 'Nippo-Regular', sans-serif;
-  }
-  
-  .infoSection {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 40px;
-  }
-  
-  .sectionTitle {
-    letter-spacing: 0.72px;
-    font: 300 24px 'Nippo-Regular', sans-serif;
-    margin-bottom: 15px;
-  }
-  
-  .sectionDescription {
-    font: 300 15px/23px 'Nippo-Light', -apple-system, Roboto, Helvetica, sans-serif;
-    margin: 15px 0;
-    white-space: pre-line;
-  }
-  
-  .titleList {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-  }
-  
-  .titleEntry {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-  }
-  
-  .titleText {
-    flex-grow: 1;
-    font: 300 15px/23px 'Nippo-Light', sans-serif;
-  }
-  
-  .bulletcircle {
-    width: 18px;
-    height: 18px;
-    border: 1px solid #000;
-    border-radius: 50%;
-    overflow: hidden;
-    display: inline-block;
-  }
-  
-  .knowMoreButton {
-    background-color: #000;
-    color: #fff;
-    text-align: right;
-    text-transform: uppercase;
-    letter-spacing: 1.4px;
-    padding: 4px 10px;
-    font: 378 10px 'Nippo-Light', sans-serif;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px;
-    align-self: flex-end;
-  }
-  
-  .knowMoreButton:focus {
-    outline: 2px solid #000;
-    outline-offset: 2px;
-  }
-  
-  .knowMoreButtonInverted {
-    background-color: #000;
-    color: #fff;
-    text-align: left;
-    text-transform: uppercase;
-    letter-spacing: 1.4px;
-    padding: 4px 10px;
-    font: 378 10px 'Nippo-Light', sans-serif;
-    border: 1px solid black;
-    cursor: pointer;
-    margin: 10px 0;
-    align-self: flex-start;
+  background: #fff;
+  padding: 31px 61px 84px;
+  overflow: hidden;
+}
+
+.contentWrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.sidebar {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
+}
+
+.mainContent {
+  width: 70%;
+  margin-left: 20px;
+}
+
+.imageSection {
+  display: flex;
+  gap: 20px;
+}
+
+.plantImage {
+  width: 67%;
+  aspect-ratio: 0.91;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+.plantDescription {
+  width: 33%;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-align: right;
+  color: #000;
+}
+
+.plantName {
+  letter-spacing: 1.44px;
+  font: 378 48px Nippo-Regular, sans-serif;
+  margin-bottom: 10px;
+}
+
+.plantDetails {
+  font: 300 15px/23px 'Nippo-Regular', sans-serif;
+}
+
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+
+.sectionTitle {
+  letter-spacing: 0.72px;
+  font: 300 24px 'Nippo-Regular', sans-serif;
+  margin-bottom: 15px;
+}
+
+.sectionDescription {
+  font: 300 15px/23px 'Nippo-Light', -apple-system, Roboto, Helvetica, sans-serif;
+  margin: 15px 0;
+  white-space: pre-line;
+}
+
+.titleList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.titleEntry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.titleText {
+  flex-grow: 1;
+  font: 300 15px/23px 'Nippo-Light', sans-serif;
+}
+
+.bulletcircle {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.knowMoreButton {
+  background-color: #000;
+  color: #fff;
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  padding: 4px 10px;
+  font: 378 10px 'Nippo-Light', sans-serif;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  align-self: flex-end;
+}
+
+.knowMoreButton:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+.knowMoreButtonInverted {
+  background-color: #000;
+  color: #fff;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  padding: 4px 10px;
+  font: 378 10px 'Nippo-Light', sans-serif;
+  border: 1px solid black;
+  cursor: pointer;
+  margin: 10px 0;
+  align-self: flex-start;
+}
+
+.knowMoreButtonInverted:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+@media (max-width: 991px) {
+  .plantContainer {
+    padding: 0 20px;
   }
 
-  .knowMoreButtonInverted:focus {
-    outline: 2px solid #000;
-    outline-offset: 2px;
+  .contentWrapper {
+    flex-direction: column;
+    gap: 0;
   }
-  
-  @media (max-width: 991px) {
-    .plantContainer {
-      padding: 0 20px;
-    }
-  
-    .contentWrapper {
-      flex-direction: column;
-      gap: 0;
-    }
-  
-    .sidebar {
-      width: 100%;
-    }
-  
-    .mainContent {
-      width: 100%;
-      margin-left: 0;
-      margin-top: 40px;
-    }
-  
-    .imageSection {
-      flex-direction: column;
-    }
-  
-    .plantImage {
-      width: 100%;
-    }
-  
-    .plantDescription {
-      width: 100%;
-      margin-left: 0;
-      margin-top: 40px;
-    }
-  
-    .plantName {
-      font-size: 40px;
-    }
+
+  .sidebar {
+    width: 100%;
   }
+
+  .mainContent {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 40px;
+  }
+
+  .imageSection {
+    flex-direction: column;
+  }
+
+  .plantImage {
+    width: 100%;
+  }
+
+  .plantDescription {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 40px;
+  }
+
+  .plantName {
+    font-size: 40px;
+  }
+}
