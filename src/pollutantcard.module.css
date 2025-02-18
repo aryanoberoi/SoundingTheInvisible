@@ -21,6 +21,8 @@
     align-items: flex-start;
     margin-top: 6px;
     width: 100%;
+    padding-right: 15px;
+    overflow: visible;
   }
   
   .headerWrapper {
@@ -96,17 +98,20 @@
   .imageContainer {
     background: #fff;
     border-radius: 50%;
-    align-self: flex-end;
+    align-self: flex-start;
     display: flex;
     width: 320px;
     aspect-ratio: 1;
     border: 1px solid #fff;
     justify-content: center;
     align-items: center;
+    position: relative;
+    left: 750px;
+    z-index: 20;
   }
   
   .pollutantImage {
-    padding-right: 80px;
+    padding-right: 0;
     aspect-ratio: 1.1;
     object-fit: contain;
     width: 100%;
