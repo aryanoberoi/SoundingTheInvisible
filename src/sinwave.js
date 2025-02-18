@@ -12,19 +12,43 @@ const SineWaveVisualizer = () => {
 
     // Waveform parameters
     const barWidth = 2; // Width of each vertical bar
-    const speed = 0.5; // Speed of the wave animation (lower is slower)
+    let speed = 0.01; // Initial speed/frequency of the wave animation
+    let frequencyChangeRate = 0.01; // Rate at which the frequency changes
     let offset = 3; // Phase shift
+    let amplitude = height / 2; // Amplitude of the wave
+    const maxAmplitude = height / 2; // Max amplitude for the wave
+    const minAmplitude = height / 4; // Min amplitude for the wave
+    let lastAmplitudeChangeTime = 0;
+
+    // Randomize amplitude over time
+    const randomAmplitude = () => {
+      const currentTime = Date.now();
+      if (currentTime - lastAmplitudeChangeTime > 500) { // Change amplitude every 200ms
+        amplitude = Math.random() * (maxAmplitude - minAmplitude) + minAmplitude; // Random amplitude between min and max
+        lastAmplitudeChangeTime = currentTime;
+      }
+    };
+
+    // Randomize frequency/speed over time
+    const randomizeSpeed = () => {
+      if (Math.random() > 0.99) { // Randomly change frequency
+        frequencyChangeRate = (Math.random() - 0.5) * 0.02; // Random small changes to frequency rate
+      }
+      speed += frequencyChangeRate;
+      if (speed > 2) speed = 2; // Cap speed
+      if (speed < 0.2) speed = 0.2; // Minimum speed
+    };
 
     const drawWaveform = () => {
       ctx.clearRect(0, 0, width, height);
 
       // Loop through the canvas width and draw vertical bars for the top and bottom halves
       for (let x = 0; x < width; x++) {
-        // Top half wave
-        const topY = height / 2 + Math.sin((x + offset) * speed) * (height / 2);
-        
+        // Top half wave (randomized amplitude)
+        const topY = height / 2 + Math.sin((x + offset) * speed) * amplitude;
+
         // Bottom half wave mirrors the top half
-        const bottomY = height / 2 + Math.sin((x + offset) * speed) * -(height / 2);
+        const bottomY = height / 2 + Math.sin((x + offset) * speed) * -amplitude;
 
         // Draw the top half
         ctx.beginPath();
@@ -45,7 +69,12 @@ const SineWaveVisualizer = () => {
     };
 
     const animate = () => {
-      offset += 15; // Control how quickly the wave shifts
+      offset += 2; // Control how quickly the wave shifts
+
+      // Randomize amplitude and frequency to simulate a more natural waveform
+      randomAmplitude();
+      randomizeSpeed();
+
       drawWaveform();
       animationFrameId = requestAnimationFrame(animate);
     };
