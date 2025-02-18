@@ -211,7 +211,69 @@ const PollutantPage = () => {
           <p>Continue scrolling to discover more insights and data.</p>
         </div>
       </div>
+    <div>
     </div>
+    <div>
+      {/* Bottom Section - Black Background */}
+      <div className="bottom-section1">
+      <div className="nav-bar">
+      <div className="text-wrapper">Pollutant name</div>
+
+      <div className="div">Plant name</div>
+
+      <div className="text-wrapper-2">Sound frequency</div>
+
+      <div className="text-wrapper-3">Common names of Plant</div>
+
+      <div className="text-wrapper-4">Plant Habitat</div>
+
+      <div className="text-wrapper-5">Origin and Geographical Distribution</div>
+
+      <p className="p">Phytoremediation capacity of the Plants</p>
+
+      <div className="text-wrapper-6">Uses of plant</div>
+
+      <div className="text-wrapper-7">References</div>
+
+      <div className="text-wrapper-8">Effect on health</div>
+
+      <div className="text-wrapper-9">Case study</div>
+
+      <p className="text-wrapper-10">
+        Phytoremediation of the Representative Pollutant
+      </p>
+
+      <div className="overlap-group">
+        {/* <img className="line" alt="Line" src={line1} /> */}
+
+        <div className="ellipse" />
+
+        <div className="ellipse-2" />
+
+        <div className="ellipse-3" />
+
+        <div className="ellipse-4" />
+
+        <div className="ellipse-5" />
+
+        <div className="ellipse-6" />
+
+        <div className="ellipse-7" />
+
+        <div className="ellipse-8" />
+
+        <div className="ellipse-9" />
+
+        <div className="ellipse-10" />
+
+        <div className="ellipse-11" />
+
+        <div className="ellipse-12" />
+      </div>
+      </div>
+      </div>
+   </div>
+   </div>
   );
 };
 
