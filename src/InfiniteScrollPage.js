@@ -17,11 +17,11 @@ const PollutantPage = () => {
     },
     {
       title: "Common names of Plant:",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing eli. Duis accumsan lacus sit amet sagittis feugiat. Morbi et velit fringilla, maximus quam et, cursus odio. Donec quis sem gravida nisi malesuada fringilla. Duis ac erat vitae magna rutrum suscipit."
+      description: "Lorem ipsum dolor sit amet, \n consectetur adipiscing eli. \n Duis accumsan lacus sit amet sagittis feugiat. \n Morbi et velit fringilla, maximus quam et, \n cursus odio. \n Donec quis sem gravida nisi malesuada fringilla. \n Duis ac erat vitae magna rutrum suscipit."
     },
     {
       title: "Plant Habitat:",
-      description: "Temperature, humidity, soil type, what kind of areas it"
+      description: "Temperature,  \nhumidity, \nsoil type, \nwhat kind of areas it"
     }
   ];
 
