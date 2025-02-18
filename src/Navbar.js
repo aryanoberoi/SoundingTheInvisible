@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css"; // All styles go here
 import "./pollutantPage.css";
+import Timeline from './Timeline';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +38,7 @@ const Navbar = () => {
               </div>
               {expandedItem === index && (
                 <div className="dropdown-content fade-in">
-                  <p>Information about {text.toLowerCase()} goes here.</p>
+                  <Timeline pollutant={text} position={index % 2 === 0 ? 'left' : 'right'} />
                 </div>
               )}
             </li>
