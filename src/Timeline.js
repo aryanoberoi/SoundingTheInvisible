@@ -57,7 +57,7 @@ const Timeline = ({ pollutant, position }) => {
           <div 
             key={index}
             className={`timeline-item ${getPositionClass(event.type)}`}
-            style={{ top: `${index * 150}px` }}
+            style={{ top: `${index}px` }}
           >
             <div className="event-content">
               {renderContent(event)}

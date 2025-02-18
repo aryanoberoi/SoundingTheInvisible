@@ -104,7 +104,8 @@ body, html {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100%; /* Keeps the content centered vertically */
+  height: 100%;
+  gap: 4px;
 }
 
 .circle {
@@ -113,7 +114,7 @@ body, html {
   border: 2px solid white;
   border-radius: 50%;
   overflow: hidden; /* Keeps the image within the circle */
-  margin-bottom: 16px; /* Adds spacing between the circle and the text */
+  margin-bottom: 4px;
 }
 
 .circle img {
@@ -124,13 +125,14 @@ body, html {
 
 .pollutant-name {
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: white;
+  margin-bottom: 2px;
 }
 
 .know-more-button {
-  margin-top: 8px; /* Adds spacing between the text and the button */
-  padding: 8px 16px;
+  margin-top: 2px;
+  padding: 4px 8px;
   background-color: white;
   color: black;
   border: none;
@@ -341,17 +343,17 @@ body, html {
   font-size: 14px;
   font-weight: 400;
   position: absolute;
-  text-align: right; /* 🔥 Ensuring right alignment */
+  text-align: right; 
   width: 122px;
 }
 
 /* ✅ Adjusting Positions Based on Your CSS */
-.nav-bar .text-wrapper { top: 45px; left: 0; font-size: 24px; } /* Pollutant name */
-.nav-bar .div { top: 330px; left: 0; font-size: 24px; } /* Plant name */
-.nav-bar .text-wrapper-2 { top: 97px; left: 155px; }
-.nav-bar .text-wrapper-3 { top: 404px; left: 155px; }
-.nav-bar .text-wrapper-4 { top: 480px; left: 155px; }
-.nav-bar .text-wrapper-5 { top: 538px; left: 155px; }
+.nav-bar .text-wrapper { top: 35px; left: 174px; font-size: 24px; } /* Adjusted left position */
+.nav-bar .div { top: 310px; left: 174px; font-size: 24px; } /* Adjusted left position */
+.nav-bar .text-wrapper-2 { top: 80px; left: 155px; }
+.nav-bar .text-wrapper-3 { top: 370px; left: 155px; }
+.nav-bar .text-wrapper-4 { top: 440px; left: 155px; }
+.nav-bar .text-wrapper-5 { top: 490px; left: 155px; }
 .nav-bar .p { top: 620px; left: 155px; }
 .nav-bar .text-wrapper-6 { top: 702px; left: 155px; }
 .nav-bar .text-wrapper-7 { top: 746px; left: 0; }
@@ -361,7 +363,7 @@ body, html {
 
 /* ✅ Timeline Vertical Line & Circles */
 .nav-bar .overlap-group {
-  height: 706px;
+  height: 500px;
   left: 130px; /* 🔥 Adjusted for perfect alignment */
   position: absolute;
   top: 56px;
@@ -374,7 +376,7 @@ body, html {
   left: 5px;
   top: 4px;
   width: 1px;
-  height: 698px;
+  height: 496px;
   background-color: white;
 }
 
@@ -401,25 +403,25 @@ body, html {
 }
 
 /* ✅ Adjusting Circle Positions */
-.nav-bar .ellipse { top: 0; background-color: white; } /* First circle */
-.nav-bar .ellipse-2 { top: 47px; }
-.nav-bar .ellipse-3 { top: 100px; }
-.nav-bar .ellipse-4 { top: 153px; }
-.nav-bar .ellipse-5 { top: 203px; }
-.nav-bar .ellipse-6 { top: 288px; }
-.nav-bar .ellipse-7 { top: 354px; }
-.nav-bar .ellipse-8 { top: 430px; }
-.nav-bar .ellipse-9 { top: 488px; }
-.nav-bar .ellipse-10 { top: 570px; }
-.nav-bar .ellipse-11 { top: 652px; }
-.nav-bar .ellipse-12 { top: 696px; }
+.nav-bar .ellipse { top: 35px; background-color: white; } /* Matches text-wrapper position */
+.nav-bar .ellipse-2 { top: 80px; } /* Matches text-wrapper-2 position */
+.nav-bar .ellipse-3 { top: 149px; } /* Matches text-wrapper-8 position */
+.nav-bar .ellipse-4 { top: 201px; } /* Matches text-wrapper-9 position */
+.nav-bar .ellipse-5 { top: 253px; } /* Matches text-wrapper-10 position */
+.nav-bar .ellipse-6 { top: 310px; } /* Matches div position */
+.nav-bar .ellipse-7 { top: 370px; } /* Matches text-wrapper-3 position */
+.nav-bar .ellipse-8 { top: 440px; } /* Matches text-wrapper-4 position */
+.nav-bar .ellipse-9 { top: 490px; } /* Matches text-wrapper-5 position */
+.nav-bar .ellipse-10 { top: 620px; } /* Matches p position */
+.nav-bar .ellipse-11 { top: 702px; } /* Matches text-wrapper-6 position */
+.nav-bar .ellipse-12 { top: 746px; } /* Matches text-wrapper-7 position */
 
 .timeline-container {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 40px 0;
+  padding: 20px 0;
 }
 
 .timeline-line {
@@ -433,7 +435,9 @@ body, html {
 .timeline-item {
   position: relative;
   width: 40%;
-  margin: 50px 0;
+  margin: 8px 0;
+  padding: 20px 8px; /* Increased vertical padding */
+  min-height: 60px; /* Ensure consistent height */
 }
 
 .timeline-item::after {
@@ -443,45 +447,90 @@ body, html {
   height: 12px;
   background-color: white;
   border-radius: 50%;
-  top: 20px;
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Perfect vertical centering */
 }
 
 .timeline-item.left {
-  right: 32px;
+  right: -167px;
   text-align: left;
 }
 
 .timeline-item.left::after {
-  right: -66px;
+  right: 96px; /* Adjust position relative to container */
 }
 
 .timeline-item.right {
-  left: 72%;
+  left: 395px;
   text-align: right;
 }
 
 .timeline-item.right::after {
-  left: -66px;
+  left: 0px; /* Adjust position relative to container */
 }
 
 .event-title {
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 1.1rem;
+  margin-bottom: 0px;
   color: white;
+  line-height: 1; /* Tighter line height */
 }
 
 .event-list {
   list-style: none;
   padding: 0;
   color: #ccc;
+  margin-top: 4px;
+  line-height: 1.2; /* Better alignment with bullet */
 }
 
 .event-list li {
-  margin-bottom: 8px;
+  margin-bottom: 2px;
 }
 
 .event-description {
   color: #ccc;
-  line-height: 1.6;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+.timeline-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.timeline-title {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.back-button {
+  background: none;
+  border: 1px solid white;
+  color: white;
+  padding: 10px 20px;
+  margin-bottom: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: white;
+  color: black;
+}
+
+/* Remove dropdown styles */
+.dropdown-content {
+  display: none !important;
+}
+
+/* Adjust nav-item spacing */
+.nav-item {
+  padding: 25px 15px !important;
 }
 

@@ -5,11 +5,7 @@ import Timeline from './Timeline';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [expandedItem, setExpandedItem] = useState(null);
-
-  const toggleExpand = (index) => {
-    setExpandedItem(expandedItem === index ? null : index);
-  };
+  const [selectedPollutant, setSelectedPollutant] = useState(null);
 
   return (
     <>
@@ -26,24 +22,31 @@ const Navbar = () => {
 
       {/* Fullscreen Menu */}
       <div className={`nav-menu ${isOpen ? "open" : ""}`}>
-        <span className="close-btn" onClick={() => setIsOpen(false)} style={{ color: 'white' }}>✕</span>
+        <span className="close-btn" onClick={() => {
+          setIsOpen(false);
+          setSelectedPollutant(null);
+        }} style={{ color: 'white' }}>✕</span>
 
-        <ul className="nav-links">
-          {["Agriculture waste", "Heavy metal waste", "Radioactive waste", "Sewage waste"].map((text, index) => (
-            <li key={index} className="nav-item">
-              <div onClick={() => toggleExpand(index)} className="nav-item-header">
-                <img src={`${text.toLowerCase().replace(/ /g, "-")}-icon.svg`} alt={text} className="nav-icon" />
-                <span className="nav-text">{text}</span>
-                <span className="dropdown-icon">▼</span>
-              </div>
-              {expandedItem === index && (
-                <div className="dropdown-content fade-in">
-                  <Timeline pollutant={text} position={index % 2 === 0 ? 'left' : 'right'} />
+        {selectedPollutant ? (
+          <div className="timeline-view">
+            <h2 className="timeline-title">{selectedPollutant} Timeline</h2>
+            <button className="back-button" onClick={() => setSelectedPollutant(null)}>
+              ← Back to Categories
+            </button>
+            <Timeline pollutant={selectedPollutant} />
+          </div>
+        ) : (
+          <ul className="nav-links">
+            {["Agriculture waste", "Heavy metal waste", "Radioactive waste", "Sewage waste"].map((text, index) => (
+              <li key={index} className="nav-item">
+                <div onClick={() => setSelectedPollutant(text)} className="nav-item-header">
+                  <img src={`${text.toLowerCase().replace(/ /g, "-")}-icon.svg`} alt={text} className="nav-icon" />
+                  <span className="nav-text">{text}</span>
                 </div>
-              )}
-            </li>
-          ))}
-        </ul>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </>
   );
