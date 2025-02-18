@@ -13,9 +13,9 @@ const Navbar = () => {
       {!isOpen && (
         <button className="nav-button" onClick={() => setIsOpen(true)}>
           <div className="hamburger">
-            <span style={{ backgroundColor: 'black' }}></span>
-            <span style={{ backgroundColor: 'black' }}></span>
-            <span style={{ backgroundColor: 'black' }}></span>
+          <span className={`hamburger-line ${isOpen ? "open" : ""}`}></span>
+          <span className={`hamburger-line ${isOpen ? "open" : ""}`}></span>
+          <span className={`hamburger-line ${isOpen ? "open" : ""}`}></span>
           </div>
         </button>
       )}
@@ -23,16 +23,14 @@ const Navbar = () => {
       {/* Fullscreen Menu */}
       <div className={`nav-menu ${isOpen ? "open" : ""}`}>
         <span className="close-btn" onClick={() => {
-          setIsOpen(false);
-          setSelectedPollutant(null);
-        }} style={{ color: 'white' }}>✕</span>
+          selectedPollutant ? setSelectedPollutant(null) : setIsOpen(false);
+        }} style={{ color: 'white' }}>
+          {selectedPollutant ? '←' : '✕'}
+        </span>
 
         {selectedPollutant ? (
           <div className="timeline-view">
             <h2 className="timeline-title">{selectedPollutant} Timeline</h2>
-            <button className="back-button" onClick={() => setSelectedPollutant(null)}>
-              ← Back to Categories
-            </button>
             <Timeline pollutant={selectedPollutant} />
           </div>
         ) : (

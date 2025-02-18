@@ -165,9 +165,19 @@ body, html {
   display: block;
   width: 4px;
   height: 15px;
-  background: black; /* Always black */
+  background: white; /* Default white color */
   border-radius: 2px;
   transition: all 0.3s ease;
+}
+
+/* Change to black when past 60% threshold */
+body.sound-panel-active .sound-icon span {
+  background: black;
+}
+
+/* Keep white color when menu is open */
+.nav-menu.open .sound-icon span {
+  background: white !important;
 }
 
 /* Animation when sound is ON */
@@ -363,10 +373,10 @@ body, html {
 
 /* ✅ Timeline Vertical Line & Circles */
 .nav-bar .overlap-group {
-  height: 500px;
-  left: 130px; /* 🔥 Adjusted for perfect alignment */
+  height: calc(746px - 35px); /* Explicit calculation from first to last bullet */
+  left: 130px;
   position: absolute;
-  top: 56px;
+  top: 35px; /* Matches first bullet's top position */
   width: 10px;
 }
 
@@ -374,9 +384,9 @@ body, html {
   content: "";
   position: absolute;
   left: 5px;
-  top: 4px;
+  top: 0;
+  bottom: 0; /* New: Ensures line stops at container bottom */
   width: 1px;
-  height: 496px;
   background-color: white;
 }
 
@@ -435,9 +445,11 @@ body, html {
 .timeline-item {
   position: relative;
   width: 40%;
-  margin: 8px 0;
-  padding: 20px 8px; /* Increased vertical padding */
-  min-height: 60px; /* Ensure consistent height */
+  margin: 4px 0;
+  padding: 5px 8px;
+  min-height: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .timeline-item::after {
@@ -447,8 +459,8 @@ body, html {
   height: 12px;
   background-color: white;
   border-radius: 50%;
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Perfect vertical centering */
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .timeline-item.left {
@@ -461,19 +473,20 @@ body, html {
 }
 
 .timeline-item.right {
-  left: 395px;
-  text-align: right;
+  left: 420px;
+  text-align: left;
 }
 
 .timeline-item.right::after {
-  left: 0px; /* Adjust position relative to container */
+  left: -25px; /* Adjust position relative to container */
 }
 
 .event-title {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   margin-bottom: 0px;
   color: white;
-  line-height: 1; /* Tighter line height */
+  line-height: 1;
+  font-family: "Nippo-Light";
 }
 
 .event-list {
@@ -485,7 +498,7 @@ body, html {
 }
 
 .event-list li {
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 }
 
 .event-description {
@@ -504,9 +517,9 @@ body, html {
 
 .timeline-title {
   color: white;
-  font-size: 2rem;
   margin-bottom: 30px;
   text-align: center;
+  font: 400 48px 'Nippo-Regular', sans-serif;
 }
 
 .back-button {
@@ -532,5 +545,29 @@ body, html {
 /* Adjust nav-item spacing */
 .nav-item {
   padding: 25px 15px !important;
+}
+
+/* Hamburger icon lines */
+.hamburger-line {
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+body.right-panel-active .hamburger-line {
+  background-color: black;
+}
+
+/* Keep black color when menu is open */
+.nav-menu.open .hamburger-line {
+  background-color: white !important;
+}
+
+/* Homepage overrides */
+body.homepage-active .sound-icon span {
+  background: black !important;
+}
+
+body.homepage-active .hamburger span {
+  background: black !important;
 }
 

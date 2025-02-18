@@ -34,6 +34,12 @@ const PollutantPage = () => {
       document.documentElement.style.setProperty('--slider-position', `${newPosition}%`);
       setSliderPosition(newPosition);
 
+      // For navbar
+      document.body.classList.toggle('right-panel-active', newPosition < 3);
+      
+      // Custom condition for sound button
+      document.body.classList.toggle('sound-panel-active', newPosition < 98);
+
       // Calculate rotation based on slider position
       const newRotation = (newPosition <= 50)
         ? (newPosition / 50) * 180 // Rotate left 180 degrees

@@ -50,14 +50,12 @@ const Timeline = ({ pollutant, position }) => {
 
   return (
     <div className="timeline-container">
-      <h2 className="text-wrapper">{pollutant} Timeline</h2>
       <div className="timeline-line"></div>
       <div className="overlap-group">
         {timelineEvents.map((event, index) => (
           <div 
             key={index}
             className={`timeline-item ${getPositionClass(event.type)}`}
-            style={{ top: `${index}px` }}
           >
             <div className="event-content">
               {renderContent(event)}
