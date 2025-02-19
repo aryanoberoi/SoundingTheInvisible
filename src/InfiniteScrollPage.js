@@ -292,6 +292,15 @@ const PollutantPage = () => {
           </div>
         </div>
       </div>
+
+      {/* <div className="bottom-section2">
+        <div className="content-container">
+          <h2>Next Page Content</h2>
+        </div>
+        <div className="wave-container">
+          <SineWaveVisualizer />
+        </div>
+      </div> */}
     </>
   );
 };
