@@ -337,6 +337,9 @@ body.sound-panel-active .sound-icon span {
   height: 832px;
   mix-blend-mode: difference;
   position: relative;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* ✅ Styling Each Text Item */
@@ -353,7 +356,7 @@ body.sound-panel-active .sound-icon span {
 .nav-bar .text-wrapper-10,
 .nav-bar .p {
   color: #ffffff;
-  font-family: "Nippo-Regular", Helvetica;
+  font-family: "Nippo-Light";
   font-size: 14px;
   font-weight: 400;
   position: absolute;
@@ -362,25 +365,25 @@ body.sound-panel-active .sound-icon span {
 }
 
 /* ✅ Adjusting Positions Based on Your CSS */
-.nav-bar .text-wrapper { top: 35px; left: 174px; font-size: 24px; } /* Adjusted left position */
-.nav-bar .div { top: 310px; left: 174px; font-size: 24px; } /* Adjusted left position */
+.nav-bar .text-wrapper { top: 0px; left: 174px; font-size: 25px; } /* Adjusted left position */
+.nav-bar .div { top: 340px; left: 174px; font-size: 25px; } /* Adjusted left position */
 .nav-bar .text-wrapper-2 { top: 80px; left: 155px; }
-.nav-bar .text-wrapper-3 { top: 370px; left: 155px; }
-.nav-bar .text-wrapper-4 { top: 440px; left: 155px; }
-.nav-bar .text-wrapper-5 { top: 490px; left: 155px; }
-.nav-bar .p { top: 620px; left: 155px; }
-.nav-bar .text-wrapper-6 { top: 702px; left: 155px; }
+.nav-bar .text-wrapper-3 { top: 420px; left: 155px; }
+.nav-bar .text-wrapper-4 { top: 490px; left: 155px; }
+.nav-bar .text-wrapper-5 { top: 550px; left: 155px; }
+.nav-bar .p { top: 610px; left: 155px; }
+.nav-bar .text-wrapper-6 { top: 690px; left: 155px; }
 .nav-bar .text-wrapper-7 { top: 746px; left: 0; }
-.nav-bar .text-wrapper-8 { top: 149px; left: 155px; }
-.nav-bar .text-wrapper-9 { top: 201px; left: 155px; }
-.nav-bar .text-wrapper-10 { top: 253px; left: 155px; width: 141px; }
+.nav-bar .text-wrapper-8 { top: 140px; left: 155px; }
+.nav-bar .text-wrapper-9 { top: 200px; left: 155px; }
+.nav-bar .text-wrapper-10 { top: 240px; left: 155px; width: 141px; }
 
 /* ✅ Timeline Vertical Line & Circles */
 .nav-bar .overlap-group {
-  height: calc(746px - 35px); /* Explicit calculation from first to last bullet */
+  height: calc(746px); /* Explicit calculation from first to last bullet */
   left: 130px;
   position: absolute;
-  top: 35px; /* Matches first bullet's top position */
+  top: 5px; /* Matches first bullet's top position */
   width: 10px;
 }
 
@@ -417,17 +420,17 @@ body.sound-panel-active .sound-icon span {
 }
 
 /* ✅ Adjusting Circle Positions */
-.nav-bar .ellipse { top: 35px; background-color: white; } /* Matches text-wrapper position */
+.nav-bar .ellipse { top: 0px; background-color: white; } /* Matches text-wrapper position */
 .nav-bar .ellipse-2 { top: 80px; } /* Matches text-wrapper-2 position */
-.nav-bar .ellipse-3 { top: 149px; } /* Matches text-wrapper-8 position */
-.nav-bar .ellipse-4 { top: 201px; } /* Matches text-wrapper-9 position */
+.nav-bar .ellipse-3 { top: 140px; } /* Matches text-wrapper-8 position */
+.nav-bar .ellipse-4 { top: 200px; } /* Matches text-wrapper-9 position */
 .nav-bar .ellipse-5 { top: 253px; } /* Matches text-wrapper-10 position */
-.nav-bar .ellipse-6 { top: 310px; } /* Matches div position */
-.nav-bar .ellipse-7 { top: 370px; } /* Matches text-wrapper-3 position */
-.nav-bar .ellipse-8 { top: 440px; } /* Matches text-wrapper-4 position */
-.nav-bar .ellipse-9 { top: 490px; } /* Matches text-wrapper-5 position */
-.nav-bar .ellipse-10 { top: 620px; } /* Matches p position */
-.nav-bar .ellipse-11 { top: 702px; } /* Matches text-wrapper-6 position */
+.nav-bar .ellipse-6 { top: 340px; } /* Matches div position */
+.nav-bar .ellipse-7 { top: 420px; } /* Matches text-wrapper-3 position */
+.nav-bar .ellipse-8 { top: 490px; } /* Matches text-wrapper-4 position */
+.nav-bar .ellipse-9 { top: 550px; } /* Matches text-wrapper-5 position */
+.nav-bar .ellipse-10 { top: 625px; } /* Matches p position */
+.nav-bar .ellipse-11 { top: 690px; } /* Matches text-wrapper-6 position */
 .nav-bar .ellipse-12 { top: 746px; } /* Matches text-wrapper-7 position */
 
 .timeline-container {
@@ -662,5 +665,47 @@ body.homepage-active .hamburger span {
   margin: 20px auto 0; /* Changed from margin-top to margin with auto horizontal */
   object-fit: contain;
   background: none;
+}
+
+.nav-bar .text-wrapper,
+.nav-bar .div,
+.nav-bar .text-wrapper-7 {
+  left: -5px;  /* Adjusted to align with circle positions */
+  width: 122px;
+  text-align: right;
+}
+
+/* Right-side elements */
+.nav-bar .text-wrapper-2,
+.nav-bar .text-wrapper-3,
+.nav-bar .text-wrapper-4,
+.nav-bar .text-wrapper-5,
+.nav-bar .text-wrapper-6,
+.nav-bar .text-wrapper-8,
+.nav-bar .text-wrapper-9,
+.nav-bar .text-wrapper-10,
+.nav-bar .p {
+  left: 150px;  /* Adjusted to align with circle positions */
+  width: 150px;
+  text-align: left;  /* Changed from right to left for better alignment */
+}
+
+.nav-bar .overlap-group {
+  left: 130px;  /* Maintain timeline position */
+}
+
+.nav-bar .ellipse,
+.nav-bar .ellipse-2,
+.nav-bar .ellipse-3,
+.nav-bar .ellipse-4,
+.nav-bar .ellipse-5,
+.nav-bar .ellipse-6,
+.nav-bar .ellipse-7,
+.nav-bar .ellipse-8,
+.nav-bar .ellipse-9,
+.nav-bar .ellipse-10,
+.nav-bar .ellipse-11,
+.nav-bar .ellipse-12 {
+  left: 0;  /* Maintain circle alignment */
 }
 

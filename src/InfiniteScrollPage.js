@@ -257,7 +257,10 @@ const PollutantPage = () => {
           display: 'flex', 
           flexDirection: 'column',
           alignItems: 'center',
-          position: 'relative'
+          position: 'relative',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          padding: '20px 0'
         }}>
           <div className="text-wrapper">Pollutant name</div>
           <div className="div">Plant name</div>
