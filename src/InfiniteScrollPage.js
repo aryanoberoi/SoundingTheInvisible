@@ -209,14 +209,56 @@ const PollutantPage = () => {
       </div>
 
       <div className="bottom-section1">
-        <img
-          loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/c05deecce1d9a93f6c5f23b1d4ff068c93611042f2fc0f83338c3006ad141976?placeholderIfAbsent=true&apiKey=e7c66450d645437e80b3c1918bb89cd7"
-          className={styles.pollutantImage}
-          style={{ width: '30%' }}
-          alt="Section illustration"
-        />
-        <div className="nav-bar">
+        <div className="main-container">
+          <div className="flex-row-f">
+            <img 
+              src="/ap.png" 
+              alt="Pollutant" 
+              className="image"
+            />
+            <div className="about-pollutant">
+              <span className="about">About </span>
+              <span className="pollutant">Pollutant </span>
+            </div>
+          </div>
+          <div className="flex-row-a">
+            <img 
+              src="l1.png" 
+              alt="Vector graphic" 
+              className="vector-image"
+              style={{ 
+                width: '100%',
+                height: 'auto',
+                objectFit: 'cover' 
+              }}
+            />
+          </div>
+
+          <span className="lorem-ipsum-dolor">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida
+            imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu
+            neque. Etiam rhoncus erat non quam vehicula, sed maximus magna
+            tincidunt. Sed condimentum sollicitudin nibh, nec mattis quam. Ut eu
+            volutpat nisi, quis varius risus. Integer rutrum eros ac turpis euismod,
+            in tincidunt risus dapibus. Etiam eget turpis massa. Fusce rutrum sit
+            amet magna sit amet aliquam. Donec sit amet cursus erat, sit amet
+            sagittis nunc. Nullam mattis risus nisi, non interdum elit congue in.
+            Donec vitae ligula elit. Morbi nec luctus elit, eu feugiat turpis. Sed
+            porttitor luctus ornare. Suspendisse condimentum fermentum convallis.
+          </span>
+          <img 
+            src="g3.png" 
+            alt="graphic element"
+            className="group-3"
+          />
+        </div>
+        <div className="nav-bar" style={{ 
+          display: 'flex', 
+          flexDirection: 'column',
+          alignItems: 'center',
+          position: 'relative'
+        }}>
           <div className="text-wrapper">Pollutant name</div>
           <div className="div">Plant name</div>
           <div className="text-wrapper-2">Sound frequency</div>
