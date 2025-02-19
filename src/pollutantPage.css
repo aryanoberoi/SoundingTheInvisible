@@ -323,16 +323,20 @@ body.sound-panel-active .sound-icon span {
   min-height: 100vh;
   color: white;
   display: flex;
-  justify-content: flex-end; /* 🔥 Align timeline to the right */
-  padding-right: 10%; /* 🔥 Adjusted for proper right alignment */
+  justify-content: space-between;
+  padding: 95px 69px; /* Match left panel padding */
 }
 
-/* ✅ Nav-Bar Timeline */
+.bottom-section1 > img,
+.bottom-section1 .nav-bar {
+  width: calc(50% - 10px); /* Account for gap */
+  margin: 0 10px;
+}
+
 .nav-bar {
   height: 832px;
   mix-blend-mode: difference;
   position: relative;
-  width: 296px;
 }
 
 /* ✅ Styling Each Text Item */
