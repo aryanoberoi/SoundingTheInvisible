@@ -99,7 +99,7 @@ const PollutantPage = () => {
                     Enthalpy and sound <br /> Frequency of Pollutant
                     <br />
                   </div>
-                  <div style={{ border: '1px solid black'}}>
+                  <div style={{ border: '1px solid black', height: '120px' }}>
                     <SineWaveVisualizer />
                   </div>
                   <KnowMoreButton className={styles.knowMoreButton} />
@@ -293,14 +293,14 @@ const PollutantPage = () => {
         </div>
       </div>
 
-      {/* <div className="bottom-section2">
+      <div className="bottom-section2">
         <div className="content-container">
-          <h2>Next Page Content</h2>
+          <h2>Enthalpy and sound Frequency of Pollutant</h2>
         </div>
         <div className="wave-container">
           <SineWaveVisualizer />
         </div>
-      </div> */}
+      </div>
     </>
   );
 };
