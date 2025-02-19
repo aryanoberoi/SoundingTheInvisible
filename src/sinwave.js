@@ -10,39 +10,44 @@ const SineWaveVisualizer = () => {
     const height = canvas.height;
     let animationFrameId;
 
-    // Sine wave parameters
-    const amplitude = height / 2; // Adjust amplitude to fit in frame
-    const frequency = (4 * Math.PI) / width; // Increase frequency for faster wave
-    const speed = 200; // Increase speed for faster animation
-    let offset = 0; // Phase shift
+    // Wave parameters for 440Hz (A4 note)
+    const frequency = 4; // Hz (cycles per second)
+    const amplitude = height / 4; // Wave height
+    const wavelength = width; // Display one full cycle across canvas width
+    let phase = 0;
 
-    const drawSineWave = () => {
+    const drawWaveform = () => {
       ctx.clearRect(0, 0, width, height);
       ctx.beginPath();
-      ctx.moveTo(0, height / 2);
+      ctx.moveTo(0, height/2); // Start at center-left
 
+      // Create continuous wave path
       for (let x = 0; x < width; x++) {
-        const y = height / 2 + amplitude * Math.sin(frequency * (x + offset));
+        // Wave equation: y = A*sin(2π(x/λ - ft) + φ)
+        const y = height/2 + amplitude * Math.sin(
+          (x * 2 * Math.PI / wavelength) - // Spatial component
+          (phase * 2 * Math.PI) // Temporal component
+        );
         ctx.lineTo(x, y);
       }
 
-      ctx.strokeStyle = '#0077be';
+      ctx.strokeStyle = 'white';
       ctx.lineWidth = 2;
       ctx.stroke();
     };
 
-    const animate = () => {
-      offset += speed / 60; // Adjust offset increment for smoother animation
-      drawSineWave();
+    const animate = (timestamp) => {
+      // Calculate phase based on frequency and time
+      phase = frequency * (timestamp / 1000); // Convert ms to seconds
+      drawWaveform();
       animationFrameId = requestAnimationFrame(animate);
     };
 
     animate();
-
     return () => cancelAnimationFrame(animationFrameId);
   }, []);
 
-  return <canvas ref={canvasRef} width={300} height={200} />;
+  return <canvas ref={canvasRef} width={300} height={90} style={{ display: 'block' }} />;
 };
 
 export default SineWaveVisualizer;

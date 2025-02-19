@@ -104,7 +104,8 @@ body, html {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100%; /* Keeps the content centered vertically */
+  height: 100%;
+  gap: 4px;
 }
 
 .circle {
@@ -113,7 +114,7 @@ body, html {
   border: 2px solid white;
   border-radius: 50%;
   overflow: hidden; /* Keeps the image within the circle */
-  margin-bottom: 16px; /* Adds spacing between the circle and the text */
+  margin-bottom: 4px;
 }
 
 .circle img {
@@ -124,13 +125,14 @@ body, html {
 
 .pollutant-name {
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: white;
+  margin-bottom: 2px;
 }
 
 .know-more-button {
-  margin-top: 8px; /* Adds spacing between the text and the button */
-  padding: 8px 16px;
+  margin-top: 2px;
+  padding: 4px 8px;
   background-color: white;
   color: black;
   border: none;
@@ -163,9 +165,19 @@ body, html {
   display: block;
   width: 4px;
   height: 15px;
-  background: black; /* Always black */
+  background: white; /* Default white color */
   border-radius: 2px;
   transition: all 0.3s ease;
+}
+
+/* Change to black when past 60% threshold */
+body.sound-panel-active .sound-icon span {
+  background: black;
+}
+
+/* Keep white color when menu is open */
+.nav-menu.open .sound-icon span {
+  background: white !important;
 }
 
 /* Animation when sound is ON */
@@ -311,16 +323,23 @@ body, html {
   min-height: 100vh;
   color: white;
   display: flex;
-  justify-content: flex-end; /* 🔥 Align timeline to the right */
-  padding-right: 10%; /* 🔥 Adjusted for proper right alignment */
+  justify-content: space-between;
+  padding: 95px 69px; /* Match left panel padding */
 }
 
-/* ✅ Nav-Bar Timeline */
+.bottom-section1 > img,
+.bottom-section1 .nav-bar {
+  width: calc(50% - 10px); /* Account for gap */
+  margin: 0 10px;
+}
+
 .nav-bar {
   height: 832px;
   mix-blend-mode: difference;
   position: relative;
-  width: 296px;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* ✅ Styling Each Text Item */
@@ -337,34 +356,34 @@ body, html {
 .nav-bar .text-wrapper-10,
 .nav-bar .p {
   color: #ffffff;
-  font-family: "Nippo-Regular", Helvetica;
+  font-family: "Nippo-Light";
   font-size: 14px;
   font-weight: 400;
   position: absolute;
-  text-align: right; /* 🔥 Ensuring right alignment */
+  text-align: right; 
   width: 122px;
 }
 
 /* ✅ Adjusting Positions Based on Your CSS */
-.nav-bar .text-wrapper { top: 45px; left: 0; font-size: 24px; } /* Pollutant name */
-.nav-bar .div { top: 330px; left: 0; font-size: 24px; } /* Plant name */
-.nav-bar .text-wrapper-2 { top: 97px; left: 155px; }
-.nav-bar .text-wrapper-3 { top: 404px; left: 155px; }
-.nav-bar .text-wrapper-4 { top: 480px; left: 155px; }
-.nav-bar .text-wrapper-5 { top: 538px; left: 155px; }
-.nav-bar .p { top: 620px; left: 155px; }
-.nav-bar .text-wrapper-6 { top: 702px; left: 155px; }
+.nav-bar .text-wrapper { top: 0px; left: 174px; font-size: 25px; } /* Adjusted left position */
+.nav-bar .div { top: 340px; left: 174px; font-size: 25px; } /* Adjusted left position */
+.nav-bar .text-wrapper-2 { top: 80px; left: 155px; }
+.nav-bar .text-wrapper-3 { top: 420px; left: 155px; }
+.nav-bar .text-wrapper-4 { top: 490px; left: 155px; }
+.nav-bar .text-wrapper-5 { top: 550px; left: 155px; }
+.nav-bar .p { top: 610px; left: 155px; }
+.nav-bar .text-wrapper-6 { top: 690px; left: 155px; }
 .nav-bar .text-wrapper-7 { top: 746px; left: 0; }
-.nav-bar .text-wrapper-8 { top: 149px; left: 155px; }
-.nav-bar .text-wrapper-9 { top: 201px; left: 155px; }
-.nav-bar .text-wrapper-10 { top: 253px; left: 155px; width: 141px; }
+.nav-bar .text-wrapper-8 { top: 140px; left: 155px; }
+.nav-bar .text-wrapper-9 { top: 200px; left: 155px; }
+.nav-bar .text-wrapper-10 { top: 240px; left: 155px; width: 141px; }
 
 /* ✅ Timeline Vertical Line & Circles */
 .nav-bar .overlap-group {
-  height: 706px;
-  left: 130px; /* 🔥 Adjusted for perfect alignment */
+  height: calc(746px); /* Explicit calculation from first to last bullet */
+  left: 130px;
   position: absolute;
-  top: 56px;
+  top: 5px; /* Matches first bullet's top position */
   width: 10px;
 }
 
@@ -372,9 +391,9 @@ body, html {
   content: "";
   position: absolute;
   left: 5px;
-  top: 4px;
+  top: 0;
+  bottom: 0; /* New: Ensures line stops at container bottom */
   width: 1px;
-  height: 698px;
   background-color: white;
 }
 
@@ -401,16 +420,292 @@ body, html {
 }
 
 /* ✅ Adjusting Circle Positions */
-.nav-bar .ellipse { top: 0; background-color: white; } /* First circle */
-.nav-bar .ellipse-2 { top: 47px; }
-.nav-bar .ellipse-3 { top: 100px; }
-.nav-bar .ellipse-4 { top: 153px; }
-.nav-bar .ellipse-5 { top: 203px; }
-.nav-bar .ellipse-6 { top: 288px; }
-.nav-bar .ellipse-7 { top: 354px; }
-.nav-bar .ellipse-8 { top: 430px; }
-.nav-bar .ellipse-9 { top: 488px; }
-.nav-bar .ellipse-10 { top: 570px; }
-.nav-bar .ellipse-11 { top: 652px; }
-.nav-bar .ellipse-12 { top: 696px; }
+.nav-bar .ellipse { top: 0px; background-color: white; } /* Matches text-wrapper position */
+.nav-bar .ellipse-2 { top: 80px; } /* Matches text-wrapper-2 position */
+.nav-bar .ellipse-3 { top: 140px; } /* Matches text-wrapper-8 position */
+.nav-bar .ellipse-4 { top: 200px; } /* Matches text-wrapper-9 position */
+.nav-bar .ellipse-5 { top: 253px; } /* Matches text-wrapper-10 position */
+.nav-bar .ellipse-6 { top: 340px; } /* Matches div position */
+.nav-bar .ellipse-7 { top: 420px; } /* Matches text-wrapper-3 position */
+.nav-bar .ellipse-8 { top: 490px; } /* Matches text-wrapper-4 position */
+.nav-bar .ellipse-9 { top: 550px; } /* Matches text-wrapper-5 position */
+.nav-bar .ellipse-10 { top: 625px; } /* Matches p position */
+.nav-bar .ellipse-11 { top: 690px; } /* Matches text-wrapper-6 position */
+.nav-bar .ellipse-12 { top: 746px; } /* Matches text-wrapper-7 position */
+
+.timeline-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  width: 2px;
+  background-color: white;
+  height: 100%;
+}
+
+.timeline-item {
+  position: relative;
+  width: 40%;
+  margin: 4px 0;
+  padding: 5px 8px;
+  min-height: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.timeline-item.left {
+  right: -167px;
+  text-align: left;
+}
+
+.timeline-item.left::after {
+  right: 96px; /* Adjust position relative to container */
+}
+
+.timeline-item.right {
+  left: 420px;
+  text-align: left;
+}
+
+.timeline-item.right::after {
+  left: -25px; /* Adjust position relative to container */
+}
+
+.event-title {
+  font-size: 1.3rem;
+  margin-bottom: 0px;
+  color: white;
+  line-height: 1;
+  font-family: "Nippo-Light";
+}
+
+.event-list {
+  list-style: none;
+  padding: 0;
+  color: #ccc;
+  margin-top: 4px;
+  line-height: 1.2; /* Better alignment with bullet */
+}
+
+.event-list li {
+  margin-bottom: 1px;
+}
+
+.event-description {
+  color: #ccc;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+.timeline-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.timeline-title {
+  color: white;
+  margin-bottom: 30px;
+  text-align: center;
+  font: 400 48px 'Nippo-Regular', sans-serif;
+}
+
+.back-button {
+  background: none;
+  border: 1px solid white;
+  color: white;
+  padding: 10px 20px;
+  margin-bottom: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: white;
+  color: black;
+}
+
+/* Remove dropdown styles */
+.dropdown-content {
+  display: none !important;
+}
+
+/* Adjust nav-item spacing */
+.nav-item {
+  padding: 25px 15px !important;
+}
+
+/* Hamburger icon lines */
+.hamburger-line {
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+body.right-panel-active .hamburger-line {
+  background-color: black;
+}
+
+/* Keep black color when menu is open */
+.nav-menu.open .hamburger-line {
+  background-color: white !important;
+}
+
+/* Homepage overrides */
+body.homepage-active .sound-icon span {
+  background: black !important;
+}
+
+body.homepage-active .hamburger span {
+  background: black !important;
+}
+
+/* Add to bottom of file */
+.main-container {
+  position: relative;
+  width: 604px;
+  height: 802.668px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.flex-row-f {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 441.638px;
+  height: 57.501px;
+  margin: 0 0 0 0;
+  z-index: 3;
+}
+
+.image {
+  width: 57.501px;
+  height: 57.501px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.about-pollutant {
+  width: 370.561px;
+  height: 43.126px;
+  font-family: Nippo, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+  font-size: 32px;
+  font-weight: 378;
+  line-height: 43.126px;
+  letter-spacing: 0.96px;
+}
+
+.about { color: #fff; }
+.pollutant { 
+  color: #fff;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 2px; /* Controls gap size */
+}
+
+.pollutant::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 1px; /* Adjusts underline position */
+  width: 100%;
+  height: 1px; /* Controls underline thickness */
+  background-color: currentColor;
+}
+
+.flex-row-a {
+  width: 428.5px;
+  height: 9.5px;
+  margin: -0.57px 0 0 28.5px;
+  z-index: 6;
+  margin-bottom: 30px; /* Add bottom margin to the vector container */
+}
+
+.vector, .vector-1, .vector-2 {
+  background: #fff;
+  height: 2px;
+}
+
+.lorem-ipsum-dolor {
+  width: 600px;
+  color: #fff;
+  font-family: 'Clash Grotesk', -apple-system, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 28.7px;
+  margin: 60px 0 30px 4px; /* Increased bottom margin to 30px */
+  display: block; /* Ensure block-level behavior */
+}
+
+.group-3 {
+  width: 65%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 471/406.233;
+  display: block;
+  margin: 20px auto 0; /* Changed from margin-top to margin with auto horizontal */
+  object-fit: contain;
+  background: none;
+}
+
+.nav-bar .text-wrapper,
+.nav-bar .div,
+.nav-bar .text-wrapper-7 {
+  left: -5px;  /* Adjusted to align with circle positions */
+  width: 122px;
+  text-align: right;
+}
+
+/* Right-side elements */
+.nav-bar .text-wrapper-2,
+.nav-bar .text-wrapper-3,
+.nav-bar .text-wrapper-4,
+.nav-bar .text-wrapper-5,
+.nav-bar .text-wrapper-6,
+.nav-bar .text-wrapper-8,
+.nav-bar .text-wrapper-9,
+.nav-bar .text-wrapper-10,
+.nav-bar .p {
+  left: 150px;  /* Adjusted to align with circle positions */
+  width: 150px;
+  text-align: left;  /* Changed from right to left for better alignment */
+}
+
+.nav-bar .overlap-group {
+  left: 130px;  /* Maintain timeline position */
+}
+
+.nav-bar .ellipse,
+.nav-bar .ellipse-2,
+.nav-bar .ellipse-3,
+.nav-bar .ellipse-4,
+.nav-bar .ellipse-5,
+.nav-bar .ellipse-6,
+.nav-bar .ellipse-7,
+.nav-bar .ellipse-8,
+.nav-bar .ellipse-9,
+.nav-bar .ellipse-10,
+.nav-bar .ellipse-11,
+.nav-bar .ellipse-12 {
+  left: 0;  /* Maintain circle alignment */
+}
 
