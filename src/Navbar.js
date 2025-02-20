@@ -38,8 +38,11 @@ const Navbar = () => {
             {["Agriculture waste", "Heavy metal waste", "Radioactive waste", "Sewage waste"].map((text, index) => (
               <li key={index} className="nav-item">
                 <div onClick={() => setSelectedPollutant(text)} className="nav-item-header">
-                  <img src={`${text.toLowerCase().replace(/ /g, "-")}-icon.svg`} alt={text} className="nav-icon" />
-                  <span className="nav-text">{text}</span>
+                  <img 
+                    src={`${text.toLowerCase().replace(/ /g, "-")}-vector.svg`} 
+                    alt={text} 
+                    className="nav-icon" 
+                  />
                 </div>
               </li>
             ))}

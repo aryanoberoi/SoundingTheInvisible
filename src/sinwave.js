@@ -6,13 +6,15 @@ const SineWaveVisualizer = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    const width = canvas.width;
-    const height = canvas.height;
+    const width = canvas.parentElement.clientWidth;
+    const height = canvas.parentElement.clientHeight;
+    canvas.width = width;
+    canvas.height = height;
     let animationFrameId;
 
     // Wave parameters for 440Hz (A4 note)
     const frequency = 4; // Hz (cycles per second)
-    const amplitude = height / 4; // Wave height
+    const amplitude = height / 2; // Changed from /4 to /2 to use full height
     const wavelength = width; // Display one full cycle across canvas width
     let phase = 0;
 
@@ -47,7 +49,11 @@ const SineWaveVisualizer = () => {
     return () => cancelAnimationFrame(animationFrameId);
   }, []);
 
-  return <canvas ref={canvasRef} width={300} height={90} style={{ display: 'block' }} />;
+  return <canvas ref={canvasRef} style={{ 
+    width: '100%',
+    height: '100%',
+    display: 'block' 
+  }} />;
 };
 
 export default SineWaveVisualizer;

@@ -261,7 +261,7 @@ body.sound-panel-active .sound-icon span {
   padding: 0;
   margin-top: 80px;
   width: 80%;
-  max-width: 600px;
+  max-width: 850px;
 }
 
 /* Individual Menu Items */
@@ -269,8 +269,8 @@ body.sound-panel-active .sound-icon span {
   display: flex;
   align-items: center;
   padding: 15px;
-  border-bottom: 1px solid white;
   cursor: pointer;
+  margin-bottom: 50px;
   transition: background 0.3s;
 }
 
@@ -280,9 +280,9 @@ body.sound-panel-active .sound-icon span {
 
 /* Icons on Left */
 .nav-icon {
-  width: 40px;
-  height: 40px;
-  margin-right: 15px;
+  width: fit-content;
+  height: 100px;
+  object-fit: fill;
 }
 
 /* Text on Left */
@@ -331,6 +331,13 @@ body.sound-panel-active .sound-icon span {
 .bottom-section1 .nav-bar {
   width: calc(50% - 10px); /* Account for gap */
   margin: 0 10px;
+}
+
+.bottom-section2 {
+  background-color: black;
+  min-height: 100vh;
+  color: white;
+  padding: 0px 69px; /* Match left panel padding */
 }
 
 .nav-bar {
@@ -607,7 +614,7 @@ body.homepage-active .hamburger span {
 .about-pollutant {
   width: 370.561px;
   height: 43.126px;
-  font-family: Nippo, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+  font-family: Nippo-Light, sans-serif;
   font-size: 32px;
   font-weight: 378;
   line-height: 43.126px;
@@ -648,9 +655,9 @@ body.homepage-active .hamburger span {
 .lorem-ipsum-dolor {
   width: 600px;
   color: #fff;
-  font-family: 'Clash Grotesk', -apple-system, sans-serif;
+  font-family: 'ClashGrotesk-Light', -apple-system, sans-serif;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 28.7px;
   margin: 60px 0 30px 4px; /* Increased bottom margin to 30px */
   display: block; /* Ensure block-level behavior */
@@ -707,5 +714,24 @@ body.homepage-active .hamburger span {
 .nav-bar .ellipse-11,
 .nav-bar .ellipse-12 {
   left: 0;  /* Maintain circle alignment */
+}
+
+.bottom-section2 .content-container {
+  width: fit-content;
+  margin-left: 69px;
+  color: black;
+  background-color: white;
+  padding: 0.5px 0; /* Reduced vertical padding */
+  box-sizing: border-box;
+  font: 400 28px 'Nippo-Light', sans-serif;
+}
+
+.bottom-section2 .wave-container {
+  border: 1px solid white;
+  margin-top: 20px;
+  margin-left: 69px;
+  width: calc(75%); /* Adjust width to account for margins */
+  height: 200px; /* Set desired height */
+  background-color: black;
 }
 

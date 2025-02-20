@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 const SoundToggle = ({ isWhiteBg }) => {
   const [isPlaying, setIsPlaying] = useState(true);
-  const audioRef = useRef(new Audio("/your-sound-file.mp3")); // Replace with actual file path
+  const audioRef = useRef(new Audio("/sound.mp3")); // Replace with actual file path
 
   useEffect(() => {
     const audio = audioRef.current;
