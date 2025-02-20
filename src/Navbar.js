@@ -6,6 +6,7 @@ import Timeline from './Timeline';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedPollutant, setSelectedPollutant] = useState(null);
+  const [expandedItem, setExpandedItem] = useState(null);
 
   return (
     <>
@@ -36,8 +37,17 @@ const Navbar = () => {
         ) : (
           <ul className="nav-links">
             {["Agriculture waste", "Heavy metal waste", "Radioactive waste", "Sewage waste"].map((text, index) => (
-              <li key={index} className="nav-item">
-                <div onClick={() => setSelectedPollutant(text)} className="nav-item-header">
+              <li 
+                key={index} 
+                className={`nav-item ${expandedItem === text ? 'expanded' : ''}`}
+              >
+                <div 
+                  onClick={() => {
+                    setExpandedItem(expandedItem === text ? null : text);
+                    setSelectedPollutant(null);
+                  }} 
+                  className="nav-item-header"
+                >
                   <div className="nav-item-content">
                     <img 
                       src={`${text.toLowerCase().replace(/ /g, "-")}-icon.svg`} 
@@ -45,18 +55,26 @@ const Navbar = () => {
                       className="nav-icon" 
                     />
                     <div className="nav-item-text">{text}</div>
-                    {/* <img
+                    <img
                       src="down-arrow.svg"
                       alt="More info"
                       className="nav-arrow"
-                    /> */}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedPollutant(text);
+                      }}
+                    />
                   </div>
-                  <img 
-                    src="underline.svg" 
-                    alt="Underline" 
-                    className="nav-underline" 
-                  />
-                </div>
+                  <div className="underline-container">
+                    <img
+                      src={expandedItem === text ? 
+                        `${text.toLowerCase().replace(/ /g, "-")}-expanded.svg` : 
+                        "underline.svg"}
+                      alt={expandedItem === text ? "Expanded underline" : "Default underline"}
+                      className={`nav-underline ${expandedItem === text ? 'expanded-underline' : ''}`}
+                    />
+                  </div>
+                </div> 
               </li>
             ))}
           </ul>

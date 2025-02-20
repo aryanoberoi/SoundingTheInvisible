@@ -739,7 +739,8 @@ body.homepage-active .hamburger span {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 100%;
+  cursor: pointer;
 }
 
 .nav-item-content {
@@ -750,13 +751,45 @@ body.homepage-active .hamburger span {
   width: 100%; /* Ensure container takes full width */
 }
 
-.nav-underline {
+.nav-underline, .expanded-underline {
   position: absolute;
-  left: 330px;
-  bottom: -20px;  /* Increased from -12px for better spacing */
-  width: 550px;  /* Fixed width for all underlines */
-  transform: translateX(-50%) scaleX(1.2);  /* Centering the underline */
+  left: 370px;
+  bottom: -20px;
+  width: 650px;
+  transform: translateX(-50%) scaleX(1.2);
   transform-origin: left;
+  transition: all 0.3s ease;
+}
+
+.nav-item.expanded .nav-underline {
+  opacity: 0;
+}
+
+.nav-item.expanded .expanded-underline {
+  opacity: 1;
+  transform: translateX(-50%) scaleX(1.2) translateY(20px);
+}
+
+.nav-item {
+  padding: 25px 15px !important;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-item.expanded {
+  margin-bottom: 40px; /* Add space for expanded content */
+}
+
+.expanded-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  padding-left: 50px; /* Match icon spacing */
+  margin-top: 10px;
+}
+
+.nav-item.expanded .expanded-content {
+  max-height: 500px; /* Adjust based on your content needs */
 }
 
 .nav-item-text {
@@ -773,4 +806,18 @@ body.homepage-active .hamburger span {
   height: 16px;
   position: absolute;
   right: 0px;
+}
+
+.underline-container {
+  position: relative;
+  width: 100%;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.visible {
+  opacity: 1;
 }
