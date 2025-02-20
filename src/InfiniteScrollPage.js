@@ -5,7 +5,7 @@ import plantStyles from './PlantDetails.module.css';
 import { KnowMoreButton } from './Knowmorebutton';
 import { PlantInfoSection } from './PlantInfoSection';
 import SineWaveVisualizer from './sinwave';
-
+import { Box } from './Body';
 const PollutantPage = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [rotation, setRotation] = useState(0);
@@ -300,7 +300,10 @@ const PollutantPage = () => {
         <div className="wave-container">
           <SineWaveVisualizer />
         </div>
+        <div>
+</div>
       </div>
+      <Box></Box>
     </>
   );
 };
