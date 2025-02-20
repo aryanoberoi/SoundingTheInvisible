@@ -2,6 +2,7 @@
     background: #000;
     padding: 95px 69px;
     overflow: hidden;
+    position: relative;
   }
   
   .contentWrapper {
@@ -98,16 +99,17 @@
   .imageContainer {
     background: #fff;
     border-radius: 50%;
-    align-self: flex-start;
     display: flex;
-    width: 320px;
+    width: 16%; /* 320px / 1440px */
     aspect-ratio: 1;
     border: 1px solid #fff;
     justify-content: center;
     align-items: center;
-    position: relative;
-    left: 750px;
+    position: absolute;
+    left: 43%; /* 711px / 1440px */
+    top: 55%; /* 355px / 768px */
     z-index: 20;
+    transform: translateZ(20px);
   }
   
   .pollutantImage {
@@ -204,11 +206,7 @@
       max-width: 100%;
       margin-top: 40px;
     }
-  
-    .imageContainer {
-      padding-right: 20px;
-    }
-  
+
     .sideContent {
       width: 100%;
       margin-top: 40px;
@@ -228,5 +226,13 @@
   
     .sourcesDescription {
       margin-right: 10px;
+    }
+
+    .imageContainer {
+      width: 50%;
+      left: 50%;
+      top: auto;
+      bottom: -25%;
+      transform: translateX(-50%);
     }
   }
