@@ -301,6 +301,10 @@ const PollutantPage = () => {
           <SineWaveVisualizer />
         </div>
       </div>
+
+      <div className="bottom-section2">
+        <Box></Box>
+      </div>
     </>
   );
 };

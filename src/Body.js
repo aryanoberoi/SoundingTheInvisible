@@ -25,11 +25,11 @@ export const Box = () => {
 
             <div className="div-wrapper">
               <div className="overlap-group-2">
-                <img
+                {/* <img
                   className="vector"
                   alt="Vector"
                   src="https://c.animaapp.com/Vg2l9Q1d/img/vector-140.svg"
-                />
+                /> vector issue */}
 
                 <img
                   className="human"
@@ -41,7 +41,7 @@ export const Box = () => {
           </div>
         </div>
 
-        <div className="overlap-2">
+        {/* <div className="overlap-2">
           <img
             className="image"
             alt="Image"
@@ -73,9 +73,9 @@ export const Box = () => {
               </p>
             </div>
           </div>
-        </div>
+        </div> demo expansion box */}
 
-        <div className="overlap-5">
+        {/* <div className="overlap-5">
           <div className="group-4">
             <div className="overlap-6">
               <div className="text-wrapper-3">Place your title here</div>
@@ -94,8 +94,8 @@ export const Box = () => {
             className="image-traced"
             alt="Image traced"
             src="https://c.animaapp.com/Vg2l9Q1d/img/image-5--traced-.svg"
-          />
-        </div>
+          /> useless cursor
+        </div> */}
 
         <div className="group-5">
           <div className="overlap-6">
@@ -154,6 +154,34 @@ export const Box = () => {
         </div>
 
         <div className="group-9">
+          <div className="overlap-6">
+            <div className="text-wrapper-3">Place your title here</div>
+
+            <div className="img-wrapper">
+              <img
+                className="vector-3"
+                alt="Vector"
+                src="https://c.animaapp.com/Vg2l9Q1d/img/vector-148-6.svg"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="group-10">
+          <div className="overlap-6">
+            <div className="text-wrapper-3">Place your title here</div>
+
+            <div className="img-wrapper">
+              <img
+                className="vector-3"
+                alt="Vector"
+                src="https://c.animaapp.com/Vg2l9Q1d/img/vector-148-6.svg"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="group-11">
           <div className="overlap-6">
             <div className="text-wrapper-3">Place your title here</div>
 
