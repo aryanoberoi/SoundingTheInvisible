@@ -1,0 +1,233 @@
+.box {
+    height: 1134px;
+    position: relative;
+    width: 637px;
+  }
+  
+  .box .group {
+    height: 1134px;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 645px;
+  }
+  
+  .box .overlap {
+    height: 954px;
+    left: 0;
+    position: absolute;
+    top: 180px;
+    width: 637px;
+  }
+  
+  .box .overlap-group {
+    height: 954px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 637px;
+  }
+  
+  .box .text-wrapper {
+    color: #ffffff;
+    font-family: "Clash Grotesk-Regular", Helvetica;
+    font-size: 14px;
+    font-weight: 400;
+    left: 0;
+    letter-spacing: 0;
+    line-height: 28.7px;
+    mix-blend-mode: difference;
+    position: absolute;
+    text-align: right;
+    top: 656px;
+    width: 586px;
+  }
+  
+  .box .rectangle {
+    height: 417px;
+    left: 20px;
+    position: absolute;
+    top: 0;
+    width: 291px;
+  }
+  
+  .box .div {
+    color: #ffffff;
+    font-family: "Clash Grotesk-Regular", Helvetica;
+    font-size: 14px;
+    font-weight: 400;
+    left: 78px;
+    letter-spacing: 0;
+    line-height: 28.7px;
+    mix-blend-mode: difference;
+    position: absolute;
+    top: 84px;
+    width: 559px;
+  }
+  
+  .box .overlap-wrapper {
+    height: 331px;
+    left: 297px;
+    position: absolute;
+    top: 315px;
+    transform: rotate(-90.00deg);
+    width: 71px;
+  }
+  
+  .box .overlap-2 {
+    height: 331px;
+    position: relative;
+    width: 72px;
+  }
+  
+  .box .overlap-3 {
+    height: 331px;
+    left: 3px;
+    position: absolute;
+    top: 0;
+    width: 68px;
+  }
+  
+  .box .vector {
+    height: 1px;
+    left: -165px;
+    position: absolute;
+    top: 165px;
+    transform: rotate(90.00deg);
+    width: 331px;
+  }
+  
+  .box .img {
+    height: 1px;
+    left: -131px;
+    position: absolute;
+    top: 165px;
+    transform: rotate(90.00deg);
+    width: 331px;
+  }
+  
+  .box .vector-2 {
+    height: 1px;
+    left: -98px;
+    position: absolute;
+    top: 165px;
+    transform: rotate(90.00deg);
+    width: 331px;
+  }
+  
+  .box .rectangle-2 {
+    background-color: #ffffff;
+    height: 7px;
+    left: 0;
+    position: absolute;
+    top: 324px;
+    width: 8px;
+  }
+  
+  .box .rectangle-3 {
+    background-color: #ffffff;
+    height: 7px;
+    left: 38px;
+    position: absolute;
+    top: 293px;
+    width: 8px;
+  }
+  
+  .box .rectangle-4 {
+    background-color: #ffffff;
+    height: 7px;
+    left: 63px;
+    position: absolute;
+    top: 324px;
+    width: 8px;
+  }
+  
+  .box .text-wrapper-2 {
+    color: #ffffff;
+    font-family: "Nippo-Regular", Helvetica;
+    font-size: 32px;
+    font-weight: 400;
+    left: 340px;
+    letter-spacing: 0;
+    line-height: 52.8px;
+    mix-blend-mode: difference;
+    position: absolute;
+    top: 570px;
+    white-space: nowrap;
+  }
+  
+  .box .rectangle-5 {
+    height: 418px;
+    left: 106px;
+    position: absolute;
+    top: 536px;
+    width: 522px;
+  }
+  
+  .box .vector-3 {
+    height: 116px;
+    left: 166px;
+    position: absolute;
+    top: 418px;
+    width: 1px;
+  }
+  
+  .box .overlap-group-wrapper {
+    height: 57px;
+    left: 13px;
+    position: absolute;
+    top: 0;
+    width: 529px;
+  }
+  
+  .box .overlap-group-2 {
+    height: 57px;
+    position: relative;
+    width: 527px;
+  }
+  
+  .box .rectangle-6 {
+    background-color: #ffffff;
+    height: 57px;
+    left: 2px;
+    position: absolute;
+    top: 0;
+    width: 169px;
+  }
+  
+  .box .rectangle-7 {
+    background-color: #ffffff;
+    height: 10px;
+    left: 69px;
+    position: absolute;
+    top: 47px;
+    width: 170px;
+  }
+  
+  .box .text-wrapper-3 {
+    color: #181818;
+    font-family: "Nippo-Regular", Helvetica;
+    font-size: 28px;
+    font-weight: 400;
+    left: 0;
+    letter-spacing: 0.84px;
+    line-height: normal;
+    position: absolute;
+    top: 9px;
+    width: 527px;
+  }
+  
+  .box .text-wrapper-4 {
+    color: #ffffff;
+    font-family: "Nippo-Regular", Helvetica;
+    font-size: 32px;
+    font-weight: 400;
+    left: 15px;
+    letter-spacing: 0;
+    line-height: 52.8px;
+    mix-blend-mode: difference;
+    position: absolute;
+    top: 112px;
+    white-space: nowrap;
+  }
+  
