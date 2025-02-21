@@ -6,6 +6,7 @@ import { KnowMoreButton } from './Knowmorebutton';
 import { PlantInfoSection } from './PlantInfoSection';
 import SineWaveVisualizer from './sinwave';
 import { Box } from './Body';
+import { CaseStudies } from './PollutantPage/CaseStudies';
 const PollutantPage = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [rotation, setRotation] = useState(0);
