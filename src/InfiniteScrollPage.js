@@ -24,7 +24,6 @@ const PollutantPage = () => {
       description: "Temperature,  \nhumidity, \nsoil type, \nwhat kind of areas it"
     }
   ];
-
   const handleSliderMove = (e) => {
     const container = document.getElementById('slider-container');
     const rect = container.getBoundingClientRect();
@@ -41,9 +40,7 @@ const PollutantPage = () => {
       document.body.classList.toggle('sound-panel-active', newPosition < 98);
 
       // Calculate rotation based on slider position
-      const newRotation = (newPosition <= 50)
-        ? (newPosition / 50) * 180 // Rotate left 180 degrees
-        : ((newPosition - 50) / 50) * 180; // Rotate right 180 degrees
+      const newRotation = (newPosition / 100) * 360;
 
       setRotation(newRotation);
       document.documentElement.style.setProperty('--rotation', `${newRotation}deg`);
@@ -179,17 +176,12 @@ const PollutantPage = () => {
           style={{ left: `${sliderPosition}%` }}
           onMouseDown={handleMouseDown}
         >
-          <div
-            className="slider-circle"
+          <img
+            src="slider.png"
+            alt="Slider"
+            className="slider-image"
             style={{ transform: `rotate(${rotation}deg)` }}
-          >
-            <div className="slider-half left-half">
-              <span className="arrow left-arrow">&#9664;</span>
-            </div>
-            <div className="slider-half right-half">
-              <span className="arrow right-arrow">&#9654;</span>
-            </div>
-          </div>
+          />
         </div>
         <div className="scrollable-black">
           <div className={styles.scrollableContent}>
