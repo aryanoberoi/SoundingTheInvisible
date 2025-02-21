@@ -239,11 +239,12 @@ body.sound-panel-active .sound-icon span {
   align-items: center;
   transition: 0.4s ease-in-out;
   z-index: 999;
-  overflow-y: auto; /* Add vertical scrolling */
+  overflow-y: hidden; /* Changed from auto to hidden */
 }
 
 .nav-menu.open {
   left: 0;
+  overflow-y: auto; /* Only enable scrolling when open */
 }
 
 /* Close Button */
