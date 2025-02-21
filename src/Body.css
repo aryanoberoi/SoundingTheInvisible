@@ -1,19 +1,20 @@
-.box {
+.health-effects-box {
     height: auto;
     min-height: 863px;
     position: relative;
-    width: 40%;
+    width: 100%;
     padding: 20px 0;
     margin-left: 0px;
+    overflow: hidden;
 }
   
-.box .group {
+.health-effects-box .content-sections {
     height: auto;
     position: relative;
     width: 100%;
 }
   
-.box .overlap-group-wrapper {
+.health-effects-box .header-container {
     height: auto;
     position: relative;
     width: 100%;
@@ -23,13 +24,13 @@
     left: 0;
 }
   
-.box .overlap-group {
+.health-effects-box .header-overlap {
     height: 57px;
     position: relative;
     width: 423px;
 }
   
-.box .rectangle {
+.health-effects-box .header-background {
     background-color: #ffffff;
     width: 80%;
     left: 10%;
@@ -39,7 +40,7 @@
     top: 0;
 }
   
-.box .div {
+.health-effects-box .header-underline {
     background-color: #ffffff;
     height: 9px;
     left: 72px;
@@ -48,7 +49,7 @@
     width: 351px;
 }
   
-.box .text-wrapper {
+.health-effects-box .header-title {
     color: #181818;
     font: 400 28px 'Nippo-Regular', sans-serif;
     font-size: clamp(20px, 2vw, 28px);
@@ -62,7 +63,7 @@
     text-align: center;
 }
   
-.box .overlap-wrapper {
+.health-effects-box .human-container {
     height: 687px;
     left: 0;
     position: absolute;
@@ -70,14 +71,14 @@
     width: fit-content;
 }
   
-.box .overlap {
+.health-effects-box .human-image-wrapper {
     height: 687px;
     left: -69px;
     position: relative;
     width: 438px;
 }
   
-.box .img {
+.health-effects-box .main-human-image {
     height: auto;
     width: 100%;
     left: 0;
@@ -87,7 +88,7 @@
     background-color: transparent;
 }
   
-.box .div-wrapper {
+.health-effects-box .human-graphics-container {
     height: 687px;
     left: 62px;
     position: absolute;
@@ -95,12 +96,12 @@
     width: 254px;
 }
   
-.box .overlap-group-2 {
+.health-effects-box .human-graphics-overlap {
     height: 687px;
     position: relative;
 }
   
-.box .vector {
+.health-effects-box .human-vector {
     height: auto;
     width: 100%;
     left: 0;
@@ -109,16 +110,21 @@
     top: 26px;
 }
   
-.box .human {
-    height: auto;
-    width: 100%;
-    max-width: 254px;
-    left: 0;
+.health-effects-box .content-item {
+    height: 32px;
     position: absolute;
-    top: 0;
+    width: 319px;
 }
   
-.box .overlap-2 {
+.health-effects-box .content-item-1 { left: 492px; top: 150px; }
+.health-effects-box .content-item-2 { left: 571px; top: 250px; }
+.health-effects-box .content-item-3 { left: 492px; top: 350px; }
+.health-effects-box .content-item-4 { left: 571px; top: 450px; }
+.health-effects-box .content-item-5 { left: 492px; top: 550px; }
+.health-effects-box .content-item-6 { left: 571px; top: 650px; }
+.health-effects-box .content-item-7 { left: 492px; top: 750px; }
+  
+.health-effects-box .item-overlap {
     position: relative;
     width: 90%;
     max-width: 416px;
@@ -127,116 +133,7 @@
     height: 187px;
 }
   
-.box .image {
-    width: 6vw;
-    height: 6vw;
-    max-width: 26px;
-    max-height: 26px;
-    left: 390px;
-    object-fit: cover;
-    position: absolute;
-    top: 3px;
-}
-  
-.box .group-2 {
-    height: 38px;
-    left: 73px;
-    position: absolute;
-    top: 70px;
-    width: 319px;
-}
-  
-.box .overlap-3 {
-    height: 38px;
-    position: relative;
-    width: 317px;
-}
-  
-.box .text-wrapper-2 {
-    color: #ffffff;
-    font-family: "Nippo-Regular", Helvetica;
-    font-size: 28px;
-    font-weight: 400;
-    left: 0;
-    letter-spacing: 0.84px;
-    line-height: normal;
-    position: absolute;
-    top: 0;
-    width: 317px;
-}
-  
-.box .vector-wrapper {
-    background-color: #ffffff;
-    border-radius: 8px;
-    height: 16px;
-    left: 288px;
-    position: absolute;
-    top: 13px;
-    transform: rotate(-180.00deg);
-    width: 16px;
-}
-  
-.box .vector-2 {
-    width: 100%;
-    height: auto;
-    max-width: 7px;
-    left: 5px;
-    position: absolute;
-    top: 6px;
-    transform: rotate(180.00deg);
-}
-  
-.box .group-3 {
-    height: 187px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 398px;
-}
-  
-.box .overlap-4 {
-    background-color: #040404;
-    height: 187px;
-    position: relative;
-    width: 396px;
-}
-  
-.box .p {
-    color: #ffffff;
-    font-family: "Clash Grotesk-Regular", Helvetica;
-    font-size: 14px;
-    font-weight: 400;
-    left: 0;
-    letter-spacing: 0;
-    line-height: 28.7px;
-    position: absolute;
-    top: 1px;
-    width: 363px;
-}
-  
-.box .overlap-5 {
-    height: 44px;
-    left: 992px;
-    position: absolute;
-    top: 117px;
-    width: 319px;
-}
-  
-.box .group-4 {
-    height: 32px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 319px;
-}
-  
-.box .overlap-6 {
-    height: 32px;
-    position: relative;
-    width: 317px;
-}
-  
-.box .text-wrapper-3 {
+.health-effects-box .item-title {
     color: #ffffff;
     font-family: "Nippo-Regular", Helvetica;
     font-size: 24px;
@@ -249,25 +146,7 @@
     width: 317px;
 }
   
-.box .image-traced {
-    height: auto;
-    width: 4vw;
-    max-width: 14px;
-    left: auto;
-    right: 10%;
-    position: absolute;
-    top: 25px;
-}
-  
-.box .group-5 {
-    height: 32px;
-    left: 492px;
-    position: absolute;
-    top: 150px;
-    width: 319px;
-}
-  
-.box .img-wrapper {
+.health-effects-box .item-icon-wrapper {
     background-color: #ffffff;
     border-radius: 8px;
     height: 16px;
@@ -278,7 +157,7 @@
     width: 16px;
 }
   
-.box .vector-3 {
+.health-effects-box .item-icon {
     width: 100%;
     height: auto;
     max-width: 7px;
@@ -288,85 +167,28 @@
     transform: rotate(-180.00deg);
 }
   
-.box .group-6 {
-    height: 32px;
-    left: 571px;
-    position: absolute;
-    top: 250px;
-    width: 319px;
-}
-  
-.box .group-7 {
-    height: 32px;
-    left: 492px;
-    position: absolute;
-    top: 350px;
-    width: 319px;
-}
-  
-.box .group-8 {
-    height: 32px;
-    left: 571px;
-    position: absolute;
-    top: 450px;
-    width: 319px;
-}
-  
-.box .group-9 {
-    height: 32px;
-    left: 492px;
-    position: absolute;
-    top: 550px;
-    width: 319px;
-}
-
-.box .group-10 {
-  height: 32px;
-  left: 571px;
-  position: absolute;
-  top: 650px;
-  width: 319px;
-}
-
-.box .group-11 {
-  height: 32px;
-  left: 492px;
-  position: absolute;
-  top: 750px;
-  width: 319px;
-}
-  
-.box img {
+.health-effects-box img {
     max-width: 100%;
     height: auto;
     object-fit: contain;
 }
   
 @media (max-width: 768px) {
-    .box .overlap-group-wrapper {
+    .health-effects-box .header-container {
         width: 100%;
     }
     
-    .box .text-wrapper {
+    .health-effects-box .header-title {
         font-size: 1.5rem;
     }
     
-    .box .p {
-        font-size: 12px;
-        line-height: 1.5;
-    }
-    
-    .box .img {
+    .health-effects-box .main-human-image {
         top: 5vw;
     }
     
-    .box .vector {
+    .health-effects-box .human-vector {
         width: 100%;
         left: 0;
-    }
-    
-    .box .image-traced {
-        width: 6vw;
     }
 }
   
