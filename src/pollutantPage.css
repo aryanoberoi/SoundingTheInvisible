@@ -239,6 +239,7 @@ body.sound-panel-active .sound-icon span {
   align-items: center;
   transition: 0.4s ease-in-out;
   z-index: 999;
+  overflow-y: auto; /* Add vertical scrolling */
 }
 
 .nav-menu.open {
@@ -262,16 +263,18 @@ body.sound-panel-active .sound-icon span {
   margin-top: 80px;
   width: 80%;
   max-width: 850px;
+  padding-bottom: 100px; /* Add space at bottom */
 }
 
 /* Individual Menu Items */
 .nav-item {
   display: flex;
   align-items: center;
-  padding: 15px;
+  padding: 25px 15px !important;
   cursor: pointer;
   margin-bottom: 50px;
-  transition: background 0.3s;
+  transition: all 0s;
+  position: relative;
 }
 
 .nav-item:hover {
@@ -559,6 +562,25 @@ body.sound-panel-active .sound-icon span {
 /* Adjust nav-item spacing */
 .nav-item {
   padding: 25px 15px !important;
+  transition: all 0s;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.nav-item.expanded {
+  margin-bottom: 100px !important; /* Increased space for expanded state */
+  z-index: 1; /* Ensure expanded item stays above others */
+}
+
+.expanded-underline {
+  transform: none !important;
+  transition: all 0s;
+}
+
+.underline-container {
+  position: relative;
+  width: 100%;
+  min-height: 40px; /* Reserve space for expanded underline */
 }
 
 /* Hamburger icon lines */
@@ -753,43 +775,23 @@ body.homepage-active .hamburger span {
 
 .nav-underline, .expanded-underline {
   position: absolute;
-  left: 370px;
+  left: -35px;
   bottom: -20px;
   width: 650px;
-  transform: translateX(-50%) scaleX(1.2);
+  transform: scaleX(1.2);
   transform-origin: left;
-  transition: all 0.3s ease;
+  transition: all 0s;
 }
 
 .nav-item.expanded .nav-underline {
   opacity: 0;
+  left: 50px;
+  top: 0px;
 }
 
 .nav-item.expanded .expanded-underline {
   opacity: 1;
   transform: translateX(-50%) scaleX(1.2) translateY(20px);
-}
-
-.nav-item {
-  padding: 25px 15px !important;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.nav-item.expanded {
-  margin-bottom: 40px; /* Add space for expanded content */
-}
-
-.expanded-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
-  padding-left: 50px; /* Match icon spacing */
-  margin-top: 10px;
-}
-
-.nav-item.expanded .expanded-content {
-  max-height: 500px; /* Adjust based on your content needs */
 }
 
 .nav-item-text {
@@ -806,11 +808,6 @@ body.homepage-active .hamburger span {
   height: 16px;
   position: absolute;
   right: 0px;
-}
-
-.underline-container {
-  position: relative;
-  width: 100%;
 }
 
 .hidden {

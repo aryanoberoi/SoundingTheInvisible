@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./App.css"; // All styles go here
 import "./pollutantPage.css";
 import Timeline from './Timeline';
@@ -7,6 +7,26 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedPollutant, setSelectedPollutant] = useState(null);
   const [expandedItem, setExpandedItem] = useState(null);
+  const menuRef = useRef(null);
+
+  const handleItemClick = (text) => {
+    const wasExpanded = expandedItem === text;
+    setExpandedItem(wasExpanded ? null : text);
+    setSelectedPollutant(null);
+    
+    if (!wasExpanded) {
+      // Scroll to expanded item after state update
+      setTimeout(() => {
+        const element = menuRef.current?.querySelector('.expanded');
+        if (element) {
+          element.scrollIntoView({ 
+            behavior: 'auto', 
+            block: 'start' 
+          });
+        }
+      }, 0);
+    }
+  };
 
   return (
     <>
@@ -22,7 +42,10 @@ const Navbar = () => {
       )}
 
       {/* Fullscreen Menu */}
-      <div className={`nav-menu ${isOpen ? "open" : ""}`}>
+      <div 
+        className={`nav-menu ${isOpen ? "open" : ""}`} 
+        ref={menuRef}
+      >
         <span className="close-btn" onClick={() => {
           selectedPollutant ? setSelectedPollutant(null) : setIsOpen(false);
         }} style={{ color: 'white' }}>
@@ -40,12 +63,10 @@ const Navbar = () => {
               <li 
                 key={index} 
                 className={`nav-item ${expandedItem === text ? 'expanded' : ''}`}
+                ref={expandedItem === text ? (el) => el && el.scrollIntoView({ block: "start" }) : null}
               >
                 <div 
-                  onClick={() => {
-                    setExpandedItem(expandedItem === text ? null : text);
-                    setSelectedPollutant(null);
-                  }} 
+                  onClick={() => handleItemClick(text)}
                   className="nav-item-header"
                 >
                   <div className="nav-item-content">
@@ -70,11 +91,22 @@ const Navbar = () => {
                       src={expandedItem === text ? 
                         `${text.toLowerCase().replace(/ /g, "-")}-expanded.svg` : 
                         "underline.svg"}
-                      alt={expandedItem === text ? "Expanded underline" : "Default underline"}
+                      alt="underline"
                       className={`nav-underline ${expandedItem === text ? 'expanded-underline' : ''}`}
+                      style={{ 
+                        position: 'relative',
+                        bottom: expandedItem === text ? '-20px' : '0',
+                        width: expandedItem === text ? '100%' : '80%',
+                        marginLeft: expandedItem === text ? '0' : '10%'
+                      }}
                     />
                   </div>
-                </div> 
+                </div>
+                {expandedItem === text && (
+                  <div className="expanded-content">
+                    {/* Add your expanded content here */}
+                  </div>
+                )}
               </li>
             ))}
           </ul>
