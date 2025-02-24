@@ -280,8 +280,13 @@ body.sound-panel-active .sound-icon span {
   position: relative;
 }
 
-.nav-item:hover {
+.nav-item:not(.expanded):hover {
   background: rgba(255, 255, 255, 0.1);
+}
+
+/* Add this rule to disable hover when expanded */
+.nav-item.expanded:hover {
+  background: transparent !important;
 }
 
 /* Icons on Left */
