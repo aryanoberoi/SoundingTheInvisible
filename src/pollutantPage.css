@@ -178,6 +178,7 @@ body.sound-panel-active .sound-icon span {
 /* Keep white color when menu is open */
 .nav-menu.open .sound-icon span {
   background: white !important;
+  z-index: 100;
 }
 
 /* Animation when sound is ON */
@@ -201,7 +202,7 @@ body.sound-panel-active .sound-icon span {
   border: none;
   cursor: pointer;
   padding: 10px;
-  z-index: 1000;
+  z-index: 10;
 }
 
 /* Hamburger Icon */
@@ -355,7 +356,7 @@ body.sound-panel-active .sound-icon span {
   top: 20px;
   height: calc(100vh - 40px);
   width: 33.33%; /* 1 part of the 2:1 ratio */
-  z-index: 1000;
+  z-index: 10;
   margin-top: 100px;
   margin-right: 0; /* Remove margin */
   align-self: flex-start;
