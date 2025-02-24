@@ -10,6 +10,7 @@ import { CaseStudies } from './PollutantPage/CaseStudies';
 const PollutantPage = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [rotation, setRotation] = useState(0);
+  const [activeSection, setActiveSection] = useState(null);
 
   const plantData = [
     {
@@ -57,6 +58,22 @@ const PollutantPage = () => {
     document.removeEventListener('mousemove', handleSliderMove);
     document.removeEventListener('mouseup', handleMouseUp);
   };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.bottom-section1, .bottom-section2').forEach(section => {
+      observer.observe(section);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
@@ -217,23 +234,23 @@ const PollutantPage = () => {
             Phytoremediation of the Representative Pollutant
           </p>
           <div className="overlap-group">
-            <div className="ellipse" />
-            <div className="ellipse-2" />
-            <div className="ellipse-3" />
-            <div className="ellipse-4" />
-            <div className="ellipse-5" />
-            <div className="ellipse-6" />
-            <div className="ellipse-7" />
-            <div className="ellipse-8" />
-            <div className="ellipse-9" />
-            <div className="ellipse-10" />
-            <div className="ellipse-11" />
-            <div className="ellipse-12" />
+            <div className={`ellipse ${activeSection === 'about-pollutant' ? 'active' : ''}`} />
+            <div className={`ellipse-2 ${activeSection === 'sound-frequency' ? 'active' : ''}`} />
+            <div className={`ellipse-3 ${activeSection === 'effect-on-health' ? 'active' : ''}`} />
+            <div className={`ellipse-4 ${activeSection === 'common-names' ? 'active' : ''}`} />
+            <div className={`ellipse-5 ${activeSection === 'plant-habitat' ? 'active' : ''}`} />
+            <div className={`ellipse-6 ${activeSection === 'origin-geographical-distribution' ? 'active' : ''}`} />
+            <div className={`ellipse-7 ${activeSection === 'phyto-capacity' ? 'active' : ''}`} />
+            <div className={`ellipse-8 ${activeSection === 'uses-of-plant' ? 'active' : ''}`} />
+            <div className={`ellipse-9 ${activeSection === 'references' ? 'active' : ''}`} />
+            <div className={`ellipse-10 ${activeSection === 'plant-info' ? 'active' : ''}`} />
+            <div className={`ellipse-11 ${activeSection === 'case-study' ? 'active' : ''}`} />
+            <div className={`ellipse-12 ${activeSection === 'phyto-capacity' ? 'active' : ''}`} />
           </div>
         </div>
         
         <div className="content-sections">
-          <div className="bottom-section1">
+          <div className="bottom-section1" id="about-pollutant">
             <div className="main-container">
               <div className="flex-row-f">
                 <img 
@@ -280,7 +297,7 @@ const PollutantPage = () => {
             </div>
           </div>
 
-          <div className="bottom-section2">
+          <div className="bottom-section2" id="sound-frequency">
             <div className="content-container">
               <h2>Enthalpy and sound Frequency of Pollutant</h2>
             </div>
@@ -289,7 +306,7 @@ const PollutantPage = () => {
             </div>
           </div>
 
-          <div className="bottom-section2">
+          <div className="bottom-section2" id="effect-on-health">
             <Box></Box>
           </div>
         </div>

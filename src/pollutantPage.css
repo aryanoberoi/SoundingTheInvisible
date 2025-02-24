@@ -842,3 +842,26 @@ body.homepage-active .hamburger span {
   padding: 0;
   margin: 0;
 }
+
+.ellipse, .ellipse-2, .ellipse-3, 
+.ellipse-4, .ellipse-5, .ellipse-6,
+.ellipse-7, .ellipse-8, .ellipse-9,
+.ellipse-10, .ellipse-11, .ellipse-12 {
+  transition: background 0.3s ease;
+}
+
+.ellipse.active,
+.ellipse-2.active,
+.ellipse-3.active,
+.ellipse-4.active,
+.ellipse-5.active,
+.ellipse-6.active,
+.ellipse-7.active,
+.ellipse-8.active,
+.ellipse-9.active,
+.ellipse-10.active,
+.ellipse-11.active,
+.ellipse-12.active {
+  background: white;
+  box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
