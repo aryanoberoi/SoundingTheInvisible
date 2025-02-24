@@ -360,7 +360,7 @@ body.sound-panel-active .sound-icon span {
 .nav-bar {
   position: sticky;
   top: 60px;
-  height: calc(100vh - 40px);
+  height: calc(100%);
   width: 40%; /* Increased from 33.33% */
   z-index: 10;
   margin-top: 100px;
@@ -391,25 +391,25 @@ body.sound-panel-active .sound-icon span {
 }
 
 /* ✅ Adjusting Positions Based on Your CSS */
-.nav-bar .text-wrapper { top: 0px; left: 174px; font-size: 25px; } /* Adjusted left position */
-.nav-bar .div { top: 340px; left: 174px; font-size: 25px; } /* Adjusted left position */
-.nav-bar .text-wrapper-2 { top: 80px; left: 155px; }
-.nav-bar .text-wrapper-3 { top: 420px; left: 155px; }
-.nav-bar .text-wrapper-4 { top: 490px; left: 155px; }
-.nav-bar .text-wrapper-5 { top: 550px; left: 155px; }
-.nav-bar .p { top: 610px; left: 155px; }
-.nav-bar .text-wrapper-6 { top: 690px; left: 155px; }
-.nav-bar .text-wrapper-7 { top: 746px; left: 0; }
-.nav-bar .text-wrapper-8 { top: 140px; left: 155px; }
-.nav-bar .text-wrapper-9 { top: 200px; left: 155px; }
-.nav-bar .text-wrapper-10 { top: 240px; left: 155px; width: 141px; }
+.nav-bar .text-wrapper { top: 20px; left: 174px; font-size: 25px; }
+.nav-bar .text-wrapper-2 { top: 120px; left: 155px; }
+.nav-bar .text-wrapper-8 { top: 180px; left: 155px; }
+.nav-bar .text-wrapper-9 { top: 240px; left: 155px; }
+.nav-bar .text-wrapper-10 { top: 280px; left: 155px; width: 141px; }
+.nav-bar .div { top: 370px; left: 174px; font-size: 25px; }
+.nav-bar .text-wrapper-3 { top: 460px; left: 155px; }
+.nav-bar .text-wrapper-4 { top: 530px; left: 155px; }
+.nav-bar .text-wrapper-5 { top: 590px; left: 155px; }
+.nav-bar .p { top: 650px; left: 155px; }
+.nav-bar .text-wrapper-6 { top: 730px; left: 155px; }
+.nav-bar .text-wrapper-7 { top: 780px; left: 0; }
 
 /* ✅ Timeline Vertical Line & Circles */
 .nav-bar .overlap-group {
-  height: calc(746px); /* Explicit calculation from first to last bullet */
+  height: calc(765px); /* Explicit calculation from first to last bullet */
   left: 130px;
   position: absolute;
-  top: 5px; /* Matches first bullet's top position */
+  top: 25px; /* Matches first bullet's top position */
   width: 10px;
 }
 
@@ -447,17 +447,17 @@ body.sound-panel-active .sound-icon span {
 
 /* ✅ Adjusting Circle Positions */
 .nav-bar .ellipse { top: 0px; background-color: white; } /* Matches text-wrapper position */
-.nav-bar .ellipse-2 { top: 80px; } /* Matches text-wrapper-2 position */
-.nav-bar .ellipse-3 { top: 140px; } /* Matches text-wrapper-8 position */
-.nav-bar .ellipse-4 { top: 200px; } /* Matches text-wrapper-9 position */
-.nav-bar .ellipse-5 { top: 253px; } /* Matches text-wrapper-10 position */
-.nav-bar .ellipse-6 { top: 340px; } /* Matches div position */
-.nav-bar .ellipse-7 { top: 420px; } /* Matches text-wrapper-3 position */
-.nav-bar .ellipse-8 { top: 490px; } /* Matches text-wrapper-4 position */
-.nav-bar .ellipse-9 { top: 550px; } /* Matches text-wrapper-5 position */
-.nav-bar .ellipse-10 { top: 625px; } /* Matches p position */
-.nav-bar .ellipse-11 { top: 690px; } /* Matches text-wrapper-6 position */
-.nav-bar .ellipse-12 { top: 746px; } /* Matches text-wrapper-7 position */
+.nav-bar .ellipse-2 { top: 100px; } /* Matches text-wrapper-2 position */
+.nav-bar .ellipse-3 { top: 160px; } /* Matches text-wrapper-8 position */
+.nav-bar .ellipse-4 { top: 220px; } /* Matches text-wrapper-9 position */
+.nav-bar .ellipse-5 { top: 273px; } /* Matches text-wrapper-10 position */
+.nav-bar .ellipse-6 { top: 360px; } /* Matches div position */
+.nav-bar .ellipse-7 { top: 440px; } /* Matches text-wrapper-3 position */
+.nav-bar .ellipse-8 { top: 510px; } /* Matches text-wrapper-4 position */
+.nav-bar .ellipse-9 { top: 570px; } /* Matches text-wrapper-5 position */
+.nav-bar .ellipse-10 { top: 645px; } /* Matches p position */
+.nav-bar .ellipse-11 { top: 710px; } /* Matches text-wrapper-6 position */
+.nav-bar .ellipse-12 { top: 760px; } /* Matches text-wrapper-7 position */
 
 .timeline-container {
   position: relative;
