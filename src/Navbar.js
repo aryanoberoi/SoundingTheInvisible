@@ -2,12 +2,14 @@ import React, { useState, useRef } from "react";
 import "./App.css"; // All styles go here
 import "./pollutantPage.css";
 import Timeline from './Timeline';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedPollutant, setSelectedPollutant] = useState(null);
   const [expandedItem, setExpandedItem] = useState(null);
   const menuRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleItemClick = (text) => {
     const wasExpanded = expandedItem === text;
@@ -47,7 +49,12 @@ const Navbar = () => {
         ref={menuRef}
       >
         <span className="close-btn" onClick={() => {
-          selectedPollutant ? setSelectedPollutant(null) : setIsOpen(false);
+          if(selectedPollutant) {
+            setSelectedPollutant(null);
+          } else {
+            setIsOpen(false);
+            navigate('/pollutants');
+          }
         }} style={{ color: 'white' }}>
           {selectedPollutant ? '←' : '✕'}
         </span>
@@ -70,8 +77,9 @@ const Navbar = () => {
                   className="nav-item-header"
                 >
                   <div className="nav-item-content">
-                    <img 
-                      src={`${text.toLowerCase().replace(/ /g, "-")}-icon.svg`} 
+                    <object
+                      type="image/svg+xml" 
+                      data={`${text.toLowerCase().replace(/ /g, "-")}-icon.svg`}  
                       alt={text} 
                       className="nav-icon" 
                     />
@@ -111,6 +119,19 @@ const Navbar = () => {
             ))}
           </ul>
         )}
+        {/* <object 
+          type="image/svg+xml" 
+          data="heavy-metal-waste-expanded.svg"
+          id="mySVG"
+          alt="sd"
+          onClick={(e) => {
+            // Check if click target is the cadmium element
+            if (e.target.id === 'cadmium') {
+              window.location.href = 'https://google.com';
+              e.stopPropagation(); // Prevent parent click handlers
+            }
+          }}
+        /> */}
       </div>
     </>
   );
