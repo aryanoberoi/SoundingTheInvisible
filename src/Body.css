@@ -110,27 +110,29 @@
     top: 26px;
 }
   
+.health-effects-box .content-items-container {
+    position: relative;
+    margin-left: 492px;
+    margin-top: calc(5%);
+}
+  
 .health-effects-box .content-item {
-    height: 32px;
-    position: absolute;
+    position: relative;
     width: 319px;
+    margin-bottom: 10px;
     transition: all 0.3s ease;
     cursor: pointer;
     z-index: 1;
 }
   
-.health-effects-box .content-item.expanded {
-    height: auto;
-    z-index: 2;
+.health-effects-box .content-item:nth-child(even) {
+    left: 79px;
 }
   
-.health-effects-box .content-item-1 { left: 492px; top: 150px; }
-.health-effects-box .content-item-2 { left: 571px; top: 250px; }
-.health-effects-box .content-item-3 { left: 492px; top: 350px; }
-.health-effects-box .content-item-4 { left: 571px; top: 450px; }
-.health-effects-box .content-item-5 { left: 492px; top: 550px; }
-.health-effects-box .content-item-6 { left: 571px; top: 650px; }
-.health-effects-box .content-item-7 { left: 492px; top: 750px; }
+.health-effects-box .content-item.expanded {
+    margin-bottom: 20px;
+    z-index: 2;
+}
   
 .health-effects-box .item-overlap {
     position: relative;
@@ -138,7 +140,7 @@
     max-width: 416px;
     right: 0;
     margin: 2rem 0;
-    height: 187px;
+    height: 50px;
 }
   
 .health-effects-box .item-title {

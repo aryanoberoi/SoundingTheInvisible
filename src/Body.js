@@ -38,7 +38,7 @@ export const Box = () => {
           </div>
         </div>
 
-        <div>
+        <div className="content-items-container">
           {[1, 2, 3, 4, 5, 6, 7].map((item) => (
             <div 
               className={`content-item content-item-${item} ${expandedItem === item ? 'expanded' : ''}`} 
