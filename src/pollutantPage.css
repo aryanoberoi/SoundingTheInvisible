@@ -333,7 +333,7 @@ body.sound-panel-active .sound-icon span {
 
 .bottom-section1 > img,
 .bottom-section1 .nav-bar {
-  width: calc(50% - 10px); /* Account for gap */
+   /* Account for gap */
   margin: 0 10px;
 }
 
@@ -345,12 +345,36 @@ body.sound-panel-active .sound-icon span {
 }
 
 .nav-bar {
+  position: fixed;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  z-index: 1000;
   height: 832px;
   mix-blend-mode: difference;
+  width: 200px; /* Adjusted width for better visibility */
+  pointer-events: none; /* Allows clicking through navbar except interactive elements */
+}
+
+/* Enable pointer events for text elements */
+.nav-bar .text-wrapper,
+.nav-bar .div,
+.nav-bar .text-wrapper-2,
+.nav-bar .text-wrapper-3,
+.nav-bar .text-wrapper-4,
+.nav-bar .text-wrapper-5,
+.nav-bar .text-wrapper-6,
+.nav-bar .text-wrapper-7,
+.nav-bar .text-wrapper-8,
+.nav-bar .text-wrapper-9,
+.nav-bar .text-wrapper-10,
+.nav-bar .p {
+  pointer-events: auto;
+}
+
+.combined-section {
   position: relative;
-  margin: 0 auto;
-  left: 50%;
-  transform: translateX(-50%);
+  z-index: 1; /* Ensure content stays below navbar */
 }
 
 /* ✅ Styling Each Text Item */
@@ -610,10 +634,11 @@ body.homepage-active .hamburger span {
 
 /* Add to bottom of file */
 .main-container {
-  position: relative;
+  position: absolute;
   width: 604px;
   height: 802.668px;
   margin: 0 auto;
+  margin-left: calc(10%);
   overflow: hidden;
 }
 
