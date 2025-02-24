@@ -887,3 +887,11 @@ body.homepage-active .hamburger span {
   padding: 20px 0;
   position: relative;
 }
+
+.nav-item:not(.expanded) {
+  transition: opacity 0.3s ease;
+}
+
+.nav-links.has-expanded .nav-item:not(.expanded) {
+  opacity: 0.3;
+}
