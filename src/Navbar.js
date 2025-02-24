@@ -11,10 +11,10 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleItemClick = (text) => {
-    const wasExpanded = expandedItem === text;
-    setExpandedItem(wasExpanded ? null : text);
-    
-    if (!wasExpanded) {
+    // Only expand if not already expanded
+    if (expandedItem !== text) {
+      setExpandedItem(text);
+      
       // Scroll to expanded item after state update
       setTimeout(() => {
         const element = menuRef.current?.querySelector('.expanded');
@@ -56,11 +56,12 @@ const Navbar = () => {
             <li 
               key={index} 
               className={`nav-item ${expandedItem === text ? 'expanded' : ''}`}
-              ref={expandedItem === text ? (el) => el && el.scrollIntoView({ block: "start" }) : null}
+              style={{ width: '100%' }}
             >
               <div 
                 onClick={() => handleItemClick(text)}
                 className="nav-item-header"
+                style={{ width: '100%' }}
               >
                 <div className="nav-item-content">
                   <object
@@ -92,7 +93,14 @@ const Navbar = () => {
                     />
                   )}
                 </div>
-                <div className="underline-container">
+                <div 
+                  className="underline-container"
+                  style={{ 
+                    display: 'flex',
+                    justifyContent: 'center',
+                    width: '100%'
+                  }}
+                >
                   <img
                     src={expandedItem === text ? 
                       `${text.toLowerCase().replace(/ /g, "-")}-expanded.svg` : 
@@ -100,10 +108,8 @@ const Navbar = () => {
                     alt="underline"
                     className={`nav-underline ${expandedItem === text ? 'expanded-underline' : ''}`}
                     style={{ 
-                      position: 'relative',
-                      bottom: expandedItem === text ? '-20px' : '0',
-                      width: expandedItem === text ? '100%' : '80%',
-                      marginLeft: expandedItem === text ? '0' : '10%'
+                      width: '100%',
+                      marginLeft: '0'
                     }}
                   />
                 </div>
