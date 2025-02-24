@@ -104,7 +104,7 @@
 .health-effects-box .human-vector {
     height: auto;
     width: 100%;
-    left: 0;
+    left: 5px;
     max-width: 200px;
     position: absolute;
     top: 26px;
@@ -114,6 +114,14 @@
     height: 32px;
     position: absolute;
     width: 319px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    z-index: 1;
+}
+  
+.health-effects-box .content-item.expanded {
+    height: auto;
+    z-index: 2;
 }
   
 .health-effects-box .content-item-1 { left: 492px; top: 150px; }
@@ -165,6 +173,23 @@
     position: absolute;
     top: 6px;
     transform: rotate(-180.00deg);
+}
+  
+.health-effects-box .item-content {
+    color: #ffffff;
+    padding-top: calc(15%);
+    font: 400 14px 'ClashGrotesk-Light', 'san-serif';
+    line-height: 1.5;
+    margin-top: 0px;
+}
+  
+.health-effects-box .expanded .item-overlap {
+    height: auto;
+    padding-bottom: 20px;
+}
+  
+.health-effects-box .expanded .item-icon-wrapper {
+    transform: rotate(0deg);
 }
   
 .health-effects-box img {
