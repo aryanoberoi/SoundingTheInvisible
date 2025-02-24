@@ -70,7 +70,7 @@ const Navbar = () => {
                     alt={text} 
                     className="nav-icon" 
                   />
-                  <div className="nav-item-text">{text}</div>
+                  <div className="nav-item-text" style={{ fontSize: '40px' }}>{text}</div>
                   {expandedItem === text ? (
                     <span
                       className="nav-arrow"
@@ -95,27 +95,25 @@ const Navbar = () => {
                 </div>
                 <div 
                   className="underline-container"
-                  style={{ 
-                    display: 'flex',
-                    justifyContent: 'center',
-                    width: '100%'
-                  }}
                 >
-                  <img
-                    src={expandedItem === text ? 
+                  <object
+                    type="image/svg+xml" 
+                    data={expandedItem === text ? 
                       `${text.toLowerCase().replace(/ /g, "-")}-expanded.svg` : 
                       "underline.svg"}
                     alt="underline"
                     className={`nav-underline ${expandedItem === text ? 'expanded-underline' : ''}`}
                     style={{ 
-                      width: '100%',
-                      marginLeft: '0'
+                      display: 'flex',
+                      justifyContent: 'flex-end',
+                      width: '97%',
+                      left: '50px'
                     }}
                   />
                 </div>
               </div>
               {expandedItem === text && (
-                <div className="expanded-content">
+                <div className="expanded-content" style={{ width: '0%', height: 'auto' }}>
                   {/* Add your expanded content here */}
                 </div>
               )}
