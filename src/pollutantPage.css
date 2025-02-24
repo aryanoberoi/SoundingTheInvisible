@@ -1,7 +1,7 @@
 /* pollutantPage.css */
 
 body, html {
-  overflow-x: hidden;
+  overflow: visible;
   width: 100%;
 }
 
@@ -328,14 +328,10 @@ body.sound-panel-active .sound-icon span {
   color: white;
   display: flex;
   justify-content: space-between;
-  padding: 95px 69px; /* Match left panel padding */
+  padding: 95px 0px; /* Match left panel padding */
 }
 
 .bottom-section1 > img,
-.bottom-section1 .nav-bar {
-   /* Account for gap */
-  margin: 0 10px;
-}
 
 .bottom-section2 {
   background-color: black;
@@ -344,37 +340,25 @@ body.sound-panel-active .sound-icon span {
   padding: 0px 69px; /* Match left panel padding */
 }
 
-.nav-bar {
-  position: fixed;
-  top: 50%;
-  left: 20px;
-  transform: translateY(-50%);
-  z-index: 1000;
-  height: 832px;
-  mix-blend-mode: difference;
-  width: 200px; /* Adjusted width for better visibility */
-  pointer-events: none; /* Allows clicking through navbar except interactive elements */
-}
-
-/* Enable pointer events for text elements */
-.nav-bar .text-wrapper,
-.nav-bar .div,
-.nav-bar .text-wrapper-2,
-.nav-bar .text-wrapper-3,
-.nav-bar .text-wrapper-4,
-.nav-bar .text-wrapper-5,
-.nav-bar .text-wrapper-6,
-.nav-bar .text-wrapper-7,
-.nav-bar .text-wrapper-8,
-.nav-bar .text-wrapper-9,
-.nav-bar .text-wrapper-10,
-.nav-bar .p {
-  pointer-events: auto;
-}
-
 .combined-section {
+  display: flex;
+  flex-direction: row-reverse;
   position: relative;
-  z-index: 1; /* Ensure content stays below navbar */
+  min-height: 100vh;
+  overflow: visible;
+  background-color: #000;
+  gap: 0; /* Remove all gap space */
+}
+
+.nav-bar {
+  position: sticky;
+  top: 20px;
+  height: calc(100vh - 40px);
+  width: 33.33%; /* 1 part of the 2:1 ratio */
+  z-index: 1000;
+  margin-top: 100px;
+  margin-right: 0; /* Remove margin */
+  align-self: flex-start;
 }
 
 /* ✅ Styling Each Text Item */
@@ -634,12 +618,12 @@ body.homepage-active .hamburger span {
 
 /* Add to bottom of file */
 .main-container {
-  position: absolute;
+  position: relative;
+  margin-top: 80px;
   width: 604px;
   height: 802.668px;
-  margin: 0 auto;
-  margin-left: calc(10%);
   overflow: hidden;
+  margin-left: calc(15%);
 }
 
 .flex-row-f {
@@ -843,4 +827,18 @@ body.homepage-active .hamburger span {
 
 .visible {
   opacity: 1;
+}
+
+.content-sections {
+  flex: 2; /* 2 parts of the ratio */
+  position: relative;
+  padding-left: 0; /* Remove padding */
+  width: 66.66%; /* Ensures exact ratio */
+}
+
+/* Remove any existing margin/padding on these elements */
+.bottom-section1, 
+.bottom-section2 {
+  padding: 0;
+  margin: 0;
 }
