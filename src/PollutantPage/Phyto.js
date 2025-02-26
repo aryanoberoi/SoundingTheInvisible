@@ -75,7 +75,7 @@ export const Phyto = () => {
             <img className="ellipse" alt="Ellipse" src={ellipse88} style={{ transform: 'scaleX(-1)', left: 'calc(65%)' }} />
           </div>
 
-          <div className="overlap  overlap-group-2">
+          <div className="overlap  overlap-group-right">
             <div className="element">45% /&nbsp;&nbsp;50%&nbsp;&nbsp;/ 65%</div>
 
             <div className="group-2">
