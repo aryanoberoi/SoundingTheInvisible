@@ -7,6 +7,8 @@ import { PlantInfoSection } from './PlantInfoSection';
 import SineWaveVisualizer from './sinwave';
 import { Box } from './Body';
 import { CaseStudies } from './PollutantPage/CaseStudies';
+import { Phyto } from './PollutantPage/Phyto';
+
 const PollutantPage = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [rotation, setRotation] = useState(0);
@@ -68,7 +70,7 @@ const PollutantPage = () => {
       });
     }, { threshold: 0.5 });
 
-    document.querySelectorAll('.bottom-section1, .bottom-section2, .bottom-section3').forEach(section => {
+    document.querySelectorAll('.bottom-section1, .bottom-section2, .bottom-section3, .bottom-section4').forEach(section => {
       observer.observe(section);
     });
 
@@ -311,6 +313,9 @@ const PollutantPage = () => {
           </div>
           <div className="bottom-section3" id="case-study">
             <CaseStudies></CaseStudies>
+          </div>
+          <div className="bottom-section4" id="phytoremediation">
+            <Phyto></Phyto>
           </div>
         </div>
       </div>
