@@ -70,7 +70,7 @@ const PollutantPage = () => {
       });
     }, { threshold: 0.5 });
 
-    document.querySelectorAll('.bottom-section1, .bottom-section2, .bottom-section3, .bottom-section4').forEach(section => {
+    document.querySelectorAll('.bottom-section1, .bottom-section2, .bottom-section3, .bottom-section4, .bottom-section5').forEach(section => {
       observer.observe(section);
     });
 
@@ -316,6 +316,14 @@ const PollutantPage = () => {
           </div>
           <div className="bottom-section4" id="phytoremediation">
             <Phyto></Phyto>
+          </div>
+          
+          <div className="bottom-section5" id="plant-name">
+            <div className="content-container">
+              <h2>Plant Name Section</h2>
+              <p>This section has a white background with black text.</p>
+              {/* Add your plant name content here */}
+            </div>
           </div>
         </div>
       </div>

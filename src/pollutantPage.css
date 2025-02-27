@@ -895,3 +895,10 @@ body.homepage-active .hamburger span {
 .nav-links.has-expanded .nav-item:not(.expanded) {
   opacity: 0.3;
 }
+
+.bottom-section5 {
+  background-color: white;
+  color: black;
+  min-height: 100vh;
+  padding: 95px 69px;
+}
