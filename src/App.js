@@ -4,6 +4,7 @@ import Homepage from "./Homepage"; // Import the home page
 import PollutantPage from "./InfiniteScrollPage"; // Pollutant page
 import SoundToggle from "./SoundToggle"; // Sound button
 import Navbar from "./Navbar"; // Navbar
+import PeepholeImage from "./PollutantPage/PeepHoleImage";
 // Wrap the main content in a component that can use useLocation
 const AppContent = () => {
   const location = useLocation();
@@ -23,7 +24,7 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<Homepage />} /> {/* Default Home Page */}
         <Route path="/pollutants" element={<PollutantPage />} /> {/* Pollutants Page */}
-        {/* <Route path="/test" element={<Phyto></Phyto>} /> Test Page */}
+        <Route path="/test" element={<PeepholeImage />}></Route>
       </Routes>
     </div>
   );

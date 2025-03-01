@@ -8,6 +8,7 @@ import SineWaveVisualizer from './sinwave';
 import { Box } from './Body';
 import { CaseStudies } from './PollutantPage/CaseStudies';
 import { Phyto } from './PollutantPage/Phyto';
+import PeepholeEffect from './PollutantPage/PeepHoleImage';
 
 const PollutantPage = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -321,7 +322,9 @@ const PollutantPage = () => {
           <div className="bottom-section5" id="plant-name">
             <div className="content-container">
               <h2>Plant Name Section</h2>
-              <p>This section has a white background with black text.</p>
+              <div>
+              <PeepholeEffect />
+              </div>
               {/* Add your plant name content here */}
             </div>
           </div>
