@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './pollutantPage.css';
-import styles from './pollutantcard.module.css'
-import plantStyles from './PlantDetails.module.css';
-import { KnowMoreButton } from './Knowmorebutton';
-import { PlantInfoSection } from './PlantInfoSection';
-import SineWaveVisualizer from './sinwave';
-import { Box } from './Body';
+import styles from './PollutantPage/pollutantcard.module.css'
+import plantStyles from './PollutantPage/PlantDetails.module.css';
+import { KnowMoreButton } from './PollutantPage/Knowmorebutton';
+import { PlantInfoSection } from './PollutantPage/PlantInfoSection';
+import SineWaveVisualizer from './PollutantPage/sinwave';
+import { Box } from './PollutantPage/Body';
 import { CaseStudies } from './PollutantPage/CaseStudies';
 import { Phyto } from './PollutantPage/Phyto';
 import PeepholeEffect from './PollutantPage/PeepHoleImage';

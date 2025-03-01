@@ -8,6 +8,17 @@ export const Box = () => {
     setExpandedItem(expandedItem === item ? null : item);
   };
 
+  // Array of content strings for each item
+  const contentArray = [
+    "Content for item 1: Detailed information about the first topic.",
+    "Content for item 2: Insights and data related to the second topic.",
+    "Content for item 3: Explanation and context for the third topic.",
+    "Content for item 4: Additional details for the fourth topic.",
+    "Content for item 5: Comprehensive overview of the fifth topic.",
+    "Content for item 6: Key points and highlights for the sixth topic.",
+    "Content for item 7: Final thoughts and conclusions for the seventh topic."
+  ];
+
   return (
     <div className="health-effects-box">
       <div className="content-sections">
@@ -56,8 +67,7 @@ export const Box = () => {
                 </div>
                 {expandedItem === item && (
                   <div className="item-content">
-                    {/* Add your detailed text content here */}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
+                    {contentArray[item - 1]} {/* Display content based on the expanded item */}
                   </div>
                 )}
               </div>
