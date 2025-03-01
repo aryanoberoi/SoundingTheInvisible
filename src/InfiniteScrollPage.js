@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './pollutantPage.css';
 import styles from './PollutantPage/pollutantcard.module.css'
-import plantStyles from './PollutantPage/PlantDetails.module.css';
 import { KnowMoreButton } from './PollutantPage/Knowmorebutton';
 import { PlantInfoSection } from './PollutantPage/PlantInfoSection';
 import SineWaveVisualizer from './PollutantPage/sinwave';
@@ -9,26 +8,13 @@ import { Box } from './PollutantPage/Body';
 import { CaseStudies } from './PollutantPage/CaseStudies';
 import { Phyto } from './PollutantPage/Phyto';
 import PeepholeEffect from './PollutantPage/PeepHoleImage';
+import LeftPanel from './PollutantPage/LeftPanel';
+import RightPanel from './PollutantPage/RightPanel';
 
 const PollutantPage = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [rotation, setRotation] = useState(0);
   const [activeSection, setActiveSection] = useState(null);
-
-  const plantData = [
-    {
-      title: "Wetland status:",
-      description: "FACU or OBL etc and explain what it is"
-    },
-    {
-      title: "Common names of Plant:",
-      description: "Lorem ipsum dolor sit amet, \n consectetur adipiscing eli. \n Duis accumsan lacus sit amet sagittis feugiat. \n Morbi et velit fringilla, maximus quam et, \n cursus odio. \n Donec quis sem gravida nisi malesuada fringilla. \n Duis ac erat vitae magna rutrum suscipit."
-    },
-    {
-      title: "Plant Habitat:",
-      description: "Temperature,  \nhumidity, \nsoil type, \nwhat kind of areas it"
-    }
-  ];
   const handleSliderMove = (e) => {
     const container = document.getElementById('slider-container');
     const rect = container.getBoundingClientRect();
@@ -81,117 +67,8 @@ const PollutantPage = () => {
   return (
     <>
       <div id="slider-container" className="slider-container">
-        <div className="left-panel">
-          <div className={styles.container}>
-            <div className={styles.contentWrapper}>
-              <div className={styles.mainContent}>
-                <div className={styles.pollutantInfo}>
-                  <div className={styles.headerWrapper}>
-                    <div className={styles.circle} />
-                    <div className={styles.pollutantName}>Pollutant name</div>
-                  </div>
-                  <div className={styles.description}>
-                    <div className={styles.descriptionTitle}>Pollutant Description:</div>
-                    <div className={styles.descriptionLine}> Physical characteristics and properties</div>
-                    <div className={styles.descriptionLine}> Historical context and usage timeline</div>
-                    <div className={styles.descriptionLine}> Chemical half-life decomposition</div>
-                  </div>
-                  <KnowMoreButton className={`${styles.knowMoreButtonLeft} ${styles.descriptionKnowMore}`} />
-                  <div className={styles.imageContainer}>
-                  </div>
-                </div>
-              </div>
-              <div className={styles.sideContent}>
-                <div className={styles.sideContentWrapper}>
-                  <div className={styles.sectionTitle}>Effects on human health:</div>
-                  <div className={styles.titleList}>
-                    {['Title here', 'Title here', 'Title here', 'Title here'].map((title, index) => (
-                      <div key={index} className={styles.titleEntry}>
-                        <span className={styles.titleText}>{title}</span>
-                        <div className={styles.bulletcircle} />
-                      </div>
-                    ))}
-                  </div>
-                  <KnowMoreButton />
-                  <div className={styles.sectionTitle} style={{paddingBottom: '10px'}}>
-                    Enthalpy and sound <br /> Frequency of Pollutant
-                    <br />
-                  </div>
-                  <div style={{ border: '1px solid black', height: '120px' }}>
-                    <SineWaveVisualizer />
-                  </div>
-                  <KnowMoreButton className={styles.knowMoreButton} />
-                </div>
-                <div className={styles.sourcesTitle}>Sources In Venice Lagoon:</div>
-                <div className={styles.sourcesDescription}>
-                  Lorem ipsum dolor sit amet, consectetur 
-                  <br />
-                  adipiscing eli.
-                  <br />
-                  Duis accumsan lacus sit amet sagittis
-                  <br />
-                  feugiat.
-                  <br />
-                  Morbi et velit fringilla, maximus quam et,
-                </div>
-                <KnowMoreButton className={styles.knowMoreButton} />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="right-panel">
-          <div className={plantStyles.plantContainer}>
-            <div className={plantStyles.contentWrapper}>
-              <aside className={plantStyles.sidebar}>
-                {plantData.map((section, index) => {
-                  if (index === plantData.length - 1) {
-                    return (
-                      <div key={index}>
-                        <div className={plantStyles.sectionTitle}>{section.title}</div>
-                        <div className={plantStyles.titleList}>
-                          {section.description.split('\n').map((line, lineIndex) => (
-                            <div key={lineIndex} className={plantStyles.titleEntry}>
-                              <div className={plantStyles.bulletcircle} />
-                              <span className={plantStyles.titleText}>{line}</span>
-                            </div>
-                          ))}
-                        </div>
-                        <KnowMoreButton className={plantStyles.knowMoreButton} />
-                      </div>
-                    );
-                  }
-                  return (
-                    <PlantInfoSection
-                      key={index}
-                      title={section.title}
-                      description={section.description}
-                    />
-                  );
-                })}
-              </aside>
-              
-              <main className={plantStyles.mainContent}>
-                <div className={plantStyles.imageSection}>
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/16352f3f964c03ec54c661ca0da371220832b2c2f872538ebde3aa40d6a7628c?placeholderIfAbsent=true&apiKey=e7c66450d645437e80b3c1918bb89cd7"
-                    alt="Detailed view of the plant"
-                    className={plantStyles.plantImage}
-                  />
-                  <div className={plantStyles.plantDescription}>
-                    <h1 className={plantStyles.plantName}>Plant name</h1>
-                    <p className={plantStyles.plantDetails}>
-                      Describe the plant from top to down so one can visualize it. 
-                      Don't jump from different parts of the plant. Please use simple 
-                      language so that the reader can visualize the plant. 
-                      Reproduction of the plant needs to be explained.
-                    </p>
-                    <KnowMoreButton className={plantStyles.knowMoreButton} />
-                  </div>
-                </div>
-              </main>
-            </div>
-          </div>
-        </div>
+<LeftPanel />
+<RightPanel />
         <div
           className="slider-bar"
           style={{ left: `${sliderPosition}%` }}
