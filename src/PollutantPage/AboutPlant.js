@@ -7,40 +7,62 @@ import vector43 from "./vector-43.svg";
 
 export const AboutPlant = () => {
   return (
-    <div className="box">
-      <div className="group">
-        <p className="text-wrapper">
+    // <PeepholeEffect />
+    // </div>
+    // {/* Inverted color section */}
+    <div className="inverted-section">
+      <div className="main-container inverted">
+        <div className="flex-row-f">
+          <img 
+            src="/ap.png" 
+            alt="Pollutant" 
+            className="image inverted-text"
+          />
+          <div className="about-pollutant">
+            <span className="about" style={{color: 'black'}}>About </span>
+            <span style={{color: 'black'}}>Plant </span>
+          </div>
+        </div>
+        <div className="flex-row-a">
+          <img 
+            src="l1.png" 
+            alt="Vector graphic" 
+            className="vector-image inverted-image"
+          />
+        </div>
+        <span className="lorem-ipsum-dolor inverted-text">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
           congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida
           imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu
           neque. Etiam rhoncus erat non quam vehicula, sed maximus magna
           tincidunt. Sed condimentum sollicitudin nibh, nec mattis quam. Ut eu
-          volutpat nisi, quis varius risus. Integer rutrum eros ac turpis
-          euismod, in tincidunt risus dapibus. Etiam eget turpis massa. Fusce
-          rutrum sit amet magna sit amet aliquam. Donec sit amet cursus erat,
-          sit amet sagittis nunc. Nullam mattis risus nisi, non interdum elit
-          congue in. Donec vitae ligula elit. Morbi nec luctus elit, eu feugiat
-          turpis. Sed porttitor luctus ornare. Suspendisse condimentum fermentum
-          convallis.
-        </p>
-
-        <div className="overlap-wrapper">
-          <div className="overlap">
-            <div className="div">About Plant</div>
-
-            <div className="overlap-group">
-              <div className="group-wrapper">
-                <img className="img" alt="Group" src={group233} />
-              </div>
-
-              <img className="vector" alt="Vector" src={vector41} />
-
-              <img className="vector-2" alt="Vector" src={vector42} />
-
-              <img className="vector-3" alt="Vector" src={vector43} />
-            </div>
-          </div>
+          volutpat nisi, quis varius risus. Integer rutrum eros ac turpis euismod,
+          in tincidunt risus dapibus. Etiam eget turpis massa. Fusce rutrum sit
+          amet magna sit amet aliquam. Donec sit amet cursus erat, sit amet
+          sagittis nunc. Nullam mattis risus nisi, non interdum elit congue in.
+          Donec vitae ligula elit. Morbi nec luctus elit, eu feugiat turpis. Sed
+          porttitor luctus ornare. Suspendisse condimentum fermentum convallis.
+        </span>
+        <div className="inverted-graphic-container">
+          <div className='imageContainer2'></div>
+          <img 
+            src="n19.svg" 
+            alt="graphic element"
+            className="inverted-graphic-element"
+          />
         </div>
+          <div className="wetland-status-container">
+            <div className="rectangle-inv" />
+            <div className="wetland-black-bar" />
+            <div className="wetland-status-text">Wetland Status</div>
+          </div>
+          <span className="lorem-ipsum-dolor inverted-text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+          congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida
+          imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu
+          neque. Etiam rhoncus erat non quam vehicula, sed maximus magna
+          tincidunt. Sed condimentum sollicitudin nibh, nec mattis quam. Ut eu
+        </span>
       </div>
     </div>
   );

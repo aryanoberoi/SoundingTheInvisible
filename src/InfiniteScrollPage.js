@@ -148,11 +148,6 @@ const PollutantPage = () => {
                   src="l1.png" 
                   alt="Vector graphic" 
                   className="vector-image"
-                  style={{ 
-                    width: '100%',
-                    height: 'auto',
-                    objectFit: 'cover' 
-                  }}
                 />
               </div>
 
@@ -198,11 +193,7 @@ const PollutantPage = () => {
           
           <div className="bottom-section5" id="plant-name">
             <div className="content-container">
-              <h2>Plant Name Section</h2>
-              <div>
-              <AboutPlant />
-              </div>
-              {/* Add your plant name content here */}
+              <AboutPlant/>
             </div>
           </div>
         </div>
