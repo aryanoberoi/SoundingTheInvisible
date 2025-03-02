@@ -207,7 +207,7 @@ const PollutantPage = () => {
             <PlantHabitat/>
           </div>
 
-          <div className="bottom-section8" id="origin">
+          <div className="bottom-section7" id="origin">
             <Origin/>
           </div>
         </div>
