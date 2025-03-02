@@ -10,6 +10,7 @@ import LeftPanel from './PollutantPage/LeftPanel';
 import RightPanel from './PollutantPage/RightPanel';
 import { PlantHabitat } from './PollutantPage/PlantHabitat';
 import { AboutPlant } from './PollutantPage/AboutPlant';
+import { CommonNames } from './PollutantPage/CommonNames';
 
 const PollutantPage = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -57,7 +58,7 @@ const PollutantPage = () => {
       });
     }, { threshold: 0.5 });
 
-    document.querySelectorAll('.bottom-section1, .bottom-section2, .bottom-section3, .bottom-section4, .bottom-section5').forEach(section => {
+    document.querySelectorAll('.bottom-section1, .bottom-section2, .bottom-section3, .bottom-section4, .bottom-section5, .bottom-section6').forEach(section => {
       observer.observe(section);
     });
 
@@ -195,6 +196,10 @@ const PollutantPage = () => {
             <div className="content-container">
               <AboutPlant/>
             </div>
+          </div>
+
+          <div className="bottom-section6" id="common-names">
+            <CommonNames/>
           </div>
         </div>
       </div>

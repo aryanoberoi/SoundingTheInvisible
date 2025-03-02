@@ -8,8 +8,6 @@ import vector43 from "./vector-43.svg";
 export const AboutPlant = () => {
   return (
     // <PeepholeEffect />
-    // </div>
-    // {/* Inverted color section */}
     <div className="inverted-section">
       <div className="main-container inverted">
         <div className="flex-row-f">

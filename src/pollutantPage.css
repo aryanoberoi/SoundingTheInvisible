@@ -998,3 +998,10 @@ body.homepage-active .hamburger span {
   object-fit: contain;
   z-index: 2;
 }
+
+.bottom-section6 {
+  background-color: white;
+  color: black;
+  min-height: 100vh;
+  padding: 95px 69px;
+}

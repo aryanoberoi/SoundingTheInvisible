@@ -1,0 +1,308 @@
+.common-names-container {
+    height: auto;
+    min-height: 863px;
+    position: relative;
+    width: 100%;
+    padding: 20px 0;
+    margin-left: calc(3%);
+    overflow: hidden;
+    background-color: white;
+}
+  
+.common-names-container .common-names-sections {
+    height: auto;
+    position: fixed;
+    width: 200px;
+}
+  
+.common-names-container .common-names-header {
+    position: relative;
+    width: 425px;
+    margin: 0;
+    transform: none;
+    left: 0;
+    height: 57px;
+}
+  
+.common-names-container .common-names-overlap {
+    height: 57px;
+    position: relative;
+    width: 423px;
+}
+  
+.common-names-container .common-names-rectangle {
+    background-color: #000 !important;
+    width: 390px;
+    left: 17px;
+    height: 4vw;
+    max-height: 57px;
+    position: absolute;
+    top: 0;
+}
+  
+.common-names-container .common-names-underline {
+    background-color: #000 !important;
+    height: 10px;
+    left: 92px;
+    position: absolute;
+    top: 47px;
+    width: 351px;
+}
+
+  
+.common-names-container .common-names-title {
+    color: #fff !important;
+    font: 400 28px 'Nippo-Regular', sans-serif;
+    font-size: clamp(20px, 2vw, 28px);
+    font-weight: 400;
+    left: 0;
+    letter-spacing: 0.84px;
+    line-height: normal;
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    text-align: center;
+}
+  
+.common-names-container .common-names-human-container {
+    height: 687px;
+    left: 0;
+    position: absolute;
+    top: 161px;
+    width: fit-content;
+}
+  
+.common-names-container .common-names-human-image-wrapper {
+    height: 687px;
+    left: -69px;
+    position: relative;
+    width: 438px;
+}
+  
+.common-names-container .common-names-main-human-image {
+    height: auto;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 50px;
+    max-width: 438px;
+    background-color: transparent;
+}
+  
+.common-names-container .common-names-human-graphics-container {
+    height: 687px;
+    left: 62px;
+    position: absolute;
+    top: 0;
+    width: 254px;
+}
+  
+.common-names-container .common-names-human-graphics-overlap {
+    height: 687px;
+    position: relative;
+}
+  
+.common-names-container .common-names-human-vector {
+    height: auto;
+    width: 100%;
+    left: 5px;
+    max-width: 200px;
+    position: absolute;
+    top: 26px;
+}
+  
+.common-names-container .common-names-items {
+    position: relative;
+    margin-left: 22px;
+    margin-top: calc(5%);
+}
+  
+.common-names-container .common-names-item {
+    position: relative;
+    width: 319px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    z-index: 1;
+    overflow: visible;
+}
+  
+.common-names-container .common-names-item:nth-child(even) {
+    left: 79px;
+}
+  
+.common-names-container .common-names-item.expanded {
+    z-index: 2;
+}
+  
+.common-names-container .common-names-item-overlap {
+    position: relative;
+    width: 90%;
+    max-width: 416px;
+    right: 0;
+    margin: 2rem 0;
+    height: 50px;
+}
+  
+.common-names-container .common-names-item-title {
+    color: #000 !important;
+    font-family: "Nippo-Regular", Helvetica;
+    font-size: 24px;
+    font-weight: 400;
+    left: 0;
+    letter-spacing: 0.72px;
+    line-height: normal;
+    position: absolute;
+    top: 0;
+    width: 317px;
+}
+  
+.common-names-container .common-names-item-icon-wrapper {
+    background-color: #000 !important;
+    border-radius: 8px;
+    height: 16px;
+    left: 140px;
+    position: absolute;
+    top: 13px;
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+    width: 16px;
+}
+  
+.common-names-container .common-names-item-icon {
+    width: 100%;
+    height: auto;
+    max-width: 7px;
+    left: 5px;
+    position: absolute;
+    top: 6px;
+    transform: rotate(-90deg);
+    transition: transform 0.3s ease;
+    filter: invert(1);
+}
+  
+.common-names-container .common-names-item-content {
+    color: #000 !important;
+    padding-top: calc(15%);
+    font: 400 14px 'ClashGrotesk-Light', 'san-serif';
+    line-height: 1.5;
+    margin-top: 0px;
+}
+  
+.common-names-container .expanded .common-names-item-overlap {
+    height: auto;
+    padding-bottom: 20px;
+}
+  
+.common-names-container .expanded .common-names-item-icon-wrapper {
+    transform: rotate(0deg);
+}
+  
+.common-names-container img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: invert(1);
+}
+  
+@media (max-width: 768px) {
+    .common-names-container .common-names-header {
+        width: 100%;
+    }
+    
+    .common-names-container .common-names-title {
+        font-size: 1.5rem;
+    }
+    
+    .common-names-container .common-names-main-human-image {
+        top: 5vw;
+    }
+    
+    .common-names-container .common-names-human-vector {
+        width: 100%;
+        left: 0;
+    }
+}
+  
+.common-names-container .wetland-status-container {
+    width: 60%;
+    position: relative;
+    height: 57px;
+}
+
+.common-names-container .rectangle-inv .common-names {
+    background-color: #000;
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.common-names-container .wetland-black-bar {
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    background-color: #000;
+    top: 46px;
+    left: 0;
+}
+
+.common-names-container .about-pollutant.inverted-text {
+    color: #000 !important;
+    mix-blend-mode: difference;
+    font-weight: 600;
+    width: 600px;
+    font-family: 'ClashGrotesk-Light', -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 28.7px;
+    margin: 60px 0 30px 4px;
+    display: block;
+}
+  
+.common-names-container .common-names-content {
+    position: absolute;
+    left: 50%;
+    top: 17%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 400px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 3;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.3s ease;
+}
+
+.common-names-container .content-line {
+    width: 30px;
+    height: 2px;
+    background: #000;
+    flex-shrink: 0;
+}
+
+.common-names-container .content-text {
+    flex: 1;
+}
+
+.common-names-container .common-names-item.expanded .common-names-content {
+    opacity: 1;
+    transform: translateX(0);
+}
+  
+.common-names-container .scientific-name-container {
+    font-family: 'ClashGrotesk-Light', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #000;
+    margin: 40px 0;
+    padding-left: 15px;
+    width: 100%;
+}
+
+.common-names-container .scientific-name-bold {
+    font-weight: 800;
+}
+  
