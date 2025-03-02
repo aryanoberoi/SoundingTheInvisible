@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './pollutantPage.css';
 import styles from './PollutantPage/pollutantcard.module.css'
-import { KnowMoreButton } from './PollutantPage/Knowmorebutton';
-import { PlantInfoSection } from './PollutantPage/PlantInfoSection';
 import SineWaveVisualizer from './PollutantPage/sinwave';
 import { Box } from './PollutantPage/Body';
 import { CaseStudies } from './PollutantPage/CaseStudies';
@@ -10,6 +8,7 @@ import { Phyto } from './PollutantPage/Phyto';
 import PeepholeEffect from './PollutantPage/PeepHoleImage';
 import LeftPanel from './PollutantPage/LeftPanel';
 import RightPanel from './PollutantPage/RightPanel';
+import { PlantHabitat } from './PollutantPage/PlantHabitat';
 
 const PollutantPage = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -200,7 +199,7 @@ const PollutantPage = () => {
             <div className="content-container">
               <h2>Plant Name Section</h2>
               <div>
-              <PeepholeEffect />
+              <PlantHabitat />
               </div>
               {/* Add your plant name content here */}
             </div>
