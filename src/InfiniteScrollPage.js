@@ -8,9 +8,10 @@ import { Phyto } from './PollutantPage/Phyto';
 import PeepholeEffect from './PollutantPage/PeepHoleImage';
 import LeftPanel from './PollutantPage/LeftPanel';
 import RightPanel from './PollutantPage/RightPanel';
-import { PlantHabitat } from './PollutantPage/PlantHabitat';
 import { AboutPlant } from './PollutantPage/AboutPlant';
 import { CommonNames } from './PollutantPage/CommonNames';
+import { PlantHabitat } from './PollutantPage/PlantHabitat';
+import { Origin } from './PollutantPage/Origin';
 
 const PollutantPage = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -68,8 +69,8 @@ const PollutantPage = () => {
   return (
     <>
       <div id="slider-container" className="slider-container">
-<LeftPanel />
-<RightPanel />
+        <LeftPanel />
+        <RightPanel />
         <div
           className="slider-bar"
           style={{ left: `${sliderPosition}%` }}
@@ -204,6 +205,10 @@ const PollutantPage = () => {
 
           <div className="bottom-section7" id="plant-habitat">
             <PlantHabitat/>
+          </div>
+
+          <div className="bottom-section8" id="origin">
+            <Origin/>
           </div>
         </div>
       </div>

@@ -1,0 +1,395 @@
+.origin-section-container {
+    height: auto;
+    min-height: 1200px;
+    position: relative;
+    width: 100%;
+    padding: 20px 0;
+    margin-left: calc(3%);
+    overflow: hidden;
+    background-color: white;
+}
+  
+.origin-section-container .origin-section-sections {
+    height: auto;
+    position: fixed;
+    width: 200px;
+}
+  
+.origin-section-container .origin-section-header {
+    height: 43px;
+    position: relative;
+    width: 743px;
+}
+  
+.origin-section-container .origin-section-overlap {
+    height: 57px;
+    position: relative;
+    width: 423px;
+}
+  
+.origin-section-container .origin-section-rectangle {
+    background-color: #000000;
+    height: 43px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 490px;
+}
+  
+.origin-section-container .origin-section-underline {
+    background-color: #000000;
+    height: 9px;
+    left: 455px;
+    position: absolute;
+    top: 34px;
+    width: 91px;
+}
+
+  
+.origin-section-container .origin-section-title {
+    color: #fff !important;
+    font: 400 28px 'Nippo-Regular', sans-serif;
+    font-size: clamp(20px, 2vw, 28px);
+    font-weight: 400;
+    left: 0;
+    letter-spacing: 0.84px;
+    line-height: normal;
+    position: absolute;
+    top: 3px;
+    width: 743px;
+}
+  
+.origin-section-container .origin-section-human-container {
+    height: 687px;
+    left: 0;
+    position: absolute;
+    top: 161px;
+    width: fit-content;
+}
+  
+.origin-section-container .origin-section-human-image-wrapper {
+    height: 687px;
+    left: -69px;
+    position: relative;
+    width: 438px;
+}
+  
+.origin-section-container .origin-section-main-human-image {
+    height: auto;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 50px;
+    max-width: 438px;
+    background-color: transparent;
+}
+  
+.origin-section-container .origin-section-human-graphics-container {
+    height: 687px;
+    left: 62px;
+    position: absolute;
+    top: 0;
+    width: 254px;
+}
+  
+.origin-section-container .origin-section-human-graphics-overlap {
+    height: 687px;
+    position: relative;
+}
+  
+.origin-section-container .origin-section-human-vector {
+    height: auto;
+    width: 100%;
+    left: 5px;
+    max-width: 200px;
+    position: absolute;
+    top: 26px;
+}
+  
+.origin-section-container .origin-section-items {
+    position: relative;
+    margin-left: 22px;
+    margin-top: calc(5%);
+}
+  
+.origin-section-container .origin-section-item {
+    position: relative;
+    width: 319px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    z-index: 1;
+    overflow: visible;
+}
+  
+.origin-section-container .origin-section-item:nth-child(even) {
+    left: 79px;
+}
+  
+.origin-section-container .origin-section-item.expanded {
+    z-index: 2;
+}
+  
+.origin-section-container .origin-section-item-overlap {
+    position: relative;
+    width: 90%;
+    max-width: 416px;
+    right: 0;
+    margin: 2rem 0;
+    height: 50px;
+}
+  
+.origin-section-container .origin-section-item-title {
+    color: #000 !important;
+    font-family: "Nippo-Regular", Helvetica;
+    font-size: 24px;
+    font-weight: 400;
+    left: 0;
+    letter-spacing: 0.72px;
+    line-height: normal;
+    position: absolute;
+    top: 0;
+    width: 317px;
+}
+  
+.origin-section-container .origin-section-icon-wrapper {
+    background-color: #000 !important;
+    border-radius: 8px;
+    height: 16px;
+    left: 140px;
+    position: absolute;
+    top: 13px;
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+    width: 16px;
+}
+  
+.origin-section-container .origin-section-icon {
+    width: 100%;
+    height: auto;
+    max-width: 7px;
+    left: 5px;
+    position: absolute;
+    top: 6px;
+    transform: rotate(-90deg);
+    transition: transform 0.3s ease;
+    filter: invert(1);
+}
+  
+.origin-section-container .origin-section-content {
+    color: #000 !important;
+    padding-top: calc(15%);
+    font: 400 14px 'ClashGrotesk-Light', 'san-serif';
+    line-height: 1.5;
+    margin-top: 0px;
+}
+  
+.origin-section-container .expanded .origin-section-item-overlap {
+    height: auto;
+    padding-bottom: 20px;
+}
+  
+.origin-section-container .expanded .origin-section-icon-wrapper {
+    transform: rotate(0deg);
+}
+  
+.origin-section-container img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: invert(1);
+}
+  
+@media (max-width: 768px) {
+    .origin-section-container .origin-section-header {
+        width: 100%;
+    }
+    
+    .origin-section-container .origin-section-title {
+        font-size: 1.5rem;
+    }
+    
+    .origin-section-container .origin-section-main-human-image {
+        top: 5vw;
+    }
+    
+    .origin-section-container .origin-section-human-vector {
+        width: 100%;
+        left: 0;
+    }
+}
+  
+.origin-section-container .wetland-status-container {
+    width: 60%;
+    position: relative;
+    height: 57px;
+}
+
+.origin-section-container .rectangle-inv .origin-section {
+    background-color: #000;
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.origin-section-container .wetland-black-bar {
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    background-color: #000;
+    top: 46px;
+    left: 0;
+}
+
+.origin-section-container .about-pollutant.inverted-text {
+    color: #000 !important;
+    mix-blend-mode: difference;
+    font-weight: 600;
+    width: 600px;
+    font-family: 'ClashGrotesk-Light', -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 28.7px;
+    margin: 60px 0 30px 4px;
+    display: block;
+}
+  
+.origin-section-container .origin-section-content {
+    position: absolute;
+    left: 50%;
+    top: 17%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 400px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 3;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.3s ease;
+}
+
+.origin-section-container .content-line {
+    width: 30px;
+    height: 2px;
+    background: #000;
+    flex-shrink: 0;
+}
+
+.origin-section-container .content-text {
+    flex: 1;
+}
+
+.origin-section-container .origin-section-item.expanded .origin-section-content {
+    opacity: 1;
+    transform: translateX(0);
+}
+  
+.origin-section-container .scientific-name-container {
+    font-family: 'ClashGrotesk-Light', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #000;
+    margin: 40px 0;
+    padding-left: 15px;
+    width: 100%;
+}
+
+.origin-section-container .scientific-name-bold {
+    font-weight: 800;
+}
+  
+.origin-section-container .origin-section-columns {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    margin-top: 40px;
+    position: relative;
+}
+
+.origin-section-container .black-column {
+    flex: 1;
+    position: relative;
+    background: #fff;
+    aspect-ratio: 1/1;
+    min-height: 500px;
+}
+
+.origin-section-container .black-column::before {
+    content: '';
+    display: block;
+    background: #000;
+    width: 80%;
+    padding-top: 100%; /* Maintain 1:1 aspect ratio */
+}
+
+.origin-section-container .white-column {
+    flex: 3;
+    background: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.origin-section-container .overlay-text {
+    position: absolute;
+    left: 360px;
+    top: 100%;
+    transform: translate(-50%, -50%);
+    color: transparent;
+    background: 
+        linear-gradient(
+            to right, 
+            #fff 0%, 
+            #fff 62%, 
+            #000 62%, 
+            #000 100%
+        ),
+        linear-gradient(
+            to bottom, 
+            #fff 0%, 
+            #fff var(--gradient-height, 50%), 
+            #000 var(--gradient-height, 50%), 
+            #000 100%
+        );
+    background-size: 100% var(--gradient-height, 50%), 100% 100%;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-family: 'ClashGrotesk-Regular', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 30.6px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    z-index: 2;
+    pointer-events: none;
+    width: 80%;
+    max-width: 320px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+}
+  
+.origin-section-container .transparent-border-rectangle {
+    position: absolute;
+    left: 360px;
+    top: 130%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 420px;
+    height: 60%;
+    border: 1px solid #000;
+    background: transparent;
+    z-index: 1;
+}
+
+.origin-map-image {
+    filter: none !important;
+    margin-top: 450px;
+}
