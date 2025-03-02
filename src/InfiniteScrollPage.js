@@ -58,7 +58,7 @@ const PollutantPage = () => {
       });
     }, { threshold: 0.5 });
 
-    document.querySelectorAll('.bottom-section1, .bottom-section2, .bottom-section3, .bottom-section4, .bottom-section5, .bottom-section6').forEach(section => {
+    document.querySelectorAll('[class^="bottom-section"]').forEach(section => {
       observer.observe(section);
     });
 
@@ -200,6 +200,10 @@ const PollutantPage = () => {
 
           <div className="bottom-section6" id="common-names">
             <CommonNames/>
+          </div>
+
+          <div className="bottom-section7" id="plant-habitat">
+            <PlantHabitat/>
           </div>
         </div>
       </div>
