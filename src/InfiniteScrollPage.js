@@ -9,6 +9,7 @@ import PeepholeEffect from './PollutantPage/PeepHoleImage';
 import LeftPanel from './PollutantPage/LeftPanel';
 import RightPanel from './PollutantPage/RightPanel';
 import { PlantHabitat } from './PollutantPage/PlantHabitat';
+import { AboutPlant } from './PollutantPage/AboutPlant';
 
 const PollutantPage = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -199,7 +200,7 @@ const PollutantPage = () => {
             <div className="content-container">
               <h2>Plant Name Section</h2>
               <div>
-              <PlantHabitat />
+              <AboutPlant />
               </div>
               {/* Add your plant name content here */}
             </div>

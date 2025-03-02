@@ -1,0 +1,25 @@
+.box {
+    height: 72px;
+    position: relative;
+    width: 72px;
+  }
+  
+  .box .group {
+    border: 1px solid;
+    border-color: #000000;
+    border-radius: 36px;
+    height: 72px;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 72px;
+  }
+  
+  .box .img {
+    height: 64px;
+    left: 2px;
+    position: absolute;
+    top: 7px;
+    width: 68px;
+  }
+  
