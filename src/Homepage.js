@@ -216,24 +216,61 @@
 // };
 
 
-"use client";
+// "use client";
 
-import React from "react";
-import styles from "./Homepage.css";
-import { HeroSection } from "./HeroSection";
-import { ConceptSection } from "./ConceptSection";
-import { SoundSection } from "./SoundSection";
+// import React from "react";
+// import styles from "./Homepage.css";
+// import { HeroSection } from "./HeroSection";
+// import { ConceptSection } from "./ConceptSection";
+// import { SoundSection } from "./SoundSection";
 
-export default function Homepage() {
-  return (
-    <center>
-    <main className={styles.homepage}>
-      <HeroSection />
-      <ConceptSection />
-      <SoundSection />
-    </main>
-    </center>
-  );
-}
+// export default function Homepage() {
+//   return (
+//     <center>
+//     <main className={styles.homepage}>
+//       <HeroSection />
+//       <ConceptSection />
+//       <SoundSection />
+//     </main>
+//     </center>
+//   );
+// }
 
-
+import React from "react"; 
+// import { Group12 } from "./Group12"; 
+// import { PropertyDefault } from "./PropertyDefault"; 
+// import frame2 from "./frame-2.svg"; 
+// import frame41 from "./frame-41.svg";
+// import frame from "./frame.svg"; 
+// import image from "./image.svg"; 
+// import rectangle3 from "./rectangle-3.png"; import rectangle90 from "./rectangle-90.svg"; 
+import "./Homepage.css"; 
+// import vector187 from "./vector-187.svg"; 
+// import vector244 from "./vector-244.svg"; 
+export default function Homepage () 
+  { return ( 
+  <div className="homepage"> 
+  <div className="div"> 
+  <div className="overlap"> 
+  <div className="overlap-2"> 
+  {/* <img className="rectangle-3" alt="Rectangle" src={rectangle90} />  */}
+  {/* <img className="frame" alt="Frame" src={image} />  */}
+  {/* <img className="frame-2" alt="Frame" src={frame2} />  */}
+  <p className="text-wrapper"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula. </p> </div>
+  <p className="p"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula. </p> <div className="text-wrapper-2">Sound concept</div> </div> <div className="overlap-3"> 
+  {/* <img className="rectangle-4" alt="Rectangle" src={rectangle3} />  */}
+  {/* <PropertyDefault className="property-1-default" img="rectangle-6.png" overlapGroupClassName="property-default-instance" rectangle="rectangle-4.png" rectangle1="rectangle-5.png" rectangleClassName="property-1-default-instance" />  */}
+  {/* <img className="frame-3" alt="Frame" src={frame41} />  */}
+  {/* <img className="vector" alt="Vector" src={vector244} />  */}
+  <p className="phytoremediation"> Phytoremediation plants from the tropic of the&nbsp;&nbsp;temperate </p> </div> <div className="overlap-4"> <div className="overlap-5">
+  {/* <img className="frame-4" alt="Frame" src={frame} />  */}
+  <p className="text-wrapper-3"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula. </p> </div> 
+  <div className="text-wrapper-4">Concept</div> </div> 
+  <div className="overlap-6"> <div className="text-wrapper-5">Credits</div> 
+  {/* <img className="vector-2" alt="Vector" src={vector187} />  */}
+  </div> 
+  {/* <Group12 className="group" />  */}
+  </div> 
+  </div> 
+  ); 
+};
