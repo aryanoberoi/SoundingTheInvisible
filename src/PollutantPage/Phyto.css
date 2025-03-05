@@ -124,7 +124,7 @@
 /* New style for group-2 overlap */
 .bottom-section4 .box .overlap-group-right {
     height: 109px;
-    left: -127px;
+    left: 0px;
     position: absolute;
     top: 249px;
     width: 228px;
@@ -272,4 +272,9 @@
     top: 9px;
     width: 100%;
     z-index: 1;
+}
+
+.bottom-section4 .box.right-aligned .overlap-group {
+    left: 24%;  /* Updated from default position */
+    position: absolute;  /* Ensure positioning context */
 }

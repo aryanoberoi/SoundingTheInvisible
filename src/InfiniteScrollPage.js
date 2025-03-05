@@ -258,13 +258,13 @@ const PollutantPage = () => {
             </div>
           </div>
           <div className="bottom-section2" id="effect-on-health">
-            <Box></Box>
+            <Box/>
           </div>
           <div className="bottom-section3" id="case-study">
-            <CaseStudies></CaseStudies>
+            <CaseStudies/>
           </div>
           <div className="bottom-section4" id="phytoremediation">
-            <Phyto></Phyto>
+            <Phyto/>
           </div>
           <div className="white-container">
             <div className="bottom-section5" id="plant-name">
