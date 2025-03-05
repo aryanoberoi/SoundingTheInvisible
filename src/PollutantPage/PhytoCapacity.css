@@ -1,11 +1,11 @@
-.phytocapacity-container {
+.phyto-capacity-container {
     width: 100%;
     height: auto;
     position: relative;
 }
 
-.phytocapacity-container .phyto-capacity-header {
-    height: 0px;
+.phyto-capacity-container .phyto-capacity-header {
+    height: 43px;
     left: 0;
     position: absolute;
     top: 0;
@@ -14,18 +14,18 @@
     align-items: center;
 }
 
-.phytocapacity-container .phyto-capacity-header-wrapper {
+.phyto-capacity-container .phyto-capacity-header-wrapper {
     height: 43px;
     width: 745px;
 }
 
-.phytocapacity-container .phyto-capacity-header-content {
+.phyto-capacity-container .phyto-capacity-header-content {
     height: 43px;
     position: relative;
     width: 743px;
 }
 
-.phytocapacity-container .phyto-capacity-rectangle {
+.phyto-capacity-container .phyto-capacity-rectangle {
     background-color: #000000;
     height: 43px;
     left: 0;
@@ -34,7 +34,7 @@
     width: 530px;
 }
 
-.phytocapacity-container .phyto-capacity-underline {
+.phyto-capacity-container .phyto-capacity-underline {
     background-color: #000000;
     height: 9px;
     left: 480px;
@@ -43,7 +43,20 @@
     width: 91px;
 }
 
-.phytocapacity-container .phyto-capacity-content {
+.phyto-capacity-container .phyto-capacity-title {
+    color: #ffffff;
+    font-family: "Nippo-Regular", Helvetica;
+    font-size: 28px;
+    font-weight: 400;
+    left: 0;
+    letter-spacing: 0.84px;
+    line-height: normal;
+    position: absolute;
+    top: 3px;
+    width: 743px;
+}
+
+.phyto-capacity-container .phyto-capacity-content {
     font-family: ClashGrotesk-Regular;
     font-weight: 600;
     font-size: 14px;
@@ -51,6 +64,7 @@
     letter-spacing: 0%;
     width: 100%;
     max-width: 600px;
+    padding-top: 100px;
 }
 
 .phyto-svg-container {

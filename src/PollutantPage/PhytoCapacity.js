@@ -2,12 +2,6 @@ import React, { useState } from "react";
 import "./PhytoCapacity.css";
 
 export const PhytoCapacity = () => {
-  const [expandedSection, setExpandedSection] = useState(null);
-
-  const handleReadMore = (section) => {
-    setExpandedSection(prev => prev === section ? null : section);
-  };
-
   return (
     <div className="phyto-capacity-container">
         <div className="phyto-capacity-header">
