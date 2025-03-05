@@ -217,7 +217,7 @@ const PollutantPage = () => {
             <PhytoCapacity/>
           </div>
 
-          <div className="bottom-section8" id='uses-of-plant'>
+          <div className="bottom-section8" id="uses-of-plant">
             <UsesOfPlant/>
           </div>
         </div>
