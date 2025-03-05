@@ -20,13 +20,13 @@ export const Box = () => {
   ];
 
   return (
-    <div className="health-effects-box">
-      <div className="content-sections">
-        <div className="header-container">
-          <div className="header-overlap">
-            <div className="header-background" />
-            <div className="header-underline" />
-            <div className="header-title">Effects on human health</div>
+    <div className="box-container">
+      <div className="box-content-sections">
+        <div className="box-header-container">
+          <div className="box-header-overlap">
+            <div className="box-header-background" />
+            <div className="box-header-underline" />
+            <div className="box-header-title">Effects on human health</div>
           </div>
         </div>
 

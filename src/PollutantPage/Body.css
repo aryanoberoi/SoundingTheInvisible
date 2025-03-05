@@ -1,4 +1,4 @@
-.health-effects-box {
+.box-container {
     height: auto;
     min-height: 863px;
     position: relative;
@@ -8,13 +8,13 @@
     overflow: hidden;
 }
   
-.health-effects-box .content-sections {
+.box-container .box-content-sections {
     height: auto;
     position: relative;
     width: 100%;
 }
   
-.health-effects-box .header-container {
+.box-container .box-header-container {
     height: auto;
     position: relative;
     width: 100%;
@@ -24,32 +24,32 @@
     left: 0;
 }
   
-.health-effects-box .header-overlap {
+.box-container .box-header-overlap {
     height: 57px;
     position: relative;
     width: 423px;
 }
   
-.health-effects-box .header-background {
+.box-container .box-header-background {
     background-color: #ffffff;
     width: 80%;
     left: 10%;
     height: 4vw;
     max-height: 57px;
-    position: absolute;
+    position: relative;
     top: 0;
 }
   
-.health-effects-box .header-underline {
+.box-container .box-header-underline {
     background-color: #ffffff;
     height: 9px;
-    left: 72px;
-    position: absolute;
-    top: 48px;
-    width: 351px;
+    left: 15%;
+    position: relative;
+    top: -15%;
+    width: 90%;
 }
   
-.health-effects-box .header-title {
+.box-container .box-header-title {
     color: #181818;
     font: 400 28px 'Nippo-Regular', sans-serif;
     font-size: clamp(20px, 2vw, 28px);
@@ -63,7 +63,7 @@
     text-align: center;
 }
   
-.health-effects-box .human-container {
+.box-container .human-container {
     height: auto;
     position: relative;
     top: 0;
@@ -72,14 +72,14 @@
     margin-top: 161px;
 }
   
-.health-effects-box .human-image-wrapper {
+.box-container .human-image-wrapper {
     height: auto;
     left: 0;
     position: relative;
     width: 100%;
 }
   
-.health-effects-box .main-human-image {
+.box-container .main-human-image {
     height: auto;
     width: auto;
     left: 0;
@@ -89,7 +89,7 @@
     background-color: transparent;
 }
   
-.health-effects-box .human-graphics-container {
+.box-container .human-graphics-container {
     height: 687px;
     left: 62px;
     position: absolute;
@@ -97,12 +97,12 @@
     width: 254px;
 }
   
-.health-effects-box .human-graphics-overlap {
+.box-container .human-graphics-overlap {
     height: 687px;
     position: relative;
 }
   
-.health-effects-box .human-vector {
+.box-container .human-vector {
     height: auto;
     width: 100%;
     left: 5px;
@@ -111,7 +111,7 @@
     top: 26px;
 }
   
-.health-effects-box .content-items-container {
+.box-container .content-items-container {
     position: absolute;
     left: 40%;
     right: 20px;
@@ -120,7 +120,7 @@
     width: auto;
 }
   
-.health-effects-box .content-item {
+.box-container .content-item {
     width: 100%;
     max-width: 416px;
     position: relative;
@@ -130,16 +130,16 @@
     z-index: 1;
 }
   
-.health-effects-box .content-item:nth-child(even) {
+.box-container .content-item:nth-child(even) {
     left: 20%;
 }
   
-.health-effects-box .content-item.expanded {
+.box-container .content-item.expanded {
     margin-bottom: 20px;
     z-index: 2;
 }
   
-.health-effects-box .item-overlap {
+.box-container .item-overlap {
     position: relative;
     width: 90%;
     max-width: 416px;
@@ -148,7 +148,7 @@
     height: 50px;
 }
   
-.health-effects-box .item-title {
+.box-container .item-title {
     color: #ffffff;
     font-family: "Nippo-Regular", Helvetica;
     font-size: 24px;
@@ -161,7 +161,7 @@
     width: 317px;
 }
   
-.health-effects-box .item-icon-wrapper {
+.box-container .item-icon-wrapper {
     background-color: #ffffff;
     border-radius: 8px;
     height: 16px;
@@ -172,7 +172,7 @@
     width: 16px;
 }
   
-.health-effects-box .item-icon {
+.box-container .item-icon {
     width: 100%;
     height: auto;
     max-width: 7px;
@@ -182,7 +182,7 @@
     transform: rotate(-180.00deg);
 }
   
-.health-effects-box .item-content {
+.box-container .item-content {
     color: #ffffff;
     padding-top: calc(15%);
     font: 400 14px 'ClashGrotesk-Light', 'san-serif';
@@ -190,37 +190,37 @@
     margin-top: 0px;
 }
   
-.health-effects-box .expanded .item-overlap {
+.box-container .expanded .item-overlap {
     height: auto;
     padding-bottom: 20px;
 }
   
-.health-effects-box .expanded .item-icon-wrapper {
+.box-container .expanded .item-icon-wrapper {
     transform: rotate(0deg);
 }
   
-.health-effects-box img {
+.box-container img {
     max-width: 100%;
     height: auto;
     object-fit: contain;
 }
   
 @media (max-width: 768px) {
-    .health-effects-box .header-container {
+    .box-container .box-header-container {
         width: 100%;
     }
     
-    .health-effects-box .header-title {
+    .box-container .header-title {
         font-size: 1.5rem;
     }
     
-    .health-effects-box .human-container {
+    .box-container .human-container {
         width: 100%;
         max-width: none;
         margin-top: 40px;
     }
     
-    .health-effects-box .content-items-container {
+    .box-container .content-items-container {
         position: relative;
         left: 0;
         right: 0;
@@ -228,15 +228,15 @@
         padding: 0 20px;
     }
     
-    .health-effects-box .content-item:nth-child(even) {
+    .box-container .content-item:nth-child(even) {
         left: 0;
     }
     
-    .health-effects-box .main-human-image {
+    .box-container .main-human-image {
         top: 0;
     }
     
-    .health-effects-box .human-vector {
+    .box-container .human-vector {
         width: 100%;
         left: 0;
     }
