@@ -1043,10 +1043,13 @@ body.homepage-active .hamburger span {
 .bottom-section2,
 .bottom-section3,
 .bottom-section4,
+.bottom-section5,
 .bottom-section6,
 .bottom-section7,
-.bottom-section8 {
-  height: 100vh;
+.bottom-section8,
+.bottom-section9,
+.bottom-section10 {
+  height: auto;
   min-height: 100vh;
   box-sizing: border-box;
   overflow: hidden;
@@ -1063,7 +1066,7 @@ body.homepage-active .hamburger span {
 }
 
 .bottom-section7{
-  height: 120vh;
+  height: auto;
   min-height: 100vh;
   box-sizing: border-box;
   overflow: hidden;
@@ -1071,7 +1074,7 @@ body.homepage-active .hamburger span {
 }
 
 .bottom-section8{
-  height: 150vh;
+  height: auto;
   min-height: 100vh;
   box-sizing: border-box;
   overflow: hidden;
@@ -1079,7 +1082,7 @@ body.homepage-active .hamburger span {
 }
 
 .bottom-section9{
-  height: 190vh;
+  height: auto;
   min-height: 100vh;
   box-sizing: border-box;
   overflow: hidden;
@@ -1087,7 +1090,7 @@ body.homepage-active .hamburger span {
 }
 
 .bottom-section10{
-  height: 200vh;
+  height: auto;
   min-height: 100vh;
   box-sizing: border-box;
   overflow: hidden;
