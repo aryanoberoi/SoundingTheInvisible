@@ -353,8 +353,8 @@ body.sound-panel-active .sound-icon span {
   position: relative;
   min-height: 100vh;
   overflow: visible;
-  background-color: #000;
-  gap: 0; /* Remove all gap space */
+  background-color: #000; /* Changed from transparent to black */
+  gap: 0;
 }
 
 .nav-bar {
@@ -1121,4 +1121,47 @@ body.black-panel-active .white-container {
 .bottom-section3,
 .bottom-section4 {
   display: block;
+}
+
+/* Inverted navbar colors for white panel */
+body.white-panel-active .nav-bar {
+  background-color: white;
+}
+
+body.white-panel-active .nav-bar .text-wrapper,
+body.white-panel-active .nav-bar .div,
+body.white-panel-active .nav-bar .text-wrapper-2,
+body.white-panel-active .nav-bar .text-wrapper-3,
+body.white-panel-active .nav-bar .text-wrapper-4,
+body.white-panel-active .nav-bar .text-wrapper-5,
+body.white-panel-active .nav-bar .text-wrapper-6,
+body.white-panel-active .nav-bar .text-wrapper-7,
+body.white-panel-active .nav-bar .text-wrapper-8,
+body.white-panel-active .nav-bar .text-wrapper-9,
+body.white-panel-active .nav-bar .text-wrapper-10,
+body.white-panel-active .nav-bar .p {
+  color: #000000 !important;
+}
+
+body.white-panel-active .nav-bar .overlap-group::before {
+  background-color: black;
+}
+
+/* Timeline circles */
+body.white-panel-active .nav-bar .ellipse,
+body.white-panel-active .nav-bar [class^="ellipse-"] {
+  background-color: white !important;
+  border-color: black !important;
+}
+
+/* Active state circles */
+body.white-panel-active .nav-bar .ellipse.active,
+body.white-panel-active .nav-bar [class^="ellipse-"].active {
+  background-color: black !important;
+  border-color: black !important;
+}
+
+/* When white panel is active, keep default transparent background */
+body.white-panel-active .combined-section {
+  background-color: transparent;
 }
