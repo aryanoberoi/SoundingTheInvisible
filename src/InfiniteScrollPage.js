@@ -31,6 +31,10 @@ const PollutantPage = () => {
       // For navbar
       document.body.classList.toggle('right-panel-active', newPosition < 3);
       
+      // Toggle visibility based on dominant panel
+      document.body.classList.toggle('white-panel-active', newPosition <= 50);
+      document.body.classList.toggle('black-panel-active', newPosition > 50);
+
       // Custom condition for sound button
       document.body.classList.toggle('sound-panel-active', newPosition < 98);
 
@@ -59,9 +63,9 @@ const PollutantPage = () => {
           setActiveSection(entry.target.id);
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 1 });
 
-    document.querySelectorAll('[class^="bottom-section"]').forEach(section => {
+    document.querySelectorAll('.content-sections [class^="bottom-section"], .white-container [class^="bottom-section"]').forEach(section => {
       observer.observe(section);
     });
 
@@ -195,30 +199,32 @@ const PollutantPage = () => {
             <Phyto></Phyto>
           </div>
           
-          <div className="bottom-section5" id="plant-name">
-            <div className="content-container">
-              <AboutPlant/>
+          <div className="white-container">
+            <div className="bottom-section5" id="plant-name">
+              <div className="content-container">
+                <AboutPlant/>
+              </div>
             </div>
-          </div>
 
-          <div className="bottom-section6" id="common-names">
-            <CommonNames/>
-          </div>
+            <div className="bottom-section6" id="common-names">
+              <CommonNames/>
+            </div>
 
-          <div className="bottom-section7" id="plant-habitat">
-            <PlantHabitat/>
-          </div>
+            <div className="bottom-section7" id="plant-habitat">
+              <PlantHabitat/>
+            </div>
 
-          <div className="bottom-section8" id="origin">
-            <Origin/>
-          </div>
+            <div className="bottom-section8" id="origin">
+              <Origin/>
+            </div>
 
-          <div className="bottom-section9" id="phyto-capacity">
-            <PhytoCapacity/>
-          </div>
+            <div className="bottom-section9" id="phyto-capacity">
+              <PhytoCapacity/>
+            </div>
 
-          <div className="bottom-section10" id="uses-of-plant">
-            <UsesOfPlant/>
+            <div className="bottom-section10" id="uses-of-plant">
+              <UsesOfPlant/>
+            </div>
           </div>
         </div>
       </div>

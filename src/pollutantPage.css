@@ -1091,3 +1091,34 @@ body.homepage-active .hamburger span {
   overflow: hidden;
   position: relative;
 }
+
+/* Hide white sections by default */
+.white-container {
+  display: none;
+}
+
+/* Show white sections when white panel is active */
+body.white-panel-active .white-container {
+  display: block;
+}
+
+/* Hide black sections when white panel is active */
+body.white-panel-active .bottom-section1,
+body.white-panel-active .bottom-section2,
+body.white-panel-active .bottom-section3,
+body.white-panel-active .bottom-section4 {
+  display: none;
+}
+
+/* Hide white sections when black panel is active */
+body.black-panel-active .white-container {
+  display: none;
+}
+
+/* Ensure black sections are visible by default */
+.bottom-section1,
+.bottom-section2,
+.bottom-section3,
+.bottom-section4 {
+  display: block;
+}
