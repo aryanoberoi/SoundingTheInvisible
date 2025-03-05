@@ -12,6 +12,8 @@ import { AboutPlant } from './PollutantPage/AboutPlant';
 import { CommonNames } from './PollutantPage/CommonNames';
 import { PlantHabitat } from './PollutantPage/PlantHabitat';
 import { Origin } from './PollutantPage/Origin';
+import { UsesOfPlant } from './PollutantPage/UsesOfPlant';
+import { PhytoCapacity } from './PollutantPage/PhytoCapacity';
 
 const PollutantPage = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -29,6 +31,10 @@ const PollutantPage = () => {
       // For navbar
       document.body.classList.toggle('right-panel-active', newPosition < 3);
       
+      // Toggle visibility based on dominant panel
+      document.body.classList.toggle('white-panel-active', newPosition <= 50);
+      document.body.classList.toggle('black-panel-active', newPosition > 50);
+
       // Custom condition for sound button
       document.body.classList.toggle('sound-panel-active', newPosition < 98);
 
@@ -57,14 +63,55 @@ const PollutantPage = () => {
           setActiveSection(entry.target.id);
         }
       });
-    }, { threshold: 0.5 });
+    }, { 
+      threshold: 0.3,
+      root: null
+    });
 
-    document.querySelectorAll('[class^="bottom-section"]').forEach(section => {
+    // Observe all sections in both panels
+    const sections = document.querySelectorAll(`
+      [id^="about-"],
+      [id^="plant-"],
+      [id^="sound-"],
+      [id^="common-"],
+      [id^="effect-"],
+      [id^="case-"],
+      [id^="phytoremediation"],
+      [id^="phyto-"],
+      [id^="uses-"],
+      [id^="origin"],
+      [id^="references"]
+    `);
+    
+    sections.forEach(section => {
       observer.observe(section);
     });
 
     return () => observer.disconnect();
   }, []);
+
+  const handleNavClick = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+
+    // Determine which panel to activate
+    const isWhitePanel = section.closest('.white-container');
+    const sliderPos = isWhitePanel ? 0 : 100;
+    
+    // Update slider position and panel visibility
+    setSliderPosition(sliderPos);
+    document.documentElement.style.setProperty('--slider-position', `${sliderPos}%`);
+    document.body.classList.toggle('white-panel-active', isWhitePanel);
+    document.body.classList.toggle('black-panel-active', !isWhitePanel);
+
+    // Scroll after panel transition
+    setTimeout(() => {
+      section.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }, 100);
+  };
 
   return (
     <>
@@ -101,18 +148,18 @@ const PollutantPage = () => {
       </div>
       <div className="combined-section">
         <div className="nav-bar">
-          <div className="text-wrapper">Pollutant name</div>
-          <div className="div">Plant name</div>
-          <div className="text-wrapper-2">Sound frequency</div>
-          <div className="text-wrapper-3">Common names of Plant</div>
-          <div className="text-wrapper-4">Plant Habitat</div>
-          <div className="text-wrapper-5">Origin and Geographical Distribution</div>
-          <p className="p">Phytoremediation capacity of the Plants</p>
-          <div className="text-wrapper-6">Uses of plant</div>
-          <div className="text-wrapper-7">References</div>
-          <div className="text-wrapper-8">Effect on health</div>
-          <div className="text-wrapper-9">Case study</div>
-          <p className="text-wrapper-10">
+          <div className="text-wrapper" onClick={() => handleNavClick('about-pollutant')}>Pollutant name</div>
+          <div className="div" onClick={() => handleNavClick('plant-name')}>Plant name</div>
+          <div className="text-wrapper-2" onClick={() => handleNavClick('sound-frequency')}>Sound frequency</div>
+          <div className="text-wrapper-3" onClick={() => handleNavClick('common-names')}>Common names of Plant</div>
+          <div className="text-wrapper-4" onClick={() => handleNavClick('plant-habitat')}>Plant Habitat</div>
+          <div className="text-wrapper-5" onClick={() => handleNavClick('origin')}>Origin and Geographical Distribution</div>
+          <p className="p" onClick={() => handleNavClick('phyto-capacity')}>Phytoremediation capacity of the Plants</p>
+          <div className="text-wrapper-6" onClick={() => handleNavClick('uses-of-plant')}>Uses of plant</div>
+          <div className="text-wrapper-7" onClick={() => handleNavClick('references')}>References</div>
+          <div className="text-wrapper-8" onClick={() => handleNavClick('effect-on-health')}>Effect on health</div>
+          <div className="text-wrapper-9" onClick={() => handleNavClick('case-study')}>Case study</div>
+          <p className="text-wrapper-10" onClick={() => handleNavClick('phytoremediation')}>
             Phytoremediation of the Representative Pollutant
           </p>
           <div className="overlap-group">
@@ -182,7 +229,6 @@ const PollutantPage = () => {
               <SineWaveVisualizer />
             </div>
           </div>
-
           <div className="bottom-section2" id="effect-on-health">
             <Box></Box>
           </div>
@@ -192,23 +238,27 @@ const PollutantPage = () => {
           <div className="bottom-section4" id="phytoremediation">
             <Phyto></Phyto>
           </div>
-          
-          <div className="bottom-section5" id="plant-name">
-            <div className="content-container">
-              <AboutPlant/>
+          <div className="white-container">
+            <div className="bottom-section5" id="plant-name">
+              <div className="content-container">
+                <AboutPlant/>
+              </div>
             </div>
-          </div>
-
-          <div className="bottom-section6" id="common-names">
-            <CommonNames/>
-          </div>
-
-          <div className="bottom-section7" id="plant-habitat">
-            <PlantHabitat/>
-          </div>
-
-          <div className="bottom-section7" id="origin">
-            <Origin/>
+            <div className="bottom-section6" id="common-names">
+              <CommonNames/>
+            </div>
+            <div className="bottom-section7" id="plant-habitat">
+              <PlantHabitat/>
+            </div>
+            <div className="bottom-section8" id="origin">
+              <Origin/>
+            </div>
+            <div className="bottom-section9" id="phyto-capacity">
+              <PhytoCapacity/>
+            </div>
+            <div className="bottom-section10" id="uses-of-plant">
+              <UsesOfPlant/>
+            </div>
           </div>
         </div>
       </div>

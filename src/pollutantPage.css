@@ -353,8 +353,8 @@ body.sound-panel-active .sound-icon span {
   position: relative;
   min-height: 100vh;
   overflow: visible;
-  background-color: #000;
-  gap: 0; /* Remove all gap space */
+  background-color: #000; /* Changed from transparent to black */
+  gap: 0;
 }
 
 .nav-bar {
@@ -388,6 +388,8 @@ body.sound-panel-active .sound-icon span {
   position: absolute;
   text-align: right; 
   width: 122px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
 /* ✅ Adjusting Positions Based on Your CSS */
@@ -446,7 +448,7 @@ body.sound-panel-active .sound-icon span {
 }
 
 /* ✅ Adjusting Circle Positions */
-.nav-bar .ellipse { top: 0px; background-color: white; } /* Matches text-wrapper position */
+.nav-bar .ellipse { top: 0px; } /* Matches text-wrapper position */
 .nav-bar .ellipse-2 { top: 100px; } /* Matches text-wrapper-2 position */
 .nav-bar .ellipse-3 { top: 160px; } /* Matches text-wrapper-8 position */
 .nav-bar .ellipse-4 { top: 220px; } /* Matches text-wrapper-9 position */
@@ -852,7 +854,8 @@ body.homepage-active .hamburger span {
   flex: 2;
   position: relative;
   padding-left: 0;
-  width: 60%; /* Adjusted from 66.66% to maintain ratio */
+  width: 60%;
+  height: auto; /* Changed from default */
 }
 
 /* Remove any existing margin/padding on these elements */
@@ -1011,4 +1014,172 @@ body.homepage-active .hamburger span {
   color: black;
   min-height: 100vh;
   padding: 95px 69px;
+}
+
+.bottom-section8 {
+  background-color: white;
+  color: black;
+  min-height: 100vh;
+  padding: 95px 69px;
+}
+
+.bottom-section9 {
+  background-color: white;
+  color: black;
+  min-height: 100vh;
+  padding: 95px 69px;
+}
+
+.bottom-section10 {
+  background-color: white;
+  color: black;
+  min-height: 100vh;
+  padding: 95px 69px;
+}
+
+
+/* Ensure all sections take full viewport height */
+.bottom-section1,
+.bottom-section2,
+.bottom-section3,
+.bottom-section4,
+.bottom-section6,
+.bottom-section7,
+.bottom-section8 {
+  height: 100vh;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Remove conflicting min-height declarations */
+.content-sections {
+  flex: 2;
+  position: relative;
+  padding-left: 0;
+  width: 60%;
+  height: auto; /* Changed from default */
+}
+
+.bottom-section7{
+  height: 120vh;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+.bottom-section8{
+  height: 150vh;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+.bottom-section9{
+  height: 190vh;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+.bottom-section10{
+  height: 200vh;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Hide white sections by default */
+.white-container {
+  display: none;
+}
+
+/* Show white sections when white panel is active */
+body.white-panel-active .white-container {
+  display: block;
+}
+
+/* Hide black sections when white panel is active */
+body.white-panel-active .bottom-section1,
+body.white-panel-active .bottom-section2,
+body.white-panel-active .bottom-section3,
+body.white-panel-active .bottom-section4 {
+  display: none;
+}
+
+/* Hide white sections when black panel is active */
+body.black-panel-active .white-container {
+  display: none;
+}
+
+/* Ensure black sections are visible by default */
+.bottom-section1,
+.bottom-section2,
+.bottom-section3,
+.bottom-section4 {
+  display: block;
+}
+
+/* Inverted navbar colors for white panel */
+body.white-panel-active .nav-bar {
+  background-color: white;
+}
+
+body.white-panel-active .nav-bar .text-wrapper,
+body.white-panel-active .nav-bar .div,
+body.white-panel-active .nav-bar .text-wrapper-2,
+body.white-panel-active .nav-bar .text-wrapper-3,
+body.white-panel-active .nav-bar .text-wrapper-4,
+body.white-panel-active .nav-bar .text-wrapper-5,
+body.white-panel-active .nav-bar .text-wrapper-6,
+body.white-panel-active .nav-bar .text-wrapper-7,
+body.white-panel-active .nav-bar .text-wrapper-8,
+body.white-panel-active .nav-bar .text-wrapper-9,
+body.white-panel-active .nav-bar .text-wrapper-10,
+body.white-panel-active .nav-bar .p {
+  color: #000000 !important;
+}
+
+body.white-panel-active .nav-bar .overlap-group::before {
+  background-color: black;
+}
+
+/* Timeline circles */
+body.white-panel-active .nav-bar .ellipse,
+body.white-panel-active .nav-bar [class^="ellipse-"] {
+  background-color: white !important;
+  border-color: black !important;
+}
+
+/* Active state circles */
+body.white-panel-active .nav-bar .ellipse.active,
+body.white-panel-active .nav-bar [class^="ellipse-"].active {
+  background-color: black !important;
+  border-color: black !important;
+}
+
+/* When white panel is active, keep default transparent background */
+body.white-panel-active .combined-section {
+  background-color: transparent;
+}
+
+/* Add hover effect */
+.nav-bar .text-wrapper:hover,
+.nav-bar .div:hover,
+.nav-bar .text-wrapper-2:hover,
+.nav-bar .text-wrapper-3:hover,
+.nav-bar .text-wrapper-4:hover,
+.nav-bar .text-wrapper-5:hover,
+.nav-bar .text-wrapper-6:hover,
+.nav-bar .text-wrapper-7:hover,
+.nav-bar .text-wrapper-8:hover,
+.nav-bar .text-wrapper-9:hover,
+.nav-bar .text-wrapper-10:hover,
+.nav-bar .p:hover {
+  opacity: 0.7;
 }
