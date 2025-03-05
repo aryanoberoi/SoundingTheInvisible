@@ -229,7 +229,6 @@ const PollutantPage = () => {
               <SineWaveVisualizer />
             </div>
           </div>
-
           <div className="bottom-section2" id="effect-on-health">
             <Box></Box>
           </div>
@@ -239,30 +238,24 @@ const PollutantPage = () => {
           <div className="bottom-section4" id="phytoremediation">
             <Phyto></Phyto>
           </div>
-          
           <div className="white-container">
             <div className="bottom-section5" id="plant-name">
               <div className="content-container">
                 <AboutPlant/>
               </div>
             </div>
-
             <div className="bottom-section6" id="common-names">
               <CommonNames/>
             </div>
-
             <div className="bottom-section7" id="plant-habitat">
               <PlantHabitat/>
             </div>
-
             <div className="bottom-section8" id="origin">
               <Origin/>
             </div>
-
             <div className="bottom-section9" id="phyto-capacity">
               <PhytoCapacity/>
             </div>
-
             <div className="bottom-section10" id="uses-of-plant">
               <UsesOfPlant/>
             </div>
