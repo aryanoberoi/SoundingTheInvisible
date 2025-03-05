@@ -81,7 +81,7 @@
   
 .box-container .main-human-image {
     height: auto;
-    width: auto;
+    width: 150%;
     left: 0;
     position: absolute;
     top: 50px;
@@ -116,8 +116,8 @@
     left: 40%;
     right: 20px;
     margin-left: 10%;
-    margin-top: 0px;
     width: auto;
+    top: 160px;
 }
   
 .box-container .content-item {
@@ -131,7 +131,8 @@
 }
   
 .box-container .content-item:nth-child(even) {
-    left: 20%;
+    left: 10%;
+    margin-right: 10%;
 }
   
 .box-container .content-item.expanded {
