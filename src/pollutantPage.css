@@ -852,7 +852,8 @@ body.homepage-active .hamburger span {
   flex: 2;
   position: relative;
   padding-left: 0;
-  width: 60%; /* Adjusted from 66.66% to maintain ratio */
+  width: 60%;
+  height: auto; /* Changed from default */
 }
 
 /* Remove any existing margin/padding on these elements */
@@ -1018,4 +1019,75 @@ body.homepage-active .hamburger span {
   color: black;
   min-height: 100vh;
   padding: 95px 69px;
+}
+
+.bottom-section9 {
+  background-color: white;
+  color: black;
+  min-height: 100vh;
+  padding: 95px 69px;
+}
+
+.bottom-section10 {
+  background-color: white;
+  color: black;
+  min-height: 100vh;
+  padding: 95px 69px;
+}
+
+
+/* Ensure all sections take full viewport height */
+.bottom-section1,
+.bottom-section2,
+.bottom-section3,
+.bottom-section4,
+.bottom-section6,
+.bottom-section7,
+.bottom-section8 {
+  height: 100vh;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Remove conflicting min-height declarations */
+.content-sections {
+  flex: 2;
+  position: relative;
+  padding-left: 0;
+  width: 60%;
+  height: auto; /* Changed from default */
+}
+
+.bottom-section7{
+  height: 120vh;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+.bottom-section8{
+  height: 150vh;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+.bottom-section9{
+  height: 190vh;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+.bottom-section10{
+  height: 200vh;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
 }

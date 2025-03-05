@@ -209,15 +209,15 @@ const PollutantPage = () => {
             <PlantHabitat/>
           </div>
 
-          <div className="bottom-section7" id="origin">
+          <div className="bottom-section8" id="origin">
             <Origin/>
           </div>
 
-          <div className="bottom-section7" id="phyto-capacity">
+          <div className="bottom-section9" id="phyto-capacity">
             <PhytoCapacity/>
           </div>
 
-          <div className="bottom-section8" id="uses-of-plant">
+          <div className="bottom-section10" id="uses-of-plant">
             <UsesOfPlant/>
           </div>
         </div>
