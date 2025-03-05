@@ -446,7 +446,7 @@ body.sound-panel-active .sound-icon span {
 }
 
 /* ✅ Adjusting Circle Positions */
-.nav-bar .ellipse { top: 0px; background-color: white; } /* Matches text-wrapper position */
+.nav-bar .ellipse { top: 0px; } /* Matches text-wrapper position */
 .nav-bar .ellipse-2 { top: 100px; } /* Matches text-wrapper-2 position */
 .nav-bar .ellipse-3 { top: 160px; } /* Matches text-wrapper-8 position */
 .nav-bar .ellipse-4 { top: 220px; } /* Matches text-wrapper-9 position */
