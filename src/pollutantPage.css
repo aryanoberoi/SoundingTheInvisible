@@ -1185,3 +1185,118 @@ body.white-panel-active .combined-section {
 .nav-bar .p:hover {
   opacity: 0.7;
 }
+
+/* Add responsive breakpoints */
+@media (max-width: 768px) {
+  .combined-section {
+    flex-direction: column;
+    padding-top: 60px;
+  }
+
+  .nav-bar {
+    position: static;
+    width: 100% !important;
+    margin: 0;
+    padding: 1rem;
+  }
+
+  .nav-items-container {
+    display: none;
+    &.mobile-active {
+      display: block;
+      position: fixed;
+      top: 60px;
+      background: black;
+      width: 100%;
+      z-index: 1000;
+    }
+  }
+
+  .content-sections {
+    width: 100% !important;
+    padding: 0 1rem;
+  }
+
+  .main-container {
+    width: 100% !important;
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  .bottom-section1, .bottom-section2, .white-container > div {
+    padding: 2rem 1rem !important;
+    min-height: auto;
+  }
+
+  .wave-container {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  .nav-bar .overlap-group {
+    display: none;
+  }
+
+  .nav-bar .text-wrapper,
+  .nav-bar .div,
+  .nav-bar [class^="text-wrapper-"],
+  .nav-bar .p {
+    position: static !important;
+    width: 100% !important;
+    text-align: center !important;
+    margin: 1rem 0 !important;
+  }
+
+  .slider-bar {
+    width: 30px;
+  }
+
+  .mobile-menu-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .responsive-section {
+    height: auto !important;
+    padding: 2rem 0;
+  }
+
+  .responsive-container {
+    flex-direction: column;
+    width: 100% !important;
+    padding: 0 1rem;
+    
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
+
+/* Add fluid typography */
+html {
+  font-size: 16px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
+}
+
+/* Make all images responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Add fluid spacing */
+.responsive-section {
+  padding: 2vw;
+  margin: 1vw 0;
+}

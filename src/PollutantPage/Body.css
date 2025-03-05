@@ -64,23 +64,24 @@
 }
   
 .health-effects-box .human-container {
-    height: 687px;
-    left: 0;
-    position: absolute;
-    top: 161px;
-    width: fit-content;
+    height: auto;
+    position: relative;
+    top: 0;
+    width: 40%;
+    max-width: 438px;
+    margin-top: 161px;
 }
   
 .health-effects-box .human-image-wrapper {
-    height: 687px;
-    left: -69px;
+    height: auto;
+    left: 0;
     position: relative;
-    width: 438px;
+    width: 100%;
 }
   
 .health-effects-box .main-human-image {
     height: auto;
-    width: 100%;
+    width: auto;
     left: 0;
     position: absolute;
     top: 50px;
@@ -111,14 +112,18 @@
 }
   
 .health-effects-box .content-items-container {
-    position: relative;
-    margin-left: 492px;
-    margin-top: calc(5%);
+    position: absolute;
+    left: 40%;
+    right: 20px;
+    margin-left: 10%;
+    margin-top: 0px;
+    width: auto;
 }
   
 .health-effects-box .content-item {
+    width: 100%;
+    max-width: 416px;
     position: relative;
-    width: 319px;
     margin-bottom: 10px;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -126,7 +131,7 @@
 }
   
 .health-effects-box .content-item:nth-child(even) {
-    left: 79px;
+    left: 20%;
 }
   
 .health-effects-box .content-item.expanded {
@@ -209,8 +214,26 @@
         font-size: 1.5rem;
     }
     
+    .health-effects-box .human-container {
+        width: 100%;
+        max-width: none;
+        margin-top: 40px;
+    }
+    
+    .health-effects-box .content-items-container {
+        position: relative;
+        left: 0;
+        right: 0;
+        margin-top: 40px;
+        padding: 0 20px;
+    }
+    
+    .health-effects-box .content-item:nth-child(even) {
+        left: 0;
+    }
+    
     .health-effects-box .main-human-image {
-        top: 5vw;
+        top: 0;
     }
     
     .health-effects-box .human-vector {

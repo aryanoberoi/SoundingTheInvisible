@@ -19,6 +19,9 @@ const PollutantPage = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [rotation, setRotation] = useState(0);
   const [activeSection, setActiveSection] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const handleSliderMove = (e) => {
     const container = document.getElementById('slider-container');
     const rect = container.getBoundingClientRect();
@@ -90,9 +93,25 @@ const PollutantPage = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const handleNavClick = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (!section) return;
+
+    // Mobile-specific behavior
+    if(isMobile) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
 
     // Determine which panel to activate
     const isWhitePanel = section.closest('.white-container');
@@ -148,20 +167,27 @@ const PollutantPage = () => {
       </div>
       <div className="combined-section">
         <div className="nav-bar">
-          <div className="text-wrapper" onClick={() => handleNavClick('about-pollutant')}>Pollutant name</div>
-          <div className="div" onClick={() => handleNavClick('plant-name')}>Plant name</div>
-          <div className="text-wrapper-2" onClick={() => handleNavClick('sound-frequency')}>Sound frequency</div>
-          <div className="text-wrapper-3" onClick={() => handleNavClick('common-names')}>Common names of Plant</div>
-          <div className="text-wrapper-4" onClick={() => handleNavClick('plant-habitat')}>Plant Habitat</div>
-          <div className="text-wrapper-5" onClick={() => handleNavClick('origin')}>Origin and Geographical Distribution</div>
-          <p className="p" onClick={() => handleNavClick('phyto-capacity')}>Phytoremediation capacity of the Plants</p>
-          <div className="text-wrapper-6" onClick={() => handleNavClick('uses-of-plant')}>Uses of plant</div>
-          <div className="text-wrapper-7" onClick={() => handleNavClick('references')}>References</div>
-          <div className="text-wrapper-8" onClick={() => handleNavClick('effect-on-health')}>Effect on health</div>
-          <div className="text-wrapper-9" onClick={() => handleNavClick('case-study')}>Case study</div>
-          <p className="text-wrapper-10" onClick={() => handleNavClick('phytoremediation')}>
-            Phytoremediation of the Representative Pollutant
-          </p>
+          {isMobile && (
+            <div className="mobile-menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+              ☰
+            </div>
+          )}
+          <div className={`nav-items-container ${isMobile ? 'mobile' : ''}`}>
+            <div className="text-wrapper" onClick={() => handleNavClick('about-pollutant')}>Pollutant name</div>
+            <div className="div" onClick={() => handleNavClick('plant-name')}>Plant name</div>
+            <div className="text-wrapper-2" onClick={() => handleNavClick('sound-frequency')}>Sound frequency</div>
+            <div className="text-wrapper-3" onClick={() => handleNavClick('common-names')}>Common names of Plant</div>
+            <div className="text-wrapper-4" onClick={() => handleNavClick('plant-habitat')}>Plant Habitat</div>
+            <div className="text-wrapper-5" onClick={() => handleNavClick('origin')}>Origin and Geographical Distribution</div>
+            <p className="p" onClick={() => handleNavClick('phyto-capacity')}>Phytoremediation capacity of the Plants</p>
+            <div className="text-wrapper-6" onClick={() => handleNavClick('uses-of-plant')}>Uses of plant</div>
+            <div className="text-wrapper-7" onClick={() => handleNavClick('references')}>References</div>
+            <div className="text-wrapper-8" onClick={() => handleNavClick('effect-on-health')}>Effect on health</div>
+            <div className="text-wrapper-9" onClick={() => handleNavClick('case-study')}>Case study</div>
+            <p className="text-wrapper-10" onClick={() => handleNavClick('phytoremediation')}>
+              Phytoremediation of the Representative Pollutant
+            </p>
+          </div>
           <div className="overlap-group">
             <div className={`ellipse ${activeSection === 'about-pollutant' ? 'active' : ''}`} />
             <div className={`ellipse-2 ${activeSection === 'sound-frequency' ? 'active' : ''}`} />
@@ -179,45 +205,47 @@ const PollutantPage = () => {
         </div>
         
         <div className="content-sections">
-          <div className="bottom-section1" id="about-pollutant">
-            <div className="main-container">
-              <div className="flex-row-f">
-                <img 
-                  src="/ap.png" 
-                  alt="Pollutant" 
-                  className="image"
-                />
-                <div className="about-pollutant">
-                  <span className="about">About </span>
-                  <span className="pollutant">Pollutant </span>
+          <div className="bottom-section1 responsive-section" id="about-pollutant">
+            <div className="responsive-container">
+              <div className="main-container">
+                <div className="flex-row-f">
+                  <img 
+                    src="/ap.png" 
+                    alt="Pollutant" 
+                    className="image"
+                  />
+                  <div className="about-pollutant">
+                    <span className="about">About </span>
+                    <span className="pollutant">Pollutant </span>
+                  </div>
                 </div>
-              </div>
-              <div className="flex-row-a">
+                <div className="flex-row-a">
+                  <img 
+                    src="l1.png" 
+                    alt="Vector graphic" 
+                    className="vector-image"
+                  />
+                </div>
+
+                <span className="lorem-ipsum-dolor">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                  congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida
+                  imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu
+                  neque. Etiam rhoncus erat non quam vehicula, sed maximus magna
+                  tincidunt. Sed condimentum sollicitudin nibh, nec mattis quam. Ut eu
+                  volutpat nisi, quis varius risus. Integer rutrum eros ac turpis euismod,
+                  in tincidunt risus dapibus. Etiam eget turpis massa. Fusce rutrum sit
+                  amet magna sit amet aliquam. Donec sit amet cursus erat, sit amet
+                  sagittis nunc. Nullam mattis risus nisi, non interdum elit congue in.
+                  Donec vitae ligula elit. Morbi nec luctus elit, eu feugiat turpis. Sed
+                  porttitor luctus ornare. Suspendisse condimentum fermentum convallis.
+                </span>
                 <img 
-                  src="l1.png" 
-                  alt="Vector graphic" 
-                  className="vector-image"
+                  src="g3.png" 
+                  alt="graphic element"
+                  className="group-3"
                 />
               </div>
-
-              <span className="lorem-ipsum-dolor">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida
-                imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu
-                neque. Etiam rhoncus erat non quam vehicula, sed maximus magna
-                tincidunt. Sed condimentum sollicitudin nibh, nec mattis quam. Ut eu
-                volutpat nisi, quis varius risus. Integer rutrum eros ac turpis euismod,
-                in tincidunt risus dapibus. Etiam eget turpis massa. Fusce rutrum sit
-                amet magna sit amet aliquam. Donec sit amet cursus erat, sit amet
-                sagittis nunc. Nullam mattis risus nisi, non interdum elit congue in.
-                Donec vitae ligula elit. Morbi nec luctus elit, eu feugiat turpis. Sed
-                porttitor luctus ornare. Suspendisse condimentum fermentum convallis.
-              </span>
-              <img 
-                src="g3.png" 
-                alt="graphic element"
-                className="group-3"
-              />
             </div>
           </div>
 
