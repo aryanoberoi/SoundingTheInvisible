@@ -9,12 +9,6 @@
     background-color: white;
 }
   
-.common-names-container .common-names-sections {
-    height: auto;
-    position: fixed;
-    width: 200px;
-}
-  
 .common-names-container .common-names-header {
     position: relative;
     width: 425px;
@@ -32,21 +26,21 @@
   
 .common-names-container .common-names-rectangle {
     background-color: #000 !important;
-    width: 390px;
-    left: 17px;
+    width: 93%;
+    left: 3%;
     height: 4vw;
     max-height: 57px;
-    position: absolute;
+    position: relative;
     top: 0;
 }
   
 .common-names-container .common-names-underline {
     background-color: #000 !important;
-    height: 10px;
-    left: 92px;
-    position: absolute;
-    top: 47px;
-    width: 351px;
+    height: 9px;
+    left: 20%;
+    position: relative;
+    top: -15%;
+    width: 80%;
 }
 
   
@@ -62,53 +56,6 @@
     top: 10px;
     width: 100%;
     text-align: center;
-}
-  
-.common-names-container .common-names-human-container {
-    height: 687px;
-    left: 0;
-    position: absolute;
-    top: 161px;
-    width: fit-content;
-}
-  
-.common-names-container .common-names-human-image-wrapper {
-    height: 687px;
-    left: -69px;
-    position: relative;
-    width: 438px;
-}
-  
-.common-names-container .common-names-main-human-image {
-    height: auto;
-    width: 100%;
-    left: 0;
-    position: absolute;
-    top: 50px;
-    max-width: 438px;
-    background-color: transparent;
-}
-  
-.common-names-container .common-names-human-graphics-container {
-    height: 687px;
-    left: 62px;
-    position: absolute;
-    top: 0;
-    width: 254px;
-}
-  
-.common-names-container .common-names-human-graphics-overlap {
-    height: 687px;
-    position: relative;
-}
-  
-.common-names-container .common-names-human-vector {
-    height: auto;
-    width: 100%;
-    left: 5px;
-    max-width: 200px;
-    position: absolute;
-    top: 26px;
 }
   
 .common-names-container .common-names-items {
@@ -237,15 +184,6 @@
     height: 100%;
     left: 0;
     top: 0;
-}
-
-.common-names-container .wetland-black-bar {
-    position: absolute;
-    width: 100%;
-    height: 20%;
-    background-color: #000;
-    top: 46px;
-    left: 0;
 }
 
 .common-names-container .about-pollutant.inverted-text {
