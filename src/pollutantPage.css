@@ -388,6 +388,8 @@ body.sound-panel-active .sound-icon span {
   position: absolute;
   text-align: right; 
   width: 122px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
 /* ✅ Adjusting Positions Based on Your CSS */
@@ -1164,4 +1166,20 @@ body.white-panel-active .nav-bar [class^="ellipse-"].active {
 /* When white panel is active, keep default transparent background */
 body.white-panel-active .combined-section {
   background-color: transparent;
+}
+
+/* Add hover effect */
+.nav-bar .text-wrapper:hover,
+.nav-bar .div:hover,
+.nav-bar .text-wrapper-2:hover,
+.nav-bar .text-wrapper-3:hover,
+.nav-bar .text-wrapper-4:hover,
+.nav-bar .text-wrapper-5:hover,
+.nav-bar .text-wrapper-6:hover,
+.nav-bar .text-wrapper-7:hover,
+.nav-bar .text-wrapper-8:hover,
+.nav-bar .text-wrapper-9:hover,
+.nav-bar .text-wrapper-10:hover,
+.nav-bar .p:hover {
+  opacity: 0.7;
 }

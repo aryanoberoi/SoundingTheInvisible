@@ -63,14 +63,55 @@ const PollutantPage = () => {
           setActiveSection(entry.target.id);
         }
       });
-    }, { threshold: 1 });
+    }, { 
+      threshold: 0,
+      root: null
+    });
 
-    document.querySelectorAll('.content-sections [class^="bottom-section"], .white-container [class^="bottom-section"]').forEach(section => {
+    // Observe all sections in both panels
+    const sections = document.querySelectorAll(`
+      [id^="about-"],
+      [id^="plant-"],
+      [id^="sound-"],
+      [id^="common-"],
+      [id^="effect-"],
+      [id^="case-"],
+      [id^="phytoremediation"],
+      [id^="phyto-"],
+      [id^="uses-"],
+      [id^="origin"],
+      [id^="references"]
+    `);
+    
+    sections.forEach(section => {
       observer.observe(section);
     });
 
     return () => observer.disconnect();
   }, []);
+
+  const handleNavClick = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+
+    // Determine which panel to activate
+    const isWhitePanel = section.closest('.white-container');
+    const sliderPos = isWhitePanel ? 0 : 100;
+    
+    // Update slider position and panel visibility
+    setSliderPosition(sliderPos);
+    document.documentElement.style.setProperty('--slider-position', `${sliderPos}%`);
+    document.body.classList.toggle('white-panel-active', isWhitePanel);
+    document.body.classList.toggle('black-panel-active', !isWhitePanel);
+
+    // Scroll after panel transition
+    setTimeout(() => {
+      section.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }, 100);
+  };
 
   return (
     <>
@@ -107,18 +148,18 @@ const PollutantPage = () => {
       </div>
       <div className="combined-section">
         <div className="nav-bar">
-          <div className="text-wrapper">Pollutant name</div>
-          <div className="div">Plant name</div>
-          <div className="text-wrapper-2">Sound frequency</div>
-          <div className="text-wrapper-3">Common names of Plant</div>
-          <div className="text-wrapper-4">Plant Habitat</div>
-          <div className="text-wrapper-5">Origin and Geographical Distribution</div>
-          <p className="p">Phytoremediation capacity of the Plants</p>
-          <div className="text-wrapper-6">Uses of plant</div>
-          <div className="text-wrapper-7">References</div>
-          <div className="text-wrapper-8">Effect on health</div>
-          <div className="text-wrapper-9">Case study</div>
-          <p className="text-wrapper-10">
+          <div className="text-wrapper" onClick={() => handleNavClick('about-pollutant')}>Pollutant name</div>
+          <div className="div" onClick={() => handleNavClick('plant-name')}>Plant name</div>
+          <div className="text-wrapper-2" onClick={() => handleNavClick('sound-frequency')}>Sound frequency</div>
+          <div className="text-wrapper-3" onClick={() => handleNavClick('common-names')}>Common names of Plant</div>
+          <div className="text-wrapper-4" onClick={() => handleNavClick('plant-habitat')}>Plant Habitat</div>
+          <div className="text-wrapper-5" onClick={() => handleNavClick('origin')}>Origin and Geographical Distribution</div>
+          <p className="p" onClick={() => handleNavClick('phyto-capacity')}>Phytoremediation capacity of the Plants</p>
+          <div className="text-wrapper-6" onClick={() => handleNavClick('uses-of-plant')}>Uses of plant</div>
+          <div className="text-wrapper-7" onClick={() => handleNavClick('references')}>References</div>
+          <div className="text-wrapper-8" onClick={() => handleNavClick('effect-on-health')}>Effect on health</div>
+          <div className="text-wrapper-9" onClick={() => handleNavClick('case-study')}>Case study</div>
+          <p className="text-wrapper-10" onClick={() => handleNavClick('phytoremediation')}>
             Phytoremediation of the Representative Pollutant
           </p>
           <div className="overlap-group">
