@@ -64,7 +64,7 @@ const PollutantPage = () => {
         }
       });
     }, { 
-      threshold: 0,
+      threshold: 0.3,
       root: null
     });
 
