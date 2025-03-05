@@ -12,8 +12,8 @@ import { AboutPlant } from './PollutantPage/AboutPlant';
 import { CommonNames } from './PollutantPage/CommonNames';
 import { PlantHabitat } from './PollutantPage/PlantHabitat';
 import { Origin } from './PollutantPage/Origin';
-
 import { UsesOfPlant } from './PollutantPage/UsesOfPlant';
+import { PhytoCapacity } from './PollutantPage/PhytoCapacity';
 
 const PollutantPage = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -211,6 +211,10 @@ const PollutantPage = () => {
 
           <div className="bottom-section7" id="origin">
             <Origin/>
+          </div>
+
+          <div className="bottom-section7" id="phyto-capacity">
+            <PhytoCapacity/>
           </div>
 
           <div className="bottom-section8" id='uses-of-plant'>

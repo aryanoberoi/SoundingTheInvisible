@@ -1,0 +1,158 @@
+.uses-of-plant-container {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+.uses-of-plant-container .uses-of-plant-header {
+    height: 0px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 743px;
+    display: flex;
+    align-items: center;
+}
+
+.uses-of-plant-container .uses-of-plant-header-wrapper {
+    height: 43px;
+    width: 745px;
+}
+
+.uses-of-plant-container .uses-of-plant-header-content {
+    height: 43px;
+    position: relative;
+    width: 743px;
+}
+
+.uses-of-plant-container .uses-of-plant-rectangle {
+    background-color: #000000;
+    height: 43px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 530px;
+}
+
+.uses-of-plant-container .uses-of-plant-underline {
+    background-color: #000000;
+    height: 9px;
+    left: 480px;
+    position: absolute;
+    top: 34px;
+    width: 91px;
+}
+
+.uses-of-plant-container .uses-of-plant-content {
+    font-family: ClashGrotesk-Regular;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 28.7px;
+    letter-spacing: 0%;
+    width: 100%;
+    max-width: 600px;
+}
+
+.phyto-svg-container {
+    position: relative;
+    height: 284px;
+    flex: 0 0 auto;
+}
+
+.phyto-svg-container img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+}
+
+.phyto-content-wrapper, .phyto-content-wrapper-reversed {
+    display: flex;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.phyto-content-wrapper-reversed {
+    flex-direction: row-reverse;
+    margin-top: 4rem;
+}
+
+.phyto-content-wrapper-reversed .phyto-info-section {
+    margin-left: 2rem;
+    margin-right: 0;
+}
+
+.phyto-info-section {
+    flex: 1;
+    font-family: ClashGrotesk-Regular;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 28.7px;
+    margin-top: 50px;
+    max-width: 70%;
+    position: relative;
+}
+
+.phyto-info-section h3 {
+    font-size: 18px;
+    margin-bottom: 1rem;
+}
+
+.section-divider {
+    border-bottom: 1px solid black;
+    margin: 0.5rem 0;
+}
+
+.phyto-benefits-heading {
+    font-family: Nippo-Regular;
+    font-weight: 378;
+    font-size: 28px;
+    line-height: 37.8px;
+    letter-spacing: 0.03em;
+    margin-left: 60px;
+}
+
+.phyto-benefits-text {
+    font-family: Nippo-Regular;
+    font-weight: 378;
+    font-size: 18px;
+    line-height: 24.3px;
+    letter-spacing: 0.03em;
+    margin-top: 1rem;
+    margin-left: 60px;
+    padding-right: 20px;
+}
+
+.vertical-divider-right {
+    position: absolute;
+    right: 0;
+    top: 46px;
+    bottom: -160px;
+    border-right: 1px solid black;
+    transform: translateX(50%);
+}
+
+.vertical-divider-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: -50px;
+    border-left: 1px solid black;
+    transform: translateX(-50%);
+}
+
+.phyto-content-wrapper-reversed .phyto-benefits-heading,
+.phyto-content-wrapper-reversed .phyto-benefits-text {
+    margin-left: 0;
+    padding-right: 10px;
+    margin-right: 10px;
+}
+
+.phyto-content-wrapper-reversed .phyto-benefits-text {
+    text-align: right;
+    margin-right: 80px;
+}
+
+.phyto-content-wrapper-reversed .phyto-svg-container img {
+    transform: rotate(180deg);
+    transform-origin: center center;
+}
