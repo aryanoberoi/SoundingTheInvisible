@@ -3,7 +3,12 @@ import styles from './pollutantcard.module.css';
 import { KnowMoreButton } from './Knowmorebutton';
 import SineWaveVisualizer from './sinwave';
 
-const LeftPanel = () => {
+const LeftPanel = ({
+  pollutantName ="Pollutant Name",
+  descriptionLines = [],
+  healthEffectsTitles = [],
+  sourcesDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing eli. Duis accumsan lacus sit amet sagittis feugiat. Morbi et velit fringilla, maximus quam et.",
+}) => {
   return (
     <div className="left-panel">
       <div className={styles.container}>
@@ -12,13 +17,12 @@ const LeftPanel = () => {
             <div className={styles.pollutantInfo}>
               <div className={styles.headerWrapper}>
                 <div className={styles.circle} />
-                <div className={styles.pollutantName}>Pollutant name</div>
+                <div className={styles.pollutantName}>{pollutantName}</div>
               </div>
               <div className={styles.description}>
-                <div className={styles.descriptionTitle}>Pollutant Description:</div>
-                <div className={styles.descriptionLine}> Physical characteristics and properties</div>
-                <div className={styles.descriptionLine}> Historical context and usage timeline</div>
-                <div className={styles.descriptionLine}> Chemical half-life decomposition</div>
+              {descriptionLines.map((line, index) => (
+                  <div key={index} className={styles.descriptionLine}>{line}</div>
+                ))}
               </div>
               <KnowMoreButton className={`${styles.knowMoreButtonLeft} ${styles.descriptionKnowMore}`} />
               <div className={styles.imageContainer}>
@@ -29,7 +33,7 @@ const LeftPanel = () => {
             <div className={styles.sideContentWrapper}>
               <div className={styles.sectionTitle}>Effects on human health:</div>
               <div className={styles.titleList}>
-                {['Title here', 'Title here', 'Title here', 'Title here'].map((title, index) => (
+              {healthEffectsTitles.map((title, index) => (
                   <div key={index} className={styles.titleEntry}>
                     <span className={styles.titleText}>{title}</span>
                     <div className={styles.bulletcircle} />
@@ -48,15 +52,12 @@ const LeftPanel = () => {
             </div>
             <div className={styles.sourcesTitle}>Sources In Venice Lagoon:</div>
             <div className={styles.sourcesDescription}>
-              Lorem ipsum dolor sit amet, consectetur 
-              <br />
-              adipiscing eli.
-              <br />
-              Duis accumsan lacus sit amet sagittis
-              <br />
-              feugiat.
-              <br />
-              Morbi et velit fringilla, maximus quam et,
+            {sourcesDescription.split('\n').map((line, index) => (
+                <React.Fragment key={index}>
+                  {line}
+                  <br />
+                </React.Fragment>
+              ))}
             </div>
             <KnowMoreButton className={styles.knowMoreButton} />
           </div>

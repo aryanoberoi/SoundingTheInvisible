@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 
-const SineWaveVisualizer = () => {
+const SineWaveVisualizer = ({ frequency = 1 }) => { // Default frequency set to 4 Hz
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -12,21 +12,19 @@ const SineWaveVisualizer = () => {
     canvas.height = height;
     let animationFrameId;
 
-    // Wave parameters for 440Hz (A4 note)
-    const frequency = 4; // Hz (cycles per second)
-    const amplitude = height / 2; // Changed from /4 to /2 to use full height
+    const amplitude = height / 2; // Use full height for amplitude
     const wavelength = width; // Display one full cycle across canvas width
     let phase = 0;
 
     const drawWaveform = () => {
       ctx.clearRect(0, 0, width, height);
       ctx.beginPath();
-      ctx.moveTo(0, height/2); // Start at center-left
+      ctx.moveTo(0, height / 2); // Start at center-left
 
       // Create continuous wave path
       for (let x = 0; x < width; x++) {
         // Wave equation: y = A*sin(2π(x/λ - ft) + φ)
-        const y = height/2 + amplitude * Math.sin(
+        const y = height / 2 + amplitude * Math.sin(
           (x * 2 * Math.PI / wavelength) - // Spatial component
           (phase * 2 * Math.PI) // Temporal component
         );
@@ -47,7 +45,7 @@ const SineWaveVisualizer = () => {
 
     animate();
     return () => cancelAnimationFrame(animationFrameId);
-  }, []);
+  }, [frequency]); // Add frequency to the dependency array
 
   return <canvas ref={canvasRef} style={{ 
     width: '100%',

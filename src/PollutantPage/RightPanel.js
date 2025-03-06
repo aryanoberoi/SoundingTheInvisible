@@ -1,7 +1,5 @@
 import React from 'react';
-import styles from './pollutantcard.module.css';
 import { KnowMoreButton } from './Knowmorebutton';
-import SineWaveVisualizer from './sinwave';
 import plantStyles from './PlantDetails.module.css';
 import { PlantInfoSection } from './PlantInfoSection';
 
