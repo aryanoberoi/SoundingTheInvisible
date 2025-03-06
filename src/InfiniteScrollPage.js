@@ -146,7 +146,10 @@ const PollutantPage = () => {
             src="slider.png"
             alt="Slider"
             className="slider-image"
-            style={{ transform: `rotate(${rotation}deg)` }}
+            style={{ 
+              transform: `rotate(${rotation}deg) scale(1.7)`,
+              transformOrigin: 'center center'
+            }}
           />
         </div>
         <div className="scrollable-black">
