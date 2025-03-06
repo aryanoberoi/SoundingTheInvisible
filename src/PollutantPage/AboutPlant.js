@@ -1,9 +1,5 @@
 import React from "react";
-import group233 from "./group-233.png";
 import "./AboutPlant.css";
-import vector41 from "./vector-41.svg";
-import vector42 from "./vector-42.svg";
-import vector43 from "./vector-43.svg";
 
 export const AboutPlant = () => {
   return (

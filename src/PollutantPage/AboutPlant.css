@@ -26,6 +26,7 @@
   /* AboutPlant specific styles */
   .inverted-section .main-container {
     height: 100%;
+    margin-left: 5%;
   }
   
   .flex-row-f {
@@ -73,12 +74,11 @@
     color: #000 !important;
     mix-blend-mode: difference;
     font-weight: 600;
-    width: 600px;
+    width: 80%;
     font-family: 'ClashGrotesk-Light', -apple-system, sans-serif;
     font-size: 14px;
     line-height: 28.7px;
-    margin: 60px 0 30px 4px;
-    display: block;
+    margin: 60px 5px 30px 4px;
   }
   
   .inverted-graphic-container {

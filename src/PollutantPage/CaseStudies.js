@@ -1,5 +1,7 @@
 import React from "react";
+import group121 from "./group-121.svg";
 import "./CaseStudies.css";
+
 export const CaseStudies = () => {
     return (
       <div className="box">
@@ -46,29 +48,11 @@ export const CaseStudies = () => {
                 <div className="overlap-2">
                   <div className="overlap-3">
                     <img
-                      className="vector"
-                      alt="Vector"
-                      src="https://c.animaapp.com/2uQFoxD8/img/vector-68.svg"
+                      className="group-121"
+                      alt="Group"
+                      src={group121}
                     />
-  
-                    <img
-                      className="img"
-                      alt="Vector"
-                      src="https://c.animaapp.com/2uQFoxD8/img/vector-67.svg"
-                    />
-  
-                    <img
-                      className="vector-2"
-                      alt="Vector"
-                      src="https://c.animaapp.com/2uQFoxD8/img/vector-68.svg"
-                    />
-                  </div>
-  
-                  <div className="rectangle-2" />
-  
-                  <div className="rectangle-3" />
-  
-                  <div className="rectangle-4" />
+                  </div>  
                 </div>
               </div>
   
