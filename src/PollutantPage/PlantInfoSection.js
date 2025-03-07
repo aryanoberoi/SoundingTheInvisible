@@ -9,7 +9,7 @@ export const PlantInfoSection = ({ title, description }) => {
         <h2 className={styles.sectionTitle}>{title}</h2>
         <p className={styles.sectionDescription}>{description}</p>
       </div>
-      <KnowMoreButton className={styles.knowMoreButtonInverted} />
+      <KnowMoreButton className="knowMoreButton" />
     </div>
   );
 };

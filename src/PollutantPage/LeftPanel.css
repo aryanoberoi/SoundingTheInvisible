@@ -48,7 +48,7 @@
   .sideContent {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 30%;
     margin-left: 20px;
     color: #fff;
     text-align: right;

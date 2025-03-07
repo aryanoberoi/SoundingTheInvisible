@@ -991,11 +991,10 @@ body.homepage-active .hamburger span {
   border: 1px solid #fff;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  transform: translateZ(20px);
-  position: absolute;
-  top: 60px;
-  left: 20%;
+  position: fixed;
+  transform: translateZ(20px) translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
   width: 60%;
   height: 60%;
   z-index: 1;
