@@ -1,0 +1,139 @@
+@media (max-width: 991px) {
+    .container {
+      padding: 100px 20px 0;
+    }  
+    .contentWrapper {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+  
+    .mainContent {
+      width: 100%;
+    }
+  
+    .pollutantInfo {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+
+    .sideContent {
+      width: 100%;
+      margin-top: 40px;
+    }
+  
+    .sideContentWrapper {
+      padding-left: 20px;
+    }
+  
+    .titleList {
+      margin-right: 10px;
+    }
+  
+    .sourcesTitle {
+      margin: 40px 0 0 10px;
+    }
+  
+    .sourcesDescription {
+      margin-right: 10px;
+    }
+
+    .imageContainer {
+      width: 50%;
+      left: 50%;
+      top: auto;
+      bottom: -25%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .sideContent {
+    display: flex;
+    flex-direction: column;
+    width: 27%;
+    margin-left: 20px;
+    color: #fff;
+    text-align: right;
+    font: 400 15px 'Nippo-Regular', sans-serif;
+  }
+  
+  .sideContentWrapper {
+    display: flex;
+    padding-left: 39px;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .sectionTitle {
+    font-size: 24px;
+  }
+  
+  .titleList {
+    display: flex;
+    gap: 0px;
+    flex-wrap: wrap;
+  }
+  
+  .titleEntry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin: 4px;
+  }
+  
+  .bulletcircle {
+    width: 18px;
+    height: 18px;
+    border: 1px solid white;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+  .titleText {
+    flex-grow: 1;
+    font: 300 15px 'Nippo-Light', sans-serif;
+  }
+  
+  .titleEntry .circle {
+    margin-left: auto;
+  }
+
+    
+  .sourcesTitle {
+    font-size: 24px;
+    margin: 24px 10px 0 19px;
+  }
+  
+  .sourcesDescription {
+    font-family: 'Nippo-Light', sans-serif;
+    font-weight: 300;
+    line-height: 23px;
+    margin-top: 6px;
+    font-size: 15px;
+  }
+
+  .knowMoreButton {
+    background: #d9d9d9;
+    color: #000;
+    text-align: right;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    margin: 10px 0 20px auto;
+    padding: 4px 10px;
+    font: 378 10px 'Nippo-Medium', sans-serif;
+    border: 1px solid #fff;
+    cursor: pointer;
+    width: fit-content;
+  }
+
+  .headerWrapper {
+    display: flex;
+    gap: 32px;
+    color: #fff;
+    letter-spacing: 1.2px;
+    font: 400 48px 'Nippo-Regular', sans-serif;
+  }
+  

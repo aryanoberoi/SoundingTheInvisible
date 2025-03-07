@@ -1,5 +1,6 @@
 import React from 'react';
-import styles from './pollutantcard.module.css';
+import './pollutantcard.css';
+import './LeftPanel.css';
 import { KnowMoreButton } from './Knowmorebutton';
 import SineWaveVisualizer from './sinwave';
 
@@ -11,47 +12,47 @@ const LeftPanel = ({
 }) => {
   return (
     <div className="left-panel">
-      <div className={styles.container}>
-        <div className={styles.contentWrapper}>
-          <div className={styles.mainContent}>
-            <div className={styles.pollutantInfo}>
-              <div className={styles.headerWrapper}>
-                <div className={styles.circle} />
-                <div className={styles.pollutantName}>{pollutantName}</div>
+      <div className="container">
+        <div className="contentWrapper">
+          <div className="mainContent">
+            <div className="pollutantInfo">
+              <div className="headerWrapper">
+                <div className="circle" />
+                <div className="pollutantName">{pollutantName}</div>
               </div>
-              <div className={styles.description}>
+              <div className="description">
               {descriptionLines.map((line, index) => (
-                  <div key={index} className={styles.descriptionLine}>{line}</div>
+                  <div key={index} className="descriptionLine">{line}</div>
                 ))}
               </div>
-              <KnowMoreButton className={`${styles.knowMoreButtonLeft} ${styles.descriptionKnowMore}`} />
-              <div className={styles.imageContainer}>
+              <KnowMoreButton className="knowMoreButton" />
+              <div className="imageContainer">
               </div>
             </div>
           </div>
-          <div className={styles.sideContent}>
-            <div className={styles.sideContentWrapper}>
-              <div className={styles.sectionTitle}>Effects on human health:</div>
-              <div className={styles.titleList}>
+          <div className="sideContent">
+            <div className="sideContentWrapper">
+              <div className="sectionTitle">Effects on human health:</div>
+              <div className="titleList">
               {healthEffectsTitles.map((title, index) => (
-                  <div key={index} className={styles.titleEntry}>
-                    <span className={styles.titleText}>{title}</span>
-                    <div className={styles.bulletcircle} />
+                  <div key={index} className="titleEntry">
+                    <span className="titleText">{title}</span>
+                    <div className="bulletcircle"/>
                   </div>
                 ))}
               </div>
-              <KnowMoreButton />
-              <div className={styles.sectionTitle} style={{paddingBottom: '10px'}}>
+              <KnowMoreButton className="knowMoreButton" />
+              <div className="sectionTitle" style={{paddingBottom: '10px'}}>
                 Enthalpy and sound <br /> Frequency of Pollutant
                 <br />
               </div>
               <div style={{ border: '1px solid black', height: '120px' }}>
                 <SineWaveVisualizer />
               </div>
-              <KnowMoreButton className={styles.knowMoreButton} />
+              <KnowMoreButton className="knowMoreButton" />
             </div>
-            <div className={styles.sourcesTitle}>Sources In Venice Lagoon:</div>
-            <div className={styles.sourcesDescription}>
+            <div className="sourcesTitle">Sources In Venice Lagoon:</div>
+            <div className="sourcesDescription">
             {sourcesDescription.split('\n').map((line, index) => (
                 <React.Fragment key={index}>
                   {line}
@@ -59,7 +60,7 @@ const LeftPanel = ({
                 </React.Fragment>
               ))}
             </div>
-            <KnowMoreButton className={styles.knowMoreButton} />
+            <KnowMoreButton className="knowMoreButton" />
           </div>
         </div>
       </div>

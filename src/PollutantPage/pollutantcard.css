@@ -1,0 +1,121 @@
+.container {
+    background: #000;
+    padding: 95px 69px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .contentWrapper {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .mainContent {
+    display: flex;
+    flex-direction: column;
+    width: 73%;
+  }
+  
+  .pollutantInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 6px;
+    width: 100%;
+    padding-right: 15px;
+    overflow: visible;
+  }
+  
+  .circle {
+    width: 71px;
+    height: 71px;
+    border: 1px solid #fff;
+  }
+  
+  .pollutantName {
+    width: 528px;
+    color: #FFF;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 0.96px;
+  }
+  
+  .description {
+    color: #fff;
+    margin-top: 24px;
+    font: 300 15px/23px 'Nippo-Light', sans-serif;
+    padding-left: 15px;
+  }
+  
+  .descriptionTitle {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+  
+  .descriptionLine {
+    position: relative;
+    padding-left: 12px;
+    margin: 4px 0;
+  }
+  
+  .descriptionLine::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+  }
+  
+  .descriptionKnowMore {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .knowMoreButton {
+    background: #d9d9d9;
+    color: #000;
+    text-align: right;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    margin: 10px 0 20px auto;
+    padding: 4px 10px;
+    font: 378 10px 'Nippo-Medium', sans-serif;
+    border: 1px solid #fff;
+    cursor: pointer;
+    width: fit-content;
+  }
+
+  .knowMoreButtonLeft {
+    background: #d9d9d9;
+    color: #000;
+    text-align: left;
+    margin: 10px 0 20px 0;
+  }
+  
+  .imageContainer {
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    width: 16%; /* 320px / 1440px */
+    aspect-ratio: 1;
+    border: 1px solid #fff;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 43%; /* 711px / 1440px */
+    top: 55%; /* 355px / 768px */
+    z-index: 20;
+    transform: translateZ(20px);
+  }
+  
+  .pollutantImage {
+    padding-right: 0;
+    aspect-ratio: 1.1;
+    object-fit: contain;
+    width: 100%;
+  }
+  
+  
+
+  
+ 

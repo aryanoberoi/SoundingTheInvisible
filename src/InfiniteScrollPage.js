@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './pollutantPage.css';
-import styles from './PollutantPage/pollutantcard.module.css'
+import styles from './PollutantPage/pollutantcard.css'
 import SineWaveVisualizer from './PollutantPage/sinwave';
 import { Box } from './PollutantPage/Body';
 import { CaseStudies } from './PollutantPage/CaseStudies';
