@@ -382,10 +382,9 @@ body.sound-panel-active .sound-icon span {
   position: sticky;
   top: 60px;
   height: calc(100vh - 60px); /* Use viewport height minus top offset */
-  width: 40%;
+  width: 35%;
   z-index: 10;
   margin-top: 100px;
-  margin-right: 0;
   margin-bottom: 20px; /* Added bottom margin */
   align-self: flex-start;
   overflow-y: auto; /* Allow scrolling if content exceeds height */
