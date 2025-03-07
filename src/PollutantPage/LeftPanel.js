@@ -1,7 +1,8 @@
 import React from 'react';
 import './pollutantcard.css';
 import './LeftPanel.css';
-import { KnowMoreButton } from './Knowmorebutton';
+import { KnowMoreButtonInvertedRA } from './Knowmorebutton';
+import { KnowMoreButtonInverted } from './Knowmorebutton';
 import SineWaveVisualizer from './sinwave';
 
 const LeftPanel = ({
@@ -26,7 +27,7 @@ const LeftPanel = ({
                 ))}
               </div>
               <div className='knowone'>
-              <KnowMoreButton className="knowMoreButton" />
+              <KnowMoreButtonInverted className="knowMoreButtonInverted" />
               </div>
               <div className="imageContainer">
               </div>
@@ -43,7 +44,7 @@ const LeftPanel = ({
                   </div>
                 ))}
               </div>
-              <KnowMoreButton className="knowMoreButton" />
+              <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" />
               <div className="sectionTitle" style={{paddingBottom: '10px'}}>
                 Enthalpy and sound <br /> Frequency of Pollutant
                 <br />
@@ -51,7 +52,7 @@ const LeftPanel = ({
               <div style={{ border: '1px solid black', height: '120px' }}>
                 <SineWaveVisualizer />
               </div>
-              <KnowMoreButton className="knowMoreButton" />
+              <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" />
             </div>
             <div className="sourcesTitle">Sources In Venice Lagoon:</div>
             <div className="sourcesDescription">
@@ -62,7 +63,7 @@ const LeftPanel = ({
                 </React.Fragment>
               ))}
             </div>
-            <KnowMoreButton className="knowMoreButton" />
+            <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" />
           </div>
         </div>
       </div>

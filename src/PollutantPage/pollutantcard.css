@@ -92,7 +92,45 @@
     text-align: left;
     margin: 10px 0 20px 0;
   }
+
+  .knowMoreButtonInverted {
+    background-color: #fff !important;
+    color: #000 !important;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    padding: 4px 10px;
+    font: 378 10px 'Nippo-Light', sans-serif;
+    border: 1px solid black;
+    cursor: pointer;
+    margin: 10px 0;
+    align-self: flex-start;
+  }
+
+  .knowMoreButtonInverted:focus {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+  }
   
+  .knowMoreButtonInvertedRA {
+    background-color: #fff !important;
+    color: #000 !important;
+    text-align: right;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    padding: 4px 10px;
+    font: 378 10px 'Nippo-Light', sans-serif;
+    border: 1px solid black;
+    cursor: pointer;
+    margin: 10px 0;
+    align-self: flex-end;
+  }
+
+  .knowMoreButtonInvertedRA:focus {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+  }
+
   .imageContainer {
     background: #fff;
     border-radius: 50%;
