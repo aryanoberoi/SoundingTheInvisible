@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './PlantDetails.module.css';
+import styles from './PlantDetails.css';
 import { KnowMoreButton } from './Knowmorebutton';
 
 export const PlantInfoSection = ({ title, description }) => {
