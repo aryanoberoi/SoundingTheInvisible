@@ -35,11 +35,12 @@
   .pollutantName {
     width: 528px;
     color: #FFF;
-    font-size: 32px;
+    font-size: 42px;
     font-style: normal;
     font-weight: 300;
     line-height: normal;
     letter-spacing: 0.96px;
+    margin-top: 8px;
   }
   
   .description {

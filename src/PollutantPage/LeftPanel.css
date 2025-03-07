@@ -39,11 +39,9 @@
     }
 
     .imageContainer {
-      width: 50%;
-      left: 50%;
-      top: auto;
-      bottom: -25%;
-      transform: translateX(-50%);
+        width: 320px;
+        height: 320px;
+        flex-shrink: 0;
     }
   }
 
@@ -131,9 +129,8 @@
 
   .headerWrapper {
     display: flex;
-    gap: 32px;
+    gap: 22px;
     color: #fff;
     letter-spacing: 1.2px;
     font: 400 48px 'Nippo-Regular', sans-serif;
   }
-  

@@ -25,7 +25,9 @@ const LeftPanel = ({
                   <div key={index} className="descriptionLine">{line}</div>
                 ))}
               </div>
+              <div className='knowone'>
               <KnowMoreButton className="knowMoreButton" />
+              </div>
               <div className="imageContainer">
               </div>
             </div>
