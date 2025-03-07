@@ -29,8 +29,7 @@ const LeftPanel = ({
               <div className='knowone'>
               <KnowMoreButtonInverted className="knowMoreButtonInverted" />
               </div>
-              <div className="imageContainer">
-              </div>
+              <div className="imageContainer" />
             </div>
           </div>
           <div className="sideContent">

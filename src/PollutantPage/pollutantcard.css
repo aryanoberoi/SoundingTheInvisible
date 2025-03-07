@@ -73,14 +73,14 @@
   }
   
   .knowMoreButton {
-    background: #d9d9d9;
-    color: #000;
+    background-color: #000 !important;
+    color: #fff !important;
     text-align: right;
     text-transform: uppercase;
     letter-spacing: 1.4px;
     margin: 10px 0 20px auto;
     padding: 4px 10px;
-    font: 378 10px 'Nippo-Medium', sans-serif;
+    font: 378 10px 'Nippo-Light', sans-serif !important;
     border: 1px solid #fff;
     cursor: pointer;
     width: fit-content;
@@ -140,9 +140,9 @@
     border: 1px solid #fff;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    left: 43%; /* 711px / 1440px */
-    top: 55%; /* 355px / 768px */
+    position: fixed;
+    left: 43%;
+    top: 55%;
     z-index: 20;
     transform: translateZ(20px);
   }
