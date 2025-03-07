@@ -6,8 +6,8 @@ export const PlantInfoSection = ({ title, description }) => {
   return (
     <div className={styles.infoSection}>
       <div className={styles.infoContent}>
-        <h2 className={styles.sectionTitle}>{title}</h2>
-        <p className={styles.sectionDescription}>{description}</p>
+        <h2 className="sectionTitle">{title}</h2>
+        <p className="plantDetails">{description}</p>
       </div>
       <KnowMoreButton className="knowMoreButton" />
     </div>
