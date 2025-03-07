@@ -94,7 +94,7 @@
   }
 
   .knowMoreButtonInverted {
-    background-color: #fff !important;
+    background-color: #d9d9d9 !important;
     color: #000 !important;
     text-align: left;
     text-transform: uppercase;
@@ -113,7 +113,7 @@
   }
   
   .knowMoreButtonInvertedRA {
-    background-color: #fff !important;
+    background-color: #d9d9d9 !important;
     color: #000 !important;
     text-align: right;
     text-transform: uppercase;
