@@ -990,10 +990,6 @@ body.homepage-active .hamburger span {
   border: 1px solid #fff;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  transform: translateZ(20px) translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
   width: 60%;
   height: 60%;
   z-index: 1;
