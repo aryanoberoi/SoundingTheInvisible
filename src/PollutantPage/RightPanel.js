@@ -1,6 +1,6 @@
 import React from 'react';
 import { KnowMoreButton } from './Knowmorebutton';
-import './PlantDetails.css';
+import './RightPanel.css';
 import { PlantInfoSection } from './PlantInfoSection';
 
 const plantData = [
@@ -56,7 +56,7 @@ const RightPanel = () => {
               <img
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/16352f3f964c03ec54c661ca0da371220832b2c2f872538ebde3aa40d6a7628c?placeholderIfAbsent=true&apiKey=e7c66450d645437e80b3c1918bb89cd7"
                 alt="Detailed view of the plant"
-                className="plantImage"
+                className="plantImageRightPanel"
               />
               <div className="plantDescription">
                 <h1 className="plantName">Plant name</h1>

@@ -1,55 +1,42 @@
-.plantContainer {
+.rightPanel-container {
   background: #fff;
   padding: 31px 61px 84px;
   overflow: hidden;
 }
 
-.contentWrapper {
+.rightPanel-contentWrapper {
   display: flex;
   gap: 20px;
 }
 
-.sidebar {
+.rightPanel-sidebar {
   width: 30%;
   display: flex;
   flex-direction: column;
   margin-top: 60px;
 }
 
-.mainContent {
-  width: 66%;
-  margin-left: 10px;
-}
-
-.contentWrapper {
-  display: flex;
-  gap: 20px;
-  width: 100%;
-}
-
-.mainContent {
-  flex: 2;
-}
-
-.sideContent {
-  flex: 1;
-  max-width: 33.33%;
-  display: flex;
-  flex-direction: column;
-  width: 30%;
+.rightPanel-mainContent {
+  width: 70%;
   margin-left: 20px;
-  color: #fff;
-  text-align: right;
-  font: 400 15px 'Nippo-Regular', sans-serif;
 }
 
-.imageSection {
+.rightPanel-imageSection {
   display: flex;
   gap: 20px;
 }
 
-.plantDescription {
-  width: 40%;
+.rightPanel-image {
+  width: 60%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 0;
+  margin-left: 140px;
+  margin-top: 40px;
+}
+
+.rightPanel-description {
+  width: 33%;
   margin-left: 20px;
   display: flex;
   flex-direction: column;
@@ -58,43 +45,30 @@
   color: #000;
 }
 
-.plantName {
+.rightPanel-name {
   letter-spacing: 1.44px;
   font: 378 48px Nippo-Regular, sans-serif;
   margin-bottom: 10px;
 }
 
-.plantDetails {
+.rightPanel-details {
   font: 300 15px/23px 'Nippo-Regular', sans-serif;
 }
 
-.infoSection {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 40px;
-}
-
-.sectionTitle {
+.rightPanel-sidebarTitle {
   letter-spacing: 0.72px;
   font: 300 24px 'Nippo-Regular', sans-serif;
   margin-bottom: 15px;
 }
 
-.sectionDescription {
-  font: 300 15px/23px 'Nippo-Light', -apple-system, Roboto, Helvetica, sans-serif;
-  margin: 15px 0;
-  white-space: pre-line;
-}
-
-.titleList {
+.rightPanel-sidebarList {
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 100%;
 }
 
-.titleEntry {
+.rightPanel-sidebarEntry {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -102,12 +76,12 @@
   width: 100%;
 }
 
-.titleText {
+.rightPanel-sidebarText {
   flex-grow: 1;
   font: 300 15px/23px 'Nippo-Light', sans-serif;
 }
 
-.bulletcircle {
+.rightPanel-bulletCircle {
   width: 18px;
   height: 18px;
   border: 1px solid #000;
@@ -116,7 +90,7 @@
   display: inline-block;
 }
 
-.knowMoreButton {
+.rightPanel-knowMoreButton {
   background-color: #000;
   color: #fff;
   text-align: right;
@@ -130,61 +104,52 @@
   align-self: flex-end;
 }
 
-.knowMoreButton:focus {
+.rightPanel-knowMoreButton:focus {
   outline: 2px solid #000;
   outline-offset: 2px;
 }
 
-.knowMoreButtonInverted {
-  background-color: #000;
-  color: #fff;
-  text-align: left;
-  text-transform: uppercase;
-  letter-spacing: 1.4px;
-  padding: 4px 10px;
-  font: 378 10px 'Nippo-Light', sans-serif;
-  border: 1px solid black;
-  cursor: pointer;
-  margin: 10px 0;
-  align-self: flex-start;
-}
-
-.knowMoreButtonInverted:focus {
-  outline: 2px solid #000;
-  outline-offset: 2px;
+.plantImageRightPanel {
+    width: 60%;
+    aspect-ratio: 1;
+    object-fit: contain;
+    border-radius: 0;
+    margin-top: 40px;
+    display: block;
+    transform: translateX(120px);
 }
 
 @media (max-width: 991px) {
-  .plantContainer {
+  .rightPanel-container {
     padding: 0 20px;
   }
 
-  .contentWrapper {
+  .rightPanel-contentWrapper {
     flex-direction: column;
     gap: 0;
   }
 
-  .sidebar {
+  .rightPanel-sidebar {
     width: 100%;
   }
 
-  .mainContent {
+  .rightPanel-mainContent {
     width: 100%;
     margin-left: 0;
     margin-top: 40px;
   }
 
-  .imageSection {
+  .rightPanel-imageSection {
     flex-direction: column;
   }
 
-  .plantDescription {
+  .rightPanel-description {
     width: 100%;
     margin-left: 0;
     margin-top: 40px;
   }
 
-  .plantName {
+  .rightPanel-name {
     font-size: 40px;
   }
-}
+} 
