@@ -1,740 +1,151 @@
-/* .homepage {
-  background-color: #000;
-  color: #fff;
+/* ✅ Box Styling */
+.box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1800px;
+  height: 1472px;
+  z-index: -1; /* Ensures it stays in the background */
+}
+
+.box .rectangle {
+  width: 1280px;
+  height: 1472px;
+  object-fit: cover;
+}
+
+/* ✅ Other Styles (Unchanged from previous version) */
+
+.homepage {
+  background-color: #fff;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  align-items: stretch;
+  align-items: center;
   width: 100%;
   max-width: 100vw;
-  min-height: 100vh;
-  zoom: 0.5;
 }
 
-.header {
-  background-color: #000;
-  color: #fff;
+.container {
   display: flex;
-  width: 100%;
-  padding: 38px 80px;
   flex-direction: column;
-  font-family:
-    Clash Grotesk,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
-  font-size: 12px;
-  color: #a6a6a6;
+  align-items: center;
+  width: 100%;
+}
+
+/* Section 1 - Header */
+.header-section {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.sounding-the {
+  color: #a5a5a5;
+  font-family: "Nippo-Light", Helvetica;
+  font-size: 32px;
   font-weight: 300;
-  text-align: center;
-  letter-spacing: 0.24px;
-  line-height: 25px;
+  letter-spacing: 0.64px;
+  line-height: 65.6px;
 }
 
-.logo {
-  aspect-ratio: 1.06;
-  object-fit: contain;
-  object-position: center;
-  width: 37px;
-  align-self: flex-end;
-}
-
-.heroText {
-  width: 100%;
-  max-width: 350px;
-  font-family:
-    Clash Grotesk,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
-  font-size: 12px;
-  color: rgba(166, 166, 166, 1);
+.phytoremediation {
+  color: #a5a5a5;
+  font-family: "Clash Grotesk-Light", Helvetica;
+  font-size: 16px;
   font-weight: 300;
+  letter-spacing: 0.48px;
+  line-height: 32.8px;
+}
+
+/* Section 2 - Concept */
+.concept-section {
   text-align: center;
-  letter-spacing: 0.24px;
-  line-height: 25px;
-  padding-top: -8px;
+  margin-top: 40px;
 }
 
-.conceptSection {
-  background-color: #000;
-  width: 100%;
-  position: relative;
+.frame-2 {
+  width: 80%;
+  max-width: 900px;
 }
 
-.conceptImage {
-  aspect-ratio: 0.89;
-  object-fit: contain;
-  object-position: center;
-  width: 100%;
-  background-blend-mode: difference;
-}
-
-.conceptContent {
-  align-self: flex-end;
-  z-index: 10;
-  margin-top: -155px;
-  width: 100%;
-  max-width: 1179px;
-}
-
-.conceptLayout {
-  gap: 20px;
-  display: flex;
-  padding: 0 20px;
-}
-
-.conceptArticle {
-  display: flex;
-  margin-top: auto;
-  margin-bottom: auto;
-  flex-direction: column;
-  align-self: stretch;
-  align-items: stretch;
-  width: 27%;
-}
-
-.conceptTitle {
-  color: #000;
-  font-size: 24px;
-  font-family:
-    Nippo,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
-  font-weight: 378;
-  line-height: 49px;
-  align-self: flex-start;
-}
-
-.conceptDescription {
-  background-blend-mode: difference;
-  color: #fff;
+.concept-text {
+  color: #ffffff;
+  font-family: "Clash Grotesk-Regular", Helvetica;
   font-size: 14px;
-  font-family:
-    Clash Grotesk,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
-  font-weight: 400;
-  line-height: 29px;
-}
-
-.conceptVisual {
-  width: 73%;
-  margin-left: 20px;
-}
-
-.visualContainer {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  min-height: 1089px;
-  width: 100%;
-  padding: 167px 80px 297px 11px;
-  overflow: hidden;
-}
-
-.visualImage {
-  position: absolute;
-  inset: 0;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.dotsContainer {
-  position: relative;
-  display: flex;
-  width: 688px;
-  max-width: 100%;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.dotsGroup {
-  display: flex;
-  margin-left: 61px;
-  width: 360px;
-  max-width: 100%;
-  flex-direction: column;
-}
-
-.dot {
-  background-color: #000;
-  border-radius: 50%;
-  display: flex;
-  width: 15px;
-  height: 15px;
-  flex-shrink: 0;
-  margin: 10px 0;
-}
-
-.soundSection {
-  background-color: #000;
-  margin-top: 196px;
-  width: 100%;
-  padding-right: 80px;
-}
-
-.soundLayout {
-  gap: 20px;
-  display: flex;
-}
-
-.soundVisual {
-  width: 76%;
-}
-
-.visualWrapper {
-  display: flex;
-  flex-direction: column;
-  background-blend-mode: difference;
-  position: relative;
-  min-height: 1304px;
-  margin-top: auto;
-  margin-bottom: auto;
-  width: 100%;
-  padding: 329px 72px 146px;
-  align-self: stretch;
-  overflow: hidden;
-}
-
-.soundImage {
-  position: absolute;
-  inset: 0;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.soundContent {
-  width: 24%;
-  margin-left: 20px;
-}
-
-.soundText {
-  margin-top: 341px;
-  font-family:
-    Clash Grotesk,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
-  font-size: 14px;
-  color: #fff;
-  font-weight: 400;
-  line-height: 29px;
-}
-
-.whiteDot {
-  background-blend-mode: difference;
-  background-color: #fff;
-  border-radius: 50%;
-  display: flex;
-  width: 15px;
-  height: 15px;
-  flex-shrink: 0;
-  margin: 10px 0;
-}
-
-.soundDescription {
-  background-blend-mode: difference;
-  margin-top: 83px;
-}
-
-.creditsSection {
-  display: flex;
-  margin-top: 46px;
-  width: 100%;
-  padding: 0 10px 0 64px;
-  flex-direction: column;
-  align-items: stretch;
-  background-color: #000;
-}
-
-.creditsLayout {
-  max-width: 100%;
-}
-
-.creditsColumns {
-  gap: 20px;
-  display: flex;
-}
-
-.creditsArticle {
-  width: 25%;
-  display: flex;
-  margin-top: auto;
-  margin-bottom: auto;
-  flex-direction: column;
-  align-self: stretch;
-  align-items: stretch;
-}
-
-.soundConceptTitle {
-  color: #fff;
-  font-size: 24px;
-  font-family:
-    Nippo,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
-  font-weight: 378;
-  line-height: 49px;
+  line-height: 28.7px;
   text-align: center;
-  align-self: flex-start;
+  max-width: 700px;
 }
 
-.creditsDescription {
-  background-blend-mode: difference;
-  color: #fff;
-  font-size: 14px;
-  font-family:
-    Clash Grotesk,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
-  font-weight: 400;
-  line-height: 29px;
-  margin-top: 7px;
-}
 
-.creditsVisual {
-  width: 75%;
-  margin-left: 20px;
-}
-
-.creditsImageContainer {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  min-height: 1156px;
-  width: 100%;
-  padding: 309px 0;
-  overflow: hidden;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-.creditsImage {
-  position: absolute;
-  inset: 0;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.creditsTitle {
-  color: #fff;
+.section-title {
+  font-family: "Nippo-Regular", Helvetica;
   font-size: 24px;
-  font-family:
-    Nippo,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
-  font-weight: 378;
-  line-height: 49px;
+  font-weight: 400;
+  margin-top: 20px;
+}
+
+/* Section 3 - Second Image */
+.image-section {
   text-align: center;
-  align-self: flex-start;
-  margin-top: 199px;
+  margin-top: 60px;
 }
 
-@media (max-width: 991px) {
-  .homepage {
-    padding-bottom: 100px;
-  }
-
-  .header {
-    max-width: 100%;
-    padding: 38px 20px;
-  }
-
-  .heroText {
-    margin-top: 40px;
-  }
-
-  .conceptImage {
-    max-width: 100%;
-  }
-
-  .conceptContent {
-    max-width: 100%;
-  }
-
-  .conceptLayout {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-  }
-
-  .conceptArticle {
-    width: 100%;
-    margin-top: 40px;
-  }
-
-  .conceptVisual {
-    width: 100%;
-  }
-
-  .visualContainer {
-    max-width: 100%;
-    padding: 100px 20px;
-  }
-
-  .dotsGroup {
-    margin-left: 10px;
-  }
-
-  .soundSection {
-    max-width: 100%;
-    padding-right: 20px;
-    margin-top: 40px;
-  }
-
-  .soundLayout {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-  }
-
-  .soundVisual {
-    width: 100%;
-  }
-
-  .visualWrapper {
-    max-width: 100%;
-    margin-top: -117px;
-    padding: 100px 20px;
-  }
-
-  .soundContent {
-    width: 100%;
-  }
-
-  .soundText {
-    margin-top: 40px;
-  }
-
-  .soundDescription {
-    margin-top: 40px;
-  }
-
-  .creditsSection {
-    max-width: 100%;
-    padding-left: 20px;
-    margin-top: 40px;
-  }
-
-  .creditsColumns {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-  }
-
-  .creditsArticle {
-    width: 100%;
-    margin-top: 40px;
-  }
-
-  .creditsVisual {
-    width: 100%;
-  }
-
-  .creditsImageContainer {
-    max-width: 100%;
-    padding: 100px 20px;
-  }
-
-  .creditsTitle {
-    margin-top: 40px;
-  }
-} */
-
-.label { 
-  height: 62px; 
-  width: 984px; 
-} 
-
-.label .sounding-the { 
-  color: #a5a5a5; 
-  font-family: "Nippo-Light", Helvetica; 
-  font-size: 32px; 
-  font-weight: 300; 
-  left: 0; 
-  letter-spacing: 0.64px; 
-  line-height: 65.6px; 
-  position: fixed; 
-  text-align: center; 
-  top: 0; 
-  white-space: nowrap; 
-  width: 984px; 
+.frame-3 {
+  width: 85%;
+  max-width: 900px;
 }
 
-.label2 { 
-  height: 45px; 
-  width: 484px; 
-} 
-
-.label .phytoremediation { 
-  color: #a5a5a5; 
-  font-family: "Clash Grotesk-Light", Helvetica; 
-  font-size: 16px; 
-  font-weight: 300; 
-  left: 0; 
-  letter-spacing: 0.48px; 
-  line-height: 32.8px; 
-  position: fixed; 
-  text-align: center; 
-  top: 0; 
-  width: 484px; 
+/* Section 4 - Additional Text */
+.text-section {
+  text-align: center;
+  margin-top: 60px;
+  max-width: 800px;
 }
 
-.text-wrapper { 
-  color: #ffffff; 
-  font-family: "Clash Grotesk-Regular", Helvetica; 
-  font-size: 14px; 
-  font-weight: 400; 
-  left: 0; 
-  letter-spacing: 0; 
-  line-height: 28.7px; 
-  mix-blend-mode: difference; 
-  position: fixed; 
-  top: 0; 
-  width: 360px; 
-} 
-
-.text-wrapper2 {
-  color: #ffffff; 
-  font-family: "Clash Grotesk-Regular", Helvetica; 
-  font-size: 14px; 
-  font-weight: 400; 
-  left: 0; 
-  letter-spacing: 0; 
-  line-height: 28.7px; 
-  mix-blend-mode: difference; 
-  position: fixed; 
-  top: 0; 
-  width: 288px;
+.text-content {
+  position: relative;
+  margin-bottom: 20px;
 }
 
-.text-wrapper3 {
-  height: 291px;
-  color: #ffffff; 
-  font-family: "Clash Grotesk-Regular", Helvetica; 
-  font-size: 14px; 
-  font-weight: 400; 
-  left: 0; 
-  letter-spacing: 0; 
-  line-height: 28.7px; 
-  mix-blend-mode: difference; 
-  position: fixed; 
-  top: 0; 
-  width: 288px;
+.frame-4 {
+  width: 85%;
+  max-width: 900px;
 }
 
-.homepage .p { 
-  color: #ffffff; 
-  font-family: "Clash Grotesk-Regular", Helvetica; 
-  font-size: 14px; 
-  font-weight: 400; 
-  left: 70px; 
-  letter-spacing: 0; 
-  line-height: 28.7px; 
-  mix-blend-mode: difference; 
-  position: absolute; 
-  top: 1724px; 
-  width: 288px; 
-} 
-
-.homepage .text-wrapper-2 { 
-  color: #000000; 
-  font-family: "Nippo-Regular", Helvetica; 
-  font-size: 24px; 
-  font-weight: 400; 
-  left: 64px; 
-  letter-spacing: 0; 
-  line-height: 49.2px; 
-  position: absolute; 
-  text-align: center; 
-  top: 1668px; 
-  white-space: nowrap; 
-} 
-
-.homepage .overlap-3 { 
-  height: 1439px; 
-  left: -13px; 
-  position: absolute; 
-  top: 0; 
-  width: 1305px; 
-} 
-
-.homepage .rectangle-4 { 
-  height: 1395px; 
-  left: 13px; 
-  position: absolute; 
-  top: 0; 
-  width: 1280px; 
-} 
-
-.homepage .property-1-default { 
-  left: 0 !important; 
-  position: absolute !important; 
-  top: 109px !important; 
-} 
-
-.homepage .property-default-instance { 
-  left: -1265px !important; 
-  top: -325px !important; 
-} 
-
-.homepage .property-1-default-instance { 
-  left: -916px !important; 
-  top: -442px !important; 
-} 
-
-.frame-2 { 
-  height: 1089px; 
-  width: 921 px; 
-} 
-
-.frame .overlay-group { 
-  height: 1089px; 
-  position: relative; 
-  width: 870px; 
+.additional-text {
+  color: #ffffff;
+  font-family: "Clash Grotesk-Regular", Helvetica;
+  font-size: 14px;
+  line-height: 28.7px;
 }
 
-.frame-3 { 
-  height: 1304 px; 
-  mix-blend-mode: difference; 
-  width: 902px; 
-} 
-
-.frame .overlap-group 
-{ height: 1304 px; 
-  left: 10px; 
-  position: relative; 
-  width: 892px; 
+.concept-title {
+  font-family: "Nippo-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  margin-top: 20px;
 }
 
-.homepage .vector { 
-  height: 1439px; 
-  left: 13px; 
-  mix-blend-mode: difference; 
-  position: absolute; 
-  top: 0; 
-  width: 695px; 
-} 
-  
-  .homepage .phytoremediation { 
-    color: #101010; 
-    font-family: "Clash Grotesk-Light", Helvetica; 
-    font-size: 16px; 
-    font-weight: 300; 
-    left: 733px; 
-    letter-spacing: 0.48px; 
-    line-height: 32.8px; 
-    position: absolute; 
-    text-align: center; 
-    top: 514px; 
-    width: 484px; 
-  } 
-  
-  .homepage .overlap-4 { 
-    height: 1089px; 
-    left: 101px; 
-    position: absolute; 
-    top: 1471px; 
-    width: 1179px; 
-  } 
-  
-  .homepage .overlap-5 { 
-    height: 1089px; 
-    left: 0; 
-    position: absolute; 
-    top: 0; 
-    width: 1179px; } 
-    
-    .homepage .frame-4 { 
-      height: 1089px; 
-      left: 270px; 
-      position: absolute; 
-      top: 0; 
-      width: 909px; 
-    } 
-    
-  .homepage .text-wrapper-3 { 
-      color: #ffffff; 
-      font-family: "Clash Grotesk-Regular", Helvetica; 
-      font-size: 14px; 
-      font-weight: 400; 
-      left: 0; 
-      letter-spacing: 0; 
-      line-height: 28.7px; 
-      mix-blend-mode: difference; 
-      position: absolute; 
-      top: 438px; 
-      width: 360px; 
-    }
-    
-  .homepage .text-wrapper-4 { 
-    color: #000000; 
-    font-family: "Nippo-Regular", Helvetica; 
-    font-size: 24px; 
-    font-weight: 400; 
-    left: 0; 
-    letter-spacing: 0; 
-    line-height: 49.2px; 
-    position: absolute; 
-    top: 389px; 
-    width: 261px; 
-  } 
-  
-  .homepage .overlap-6 { 
-    height: 268px; 
-    left: 69px; 
-    position: absolute; 
-    top: 5212px; 
-    width: 80px; 
-  } 
-  
-  .homepage .text-wrapper-5 { 
-    color: #000000; 
-    font-family: "Nippo-Regular", Helvetica; 
-    font-size: 24px; 
-    font-weight: 400; 
-    left: 1px; 
-    letter-spacing: 0; 
-    line-height: 49.2px; 
-    position: absolute; 
-    text-align: center; 
-    top: 0; 
-    white-space: nowrap; 
-  } 
-  
-  .homepage .vector-2 { 
-    height: 219px; 
-    left: 0; 
-    position: fixed; 
-    top: 0px; 
-    width: 7px; 
-  } 
-  
-  .homepage .group { 
-    height: 35px !important; 
-    left: 51px !important; 
-    mix-blend-mode: difference !important;
-    position: fixed !important; 
-    top: 38px !important; 
-    width: 1187px !important; 
-  }
+.concept-description {
+  font-family: "Clash Grotesk-Regular", Helvetica;
+  font-size: 14px;
+  line-height: 28.7px;
+}
+
+/* Section 5 - Credits */
+.credits-section {
+  text-align: center;
+  margin-top: 80px;
+}
+
+.credits-title {
+  font-family: "Nippo-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.vector-2 {
+  width: 7px;
+  height: 219px;
+  margin-top: 20px;
+}
