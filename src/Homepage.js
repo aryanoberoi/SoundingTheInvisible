@@ -1,289 +1,75 @@
-
-// import React from "react";
-// // import { Group12 } from "./Group12";
-// // import { PropertyDefault } from "./PropertyDefault";
-// // import frame2 from "./frame-2.svg";
-// // import frame41 from "./frame-41.svg";
-// // import frame from "./frame.svg";
-// // import image from "./image.svg";
-// import "./Homepage.css";
-
-// export default function Homepage () {
-//   return (
-//     <div className="homepage">
-//       <div className="div">
-//         <div className="overlap">
-//           <div className="overlap-2">
-//             {/* <img className="frame" alt="Frame" src={frame2} /> */}
-
-//             {/* <PropertyDefault
-//               className="property-1-default"
-//               img="rectangle-5.png"
-//               overlapGroupClassName="property-default-instance"
-//               rectangle="rectangle-3.png"
-//               rectangle1="rectangle-4.png"
-//               rectangleClassName="property-1-default-instance"
-//             /> */}
-//             {/* <img className="frame-2" alt="Frame" src={frame41} /> */}
-//           </div>
-
-//           <p className="text-wrapper">
-//             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-//             congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida
-//             imperdiet.
-//           </p>
-//         </div>
-
-//         <div className="overlap-3">
-//           <div className="overlap-4">
-//             {/* <img className="frame-3" alt="Frame" src={frame} /> */}
-
-//             <div className="rectangle-3" />
-
-//             {/* <img className="frame-4" alt="Frame" src={image} /> */}
-
-//             <p className="p">
-//               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-//               Suspendisse congue mollis mauris eget faucibus. Donec fermentum
-//               nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat
-//               quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
-//             </p>
-
-//             <p className="text-wrapper-2">
-//               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-//               Suspendisse congue mollis mauris eget faucibus. Donec fermentum
-//               nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat
-//               quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
-//             </p>
-//           </div>
-
-//           <p className="text-wrapper-3">
-//             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-//             congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida
-//             imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper
-//             eu neque. Etiam rhoncus erat non quam vehicula.
-//           </p>
-//         </div>
-
-//         {/* <Group12 className="group" /> */}
-//       </div>
-//     </div>
-//   );
-// };
-
-// import React from "react";
-// import { Group12 } from "./Group12";
-// import { PropertyDefault } from "./PropertyDefault";
-// import frame2 from "./frame-2.svg";
-// import frame41 from "./frame-41.svg";
-// import frame from "./frame.svg";
-// import image from "./image.svg";
-// import rectangle3 from "./rectangle-3.png";
-// import "./style.css";
-// import vector187 from "./vector-187.svg";
-
-// export default function Homepage () {
-//   return (
-//     <div className="homepage">
-//       <div className="div">
-//         <div className="overlap">
-//           <div className="overlap-2">
-//             <div className="rectangle-3" />
-
-//             {/* <img className="rectangle-4" alt="Rectangle" src={rectangle3} /> */}
-
-//             <div className="rectangle-5" />
-
-//             {/* <img className="frame" alt="Frame" src={frame} /> */}
-
-//             {/* <PropertyDefault
-//               className="property-1-default"
-//               img="rectangle-6.png"
-//               overlapGroupClassName="property-default-instance"
-//               rectangle="rectangle-4.png"
-//               rectangle1="rectangle-5.png"
-//               rectangleClassName="property-1-default-instance"
-//             /> */}
-//             <p className="text-wrapper">
-//               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-//               Suspendisse congue mollis mauris eget faucibus. Donec fermentum
-//               nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat
-//               quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
-//             </p>
-
-//             {/* <img className="frame-2" alt="Frame" src={frame41} /> */}
-
-//             <p className="p">
-//               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-//               Suspendisse congue mollis mauris eget faucibus. Donec fermentum
-//               nibh ut gravida imperdiet.
-//             </p>
-
-//             <div className="ellipse" />
-
-//             <div className="ellipse-2" />
-
-//             <div className="ellipse-3" />
-
-//             <div className="ellipse-4" />
-
-//             <div className="ellipse-5" />
-
-//             <div className="ellipse-6" />
-
-//             <div className="ellipse-7" />
-
-//             <div className="ellipse-8" />
-
-//             <div className="ellipse-9" />
-
-//             <div className="ellipse-10" />
-//           </div>
-
-//           <div className="text-wrapper-2">Concept</div>
-//         </div>
-
-//         <div className="overlap-3">
-//           <div className="overlap-4">
-//             {/* <img className="frame-3" alt="Frame" src={image} /> */}
-
-//             <div className="rectangle-6" />
-
-//             {/* <img className="frame-4" alt="Frame" src={frame2} /> */}
-
-//             <p className="text-wrapper-3">
-//               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-//               Suspendisse congue mollis mauris eget faucibus. Donec fermentum
-//               nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat
-//               quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
-//             </p>
-
-//             <div className="ellipse-11" />
-
-//             <div className="ellipse-12" />
-
-//             <div className="ellipse-13" />
-
-//             <div className="ellipse-14" />
-
-//             <div className="ellipse-15" />
-
-//             <div className="ellipse-16" />
-
-//             <div className="ellipse-17" />
-
-//             <div className="ellipse-18" />
-
-//             <div className="ellipse-19" />
-
-//             <div className="ellipse-20" />
-
-//             <div className="ellipse-21" />
-
-//             <div className="ellipse-22" />
-
-//             <div className="ellipse-23" />
-
-//             <div className="ellipse-24" />
-
-//             <div className="ellipse-25" />
-
-//             <div className="ellipse-26" />
-
-//             <div className="ellipse-27" />
-//           </div>
-
-//           <p className="text-wrapper-4">
-//             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-//             congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida
-//             imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper
-//             eu neque. Etiam rhoncus erat non quam vehicula.
-//           </p>
-
-//           <div className="text-wrapper-5">Sound concept</div>
-//         </div>
-
-//         <div className="overlap-5">
-//           <div className="text-wrapper-6">Credits</div>
-
-//           {/* <img className="vector" alt="Vector" src={vector187} /> */}
-//         </div>
-
-//         {/* <Group12 className="group" /> */}
-//       </div>
-//     </div>
-//   );
-// };
-
-
-// "use client";
-
-// import React from "react";
-// import styles from "./Homepage.css";
-// import { HeroSection } from "./HeroSection";
-// import { ConceptSection } from "./ConceptSection";
-// import { SoundSection } from "./SoundSection";
-
-// export default function Homepage() {
-//   return (
-//     <center>
-//     <main className={styles.homepage}>
-//       <HeroSection />
-//       <ConceptSection />
-//       <SoundSection />
-//     </main>
-//     </center>
-//   );
-// }
-
-import React from "react"; 
+import React from "react";
+import "./Homepage.css";
 import frame2 from "./frame-2.png";
+import frame3 from "./frame-3.png";
 import frame4 from "./frame-4.png";
-import frame3 from "./frame-3.png"
-// import frame41 from "./frame-41.svg";
-// import frame from "./frame.svg"; 
-// import image from "./image.svg"; 
-// import rectangle3 from "./rectangle-3.png"; 
-// import rectangle90 from "./rectangle-90.svg"; 
-import "./Homepage.css"; 
-import vector187 from "./vector-187.png"; 
-// import vector244 from "./vector-244.svg"; 
-export default function Homepage () 
-  { return ( 
-  <div className="homepage"> 
-  <div className="div"> 
-  <div className="overlap"> 
-  <div className="overlap-2"> 
-  <div className="label"> 
-    <p className="sounding-the"> Sounding The Invisible: An Elegant Symbiosis </p> 
-  </div>
-  <div className="label2"> 
-    <p className="phytoremediation"> Phytoremediation plants from the tropic of the temperate </p> 
-  </div>
-  {/* <img className="rectangle-3" alt="Rectangle" src={rectangle90} />  */}
-  {/* <img className="frame" alt="Frame" src={image} />  */}
-  <img className="frame-2" alt="Frame" src={frame2} /> 
-  </div>
-  <p className="p"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula. </p> <div className="text-wrapper-2">Sound concept</div> </div> <div className="overlap-3"> 
-  {/* <img className="rectangle-4" alt="Rectangle" src={rectangle3} />  */}
-  {/* <PropertyDefault className="property-1-default" img="rectangle-6.png" overlapGroupClassName="property-default-instance" rectangle="rectangle-4.png" rectangle1="rectangle-5.png" rectangleClassName="property-1-default-instance" />  */}
-  <img className="frame-3" alt="Frame" src={frame3} /> 
-  {/* <img className="vector" alt="Vector" src={vector244} />  */}
-   </div> 
-   <div className="overlap-4"> 
-  <div className="overlap-5">
-  <img className="frame-4" alt="Frame" src={frame4} /> 
-  <p className="text-wrapper-3"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula. </p> </div> 
-  <div className>Concept
-  <p className="text-wrapper"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula. </p> 
-  </div> 
-  <p className="text-wrapper2"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula. </p> 
-  </div> 
-  <div className="overlap-6"> <div className="text-wrapper-5">Credits</div>
-  <img className="vector-2" alt="Vector" src={vector187} /> 
-  </div> 
-  {/* <Group12 className="group" />  */}
-  </div> 
-  </div> 
-  ); 
-};
+import vector187 from "./vector-187.png";
+import rectangle90 from "./rectangle-90.png"; // Import the rectangle image
+
+export default function Homepage() {
+  return (
+    <div className="homepage">
+      <div className="container">
+
+        {/* ✅ Box Integration */}
+        <div className="box">
+          <img className="rectangle" alt="Background" src={rectangle90} />
+        </div>
+
+        {/* Section 1 - Title and Subtitle */}
+        <div className="header-section">
+          <p className="sounding-the">
+            Sounding The Invisible: An Elegant Symbiosis
+          </p>
+          <p className="phytoremediation">
+            Phytoremediation plants from the tropic of the temperate
+          </p>
+        </div>
+
+        {/* Section 2 - Image and Concept */}
+        <div className="concept-section">
+          <img className="frame-2" alt="Concept Art" src={frame2} />
+          <p className="concept-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida
+            imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper
+            eu neque. Etiam rhoncus erat non quam vehicula.
+          </p>
+          <div className="section-title">Sound Concept</div>
+        </div>
+
+        {/* Section 3 - Second Image */}
+        <div className="image-section">
+          <img className="frame-3" alt="Concept Extension" src={frame3} />
+        </div>
+
+        {/* Section 4 - Additional Text */}
+        <div className="text-section">
+          <div className="text-content">
+            <img className="frame-4" alt="Additional Concept" src={frame4} />
+            <p className="additional-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Suspendisse congue mollis mauris eget faucibus. Donec fermentum
+              nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat
+              quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
+            </p>
+          </div>
+
+          <div className="concept-title">Concept</div>
+          <p className="concept-description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida
+            imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper
+            eu neque. Etiam rhoncus erat non quam vehicula.
+          </p>
+        </div>
+
+        {/* Section 5 - Credits */}
+        <div className="credits-section">
+          <div className="credits-title">Credits</div>
+          <img className="vector-2" alt="Vector Graphic" src={vector187} />
+        </div>
+      </div>
+    </div>
+  );
+}
