@@ -1,151 +1,127 @@
-/* ✅ Box Styling */
-.box {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 1800px;
-  height: 1472px;
-  z-index: -1; /* Ensures it stays in the background */
-}
-
-.box .rectangle {
-  width: 1280px;
-  height: 1472px;
-  object-fit: cover;
-}
-
-/* ✅ Other Styles (Unchanged from previous version) */
-
+/* ✅ General Page Styling */
 .homepage {
   background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 100vw;
+  padding: 0;
+  margin: 0;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-/* Section 1 - Header */
+/* 🔸 Header Section */
 .header-section {
   text-align: center;
-  margin-top: 50px;
+  padding: 60px 20px;
 }
 
-.sounding-the {
-  color: #a5a5a5;
+.header-section h1 {
   font-family: "Nippo-Light", Helvetica;
   font-size: 32px;
-  font-weight: 300;
-  letter-spacing: 0.64px;
-  line-height: 65.6px;
+  color: #a5a5a5;
+  line-height: 1.6;
 }
 
-.phytoremediation {
-  color: #a5a5a5;
+.header-section p {
   font-family: "Clash Grotesk-Light", Helvetica;
   font-size: 16px;
-  font-weight: 300;
-  letter-spacing: 0.48px;
-  line-height: 32.8px;
+  color: #a5a5a5;
 }
 
-/* Section 2 - Concept */
+/* 🔸 Concept Section */
 .concept-section {
-  text-align: center;
-  margin-top: 40px;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.frame-2 {
-  width: 80%;
-  max-width: 900px;
-}
-
-.concept-text {
-  color: #ffffff;
-  font-family: "Clash Grotesk-Regular", Helvetica;
-  font-size: 14px;
-  line-height: 28.7px;
-  text-align: center;
-  max-width: 700px;
-}
-
-
-.section-title {
+.concept-text h2 {
   font-family: "Nippo-Regular", Helvetica;
   font-size: 24px;
-  font-weight: 400;
+  color: #000;
+}
+
+.concept-text p {
+  font-family: "Clash Grotesk-Regular", Helvetica;
+  font-size: 14px;
+  color: #000;
+}
+
+.concept-image {
   margin-top: 20px;
+  max-width: 100%;
 }
 
-/* Section 3 - Second Image */
-.image-section {
-  text-align: center;
-  margin-top: 60px;
-}
-
-.frame-3 {
-  width: 85%;
-  max-width: 900px;
-}
-
-/* Section 4 - Additional Text */
-.text-section {
-  text-align: center;
-  margin-top: 60px;
-  max-width: 800px;
-}
-
-.text-content {
+/* 🔸 Black Trapezium Section */
+.trapezium-section {
+  background-color: #000;
+  clip-path: polygon(0 10%, 100% 0, 100% 90%, 0% 100%);
+  padding: 100px 20px;
   position: relative;
-  margin-bottom: 20px;
 }
 
-.frame-4 {
-  width: 85%;
-  max-width: 900px;
+.trapezium-image {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 80%;
+  z-index: 1;
 }
 
-.additional-text {
-  color: #ffffff;
+.trapezium-text {
+  position: relative;
+  z-index: 2;
+  color: #fff;
   font-family: "Clash Grotesk-Regular", Helvetica;
   font-size: 14px;
-  line-height: 28.7px;
-}
-
-.concept-title {
-  font-family: "Nippo-Regular", Helvetica;
-  font-size: 24px;
-  font-weight: 400;
-  margin-top: 20px;
-}
-
-.concept-description {
-  font-family: "Clash Grotesk-Regular", Helvetica;
-  font-size: 14px;
-  line-height: 28.7px;
-}
-
-/* Section 5 - Credits */
-.credits-section {
+  margin-top: 220px;
   text-align: center;
-  margin-top: 80px;
 }
 
-.credits-title {
+/* 🔸 Sound Strategy Section */
+.strategy-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.strategy-text h2 {
   font-family: "Nippo-Regular", Helvetica;
   font-size: 24px;
-  font-weight: 400;
+  color: #000;
 }
 
-.vector-2 {
-  width: 7px;
-  height: 219px;
+.strategy-text p {
+  font-family: "Clash Grotesk-Regular", Helvetica;
+  font-size: 14px;
+  color: #000;
+}
+
+.strategy-image {
   margin-top: 20px;
+  max-width: 100%;
+}
+
+/* 🔸 Group Section */
+.group-section {
+  padding: 40px 0;
+  text-align: center;
+}
+
+.group-image {
+  max-width: 100%;
+}
+
+/* 🔸 Footer Section */
+.footer-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.footer-section p {
+  font-family: "Nippo-Regular", Helvetica;
+  font-size: 24px;
+  color: #000;
+}
+
+.footer-vector {
+  margin-top: 20px;
+  height: 219px;
 }
