@@ -156,8 +156,83 @@
     object-fit: contain;
     width: 100%;
   }
+  .circle-container{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    
+  }
   
-  
+  .circle{
+    border-radius: 50%;
+    aspect-ratio: 1;
+    /* border: 1px solid #fff; */
+    align-self: flex-end;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    z-index: 20;
+  }
+  .circle1{
+    position: absolute;
+    top: 250px;
+    left: 200px;
+    background: #fff;
+  }
+  .circle2{
+    position: absolute;
+    top: 250px;
+    left: 310px;
+    background: #000000;
+  }
+  .circle3{
+    position: absolute;
+    top: 250px;
+    left: 420px;
+    background: #000000;
+  }
 
-  
+  .circle4{
+    position: absolute;
+    top: 370px;
+    left: 310px;
+    background: #ffffff;
+  }
  
+  .line{
+    width: 200px;
+    height: 1px;
+    background-color: white;
+  }
+
+  .line1{
+    width: 130px!important;
+    position: absolute;
+    top: 260px;
+    left: 210px;
+  }
+  .line4{
+    position: absolute;
+    top: 280px;
+    left: 210px;
+  }
+
+  .line2{
+    width: 130px!important;
+    position: absolute;
+    top: 270px;
+    left: 320px;
+    background-color: #000;
+    z-index: 40;
+  }
+  .line3{
+    width: 130px!important;
+    position: absolute;
+    top: 330px;
+    left: 265px;
+    transform: rotate(90deg);
+  }
+
+  .left-panel .sideContent{
+    margin-right: 180px!important;
+  }
