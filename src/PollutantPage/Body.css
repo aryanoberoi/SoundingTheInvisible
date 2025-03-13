@@ -4,7 +4,7 @@
     position: relative;
     width: 100%;
     padding: 20px 0;
-    margin-left: calc(3%);
+    /* margin-left: calc(3%); */
     overflow: hidden;
 }
   
@@ -106,14 +106,14 @@
     height: auto;
     width: 100%;
     left: 5px;
-    max-width: 200px;
+    /* max-width: 200px; */
     position: absolute;
-    top: 26px;
+    /* top: 26px; */
 }
   
 .box-container .content-items-container {
     position: absolute;
-    left: 40%;
+    left: 45%;
     right: 20px;
     margin-left: 10%;
     width: auto;

@@ -251,7 +251,7 @@ body.sound-panel-active .sound-icon span {
 .nav-menu {
   position: fixed;
   top: 0;
-  left: -100%;
+  left: -106%;
   width: 100vw;
   height: 100vh;
   background: black;
