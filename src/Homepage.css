@@ -39,7 +39,7 @@
 }
 
 .concept-text p {
-  font-family: "Clash Grotesk-Regular", Helvetica;
+  font-family: "ClashGrotesk-Regular", Helvetica;
   font-size: 14px;
   color: #000;
 }
@@ -70,7 +70,7 @@
   position: relative;
   z-index: 2;
   color: #fff;
-  font-family: "Clash Grotesk-Regular", Helvetica;
+  font-family: "ClashGrotesk-Regular", Helvetica;
   font-size: 14px;
   margin-top: 220px;
   text-align: center;
@@ -89,7 +89,7 @@
 }
 
 .strategy-text p {
-  font-family: "Clash Grotesk-Regular", Helvetica;
+  font-family: "ClashGrotesk-Regular", Helvetica;
   font-size: 14px;
   color: #000;
 }
