@@ -41,7 +41,7 @@ export default function Homepage () {
       {/* 🔸 Sound Strategy Section */}
       <section className="strategy-section">
         <div className="strategy-text">
-          <h2>Sound Strategy</h2>
+          <h2>Sound concept</h2>
           <p>
             Exploring the relationship between phytoremediation plants and their soundscapes within temperate climates.
           </p>
