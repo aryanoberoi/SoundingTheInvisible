@@ -1,5 +1,6 @@
 import React from "react";
 import "./Homepage.css";
+import { ReactComponent as FrameSVG } from './Frame.svg';
 // import frame from "./frame.svg";
 // import frame1 from "./frame.png";
 // import image from "./image.svg";
@@ -45,7 +46,12 @@ export default function Homepage () {
             Exploring the relationship between phytoremediation plants and their soundscapes within temperate climates.
           </p>
         </div>
-        {/* <img src={frame1} alt="Strategy Illustration" className="strategy-image" /> */}
+        <div className="svg-container">
+          <FrameSVG 
+            className="strategy-image interactive-svg"
+            preserveAspectRatio="xMidYMid meet"
+          />
+        </div>
       </section>
 
       {/* 🔸 Group Section */}

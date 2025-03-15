@@ -125,3 +125,36 @@
   margin-top: 20px;
   height: 219px;
 }
+
+/* Hover interaction styles */
+.interactive-svg {
+  --active-opacity: 1;
+  --inactive-opacity: 0.3;
+}
+
+.interactive-svg [fill] {
+  opacity: var(--active-opacity);
+  transition: opacity 0.3s ease;
+}
+
+.interactive-svg:hover [fill] {
+  opacity: var(--inactive-opacity);
+}
+
+/* Target specific patterns to maintain opacity on hover */
+.interactive-svg [fill^="url(#pattern16"]:hover,
+.interactive-svg [fill^="url(#pattern17"]:hover,
+.interactive-svg [fill^="url(#pattern18"]:hover,
+.interactive-svg [fill^="url(#pattern19"]:hover,
+.interactive-svg [fill^="url(#pattern21"]:hover,
+.interactive-svg [fill^="url(#pattern22"]:hover,
+.interactive-svg [fill^="url(#pattern23"]:hover,
+.interactive-svg [fill^="url(#pattern24"]:hover {
+  opacity: var(--active-opacity) !important;
+}
+
+/* Keep pattern20 at 0.3 when hovered */
+.interactive-svg [fill^="url(#pattern20"]:hover {
+  opacity: var(--inactive-opacity) !important;
+}
+
