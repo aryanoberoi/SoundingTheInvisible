@@ -212,7 +212,7 @@ const PollutantPage = () => {
         <AboutPollutantSection />
           <div className="bottom-section2" id="sound-frequency">
             <div className="content-container">
-              <h2>Enthalpy and sound Frequency of Pollutant</h2>
+              <div>Enthalpy and sound Frequency of Pollutant</div>
             </div>
             <div className="wave-container">
               <SineWaveVisualizer frequency={4}/>
