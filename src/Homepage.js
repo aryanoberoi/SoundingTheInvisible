@@ -1,12 +1,10 @@
 import React from "react";
+import frame2 from "./frame-2.png";
+import frame3 from "./frame-3.png";
+import frame4 from "./frame-4.png";
 import "./Homepage.css";
-// import frame from "./frame.svg";
-// import frame1 from "./frame.png";
-// import image from "./image.svg";
-// import group283 from "./group-283.png";
-// import vector187 from "./vector-187.svg";
 
-export default function Homepage () {
+export default function Homepage() {
   return (
     <div className="homepage">
 
@@ -21,20 +19,29 @@ export default function Homepage () {
         <div className="concept-text">
           <h2>Concept</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus.
+            Exploring unseen connections in nature, balancing art and science.
           </p>
         </div>
-        {/* <img src={frame} alt="Concept Illustration" className="concept-image" /> */}
+        <div className="frame">
+          <img src={frame2} alt="Frame 2" className="frame-2" />
+        </div>
       </section>
 
-      {/* 🔸 Black Trapezium Section */}
+      {/* 🔸 Black Trapezium with Frame 3 and Text */}
       <section className="trapezium-section">
-        {/* <img src={image} alt="Main Illustration" className="trapezium-image" /> */}
+        <img src={frame3} alt="Frame 3" className="frame-3" />
         <div className="trapezium-text">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus. 
+            Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. 
+            Etiam rhoncus erat non quam vehicula.
           </p>
         </div>
+      </section>
+
+      {/* 🔸 Frame 4 Section */}
+      <section className="frame">
+        <img src={frame4} alt="Frame 4" className="frame-4" />
       </section>
 
       {/* 🔸 Sound Strategy Section */}
@@ -45,20 +52,13 @@ export default function Homepage () {
             Exploring the relationship between phytoremediation plants and their soundscapes within temperate climates.
           </p>
         </div>
-        {/* <img src={frame1} alt="Strategy Illustration" className="strategy-image" /> */}
-      </section>
-
-      {/* 🔸 Group Section */}
-      <section className="group-section">
-        {/* <img src={group283} alt="Group Illustration" className="group-image" /> */}
       </section>
 
       {/* 🔸 Footer Section */}
       <footer className="footer-section">
         <p>Credits</p>
-        {/* <img src={vector187} alt="Vector Design" className="footer-vector" /> */}
       </footer>
 
     </div>
   );
-};
+}
