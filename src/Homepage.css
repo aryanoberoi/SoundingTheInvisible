@@ -177,3 +177,74 @@
   opacity: var(--inactive-opacity) !important;
 }
 
+.organic-matter-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.organic-matter-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.vallisneria-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.vallisneria-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.cadmium-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.cadmium-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.phthalate-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.phthalate-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.atrazine-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.atrazine-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.thalium-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.thalium-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.estrogen-pills-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.estrogen-pills-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.potassium-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.potassium-group:hover .hover-path {
+  opacity: 1 !important;
+}

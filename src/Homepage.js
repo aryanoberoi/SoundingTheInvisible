@@ -1,6 +1,6 @@
 import React from "react";
 import "./Homepage.css";
-import { ReactComponent as FrameSVG } from './Frame.svg';
+import SoundConceptFrame from './frame.js';
 // import frame from "./frame.svg";
 // import frame1 from "./frame.png";
 // import image from "./image.svg";
@@ -47,7 +47,7 @@ export default function Homepage () {
           </p>
         </div>
         <div className="svg-container">
-          <FrameSVG 
+          <SoundConceptFrame 
             className="strategy-image interactive-svg"
             preserveAspectRatio="xMidYMid meet"
           />
