@@ -79,7 +79,26 @@
 /* 🔸 Sound Strategy Section */
 .strategy-section {
   padding: 60px 20px;
-  text-align: center;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.strategy-text {
+  flex-basis: 20%;
+  text-align: left;
+}
+
+.svg-container {
+  flex-basis: 66.666%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 10px;
 }
 
 .strategy-text h2 {
@@ -95,8 +114,8 @@
 }
 
 .strategy-image {
-  margin-top: 20px;
   max-width: 100%;
+  height: auto;
 }
 
 /* 🔸 Group Section */
