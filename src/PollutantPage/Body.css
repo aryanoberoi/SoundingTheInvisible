@@ -117,19 +117,27 @@
     right: 20px;
     margin-left: 10%;
     width: auto;
-    top: 160px;
+    top: 120px;
 }
   
 .box-container .content-item {
     width: 100%;
     max-width: 416px;
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: 5px; /* Reduced from 10px to 5px */
     transition: all 0.3s ease;
     cursor: pointer;
     z-index: 1;
 }
-  
+
+.box-container .item-overlap {
+    position: relative;
+    width: 90%;
+    max-width: 416px;
+    right: 0;
+    margin: 1rem 0; /* Reduced from 2rem to 1rem */
+    height: 50px;
+}
 .box-container .content-item:nth-child(even) {
     left: 10%;
     margin-right: 10%;
@@ -139,16 +147,7 @@
     margin-bottom: 20px;
     z-index: 2;
 }
-  
-.box-container .item-overlap {
-    position: relative;
-    width: 90%;
-    max-width: 416px;
-    right: 0;
-    margin: 2rem 0;
-    height: 50px;
-}
-  
+
 .box-container .item-title {
     color: #ffffff;
     font-family: "Nippo-Regular", Helvetica;

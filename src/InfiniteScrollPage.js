@@ -22,6 +22,32 @@ const PollutantPage = () => {
   const [activeSection, setActiveSection] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const sectionphyto = [
+    { title: "Title 1", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco." },
+    { title: "Title 2", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce malesuada est quam, quis dictum ligula fringilla ut. Donec varius nisl ut lobortis dignissim. Integer tincidunt arcu erat, sit amet malesuada purus consequat eu. Nam dapibus a nunc at tincidunt. Etiam commodo, felis nec vulputate rhoncus,." },
+    // Add more sections as needed
+  ];
+  const usessections = [
+    {
+      id: 'nutritional',
+      title: 'NUTRITIONAL',
+      header: 'This is placeholder text for title',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula, sed maximus magna tincidunt.'
+    },
+    {
+      id: 'medicine',
+      title: 'MEDICINE',
+      header: 'This is placeholder text for title',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula, sed maximus magna tincidunt.'
+    },
+    {
+      id: 'additional',
+      title: 'ADDITIONAL',
+      header: 'This is placeholder text for title',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula, sed maximus magna tincidunt.'
+    }
+  ];
+  
 
   const handleSliderMove = (e) => {
     const container = document.getElementById('slider-container');
@@ -243,10 +269,10 @@ const PollutantPage = () => {
               <Origin/>
             </div>
             <div className="bottom-section9" id="phyto-capacity">
-              <PhytoCapacity/>
+              <PhytoCapacity sections={sectionphyto}/>
             </div>
             <div className="bottom-section10" id="uses-of-plant">
-              <UsesOfPlant/>
+              <UsesOfPlant sections={usessections}/>
             </div>
           </div>
         </div>
