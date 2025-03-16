@@ -298,3 +298,122 @@
 .potassium-group:hover .hover-path {
   opacity: 1 !important;
 }
+
+/* Hover interaction styles */
+.interactive-svg-concept {
+  --active-opacity: 1;
+  --inactive-opacity: 0.5;
+}
+
+.interactive-svg-concept [fill] {
+  opacity: var(--active-opacity);
+  transition: opacity 0.3s ease;
+}
+
+.interactive-svg-concept:hover [fill] {
+  opacity: var(--inactive-opacity);
+}
+
+/* Target elements with ID attributes to maintain opacity on hover */
+.interactive-svg-concept [id]:hover{
+  opacity: var(--active-opacity) !important;
+}
+
+.diclofenac-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.diclofenac-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.lead-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.lead-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.aluminum-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.aluminum-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.simazine-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.simazine-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.strontium-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.strontium-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.zinc-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.zinc-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.benzene-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.benzene-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.glyphosate-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.glyphosate-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.imidacloprid-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.imidacloprid-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.diesel-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.diesel-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.nickel-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.nickel-group:hover .hover-path {
+  opacity: 1 !important;
+}

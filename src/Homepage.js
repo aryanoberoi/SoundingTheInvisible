@@ -4,6 +4,7 @@ import frame3 from "./frame-3.png";
 import frame4 from "./frame-4.png";
 import "./Homepage.css";
 import SoundConceptFrame from './frame.js';
+import ConceptFrame from './frame1.js';
 // import frame from "./frame.svg";
 // import frame1 from "./frame.png";
 // import image from "./image.svg";
@@ -23,22 +24,25 @@ export default function Homepage() {
       </section>
 
       {/* 🔸 Concept Section */}
-<section className="concept-section">
-  <div className="concept-text">
-    <h2>Concept</h2>
-    <p>
-      Exploring unseen connections in nature, balancing art and science.
-    </p>
-  </div>
+      <section className="concept-section">
+        <div className="concept-text">
+          <h2>Concept</h2>
+          <p>
+            Exploring unseen connections in nature, balancing art and science.
+          </p>
+        </div>
 
-  <div className="frame">
-    <img src={frame2} alt="Frame 2" className="frame-2" />
-  </div>
+        <div className="svg-container">
+          <ConceptFrame 
+            className="interactive-svg-concept"
+            preserveAspectRatio="xMidYMid meet"
+          />
+        </div>
 
-  <div className="arrow-box">
-      <img className="group" alt="Group" src={group283} />
-    </div>
-</section>
+        <div className="arrow-box">
+            <img className="group" alt="Group" src={group283} />
+          </div>
+      </section>
 
 
 
@@ -52,11 +56,6 @@ export default function Homepage() {
             Etiam rhoncus erat non quam vehicula.
           </p>
         </div>
-      </section>
-
-      {/* 🔸 Frame 4 Section */}
-      <section className="frame">
-        <img src={frame4} alt="Frame 4" className="frame-4" />
       </section>
 
       {/* 🔸 Sound Strategy Section */}
