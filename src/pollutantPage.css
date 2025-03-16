@@ -1237,7 +1237,7 @@ body.white-panel-active .combined-section {
   .main-container {
     width: 100% !important;
     margin-left: 0;
-    padding: 1rem;
+    /* padding: 1rem; */
   }
 
   .bottom-section1, .bottom-section2, .white-container > div {
