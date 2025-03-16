@@ -24,92 +24,147 @@
   color: #a5a5a5;
 }
 
-/* 🔸 Concept Section */
+/* 🔸 Concept Section Wrapper */
 .concept-section {
-  padding: 60px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: relative;
+  padding: 40px 60px;
+}
+
+/* 🔸 Concept Text Styling */
+.concept-text {
+  position: absolute;
+  top: 20%;  /* Adjust as needed */
+  left: 5%;  /* Ensures text stays on the far left */
+  width: 360px;
+  z-index: 10;
 }
 
 .concept-text h2 {
   font-family: "Nippo-Regular", Helvetica;
   font-size: 24px;
-  color: #000;
+  color: #000000;
+  mix-blend-mode: difference;
+  margin-bottom: 10px;
 }
 
 .concept-text p {
   font-family: "Clash Grotesk-Regular", Helvetica;
   font-size: 14px;
-  color: #000;
+  line-height: 28.7px;
+  color: #000000;
+  mix-blend-mode: difference;
 }
 
 /* 🔸 Frame Styling */
 .frame {
-  position: relative;
-  margin: 60px auto;
-  width: 900px;
+  display: flex;
+  justify-content: flex-end;
 }
 
-/* 🔸 Black Trapezium Section with Frame 3 */
+.frame-2 {
+  width: 65%;   /* Adjust for more spacing */
+  height: auto;
+  object-fit: contain;
+}
+
+/* Container for the small arrow */
+.arrow-box {
+  position: absolute;
+  right: 10px;      /* Adjusts horizontal alignment */
+  top: 150px;       /* Adjusts vertical positioning */
+}
+
+/* Styling the arrow image */
+.arrow-box .group {
+  height: 51px;
+  width: 4px;
+  filter: invert(1);
+  transform: scaleX(1.5);
+}
+
 .trapezium-section {
   position: relative;
-  background-color: #000;
-  clip-path: polygon(0 10%, 100% 0, 100% 90%, 0% 100%);
-  padding: 100px 20px;
+  background-color: black;
+  clip-path: polygon(0 0, 100% 10%, 100% 90%, 0% 100%);
+  padding: 50px;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 1;
 }
 
-/* Frame 3 Styling */
 .frame-3 {
-  width: 60%;
+  width: 45%; 
   height: auto;
+}
+
+.trapezium-text {
+  width: 45%; 
+  padding: 20px;
+  text-align: left;
+  font-family: "Clash-Grotesk-Regular", Helvetica;
+}
+
+/* 🔸 Sound Concept Section Wrapper */
+.sound-concept-section {
+  position: relative;
+  padding: 40px 60px;
+}
+
+/* 🔸 Text Styling */
+/* 🔸 Sound Concept Text Styling */
+.sound-text {
+  position: absolute;
+  top: 30%;  /* Increased from 20% to push it downward */
+  left: 5%;  
+  width: 360px;
+  z-index: 10;
+}
+
+.sound-text h2 {
+  font-family: "Nippo-Regular", Helvetica;
+  font-size: 24px;
+  color: #000000;
+  mix-blend-mode: difference;
+  margin-bottom: 10px;
+}
+
+.sound-text p {
+  font-family: "Clash Grotesk-Regular", Helvetica;
+  font-size: 14px;
+  line-height: 28.7px;
+  color: #000000;
   mix-blend-mode: difference;
 }
 
-/* Text Content Inside Black Section */
-.trapezium-text {
-  width: 35%;
-  color: #fff;
-  font-family: "Clash Grotesk-Regular", Helvetica;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-/* 🔸 Frame 4 */
+/* 🔸 Frame 4 Styling */
 .frame-4 {
-  width: 890px;
-  height: 1156px;
+  width: 65%;  /* Matches frame-2 for consistency */
+  height: auto;
+  object-fit: contain;
 }
 
-/* 🔸 Sound Strategy Section */
-.strategy-section {
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.strategy-text h2 {
-  font-family: "Nippo-Regular", Helvetica;
-  font-size: 24px;
-  color: #000;
-}
-
-.strategy-text p {
-  font-family: "Clash Grotesk-Regular", Helvetica;
-  font-size: 14px;
-  color: #000;
-}
-
-/* 🔸 Footer Section */
 .footer-section {
-  padding: 60px 20px;
-  text-align: center;
+  text-align: left;
+  padding: 10px 20px;
+  color: #000000;
 }
 
-.footer-section p {
-  font-family: "Nippo-Regular", Helvetica;
-  font-size: 24px;
-  color: #000;
+/* Styling the box container */
+.box {
+  height: 218px;
+  width: 7px;
+  margin-top: 10px; /* Adds space between credits and the vector */
 }
+
+/* Styling the vector image */
+.box .vector {
+  height: 219px;
+  width: 7px;
+  position: relative;
+  left: 0;
+  top: 0;
+}
+
+

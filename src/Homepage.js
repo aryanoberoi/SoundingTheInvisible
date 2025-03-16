@@ -3,6 +3,8 @@ import frame2 from "./frame-2.png";
 import frame3 from "./frame-3.png";
 import frame4 from "./frame-4.png";
 import "./Homepage.css";
+import vector187 from "./vector-187.png";
+import group283 from "./group-283.png";
 
 export default function Homepage() {
   return (
@@ -15,17 +17,24 @@ export default function Homepage() {
       </section>
 
       {/* 🔸 Concept Section */}
-      <section className="concept-section">
-        <div className="concept-text">
-          <h2>Concept</h2>
-          <p>
-            Exploring unseen connections in nature, balancing art and science.
-          </p>
-        </div>
-        <div className="frame">
-          <img src={frame2} alt="Frame 2" className="frame-2" />
-        </div>
-      </section>
+<section className="concept-section">
+  <div className="concept-text">
+    <h2>Concept</h2>
+    <p>
+      Exploring unseen connections in nature, balancing art and science.
+    </p>
+  </div>
+
+  <div className="frame">
+    <img src={frame2} alt="Frame 2" className="frame-2" />
+  </div>
+
+  <div className="arrow-box">
+      <img className="group" alt="Group" src={group283} />
+    </div>
+</section>
+
+
 
       {/* 🔸 Black Trapezium with Frame 3 and Text */}
       <section className="trapezium-section">
@@ -39,24 +48,26 @@ export default function Homepage() {
         </div>
       </section>
 
-      {/* 🔸 Frame 4 Section */}
-      <section className="frame">
-        <img src={frame4} alt="Frame 4" className="frame-4" />
-      </section>
+      {/* 🔸 Sound Concept Section */}
+<section className="sound-concept-section">
+  <div className="sound-text">
+    <h2>Sound Concept</h2>
+    <p>
+      Exploring the relationship between phytoremediation plants and their soundscapes within temperate climates.
+    </p>
+  </div>
 
-      {/* 🔸 Sound Strategy Section */}
-      <section className="strategy-section">
-        <div className="strategy-text">
-          <h2>Sound Strategy</h2>
-          <p>
-            Exploring the relationship between phytoremediation plants and their soundscapes within temperate climates.
-          </p>
-        </div>
-      </section>
+  <div className="frame">
+    <img src={frame4} alt="Frame 4" className="frame-4" />
+  </div>
+</section>
 
       {/* 🔸 Footer Section */}
       <footer className="footer-section">
         <p>Credits</p>
+        <div className="box">
+      <img className="vector" alt="Vector" src={vector187} />
+    </div>
       </footer>
 
     </div>
