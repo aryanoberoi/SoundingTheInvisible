@@ -27,13 +27,8 @@ export const CommonNames = () => {
         <div className="common-names-header">
             <div className="common-names-rectangle" />
             <div className="common-names-underline" />
-            <div className="common-names-title">Common names of the plants</div>
+            <div className="common-names-title">Common names of plant</div>
         </div>
-
-        <div className="scientific-name-container">
-          Scientific name: <span className="scientific-name-bold">Festuca arundinacea.</span>
-        </div>
-
         <div className="common-names-items">
           {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
             <div 
