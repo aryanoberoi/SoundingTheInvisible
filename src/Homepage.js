@@ -1,10 +1,9 @@
 import React from "react";
-import frame2 from "./frame-2.png";
-import frame3 from "./frame-3.png";
 import frame4 from "./frame-4.png";
 import "./Homepage.css";
 import SoundConceptFrame from './frame.js';
 import ConceptFrame from './frame1.js';
+import MiddleFrame from './frame2.js';
 // import frame from "./frame.svg";
 // import frame1 from "./frame.png";
 // import image from "./image.svg";
@@ -48,7 +47,12 @@ export default function Homepage() {
 
       {/* 🔸 Black Trapezium with Frame 3 and Text */}
       <section className="trapezium-section">
-        <img src={frame3} alt="Frame 3" className="frame-3" />
+        <div className="svg-container">
+          <MiddleFrame 
+            className="middle-svg-concept"
+            preserveAspectRatio="xMidYMid meet"
+          />
+        </div>
         <div className="trapezium-text">
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus. 
@@ -79,18 +83,18 @@ export default function Homepage() {
         {/* <img src={group283} alt="Group Illustration" className="group-image" /> */}
       </section>
       {/* 🔸 Sound Concept Section */}
-<section className="sound-concept-section">
-  <div className="sound-text">
-    <h2>Sound Concept</h2>
-    <p>
-      Exploring the relationship between phytoremediation plants and their soundscapes within temperate climates.
-    </p>
-  </div>
+      <section className="sound-concept-section">
+        <div className="sound-text">
+          <h2>Sound Concept</h2>
+          <p>
+            Exploring the relationship between phytoremediation plants and their soundscapes within temperate climates.
+          </p>
+        </div>
 
-  <div className="frame">
-    <img src={frame4} alt="Frame 4" className="frame-4" />
-  </div>
-</section>
+        <div className="frame">
+          <img src={frame4} alt="Frame 4" className="frame-4" />
+        </div>
+      </section>
 
       {/* 🔸 Footer Section */}
       <footer className="footer-section">

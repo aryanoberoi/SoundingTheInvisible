@@ -417,3 +417,131 @@
 .nickel-group:hover .hover-path {
   opacity: 1 !important;
 }
+
+/* Hover interaction styles */
+.middle-svg-concept {
+  --active-opacity: 1;
+  --inactive-opacity: 0.5;
+}
+
+.middle-svg-concept [fill] {
+  opacity: var(--active-opacity);
+  transition: opacity 0.3s ease;
+}
+
+.middle-svg-concept:hover [fill] {
+  opacity: var(--inactive-opacity);
+}
+
+/* Target elements with ID attributes to maintain opacity on hover */
+.middle-svg-concept [id]:hover{
+  opacity: var(--active-opacity) !important;
+}
+
+.chromium-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.chromium-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.mercury-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.mercury-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.ammonium-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.ammonium-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.selenium-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.selenium-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.arsenic-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.arsenic-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.fragrance-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.fragrance-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.sulphide-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.sulphide-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.copper-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.copper-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.manganese-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.manganese-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.phosphorus-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.phosphorus-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.bht-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.bht-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
+.nitrates-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.nitrates-group:hover .hover-path {
+  opacity: 1 !important;
+}
