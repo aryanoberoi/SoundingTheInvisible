@@ -4,11 +4,6 @@ import "./Homepage.css";
 import SoundConceptFrame from './frame.js';
 import ConceptFrame from './frame1.js';
 import MiddleFrame from './frame2.js';
-// import frame from "./frame.svg";
-// import frame1 from "./frame.png";
-// import image from "./image.svg";
-// import group283 from "./group-283.png";
-// import vector187 from "./vector-187.svg";
 import vector187 from "./vector-187.png";
 import group283 from "./group-283.png";
 
