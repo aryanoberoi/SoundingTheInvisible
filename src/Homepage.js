@@ -1,5 +1,5 @@
 import React from "react";
-// import frame4 from "./frame-4.png";
+import frame4 from "./frame-4.png";
 import "./Homepage.css";
 import SoundConceptFrame from './frame.js';
 import ConceptFrame from './frame1.js';
@@ -87,7 +87,7 @@ export default function Homepage() {
         </div>
 
         <div className="frame">
-          {/* <img src={frame4} alt="Frame 4" className="frame-4" /> */}
+          <img src={frame4} alt="Frame 4" className="frame-4" />
         </div>
       </section>
 
