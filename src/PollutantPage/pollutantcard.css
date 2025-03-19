@@ -41,7 +41,7 @@
   .pollutantName {
     width: 528px;
     color: #FFF;
-    font-size: 42px;
+    font-size: 32px;
     font-style: normal;
     font-weight: 300;
     line-height: normal;
@@ -143,9 +143,9 @@
     aspect-ratio: 1;
     border: 1px solid #fff;
     align-self: flex-end;
-    margin-top: 10%;
-    width: 30%;
-    margin-right: 15%;
+    margin-top: 7%;
+    width: 40%;
+    margin-right: 0%;
     object-fit: contain;
     z-index: 20;
   }
