@@ -1,5 +1,5 @@
 import React from "react";
-import frame4 from "./frame-4.png";
+// import frame4 from "./frame-4.js";
 import "./Homepage.css";
 import SoundConceptFrame from './frame.js';
 import ConceptFrame from './frame1.js';
@@ -84,10 +84,6 @@ export default function Homepage() {
           <p>
             Exploring the relationship between phytoremediation plants and their soundscapes within temperate climates.
           </p>
-        </div>
-
-        <div className="frame">
-          <img src={frame4} alt="Frame 4" className="frame-4" />
         </div>
       </section>
 
