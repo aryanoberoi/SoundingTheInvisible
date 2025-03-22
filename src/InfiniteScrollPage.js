@@ -22,6 +22,9 @@ const PollutantPage = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const sinewavefreq = [
+    {freq: 250.5 }
+  ];
   const effectonhealthcontent = [
     { text: "Cardiac Effects_Potassium imbalances disrupt the heart's electrical activity. Hyperkalemia(elevated potassium levels) causes erratic signals, irregular beats, and potential heart failure. Hypokalemia (low potassium levels) also disrupts rhythm, increasing arrhythmia risk. Maintaining potassium balance is essential for preventing cardiac arrhythmias and heart failure." },
     { text: "Musculoskeletal Effects_Potassium is crucial for muscle function. Hypokalemia and hyperkaemia causes weakness, cramps, and may even lead to paralysis. The balance of potassium is vital for preventing muscle weakness and other harmful effects." },
@@ -328,7 +331,7 @@ const PollutantPage = () => {
               <div>Enthalpy and sound Frequency of Pollutant</div>
             </div>
             <div className="wave-container">
-              <SineWaveVisualizer frequency={4}/>
+              <SineWaveVisualizer frequency={sinewavefreq.freq}/>
             </div>
           </div>
           <div className="bottom-section2" id="effect-on-health">
