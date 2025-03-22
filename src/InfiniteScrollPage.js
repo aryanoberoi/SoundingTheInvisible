@@ -29,7 +29,20 @@ const PollutantPage = () => {
       sources: "Research on nutrient pollution in the Venice Lagoon, primarily from agricultural runoff, urban wastewater, and industrial discharges, has been extensive. Fertilizers, a key potassium source, are a major contributor, alongside urban wastewater and industrial activities. While potassium-specific studies are limited, these sources contribute to overall nutrient pollution impacting the lagoon."
     }
   ];
-
+  const rightpanelcontent = [
+    {
+      plantNameSplit: "Salvinia molesta",
+      wetlandDescription: "OBL (Obligate Wetland Plant) - Almost always occurs in wetlands",
+      phytoCapacity: "Copper_Nickel_Lead_Mercury_Heavy metals",
+      temperature: "Ideal temperatures of 20 and 30°C (68–86°F)",
+      humidity: "Prefers humidity levels >60%",
+      soil: "Can survive in waterlogged soils",
+      ph: "4.5 to 8.5",
+      imgUrl: "https://res.cloudinary.com/dj1km5iax/image/upload/v1742130083/elyrp1i8tuj1jvvznlbb.jpg",
+      plantName: "Salvinia molesta",
+      plantDetails: "Salvinia molesta is a floating fern with whorled fronds and root-like submerged structures. It reproduces asexually, forming dense mats. Native to Brazil, it spread globally post-1950s, becoming invasive. Human activity, like ornamental trade, aided its dispersal across continents, impacting ecosystems."
+    }
+  ];
   const aboutpollutantcontent = [
     {
       text: "About Potassium_Potassium is a highly reactive and soft metal that rapidly tarnishes in air and reacts violently with water, generating sufficient heat to ignite the hydrogen emitted in the reaction. Its name originates from \"potash,\" while its symbol(K) derives from the Latin \"kalium,\" reflecting its historical association with ashes. Long before its scientific discovery, potassium compounds were utilized in ancient practices like glassmaking and soap production, and as a component of gunpowder. Today, it remains crucial in various industries, notably as a fertilizer to enhance agricultural yields. Canada stands as the leading potash producer, followed by other nations like China, highlighting potassium's global economic significance. While stable potassium is generally benign, excessive potassium-based fertilizer runoff contributes to eutrophication, disrupting aquatic ecosystems by promoting algal blooms and oxygen depletion. Furthermore, the naturally occurring radioactive isotope potassium-40, present in all living organisms, contributes to low-level radiation exposure and raises concerns about long-term bioaccumulation in the environment. This necessitates careful management of potassium use to balance its industrial and agricultural benefits with its potential environmental impacts.",
@@ -271,7 +284,7 @@ const PollutantPage = () => {
     <>
       <div id="slider-container" className="slider-container">
         <LeftPanel sections={leftpanelcontent} />
-        <RightPanel />
+        <RightPanel sections={rightpanelcontent}/>
         <div
           className="slider-bar"
           style={{ left: `${sliderPosition}%` }}
