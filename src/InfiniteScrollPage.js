@@ -5,7 +5,6 @@ import SineWaveVisualizer from './PollutantPage/sinwave';
 import { Box } from './PollutantPage/Body';
 import { CaseStudies } from './PollutantPage/CaseStudies';
 import { Phyto } from './PollutantPage/Phyto';
-import PeepholeEffect from './PollutantPage/PeepHoleImage';
 import LeftPanel from './PollutantPage/LeftPanel';
 import RightPanel from './PollutantPage/RightPanel';
 import { AboutPlant } from './PollutantPage/AboutPlant';
