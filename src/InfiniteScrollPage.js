@@ -21,6 +21,14 @@ const PollutantPage = () => {
   const [activeSection, setActiveSection] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const leftpanelcontent = [
+    { 
+      pollutantName: "Potassium",
+      pollutantDescription: "Potassium (K) is a soft, silvery alkali metal discovered in 1807 by Sir Humphry Davy through electrolysis of potash (KOH). Radioactive K-40 has a 1.25 billion-year half-life; stable isotopes are K-39 and K-41. Excess potassium causes eutrophication. Canada leads potash production, used mainly in fertilizers.",
+      effect: "Cardiac arrhythmias and potential heart failure_Weakness and fatigue_Nausea and vomiting_Breathing difficulties",
+      sources: "Research on nutrient pollution in the Venice Lagoon, primarily from agricultural runoff, urban wastewater, and industrial discharges, has been extensive. Fertilizers, a key potassium source, are a major contributor, alongside urban wastewater and industrial activities. While potassium-specific studies are limited, these sources contribute to overall nutrient pollution impacting the lagoon."
+    }
+  ];
 
   const aboutpollutantcontent = [
     {
@@ -262,7 +270,7 @@ const PollutantPage = () => {
   return (
     <>
       <div id="slider-container" className="slider-container">
-        <LeftPanel />
+        <LeftPanel sections={leftpanelcontent} />
         <RightPanel />
         <div
           className="slider-bar"

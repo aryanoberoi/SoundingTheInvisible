@@ -33,7 +33,7 @@ const RightPanel = () => {
                     <div className="titleList">
                       {section.description.split('\n').map((line, lineIndex) => (
                         <div key={lineIndex} className="titleEntry">
-                          <div className="bulletcircle" />
+                          <div className="rightPanel-bullet" />
                           <span className="titleText">{line}</span>
                         </div>
                       ))}

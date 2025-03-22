@@ -5,12 +5,21 @@ import { KnowMoreButtonInvertedRA } from './Knowmorebutton';
 import { KnowMoreButtonInverted } from './Knowmorebutton';
 import SineWaveVisualizer from './sinwave';
 
-const LeftPanel = ({
-  pollutantName ="Pollutant Name",
-  descriptionLines = [],
-  healthEffectsTitles = [],
-  sourcesDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing eli. Duis accumsan lacus sit amet sagittis feugiat. Morbi et velit fringilla, maximus quam et.",
-}) => {
+const LeftPanel = ({ sections = [] }) => {
+  if (sections.length === 0) return null;
+  
+  const { 
+    pollutantName = "Pollutant Name",
+    pollutantDescription = "",
+    effect = "",
+    sources = ""
+  } = sections[0];
+
+  // Process description into lines
+  const descriptionLines = pollutantDescription.split('. '); 
+  // Process health effects into titles
+  const healthEffectsTitles = effect.split('_');
+
   return (
     <div className="left-panel">
       <div className="container">
@@ -22,8 +31,8 @@ const LeftPanel = ({
                 <div className="pollutantName">{pollutantName}</div>
               </div>
               <div className="description">
-              {descriptionLines.map((line, index) => (
-                  <div key={index} className="descriptionLine">{line}</div>
+                {descriptionLines.map((line, index) => (
+                  <div key={index} className="descriptionLine">{line}.</div>
                 ))}
               </div>
               <div className='knowone'>
@@ -46,7 +55,7 @@ const LeftPanel = ({
             <div className="sideContentWrapper">
               <div className="sectionTitle">Effects on human health:</div>
               <div className="titleList">
-              {healthEffectsTitles.map((title, index) => (
+                {healthEffectsTitles.map((title, index) => (
                   <div key={index} className="titleEntry">
                     <span className="titleText">{title}</span>
                     <div className="bulletcircle"/>
@@ -65,12 +74,7 @@ const LeftPanel = ({
             </div>
             <div className="sourcesTitle">Sources In Venice Lagoon:</div>
             <div className="sourcesDescription">
-            {sourcesDescription.split('\n').map((line, index) => (
-                <React.Fragment key={index}>
-                  {line}
-                  <br />
-                </React.Fragment>
-              ))}
+              {sources}
             </div>
             <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" />
           </div>
