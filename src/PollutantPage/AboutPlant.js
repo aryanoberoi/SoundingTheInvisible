@@ -2,7 +2,11 @@ import React from "react";
 import "./AboutPlant.css";
 import PeepholeEffect from "./PeepHoleImage";
 
-export const AboutPlant = () => {
+export const AboutPlant = ({ sections }) => {
+  // Split the description into About Plant and Wetland Status sections
+  const aboutPlantText = sections[0].description.split('_')[1];
+  const wetlandStatusText = sections[0].status.split('_')[1];
+
   return (
     <div className="inverted-section">
       <div className="main-container inverted">
@@ -25,20 +29,9 @@ export const AboutPlant = () => {
           />
         </div>
         <span className="lorem-ipsum-dolor inverted-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida
-          imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu
-          neque. Etiam rhoncus erat non quam vehicula, sed maximus magna
-          tincidunt. Sed condimentum sollicitudin nibh, nec mattis quam. Ut eu
-          volutpat nisi, quis varius risus. Integer rutrum eros ac turpis euismod,
-          in tincidunt risus dapibus. Etiam eget turpis massa. Fusce rutrum sit
-          amet magna sit amet aliquam. Donec sit amet cursus erat, sit amet
-          sagittis nunc. Nullam mattis risus nisi, non interdum elit congue in.
-          Donec vitae ligula elit. Morbi nec luctus elit, eu feugiat turpis. Sed
-          porttitor luctus ornare. Suspendisse condimentum fermentum convallis.
+          {aboutPlantText}
         </span>
         <div className="inverted-graphic-container" style={{ height: "400px" }}>
-          {/* Replace the imageContainer2 div with the PeepholeEffect component */}
           <PeepholeEffect 
             imageUrl="n19.svg" 
             width="100%" 
@@ -51,11 +44,7 @@ export const AboutPlant = () => {
           <div className="wetland-status-text">Wetland Status</div>
         </div>
         <span className="lorem-ipsum-dolor inverted-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-        congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida
-        imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu
-        neque. Etiam rhoncus erat non quam vehicula, sed maximus magna
-        tincidunt. Sed condimentum sollicitudin nibh, nec mattis quam. Ut eu
+          {wetlandStatusText}
         </span>
       </div>
     </div>

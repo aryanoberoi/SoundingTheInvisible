@@ -22,6 +22,12 @@ const PollutantPage = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const aboutplantcontent = [
+    { 
+      description: "About Salvinia molesta_Salvinia molesta, a perennial aquatic fern, exhibits a characteristic structure  that is adapted for its free-floating lifestyle. Its aerial fronds (a large leaf), arranged in triplets, transition from flat, youthful forms to increasingly folded, mature structures, reaching sizes up to 2.2 cm. These fronds possess a specialized upper surface, featuring papillae with intricate, hair-like cages that trap air, enhancing buoyancy and repelling water. The lower surface, covered in dense brown hairs, further contributes to flotation.",
+      status: "Wetland Status_ OBL (Obligate Wetland Plant) - Almost always occurs in wetlands"
+    }
+  ];
   const commonname = [
     { text: "Chinese; rén yàn huái cài pín, rén yàn huái yè píng" },
     { text: "Dutch; Grote vlotvaren" },
@@ -294,7 +300,7 @@ const PollutantPage = () => {
           <div className="white-container">
             <div className="bottom-section5" id="plant-name">
               <div className="content-container">
-                <AboutPlant/>
+                <AboutPlant sections={aboutplantcontent}/>
               </div>
             </div>
             <div className="bottom-section6" id="common-names">
