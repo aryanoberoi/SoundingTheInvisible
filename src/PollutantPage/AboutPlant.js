@@ -1,9 +1,9 @@
 import React from "react";
 import "./AboutPlant.css";
+import PeepholeEffect from "./PeepHoleImage";
 
 export const AboutPlant = () => {
   return (
-    // <PeepholeEffect />
     <div className="inverted-section">
       <div className="main-container inverted">
         <div className="flex-row-f">
@@ -37,25 +37,25 @@ export const AboutPlant = () => {
           Donec vitae ligula elit. Morbi nec luctus elit, eu feugiat turpis. Sed
           porttitor luctus ornare. Suspendisse condimentum fermentum convallis.
         </span>
-        <div className="inverted-graphic-container">
-          <div className='imageContainer2'></div>
-          <img 
-            src="n19.svg" 
-            alt="graphic element"
-            className="inverted-graphic-element"
+        <div className="inverted-graphic-container" style={{ height: "400px" }}>
+          {/* Replace the imageContainer2 div with the PeepholeEffect component */}
+          <PeepholeEffect 
+            imageUrl="n19.svg" 
+            width="100%" 
+            height="400px" 
           />
         </div>
-          <div className="wetland-status-container">
-            <div className="rectangle-inv" />
-            <div className="wetland-black-bar" />
-            <div className="wetland-status-text">Wetland Status</div>
-          </div>
-          <span className="lorem-ipsum-dolor inverted-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida
-          imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu
-          neque. Etiam rhoncus erat non quam vehicula, sed maximus magna
-          tincidunt. Sed condimentum sollicitudin nibh, nec mattis quam. Ut eu
+        <div className="wetland-status-container">
+          <div className="rectangle-inv" />
+          <div className="wetland-black-bar" />
+          <div className="wetland-status-text">Wetland Status</div>
+        </div>
+        <span className="lorem-ipsum-dolor inverted-text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+        congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida
+        imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu
+        neque. Etiam rhoncus erat non quam vehicula, sed maximus magna
+        tincidunt. Sed condimentum sollicitudin nibh, nec mattis quam. Ut eu
         </span>
       </div>
     </div>
