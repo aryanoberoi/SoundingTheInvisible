@@ -352,7 +352,7 @@ body.sound-panel-active .sound-icon span {
 /* ✅ Fix Scrollable Section Alignment */
 .bottom-section1 {
   background-color: black;
-  min-height: 100vh;
+  height: auto;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -657,9 +657,10 @@ body.homepage-active .hamburger span {
   position: relative;
   margin-top: 80px;
   width: 604px;
-  height: 802.668px;
+  height: auto;
   overflow: hidden;
   margin-left: calc(15%);
+  margin-bottom: 10%;
 }
 
 /* Add this new rule for inverted section */

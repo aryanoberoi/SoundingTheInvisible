@@ -11,7 +11,7 @@ export const Phyto = ({ sections }) => {
   const getRemediation = (text) => text.split('_')[1];
 
   return (
-    <div className="box">
+    <div className="box" id="phytoremediation">
       {/* Header Section */}
       <div className="overlap-group-wrapper">
         <div className="overlap-group-2">

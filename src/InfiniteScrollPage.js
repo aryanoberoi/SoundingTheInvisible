@@ -12,7 +12,7 @@ import { PlantHabitat } from './PollutantPage/PlantHabitat';
 import { Origin } from './PollutantPage/Origin';
 import { UsesOfPlant } from './PollutantPage/UsesOfPlant';
 import { PhytoCapacity } from './PollutantPage/PhytoCapacity';
-import AboutPollutantSection from './PollutantPage/AboutPollutant';
+import { AboutPollutantSection } from './PollutantPage/AboutPollutant';
 import { SoundFrequency } from './PollutantPage/SoundFrequency';
 
 const PollutantPage = () => {
@@ -23,7 +23,10 @@ const PollutantPage = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const aboutpollutantcontent = [
-
+    {
+      text: "About Potassium_Potassium is a highly reactive and soft metal that rapidly tarnishes in air and reacts violently with water, generating sufficient heat to ignite the hydrogen emitted in the reaction. Its name originates from \"potash,\" while its symbol(K) derives from the Latin \"kalium,\" reflecting its historical association with ashes. Long before its scientific discovery, potassium compounds were utilized in ancient practices like glassmaking and soap production, and as a component of gunpowder. Today, it remains crucial in various industries, notably as a fertilizer to enhance agricultural yields. Canada stands as the leading potash producer, followed by other nations like China, highlighting potassium's global economic significance. While stable potassium is generally benign, excessive potassium-based fertilizer runoff contributes to eutrophication, disrupting aquatic ecosystems by promoting algal blooms and oxygen depletion. Furthermore, the naturally occurring radioactive isotope potassium-40, present in all living organisms, contributes to low-level radiation exposure and raises concerns about long-term bioaccumulation in the environment. This necessitates careful management of potassium use to balance its industrial and agricultural benefits with its potential environmental impacts.",
+      image: ""
+    }
   ];
   const sinewavefreq = [
     { 
@@ -332,10 +335,11 @@ const PollutantPage = () => {
         </div>
         
         <div className="content-sections">
-        <AboutPollutantSection  sections={aboutpollutantcontent}/>
+          <div className="bottom-section1" id="about-pollutant">
+            <AboutPollutantSection  sections={aboutpollutantcontent} />
+          </div>
           <div className="bottom-section2" id="sound-frequency">
               <SoundFrequency sections={sinewavefreq}/>
-
           </div>
           <div className="bottom-section2" id="effect-on-health">
             <Box sections={effectonhealthcontent}/> {/** sizing */}
