@@ -22,6 +22,37 @@ const PollutantPage = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const phytocontent = [
+    {
+      medium: "Chenopodium quinoa_soil",
+      timePeriod: "Chenopodium quinoa_70 days",
+      remediation: "Chenopodium quinoa_66%"
+    },
+    {
+      medium: "Cucurbita pepo_soil",
+      timePeriod: "Cucurbita pepo_15/30/45 days",
+      remediation: "Cucurbita pepo_60%/70%/80%"
+    },
+    {
+      medium: "Artemisia annua_soil",
+      timePeriod: "Artemisia annua_15/30/45 days",
+      remediation: "Artemisia annua_30%/40%/47.36%"
+    },{
+      medium: "Amaranthus dubius_soil",
+      timePeriod: "Amaranthus dubius_15/30/45 days",
+      remediation: "Amaranthus dubius_25%/35%/40.72%"
+    },
+    {
+      medium: "Ipomoea aquatica_water",
+      timePeriod: "Ipomoea aquatica_15/30/45 days",
+      remediation: "Ipomoea aquatica_60%/70%/79.17%"
+    },
+    {
+      medium: "Salvinia molesta_water",
+      timePeriod: "Salvinia molesta_15/30 days",
+      remediation: "Salvinia molesta_50%/90%"
+    }
+  ];
   const aboutplantcontent = [
     { 
       description: "About Salvinia molesta_Salvinia molesta, a perennial aquatic fern, exhibits a characteristic structure  that is adapted for its free-floating lifestyle. Its aerial fronds (a large leaf), arranged in triplets, transition from flat, youthful forms to increasingly folded, mature structures, reaching sizes up to 2.2 cm. These fronds possess a specialized upper surface, featuring papillae with intricate, hair-like cages that trap air, enhancing buoyancy and repelling water. The lower surface, covered in dense brown hairs, further contributes to flotation.",
@@ -295,7 +326,7 @@ const PollutantPage = () => {
             <CaseStudies/>
           </div>
           <div className="bottom-section4" id="phytoremediation">
-            <Phyto/>
+            <Phyto sections={phytocontent}/>
           </div>
           <div className="white-container">
             <div className="bottom-section5" id="plant-name">
