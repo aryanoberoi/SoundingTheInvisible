@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 
 const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [radius, setRadius] = useState(100); // Increased default peephole size
+  const [radius, setRadius] = useState(100);
+  const [showSlider, setShowSlider] = useState(false);
   const containerRef = useRef(null);
 
   // Initialize position in the center
@@ -114,24 +115,34 @@ const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
         </div>
       </div>
 
-      {/* Radius Adjuster with increased range */}
-      <div style={{
-        position: "absolute",
-        bottom: "10px",
-        left: "50%",
-        transform: "translateX(-50%)",
-        zIndex: 10,
-        backgroundColor: "rgba(0,0,0,0.5)",
-        padding: "5px",
-        borderRadius: "5px",
-      }}>
+      {/* Radius Adjuster with hide/show on hover */}
+      <div 
+        style={{
+          position: "absolute",
+          bottom: "10px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 10,
+          backgroundColor: "rgba(0,0,0,0.5)",
+          padding: "5px",
+          borderRadius: "5px",
+          opacity: showSlider ? 1 : 0,
+          transition: "opacity 0.3s ease",
+          cursor: "pointer",
+        }}
+        onMouseEnter={() => setShowSlider(true)}
+        onMouseLeave={() => setShowSlider(false)}
+      >
         <input
           type="range"
-          min="50"    // Increased minimum radius
-          max="300"   // Increased maximum radius
+          min="50"
+          max="300"
           value={radius}
           onChange={(e) => setRadius(parseInt(e.target.value))}
-          style={{ width: "150px" }} // Made slider wider for better control
+          style={{ 
+            width: "150px",
+            cursor: "pointer"
+          }}
         />
       </div>
     </div>
