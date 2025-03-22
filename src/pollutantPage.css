@@ -1317,3 +1317,33 @@ img {
   padding: 2vw;
   margin: 1vw 0;
 }
+
+/* Add these new styles for the frequency details */
+.frequency-details {
+  margin-top: 20px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.label {
+  font-family: "Nippo-Light", sans-serif;
+  font-size: 32px;
+  font-weight: 378;
+  line-height: 43.126px;
+  letter-spacing: 0.96px;
+  color: white;
+  margin-right: 10px;
+}
+
+.value {
+  font-family: "Nippo-Light", sans-serif;
+  font-size: 32px;
+  font-weight: 378;
+  line-height: 43.126px;
+  letter-spacing: 0.96px;
+  color: white;
+}

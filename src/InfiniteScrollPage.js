@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './pollutantPage.css';
 import styles from './PollutantPage/pollutantcard.css'
-import SineWaveVisualizer from './PollutantPage/sinwave';
 import { Box } from './PollutantPage/Body';
 import { CaseStudies } from './PollutantPage/CaseStudies';
 import { Phyto } from './PollutantPage/Phyto';
@@ -14,6 +13,7 @@ import { Origin } from './PollutantPage/Origin';
 import { UsesOfPlant } from './PollutantPage/UsesOfPlant';
 import { PhytoCapacity } from './PollutantPage/PhytoCapacity';
 import AboutPollutantSection from './PollutantPage/AboutPollutant';
+import { SoundFrequency } from './PollutantPage/SoundFrequency';
 
 const PollutantPage = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -22,8 +22,15 @@ const PollutantPage = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const aboutpollutantcontent = [
+
+  ];
   const sinewavefreq = [
-    {freq: 250.5 }
+    { 
+      enthalpy: "90 KJ/mol",
+      soundfrequency: "22.56 Hz",
+      wavefrequency: 250.5
+    }
   ];
   const effectonhealthcontent = [
     { text: "Cardiac Effects_Potassium imbalances disrupt the heart's electrical activity. Hyperkalemia(elevated potassium levels) causes erratic signals, irregular beats, and potential heart failure. Hypokalemia (low potassium levels) also disrupts rhythm, increasing arrhythmia risk. Maintaining potassium balance is essential for preventing cardiac arrhythmias and heart failure." },
@@ -325,20 +332,16 @@ const PollutantPage = () => {
         </div>
         
         <div className="content-sections">
-        <AboutPollutantSection />
+        <AboutPollutantSection  sections={aboutpollutantcontent}/>
           <div className="bottom-section2" id="sound-frequency">
-            <div className="content-container">
-              <div>Enthalpy and sound Frequency of Pollutant</div>
-            </div>
-            <div className="wave-container">
-              <SineWaveVisualizer frequency={sinewavefreq.freq}/>
-            </div>
+              <SoundFrequency sections={sinewavefreq}/>
+
           </div>
           <div className="bottom-section2" id="effect-on-health">
-            <Box sections={effectonhealthcontent}/>
+            <Box sections={effectonhealthcontent}/> {/** sizing */}
           </div>
           <div className="bottom-section3" id="case-study">
-            <CaseStudies sections={casestudiescontent}/>
+            <CaseStudies sections={casestudiescontent}/> {/** text overlap */}
           </div>
           <div className="bottom-section4" id="phytoremediation">
             <Phyto sections={phytocontent}/> {/** time period overlap */}
