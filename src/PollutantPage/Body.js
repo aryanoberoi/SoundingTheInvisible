@@ -1,28 +1,18 @@
 import React from "react";
 import "./Body.css";
 
-export const Box = () => {
+export const Box = ({ sections }) => {
   const [expandedItem, setExpandedItem] = React.useState(null);
 
   const toggleItem = (item) => {
     setExpandedItem(expandedItem === item ? null : item);
   };
 
-  // Array of content strings for each item
-  const contentArray = [
-    "Content for item 1: Detailed information about the first topic.",
-    "Content for item 2: Insights and data related to the second topic.",
-    "Content for item 3: Explanation and context for the third topic.",
-    "Content for item 4: Additional details for the fourth topic.",
-    "Content for item 5: Comprehensive overview of the fifth topic.",
-    "Content for item 6: Key points and highlights for the sixth topic.",
-    "Content for item 7: Final thoughts and conclusions for the seventh topic.",
-    "Content for item 8: Final thoughts and conclusions for the seventh topic.",
-    "Content for item 9: Final thoughts and conclusions for the seventh topic.",
-    "Content for item 10: Final thoughts and conclusions for the seventh topic.",
-    "Content for item 11: Final thoughts and conclusions for the seventh topic."
-    // Add more content as needed
-  ];
+  // Helper function to parse title and content
+  const parseSection = (text) => {
+    const [title, content] = text.split('_');
+    return { title, content };
+  };
 
   return (
     <div className="box-container">
@@ -55,29 +45,32 @@ export const Box = () => {
         </div>
 
         <div className="content-items-container">
-          {contentArray.map((content, index) => (
-            <div 
-              className={`content-item content-item-${index + 1} ${expandedItem === index + 1 ? 'expanded' : ''}`} 
-              key={index}
-              onClick={() => toggleItem(index + 1)}
-            >
-              <div className="item-overlap">
-                <div className="item-title">Title for item {index + 1}</div>
-                <div className="item-icon-wrapper">
-                  <img
-                    className="item-icon"
-                    alt="Expand icon"
-                    src={`https://c.animaapp.com/Vg2l9Q1d/img/vector-148-${(index + 1) % 2 === 0 ? 6 : 4}.svg`}
-                  />
-                </div>
-                {expandedItem === index + 1 && (
-                  <div className="item-content">
-                    {content} {/* Display content based on the expanded item */}
+          {sections.map((section, index) => {
+            const { title, content } = parseSection(section.text);
+            return (
+              <div 
+                className={`content-item content-item-${index + 1} ${expandedItem === index + 1 ? 'expanded' : ''}`} 
+                key={index}
+                onClick={() => toggleItem(index + 1)}
+              >
+                <div className="item-overlap">
+                  <div className="item-title">{title}</div>
+                  <div className="item-icon-wrapper">
+                    <img
+                      className="item-icon"
+                      alt="Expand icon"
+                      src={`https://c.animaapp.com/Vg2l9Q1d/img/vector-148-${(index + 1) % 2 === 0 ? 6 : 4}.svg`}
+                    />
                   </div>
-                )}
+                  {expandedItem === index + 1 && (
+                    <div className="item-content">
+                      {content}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>
