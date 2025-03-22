@@ -12,7 +12,9 @@ const LeftPanel = ({ sections = [] }) => {
     pollutantName = "Pollutant Name",
     pollutantDescription = "",
     effect = "",
-    sources = ""
+    sources = "",
+    atomImage = "",
+    typeOfWaste = ""
   } = sections[0];
 
   // Process description into lines
@@ -38,7 +40,15 @@ const LeftPanel = ({ sections = [] }) => {
               <div className='knowone'>
               <KnowMoreButtonInverted className="knowMoreButtonInverted" />
               </div>
-              <div className="imageContainer" />
+              <div className="imageContainer">
+                {/* {atomImage && (
+                  <img 
+                    src={atomImage} 
+                    alt="Atomic structure" 
+                    className="atomImage"
+                  />
+                )} */}
+              </div>
               {/* <div className='circle-container'>
                     <div className="circle circle1" />
                     <div className="circle circle2" />
