@@ -22,6 +22,19 @@ const PollutantPage = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const commonname = [
+    { text: "Chinese; rén yàn huái cài pín, rén yàn huái yè píng" },
+    { text: "Dutch; Grote vlotvaren" },
+    { text: "English; African payal, African pyle, Aquarium water moss, Azolla, Giant azolla, Giant salvinia, Kariba weed, Salvinia, Salvinia moss, Water fern, Water spangles, Australian azolla, butterfly fern, cats tongue, koi kandy, velvet weed, watermoss" },
+    { text: "Finland; rikkakellussaniainen" },
+    { text: "Germany; Lästiger büschelfarn; Schwimmfarn, Bueschelfarn, Leastiger Schwimmfarn" },
+    { text: "Italy; Salvinia molesta (The genus name Salvinia honors the Italian scholar Antonio Maria Salvini (1633–1729), a professor of the Greek language at the University of Florence)" },
+    { text: "Netherlands; drijfplantje" },
+    { text: "Portuguese; mururé carrapatinho" },
+    { text: "South Africa; Water varing" },
+    { text: "Swedish; öronsimbräken" },
+    { text: "Thailand; Chawk hunu" }
+  ];
   const habitat = [
     {
       title: "Diverse Habitats",
@@ -285,7 +298,7 @@ const PollutantPage = () => {
               </div>
             </div>
             <div className="bottom-section6" id="common-names">
-              <CommonNames/>
+              <CommonNames sections={commonname}/>
             </div>
             <div className="bottom-section7" id="plant-habitat">
               <PlantHabitat sections={habitat}/>
