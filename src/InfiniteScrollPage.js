@@ -21,6 +21,32 @@ const PollutantPage = () => {
   const [activeSection, setActiveSection] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const habitat = [
+    {
+      title: "Diverse Habitats",
+      content: "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe"
+    },
+    {
+      title: "Flood and Drought adaptability",
+      content: "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe"
+    },
+    {
+      title: "Climate Resilience",
+      content: "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe"
+    },
+    {
+      title: "Moisture preference",
+      content: "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe"
+    },
+    {
+      title: "Temperature and humidity tolerance",
+      content: "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe"
+    }
+  ];
+  const geographicaldistribution = [
+      {text: "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe, particularly in countries like Spain, Italy, and France. In Italy, it is widely distributed across various regions, particularly in northern areas, where it plays a significant role in grasslands, pastures, and as a forage crop. In the Venice lagoons, it is notably adapted to saline and brackish environments, thriving in areas with periodic flooding.<br /><br /> Over time, it has spread beyond its native regions due to its adaptability and usefulness in agriculture and land management. Its introduction to North America likely occurred as a contaminant in imported meadow fescue seed before 1880, and while it was initially of minor importance in Europe, it gained prominence in the United States due to its superior growth characteristics and adaptability to diverse environmental conditions. By the late 19th century, this plant was recognized for its value as a forage grass, especially after the release of cultivars like Kentucky 31 in 1943, which became widely planted across the southern U.S. Today,"}
+  ];
   const sectionphyto = [
     { title: "Title 1", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco." },
     { title: "Title 2", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce malesuada est quam, quis dictum ligula fringilla ut. Donec varius nisl ut lobortis dignissim. Integer tincidunt arcu erat, sit amet malesuada purus consequat eu. Nam dapibus a nunc at tincidunt. Etiam commodo, felis nec vulputate rhoncus,." },
@@ -262,10 +288,10 @@ const PollutantPage = () => {
               <CommonNames/>
             </div>
             <div className="bottom-section7" id="plant-habitat">
-              <PlantHabitat/>
+              <PlantHabitat sections={habitat}/>
             </div>
             <div className="bottom-section8" id="origin">
-              <Origin/>
+              <Origin sections={geographicaldistribution}/>
             </div>
             <div className="bottom-section9" id="phyto-capacity">
               <PhytoCapacity sections={sectionphyto}/>

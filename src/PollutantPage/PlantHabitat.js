@@ -2,7 +2,7 @@ import React from "react";
 import "./PlantHabitat.css";
 import plantSvg from "./plant.svg";
 
-export const PlantHabitat = () => {
+export const PlantHabitat = ({ sections }) => {
   return (
     <div className="plant-habitat-container">
       <div className="habitat-main-group">
@@ -24,55 +24,12 @@ export const PlantHabitat = () => {
               src={plantSvg}
             />
 
-            <div className="habitat-section-1">
-              <p className="section-content">
-                Festuca arundinacea originates from Europe where it primarily
-                occurs in grasslands, woodland margins, and coastal marshes, with
-                its native range extending from the Mediterranean to northern
-                Europe
-              </p>
-              <div className="section-title">Diverse Habitats</div>
-            </div>
-
-            <div className="habitat-section-2">
-              <p className="section-content">
-                Festuca arundinacea originates from Europe where it primarily
-                occurs in grasslands, woodland margins, and coastal marshes, with
-                its native range extending from the Mediterranean to northern
-                Europe
-              </p>
-              <div className="section-title">Flood and Drought adaptability</div>
-            </div>
-
-            <div className="habitat-section-3">
-              <p className="section-content">
-                Festuca arundinacea originates from Europe where it primarily
-                occurs in grasslands, woodland margins, and coastal marshes, with
-                its native range extending from the Mediterranean to northern
-                Europe
-              </p>
-              <div className="section-title">Climate Resilience</div>
-            </div>
-
-            <div className="habitat-section-4">
-              <p className="section-content">
-                Festuca arundinacea originates from Europe where it primarily
-                occurs in grasslands, woodland margins, and coastal marshes, with
-                its native range extending from the Mediterranean to northern
-                Europe
-              </p>
-              <div className="section-title">Moisture preference</div>
-            </div>
-
-            <div className="habitat-section-5">
-              <p className="section-content">
-                Festuca arundinacea originates from Europe where it primarily
-                occurs in grasslands, woodland margins, and coastal marshes, with
-                its native range extending from the Mediterranean to northern
-                Europe
-              </p>
-              <div className="section-title">Temperature and humidity tolerance</div>
-            </div>
+            {sections.map((section, index) => (
+              <div key={index} className={`habitat-section-${index + 1}`}>
+                <p className="section-content">{section.content}</p>
+                <div className="section-title">{section.title}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
