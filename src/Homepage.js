@@ -1,14 +1,9 @@
 import React from "react";
-import frame2 from "./frame-2.png";
-import frame3 from "./frame-3.png";
-import frame4 from "./frame-4.png";
+// import frame4 from "./frame-4.js";
 import "./Homepage.css";
 import SoundConceptFrame from './frame.js';
-// import frame from "./frame.svg";
-// import frame1 from "./frame.png";
-// import image from "./image.svg";
-// import group283 from "./group-283.png";
-// import vector187 from "./vector-187.svg";
+import ConceptFrame from './frame1.js';
+import MiddleFrame from './frame2.js';
 import vector187 from "./vector-187.png";
 import group283 from "./group-283.png";
 
@@ -23,6 +18,7 @@ export default function Homepage() {
       </section>
 
       {/* 🔸 Concept Section */}
+
 <section className="concept-section">
   <div className="concept-text">
     <h2>Concept</h2>
@@ -44,9 +40,15 @@ export default function Homepage() {
 
 
 
+
       {/* 🔸 Black Trapezium with Frame 3 and Text */}
       <section className="trapezium-section">
-        <img src={frame3} alt="Frame 3" className="frame-3" />
+        <div className="svg-container">
+          <MiddleFrame 
+            className="middle-svg-concept"
+            preserveAspectRatio="xMidYMid meet"
+          />
+        </div>
         <div className="trapezium-text">
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus. 
@@ -56,11 +58,6 @@ export default function Homepage() {
           <div className="read-more-box">READ MORE</div>
         </div>
         
-      </section>
-
-      {/* 🔸 Frame 4 Section */}
-      <section className="frame">
-        <img src={frame4} alt="Frame 4" className="frame-4" />
       </section>
 
       {/* 🔸 Sound Strategy Section */}
@@ -84,6 +81,7 @@ export default function Homepage() {
         {/* <img src={group283} alt="Group Illustration" className="group-image" /> */}
       </section>
       {/* 🔸 Sound Concept Section */}
+
 <section className="sound-concept-section">
   <div className="sound-text">
     <h2>Sound Concept</h2>
@@ -98,6 +96,7 @@ export default function Homepage() {
   </div>
   
 </section>
+
 
       {/* 🔸 Footer Section */}
       <footer className="footer-section">

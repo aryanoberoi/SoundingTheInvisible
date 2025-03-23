@@ -47,7 +47,6 @@ const Navbar = () => {
       >
         <span className="close-btn" onClick={() => {
           setIsOpen(false);
-          navigate('/pollutants');
         }} style={{ color: 'white' }}>✕</span>
 
         <ul className={`nav-links ${expandedItem ? 'has-expanded' : ''}`}>

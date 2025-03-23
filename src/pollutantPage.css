@@ -415,12 +415,12 @@ body.sound-panel-active .sound-icon span {
 }
 
 /* ✅ Adjusting Positions Based on Your CSS */
-.nav-bar .text-wrapper { top: 20px; left: 174px; font-size: 25px; }
+.nav-bar .text-wrapper { top: 20px; left: 174px; font-size: 24px; }
 .nav-bar .text-wrapper-2 { top: 120px; left: 155px; }
 .nav-bar .text-wrapper-8 { top: 180px; left: 155px; }
 .nav-bar .text-wrapper-9 { top: 240px; left: 155px; }
 .nav-bar .text-wrapper-10 { top: 280px; left: 155px; width: 141px; }
-.nav-bar .div { top: 370px; left: 174px; font-size: 25px; }
+.nav-bar .div { top: 370px; left: 174px; font-size: 24px; }
 .nav-bar .text-wrapper-3 { top: 460px; left: 155px; }
 .nav-bar .text-wrapper-4 { top: 530px; left: 155px; }
 .nav-bar .text-wrapper-5 { top: 590px; left: 155px; }
@@ -1237,7 +1237,7 @@ body.white-panel-active .combined-section {
   .main-container {
     width: 100% !important;
     margin-left: 0;
-    padding: 1rem;
+    /* padding: 1rem; */
   }
 
   .bottom-section1, .bottom-section2, .white-container > div {

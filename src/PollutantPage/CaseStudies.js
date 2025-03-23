@@ -56,7 +56,7 @@ export const CaseStudies = () => {
                 </div>
               </div>
   
-              <div className="text-wrapper-2">Rest of the world</div>
+              <div className="text-wrapper-2">Area</div>
   
               <img
                 className="rectangle-5"
