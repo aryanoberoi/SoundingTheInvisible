@@ -40,7 +40,7 @@ const PollutantPage = () => {
       humidity: "Prefers humidity levels >60%",
       soil: "Can survive in waterlogged soils",
       ph: "4.5 to 8.5",
-      imgUrl: "https://res.cloudinary.com/dj1km5iax/image/upload/v1742130083/elyrp1i8tuj1jvvznlbb.jpg",
+      imgUrl: "",
       plantName: "Salvinia molesta",
       plantDetails: "Salvinia molesta is a floating fern with whorled fronds and root-like submerged structures. It reproduces asexually, forming dense mats. Native to Brazil, it spread globally post-1950s, becoming invasive. Human activity, like ornamental trade, aided its dispersal across continents, impacting ecosystems."
     }
