@@ -18,25 +18,26 @@ export default function Homepage() {
       </section>
 
       {/* 🔸 Concept Section */}
-      <section className="concept-section">
-        <div className="concept-text">
-          <h2>Concept</h2>
-          <p>
-            Exploring unseen connections in nature, balancing art and science.
-          </p>
-        </div>
 
-        <div className="svg-container">
-          <ConceptFrame 
-            className="interactive-svg-concept"
-            preserveAspectRatio="xMidYMid meet"
-          />
-        </div>
+<section className="concept-section">
+  <div className="concept-text">
+    <h2>Concept</h2>
+    <p>
+      Exploring unseen connections in nature, balancing art and science.
+    </p>
+    <div className="read-more-box">READ MORE</div>
+  </div>
+  
+  <div className="frame">
+    <img src={frame2} alt="Frame 2" className="frame-2" />
+  </div>
+  
+  <div className="arrow-box">
+      <img className="group" alt="Group" src={group283} />
+    </div>
+    
+</section>
 
-        <div className="arrow-box">
-            <img className="group" alt="Group" src={group283} />
-          </div>
-      </section>
 
 
 
@@ -54,7 +55,9 @@ export default function Homepage() {
             Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. 
             Etiam rhoncus erat non quam vehicula.
           </p>
+          <div className="read-more-box">READ MORE</div>
         </div>
+        
       </section>
 
       {/* 🔸 Sound Strategy Section */}
@@ -78,14 +81,22 @@ export default function Homepage() {
         {/* <img src={group283} alt="Group Illustration" className="group-image" /> */}
       </section>
       {/* 🔸 Sound Concept Section */}
-      <section className="sound-concept-section">
-        <div className="sound-text">
-          <h2>Sound Concept</h2>
-          <p>
-            Exploring the relationship between phytoremediation plants and their soundscapes within temperate climates.
-          </p>
-        </div>
-      </section>
+
+<section className="sound-concept-section">
+  <div className="sound-text">
+    <h2>Sound Concept</h2>
+    <p>
+      Exploring the relationship between phytoremediation plants and their soundscapes within temperate climates.
+    </p>
+    <div className="read-more-box">READ MORE</div>
+  </div>
+
+  <div className="frame">
+    <img src={frame4} alt="Frame 4" className="frame-4" />
+  </div>
+  
+</section>
+
 
       {/* 🔸 Footer Section */}
       <footer className="footer-section">
