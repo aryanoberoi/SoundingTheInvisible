@@ -3,14 +3,13 @@ import { KnowMoreButton } from './Knowmorebutton';
 import './RightPanel.css';
 import { PlantInfoSection } from './PlantInfoSection';
 
-
 const plantData = [
   {
     title: "Wetland status:",
     description: "FACU or OBL etc and explain what it is"
   },
   {
-    title: `Phytoremdiation capacity of plant_name:`,
+    title: "Common names of Plant:",
     description: "Lorem ipsum dolor sit amet, \n consectetur adipiscing eli. \n Duis accumsan lacus sit amet sagittis feugiat. \n Morbi et velit fringilla, maximus quam et, \n cursus odio. \n Donec quis sem gravida nisi malesuada fringilla. \n Duis ac erat vitae magna rutrum suscipit."
   },
   {

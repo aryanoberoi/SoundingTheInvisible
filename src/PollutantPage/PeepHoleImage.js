@@ -1,68 +1,57 @@
 import React, { useState } from "react";
 
-const PeepholeEffect = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [radius, setRadius] = useState(100); // Default peephole size
+const PeepholeEffect = ({ peepholeSize = 100 }) => {
+  const [position, setPosition] = useState({ x: -9999, y: -9999 });
+  const [isPeeping, setIsPeeping] = useState(false);
 
   const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
     setPosition({
-      x: e.clientX,
-      y: e.clientY,
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
     });
   };
 
+  const handleTouchStart = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const touch = e.touches[0];
+    setIsPeeping(true);
+    setPosition({
+      x: touch.clientX - rect.left,
+      y: touch.clientY - rect.top,
+    });
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isPeeping) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const touch = e.touches[0];
+    setPosition({
+      x: touch.clientX - rect.left,
+      y: touch.clientY - rect.top,
+    });
+  };
+
+  const handleTouchEnd = () => {
+    setIsPeeping(false);
+    setPosition({ x: -9999, y: -9999 });
+  };
+
   return (
-    <div style={styles.container} onMouseMove={handleMouseMove}>
-      {/* Black Overlay with Peephole Effect */}
-      <div
-        style={{
-          ...styles.overlay,
-          WebkitMaskImage: `radial-gradient(circle ${radius}px at ${position.x}px ${position.y}px, transparent 30%, black)`,
-          maskImage: `radial-gradient(circle ${radius}px at ${position.x}px ${position.y}px, transparent 30%, black)`,
-        }}
-      />
-
-      {/* Radius Adjuster */}
-      <div style={styles.controls}>
-        <label style={{ color: "white" }}>Adjust Peephole Size: </label>
-        <input
-          type="range"
-          min="30"
-          max="300"
-          value={radius}
-          onChange={(e) => setRadius(parseInt(e.target.value))}
-        />
-      </div>
-    </div>
+    <div
+      className="relative w-64 h-64 bg-black"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => setPosition({ x: -9999, y: -9999 })}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      style={{
+        maskImage: `radial-gradient(circle ${peepholeSize}px at ${position.x}px ${position.y}px, white 20%, black 80%)`,
+        WebkitMaskImage: `radial-gradient(circle ${peepholeSize}px at ${position.x}px ${position.y}px, white 20%, black 80%)`,
+        backgroundColor: "white",
+      }}
+    />
   );
-};
-
-// Styles
-const styles = {
-  container: {
-    width: "100vw",
-    height: "100vh",
-    backgroundImage: 'n19.svg',
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    overflow: "hidden",
-    position: "relative",
-  },
-  overlay: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    backgroundColor: "black",
-  },
-  controls: {
-    position: "absolute",
-    bottom: "20px",
-    left: "50%",
-    transform: "translateX(-50%)",
-    zIndex: 10,
-  },
 };
 
 export default PeepholeEffect;

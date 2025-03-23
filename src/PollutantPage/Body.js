@@ -16,12 +16,7 @@ export const Box = () => {
     "Content for item 4: Additional details for the fourth topic.",
     "Content for item 5: Comprehensive overview of the fifth topic.",
     "Content for item 6: Key points and highlights for the sixth topic.",
-    "Content for item 7: Final thoughts and conclusions for the seventh topic.",
-    "Content for item 8: Final thoughts and conclusions for the seventh topic.",
-    "Content for item 9: Final thoughts and conclusions for the seventh topic.",
-    "Content for item 10: Final thoughts and conclusions for the seventh topic.",
-    "Content for item 11: Final thoughts and conclusions for the seventh topic."
-    // Add more content as needed
+    "Content for item 7: Final thoughts and conclusions for the seventh topic."
   ];
 
   return (
@@ -55,24 +50,24 @@ export const Box = () => {
         </div>
 
         <div className="content-items-container">
-          {contentArray.map((content, index) => (
+          {[1, 2, 3, 4, 5, 6, 7].map((item) => (
             <div 
-              className={`content-item content-item-${index + 1} ${expandedItem === index + 1 ? 'expanded' : ''}`} 
-              key={index}
-              onClick={() => toggleItem(index + 1)}
+              className={`content-item content-item-${item} ${expandedItem === item ? 'expanded' : ''}`} 
+              key={item}
+              onClick={() => toggleItem(item)}
             >
               <div className="item-overlap">
-                <div className="item-title">Title for item {index + 1}</div>
+                <div className="item-title">Place your title here</div>
                 <div className="item-icon-wrapper">
                   <img
                     className="item-icon"
                     alt="Expand icon"
-                    src={`https://c.animaapp.com/Vg2l9Q1d/img/vector-148-${(index + 1) % 2 === 0 ? 6 : 4}.svg`}
+                    src={`https://c.animaapp.com/Vg2l9Q1d/img/vector-148-${item % 2 === 0 ? 6 : 4}.svg`}
                   />
                 </div>
-                {expandedItem === index + 1 && (
+                {expandedItem === item && (
                   <div className="item-content">
-                    {content} {/* Display content based on the expanded item */}
+                    {contentArray[item - 1]} {/* Display content based on the expanded item */}
                   </div>
                 )}
               </div>
