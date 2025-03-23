@@ -29,15 +29,17 @@ export default function Homepage() {
     <p>
       Exploring unseen connections in nature, balancing art and science.
     </p>
+    <div className="read-more-box">READ MORE</div>
   </div>
-
+  
   <div className="frame">
     <img src={frame2} alt="Frame 2" className="frame-2" />
   </div>
-
+  
   <div className="arrow-box">
       <img className="group" alt="Group" src={group283} />
     </div>
+    
 </section>
 
 
@@ -51,7 +53,9 @@ export default function Homepage() {
             Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. 
             Etiam rhoncus erat non quam vehicula.
           </p>
+          <div className="read-more-box">READ MORE</div>
         </div>
+        
       </section>
 
       {/* 🔸 Frame 4 Section */}
@@ -86,11 +90,13 @@ export default function Homepage() {
     <p>
       Exploring the relationship between phytoremediation plants and their soundscapes within temperate climates.
     </p>
+    <div className="read-more-box">READ MORE</div>
   </div>
 
   <div className="frame">
     <img src={frame4} alt="Frame 4" className="frame-4" />
   </div>
+  
 </section>
 
       {/* 🔸 Footer Section */}

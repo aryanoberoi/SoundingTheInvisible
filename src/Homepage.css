@@ -298,3 +298,38 @@
 .potassium-group:hover .hover-path {
   opacity: 1 !important;
 }
+
+.read-more-box {
+  height: 22px;
+  width: 94px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  font-size: 12px;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  margin-top: -8px; /* Reduced margin to bring it closer */
+}
+
+/* Invert colors for black background */
+.trapezium-section .read-more-box {
+  border: 1px solid white;
+  color: white;
+}
+
+.trapezium-section .read-more-box:hover {
+  background-color: white;
+  color: black;
+  transition: 0.3s ease-in-out;
+}
+
+/* Default hover effect */
+.read-more-box:hover {
+  background-color: black;
+  color: white;
+  transition: 0.3s ease-in-out;
+}
