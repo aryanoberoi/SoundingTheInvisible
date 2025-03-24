@@ -142,12 +142,13 @@
     border-radius: 50%;
     aspect-ratio: 1;
     border: 1px solid #fff;
-    align-self: flex-end;
-    margin-top: 10%;
-    width: 30%;
-    margin-right: 15%;
+    width: 320px;
+    height: 320px;
     object-fit: contain;
     z-index: 20;
+    position: absolute;
+    top: 215px;
+    left: 575px;
   }
   
   .pollutantImage {
