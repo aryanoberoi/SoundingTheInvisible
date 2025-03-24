@@ -41,6 +41,7 @@ const LeftPanel = ({ sections = [] }) => {
               <KnowMoreButtonInverted className="knowMoreButtonInverted" />
               </div>
               <div className="imageContainer" />
+              
               {/* <div className='circle-container'>
                     <div className="circle circle1" />
                     <div className="circle circle2" />
