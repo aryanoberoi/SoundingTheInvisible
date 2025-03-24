@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 // import frame4 from "./frame-4.js";
 import "./Homepage.css";
 import SoundConceptFrame from './frame.js';
@@ -8,6 +8,9 @@ import vector187 from "./vector-187.png";
 import group283 from "./group-283.png";
 
 export default function Homepage() {
+  const [showConceptText, setShowConceptText] = useState(false);
+  const [showTrapeziumText, setShowTrapeziumText] = useState(false);
+  const [showSoundText, setShowSoundText] = useState(false);
   return (
     <div className="homepage">
 
@@ -22,8 +25,16 @@ export default function Homepage() {
         <div className="concept-text">
           <h2>Concept</h2>
           <p>
-            Exploring unseen connections in nature, balancing art and science.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus.
+            {showConceptText && (
+              <>
+                Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
+              </>
+            )}
           </p>
+          <div className="read-more-box" onClick={() => setShowConceptText(!showConceptText)}>
+            {showConceptText ? "READ LESS" : "READ MORE"}
+          </div>
         </div>
 
         <div className="svg-container">
@@ -50,43 +61,44 @@ export default function Homepage() {
         </div>
         <div className="trapezium-text">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus. 
-            Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. 
-            Etiam rhoncus erat non quam vehicula.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus.
+            {showTrapeziumText && (
+              <>
+                Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
+              </>
+            )}
           </p>
+          <div className="read-more-box" onClick={() => setShowTrapeziumText(!showTrapeziumText)}>
+            {showTrapeziumText ? "READ LESS" : "READ MORE"}
+          </div>
         </div>
       </section>
 
-      {/* 🔸 Sound Strategy Section */}
-      <section className="strategy-section">
-        <div className="strategy-text">
-          <h2>Sound concept</h2>
-          <p>
-            Exploring the relationship between phytoremediation plants and their soundscapes within temperate climates.
-          </p>
-        </div>
-        <div className="svg-container">
+      {/* 🔸 Sound Concept Section */}
+      <section className="sound-concept-section">
+      <div className="svg-container">
           <SoundConceptFrame 
             className="strategy-image interactive-svg"
             preserveAspectRatio="xMidYMid meet"
           />
         </div>
-      </section>
-
-      {/* 🔸 Group Section */}
-      <section className="group-section">
-        {/* <img src={group283} alt="Group Illustration" className="group-image" /> */}
-      </section>
-      {/* 🔸 Sound Concept Section */}
-      <section className="sound-concept-section">
         <div className="sound-text">
           <h2>Sound Concept</h2>
           <p>
-            Exploring the relationship between phytoremediation plants and their soundscapes within temperate climates.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus.
+            {showSoundText && (
+              <>
+                Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
+              </>
+            )}
           </p>
+          <div className="read-more-box" onClick={() => setShowSoundText(!showSoundText)}>
+            {showSoundText ? "READ LESS" : "READ MORE"}
+          </div>
         </div>
+        
       </section>
-
+      
       {/* 🔸 Footer Section */}
       <footer className="footer-section">
         <p>Credits</p>
