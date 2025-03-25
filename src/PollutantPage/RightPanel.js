@@ -81,8 +81,8 @@ const RightPanel = ({ sections = [] }) => {
           <main className="mainContent">
             <div className="imageSection">
               <img
-                src={imgUrl}
-                alt="Detailed view of the plant"
+                src='plantimg.png'
+               alt="Detailed view of the plant"
                 className="plantImageRightPanel"
               />
               <div className="plantDescription">

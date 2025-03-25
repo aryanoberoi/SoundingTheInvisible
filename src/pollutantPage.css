@@ -65,7 +65,8 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10; /* Ensures the slider is above the panels */
+  z-index: 10;
+  top: -60px; /* Ensures the slider is above the panels */
 }
 
 .slider-circle {

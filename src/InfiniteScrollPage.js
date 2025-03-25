@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import './pollutantPage.css';
 import styles from './PollutantPage/pollutantcard.css'
 import { Box } from './PollutantPage/Body';
@@ -176,29 +176,28 @@ const PollutantPage = () => {
     const container = document.getElementById('slider-container');
     const rect = container.getBoundingClientRect();
     const newPosition = ((e.clientX - rect.left) / rect.width) * 100;
-  
+
     if (newPosition >= 0 && newPosition <= 100) {
-      document.documentElement.style.setProperty('--slider-position', `${newPosition}%`);
-      setSliderPosition(newPosition);
+        document.documentElement.style.setProperty('--slider-position', `${newPosition}%`);
+        setSliderPosition(newPosition);
 
-      // For navbar
-      document.body.classList.toggle('right-panel-active', newPosition < 3);
-      
-      // Toggle visibility based on dominant panel
-      document.body.classList.toggle('white-panel-active', newPosition <= 50);
-      document.body.classList.toggle('black-panel-active', newPosition > 50);
+        // For navbar
+        document.body.classList.toggle('right-panel-active', newPosition < 3);
+        
+        // Toggle visibility based on dominant panel
+        document.body.classList.toggle('white-panel-active', newPosition <= 50);
+        document.body.classList.toggle('black-panel-active', newPosition > 50);
 
-      // Custom condition for sound button
-      document.body.classList.toggle('sound-panel-active', newPosition < 98);
+        // Custom condition for sound button
+        document.body.classList.toggle('sound-panel-active', newPosition < 98);
 
-      // Calculate rotation based on slider position
-      const newRotation = (newPosition / 100) * 360;
+        // Calculate rotation based on slider position
+        const newRotation = (newPosition / 100) * 360;
 
-      setRotation(newRotation);
-      document.documentElement.style.setProperty('--rotation', `${newRotation}deg`);
+        setRotation(newRotation);
+        document.documentElement.style.setProperty('--rotation', `${newRotation}deg`);
     }
-  };
-
+};
   const handleMouseDown = () => {
     document.addEventListener('mousemove', handleSliderMove);
     document.addEventListener('mouseup', handleMouseUp);
