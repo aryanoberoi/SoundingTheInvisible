@@ -78,26 +78,26 @@ const PollutantPage = () => {
     },
     {
       medium: "Cucurbita pepo_soil",
-      timePeriod: "Cucurbita pepo_15/30/45 days",
+      timePeriod: "Cucurbita pepo_15/30/45",
       remediation: "Cucurbita pepo_60%/70%/80%"
     },
     {
       medium: "Artemisia annua_soil",
-      timePeriod: "Artemisia annua_15/30/45 days",
+      timePeriod: "Artemisia annua_15/30/45",
       remediation: "Artemisia annua_30%/40%/47.36%"
     },{
       medium: "Amaranthus dubius_soil",
-      timePeriod: "Amaranthus dubius_15/30/45 days",
+      timePeriod: "Amaranthus dubius_15/30/45",
       remediation: "Amaranthus dubius_25%/35%/40.72%"
     },
     {
       medium: "Ipomoea aquatica_water",
-      timePeriod: "Ipomoea aquatica_15/30/45 days",
+      timePeriod: "Ipomoea aquatica_15/30/45",
       remediation: "Ipomoea aquatica_60%/70%/79.17%"
     },
     {
       medium: "Salvinia molesta_water",
-      timePeriod: "Salvinia molesta_15/30 days",
+      timePeriod: "Salvinia molesta_15/30",
       remediation: "Salvinia molesta_50%/90%"
     }
   ];

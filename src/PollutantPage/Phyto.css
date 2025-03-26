@@ -77,9 +77,9 @@
 
 .bottom-section4 .box .text-wrapper-2 {
     color: #ffffff;
-    font-family: "Nippo-Regular", Helvetica;
+    font-family: "Nippo-Light", Helvetica;
     font-size: 15px;
-    font-weight: 400;
+    font-weight: 300;
     left: 0;
     letter-spacing: 0.45px;
     line-height: normal;
@@ -202,9 +202,9 @@
 }
 .bottom-section4 .box .overlap-group .soil-label {
     color: #ffffff;
-    font-family: "Nippo-Regular", Helvetica;
+    font-family: "Nippo-Light", Helvetica;
     font-size: 15px;
-    font-weight: 400;
+    font-weight: 300;
     letter-spacing: 0.45px;
     position: absolute;
     left: 0;
