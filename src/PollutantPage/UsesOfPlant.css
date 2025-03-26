@@ -108,7 +108,7 @@
     object-fit: fill;
 }
 
-.nutrition-text-header {
+.nutritional-text-header {
     font-family: Nippo-Regular;
     font-weight: 378;
     font-size: 20px;
@@ -120,7 +120,7 @@
     margin-top: 20px;
 }
 
-.nutrition-text-text {
+.nutritional-text-text {
     font-family: 'ClashGrotesk-Regular';
     font-weight: 400;
     font-size: 14px;
