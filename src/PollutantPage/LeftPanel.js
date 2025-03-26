@@ -60,7 +60,7 @@ const LeftPanel = ({ sections = [] }) => {
               <div className="titleList">
                 {healthEffectsTitles.map((title, index) => (
                   <div key={index} className="titleEntry">
-                    <span className="titleText">{title}</span>
+                    <span className="titleTextSC">{title}</span>
                     <div className="bulletcircle"/>
                   </div>
                 ))}

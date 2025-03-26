@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&display=swap');
+
 .container {
     background: #000;
     padding: 95px 69px;
@@ -41,18 +43,22 @@
   .pollutantName {
     width: 528px;
     color: #FFF;
-    font-size: 42px;
-    font-style: normal;
+    font-family: 'Nippo-Light';
+    font-size: 32px;
     font-weight: 300;
-    line-height: normal;
-    letter-spacing: 0.96px;
+    line-height: 100%;
+    letter-spacing: 3%;
     margin-top: 8px;
   }
   
   .description {
     color: #fff;
     margin-top: 24px;
-    font: 300 15px/23px 'Nippo-Light', sans-serif;
+    font-family: 'Chivo Mono';
+    font-weight: 200;
+    font-size: 12px;
+    line-height: 165%;
+    letter-spacing: 0;
     padding-left: 15px;
   }
   
