@@ -32,20 +32,20 @@ export default function Homepage() {
 
       {/* 🔸 Concept Section */}
       <section className="concept-section">
-        <div className="concept-text">
-          <h2>Concept</h2>
+      <div className="concept-text">
+        <h2>Sound Concept</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus.
+        </p>
+        {showSoundText && (
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus.
-            {showConceptText && (
-              <>
-                Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
-              </>
-            )}
+            Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
           </p>
-          <div className="read-more-box" onClick={() => setShowConceptText(!showConceptText)}>
-            {showConceptText ? "READ LESS" : "READ MORE"}
-          </div>
+        )}
+        <div className="read-more-box" onClick={() => setShowSoundText(!showSoundText)}>
+          {showSoundText ? "READ LESS" : "READ MORE"}
         </div>
+      </div>
 
         <div className="svg-container">
           <ConceptFrame 
@@ -72,14 +72,14 @@ export default function Homepage() {
         <div className="trapezium-text">
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus.
-            {showTrapeziumText && (
-              <>
-                Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
-              </>
-            )}
           </p>
-          <div className="read-more-box" onClick={() => setShowTrapeziumText(!showTrapeziumText)}>
-            {showTrapeziumText ? "READ LESS" : "READ MORE"}
+            {showSoundText && (
+              <p>
+                Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
+              </p>
+            )}
+          <div className="read-more-box" onClick={() => setShowSoundText(!showSoundText)}>
+            {showSoundText ? "READ LESS" : "READ MORE"}
           </div>
         </div>
       </section>
@@ -90,12 +90,12 @@ export default function Homepage() {
           <h2>Sound Concept</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus.
-            {showSoundText && (
-              <>
-                Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
-              </>
-            )}
           </p>
+            {showSoundText && (
+              <p>
+                Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
+              </p>
+            )}
           <div className="read-more-box" onClick={() => setShowSoundText(!showSoundText)}>
             {showSoundText ? "READ LESS" : "READ MORE"}
           </div>
