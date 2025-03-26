@@ -49,7 +49,7 @@
   .about-pollutant {
     width: 370.561px;
     height: 43.126px;
-    font-family: Nippo-Light, sans-serif;
+    font-family: Nippo-Regular, sans-serif;
     font-size: 32px;
     font-weight: 378;
     line-height: 43.126px;
@@ -75,7 +75,8 @@
     mix-blend-mode: difference;
     font-weight: 600;
     width: 80%;
-    font-family: 'ClashGrotesk-Light', -apple-system, sans-serif;
+    font-family: 'ClashGrotesk-Regular', -apple-system, sans-serif;
+    font-weight: 400;
     font-size: 14px;
     line-height: 28.7px;
     margin: 60px 5px 30px 4px;
