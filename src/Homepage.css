@@ -12,16 +12,19 @@
 }
 
 .header-section h1 {
-  font-family: "Nippo-Light", Helvetica;
+  font-family: 'Nippo-Light';
+  font-weight: 300;
   font-size: 32px;
-  color: #a5a5a5;
-  line-height: 1.6;
+  text-align: center;
+  text-transform: capitalize;
 }
 
 .header-section p {
-  font-family: "Clash Grotesk-Light", Helvetica;
-  font-size: 16px;
-  color: #a5a5a5;
+  font-family: "ClashGrotesk-Light";
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: 0.03em;  /* 3% converted to em */
+  text-align: center;
 }
 
 /* 🔸 Concept Section Wrapper */
@@ -40,7 +43,7 @@
 }
 
 .concept-text h2 {
-  font-family: "Nippo-Regular", Helvetica;
+  font-family: "Nippo-Light", Helvetica;
   font-size: 24px;
   color: #000000;
   mix-blend-mode: difference;
@@ -109,12 +112,32 @@
 
 .sound-concept-section {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  text-align: left;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
-  max-width: 600px;
+  gap: 40px;
+}
+
+.sound-text {
+  flex: 1;
+  max-width: 360px;
+  padding-left: 5%;
+}
+
+.svg-container {
+  flex-basis: 66.666%;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 5%;
+}
+
+.svg-container-scs {
+  flex: 2;
+  display: flex;
+  justify-content: flex-end;
+  max-width: 66.66%;
 }
 
 /* 🔸 Sound Strategy Section */
@@ -133,25 +156,15 @@
   text-align: left;
 }
 
-.svg-container {
-  flex-basis: 66.666%;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-right: 10px;
-}
-
 .sound-text h2 {
-  font-family: "Nippo-Regular", Helvetica;
+  font-family: "Nippo-Light", Helvetica;
   font-size: 24px;
   color: #000000;
-  mix-blend-mode: difference;
   margin-bottom: 0px;
 }
 
 .strategy-text p {
-  font-family: "ClashGrotesk-Regular", Helvetica;
+  font-family: "ClashGrotesk-Light", Helvetica;
   font-size: 14px;
   line-height: 28.7px;
   color: #000000;
@@ -602,6 +615,10 @@
 }
 
 .sound-text p {
-  margin-top: 5px; /* Reduces space between heading and paragraph */
-  line-height: 1.5; /* Ensures good readability */
+  font-family: "ClashGrotesk-Regular", Helvetica;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 205%;
+  letter-spacing: 0;
+  margin-top: 5px;
 }

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useRef, useEffect} from "react";
 // import frame4 from "./frame-4.js";
 import "./Homepage.css";
 import SoundConceptFrame from './frame.js';
@@ -11,6 +11,16 @@ export default function Homepage() {
   const [showConceptText, setShowConceptText] = useState(false);
   const [showTrapeziumText, setShowTrapeziumText] = useState(false);
   const [showSoundText, setShowSoundText] = useState(false);
+  const audioRef = useRef(null);
+  
+  // Safe audio manipulation example
+  const handleAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      // other audio operations
+    }
+  };
+
   return (
     <div className="homepage">
 
@@ -76,12 +86,6 @@ export default function Homepage() {
 
       {/* 🔸 Sound Concept Section */}
       <section className="sound-concept-section">
-      <div className="svg-container">
-          <SoundConceptFrame 
-            className="strategy-image interactive-svg"
-            preserveAspectRatio="xMidYMid meet"
-          />
-        </div>
         <div className="sound-text">
           <h2>Sound Concept</h2>
           <p>
@@ -96,7 +100,12 @@ export default function Homepage() {
             {showSoundText ? "READ LESS" : "READ MORE"}
           </div>
         </div>
-        
+        <div className="svg-container-scs">
+          <SoundConceptFrame 
+            className="strategy-image interactive-svg"
+            preserveAspectRatio="xMidYMid meet"
+          />
+        </div>
       </section>
       
       {/* 🔸 Footer Section */}
