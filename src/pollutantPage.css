@@ -1333,20 +1333,59 @@ img {
 }
 
 .label {
-  font-family: "Nippo-Light", sans-serif;
-  font-size: 32px;
+  font-family: "Nippo-Regular";
+  font-size: 16px;
   font-weight: 378;
-  line-height: 43.126px;
-  letter-spacing: 0.96px;
+  line-height: 204.99999999999997%;
+  letter-spacing: 0%;
   color: white;
   margin-right: 10px;
 }
 
 .value {
-  font-family: "Nippo-Light", sans-serif;
-  font-size: 32px;
+  font-family: "Nippo-Regular";
+  font-size: 16px;
   font-weight: 378;
-  line-height: 43.126px;
-  letter-spacing: 0.96px;
+  line-height: 204.99999999999997%;
+  letter-spacing: 0%;
   color: white;
+}
+
+.content-container-overlap{
+  height: 57px;
+  position: relative;
+  width: 580px;
+}
+
+.content-container-background {
+  background-color: #ffffff;
+  width: 80%;
+  left: 10%;
+  height: 4vw;
+  max-height: 57px;
+  position: relative;
+  top: 0;
+}
+
+.content-container-underline {
+  background-color: #ffffff;
+  height: 9px;
+  left: 15%;
+  position: relative;
+  top: -15%;
+  width: 90%;
+}
+
+.content-container-title {
+  color: #181818;
+  font: 400 28px 'Nippo-Regular', sans-serif;
+  font-size: clamp(20px, 2vw, 28px); 
+  font-weight: 400;
+  left: 0;
+  letter-spacing: 0.84px;
+  line-height: normal;
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  text-align: center;
 }

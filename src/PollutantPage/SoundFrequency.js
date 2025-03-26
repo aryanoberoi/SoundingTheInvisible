@@ -6,14 +6,18 @@ export const SoundFrequency = ({ sections }) => {
   return (
     <div className="sound-frequency-container">
         <div className="content-container">
-        Enthalpy and Sound Frequency of Pollutant
+          <div className="content-container-overlap">
+            <div className="content-container-background" />
+            <div className="content-container-underline" />
+            <div className="content-container-title">Enthalpy and Sound Frequency of Pollutant</div>
+          </div>
         </div>
 
       <div className="wave-container">
         <SineWaveVisualizer frequency={sections[0].wavefrequency} />
         <div className="frequency-details">
           <div className="detail-item">
-            <span className="label">Enthalpy:</span>
+            <span className="label">Enthalpy of formation:</span>
             <span className="value">{sections[0].enthalpy}</span>
           </div>
           <div className="detail-item">
