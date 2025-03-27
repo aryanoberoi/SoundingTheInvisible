@@ -13,7 +13,7 @@ export default function Homepage() {
   const [showSoundText, setShowSoundText] = useState(false);
   const audioRef = useRef(null);
   
-  // Safe audio manipulation example
+  // Safe audio manipulation with better null checking
   const handleAudio = () => {
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
@@ -21,8 +21,20 @@ export default function Homepage() {
     }
   };
 
+  // Make sure the audio is loaded
+  useEffect(() => {
+    // Optional: You could set up audio here if needed
+    console.log("Audio ref initialized:", audioRef.current);
+  }, []);
+
   return (
     <div className="homepage">
+      {/* Add the actual audio element */}
+      <audio 
+        ref={audioRef} 
+        src="/path/to/your/audio-file.mp3" // Make sure to add the correct path
+        preload="auto"
+      />
 
       {/* 🔸 Header Section */}
       <section className="header-section">
@@ -51,6 +63,8 @@ export default function Homepage() {
           <ConceptFrame 
             className="interactive-svg-concept"
             preserveAspectRatio="xMidYMid meet"
+            audioRef={audioRef} // Pass the audio ref to your component
+            handleAudio={handleAudio} // Pass the handler function
           />
         </div>
 
@@ -59,14 +73,14 @@ export default function Homepage() {
           </div>
       </section>
 
-
-
       {/* 🔸 Black Trapezium with Frame 3 and Text */}
       <section className="trapezium-section">
         <div className="svg-container">
           <MiddleFrame 
             className="middle-svg-concept"
             preserveAspectRatio="xMidYMid meet"
+            audioRef={audioRef} // Pass the audio ref to your component
+            handleAudio={handleAudio} // Pass the handler function
           />
         </div>
         <div className="trapezium-text">
@@ -104,6 +118,8 @@ export default function Homepage() {
           <SoundConceptFrame 
             className="strategy-image interactive-svg"
             preserveAspectRatio="xMidYMid meet"
+            audioRef={audioRef} // Pass the audio ref to your component
+            handleAudio={handleAudio} // Pass the handler function
           />
         </div>
       </section>
@@ -112,10 +128,9 @@ export default function Homepage() {
       <footer className="footer-section">
         <p>Credits</p>
         <div className="box">
-      <img className="vector" alt="Vector" src={vector187} />
-    </div>
+          <img className="vector" alt="Vector" src={vector187} />
+        </div>
       </footer>
-
     </div>
   );
 }

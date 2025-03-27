@@ -143,7 +143,7 @@ const PollutantPage = () => {
     }
   ];
   const geographicaldistribution = [
-      {text: "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe, particularly in countries like Spain, Italy, and France. In Italy, it is widely distributed across various regions, particularly in northern areas, where it plays a significant role in grasslands, pastures, and as a forage crop. In the Venice lagoons, it is notably adapted to saline and brackish environments, thriving in areas with periodic flooding.<br /><br /> Over time, it has spread beyond its native regions due to its adaptability and usefulness in agriculture and land management. Its introduction to North America likely occurred as a contaminant in imported meadow fescue seed before 1880, and while it was initially of minor importance in Europe, it gained prominence in the United States due to its superior growth characteristics and adaptability to diverse environmental conditions. By the late 19th century, this plant was recognized for its value as a forage grass, especially after the release of cultivars like Kentucky 31 in 1943, which became widely planted across the southern U.S. Today,"}
+      {text: "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe, particularly in countries like Spain, Italy, and France. In Italy, it is widely distributed across various regions, particularly in northern areas, where it plays a significant role in grasslands, pastures, and as a forage crop. In the Venice lagoons, it is notably adapted to saline and brackish environments, thriving in areas with periodic flooding. Over time, it has spread beyond its native regions due to its adaptability and usefulness in agriculture and land management. Its introduction to North America likely occurred as a contaminant in imported meadow fescue seed before 1880, and while it was initially of minor importance in Europe, it gained prominence in the United States due to its superior growth characteristics and adaptability to diverse environmental conditions. By the late 19th century, this plant was recognized for its value as a forage grass, especially after the release of cultivars like Kentucky 31 in 1943, which became widely planted across the southern U.S. Today,"}
   ];
   const sectionphyto = [
     { title: "Title 1", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco." },
@@ -253,7 +253,7 @@ const PollutantPage = () => {
         
         // Check if we're at the bottom of the phytoremediation section
         const rect = section.getBoundingClientRect();
-        const atBottom = Math.abs(rect.bottom - window.innerHeight) < 10; // Within 10px of bottom
+        const atBottom = Math.abs(rect.bottom - window.innerHeight) < 30; // Within 10px of bottom
         
         if (atBottom) {
           handleNavClick('plant-name');

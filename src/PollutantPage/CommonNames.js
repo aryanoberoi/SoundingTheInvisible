@@ -17,7 +17,7 @@ export const CommonNames = ({ sections }) => {
         <div className="common-names-header">
             <div className="common-names-rectangle" />
             <div className="common-names-underline" />
-            <div className="common-names-title">Common names of plant</div>
+            <div className="common-names-title">Common names of plants</div>
         </div>
         <div className="common-names-items">
           {sections.map((item, index) => (
