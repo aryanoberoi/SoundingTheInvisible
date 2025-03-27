@@ -83,8 +83,8 @@ const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            WebkitMaskImage: `radial-gradient(circle ${radius}px at ${position.x}px ${position.y}px, white 0%, transparent 100%)`,
-            maskImage: `radial-gradient(circle ${radius}px at ${position.x}px ${position.y}px, white 0%, transparent 100%)`,
+            WebkitMaskImage: `radial-gradient(circle ${radius}px at ${position.x}px ${position.y}px, white 0%, white 99%, transparent 100%)`,
+            maskImage: `radial-gradient(circle ${radius}px at ${position.x}px ${position.y}px, white 0%, white 99%, transparent 100%)`,
           }}
         >
           {/* White background behind visible SVG parts */}
