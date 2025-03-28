@@ -1,155 +1,170 @@
 @media (max-width: 991px) {
-    .container {
-      padding: 100px 20px 0;
-    }  
-    .contentWrapper {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0;
-    }
-  
-    .mainContent {
-      width: 100%;
-    }
-  
-    .pollutantInfo {
-      max-width: 100%;
-      margin-top: 40px;
-    }
-
-    .sideContent {
-      width: 100%;
-      margin-top: 40px;
-    }
-  
-    .sideContentWrapper {
-      padding-left: 20px;
-    }
-  
-    .titleList {
-      margin-right: 10px;
-    }
-  
-    .sourcesTitle {
-      margin: 40px 0 0 10px;
-    }
-  
-    .sourcesDescription {
-      margin-right: 10px;
-    }
-
-    .imageContainer {
-        width: 320px;
-        height: 320px;
-        flex-shrink: 0;
-    }
-  }
-
+  .container {
+    padding: 100px 20px 0;
+  }  
   .contentWrapper {
-    display: flex;
-    gap: 20px;
-    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
   }
 
   .mainContent {
-    flex: 2;
+    width: 100%;
+  }
+
+  .pollutantInfo {
+    max-width: 100%;
+    margin-top: 40px;
   }
 
   .sideContent {
-    flex: 1;
-    max-width: 33.33%;
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-    margin-left: 20px;
-    color: #fff;
-    text-align: right;
-    font: 400 15px 'Nippo-Regular', sans-serif;
-  }
-  
-  .sideContentWrapper {
-    display: flex;
-    padding-left: 39px;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-  
-  .sectionTitle {
-    font-size: 24px;
-  }
-  
-  .titleList {
-    display: flex;
-    gap: 0px;
-    flex-wrap: wrap;
-  }
-  
-  .titleEntry {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
     width: 100%;
-    margin: 4px;
-  }
-  
-  .bulletcircle {
-    width: 18px;
-    height: 18px;
-    border: 1px solid white !important;
-    border-radius: 50%;
-    overflow: hidden;
-    display: inline-block;
-  }
-  
-  .titleTextSC {
-    flex-grow: 1;
-    font-family: 'ClashGrotesk-Light';
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 332%;
-    letter-spacing: 0.14em;
-    text-align: right;
-  }
-  
-  .titleEntry .circle {
-    margin-left: auto;
+    margin-top: 40px;
   }
 
-    
+  .sideContentWrapper {
+    padding-left: 20px;
+  }
+
+  .titleList {
+    margin-right: 10px;
+  }
+
   .sourcesTitle {
-    font-size: 24px;
-    margin: 24px 10px 0 19px;
+    margin: 40px 0 0 10px;
   }
-  
+
   .sourcesDescription {
-    margin-top: 10px;
-    font-family: 'Chivo Mono';
-    font-weight: 100;
-    font-size: 12px;
-    line-height: 165%;
-    letter-spacing: 0;
-    text-align: right;
+    margin-right: 10px;
   }
 
-  .knowMoreButton {
-    background: #d9d9d9;
-    color: #000;
-    text-align: right;
-    text-transform: uppercase;
-    letter-spacing: 1.4px;
-    margin: 10px 0 20px auto;
-    padding: 4px 10px;
-    font: 378 10px 'Nippo-Medium', sans-serif;
-    border: 1px solid #fff;
-    cursor: pointer;
-    width: fit-content;
+  .imageContainer {
+      width: 320px;
+      height: 320px;
+      flex-shrink: 0;
   }
 
-  .headerWrapper {
-    display: flex;
-    gap: 22px;
-    color: #fff;
-    letter-spacing: 1.2px;
-    font: 400 48px 'Nippo-Regular', sans-serif;
+  .headerWrapper .circle {
+    width: 40px;
+    height: 40px;
   }
+}
+
+.contentWrapper {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.mainContent {
+  flex: 2;
+}
+
+.sideContent {
+  flex: 1;
+  max-width: 33.33%;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin-left: 20px;
+  color: #fff;
+  text-align: right;
+  font: 400 15px 'Nippo-Regular', sans-serif;
+}
+
+.sideContentWrapper {
+  display: flex;
+  padding-left: 39px;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.sectionTitle {
+  font-size: 24px;
+}
+
+.titleList {
+  display: flex;
+  gap: 0px;
+  flex-wrap: wrap;
+}
+
+.titleEntry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin: 4px;
+}
+
+.bulletcircle {
+  width: 18px;
+  height: 18px;
+  border: 1px solid white !important;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.titleTextSC {
+  flex-grow: 1;
+  font-family: 'ClashGrotesk-Light';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 332%;
+  letter-spacing: 0.14em;
+  text-align: right;
+}
+
+.titleEntry .circle {
+  margin-left: auto;
+}
+
+  
+.sourcesTitle {
+  font-size: 24px;
+  margin: 24px 10px 0 19px;
+}
+
+.sourcesDescription {
+  margin-top: 10px;
+  font-family: 'Chivo Mono';
+  font-weight: 100;
+  font-size: 12px;
+  line-height: 165%;
+  letter-spacing: 0;
+  text-align: right;
+}
+
+.knowMoreButton {
+  background: #d9d9d9;
+  color: #000;
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  margin: 10px 0 20px auto;
+  padding: 4px 10px;
+  font: 378 10px 'Nippo-Medium', sans-serif;
+  border: 1px solid #fff;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.headerWrapper {
+  display: flex;
+  gap: 22px;
+  color: #fff;
+  letter-spacing: 1.2px;
+  font: 400 48px 'Nippo-Regular', sans-serif;
+}
+
+/* Added styles for waste type icon */
+.headerWrapper .circle {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

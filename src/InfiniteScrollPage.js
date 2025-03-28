@@ -21,11 +21,74 @@ const PollutantPage = () => {
   const [activeSection, setActiveSection] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // Pollutant categorization by waste type
+  const pollutantCategories = {
+    1: ['potassium', 'simazine', 'imidacloprid', 'plantago', 'atrazine', 'glyphosate', 'phosphorus', 'nitrates'],
+    2: ['mercury', 'copper', 'lead', 'chromium', 'cadmium', 'thalium', 'selenium', 'nickel', 'arsenic', 'zinc', 'iron', 'manganese', 'aluminum'],
+    3: ['thorium', 'strontium'],
+    4: ['benzene', 'crude-oil', 'petrol', 'spiralis', 'diesel', 'sulphide', 'ammonium', 'phenol', 'organic-matter', 'estrogen', 'phthalate', 'fragrance', 'diclofenac', 'bht']
+  };
+
+  // Mapping of waste types to corresponding SVG icons
+  const wasteTypeToIcon = {
+    1: 'agriculture-waste-icon.svg',
+    2: 'heavy-metal-waste-icon.svg',
+    3: 'radioactive-waste-icon.svg',
+    4: 'sewage-waste-icon.svg'
+  };
+  
+  const pollutantWasteTypeMapping = {
+    // Type 1: Agricultural/Inorganic Pollutants
+    'potassium': { typeOfWaste: 1, atomImage: 'agriculture-waste-icon.svg' },
+    'simazine': { typeOfWaste: 1, atomImage: 'agriculture-waste-icon.svg' },
+    'imidacloprid': { typeOfWaste: 1, atomImage: 'agriculture-waste-icon.svg' },
+    'plantago': { typeOfWaste: 1, atomImage: 'agriculture-waste-icon.svg' },
+    'atrazine': { typeOfWaste: 1, atomImage: 'agriculture-waste-icon.svg' },
+    'glyphosate': { typeOfWaste: 1, atomImage: 'agriculture-waste-icon.svg' },
+    'phosphorus': { typeOfWaste: 1, atomImage: 'agriculture-waste-icon.svg' },
+    'nitrates': { typeOfWaste: 1, atomImage: 'agriculture-waste-icon.svg' },
+
+    // Type 2: Heavy Metals
+    'mercury': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
+    'copper': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
+    'lead': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
+    'chromium': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
+    'cadmium': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
+    'thalium': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
+    'selenium': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
+    'nickel': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
+    'arsenic': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
+    'zinc': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
+    'iron': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
+    'manganese': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
+    'aluminum': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
+
+    // Type 3: Radioactive Elements
+    'thorium': { typeOfWaste: 3, atomImage: 'radioactive-waste-icon.svg' },
+    'strontium': { typeOfWaste: 3, atomImage: 'radioactive-waste-icon.svg' },
+
+    // Type 4: Organic Pollutants
+    'benzene': { typeOfWaste: 4, atomImage: 'sewage-waste-icon.svg' },
+    'crude-oil': { typeOfWaste: 4, atomImage: 'sewage-waste-icon.svg' },
+    'petrol': { typeOfWaste: 4, atomImage: 'sewage-waste-icon.svg' },
+    'spiralis': { typeOfWaste: 4, atomImage: 'sewage-waste-icon.svg' },
+    'diesel': { typeOfWaste: 4, atomImage: 'sewage-waste-icon.svg' },
+    'sulphide': { typeOfWaste: 4, atomImage: 'sewage-waste-icon.svg' },
+    'ammonium': { typeOfWaste: 4, atomImage: 'sewage-waste-icon.svg' },
+    'phenol': { typeOfWaste: 4, atomImage: 'sewage-waste-icon.svg' },
+    'organic-matter': { typeOfWaste: 4, atomImage: 'sewage-waste-icon.svg' },
+    'estrogen': { typeOfWaste: 4, atomImage: 'sewage-waste-icon.svg' },
+    'phthalate': { typeOfWaste: 4, atomImage: 'sewage-waste-icon.svg' },
+    'fragrance': { typeOfWaste: 4, atomImage: 'sewage-waste-icon.svg' },
+    'diclofenac': { typeOfWaste: 4, atomImage: 'sewage-waste-icon.svg' },
+    'bht': { typeOfWaste: 4, atomImage: 'sewage-waste-icon.svg' }
+  };
+
   const leftpanelcontent = [
     { 
       pollutantName: "Potassium",
-      typeOfWaste: 1,
-      atomImage: "",
+      ...pollutantWasteTypeMapping['potassium'],
       pollutantDescription: "Potassium (K) is a soft, silvery alkali metal discovered in 1807 by Sir Humphry Davy through electrolysis of potash (KOH). Radioactive K-40 has a 1.25 billion-year half-life; stable isotopes are K-39 and K-41. Excess potassium causes eutrophication. Canada leads potash production, used mainly in fertilizers.",
       effect: "Cardiac arrhythmias and potential heart failure_Weakness and fatigue_Nausea and vomiting_Breathing difficulties",
       sources: "Research on nutrient pollution in the Venice Lagoon, primarily from agricultural runoff, urban wastewater, and industrial discharges, has been extensive. Fertilizers, a key potassium source, are a major contributor, alongside urban wastewater and industrial activities. While potassium-specific studies are limited, these sources contribute to overall nutrient pollution impacting the lagoon."
