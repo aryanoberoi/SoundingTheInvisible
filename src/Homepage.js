@@ -44,21 +44,20 @@ export default function Homepage() {
 
       {/* 🔸 Concept Section */}
       <section className="concept-section">
-      <div className="concept-text">
-        <h2>Sound Concept</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus.
-        </p>
-        {showSoundText && (
+        <div className="concept-text">
+          <h2>Sound Concept</h2>
           <p>
-            Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus.
           </p>
-        )}
-        <div className="read-more-box" onClick={() => setShowSoundText(!showSoundText)}>
-          {showSoundText ? "READ LESS" : "READ MORE"}
+          {showSoundText && (
+            <p>
+              Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
+            </p>
+          )}
+          <div className="read-more-box" onClick={() => setShowSoundText(!showSoundText)}>
+            {showSoundText ? "READ LESS" : "READ MORE"}
+          </div>
         </div>
-      </div>
-
         <div className="svg-container">
           <ConceptFrame 
             className="interactive-svg-concept"
@@ -75,23 +74,23 @@ export default function Homepage() {
 
       {/* 🔸 Black Trapezium with Frame 3 and Text */}
       <section className="trapezium-section">
-        <div className="svg-container">
+        <div className="svg-container-trapezium">
           <MiddleFrame 
             className="middle-svg-concept"
             preserveAspectRatio="xMidYMid meet"
-            audioRef={audioRef} // Pass the audio ref to your component
-            handleAudio={handleAudio} // Pass the handler function
+            audioRef={audioRef}
+            handleAudio={handleAudio}
           />
         </div>
         <div className="trapezium-text">
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus.
           </p>
-            {showSoundText && (
-              <p>
-                Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
-              </p>
-            )}
+          {showSoundText && (
+            <p>
+              Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
+            </p>
+          )}
           <div className="read-more-box" onClick={() => setShowSoundText(!showSoundText)}>
             {showSoundText ? "READ LESS" : "READ MORE"}
           </div>
