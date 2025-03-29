@@ -235,41 +235,62 @@ const PollutantPage = () => {
   ];
   
 
-  const handleSliderMove = (e) => {
+  // Add state to track dragging
+  const [isDragging, setIsDragging] = useState(false);
+
+  const handleMouseDown = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+
     const container = document.getElementById('slider-container');
     const rect = container.getBoundingClientRect();
     const newPosition = ((e.clientX - rect.left) / rect.width) * 100;
 
     if (newPosition >= 0 && newPosition <= 100) {
-        document.documentElement.style.setProperty('--slider-position', `${newPosition}%`);
-        setSliderPosition(newPosition);
+      document.documentElement.style.setProperty('--slider-position', `${newPosition}%`);
+      setSliderPosition(newPosition);
 
-        // For navbar
-        document.body.classList.toggle('right-panel-active', newPosition < 3);
-        
-        // Toggle visibility based on dominant panel
-        document.body.classList.toggle('white-panel-active', newPosition <= 50);
-        document.body.classList.toggle('black-panel-active', newPosition > 50);
+      // For navbar
+      document.body.classList.toggle('right-panel-active', newPosition < 3);
+      
+      // Toggle visibility based on dominant panel
+      document.body.classList.toggle('white-panel-active', newPosition <= 50);
+      document.body.classList.toggle('black-panel-active', newPosition > 50);
 
-        // Custom condition for sound button
-        document.body.classList.toggle('sound-panel-active', newPosition < 98);
+      // Custom condition for sound button
+      document.body.classList.toggle('sound-panel-active', newPosition < 98);
 
-        // Calculate rotation based on slider position
-        const newRotation = (newPosition / 100) * 360;
+      // Calculate rotation based on slider position
+      const newRotation = (newPosition / 100) * 360;
 
-        setRotation(newRotation);
-        document.documentElement.style.setProperty('--rotation', `${newRotation}deg`);
+      setRotation(newRotation);
+      document.documentElement.style.setProperty('--rotation', `${newRotation}deg`);
     }
-};
-  const handleMouseDown = () => {
-    document.addEventListener('mousemove', handleSliderMove);
-    document.addEventListener('mouseup', handleMouseUp);
   };
 
   const handleMouseUp = () => {
-    document.removeEventListener('mousemove', handleSliderMove);
-    document.removeEventListener('mouseup', handleMouseUp);
+    setIsDragging(false);
   };
+
+  useEffect(() => {
+    if (isDragging) {
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
+    } else {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    }
+
+    // Clean up on unmount
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isDragging]);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -373,12 +394,16 @@ const PollutantPage = () => {
 
   return (
     <>
-      <div id="slider-container" className="slider-container">
+      <div id="slider-container" className="slider-container"   style={{
+    transform: 'scale(0.75)',
+    transformOrigin: 'top left',
+    width: '133.33vw',
+    height: '160.33vh'  }}>
         <LeftPanel sections={leftpanelcontent} />
         <RightPanel sections={rightpanelcontent}/>
         <div
           className="slider-bar"
-          style={{ left: `${sliderPosition}%` }}
+          style={{ left: `${sliderPosition}%`}}
           onMouseDown={handleMouseDown}
         >
           <img
@@ -387,24 +412,10 @@ const PollutantPage = () => {
             className="slider-image"
             style={{ 
               transform: `rotate(${rotation}deg) scale(1.7)`,
-              transformOrigin: 'center center'
+              transformOrigin: 'center center',
+              cursor: 'ew-resize'
             }}
           />
-        </div>
-        <div className="scrollable-black">
-          <div className={styles.scrollableContent}>
-            <p>Additional scrollable content goes here...</p>
-            <p>More information can be added here...</p>
-            <p>Keep scrolling for more details...</p>
-          </div>
-        </div>
-        <div className="additional-scroll-section">
-          <div className={styles.additionalContent}>
-            <h2>Explore More Information</h2>
-            <p>Here you can add more detailed information about the topic.</p>
-            <p>Include any additional resources or links for further reading.</p>
-            <p>Continue scrolling to discover more insights and data.</p>
-          </div>
         </div>
       </div>
       <div className="combined-section">
