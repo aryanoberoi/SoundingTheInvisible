@@ -378,6 +378,7 @@ body.sound-panel-active .sound-icon span {
   overflow: visible;
   background-color: #000; /* Changed from transparent to black */
   gap: 0;
+  top: -340px;
 }
 
 .nav-bar {

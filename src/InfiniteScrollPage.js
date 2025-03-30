@@ -395,12 +395,13 @@ const PollutantPage = () => {
   return (
     <>
       <div id="slider-container" className="slider-container"   style={{
-    transform: 'scale(0.75)',
-    transformOrigin: 'top left',
-    width: '133.33vw',
-    height: '160.33vh'  }}>
+        transform: 'scale(0.75)',
+        transformOrigin: 'top left',
+        width: '133.33vw',
+        height: '160.33vh'  }}
+      >
         <LeftPanel sections={leftpanelcontent} />
-        <RightPanel sections={rightpanelcontent}/>
+        <RightPanel sections={rightpanelcontent} />
         <div
           className="slider-bar"
           style={{ left: `${sliderPosition}%`}}
