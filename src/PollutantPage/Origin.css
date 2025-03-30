@@ -359,6 +359,7 @@
     background-repeat: no-repeat;
     -webkit-background-clip: text;
     background-clip: text;
+    -moz-background-clip: text; /* Added for Firefox compatibility */
     font-family: 'ClashGrotesk-Regular', sans-serif;
     font-weight: 400;
     font-size: 15px;

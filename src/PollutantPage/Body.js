@@ -44,7 +44,7 @@ export const Box = ({ sections }) => {
           </div>
         </div>
 
-        <div className="content-items-container">
+        <div className="content-items-container" style={{ transform: 'translate(-8em, 5.5em)' }}>
           {sections.map((section, index) => {
             const { title, content } = parseSection(section.text);
             return (

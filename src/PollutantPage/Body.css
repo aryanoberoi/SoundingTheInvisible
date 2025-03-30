@@ -54,7 +54,7 @@
     font: 400 28px 'Nippo-Light', sans-serif;
     font-size: clamp(20px, 2vw, 28px); 
     font-weight: 400;
-    left: 0;
+    right: 0.5em;
     letter-spacing: 0.84px;
     line-height: normal;
     position: absolute;
@@ -165,7 +165,7 @@
     background-color: #ffffff;
     border-radius: 8px;
     height: 16px;
-    left: 288px;
+    left: 20em;
     position: absolute;
     top: 13px;
     transform: rotate(180.00deg);

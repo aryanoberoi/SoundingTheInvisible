@@ -66,12 +66,12 @@ body, html {
   justify-content: center;
   align-items: center;
   z-index: 10;
-  top: -60px; /* Ensures the slider is above the panels */
+  top: -15em; /* Ensures the slider is above the panels */
 }
 
 .slider-circle {
-  width: 40px; /* Diameter of the circle */
-  height: 40px; /* Diameter of the circle (equal to width) */
+  width: 1em; /* Diameter of the circle */
+  height: 1em; /* Diameter of the circle (equal to width) */
   background-color: white; /* Ensures the circle has a visible background */
   border: 2px solid black; /* Optional: Adds a black border to enhance visibility */
   border-radius: 100%; /* Makes the element a perfect circle */
@@ -1370,11 +1370,11 @@ img {
 
 .content-container-underline {
   background-color: #ffffff;
-  height: 9px;
+  height: 12px;
   left: 15%;
   position: relative;
-  top: -15%;
-  width: 90%;
+  top: -7.8%;
+  width: 95%;
 }
 
 .content-container-title {

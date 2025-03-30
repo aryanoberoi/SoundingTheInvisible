@@ -119,7 +119,7 @@ const PollutantPage = () => {
       pollutantName: leftpanelcontent.pollutantName,
       enthalpy: "90 KJ/mol",
       soundfrequency: "22.56 Hz",
-      wavefrequency: 250.5
+      wavefrequency: 220.5
     }
   ];
   const effectonhealthcontent = [
@@ -413,7 +413,7 @@ const PollutantPage = () => {
         transform: 'scale(0.75)',
         transformOrigin: 'top left',
         width: '133.33vw',
-        height: '160.33vh'  }}
+        height: '180.33vh'  }}
       >
         <LeftPanel sections={leftpanelcontent} />
         <RightPanel sections={rightpanelcontent} />

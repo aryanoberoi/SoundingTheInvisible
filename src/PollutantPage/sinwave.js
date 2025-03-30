@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 
-const SineWaveVisualizer = ({ frequency = 1 }) => { // Default frequency set to 4 Hz
+const SineWaveVisualizer = ({ frequency = 220.5 }) => { // Default frequency set to 1 Hz for slower propagation
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -25,8 +25,7 @@ const SineWaveVisualizer = ({ frequency = 1 }) => { // Default frequency set to 
       for (let x = 0; x < width; x++) {
         // Wave equation: y = A*sin(2π(x/λ - ft) + φ)
         const y = height / 2 + amplitude * Math.sin(
-          (x * 2 * Math.PI / wavelength) - // Spatial component
-          (phase * 2 * Math.PI) // Temporal component
+          (x * 2 * Math.PI / wavelength) - (phase * 2 * Math.PI)
         );
         ctx.lineTo(x, y);
       }
@@ -37,21 +36,17 @@ const SineWaveVisualizer = ({ frequency = 1 }) => { // Default frequency set to 
     };
 
     const animate = (timestamp) => {
-      // Calculate phase based on frequency and time
-      phase = frequency * (timestamp / 1000); // Convert ms to seconds
+      // Slower phase progression: the larger the divisor, the slower the wave moves.
+      phase = frequency * (timestamp / 200000);
       drawWaveform();
       animationFrameId = requestAnimationFrame(animate);
     };
 
     animate();
     return () => cancelAnimationFrame(animationFrameId);
-  }, [frequency]); // Add frequency to the dependency array
+  }, [frequency]);
 
-  return <canvas ref={canvasRef} style={{ 
-    width: '100%',
-    height: '100%',
-    display: 'block' 
-  }} />;
+  return <canvas ref={canvasRef} style={{ width: '100%', height: '100%', display: 'block' }} />;
 };
 
 export default SineWaveVisualizer;
