@@ -116,6 +116,7 @@ const PollutantPage = () => {
   ];
   const sinewavefreq = [
     { 
+      pollutantName: leftpanelcontent.pollutantName,
       enthalpy: "90 KJ/mol",
       soundfrequency: "22.56 Hz",
       wavefrequency: 250.5
@@ -166,11 +167,13 @@ const PollutantPage = () => {
   ];
   const aboutplantcontent = [
     { 
+      plant_name: rightpanelcontent[0].plantNameSplit,
       description: "About Salvinia molesta_Salvinia molesta, a perennial aquatic fern, exhibits a characteristic structure  that is adapted for its free-floating lifestyle. Its aerial fronds (a large leaf), arranged in triplets, transition from flat, youthful forms to increasingly folded, mature structures, reaching sizes up to 2.2 cm. These fronds possess a specialized upper surface, featuring papillae with intricate, hair-like cages that trap air, enhancing buoyancy and repelling water. The lower surface, covered in dense brown hairs, further contributes to flotation.",
       status: "Wetland Status_ OBL (Obligate Wetland Plant) - Almost always occurs in wetlands"
     }
   ];
   const commonname = [
+    { plantName: rightpanelcontent[0].plantNameSplit },
     { text: "Chinese; rén yàn huái cài pín, rén yàn huái yè píng" },
     { text: "Dutch; Grote vlotvaren" },
     { text: "English; African payal, African pyle, Aquarium water moss, Azolla, Giant azolla, Giant salvinia, Kariba weed, Salvinia, Salvinia moss, Water fern, Water spangles, Australian azolla, butterfly fern, cats tongue, koi kandy, velvet weed, watermoss" },
@@ -184,6 +187,7 @@ const PollutantPage = () => {
     { text: "Thailand; Chawk hunu" }
   ];
   const habitat = [
+    { plantName: rightpanelcontent[0].plantNameSplit },
     {
       title: "Diverse Habitats",
       content: "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe"

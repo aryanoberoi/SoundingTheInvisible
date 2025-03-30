@@ -3,13 +3,14 @@ import SineWaveVisualizer from './sinwave';
 import '../pollutantPage.css';
 
 export const SoundFrequency = ({ sections }) => {
+  const pollutantName = sections[0].pollutantName || "Pollutant";
   return (
     <div className="sound-frequency-container">
         <div className="content-container">
           <div className="content-container-overlap">
             <div className="content-container-background" />
             <div className="content-container-underline" />
-            <div className="content-container-title">Enthalpy and Sound Frequency of Pollutant</div>
+            <div className="content-container-title">Enthalpy and Sound Frequency of {pollutantName}</div>
           </div>
         </div>
 

@@ -57,7 +57,7 @@
   
 .common-names-container .common-names-items {
     position: relative;
-    margin-left: 22px;
+    margin-left: 40px;
     margin-top: calc(5%);
 }
   
@@ -105,7 +105,7 @@
     background-color: #000 !important;
     border-radius: 8px;
     height: 16px;
-    left: 140px;
+    left: 160px;
     position: absolute;
     top: 13px;
     transform: rotate(180deg);
@@ -240,4 +240,3 @@
 .common-names-container .scientific-name-bold {
     font-weight: 800;
 }
-  

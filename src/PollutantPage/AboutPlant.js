@@ -4,6 +4,7 @@ import PeepholeEffect from "./PeepHoleImage";
 
 export const AboutPlant = ({ sections }) => {
   // Split the description into About Plant and Wetland Status sections
+  const plantName = sections[0].plant_name;
   const aboutPlantText = sections[0].description.split('_')[1];
   const wetlandStatusText = sections[0].status.split('_')[1];
 
@@ -18,7 +19,7 @@ export const AboutPlant = ({ sections }) => {
           />
           <div className="about-pollutant">
             <span className="about" style={{color: 'black'}}>About </span>
-            <span style={{color: 'black'}}>Plant </span>
+            <span style={{color: 'black'}}>{plantName} </span>
           </div>
         </div>
         <div className="flex-row-a">
