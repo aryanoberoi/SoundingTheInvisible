@@ -9,37 +9,43 @@ export const CommonNames = ({ sections }) => {
   };
 
   // Extract titles and content from sections
-  const titles = sections.map(item => item.text.split(';')[0].trim());
-  const contentArray = sections.map(item => item.text.split(';')[1].trim());
+  const plant_names = sections[0]?.plantName || "Unknown Plant"; // Provide a default value if plantName is undefined
+  const titles = sections.map(item => item.text ? item.text.split(';')[0].trim() : "").filter(title => title !== "");
+  const contentArray = sections.map(item => item.text ? item.text.split(';')[1]?.trim() : "").filter(content => content !== "");
 
   return (
     <div className="common-names-container">
         <div className="common-names-header">
             <div className="common-names-rectangle" />
             <div className="common-names-underline" />
-            <div className="common-names-title">Common names of plants</div>
+            <div className="common-names-title">Common names of {plant_names}</div>
         </div>
+
+        <div className="scientific-name-container">
+          Scientific name: <span className="scientific-name-bold">{plant_names}.</span>
+        </div>
+
         <div className="common-names-items">
-          {sections.map((item, index) => (
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
             <div 
-              className={`common-names-item ${expandedItem === index ? 'expanded' : ''}`} 
-              key={index}
-              onClick={() => toggleItem(index)}
+              className={`common-names-item ${expandedItem === item ? 'expanded' : ''}`} 
+              key={item}
+              onClick={() => toggleItem(item)}
             >
               <div className="common-names-overlap">
-                <div className="common-names-item-title">{titles[index]}</div>
+                <div className="common-names-item-title">{titles[item - 1]}</div>
                 <div className="common-names-item-icon-wrapper">
                   <img
                     className="common-names-item-icon"
                     alt="Expand icon"
-                    src={`https://c.animaapp.com/Vg2l9Q1d/img/vector-148-${index % 2 === 0 ? 6 : 4}.svg`}
+                    src="https://c.animaapp.com/Vg2l9Q1d/img/vector-148-4.svg"
                   />
                 </div>
               </div>
-              {expandedItem === index && (
+              {expandedItem === item && (
                 <div className="common-names-content">
                   <div className="content-line" />
-                  <div className="content-text">{contentArray[index]}</div>
+                  <div className="content-text">{contentArray[item - 1]}</div>
                 </div>
               )}
             </div>
