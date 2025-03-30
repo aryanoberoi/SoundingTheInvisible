@@ -4,6 +4,10 @@
   overflow: hidden;
 }
 
+.right-panel {
+  height: auto;
+}
+
 .rightPanel-contentWrapper {
   display: flex;
   gap: 20px;
