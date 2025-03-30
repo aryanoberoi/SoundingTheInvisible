@@ -11,7 +11,7 @@
   
 .common-names-container .common-names-header {
     position: relative;
-    width: 425px;
+    width: 35em;
     margin: 0;
     transform: none;
     left: 0;
@@ -21,12 +21,12 @@
 .common-names-container .common-names-overlap {
     height: 57px;
     position: relative;
-    width: 423px;
+    width: 100%; /* Adjusted to ensure it covers the full width */
 }
   
 .common-names-container .common-names-rectangle {
     background-color: #000 !important;
-    width: 81%;
+    width: 100%; /* Adjusted to extend till the width of the title */
     height: 70%;
     position: relative;
     top: 0;
@@ -38,7 +38,7 @@
     left: 20%;
     position: relative;
     top: -15%;
-    width: 80%;
+    width: 100%; /* Adjusted to extend till the width of the title */
 }
 
   
@@ -53,6 +53,7 @@
     position: absolute;
     top: 0px;
     width: 100%;
+    white-space: nowrap; /* Prevent text wrapping */
 }
   
 .common-names-container .common-names-items {
