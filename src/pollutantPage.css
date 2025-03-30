@@ -376,9 +376,9 @@ body.sound-panel-active .sound-icon span {
   position: relative;
   min-height: 100vh;
   overflow: visible;
-  background-color: #000; /* Changed from transparent to black */
+  background-color: #000;
   gap: 0;
-  top: -340px;
+  margin-top: -60vh; /* Changed from top: -calc(100%) to margin-top: -100vh */
 }
 
 .nav-bar {
@@ -1379,7 +1379,7 @@ img {
 
 .content-container-title {
   color: #181818;
-  font: 400 28px 'Nippo-Regular', sans-serif;
+  font: 400 28px 'Nippo-Light', sans-serif;
   font-size: clamp(20px, 2vw, 28px); 
   font-weight: 400;
   left: 0;

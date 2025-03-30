@@ -44,7 +44,7 @@
   
 .common-names-container .common-names-title {
     color: #fff !important;
-    font: 400 28px 'Nippo-Regular', sans-serif;
+    font: 400 28px 'Nippo-Light', sans-serif;
     font-size: clamp(20px, 2vw, 28px);
     font-weight: 400;
     left: 0;
@@ -198,14 +198,13 @@
   
 .common-names-container .common-names-content {
     position: absolute;
-    left: 50%;
+    left: 57%;
     top: 17%;
     display: flex;
     align-items: center;
     gap: 15px;
     width: 400px;
     background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     z-index: 3;
     opacity: 0;
     transform: translateX(-20px);
@@ -214,13 +213,17 @@
 
 .common-names-container .content-line {
     width: 30px;
-    height: 2px;
+    height: 1px;
     background: #000;
     flex-shrink: 0;
+    position: absolute;
+    top: 10px;
+    left: 0;
 }
 
 .common-names-container .content-text {
     flex: 1;
+    margin-left: 30px;
 }
 
 .common-names-container .common-names-item.expanded .common-names-content {
