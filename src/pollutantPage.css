@@ -1379,7 +1379,7 @@ img {
 
 .content-container-title {
   color: #181818;
-  font: 400 28px 'Nippo-Regular', sans-serif;
+  font: 400 28px 'Nippo-Light', sans-serif;
   font-size: clamp(20px, 2vw, 28px); 
   font-weight: 400;
   left: 0;

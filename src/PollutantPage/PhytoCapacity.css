@@ -32,7 +32,7 @@
     left: 0;
     position: absolute;
     top: 0;
-    width: 530px;
+    width: 515px;
 }
 
 .phyto-capacity-container .phyto-capacity-underline {
@@ -46,7 +46,7 @@
 
 .phyto-capacity-container .phyto-capacity-title {
     color: #ffffff;
-    font-family: "Nippo-Regular", Helvetica;
+    font-family: "Nippo-Light", Helvetica;
     font-size: 28px;
     font-weight: 400;
     left: 0;

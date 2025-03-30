@@ -33,7 +33,7 @@
     left: 0;
     position: absolute;
     top: 0;
-    width: 490px;
+    width: 470px;
 }
   
 .origin-section-container .origin-section-underline {
@@ -48,7 +48,7 @@
   
 .origin-section-container .origin-section-title {
     color: #fff !important;
-    font: 400 28px 'Nippo-Regular', sans-serif;
+    font: 400 28px 'Nippo-Light', sans-serif;
     font-size: clamp(20px, 2vw, 28px);
     font-weight: 400;
     left: 0;
