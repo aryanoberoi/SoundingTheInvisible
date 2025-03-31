@@ -18,7 +18,7 @@ export const AboutPollutantSection = ({ sections }) => {
             alt="Pollutant" 
             className="image"
           />
-          <div className="about-pollutant">
+          <div id="about-pollutant-section" className="about-pollutant">
             {/* Split title into two parts at first space */}
             <span className="about">{titlePart.split(' ', 1)[0]} </span>
             <span className="pollutant">

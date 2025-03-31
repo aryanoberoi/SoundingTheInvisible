@@ -22,6 +22,30 @@ const LeftPanel = ({ sections = [] }) => {
   // Process health effects into titles
   const healthEffectsTitles = effect.split('_');
 
+  const scrollToAboutPollutant = () => {
+    const aboutPollutantSection = document.getElementById("about-pollutant-section");
+    if (aboutPollutantSection) {
+      aboutPollutantSection.scrollIntoView({ behavior: "smooth" });
+    }};
+
+    const scrollToEffectsOnHealth = () => {
+      const effectsOnHealthSection = document.getElementById("effects-on-health-section");
+      if (effectsOnHealthSection) {
+        effectsOnHealthSection.scrollIntoView({ behavior: "smooth" });
+      }};
+
+      const scrollToEnthalpy = () => {
+        const enthalpySection = document.getElementById("enthalpy-section");
+        if (enthalpySection) {
+          enthalpySection.scrollIntoView({ behavior: "smooth" });
+        }};
+    
+        const scrollToSources = () => {
+          const sourcesSection = document.getElementById("sources-section");
+          if (sourcesSection) {
+            sourcesSection.scrollIntoView({ behavior: "smooth" });
+          }};
+
   return (
     <div className="left-panel">
       <div className="container">
@@ -38,7 +62,7 @@ const LeftPanel = ({ sections = [] }) => {
                 ))}
               </div>
               <div className='knowone'>
-              <KnowMoreButtonInverted className="knowMoreButtonInverted" />
+              <KnowMoreButtonInverted className="knowMoreButtonInverted" onClick={scrollToAboutPollutant} />
               </div>
               <div className="imageContainer" />
               
@@ -65,7 +89,7 @@ const LeftPanel = ({ sections = [] }) => {
                   </div>
                 ))}
               </div>
-              <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" />
+              <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={scrollToEffectsOnHealth}/>
               <div className="sectionTitle" style={{paddingBottom: '10px'}}>
                 Enthalpy and sound <br /> Frequency of Pollutant
                 <br />
@@ -73,13 +97,13 @@ const LeftPanel = ({ sections = [] }) => {
               <div style={{ border: '1px solid black', height: '120px' }}>
                 <SineWaveVisualizer />
               </div>
-              <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" />
+              <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={scrollToEnthalpy} />
             </div>
             <div className="sourcesTitle">Sources In Venice Lagoon:</div>
             <div className="sourcesDescription">
               {sources}
             </div>
-            <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" />
+            <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={scrollToSources}/>
           </div>
         </div>
       </div>

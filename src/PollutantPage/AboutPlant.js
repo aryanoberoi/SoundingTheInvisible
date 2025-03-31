@@ -17,7 +17,7 @@ export const AboutPlant = ({ sections }) => {
             alt="Pollutant" 
             className="image inverted-text"
           />
-          <div className="about-pollutant">
+          <div id="about-plant-section" className="about-pollutant">
             <span className="about" style={{color: 'black'}}>About </span>
             <span style={{color: 'black'}}>{plantName} </span>
           </div>

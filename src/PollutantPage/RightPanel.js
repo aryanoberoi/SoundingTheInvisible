@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import { KnowMoreButton } from './Knowmorebutton';
 import './RightPanel.css';
 import { PlantInfoSection } from './PlantInfoSection';
@@ -36,6 +36,12 @@ const RightPanel = ({ sections = [] }) => {
     }
   ];
 
+  const scrollToAboutPlant = () => {
+    const aboutPlantSection = document.getElementById("about-plant-section");
+    if (aboutPlantSection) {
+      aboutPlantSection.scrollIntoView({ behavior: "smooth" });
+    }};
+
   return (
     <div className="right-panel">
       <div className="plantContainer">
@@ -64,7 +70,7 @@ const RightPanel = ({ sections = [] }) => {
                         ))
                       )}
                     </div>
-                    <KnowMoreButton className="knowMoreButton" />
+                    <KnowMoreButton className="knowMoreButton" onClick={scrollToAboutPlant} />
                   </div>
                 );
               }
@@ -90,7 +96,7 @@ const RightPanel = ({ sections = [] }) => {
                 <p className="plantDetails">
                   {plantDetails}
                 </p>
-                <KnowMoreButton className="knowMoreButton" />
+                <KnowMoreButton className="knowMoreButton" onClick={scrollToAboutPlant} />
               </div>
             </div>
           </main>
