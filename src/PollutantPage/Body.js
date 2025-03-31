@@ -21,7 +21,7 @@ export const Box = ({ sections }) => {
           <div className="box-header-overlap">
             <div className="box-header-background" />
             <div className="box-header-underline" />
-            <div className="box-header-title">Effects on human health</div>
+            <div id="effects-on-health-section" className="box-header-title">Effects on human health</div>
           </div>
         </div>
 

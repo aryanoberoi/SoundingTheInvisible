@@ -63,7 +63,7 @@ export const CaseStudies = ({ sections }) => {
           <div className="overlap-group-2">
             <div className="rectangle-6" />
             <div className="rectangle-7" />
-            <div className="text-wrapper-3">Case studies</div>
+            <div id = "sources-section" className="text-wrapper-3">Case studies</div>
           </div>
         </div>
 
