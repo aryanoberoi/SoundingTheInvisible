@@ -33,7 +33,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 441.638px;
+    width: 85%;
     height: 57.501px;
     margin: 0;
     z-index: 3;
@@ -47,15 +47,23 @@
   }
   
   .about-pollutant {
-    width: 370.561px;
-    height: 43.126px;
+    display: flex;  /* Use flexbox to align spans horizontally */
+    align-items: center;  /* Align items vertically */
+    justify-content: flex-start;  /* Align items to the start of the container */
+    gap: 1rem;  /* Fixed gap between the spans */
     font-family: Nippo-Light, sans-serif;
-    font-size: 32px;
+    font-size: 40px;
     font-weight: 378;
     line-height: 100%;
-    letter-spacing: 0.96px;
+    letter-spacing: 3%;
+    width: 100%;  /* Ensure container width adapts */
+    margin-left: 10px;
   }
-  
+
+  .about-pollutant span {
+      white-space: nowrap;  /* Prevent wrapping inside the spans */
+  }
+
   .flex-row-a {
     width: 428.5px;
     height: 9.5px;
