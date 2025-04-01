@@ -41,8 +41,8 @@
     font-size: 32px;
     font-weight: 300;
     left: 44px;
-    letter-spacing: 0.96px;
-    line-height: normal;
+    letter-spacing: 3%;
+    line-height: 100%;
     position: absolute;
     top: 0;
 }
@@ -266,8 +266,9 @@
     color: #181818;
     font-family: "Nippo-Light", Helvetica;
     font-size: 28px;
-    font-weight: 400;
-    letter-spacing: 0.84px;
+    font-weight: 378;
+    letter-spacing: 3%;
+    line-height: 100%;
     position: relative;
     top: 9px;
     width: 100%;
