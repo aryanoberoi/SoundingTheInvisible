@@ -84,8 +84,9 @@
 }
 
 .sectionTitle {
-  letter-spacing: 0.72px;
-  font: 300 24px 'Nippo-Regular', sans-serif;
+  font: 378 18px 'Nippo-Regular', sans-serif;
+  line-height: 100%;
+  letter-spacing: 0;
   margin-bottom: 15px;
 }
 

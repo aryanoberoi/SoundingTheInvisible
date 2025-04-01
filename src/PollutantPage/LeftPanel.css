@@ -110,9 +110,9 @@
   flex-grow: 1;
   font-family: 'ClashGrotesk-Light';
   font-weight: 400;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 332%;
-  letter-spacing: 0.14em;
+  letter-spacing: 14%;
   text-align: right;
 }
 
@@ -122,15 +122,18 @@
 
   
 .sourcesTitle {
-  font-size: 24px;
+  font-family: 'Nippo-Regular';
+  font-weight: 378;
+  font-size: 18px;
+  line-height: 100%;
   margin: 24px 10px 0 19px;
 }
 
 .sourcesDescription {
   margin-top: 10px;
   font-family: 'Chivo Mono';
-  font-weight: 100;
-  font-size: 12px;
+  font-weight: 400;
+  font-size: 10px;
   line-height: 165%;
   letter-spacing: 0;
   text-align: right;
