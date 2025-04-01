@@ -51,12 +51,12 @@
   
 .box-container .box-header-title {
     color: #181818;
-    font: 400 28px 'Nippo-Light', sans-serif;
+    font: 378 28px 'Nippo-Light', sans-serif;
     font-size: clamp(20px, 2vw, 28px); 
     font-weight: 400;
     right: 0.5em;
-    letter-spacing: 0.84px;
-    line-height: normal;
+    letter-spacing: 3%;
+    line-height: 100%;
     position: absolute;
     top: 10px;
     width: 100%;
@@ -150,12 +150,12 @@
 
 .box-container .item-title {
     color: #ffffff;
-    font-family: "Nippo-Regular", Helvetica;
+    font-family: "Nippo-Light", Helvetica;
     font-size: 24px;
-    font-weight: 400;
+    font-weight: 378;
     left: 0;
-    letter-spacing: 0.72px;
-    line-height: normal;
+    letter-spacing: 3%;
+    line-height: 100%;
     position: absolute;
     top: 0;
     width: 317px;
