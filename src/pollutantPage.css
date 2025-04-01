@@ -1334,20 +1334,20 @@ img {
 }
 
 .label {
-  font-family: "Nippo-Regular";
+  font-family: "Nippo-Light";
   font-size: 16px;
   font-weight: 378;
-  line-height: 204.99999999999997%;
+  line-height: 205%;
   letter-spacing: 0%;
   color: white;
   margin-right: 10px;
 }
 
 .value {
-  font-family: "Nippo-Regular";
+  font-family: "Nippo-Light";
   font-size: 16px;
   font-weight: 378;
-  line-height: 204.99999999999997%;
+  line-height: 205%;
   letter-spacing: 0%;
   color: white;
 }
@@ -1379,12 +1379,12 @@ img {
 
 .content-container-title {
   color: #181818;
-  font: 400 28px 'Nippo-Light', sans-serif;
+  font: 378 28px 'Nippo-Light', sans-serif;
   font-size: clamp(20px, 2vw, 28px); 
   font-weight: 400;
   left: 0;
-  letter-spacing: 0.84px;
-  line-height: normal;
+  letter-spacing: 3%;
+  line-height: 100%;
   position: absolute;
   top: 10px;
   width: 100%;

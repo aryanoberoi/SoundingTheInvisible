@@ -49,10 +49,10 @@
   .about-pollutant {
     width: 370.561px;
     height: 43.126px;
-    font-family: Nippo-Regular, sans-serif;
+    font-family: Nippo-Light, sans-serif;
     font-size: 32px;
     font-weight: 378;
-    line-height: 43.126px;
+    line-height: 100%;
     letter-spacing: 0.96px;
   }
   
@@ -73,12 +73,12 @@
   .lorem-ipsum-dolor.inverted-text {
     color: #000 !important;
     mix-blend-mode: difference;
-    font-weight: 600;
     width: 80%;
-    font-family: 'ClashGrotesk-Regular', -apple-system, sans-serif;
+    font-family: 'ClashGrotesk-Light', -apple-system, sans-serif;
     font-weight: 400;
     font-size: 14px;
-    line-height: 28.7px;
+    line-height: 205%;
+    letter-spacing: 0%;
     margin: 10px 5px 30px 4px;
   }
   
