@@ -71,7 +71,7 @@
 .plantDetails {
   font-family: 'Chivo Mono';
   font-weight: 300;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 165%;
   letter-spacing: 0;
 }
@@ -84,9 +84,9 @@
 }
 
 .sectionTitle {
-  font: 378 18px 'Nippo-Regular', sans-serif;
+  font: 378 24px 'Nippo-Regular', sans-serif;
   line-height: 100%;
-  letter-spacing: 0;
+  letter-spacing: 3%;
   margin-bottom: 15px;
 }
 
@@ -113,7 +113,9 @@
 
 .titleText {
   flex-grow: 1;
-  font: 300 12px/23px 'Chivo Mono', sans-serif;
+  font: 300 10px 'Chivo Mono', sans-serif;
+  line-height: 224%;
+  letter-spacing: 0%;
 }
 
 .bulletcircle {
@@ -192,4 +194,33 @@
     margin-left: 0;
     margin-top: 40px;
   }
+}
+
+
+/* For the first title (Wetland status) */
+.sidebar > :first-child h1,
+.sidebar > :first-child h2,
+.sidebar > :first-child h3,
+.sidebar > :first-child .title,
+.sidebar > :first-child .sectionTitle,
+.rightPanel-sidebar > :first-child h1,
+.rightPanel-sidebar > :first-child h2,
+.rightPanel-sidebar > :first-child h3,
+.rightPanel-sidebar > :first-child .title,
+.rightPanel-sidebar > :first-child .sectionTitle {
+  font-size: 24px !important;
+  font-family: 'Nippo-Regular', sans-serif;
+  letter-spacing: 3%;
+  font-weight: 378;
+  line-height: 100%;
+}
+
+/* For the second title (Phytoremediation capacity) */
+.sidebar > div:nth-child(2) .sectionTitle,
+.rightPanel-sidebar > div:nth-child(2) .sectionTitle {
+  font-size: 18px !important;
+  font-family: 'Nippo-Regular', sans-serif;
+  letter-spacing: 3%;
+  font-weight: 378;
+  line-height: 100%;
 }
