@@ -44,7 +44,7 @@
     font-weight: 400;
     left: 0;
     letter-spacing: 0;
-    line-height: 28.7px;
+    line-height: 205%;
     mix-blend-mode: difference;
     position: absolute;
     text-align: right;
@@ -67,7 +67,7 @@
     font-weight: 400;
     left: 78px;
     letter-spacing: 0;
-    line-height: 28.7px;
+    line-height: 205%;
     mix-blend-mode: difference;
     position: absolute;
     width: 559px;
@@ -126,12 +126,12 @@
 
 .bottom-section3 .box .text-wrapper-2 {
     color: #ffffff;
-    font-family: "Nippo-Regular", Helvetica;
+    font-family: "Nippo-Light", Helvetica;
     font-size: 32px;
-    font-weight: 400;
+    font-weight: 378;
     left: 340px;
-    letter-spacing: 0;
-    line-height: 52.8px;
+    letter-spacing: 0%;
+    line-height: 165%;
     mix-blend-mode: difference;
     position: absolute;
     top: 570px;
@@ -191,10 +191,10 @@
     color: #181818;
     font-family: "Nippo-Light", Helvetica;
     font-size: 28px;
-    font-weight: 400;
+    font-weight: 378;
     left: 0;
-    letter-spacing: 0.84px;
-    line-height: normal;
+    letter-spacing: 3%;
+    line-height: 100%;
     position: absolute;
     top: 9px;
     width: 527px;
@@ -202,12 +202,12 @@
 
 .bottom-section3 .box .text-wrapper-4 {
     color: #ffffff;
-    font-family: "Nippo-Regular", Helvetica;
+    font-family: "Nippo-Light", Helvetica;
     font-size: 32px;
     font-weight: 400;
     left: 15px;
     letter-spacing: 0;
-    line-height: 52.8px;
+    line-height: 165%;
     mix-blend-mode: difference;
     position: absolute;
     top: 112px;
