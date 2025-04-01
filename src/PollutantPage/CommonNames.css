@@ -44,12 +44,10 @@
   
 .common-names-container .common-names-title {
     color: #fff !important;
-    font: 400 28px 'Nippo-Light', sans-serif;
-    font-size: clamp(20px, 2vw, 28px);
-    font-weight: 400;
+    font: 378 28px 'Nippo-Light', sans-serif;
     left: 0;
-    letter-spacing: 0.84px;
-    line-height: normal;
+    letter-spacing: 3%;
+    line-height: 100%;
     position: absolute;
     top: 0px;
     width: 100%;
@@ -91,12 +89,12 @@
   
 .common-names-container .common-names-item-title {
     color: #000 !important;
-    font-family: "Nippo-Regular", Helvetica;
-    font-size: 24px;
-    font-weight: 400;
+    font-family: "ClashGrotesk-Regular", Helvetica;
+    font-size: 20px;
+    font-weight: 600;
     left: 0;
-    letter-spacing: 0.72px;
-    line-height: normal;
+    letter-spacing: 3%;
+    line-height: 297%;
     position: absolute;
     top: 0;
     width: 317px;
@@ -233,8 +231,10 @@
   
 .common-names-container .scientific-name-container {
     font-family: 'ClashGrotesk-Light', sans-serif;
-    font-size: 32px;
+    font-size: 20px;
     font-weight: 400;
+    line-height: 359%;
+    letter-spacing: 3%;
     color: #000;
     margin: 40px 0;
     padding-left: 15px;
@@ -242,5 +242,5 @@
 }
 
 .common-names-container .scientific-name-bold {
-    font-weight: 800;
+    font-weight: 600;
 }
