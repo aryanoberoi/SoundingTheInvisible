@@ -164,40 +164,41 @@
 }
 
 .bottom-section3 .box .overlap-group-2 {
+    background-color: #000;
     height: 57px;
     position: relative;
-    width: 527px;
-}
-
-.bottom-section3 .box .rectangle-6 {
-    background-color: #ffffff;
-    height: 57px;
-    left: 2px;
-    position: absolute;
-    top: 0;
-    width: 169px;
-}
-
-.bottom-section3 .box .rectangle-7 {
-    background-color: #ffffff;
-    height: 10px;
-    left: 69px;
-    position: absolute;
-    top: 47px;
-    width: 170px;
+    width: fit-content;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: visible;
 }
 
 .bottom-section3 .box .text-wrapper-3 {
+    background-color: #fff !important;
     color: #181818;
-    font-family: "Nippo-Light", Helvetica;
-    font-size: 28px;
-    font-weight: 378;
+    font: 378 28px 'Nippo-Light', sans-serif;
+    font-size: clamp(20px, 2vw, 28px); 
+    font-weight: 400;
     left: 0;
     letter-spacing: 3%;
     line-height: 100%;
     position: absolute;
-    top: 9px;
-    width: 527px;
+    top: 10px;
+    width: fit-content;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 1;
+    padding-block: 12px;
+}
+
+.bottom-section3 .box .text-wrapper-3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5%; /* Position it at the same level as the underline */
+    width: 140%;
+    height: 12px;
+    background-color: #ffffff;
 }
 
 .bottom-section3 .box .text-wrapper-4 {

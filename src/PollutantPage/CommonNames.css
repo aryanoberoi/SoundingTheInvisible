@@ -9,49 +9,48 @@
     background-color: white;
 }
   
-.common-names-container .common-names-header {
-    position: relative;
-    width: 35em;
-    margin: 0;
-    transform: none;
-    left: 0;
-    height: 57px;
-}
-  
 .common-names-container .common-names-overlap {
     height: 57px;
     position: relative;
     width: 100%; /* Adjusted to ensure it covers the full width */
 }
-  
-.common-names-container .common-names-rectangle {
-    background-color: #000 !important;
-    width: 100%; /* Adjusted to extend till the width of the title */
-    height: 70%;
-    position: relative;
-    top: 0;
-}
-  
-.common-names-container .common-names-underline {
-    background-color: #000 !important;
-    height: 9px;
-    left: 20%;
-    position: relative;
-    top: -15%;
-    width: 100%; /* Adjusted to extend till the width of the title */
-}
 
+.common-names-container .common-names-header {
+    background-color: #fff;
+    height: 57px;
+    position: relative;
+    width: fit-content;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: visible;
+}  
   
 .common-names-container .common-names-title {
-    color: #fff !important;
+    background-color: #000 !important;
+    color: #fff;
     font: 378 28px 'Nippo-Light', sans-serif;
+    font-size: clamp(20px, 2vw, 28px); 
+    font-weight: 400;
     left: 0;
     letter-spacing: 3%;
     line-height: 100%;
     position: absolute;
-    top: 0px;
-    width: 100%;
-    white-space: nowrap; /* Prevent text wrapping */
+    top: 10px;
+    width: fit-content;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 1;
+    padding-block: 12px;
+}
+
+.common-names-container .common-names-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5%; /* Position it at the same level as the underline */
+    width: 111%;
+    height: 12px;
+    background-color: #000;
 }
   
 .common-names-container .common-names-items {

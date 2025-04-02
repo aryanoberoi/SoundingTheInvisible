@@ -29,50 +29,46 @@
     height: 43px;
     left: 0;
     position: absolute;
-    top: 0;
-    width: 743px;
-}
-
-.plant-habitat-container .header-overlap-wrapper {
-    height: 43px;
-    width: 745px;
+    top: -20px;
+    width: fit-content;
 }
 
 .plant-habitat-container .header-content {
-    height: 43px;
+    background-color: #fff;
+    height: 57px;
     position: relative;
-    width: 25em;
-}
-
-.plant-habitat-container .header-background {
-    background-color: #000000;
-    height: 43px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 35em;
-}
-
-.plant-habitat-container .header-underline {
-    background-color: #000000;
-    height: 9px;
-    left: 30em;
-    position: absolute;
-    top: 34px;
-    width: 54%;
+    width: fit-content;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: visible;
 }
 
 .plant-habitat-container .habitat-title {
-    color: #ffffff;
-    font-family: "Nippo-Light", Helvetica;
-    font-size: 28px;
+    background-color: #000 !important;
+    color: #fff;
+    font: 378 28px 'Nippo-Light', sans-serif;
+    font-size: clamp(20px, 2vw, 28px); 
     font-weight: 400;
     left: 0;
-    letter-spacing: 0.84px;
-    line-height: normal;
+    letter-spacing: 3%;
+    line-height: 100%;
     position: absolute;
-    top: 3px;
-    width: 743px;
+    top: 10px;
+    width: fit-content;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 1;
+    padding-block: 12px;
+}
+
+.plant-habitat-container .habitat-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5%; /* Position it at the same level as the underline */
+    width: 111%;
+    height: 12px;
+    background-color: #000;
 }
 
 .plant-habitat-container .decorative-line-1 {
@@ -111,42 +107,42 @@
 
 .plant-habitat-container .habitat-section-1 {
     height: auto;
-    left: 22%;
+    left: 25%;
     position: absolute;
     top: 8%;
-    width: 61%;
+    width: 100%;
 }
 
 .plant-habitat-container .habitat-section-2 {
     height: auto;
-    left: 22%;
+    left: 25%;
     position: absolute;
     top: 47%;
-    width: 61%;
+    width: 100%;
 }
 
 .plant-habitat-container .habitat-section-3 {
     height: auto;
-    left: 22%;
+    left: 25%;
     position: absolute;
     top: 87%;
-    width: 61%;
+    width: 100%;
 }
 
 .plant-habitat-container .habitat-section-4 {
     height: auto;
-    left: 22%;
+    left: 25%;
     position: absolute;
     top: 27%;
-    width: 61%;
+    width: 100%;
 }
 
 .plant-habitat-container .habitat-section-5 {
     height: auto;
-    left: 22%;
+    left: 25%;
     position: absolute;
     top: 67%;
-    width: 61%;
+    width: 100%;
 }
 
 .plant-habitat-container .vector-2 {

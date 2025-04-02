@@ -52,11 +52,11 @@ const RightPanel = ({ sections = [] }) => {
                 return (
                   <div key={index}>
                     <div className="sectionTitle">{section.title}</div>
-                    <div className="titleList">
+                    <div className="titleListRightPanel">
                       {index === 1 ? (
                         <ul>
                           {section.description.split('\n').map((line, lineIndex) => (
-                            <li key={lineIndex} className="titleText">
+                            <li key={lineIndex} className="titleListRightPanel">
                               {line}
                             </li>
                           ))}
@@ -65,12 +65,12 @@ const RightPanel = ({ sections = [] }) => {
                         section.description.split('\n').map((line, lineIndex) => (
                           <div key={lineIndex} className="titleEntry">
                             <div className="rightPanel-bullet" />
-                            <span className="titleText">{line}</span>
+                            <span className="titleTextRightPanel">{line}</span>
                           </div>
                         ))
                       )}
                     </div>
-                    <KnowMoreButton className="knowMoreButton" onClick={scrollToAboutPlant} />
+                    <KnowMoreButton className="knowMoreButtonRightPanel" onClick={scrollToAboutPlant} />
                   </div>
                 );
               }
@@ -79,6 +79,7 @@ const RightPanel = ({ sections = [] }) => {
                   key={index}
                   title={section.title}
                   description={section.description}
+                  showKnowMore={false}
                 />
               );
             })}
@@ -96,7 +97,7 @@ const RightPanel = ({ sections = [] }) => {
                 <p className="plantDetails">
                   {plantDetails}
                 </p>
-                <KnowMoreButton className="knowMoreButton" onClick={scrollToAboutPlant} />
+                <KnowMoreButton className="knowMoreButtonRightPanel" onClick={scrollToAboutPlant} />
               </div>
             </div>
           </main>

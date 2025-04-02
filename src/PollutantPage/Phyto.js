@@ -15,8 +15,6 @@ export const Phyto = ({ sections }) => {
       {/* Header Section */}
       <div className="overlap-group-wrapper">
         <div className="overlap-group-2">
-          <div className="rectangle-6" />
-          <div className="rectangle-7" />
           <div className="text-wrapper-3">Phytoremediation of the Representative Pollutant</div>
         </div>
       </div>

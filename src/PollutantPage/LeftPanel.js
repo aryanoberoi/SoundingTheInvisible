@@ -80,7 +80,7 @@ const LeftPanel = ({ sections = [] }) => {
           </div>
           <div className="sideContent">
             <div className="sideContentWrapper">
-              <div className="sectionTitle">Effects on human health:</div>
+              <div className="sectionTitleLeftPanel">Effects on human health:</div>
               <div className="titleList">
                 {healthEffectsTitles.map((title, index) => (
                   <div key={index} className="titleEntry">
@@ -90,11 +90,11 @@ const LeftPanel = ({ sections = [] }) => {
                 ))}
               </div>
               <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={scrollToEffectsOnHealth}/>
-              <div className="sectionTitle" style={{paddingBottom: '10px'}}>
+              <div className="sectionTitleLeftPanel" style={{paddingBottom: '10px'}}>
                 Enthalpy and sound <br /> Frequency of Pollutant
                 <br />
               </div>
-              <div style={{ border: '1px solid black', height: '120px' }}>
+              <div style={{ border: '1px solid black', width: '320px' }}>
                 <SineWaveVisualizer />
               </div>
               <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={scrollToEnthalpy} />

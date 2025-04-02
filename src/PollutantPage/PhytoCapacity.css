@@ -6,13 +6,13 @@
 }
 
 .phyto-capacity-container .phyto-capacity-header {
-    height: 43px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 60em;
-    display: flex;
-    align-items: center;
+    background-color: #fff;
+    height: 57px;
+    position: relative;
+    width: fit-content;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: visible;
 }
 
 .phyto-capacity-container .phyto-capacity-header-wrapper {
@@ -26,35 +26,32 @@
     width: 743px;
 }
 
-.phyto-capacity-container .phyto-capacity-rectangle {
-    background-color: #000000;
-    height: 43px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 43em;
-}
-
-.phyto-capacity-container .phyto-capacity-underline {
-    background-color: #000000;
-    height: 9px;
-    left: 480px;
-    position: absolute;
-    top: 34px;
-    width: 500px;
-}
-
 .phyto-capacity-container .phyto-capacity-title {
-    color: #ffffff;
-    font-family: "Nippo-Light", Helvetica;
-    font-size: 28px;
+    background-color: #000 !important;
+    color: #fff;
+    font: 378 28px 'Nippo-Light', sans-serif;
+    font-size: clamp(20px, 2vw, 28px); 
     font-weight: 400;
     left: 0;
-    letter-spacing: 0.84px;
-    line-height: normal;
+    letter-spacing: 3%;
+    line-height: 100%;
     position: absolute;
-    top: 3px;
-    width: 100%;
+    top: 10px;
+    width: fit-content;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 1;
+    padding-block: 12px;
+}
+
+.phyto-capacity-container .phyto-capacity-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5%; /* Position it at the same level as the underline */
+    width: 111%;
+    height: 12px;
+    background-color: #000;
 }
 
 .phyto-capacity-container .phyto-capacity-content {

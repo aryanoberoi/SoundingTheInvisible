@@ -383,11 +383,11 @@ body.sound-panel-active .sound-icon span {
 
 .nav-bar {
   position: sticky;
-  top: 60px;
-  height: calc(100vh - 60px); /* Use viewport height minus top offset */
-  width: 35%;
+  top: 20px;
+  height: calc(100vh - 10px); /* Use viewport height minus top offset */
+  width: 25%;
   z-index: 10;
-  margin-top: 100px;
+  margin-top: 20px;
   margin-bottom: 20px; /* Added bottom margin */
   align-self: flex-start;
   overflow-y: auto; /* Allow scrolling if content exceeds height */
@@ -659,11 +659,10 @@ body.homepage-active .hamburger span {
 .main-container {
   position: relative;
   margin-top: 80px;
-  width: 604px;
+  width: 75%;
   height: auto;
   overflow: hidden;
-  margin-left: calc(15%);
-  margin-bottom: 10%;
+  margin: 10%;
 }
 
 /* Add this new rule for inverted section */
@@ -730,7 +729,7 @@ body.homepage-active .hamburger span {
 }
 
 .lorem-ipsum-dolor {
-  width: 600px;
+  width: 100%;
   color: #fff;
   font-family: 'ClashGrotesk-Light', -apple-system, sans-serif;
   font-size: 14px;
@@ -1353,31 +1352,17 @@ img {
 }
 
 .content-container-overlap{
+  background-color: #000;
   height: 57px;
   position: relative;
-  width: 580px;
-}
-
-.content-container-background {
-  background-color: #ffffff;
-  width: 80%;
-  left: 10%;
-  height: 4vw;
-  max-height: 57px;
-  position: relative;
-  top: 0;
-}
-
-.content-container-underline {
-  background-color: #ffffff;
-  height: 12px;
-  left: 15%;
-  position: relative;
-  top: -7.8%;
-  width: 95%;
+  width: fit-content;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: visible;
 }
 
 .content-container-title {
+  background-color: #fff !important;
   color: #181818;
   font: 378 28px 'Nippo-Light', sans-serif;
   font-size: clamp(20px, 2vw, 28px); 
@@ -1387,6 +1372,20 @@ img {
   line-height: 100%;
   position: absolute;
   top: 10px;
-  width: 100%;
-  text-align: center;
+  width: fit-content;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 1;
+  padding-block: 12px;
+}
+
+/* Add a pseudo-element to extend the underline */
+.content-container-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5%; /* Position it at the same level as the underline */
+  width: 111%;
+  height: 12px;
+  background-color: #ffffff;
 }

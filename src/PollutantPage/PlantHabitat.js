@@ -13,8 +13,6 @@ export const PlantHabitat = ({ sections }) => {
             <div className="header-wrapper">
               <div className="header-overlap-wrapper">
                 <div className="header-content">
-                  <div className="header-background" />
-                  <div className="header-underline" />
                   <div className="habitat-title">{plantName}'s Habitat</div> {/* Use plant name */}
                 </div>
               </div>

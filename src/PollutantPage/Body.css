@@ -25,43 +25,43 @@
 }
   
 .box-container .box-header-overlap {
+    background-color: #000;
     height: 57px;
     position: relative;
-    width: 423px;
-}
-  
-.box-container .box-header-background {
-    background-color: #ffffff;
-    width: 80%;
-    left: 10%;
-    height: 4vw;
-    max-height: 57px;
-    position: relative;
-    top: 0;
-}
-  
-.box-container .box-header-underline {
-    background-color: #ffffff;
-    height: 9px;
-    left: 15%;
-    position: relative;
-    top: -15%;
-    width: 90%;
+    width: fit-content;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: visible;
+    left: 3%;
 }
   
 .box-container .box-header-title {
+    background-color: #fff !important;
     color: #181818;
     font: 378 28px 'Nippo-Light', sans-serif;
     font-size: clamp(20px, 2vw, 28px); 
     font-weight: 400;
-    right: 0.5em;
+    left: 0;
     letter-spacing: 3%;
     line-height: 100%;
     position: absolute;
     top: 10px;
-    width: 100%;
-    text-align: center;
+    width: fit-content;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 1;
+    padding-block: 12px;
 }
+
+.box-container .box-header-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5%; /* Position it at the same level as the underline */
+    width: 133%;
+    height: 12px;
+    background-color: #ffffff;
+  }
   
 .box-container .human-container {
     height: auto;
