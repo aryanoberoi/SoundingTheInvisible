@@ -7,8 +7,6 @@ export const PhytoCapacity = ({ sections }) => {
   return (
     <div className="phyto-capacity-container">
       <div className="phyto-capacity-header">
-        <div className="phyto-capacity-rectangle" />
-        <div className="phyto-capacity-underline" />
         <div className="phyto-capacity-title">Phytoremediation capacity of {plantName}</div>
       </div>
 
