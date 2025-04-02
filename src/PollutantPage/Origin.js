@@ -5,8 +5,6 @@ export const Origin = ({ sections }) => {
   return (
     <div className="origin-section-container">
         <div className="origin-section-header">
-            <div className="origin-section-rectangle" />
-            <div className="origin-section-underline" />
             <div className="origin-section-title">Origin and Geographical Distribution</div>
         </div>
         
