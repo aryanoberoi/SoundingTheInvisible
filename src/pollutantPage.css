@@ -1353,31 +1353,17 @@ img {
 }
 
 .content-container-overlap{
+  background-color: #000;
   height: 57px;
   position: relative;
-  width: 580px;
-}
-
-.content-container-background {
-  background-color: #ffffff;
-  width: 80%;
-  left: 10%;
-  height: 4vw;
-  max-height: 57px;
-  position: relative;
-  top: 0;
-}
-
-.content-container-underline {
-  background-color: #ffffff;
-  height: 12px;
-  left: 15%;
-  position: relative;
-  top: -7.8%;
-  width: 95%;
+  width: fit-content;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: visible;
 }
 
 .content-container-title {
+  background-color: #fff !important;
   color: #181818;
   font: 378 28px 'Nippo-Light', sans-serif;
   font-size: clamp(20px, 2vw, 28px); 
@@ -1387,6 +1373,21 @@ img {
   line-height: 100%;
   position: absolute;
   top: 10px;
-  width: 100%;
-  text-align: center;
+  width: fit-content;
+  text-align: left;
+  padding-right: 10px;
+  white-space: nowrap;
+  z-index: 1;
+  padding-bottom: 5px;
+}
+
+/* Add a pseudo-element to extend the underline */
+.content-container-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -35%; /* Position it at the same level as the underline */
+  width: 120%;
+  height: 12px;
+  background-color: #ffffff;
 }
