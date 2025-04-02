@@ -16,8 +16,6 @@ export const CommonNames = ({ sections }) => {
   return (
     <div className="common-names-container">
         <div className="common-names-header">
-            <div className="common-names-rectangle" />
-            <div className="common-names-underline" />
             <div className="common-names-title">Common names of {plant_names}</div>
         </div>
 
