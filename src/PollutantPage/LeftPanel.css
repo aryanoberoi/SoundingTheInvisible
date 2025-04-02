@@ -38,7 +38,7 @@
   }
 
   .imageContainer {
-      width: 320px;
+    width: 320px;
       height: 320px;
       flex-shrink: 0;
   }
