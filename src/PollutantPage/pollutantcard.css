@@ -44,19 +44,21 @@
     width: 528px;
     color: #FFF;
     font-family: 'Nippo-Light';
-    font-size: 32px;
+    font-size: 48px;
     font-weight: 300;
     line-height: 100%;
     letter-spacing: 3%;
-    margin-top: 8px;
+    margin-top: 2%;
   }
   
   .description {
     color: #fff;
-    margin-top: 24px;
+    margin-top: 1%;
+    margin-bottom: 1%;
     font-family: 'Chivo Mono';
     font-weight: 400;
-    font-size: 10px;
+    font-size: 14px;
+    width: 60%;
     line-height: 165%;
     letter-spacing: 0;
     padding-left: 15px;
@@ -69,8 +71,8 @@
   
   .descriptionLine {
     position: relative;
-    padding-left: 12px;
-    margin: 4px 0;
+    padding-left: 3%;
+    margin: 2% 0;
   }
   
   .descriptionLine::before {
@@ -130,8 +132,8 @@
     text-align: right;
     text-transform: uppercase;
     letter-spacing: 1.4px;
-    padding: 4px 10px;
-    font: 378 10px 'Nippo-Light', sans-serif;
+    padding: 8px 16px;
+    font: 378 12px 'Nippo-Light', sans-serif;
     border: 1px solid black;
     cursor: pointer;
     margin: 10px 0;

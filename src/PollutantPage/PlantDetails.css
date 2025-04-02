@@ -99,7 +99,7 @@
 .titleList {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0;
   width: 100%;
 }
 
@@ -119,8 +119,8 @@
 }
 
 .bulletcircle {
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   border: 1px solid #000;
   border-radius: 50%;
   overflow: hidden;
@@ -152,11 +152,11 @@
   text-align: left;
   text-transform: uppercase;
   letter-spacing: 1.4px;
-  padding: 4px 10px;
-  font: 378 10px 'Nippo-Light', sans-serif;
+  padding: 8px 16px;
+  font: 378 12px 'Nippo-Regular', sans-serif;
   border: 1px solid black;
   cursor: pointer;
-  margin: 10px 0;
+  margin: 5px 0;
   align-self: flex-start;
 }
 
