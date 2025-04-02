@@ -16,8 +16,6 @@ export const UsesOfPlant = ({sections}) => {
   return (
     <div className="uses-of-plant-container">
       <div className="uses-of-plant-header">
-        <div className="uses-of-plant-rectangle" />
-        <div className="uses-of-plant-underline" />
         <div className="uses-of-plant-title">Uses of {sections[0].plant_name}</div>
       </div>
 

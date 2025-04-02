@@ -6,13 +6,13 @@
 }
 
 .uses-of-plant-container .uses-of-plant-header {
-    height: 43px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 743px;
-    display: flex;
-    align-items: center;
+    background-color: #fff;
+    height: 57px;
+    position: relative;
+    width: fit-content;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: visible;
 }
 
 .uses-of-plant-container .uses-of-plant-header-wrapper {
@@ -26,35 +26,32 @@
     width: 743px;
 }
 
-.uses-of-plant-container .uses-of-plant-rectangle {
-    background-color: #000000;
-    height: 43px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 225px;
-}
-
-.uses-of-plant-container .uses-of-plant-underline {
-    background-color: #000000;
-    height: 9px;
-    left: 155px;
-    position: absolute;
-    top: 34px;
-    width: 91px;
-}
-
 .uses-of-plant-container .uses-of-plant-title {
-    color: #ffffff;
-    font-family: "Nippo-Light", Helvetica;
-    font-size: 28px;
+    background-color: #000 !important;
+    color: #fff;
+    font: 378 28px 'Nippo-Light', sans-serif;
+    font-size: clamp(20px, 2vw, 28px); 
     font-weight: 400;
     left: 0;
-    letter-spacing: 0.84px;
-    line-height: normal;
+    letter-spacing: 3%;
+    line-height: 100%;
     position: absolute;
-    top: 3px;
-    width: 743px;
+    top: 10px;
+    width: fit-content;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 1;
+    padding-block: 12px;
+}
+
+.uses-of-plant-container .uses-of-plant-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5%; /* Position it at the same level as the underline */
+    width: 111%;
+    height: 12px;
+    background-color: #000;
 }
 
 .circle-inverted {
