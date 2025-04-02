@@ -1375,10 +1375,9 @@ img {
   top: 10px;
   width: fit-content;
   text-align: left;
-  padding-right: 10px;
   white-space: nowrap;
   z-index: 1;
-  padding-bottom: 5px;
+  padding-block: 12px;
 }
 
 /* Add a pseudo-element to extend the underline */
@@ -1386,8 +1385,8 @@ img {
   content: '';
   position: absolute;
   left: 0;
-  bottom: -35%; /* Position it at the same level as the underline */
-  width: 120%;
+  bottom: -5%; /* Position it at the same level as the underline */
+  width: 111%;
   height: 12px;
   background-color: #ffffff;
 }
