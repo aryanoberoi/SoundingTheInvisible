@@ -8,7 +8,9 @@ export const SoundFrequency = ({ sections }) => {
     <div className="sound-frequency-container">
         <div className="content-container">
           <div className="content-container-overlap">
-            <div className="content-container-title">Enthalpy and Sound Frequency of {pollutantName}</div>
+            <div className="content-container-background" />
+            <div className="content-container-underline" />
+            <div id = "enthalpy-section" className="content-container-title">Enthalpy and Sound Frequency of {pollutantName}</div>
           </div>
         </div>
 
