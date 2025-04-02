@@ -1,6 +1,6 @@
 .plantContainer {
   background: #fff;
-  padding: 31px 61px 84px;
+  padding: 5%;
   overflow: hidden;
 }
 
@@ -13,7 +13,6 @@
   width: 30%;
   display: flex;
   flex-direction: column;
-  margin-top: 60px;
 }
 
 .mainContent {
@@ -88,6 +87,7 @@
   line-height: 100%;
   letter-spacing: 3%;
   margin-bottom: 15px;
+  margin-top: 5%;
 }
 
 .sectionDescription {

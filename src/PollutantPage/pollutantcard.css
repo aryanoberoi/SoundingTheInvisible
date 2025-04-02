@@ -2,7 +2,7 @@
 
 .container {
     background: #000;
-    padding: 95px 69px;
+    padding: 5%;
     overflow: hidden;
     position: relative;
   }
@@ -237,8 +237,4 @@
     top: 330px;
     left: 265px;
     transform: rotate(90deg);
-  }
-
-  .left-panel .sideContent{
-    margin-right: 180px!important;
   }
