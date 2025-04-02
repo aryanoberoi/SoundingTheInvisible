@@ -383,11 +383,11 @@ body.sound-panel-active .sound-icon span {
 
 .nav-bar {
   position: sticky;
-  top: 60px;
-  height: calc(100vh - 60px); /* Use viewport height minus top offset */
+  top: 20px;
+  height: calc(100vh - 10px); /* Use viewport height minus top offset */
   width: 35%;
   z-index: 10;
-  margin-top: 100px;
+  margin-top: 20px;
   margin-bottom: 20px; /* Added bottom margin */
   align-self: flex-start;
   overflow-y: auto; /* Allow scrolling if content exceeds height */

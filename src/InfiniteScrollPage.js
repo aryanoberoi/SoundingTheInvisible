@@ -412,7 +412,7 @@ const PollutantPage = () => {
       <div id="slider-container" className="slider-container"   style={{
         transform: 'scale(0.75)',
         transformOrigin: 'top left',
-        width: '133.33vw',
+        width: '132.16vw',
         height: '180.33vh'  }}
       >
         <LeftPanel sections={leftpanelcontent} />
