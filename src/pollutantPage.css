@@ -385,7 +385,7 @@ body.sound-panel-active .sound-icon span {
   position: sticky;
   top: 20px;
   height: calc(100vh - 10px); /* Use viewport height minus top offset */
-  width: 35%;
+  width: 25%;
   z-index: 10;
   margin-top: 20px;
   margin-bottom: 20px; /* Added bottom margin */
@@ -659,11 +659,10 @@ body.homepage-active .hamburger span {
 .main-container {
   position: relative;
   margin-top: 80px;
-  width: 604px;
+  width: 75%;
   height: auto;
   overflow: hidden;
-  margin-left: calc(15%);
-  margin-bottom: 10%;
+  margin: 10%;
 }
 
 /* Add this new rule for inverted section */
@@ -730,7 +729,7 @@ body.homepage-active .hamburger span {
 }
 
 .lorem-ipsum-dolor {
-  width: 600px;
+  width: 100%;
   color: #fff;
   font-family: 'ClashGrotesk-Light', -apple-system, sans-serif;
   font-size: 14px;
