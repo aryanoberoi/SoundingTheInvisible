@@ -5,6 +5,7 @@ import vector167 from "./vector-167.svg";
 import ellipse89 from "./ellipse-89.svg";
 import vector166E from "./vector-166-e.svg";
 import longDownArrow from "./long-down-arrow.svg";
+import circleImage from "./nutritional.png";
 
 
 export const UsesOfPlant = ({sections}) => {
@@ -22,6 +23,7 @@ export const UsesOfPlant = ({sections}) => {
       {sections.map(section => (
         <div key={section.id} className={`uses-container-${section.id}`}>
           <div className="circle-inverted" />
+          <img src={circleImage} alt="circle content" className="circle-image" />
           <div className={`text-vector-group ${expandedSection === section.id ? 'expanded' : ''}`}>
             <div className={section.id}>{section.title}</div>
             <img src={ellipse89} alt="ellipse" className="ellipse-89" />
