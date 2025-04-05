@@ -21,6 +21,12 @@ const PollutantPage = () => {
   const [activeSection, setActiveSection] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [containerHeight, setContainerHeight] = useState('80vw');
+  
+  // Refs for panels to measure their heights
+  const leftPanelRef = useRef(null);
+  const rightPanelRef = useRef(null);
+  const sliderContainerRef = useRef(null);
 
   // Pollutant categorization by waste type
   const pollutantCategories = {
@@ -291,6 +297,29 @@ const PollutantPage = () => {
     setIsDragging(false);
   };
 
+  // Function to update container height based on panel heights
+  const updateContainerHeight = () => {
+    if (!leftPanelRef.current || !rightPanelRef.current || !sliderContainerRef.current) return;
+    
+    // Give the panels time to render their content
+    setTimeout(() => {
+      const leftPanelHeight = leftPanelRef.current.scrollHeight;
+      const rightPanelHeight = rightPanelRef.current.scrollHeight;
+      
+      // Use the height of the taller panel
+      const maxHeight = Math.max(leftPanelHeight, rightPanelHeight);
+      setContainerHeight(`${maxHeight}px`);
+      
+      // Update slider bar height to match container
+      const sliderBar = document.querySelector('.slider-bar');
+      if (sliderBar) {
+        sliderBar.style.height = `${maxHeight}px`;
+      }
+      
+      console.log(`Left panel height: ${leftPanelHeight}px, Right panel height: ${rightPanelHeight}px, Using: ${maxHeight}px`);
+    }, 100);
+  };
+
   useEffect(() => {
     if (isDragging) {
       window.addEventListener('mousemove', handleMouseMove);
@@ -306,6 +335,25 @@ const PollutantPage = () => {
       window.removeEventListener('mouseup', handleMouseUp);
     };
   }, [isDragging]);
+
+  useEffect(() => {
+    // Update container height when panels are loaded
+    updateContainerHeight();
+    
+    // Update height again after a delay to ensure all content is rendered
+    const initialTimer = setTimeout(() => {
+      updateContainerHeight();
+    }, 500);
+    
+    // Add resize listener to handle window size changes
+    window.addEventListener('resize', updateContainerHeight);
+    
+    // Clean up on unmount
+    return () => {
+      clearTimeout(initialTimer);
+      window.removeEventListener('resize', updateContainerHeight);
+    };
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -371,6 +419,7 @@ const PollutantPage = () => {
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
+      updateContainerHeight();
     };
     
     handleResize();
@@ -409,17 +458,21 @@ const PollutantPage = () => {
 
   return (
     <>
-      <div id="slider-container" className="slider-container"   style={{
-        transform: 'scale(0.75)',
-        transformOrigin: 'top left',
-        width: '132.16vw',
-        height: '180.33vh'  }}
+      <div 
+        id="slider-container" 
+        className="slider-container"
+        ref={sliderContainerRef}
+        style={{ height: containerHeight }}
       >
-        <LeftPanel sections={leftpanelcontent} />
-        <RightPanel sections={rightpanelcontent} />
+        <div ref={leftPanelRef} style={{ height: '100%' }}>
+          <LeftPanel sections={leftpanelcontent} />
+        </div>
+        <div ref={rightPanelRef} style={{ height: '100%' }}>
+          <RightPanel sections={rightpanelcontent} />
+        </div>
         <div
           className="slider-bar"
-          style={{ left: `${sliderPosition}%`}}
+          style={{ left: `${sliderPosition}%`, height: containerHeight }}
           onMouseDown={handleMouseDown}
         >
           <img

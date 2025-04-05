@@ -28,23 +28,23 @@ const LeftPanel = ({ sections = [] }) => {
       aboutPollutantSection.scrollIntoView({ behavior: "smooth" });
     }};
 
-    const scrollToEffectsOnHealth = () => {
-      const effectsOnHealthSection = document.getElementById("effects-on-health-section");
-      if (effectsOnHealthSection) {
-        effectsOnHealthSection.scrollIntoView({ behavior: "smooth" });
-      }};
+  const scrollToEffectsOnHealth = () => {
+    const effectsOnHealthSection = document.getElementById("effects-on-health-section");
+    if (effectsOnHealthSection) {
+      effectsOnHealthSection.scrollIntoView({ behavior: "smooth" });
+    }};
 
-      const scrollToEnthalpy = () => {
-        const enthalpySection = document.getElementById("enthalpy-section");
-        if (enthalpySection) {
-          enthalpySection.scrollIntoView({ behavior: "smooth" });
-        }};
-    
-        const scrollToSources = () => {
-          const sourcesSection = document.getElementById("sources-section");
-          if (sourcesSection) {
-            sourcesSection.scrollIntoView({ behavior: "smooth" });
-          }};
+  const scrollToEnthalpy = () => {
+    const enthalpySection = document.getElementById("enthalpy-section");
+    if (enthalpySection) {
+      enthalpySection.scrollIntoView({ behavior: "smooth" });
+    }};
+  
+  const scrollToSources = () => {
+    const sourcesSection = document.getElementById("sources-section");
+    if (sourcesSection) {
+      sourcesSection.scrollIntoView({ behavior: "smooth" });
+    }};
 
   return (
     <div className="left-panel">
@@ -62,20 +62,9 @@ const LeftPanel = ({ sections = [] }) => {
                 ))}
               </div>
               <div className='knowone'>
-              <KnowMoreButtonInverted className="knowMoreButtonInverted" onClick={scrollToAboutPollutant} />
+                <KnowMoreButtonInverted className="knowMoreButtonInverted" onClick={scrollToAboutPollutant} />
               </div>
               <div className="imageContainer" />
-              
-              {/* <div className='circle-container'>
-                    <div className="circle circle1" />
-                    <div className="circle circle2" />
-                    <div className="circle circle3" />
-                    <div className="circle circle4" />
-                    <div className="line line1" />
-                    <div className="line line2" />
-                    <div className="line line3" />
-                    <div className="line line4" />
-              </div> */}
             </div>
           </div>
           <div className="sideContent">
@@ -94,7 +83,7 @@ const LeftPanel = ({ sections = [] }) => {
                 Enthalpy and sound <br /> Frequency of Pollutant
                 <br />
               </div>
-              <div style={{ border: '1px solid black', width: '320px' }}>
+              <div style={{ border: '1px solid black', width: '160px' }}>
                 <SineWaveVisualizer />
               </div>
               <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={scrollToEnthalpy} />
