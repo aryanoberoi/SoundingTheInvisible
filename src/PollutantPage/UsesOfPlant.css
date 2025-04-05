@@ -62,7 +62,19 @@
     position: absolute;
     left: 0;
     top: 0;
+    z-index: 1;
+}
+
+/* Added styling for the circle image */
+.circle-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    position: absolute;
+    left: 4px;
+    top: 4px;
     z-index: 2;
+    object-fit: cover;
 }
 
 .text-vector-group {
