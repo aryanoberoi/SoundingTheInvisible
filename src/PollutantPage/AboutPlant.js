@@ -32,11 +32,11 @@ export const AboutPlant = ({ sections }) => {
         <span className="lorem-ipsum-dolor inverted-text">
           {aboutPlantText}
         </span>
-        <div className="inverted-graphic-container" style={{ height: "400px" }}>
+        <div className="inverted-graphic-container" style={{ height: "auto" }}>
           <PeepholeEffect 
             imageUrl="n19.svg" 
             width="100%" 
-            height="400px" 
+            height="auto" 
           />
         </div>
         <div className="wetland-status-container">
