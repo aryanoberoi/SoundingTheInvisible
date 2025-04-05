@@ -171,15 +171,15 @@
 .titleListRightPanel {
   font-family: 'Chivo Mono', sans-serif;
   font-weight: 300;
-  font-size: 16px;
-  line-height: 200%;
+  font-size: 10px;
+  line-height: 224%;
   letter-spacing: 0%;
 }
 
 .titleTextRightPanel {
   flex-grow: 1;
-  font: 300 16px 'Chivo Mono', sans-serif;
-  line-height: 224%;
+  font: 300 10px 'Chivo Mono', sans-serif;
+  line-height: 276%;
   letter-spacing: 0%;
 }
 

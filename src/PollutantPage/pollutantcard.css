@@ -44,7 +44,7 @@
     width: 528px;
     color: #FFF;
     font-family: 'Nippo-Light';
-    font-size: 48px;
+    font-size: 32px;
     font-weight: 300;
     line-height: 100%;
     letter-spacing: 3%;
@@ -57,7 +57,7 @@
     margin-bottom: 1%;
     font-family: 'Chivo Mono';
     font-weight: 400;
-    font-size: 14px;
+    font-size: 10px;
     width: 60%;
     line-height: 165%;
     letter-spacing: 0;
@@ -132,7 +132,7 @@
     text-align: right;
     text-transform: uppercase;
     letter-spacing: 1.4px;
-    padding: 8px 16px;
+    padding: 6px 12px;
     font: 378 12px 'Nippo-Light', sans-serif;
     border: 1px solid black;
     cursor: pointer;
@@ -181,6 +181,7 @@
     object-fit: contain;
     z-index: 20;
   }
+
   .circle1{
     position: absolute;
     top: 250px;

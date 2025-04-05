@@ -81,7 +81,7 @@
 .sectionTitleLeftPanel {
   font-family: Nippo-Regular;
   font-weight: 378;
-  font-size: 28px;
+  font-size: 18px;
   line-height: 100%;
   letter-spacing: 0%;
   text-align: right;
@@ -117,8 +117,9 @@
   flex-grow: 1;
   font-family: 'ClashGrotesk-Light';
   font-weight: 400;
-  font-size: 16px;
-  line-height: 250%;
+  font-size: 10px;
+  line-height: 332%;
+  letter-spacing: 14%;
   text-align: right;
 }
 
@@ -130,7 +131,7 @@
 .sourcesTitle {
   font-family: 'Nippo-Regular';
   font-weight: 378;
-  font-size: 28px;
+  font-size: 18px;
   line-height: 100%;
   margin: 8% 10px 2% 19px;
 }
@@ -139,7 +140,7 @@
   margin-top: 10px;
   font-family: 'Chivo Mono';
   font-weight: 400;
-  font-size: 14px;
+  font-size: 10px;
   line-height: 165%;
   letter-spacing: 0;
   text-align: right;
@@ -169,8 +170,8 @@
 
 /* Added styles for waste type icon */
 .headerWrapper .circle {
-  width: 11%;
-  height: 11%;
+  width: 71px;
+  height: 71px;
   object-fit: contain;
   display: flex;
   align-items: center;
