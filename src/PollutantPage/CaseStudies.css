@@ -40,15 +40,15 @@
 .bottom-section3 .box .text-wrapper {
     color: #ffffff;
     font-family: "ClashGrotesk-Light", Helvetica;
-    font-size: 14px;
+    font-size: 11.5px;
     font-weight: 400;
     left: 0;
     letter-spacing: 0;
-    line-height: 205%;
+    line-height: 215%;
     mix-blend-mode: difference;
     position: absolute;
     text-align: right;
-    top: 616px;
+    top: 620px;
     width: 586px;
 }
 
@@ -63,14 +63,22 @@
 .bottom-section3 .box .div {
     color: #ffffff;
     font-family: "ClashGrotesk-Light", Helvetica;
-    font-size: 14px;
-    font-weight: 400;
-    left: 78px;
+    font-size: 11.5px; /* Reduce font size slightly */
+    font-weight: 390;
     letter-spacing: 0;
-    line-height: 205%;
+    line-height: 214%;
     mix-blend-mode: difference;
     position: absolute;
-    width: 559px;
+
+    width: 500px; /* Reduce width slightly */
+    max-width: 90%; /* Ensure it never exceeds the box */
+    left: 49%; /* Center it within the box */
+    transform: translateX(-50%); /* Align to center */
+    
+    white-space: normal; /* Ensure proper wrapping */
+    word-wrap: break-word; /* Ensure long words break instead of overflowing */
+    text-align: justify; /* Distribute text evenly */
+    padding: 10px; /* Prevent text from touching the edges */
 }
 
 .bottom-section3 .box .overlap-wrapper {
@@ -129,7 +137,7 @@
     font-family: "Nippo-Light", Helvetica;
     font-size: 32px;
     font-weight: 378;
-    left: 340px;
+    left: 240px;
     letter-spacing: 0%;
     line-height: 165%;
     mix-blend-mode: difference;

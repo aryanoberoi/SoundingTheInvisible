@@ -19,9 +19,9 @@ export const CommonNames = ({ sections }) => {
             <div className="common-names-title">Common names of {plant_names}</div>
         </div>
 
-        <div className="scientific-name-container">
+        {/* <div className="scientific-name-container">
           Scientific name: <span className="scientific-name-bold">{plant_names}.</span>
-        </div>
+        </div> */}
 
         <div className="common-names-items">
           {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (

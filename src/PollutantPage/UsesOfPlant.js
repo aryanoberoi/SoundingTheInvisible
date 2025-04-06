@@ -5,14 +5,32 @@ import vector167 from "./vector-167.svg";
 import ellipse89 from "./ellipse-89.svg";
 import vector166E from "./vector-166-e.svg";
 import longDownArrow from "./long-down-arrow.svg";
-
+// Import specific images for each section
+import nutritionalImage from "./nutritional.png";
+import medicineImage from "./nutritional.png";
+import additionalImage from "./nutritional.png";
 
 export const UsesOfPlant = ({sections}) => {
   const [expandedSection, setExpandedSection] = useState(null);
 
+  // Function to get the appropriate image based on section id
+  const getSectionImage = (sectionId) => {
+    switch(sectionId) {
+      case "nutritional":
+        return nutritionalImage;
+      case "medicine":
+        return medicineImage;
+      case "additional":
+        return additionalImage;
+      default:
+        return nutritionalImage; // Default fallback
+    }
+  };
+
   const handleReadMore = (section={sections}) => {
     setExpandedSection(prev => prev === section ? null : section);
   };
+  
   return (
     <div className="uses-of-plant-container">
       <div className="uses-of-plant-header">
@@ -22,6 +40,11 @@ export const UsesOfPlant = ({sections}) => {
       {sections.map(section => (
         <div key={section.id} className={`uses-container-${section.id}`}>
           <div className="circle-inverted" />
+          <img 
+            src={getSectionImage(section.id)} 
+            alt={`${section.id} icon`} 
+            className="circle-image" 
+          />
           <div className={`text-vector-group ${expandedSection === section.id ? 'expanded' : ''}`}>
             <div className={section.id}>{section.title}</div>
             <img src={ellipse89} alt="ellipse" className="ellipse-89" />

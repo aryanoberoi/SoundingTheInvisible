@@ -113,11 +113,11 @@
   
 .box-container .content-items-container {
     position: absolute;
-    left: 45%;
+    left: 38%;
     right: 20px;
     margin-left: 10%;
     width: auto;
-    top: 120px;
+    top: 140px;
 }
   
 .box-container .content-item {
@@ -168,7 +168,7 @@
     left: 20em;
     position: absolute;
     top: 13px;
-    transform: rotate(180.00deg);
+    transform: rotate(360.00deg);
     width: 16px;
 }
   
@@ -196,7 +196,7 @@
 }
   
 .box-container .expanded .item-icon-wrapper {
-    transform: rotate(0deg);
+    transform: rotate(-180deg);
 }
   
 .box-container img {

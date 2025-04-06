@@ -13,27 +13,6 @@ body, html {
   display: flex;
 }
 
-/* Adjust height for 100-125% zoom */
-@media (min-resolution: 1.25dppx) {
-  .slider-container {
-    height: 125vh;
-  }
-}
-
-/* Adjust height for 125-150% zoom */
-@media (min-resolution: 1.5dppx) {
-  .slider-container {
-    height: 150vh;
-  }
-}
-
-/* New rule for 150-200% zoom */
-@media (min-resolution: 1.7dppx) {
-  .slider-container {
-    height: 200vh ;
-  } 
-}
-
 .left-panel,
 .right-panel {
   position: absolute;
