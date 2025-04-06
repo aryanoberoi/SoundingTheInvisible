@@ -23,26 +23,28 @@ export const Box = ({ sections }) => {
           </div>
         </div>
 
-        <div className="human-container">
-          <div className="human-image-wrapper">
+        <div className="human-container" style={{ height: 'auto', minHeight: '800px' }}>
+          <div className="human-image-wrapper" style={{ height: 'auto', minHeight: '400px' }}>
             <img
               className="main-human-image"
               alt="Human anatomy diagram"
               src="https://c.animaapp.com/Vg2l9Q1d/img/group-186.png"
+              style={{ height: '150%' }}
             />
-            <div className="human-graphics-container">
-              <div className="human-graphics-overlap">
+            <div className="human-graphics-container" style={{ height: 'auto', minHeight: '300px' }}>
+              <div className="human-graphics-overlap" style={{ height: 'auto', minHeight: '300px', marginTop: '20px' }}>
                 <img
                   className="human-vector"
                   alt="Anatomy vector"
                   src="https://c.animaapp.com/Vg2l9Q1d/img/human-2.png"
+                  style={{ height: '150%', marginTop: '10em' }}
                 />
               </div>
             </div>
           </div>
         </div>
 
-        <div className="content-items-container" style={{ transform: 'translate(-8em, 5.5em)' }}>
+        <div className="content-items-container" style={{ transform: 'translate(-8em, 13em)' }}>
           {sections.map((section, index) => {
             const { title, content } = parseSection(section.text);
             return (

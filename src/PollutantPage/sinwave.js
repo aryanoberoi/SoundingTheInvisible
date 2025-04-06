@@ -6,8 +6,8 @@ const SineWaveVisualizer = ({ frequency = 220.5 }) => { // Default frequency set
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    const width = canvas.parentElement.clientWidth;
-    const height = canvas.parentElement.clientHeight;
+    const width = canvas.parentElement.clientWidth * 2; // Increase width by 50%
+    const height = canvas.parentElement.clientHeight * 0.25; // Decrease height by 50%
     canvas.width = width;
     canvas.height = height;
     let animationFrameId;

@@ -7,8 +7,8 @@ import vector166E from "./vector-166-e.svg";
 import longDownArrow from "./long-down-arrow.svg";
 // Import specific images for each section
 import nutritionalImage from "./nutritional.png";
-import medicineImage from "./nutritional.png";
-import additionalImage from "./nutritional.png";
+import medicineImage from "./uses2.png";
+import additionalImage from "./uses3.png";
 
 export const UsesOfPlant = ({sections}) => {
   const [expandedSection, setExpandedSection] = useState(null);
@@ -60,16 +60,13 @@ export const UsesOfPlant = ({sections}) => {
 
           {expandedSection === section.id && (
             <>
-              <div className="text-vector-group">
-                <img src={ellipse89} alt="ellipse" className="ellipse-89" />
-                <div className={`${section.id}-text-header`}>{section.header}</div>
-                <div className={`${section.id}-text-text`}>{section.text}</div>
-              </div>
-              <div className="text-vector-group">
-                <img src={ellipse89} alt="ellipse" className="ellipse-89" />
-                <div className={`${section.id}-text-header`}>{section.header}</div>
-                <div className={`${section.id}-text-text`}>{section.text}</div>
-              </div>
+              {section.headers && section.texts && section.headers.map((header, index) => (
+                <div key={index} className="text-vector-group">
+                  <img src={ellipse89} alt="ellipse" className="ellipse-89" />
+                  <div className={`${section.id}-text-header`}>{header}</div>
+                  <div className={`${section.id}-text-text`}>{section.texts[index]}</div>
+                </div>
+              ))}
             </>
           )}
 
