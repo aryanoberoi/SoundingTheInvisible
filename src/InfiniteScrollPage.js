@@ -21,7 +21,7 @@ const PollutantPage = () => {
   const [activeSection, setActiveSection] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [containerHeight, setContainerHeight] = useState('80vw');
+  const [containerHeight, setContainerHeight] = useState('86vw');
   
   // Refs for panels to measure their heights
   const leftPanelRef = useRef(null);

@@ -48,6 +48,10 @@ export const UsesOfPlant = ({sections}) => {
           <div className={`text-vector-group ${expandedSection === section.id ? 'expanded' : ''}`}>
             <div className={section.id}>{section.title}</div>
             <div className={`${section.id}-text-text`}>{section.flavourtext}</div>
+
+            <img src={ellipse89} alt="ellipse" className="ellipse-89" />
+            <div className={`${section.id}-text-header`}>{section.header}</div>
+            <div className={`${section.id}-text-text`}>{section.text}</div>
             <img
               alt="nsvg"
               src={expandedSection === section.id ? vector166E : vector166}
