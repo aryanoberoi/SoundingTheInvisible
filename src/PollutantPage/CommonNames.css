@@ -12,7 +12,7 @@
 .common-names-container .common-names-overlap {
     height: 57px;
     position: relative;
-    width: 100%; /* Adjusted to ensure it covers the full width */
+    width: fit-content; /* Adjusted to ensure it covers the full width */
 }
 
 .common-names-container .common-names-header {
@@ -69,8 +69,16 @@
     overflow: visible;
 }
   
-.common-names-container .common-names-item:nth-child(even) {
-    left: 79px;
+.common-names-container .common-names-item:nth-child(3n+1) {
+    left: 0; /* 1st, 4th, 7th items */
+}
+
+.common-names-container .common-names-item:nth-child(3n+2) {
+    left: 160px; /* 2nd, 5th, 8th items */
+}
+
+.common-names-container .common-names-item:nth-child(3n+3) {
+    left: 80px; /* 3rd, 6th, 9th items */
 }
   
 .common-names-container .common-names-item.expanded {
@@ -84,6 +92,8 @@
     right: 0;
     margin: 2rem 0;
     height: 50px;
+    display: flex;
+    align-items: center;
 }
   
 .common-names-container .common-names-item-title {
@@ -91,33 +101,32 @@
     font-family: "ClashGrotesk-Regular", Helvetica;
     font-size: 20px;
     font-weight: 600;
-    left: 0;
     letter-spacing: 3%;
     line-height: 297%;
-    position: absolute;
-    top: 0;
-    width: 317px;
+    width: fit-content;
+    position: relative;
+    /* Removed absolute positioning */
 }
   
 .common-names-container .common-names-item-icon-wrapper {
     background-color: #000 !important;
     border-radius: 8px;
     height: 16px;
-    left: 160px;
-    position: absolute;
-    top: 13px;
+    width: 16px;
     transform: rotate(180deg);
     transition: transform 0.3s ease;
-    width: 16px;
+    margin-left: 10px;
+    position: relative;
+    /* Removed absolute positioning */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
   
 .common-names-container .common-names-item-icon {
-    width: 100%;
+    width: 7px;
     height: auto;
-    max-width: 7px;
-    left: 4px;
     position: absolute;
-    top: 6px;
     transform: rotate(90deg);
     transition: transform 0.3s ease;
     filter: invert(1);
@@ -129,11 +138,6 @@
     font: 400 14px 'ClashGrotesk-Light', 'san-serif';
     line-height: 1.5;
     margin-top: 0px;
-}
-  
-.common-names-container .expanded .common-names-item-overlap {
-    height: auto;
-    padding-bottom: 20px;
 }
   
 .common-names-container img {
@@ -191,8 +195,8 @@
   
 .common-names-container .common-names-content {
     position: absolute;
-    left: 57%;
-    top: 17%;
+    left: 30%;
+    top: 30%;
     display: flex;
     align-items: center;
     gap: 15px;

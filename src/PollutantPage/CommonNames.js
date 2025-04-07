@@ -9,7 +9,7 @@ export const CommonNames = ({ sections }) => {
   };
 
   // Extract titles and content from sections
-  const plant_names = sections[0]?.plantName || "Unknown Plant"; // Provide a default value if plantName is undefined
+  const plant_names = sections[0]?.plantName || "Unknown Plant";
   const titles = sections.map(item => item.text ? item.text.split(';')[0].trim() : "").filter(title => title !== "");
   const contentArray = sections.map(item => item.text ? item.text.split(';')[1]?.trim() : "").filter(content => content !== "");
 
@@ -19,10 +19,6 @@ export const CommonNames = ({ sections }) => {
             <div className="common-names-title">Common names of {plant_names}</div>
         </div>
 
-        {/* <div className="scientific-name-container">
-          Scientific name: <span className="scientific-name-bold">{plant_names}.</span>
-        </div> */}
-
         <div className="common-names-items">
           {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
             <div 
@@ -30,7 +26,7 @@ export const CommonNames = ({ sections }) => {
               key={item}
               onClick={() => toggleItem(item)}
             >
-              <div className="common-names-overlap">
+              <div className="common-names-item-overlap">
                 <div className="common-names-item-title">{titles[item - 1]}</div>
                 <div className="common-names-item-icon-wrapper">
                   <img
@@ -39,13 +35,13 @@ export const CommonNames = ({ sections }) => {
                     src="https://c.animaapp.com/Vg2l9Q1d/img/vector-148-4.svg"
                   />
                 </div>
+                {expandedItem === item && (
+                  <div className="common-names-content">
+                    <div className="content-line" />
+                    <div className="content-text">{contentArray[item - 1]}</div>
+                  </div>
+                )}
               </div>
-              {expandedItem === item && (
-                <div className="common-names-content">
-                  <div className="content-line" />
-                  <div className="content-text">{contentArray[item - 1]}</div>
-                </div>
-              )}
             </div>
           ))}
         </div>
