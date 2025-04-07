@@ -239,19 +239,22 @@ const PollutantPage = () => {
       id: 'nutritional',
       title: 'NUTRITIONAL',
       header: 'The edibility rating for Salvinia molesta is unavailable.',
-      text: 'Its nutritional value is poor, lacking significant macronutrients like carbohydrates, proteins, and fats. While containing minerals, it poses toxicity risks due to heavy metal accumulation from its phytoremediation abilities. High lignin and tannin content interfere with nutrient absorption. Furthermore, aquatic environments expose it to microbial contamination. Therefore, Salvinia molesta is deemed unsuitable for human consumption, and its primary applications lie in environmental remediation, animal feed research, and biomass production.'
+      text: 'Its nutritional value is poor, lacking significant macronutrients like carbohydrates, proteins, and fats. While containing minerals, it poses toxicity risks due to heavy metal accumulation from its phytoremediation abilities. High lignin and tannin content interfere with nutrient absorption. Furthermore, aquatic environments expose it to microbial contamination. Therefore, Salvinia molesta is deemed unsuitable for human consumption, and its primary applications lie in environmental remediation, animal feed research, and biomass production.',
+      flavourtext: 'Salvinia molesta is not suitable for human consumption due to its poor nutritional value and potential toxicity.'
     },
     {
       id: 'medicine',
       title: 'MEDICINE',
       header: 'Antimicrobial',
-      text: 'A 2014 Indian study from International Journal of PharmTech Research revealed Salvinia molestas antibacterial properties were attributed to its secondary metabolites (product of metabolism). Methanol and chloroform extracts demonstrated 7-15% antimicrobial activity against Pseudomonas aeruginosa, a bacterium responsible for various infections, including urinary tract infections, respiratory infections and other infections, and also showed excellent potential against Aeromonas hydrophila, bacteria that causes gastroenteritis or infectious diarrhea which is the inflammation of the stomach and small intestine.'
+      text: 'A 2014 Indian study from International Journal of PharmTech Research revealed Salvinia molestas antibacterial properties were attributed to its secondary metabolites (product of metabolism). Methanol and chloroform extracts demonstrated 7-15% antimicrobial activity against Pseudomonas aeruginosa, a bacterium responsible for various infections, including urinary tract infections, respiratory infections and other infections, and also showed excellent potential against Aeromonas hydrophila, bacteria that causes gastroenteritis or infectious diarrhea which is the inflammation of the stomach and small intestine.',
+      flavourtext: 'Salvinia molesta exhibits promising antibacterial properties against certain harmful bacteria.'
     },
     {
       id: 'additional',
       title: 'ADDITIONAL',
       header: 'This is placeholder text for title',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula, sed maximus magna tincidunt.'
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula, sed maximus magna tincidunt.',
+      flavourtext: 'Placeholder text for additional uses of Salvinia molesta.'
     }
   ];
   

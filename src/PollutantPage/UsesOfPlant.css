@@ -109,9 +109,9 @@
 
 .vector-166 {
     width: auto;
-    height: calc(100% - 40px);
+    height: calc(100% - 5em);
     position: absolute;
-    top: 40px;
+    top: 6.5em;
     bottom: 0;
     z-index: 1;
     object-fit: fill;
@@ -157,7 +157,7 @@
     height: 33px;
     position: absolute;
     left: 77px;
-    top: 32%;
+    top: 48%;
     transform: translateY(-50%);
     z-index: 2;
 }

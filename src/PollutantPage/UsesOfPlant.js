@@ -47,9 +47,7 @@ export const UsesOfPlant = ({sections}) => {
           />
           <div className={`text-vector-group ${expandedSection === section.id ? 'expanded' : ''}`}>
             <div className={section.id}>{section.title}</div>
-            <img src={ellipse89} alt="ellipse" className="ellipse-89" />
-            <div className={`${section.id}-text-header`}>{section.header}</div>
-            <div className={`${section.id}-text-text`}>{section.text}</div>
+            <div className={`${section.id}-text-text`}>{section.flavourtext}</div>
             <img
               alt="nsvg"
               src={expandedSection === section.id ? vector166E : vector166}
@@ -60,13 +58,16 @@ export const UsesOfPlant = ({sections}) => {
 
           {expandedSection === section.id && (
             <>
-              {section.headers && section.texts && section.headers.map((header, index) => (
-                <div key={index} className="text-vector-group">
-                  <img src={ellipse89} alt="ellipse" className="ellipse-89" />
-                  <div className={`${section.id}-text-header`}>{header}</div>
-                  <div className={`${section.id}-text-text`}>{section.texts[index]}</div>
-                </div>
-              ))}
+              <div className="text-vector-group">
+                <img src={ellipse89} alt="ellipse" className="ellipse-89" />
+                <div className={`${section.id}-text-header`}>{section.header}</div>
+                <div className={`${section.id}-text-text`}>{section.text}</div>
+              </div>
+              <div className="text-vector-group">
+                <img src={ellipse89} alt="ellipse" className="ellipse-89" />
+                <div className={`${section.id}-text-header`}>{section.header}</div>
+                <div className={`${section.id}-text-text`}>{section.text}</div>
+              </div>
             </>
           )}
 
@@ -86,9 +87,9 @@ export const UsesOfPlant = ({sections}) => {
           style={{ marginTop: '120px', marginBottom: '160px', marginLeft: '40px' }}
         />
         <div className="button-container-bibliography">
-          <button className="bibliography-button">
+          <a href="" className="bibliography-button">
             BIBLIOGRAPHY
-          </button>
+          </a>
         </div>
       </div>
     </div>
