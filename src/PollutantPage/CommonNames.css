@@ -69,8 +69,16 @@
     overflow: visible;
 }
   
-.common-names-container .common-names-item:nth-child(even) {
-    left: 79px;
+.common-names-container .common-names-item:nth-child(3n+1) {
+    left: 0; /* 1st, 4th, 7th items */
+}
+
+.common-names-container .common-names-item:nth-child(3n+2) {
+    left: 160px; /* 2nd, 5th, 8th items */
+}
+
+.common-names-container .common-names-item:nth-child(3n+3) {
+    left: 80px; /* 3rd, 6th, 9th items */
 }
   
 .common-names-container .common-names-item.expanded {
@@ -97,15 +105,16 @@
     position: absolute;
     top: 0;
     width: 317px;
+    /* text-align: center; */
 }
   
 .common-names-container .common-names-item-icon-wrapper {
     background-color: #000 !important;
     border-radius: 8px;
     height: 16px;
-    left: 160px;
+    left: 30%;
     position: absolute;
-    top: 13px;
+    top: 23px;
     transform: rotate(180deg);
     transition: transform 0.3s ease;
     width: 16px;
@@ -191,8 +200,8 @@
   
 .common-names-container .common-names-content {
     position: absolute;
-    left: 57%;
-    top: 17%;
+    left: 37%;
+    top: 34%;
     display: flex;
     align-items: center;
     gap: 15px;
