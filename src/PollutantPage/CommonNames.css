@@ -87,8 +87,8 @@
   
 .common-names-container .common-names-item-overlap {
     position: relative;
-    width: 90%;
-    max-width: 416px;
+    width: auto;
+    max-width: 100%;
     right: 0;
     margin: 2rem 0;
     height: 50px;
@@ -195,7 +195,7 @@
   
 .common-names-container .common-names-content {
     position: absolute;
-    left: 30%;
+    left: 45%;
     top: 30%;
     display: flex;
     align-items: center;
