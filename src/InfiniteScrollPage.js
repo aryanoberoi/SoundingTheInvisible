@@ -250,6 +250,41 @@ const PollutantPage = () => {
       flavourtext: 'Salvinia molesta exhibits promising antibacterial properties against certain harmful bacteria.'
     },
     {
+      id: 'medicine',
+      title: 'MEDICINE',
+      header: 'Respiratory',
+      text: 'Salvinia molesta roots are used to address respiratory issues such as cough, phlegm, and inflammation. Traditional Chinese medicine utilizes a decoction to address such ailments. Prepared by boiling 10g of the dried roots in 500ml of water for 15-20 minutes, this remedy is sometimes enhanced with ginger for increased anti-inflammatory effects and honey for soothing properties. The strained, warm liquid is then consumed twice daily.',
+      flavourtext: 'Salvinia molesta exhibits promising antibacterial properties against certain harmful bacteria.'
+    },
+    {
+      id: 'medicine',
+      title: 'MEDICINE',
+      header: 'Dermatitis',
+      text: 'In Malay and Indonesian traditional medicine, Salvinia molesta leaves offer a natural remedy. Fresh leaves are washed, crushed into a paste, and sometimes mixed with coconut oil or turmeric for enhanced effects. This paste is applied to affected areas for 15-30 minutes, then rinsed. Twice-daily application aims to reduce redness, itching, and inflammation, promoting skin healing. This traditional use reflects the plants potential soothing and antimicrobial properties.',
+      flavourtext: 'Salvinia molesta exhibits promising antibacterial properties against certain harmful bacteria.'
+    },
+    {
+      id: 'medicine',
+      title: 'MEDICINE',
+      header: 'Anti-cancer activity',
+      text: 'A 2013 study at Stephen F. Austin State University found that Salvinia molesta extracts, specifically abietane diterpenes, could selectively stop cancer cell growth. These compounds were toxic to tumor cells but left healthy cells unharmed, showing potential for targeted cancer treatment.',
+      flavourtext: 'Salvinia molesta exhibits promising antibacterial properties against certain harmful bacteria.'
+    },
+    {
+      id: 'medicine',
+      title: 'MEDICINE',
+      header: 'Wound healing',
+      text: 'A 2015 IIT Varanasi study published in the Journal of Photochemistry and Photobiology B: Biology demonstrated the green synthesis of silver nanoparticles using Salvinia molesta extract. This eco-friendly method converts silver ions into nanoparticles, offering potential applications in wound healing, antibacterial coatings, and drug delivery.',
+      flavourtext: 'Salvinia molesta exhibits promising antibacterial properties against certain harmful bacteria.'
+    },
+    {
+      id: 'medicine',
+      title: 'MEDICINE',
+      header: 'Atioxidant',
+      text: 'A 2014 CSIR (Council of Scientific and Industrial Research) study, documented in Philippine Medicinal Plants, revealed Salvinia molesta extracts (acetone/methanol) possess high antioxidant activity due to phenolic compounds, primarily naringenin and myricetin.This antioxidant capacity may combat oxidative stress, inflammation, and chronic diseases, potentially supporting liver health, metabolism, neuroprotection, and cardiovascular function.',
+      flavourtext: 'Salvinia molesta exhibits promising antibacterial properties against certain harmful bacteria.'
+    },
+    {
       id: 'additional',
       title: 'ADDITIONAL',
       header: 'This is placeholder text for title',
