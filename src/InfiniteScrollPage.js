@@ -239,7 +239,7 @@ const PollutantPage = () => {
       id: 'nutritional',
       title: 'NUTRITIONAL',
       header: 'The edibility rating for Salvinia molesta is unavailable.',
-      text: 'Its nutritional value is poor, lacking significant macronutrients like carbohydrates, proteins, and fats. While containing minerals, it poses toxicity risks due to heavy metal accumulation from its phytoremediation abilities. High lignin and tannin content interfere with nutrient absorption. Furthermore, aquatic environments expose it to microbial contamination. Therefore, Salvinia molesta is deemed unsuitable for human consumption, and its primary applications lie in environmental remediation, animal feed research, and biomass production.'
+      text: 'Its nutritional value is poor, lacking significant macronutrients like carbohydrates, proteins, and fats. Akkad bakkad bambe booo assi nabbe pure sau. While containing minerals, it poses toxicity risks due to heavy metal accumulation from its phytoremediation abilities. High lignin and tannin content interfere with nutrient absorption. Furthermore, aquatic environments expose it to microbial contamination. Therefore, Salvinia molesta is deemed unsuitable for human consumption, and its primary applications lie in environmental remediation, animal feed research, and biomass production.'
     },
     {
       id: 'medicine',
