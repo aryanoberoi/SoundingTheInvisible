@@ -69,7 +69,7 @@
     top: 0;
     width: 40%;
     max-width: 438px;
-    margin-top: 170px;
+    margin-top: 4em;
 }
   
 .box-container .human-image-wrapper {
@@ -84,7 +84,7 @@
     width: 150%;
     left: 0;
     position: absolute;
-    top: 50px;
+    top: 2em;
     max-width: 300px;
     background-color: transparent;
 } 
@@ -106,9 +106,9 @@
     height: auto;
     width: 100%;
     left: 5px;
-    max-width: 70%; 
+    max-width: 100%; 
     position: absolute;
-    /* top: 26px; */
+    top: 2em;
 }
   
 .box-container .content-items-container {

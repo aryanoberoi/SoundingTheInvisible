@@ -287,10 +287,60 @@ const PollutantPage = () => {
     {
       id: 'additional',
       title: 'ADDITIONAL',
-      header: 'This is placeholder text for title',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula, sed maximus magna tincidunt.',
+      header: 'Wound healing',
+      text: 'A 2015 IIT Varanasi study published in the Journal of Photochemistry and Photobiology B: Biology demonstrated the green synthesis of silver nanoparticles using Salvinia molesta extract. This eco-friendly method converts silver ions into nanoparticles, offering potential applications in wound healing, antibacterial coatings, and drug delivery.',
       flavourtext: 'Placeholder text for additional uses of Salvinia molesta. The placeholder text goes here.'
-    }
+    },
+    {
+      id: 'additional',
+      title: 'ADDITIONAL',
+      header: 'Paper industry raw material',
+      text: 'A study from the Bulletin of the National Institute of Ecology, India, suggests S. molesta can be processed into low-grade paper products like kraft, newsprint, and tissue. It can be utilized alone or in conjunction with agricultural byproducts such as rice straw or waste textile cuttings, offering a sustainable alternative to traditional pulp sources.',
+    },
+{
+  id: 'additional',
+  title: 'ADDITIONAL',
+  header: 'Supplemetary animal feed',
+  text: 'While not suitable as a sole feed source due to its high crude ash and tannin content, which can hinder digestibility, S. molesta can supplement the diets of various animals, including ducks, pigs, geese, and fish. It provides a source of nutrients and can be particularly useful in regions with limited feed resources.',
+},
+{
+  id: 'additional',
+  title: 'ADDITIONAL',
+  header: 'Biofuel Production via Anaerobic Digestion',
+  text: 'Research from the Indian Institutes of Technology (IIT) and Indian Agricultural Research Institute (IARI) demonstrates the potential for S. molesta to generate biogas through anaerobic digestion, yielding methane, a valuable energy source. Combining it with other aquatic plants like Eichhornia crassipes can further enhance biogas production.',
+},
+{
+  id: 'additional',
+  title: 'ADDITIONAL',
+  header: 'Ornamental Horticulture and Invasive Spread',
+  text: 'Its aesthetic qualities have made S. molesta popular in botanical gardens and aquariums. However, this widespread use has inadvertently contributed to its classification as an invasive species in many regions',
+},
+{
+  id: 'additional',
+  title: 'ADDITIONAL',
+  header: 'Ornamental Horticulture and Invasive Spread',
+  text: 'Its aesthetic qualities have made S. molesta popular in botanical gardens and aquariums. However, this widespread use has inadvertently contributed to its classification as an invasive species in many regions',
+},
+{
+  id: 'additional',
+  title: 'ADDITIONAL',
+  header: 'Agricultural Fertilizer and Soil Amendment',
+  text: 'S. molesta can be composted or used as mulch, providing a nutrient-rich soil amendment. Its use as mulch is particularly beneficial in dry regions and for citrus crops, enhancing soil fertility and moisture retention.',
+},
+{
+  id: 'additional',
+  title: 'ADDITIONAL',
+  header: 'Aquaculture Enhancement and Fish Feed Supplement',
+  text: 'In aquaculture, S. molesta can serve as a partial feed source for fish species like Nile tilapia, potentially improving growth performance. It also fosters the growth of invertebrate larvae, a valuable food source for prawns and fish.',
+},
+{
+  id: 'additional',
+  title: 'ADDITIONAL',
+  header: 'Ecological Control via Biological Agents',
+  text: 'The introduction of specific weevil species, natural predators of S. molesta, offers a biological control method to manage its rapid growth and prevent ecological imbalances. This approach helps maintain biodiversity and ecosystem health.',
+},
+
+
   ];
   
 

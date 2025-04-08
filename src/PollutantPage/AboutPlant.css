@@ -92,8 +92,8 @@
 
 .inverted-graphic-container {
   position: relative;
-  width: 40%;
-  height: 600px;
+  width: 80%;
+  height: 120em;
   overflow: hidden;
   background: #000;
 }

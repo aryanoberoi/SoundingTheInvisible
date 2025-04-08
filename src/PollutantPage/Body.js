@@ -29,7 +29,7 @@ export const Box = ({ sections }) => {
               className="main-human-image"
               alt="Human anatomy diagram"
               src="https://c.animaapp.com/Vg2l9Q1d/img/group-186.png"
-              style={{ height: '150%' }}
+              style={{ height: '200%' }}
             />
             <div className="human-graphics-container" style={{ height: 'auto', minHeight: '300px' }}>
               <div className="human-graphics-overlap" style={{ height: 'auto', minHeight: '300px', marginTop: '20px' }}>
@@ -37,7 +37,7 @@ export const Box = ({ sections }) => {
                   className="human-vector"
                   alt="Anatomy vector"
                   src="https://c.animaapp.com/Vg2l9Q1d/img/human-2.png"
-                  style={{ height: '150%', marginTop: '10em' }}
+                  style={{ height: '200%', marginTop: '10em' }}
                 />
               </div>
             </div>
