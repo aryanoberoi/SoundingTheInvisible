@@ -438,7 +438,7 @@ const PollutantPage = () => {
         
         // Check if we're at the bottom of the phytoremediation section
         const rect = section.getBoundingClientRect();
-        const atBottom = Math.abs(rect.bottom - window.innerHeight) < 30; // Within 10px of bottom
+        const atBottom = Math.abs(rect.bottom - window.innerHeight) < 20; // Within 20px of bottom
         
         if (atBottom) {
           handleNavClick('plant-name');
@@ -491,7 +491,7 @@ const PollutantPage = () => {
         behavior: 'smooth',
         block: 'start'
       });
-    }, 100);
+    }, 600);
   };
 
   return (
