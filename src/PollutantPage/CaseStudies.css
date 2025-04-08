@@ -66,13 +66,14 @@
     font-size: 11.5px; /* Reduce font size slightly */
     font-weight: 390;
     letter-spacing: 0;
-    line-height: 214%;
+    line-height: 200%;
     mix-blend-mode: difference;
     position: absolute;
 
     width: 500px; /* Reduce width slightly */
     max-width: 90%; /* Ensure it never exceeds the box */
     left: 49%; /* Center it within the box */
+    top: 2%;
     transform: translateX(-50%); /* Align to center */
     
     white-space: normal; /* Ensure proper wrapping */
