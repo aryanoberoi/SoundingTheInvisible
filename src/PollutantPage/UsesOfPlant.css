@@ -116,7 +116,7 @@
     z-index: 1;
     object-fit: fill;
     /* Add transition for smooth height change */
-    transition: height 0.3s ease;
+    transition: height 0.1s ease;
 }
 
 /* The expanded state is controlled dynamically by JS */
