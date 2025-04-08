@@ -166,8 +166,8 @@
     width: 33px;
     height: 33px;
     position: absolute;
-    left: 77px;
-    top: 48%;
+    left: -22px;
+    top: 10%;
     transform: translateY(-50%);
     z-index: 2;
 }

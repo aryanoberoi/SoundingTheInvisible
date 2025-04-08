@@ -184,11 +184,25 @@ export const UsesOfPlant = ({ sections }) => {
             {/* Content container */}
             <div ref={el => contentRefs.current[section.id] = el}>
               {/* When collapsed, show only the first item */}
-              {(expandedSection !== section.id || section.items.length === 1) && (
+              {expandedSection !== section.id && (
                 <>
-                  <img src={ellipse89} alt="ellipse" className="ellipse-89" />
-                  <div className={`${section.id}-text-header`}>
-                    {section.items[0].header}
+                  <div className="collapsed-header-container" style={{ position: 'relative' }}>
+                    <img 
+                      src={ellipse89} 
+                      alt="ellipse" 
+                      style={{
+                        width: '33px',
+                        height: '33px',
+                        position: 'absolute',
+                        left: '-22px',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        zIndex: 2
+                      }} 
+                    />
+                    <div className={`${section.id}-text-header`}>
+                      {section.items[0].header}
+                    </div>
                   </div>
                   <div className={`${section.id}-text-text`}>
                     {section.items[0].text}
@@ -196,22 +210,20 @@ export const UsesOfPlant = ({ sections }) => {
                 </>
               )}
               
-              {/* When expanded, show all items */}
-              {expandedSection === section.id && (
-                <>
-                  {section.items.map((item, index) => (
-                    <div key={index}>
-                      <img src={ellipse89} alt="ellipse" className="ellipse-89" />
-                      <div className={`${section.id}-text-header`}>
-                        {item.header}
-                      </div>
-                      <div className={`${section.id}-text-text`}>
-                        {item.text}
-                      </div>
+              {/* When expanded, show all items with each having its own ellipse */}
+              {expandedSection === section.id && 
+                section.items.map((item, index) => (
+                  <div key={index} className="overlay-container" style={{ position: 'relative', marginBottom: '25px' }}>
+                    <img src={ellipse89} alt="ellipse" className="ellipse-89" />
+                    <div className={`${section.id}-text-header`}>
+                      {item.header}
                     </div>
-                  ))}
-                </>
-              )}
+                    <div className={`${section.id}-text-text`}>
+                      {item.text}
+                    </div>
+                  </div>
+                ))
+              }
             </div>
             
             {/* Background vector - use different SVGs for expanded/collapsed states */}
