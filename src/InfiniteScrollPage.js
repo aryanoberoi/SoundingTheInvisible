@@ -289,7 +289,7 @@ const PollutantPage = () => {
       title: 'ADDITIONAL',
       header: 'This is placeholder text for title',
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula, sed maximus magna tincidunt.',
-      flavourtext: 'Placeholder text for additional uses of Salvinia molesta.'
+      flavourtext: 'Placeholder text for additional uses of Salvinia molesta. The placeholder text goes here.'
     }
   ];
   

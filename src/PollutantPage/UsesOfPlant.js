@@ -10,12 +10,38 @@ import nutritionalImage from "./nutritional.png";
 import medicineImage from "./uses2.png";
 import additionalImage from "./uses3.png";
 
-export const UsesOfPlant = ({sections}) => {
+export const UsesOfPlant = ({ sections }) => {
   const [expandedSection, setExpandedSection] = useState(null);
-  // Create refs for each section's header and text elements
-  const headerRefs = useRef({});
-  const textRefs = useRef({});
   const vectorRefs = useRef({});
+  const contentRefs = useRef({});
+  
+  // Group sections by ID
+  const groupSectionsByID = () => {
+    const grouped = {};
+    
+    sections.forEach(section => {
+      const { id } = section;
+      
+      if (!grouped[id]) {
+        grouped[id] = {
+          id: section.id,
+          title: section.title,
+          plant_name: section.plant_name || sections[0].plant_name,
+          flavourtext: section.flavourtext,
+          items: []
+        };
+      }
+      
+      grouped[id].items.push({
+        header: section.header,
+        text: section.text
+      });
+    });
+    
+    return Object.values(grouped);
+  };
+  
+  const groupedSections = groupSectionsByID();
   
   // Function to get the appropriate image based on section id
   const getSectionImage = (sectionId) => {
@@ -35,29 +61,21 @@ export const UsesOfPlant = ({sections}) => {
     setExpandedSection(prev => prev === section ? null : section);
   };
   
-  // Calculate and adjust vector height when a section expands or collapses
+  // Update vector height when content changes
   useEffect(() => {
-    // Loop through all sections to reset or set vector heights
     Object.keys(vectorRefs.current).forEach(sectionId => {
       const vectorEl = vectorRefs.current[sectionId];
+      const contentEl = contentRefs.current[sectionId];
       
-      if (vectorEl) {
+      if (vectorEl && contentEl) {
         if (expandedSection === sectionId) {
-          // Section is expanded - calculate and set the exact height
-          const headerEl = headerRefs.current[sectionId];
-          const textEl = textRefs.current[sectionId];
-          
-          if (headerEl && textEl) {
-            const headerHeight = headerEl.offsetHeight;
-            const textHeight = textEl.offsetHeight;
-            const combinedHeight = headerHeight + textHeight + 40; // Adding margin/padding
-            
-            // Set the height of the vector
-            vectorEl.style.height = `${combinedHeight}px`;
-          }
+          // Set height for expanded state
+          vectorEl.style.height = `${contentEl.offsetHeight}px`;
+          vectorEl.classList.add('expanded');
         } else {
-          // Section is collapsed - reset to original height (remove inline style)
+          // Reset height for collapsed state
           vectorEl.style.removeProperty('height');
+          vectorEl.classList.remove('expanded');
         }
       }
     });
@@ -69,7 +87,7 @@ export const UsesOfPlant = ({sections}) => {
         <div className="uses-of-plant-title">Uses of {sections[0].plant_name}</div>
       </div>
 
-      {sections.map(section => (
+      {groupedSections.map(section => (
         <div key={section.id} className={`uses-container-${section.id}`}>
           <div className="circle-inverted" />
           <img 
@@ -77,46 +95,58 @@ export const UsesOfPlant = ({sections}) => {
             alt={`${section.id} icon`} 
             className="circle-image" 
           />
+          
           <div className={`text-vector-group ${expandedSection === section.id ? 'expanded' : ''}`}>
+            {/* Section title and flavor text */}
             <div className={section.id}>{section.title}</div>
             <div className={`${section.id}-text-text`}>{section.flavourtext}</div>
-
-            <img src={ellipse89} alt="ellipse" className="ellipse-89" />
-            <div 
-              className={`${section.id}-text-header`}
-              ref={el => headerRefs.current[section.id] = el}
-            >
-              {section.header}
+            
+            {/* Content container */}
+            <div ref={el => contentRefs.current[section.id] = el}>
+              {/* When collapsed, show only the first item */}
+              {(expandedSection !== section.id || section.items.length === 1) && (
+                <>
+                  <img src={ellipse89} alt="ellipse" className="ellipse-89" />
+                  <div className={`${section.id}-text-header`}>
+                    {section.items[0].header}
+                  </div>
+                  <div className={`${section.id}-text-text`}>
+                    {section.items[0].text}
+                  </div>
+                </>
+              )}
+              
+              {/* When expanded, show all items */}
+              {expandedSection === section.id && (
+                <>
+                  {section.items.map((item, index) => (
+                    <div key={index}>
+                      <img src={ellipse89} alt="ellipse" className="ellipse-89" />
+                      <div className={`${section.id}-text-header`}>
+                        {item.header}
+                      </div>
+                      <div className={`${section.id}-text-text`}>
+                        {item.text}
+                      </div>
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
-            <div 
-              className={`${section.id}-text-text`}
-              ref={el => textRefs.current[section.id] = el}
-            >
-              {section.text}
-            </div>
+            
+            {/* Background vector - use different SVGs for expanded/collapsed states */}
             <img
               alt="nsvg"
-              src={expandedSection === section.id ? vector166E : vector166E}
+              src={expandedSection === section.id ? vector166E : vector166}
               className={`vector-166 ${expandedSection === section.id ? 'expanded' : ''}`}
               ref={el => vectorRefs.current[section.id] = el}
             />
-            {expandedSection !== section.id && <img alt="nsvg" src={vector167} className="vector-167" />}
+            
+            {/* Only show the decorative vector when collapsed */}
+            {expandedSection !== section.id && (
+              <img alt="nsvg" src={vector167} className="vector-167" />
+            )}
           </div>
-
-          {expandedSection === section.id && (
-            <>
-              <div className="text-vector-group">
-                <img src={ellipse89} alt="ellipse" className="ellipse-89" />
-                <div className={`${section.id}-text-header`}>{section.header}</div>
-                <div className={`${section.id}-text-text`}>{section.text}</div>
-              </div>
-              <div className="text-vector-group">
-                <img src={ellipse89} alt="ellipse" className="ellipse-89" />
-                <div className={`${section.id}-text-header`}>{section.header}</div>
-                <div className={`${section.id}-text-text`}>{section.text}</div>
-              </div>
-            </>
-          )}
 
           <div className="button-container">
             <button className="read-more-button" onClick={() => handleReadMore(section.id)}>

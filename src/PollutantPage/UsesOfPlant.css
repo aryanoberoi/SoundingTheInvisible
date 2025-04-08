@@ -122,7 +122,7 @@
 /* The expanded state is controlled dynamically by JS */
 .vector-166.expanded {
     position: absolute;
-    top: 40px;
+    top: 111px;
     bottom: auto;
     z-index: 1;
 }
@@ -155,9 +155,9 @@
 
 .vector-167 {
     width: 190px;
-    height: 125px;
+    height: 77px;
     position: absolute;
-    left: 177px;
+    left: 300px;
     bottom: -60px;
     z-index: 1;
 }
