@@ -2,6 +2,10 @@ import React, {useRef} from 'react';
 import { KnowMoreButton } from './Knowmorebutton';
 import './RightPanel.css';
 import { PlantInfoSection } from './PlantInfoSection';
+import tempIcon from './temp.png';
+import humidityIcon from './humidity.png';
+import soilIcon from './soil.png';
+import areaIcon from './area.png';
 
 const RightPanel = ({ sections = [] }) => {
   const {
@@ -15,6 +19,8 @@ const RightPanel = ({ sections = [] }) => {
     plantName = "",
     plantDetails = ""
   } = sections[0] || {};
+
+  const habitatIcons = [tempIcon, humidityIcon, soilIcon, areaIcon];
 
   const plantData = [
     {
@@ -64,7 +70,13 @@ const RightPanel = ({ sections = [] }) => {
                       ) : (
                         section.description.split('\n').map((line, lineIndex) => (
                           <div key={lineIndex} className="titleEntry">
-                            <div className="rightPanel-bullet" />
+                            <div className="rightPanel-bullet">
+                              <img
+                                src={habitatIcons[lineIndex]}
+                                alt={`icon-${lineIndex}`}
+                                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                              />
+                            </div>
                             <span className="titleTextRightPanel">{line}</span>
                           </div>
                         ))
