@@ -1,13 +1,13 @@
 import React, { useRef, useEffect } from 'react';
 
-const SineWaveVisualizer = ({ frequency = 220.5 }) => { // Default frequency set to 1 Hz for slower propagation
+const SineWaveVisualizer = ({ frequency = 1000.5 }) => { // Default frequency set to 1 Hz for slower propagation
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    const width = canvas.parentElement.clientWidth * 2; // Increase width by 50%
-    const height = canvas.parentElement.clientHeight * 0.25; // Decrease height by 50%
+    const width = canvas.parentElement.clientWidth; // Increase width by 50%
+    const height = canvas.parentElement.clientHeight; // Decrease height by 50%
     canvas.width = width;
     canvas.height = height;
     let animationFrameId;
