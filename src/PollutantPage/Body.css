@@ -84,8 +84,8 @@
     width: 150%;
     left: 0;
     position: absolute;
-    top: 2em;
-    max-width: 300px;
+    top: -10em;
+    max-width: 350px;
     background-color: transparent;
 } 
   
@@ -117,7 +117,7 @@
     right: 20px;
     margin-left: 10%;
     width: auto;
-    top: 140px;
+    top: 33px;
 }
   
 .box-container .content-item {

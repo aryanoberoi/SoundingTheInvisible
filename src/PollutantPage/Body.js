@@ -32,12 +32,12 @@ export const Box = ({ sections }) => {
               style={{ height: '200%' }}
             />
             <div className="human-graphics-container" style={{ height: 'auto', minHeight: '300px' }}>
-              <div className="human-graphics-overlap" style={{ height: 'auto', minHeight: '300px', marginTop: '20px' }}>
+              <div className="human-graphics-overlap" style={{ height: 'auto', minHeight: '300px' }}>
                 <img
                   className="human-vector"
                   alt="Anatomy vector"
                   src="https://c.animaapp.com/Vg2l9Q1d/img/human-2.png"
-                  style={{ height: '200%', marginTop: '10em' }}
+                  style={{ height: '200%' }}
                 />
               </div>
             </div>
