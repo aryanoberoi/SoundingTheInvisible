@@ -477,32 +477,32 @@ const PollutantPage = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Add effect to detect scrolling at the bottom of phytoremediation section
-  useEffect(() => {
-    if (activeSection === 'phytoremediation') {
-      const section = document.getElementById('phytoremediation');
-      if (!section) return;
+  // // Add effect to detect scrolling at the bottom of phytoremediation section
+  // useEffect(() => {
+  //   if (activeSection === 'phytoremediation') {
+  //     const section = document.getElementById('phytoremediation');
+  //     if (!section) return;
       
-      const handleWheel = (e) => {
-        if (e.deltaY <= 0) return; // Only handle scrolling down
+  //     const handleWheel = (e) => {
+  //       if (e.deltaY <= 0) return; // Only handle scrolling down
         
-        // Check if we're at the bottom of the phytoremediation section
-        const rect = section.getBoundingClientRect();
-        const atBottom = Math.abs(rect.bottom - window.innerHeight) < 20; // Within 20px of bottom
+  //       // Check if we're at the bottom of the phytoremediation section
+  //       const rect = section.getBoundingClientRect();
+  //       const atBottom = Math.abs(rect.bottom - window.innerHeight) < 20; // Within 20px of bottom
         
-        if (atBottom) {
-          handleNavClick('plant-name');
-          e.preventDefault();
-        }
-      };
+  //       if (atBottom) {
+  //         handleNavClick('plant-name');
+  //         e.preventDefault();
+  //       }
+  //     };
       
-      window.addEventListener('wheel', handleWheel, { passive: false });
+  //     window.addEventListener('wheel', handleWheel, { passive: false });
       
-      return () => {
-        window.removeEventListener('wheel', handleWheel);
-      };
-    }
-  }, [activeSection]);
+  //     return () => {
+  //       window.removeEventListener('wheel', handleWheel);
+  //     };
+  //   }
+  // }, [activeSection]);
 
   useEffect(() => {
     const handleResize = () => {
