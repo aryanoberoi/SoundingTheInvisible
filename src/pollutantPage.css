@@ -342,11 +342,26 @@ body.sound-panel-active .sound-icon span {
 
 .bottom-section1 > img,
 
-.bottom-section2 {
+/* Updated styles for the new classes */
+.sound-frequency-section{
+  background-color: black;
+  color: white;
+  padding: 0px 69px; /* Match left panel padding */
+  height: 666px; /* Ensure height adjusts to content */
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+.effect-on-health-section {
   background-color: black;
   min-height: 100vh;
   color: white;
   padding: 0px 69px; /* Match left panel padding */
+  height: auto; /* Ensure height adjusts to content */
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
 }
 
 .combined-section {
@@ -771,89 +786,6 @@ body.homepage-active .hamburger span {
   left: 0;  /* Maintain circle alignment */
 }
 
-.bottom-section2 .content-container {
-  width: fit-content;
-  margin-left: 69px;
-  color: black;
-  background-color: white;
-  padding: 0.5px 0; /* Reduced vertical padding */
-  box-sizing: border-box;
-  font: 400 28px 'Nippo-Light', sans-serif;
-}
-
-.bottom-section2 .wave-container {
-  border: 1px solid white;
-  margin-top: 20px;
-  margin-left: 69px;
-  width: calc(90%); /* Adjust width to account for margins */
-  height: 200px; /* Set desired height */
-  background-color: black;
-}
-
-.nav-item-header {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  cursor: default;
-  width: 100%;
-}
-
-.nav-item-content {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  position: relative;
-  width: 100%;
-  justify-content: flex-start; /* Changed from space-between to push content to start */
-}
-
-.nav-underline, .expanded-underline {
-  position: absolute;
-  left: 0;
-  bottom: -20px;
-  width: 100%;
-  transform: none;
-  transition: all 0s;
-}
-
-.nav-item.expanded .nav-underline {
-  opacity: 0;
-  left: 50px;
-  top: 0px;
-}
-
-.nav-item.expanded .expanded-underline {
-  opacity: 1;
-  transform: translateX(-50%) scaleX(1.2) translateY(20px);
-}
-
-.nav-item-text {
-  font-family: "Nippo-Light", sans-serif;
-  font-weight: 300;
-  font-size: 40px;
-  line-height: 1.2;
-  letter-spacing: 0;
-  text-align: left;
-  margin-left: 2%;
-}
-
-.nav-arrow {
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  right: 0px;
-}
-
-.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.visible {
-  opacity: 1;
-}
-
 .content-sections {
   flex: 2;
   position: relative;
@@ -863,8 +795,9 @@ body.homepage-active .hamburger span {
 }
 
 /* Remove any existing margin/padding on these elements */
-.bottom-section1, 
-.bottom-section2 {
+.bottom-section1,
+.sound-frequency-section,
+.effect-on-health-section {
   padding: 0;
   margin: 0;
 }
@@ -1038,7 +971,7 @@ body.homepage-active .hamburger span {
 
 /* Ensure all sections take full viewport height */
 .bottom-section1,
-.bottom-section2,
+.effect-on-health-section,
 .bottom-section3,
 .bottom-section4,
 .bottom-section5,
@@ -1107,7 +1040,8 @@ body.white-panel-active .white-container {
 
 /* Hide black sections when white panel is active */
 body.white-panel-active .bottom-section1,
-body.white-panel-active .bottom-section2,
+body.white-panel-active .sound-frequency-section,
+body.white-panel-active .effect-on-health-section,
 body.white-panel-active .bottom-section3,
 body.white-panel-active .bottom-section4 {
   display: none;
@@ -1120,7 +1054,8 @@ body.black-panel-active .white-container {
 
 /* Ensure black sections are visible by default */
 .bottom-section1,
-.bottom-section2,
+.sound-frequency-section,
+.effect-on-health-section,
 .bottom-section3,
 .bottom-section4 {
   display: block;
@@ -1222,12 +1157,14 @@ body.white-panel-active .combined-section {
     /* padding: 1rem; */
   }
 
-  .bottom-section1, .bottom-section2, .white-container > div {
+  .bottom-section1, 
+  .effect-on-health-section,
+  .white-container > div {
     padding: 2rem 1rem !important;
     min-height: auto;
   }
 
-  .wave-container {
+  .sound-frequency-section .wave-container {
     width: 100% !important;
     margin-left: 0 !important;
   }
@@ -1367,4 +1304,24 @@ img {
   width: 111%;
   height: 12px;
   background-color: #ffffff;
+}
+
+/* Styles specific to Sound Frequency */
+.sound-frequency-section .content-container {
+  width: fit-content;
+  margin-left: 69px;
+  color: black;
+  background-color: white;
+  padding: 0.5px 0; /* Reduced vertical padding */
+  box-sizing: border-box;
+  font: 400 28px 'Nippo-Light', sans-serif;
+}
+
+.sound-frequency-section .wave-container {
+  border: 1px solid white;
+  margin-top: 20px;
+  margin-left: 69px;
+  width: calc(80%); /* Adjust width to account for margins */
+  height: 200px; /* Set desired height */
+  background-color: black;
 }

@@ -618,10 +618,10 @@ const PollutantPage = () => {
           <div className="bottom-section1" id="about-pollutant">
             <AboutPollutantSection  sections={aboutpollutantcontent} />
           </div>
-          <div className="bottom-section2" id="sound-frequency">
+          <div className="sound-frequency-section" id="sound-frequency">
               <SoundFrequency sections={sinewavefreq}/>
           </div>
-          <div className="bottom-section2" id="effect-on-health">
+          <div className="effect-on-health-section" id="effect-on-health">
             <Box sections={effectonhealthcontent}/> {/** sizing */}
           </div>
           <div className="bottom-section3" id="case-study">
