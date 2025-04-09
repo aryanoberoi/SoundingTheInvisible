@@ -385,6 +385,8 @@ body.sound-panel-active .sound-icon span {
   margin-bottom: 20px; /* Added bottom margin */
   align-self: flex-start;
   overflow-y: auto; /* Allow scrolling if content exceeds height */
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 /* ✅ Styling Each Text Item */
