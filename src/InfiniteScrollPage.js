@@ -196,23 +196,19 @@ const PollutantPage = () => {
     { plantName: rightpanelcontent[0].plantNameSplit },
     {
       title: "Diverse Habitats",
-      content: "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe"
+      content: "Salvinia molesta flourishes in diverse freshwater settings, preferring still or sluggish waters. It establishes itself in sheltered areas like small bays, inlets along irregular shorelines, and the gentle flow of tributary streams. Its presence is common in lakes, wetlands, man-made irrigation channels, ditches, ponds, and canals. It colonizes disturbed environments, including rice paddies, flood control canals, artificial reservoirs, swamps, drainage channels, and the edges of rivers. This adaptability is further highlighted by its tolerance of fluctuating water levels, enabling it to survive in seasonally waterlogged soils and even thrive on nutrient-rich mud banks composed of silt and clay."
     },
     {
-      title: "Flood and Drought adaptability",
-      content: "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe"
+      title: "Light, salinity and pH",
+      content: "Salvinia molesta flourishes in warm, nutrient-rich freshwater, demonstrating a strong preference for environments high in nitrogen and phosphorus, and a slightly acidic to neutral pH between 4.5 and 8.5. Requiring ample sunlight for rapid growth, this aquatic fern has adapted to low-oxygen conditions through specialized leaf structures that enhance gas exchange. While strictly a freshwater species, it is highly intolerant of salinity, succumbing quickly to seawater, though it may endure brief exposure to low salt concentrations. These combined factors contribute to its rapid proliferation and invasive potential in suitable freshwater ecosystems."
+    },
+    {
+      title: "Temperature and Humidity",
+      content: "Salvinia molesta requires high humidity for survival and propagation. Specifically, humidity levels above 60% are necessary to prevent desiccation (removal of moisture). The plant thrives within a temperature range of 20 to 30°C (68–86°F), with optimal growth occurring when relative humidity is between 70% and 90%. It is important to note that Salvinia molesta is intolerant of extreme temperatures, and will not survive below 10°C or above 40°C."
     },
     {
       title: "Climate Resilience",
-      content: "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe"
-    },
-    {
-      title: "Moisture preference",
-      content: "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe"
-    },
-    {
-      title: "Temperature and humidity tolerance",
-      content: "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe"
+      content: "Beyond its primary aquatic habitat, Salvinia molesta exhibits remarkable adaptability, extending its range to semi-terrestrial environments. It has been observed thriving among emergent undergrowth and around trees on flooded shorelines, demonstrating its ability to exploit these transitional zones. Notably, the plant can even survive terrestrially in consistently high-humidity areas, such as the mist-laden environment at the base of Victoria Falls. Moreover, its persistence on moist, waterlogged soils further emphasizes its resilience and capacity to thrive in a wider array of ecological niches than typically associated with a purely aquatic species."
     }
   ];
   const geographicaldistribution = [
@@ -289,7 +285,6 @@ const PollutantPage = () => {
       title: 'ADDITIONAL',
       header: 'Wound healing',
       text: 'A 2015 IIT Varanasi study published in the Journal of Photochemistry and Photobiology B: Biology demonstrated the green synthesis of silver nanoparticles using Salvinia molesta extract. This eco-friendly method converts silver ions into nanoparticles, offering potential applications in wound healing, antibacterial coatings, and drug delivery.',
-      flavourtext: 'Placeholder text for additional uses of Salvinia molesta. The placeholder text goes here.'
     },
     {
       id: 'additional',
@@ -586,16 +581,16 @@ const PollutantPage = () => {
             <div className="text-wrapper" onClick={() => handleNavClick('about-pollutant')}>{leftpanelcontent[0].pollutantName}</div>
             <div className="div" onClick={() => handleNavClick('plant-name')}>{rightpanelcontent[0].plantNameSplit}</div>
             <div className="text-wrapper-2" onClick={() => handleNavClick('sound-frequency')}>Sound frequency</div>
-            <div className="text-wrapper-3" onClick={() => handleNavClick('common-names')}>Common names of Plant</div>
-            <div className="text-wrapper-4" onClick={() => handleNavClick('plant-habitat')}>Plant Habitat</div>
+            <div className="text-wrapper-3" onClick={() => handleNavClick('common-names')}>Common names of {rightpanelcontent[0].plantNameSplit}</div>
+            <div className="text-wrapper-4" onClick={() => handleNavClick('plant-habitat')}>{rightpanelcontent[0].plantNameSplit}'s Habitat</div>
             <div className="text-wrapper-5" onClick={() => handleNavClick('origin')}>Origin and Geographical Distribution</div>
-            <p className="p" onClick={() => handleNavClick('phyto-capacity')}>Phytoremediation capacity of the Plants</p>
-            <div className="text-wrapper-6" onClick={() => handleNavClick('uses-of-plant')}>Uses of plant</div>
+            <p className="p" onClick={() => handleNavClick('phyto-capacity')}>Phytoremediation capacity of the {rightpanelcontent[0].plantNameSplit}</p>
+            <div className="text-wrapper-6" onClick={() => handleNavClick('uses-of-plant')}>Uses of {rightpanelcontent[0].plantNameSplit}</div>
             <div className="text-wrapper-7" onClick={() => handleNavClick('references')}>References</div>
             <div className="text-wrapper-8" onClick={() => handleNavClick('effect-on-health')}>Effect on health</div>
             <div className="text-wrapper-9" onClick={() => handleNavClick('case-study')}>Case study</div>
             <p className="text-wrapper-10" onClick={() => handleNavClick('phytoremediation')}>
-              Phytoremediation of the Representative Pollutant
+              Phytoremediation of the {leftpanelcontent[0].pollutantName}
             </p>
           </div>
           <div className="overlap-group">
