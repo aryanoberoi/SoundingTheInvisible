@@ -483,24 +483,24 @@ const PollutantPage = () => {
   //     const section = document.getElementById('phytoremediation');
   //     if (!section) return;
       
-  //     const handleWheel = (e) => {
-  //       if (e.deltaY <= 0) return; // Only handle scrolling down
+  //       const handleWheel = (e) => {
+  //         if (e.deltaY <= 0) return; // Only handle scrolling down
         
-  //       // Check if we're at the bottom of the phytoremediation section
-  //       const rect = section.getBoundingClientRect();
-  //       const atBottom = Math.abs(rect.bottom - window.innerHeight) < 20; // Within 20px of bottom
+  //         // Check if we're at the bottom of the phytoremediation section
+  //         const rect = section.getBoundingClientRect();
+  //         const atBottom = Math.abs(rect.bottom - window.innerHeight) < 20; // Within 20px of bottom
         
-  //       if (atBottom) {
-  //         handleNavClick('plant-name');
-  //         e.preventDefault();
-  //       }
-  //     };
+  //         if (atBottom) {
+  //           handleNavClick('plant-name');
+  //           e.preventDefault();
+  //         }
+  //       };
       
-  //     window.addEventListener('wheel', handleWheel, { passive: false });
+  //       window.addEventListener('wheel', handleWheel, { passive: false });
       
-  //     return () => {
-  //       window.removeEventListener('wheel', handleWheel);
-  //     };
+  //       return () => {
+  //         window.removeEventListener('wheel', handleWheel);
+  //       };
   //   }
   // }, [activeSection]);
 
@@ -583,8 +583,8 @@ const PollutantPage = () => {
             </div>
           )}
           <div className={`nav-items-container ${isMobile ? 'mobile' : ''}`}>
-            <div className="text-wrapper" onClick={() => handleNavClick('about-pollutant')}>Pollutant name</div>
-            <div className="div" onClick={() => handleNavClick('plant-name')}>Plant name</div>
+            <div className="text-wrapper" onClick={() => handleNavClick('about-pollutant')}>{leftpanelcontent[0].pollutantName}</div>
+            <div className="div" onClick={() => handleNavClick('plant-name')}>{rightpanelcontent[0].plantNameSplit}</div>
             <div className="text-wrapper-2" onClick={() => handleNavClick('sound-frequency')}>Sound frequency</div>
             <div className="text-wrapper-3" onClick={() => handleNavClick('common-names')}>Common names of Plant</div>
             <div className="text-wrapper-4" onClick={() => handleNavClick('plant-habitat')}>Plant Habitat</div>
