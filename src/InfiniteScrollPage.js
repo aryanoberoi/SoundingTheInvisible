@@ -586,16 +586,16 @@ const PollutantPage = () => {
             <div className="text-wrapper" onClick={() => handleNavClick('about-pollutant')}>{leftpanelcontent[0].pollutantName}</div>
             <div className="div" onClick={() => handleNavClick('plant-name')}>{rightpanelcontent[0].plantNameSplit}</div>
             <div className="text-wrapper-2" onClick={() => handleNavClick('sound-frequency')}>Sound frequency</div>
-            <div className="text-wrapper-3" onClick={() => handleNavClick('common-names')}>Common names of Plant</div>
-            <div className="text-wrapper-4" onClick={() => handleNavClick('plant-habitat')}>Plant Habitat</div>
+            <div className="text-wrapper-3" onClick={() => handleNavClick('common-names')}>Common names of {rightpanelcontent[0].plantNameSplit}</div>
+            <div className="text-wrapper-4" onClick={() => handleNavClick('plant-habitat')}>{rightpanelcontent[0].plantNameSplit}'s Habitat</div>
             <div className="text-wrapper-5" onClick={() => handleNavClick('origin')}>Origin and Geographical Distribution</div>
-            <p className="p" onClick={() => handleNavClick('phyto-capacity')}>Phytoremediation capacity of the Plants</p>
-            <div className="text-wrapper-6" onClick={() => handleNavClick('uses-of-plant')}>Uses of plant</div>
+            <p className="p" onClick={() => handleNavClick('phyto-capacity')}>Phytoremediation capacity of {rightpanelcontent[0].plantNameSplit}</p>
+            <div className="text-wrapper-6" onClick={() => handleNavClick('uses-of-plant')}>Uses of {rightpanelcontent[0].plantNameSplit}</div>
             <div className="text-wrapper-7" onClick={() => handleNavClick('references')}>References</div>
             <div className="text-wrapper-8" onClick={() => handleNavClick('effect-on-health')}>Effect on health</div>
             <div className="text-wrapper-9" onClick={() => handleNavClick('case-study')}>Case study</div>
             <p className="text-wrapper-10" onClick={() => handleNavClick('phytoremediation')}>
-              Phytoremediation of the Representative Pollutant
+              Phytoremediation of {leftpanelcontent[0].pollutantName}
             </p>
           </div>
           <div className="overlap-group">
