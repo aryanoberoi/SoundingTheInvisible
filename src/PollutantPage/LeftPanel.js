@@ -17,8 +17,6 @@ const LeftPanel = ({ sections = [] }) => {
     typeOfWaste = ""
   } = sections[0];
 
-  // Process description into lines
-  const descriptionLines = pollutantDescription.split('. '); 
   // Process health effects into titles
   const healthEffectsTitles = effect.split('_');
 
@@ -57,9 +55,7 @@ const LeftPanel = ({ sections = [] }) => {
                 <div className="pollutantName">{pollutantName}</div>
               </div>
               <div className="description">
-                {descriptionLines.map((line, index) => (
-                  <div key={index} className="descriptionLine">{line}.</div>
-                ))}
+                {pollutantDescription}
               </div>
               <div className='knowone'>
                 <KnowMoreButtonInverted className="knowMoreButtonInverted" onClick={scrollToAboutPollutant} />
