@@ -122,7 +122,7 @@ const PollutantPage = () => {
   ];
   const sinewavefreq = [
     { 
-      pollutantName: leftpanelcontent.pollutantName,
+      pollutantName: leftpanelcontent[0].pollutantName,
       enthalpy: "90 KJ/mol",
       soundfrequency: "22.56 Hz",
       wavefrequency: 220.5
