@@ -628,7 +628,7 @@ const PollutantPage = () => {
             <CaseStudies sections={casestudiescontent}/> {/** text overlap */}
           </div>
           <div className="bottom-section4" id="phytoremediation">
-            <Phyto sections={phytocontent}/> {/** time period overlap */}
+            <Phyto sections={phytocontent} pollutantName={leftpanelcontent[0].pollutantName}/> {/** time period overlap */}
           </div>
           <div className="white-container">
             <div className="bottom-section5" id="plant-name">

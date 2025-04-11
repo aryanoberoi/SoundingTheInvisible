@@ -4,7 +4,7 @@ import "./Phyto.css";
 import vector164 from "./vector-164.svg";
 import vector165 from "./vector-165.svg";
 
-export const Phyto = ({ sections }) => {
+export const Phyto = ({ sections, pollutantName }) => {
   const getSpeciesName = (text) => text.split('_')[0];
   const getMedium = (text) => text.split('_')[1];
   const getTimePeriod = (text) => text.split('_')[1];
@@ -15,7 +15,7 @@ export const Phyto = ({ sections }) => {
       {/* Header Section */}
       <div className="overlap-group-wrapper">
         <div className="overlap-group-2">
-          <div className="text-wrapper-3">Phytoremediation of the Representative Pollutant</div>
+          <div className="text-wrapper-3">Phytoremediation of {pollutantName}</div>
         </div>
       </div>
 
