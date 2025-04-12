@@ -551,26 +551,36 @@ const PollutantPage = () => {
     // Mobile-specific behavior
     if(isMobile) {
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setMenuOpen(false); // Close mobile menu on click
       return;
     }
 
-    // Determine which panel to activate
-    const isWhitePanel = section.closest('.white-container');
-    const sliderPos = isWhitePanel ? 0 : 100;
-    
-    // Update slider position and panel visibility
-    setSliderPosition(sliderPos);
-    document.documentElement.style.setProperty('--slider-position', `${sliderPos}%`);
-    document.body.classList.toggle('white-panel-active', isWhitePanel);
-    document.body.classList.toggle('black-panel-active', !isWhitePanel);
+    // --- REVISED DESKTOP LOGIC ---
+    // Determine which panel the section belongs to
+    // Sections in '.white-container' are on the right panel (plant details)
+    // Sections outside '.white-container' are on the left panel (pollutant details)
+    const isInRightPanel = section.closest('.white-container') !== null;
 
-    // Scroll after panel transition
+    // Set the target snap position based on the panel
+    // Right panel (white) should snap slider fully to the left (position 1)
+    // Left panel (black) should snap slider fully to the right (position 99)
+    const targetSliderPos = isInRightPanel ? 1 : 99; // Use exact snap targets
+
+    // Use the central function to update position, rotation, and body classes
+    updateSliderPosition(targetSliderPos);
+
+    // Update the ref as well, so subsequent drags start from the correct snapped position
+    lastPositionRef.current = targetSliderPos;
+
+    // Scroll into view after the panel transition (handled by CSS) has likely started
+    // Adjust timeout if needed, 50ms is usually enough for transition start
     setTimeout(() => {
-      section.scrollIntoView({ 
+      section.scrollIntoView({
         behavior: 'smooth',
-        block: 'start'
+        block: 'start' // Scrolls the top of the section to the top of the viewport
       });
-    }, 50);
+    }, 50); // Keep a small delay for the visual transition
+    // --- END REVISED DESKTOP LOGIC ---
   };
 
   return (
