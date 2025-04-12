@@ -474,13 +474,22 @@ const PollutantPage = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    }, { 
-      threshold: 0.3,
+      // Find the first entry that is currently intersecting
+      const intersectingEntry = entries.find(entry => entry.isIntersecting);
+
+      // If an intersecting entry is found, update the active section
+      if (intersectingEntry) {
+        setActiveSection(intersectingEntry.target.id);
+      }
+      // Optional: If no entry is intersecting, you might want to clear
+      // the active section or keep the last active one, depending on desired UX.
+      // Example: else if (entries.some(entry => !entry.isIntersecting)) {
+      //   // Logic if elements are leaving viewport but none are entering
+      // }
+
+    }, {
+      // Keep the lower threshold
+      threshold: 0.1,
       root: null
     });
 
