@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef} from 'react';
+import { useParams } from "react-router-dom";
 import './pollutantPage.css';
 import styles from './PollutantPage/pollutantcard.css'
 import { Box } from './PollutantPage/Body';
@@ -15,7 +16,12 @@ import { PhytoCapacity } from './PollutantPage/PhytoCapacity';
 import { AboutPollutantSection } from './PollutantPage/AboutPollutant';
 import { SoundFrequency } from './PollutantPage/SoundFrequency';
 
-const PollutantPage = () => {
+
+const PollutantPage = (categorizedData) => {
+  const { customName } = useParams(); // Access the dynamic parameter
+  let data = categorizedData?.undefined || [];
+  const entry = data[0];
+  console.log("this is the data", data);
   const [sliderPosition, setSliderPosition] = useState(50);
   const [rotation, setRotation] = useState(0);
   const [activeSection, setActiveSection] = useState(null);

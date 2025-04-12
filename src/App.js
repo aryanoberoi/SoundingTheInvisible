@@ -7,7 +7,7 @@ import Navbar from "./Navbar"; // Navbar
 
 const AppContent = () => {
   const location = useLocation();
-
+  const [categorizedData, setCategorizedData] = React.useState({});
   useEffect(() => {
     // Custom Cursor Setup
     const cursor = document.createElement("div");
@@ -26,12 +26,11 @@ const AppContent = () => {
       cursor.remove(); // Cleanup cursor on unmount
     };
   }, []);
-
   useEffect(() => {
-    const sheetId = "1LrBrWCyrftGHDPv3YF51muiYBskQKudyvlKWR-4Aaiw";
-    const sheetName = "Pollutantinfo";
+    const sheetId = "1az7_Vg0GPH2FF393w0sjCmGUxHKEYnIsSDyAJIq8fxs";
+    const sheetName = "Sheet1";
     const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
-
+  
     fetch(url)
       .then(res => res.text())
       .then(text => {
@@ -43,10 +42,22 @@ const AppContent = () => {
           });
           return obj;
         });
-        console.log(rows);
-      })
-      .catch(err => console.error("Error fetching sheet:", err));
-  }, []);
+  
+        // Categorize data by 'Pollutantname_split'
+        const categorizedData = rows.reduce((acc, row) => {
+          const key = row['unique_id'];
+          if (!acc[key]) {
+            acc[key] = [];
+          }
+          acc[key].push(row);
+          return acc;
+        }, {});
+        setCategorizedData(categorizedData); // Set the state with categorized data
+
+        console.log(categorizedData);
+    })
+    .catch(err => console.error("Error fetching sheet:", err));
+}, []);
 
   useEffect(() => {
     if (location.pathname === "/") {
@@ -62,7 +73,7 @@ const AppContent = () => {
       <SoundToggle />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/pollutants" element={<PollutantPage />} />
+        <Route path="/:customName" element={<PollutantPage categorizedData={categorizedData} />} />
       </Routes>
     </div>
   );
