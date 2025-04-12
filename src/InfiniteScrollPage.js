@@ -431,7 +431,7 @@ const PollutantPage = () => {
     // Update height again after a delay to ensure all content is rendered
     const initialTimer = setTimeout(() => {
       updateContainerHeight();
-    }, 500);
+    }, 50);
     
     // Add resize listener to handle window size changes
     window.addEventListener('resize', updateContainerHeight);
@@ -541,7 +541,7 @@ const PollutantPage = () => {
         behavior: 'smooth',
         block: 'start'
       });
-    }, 600);
+    }, 50);
   };
 
   return (
