@@ -123,6 +123,16 @@
     margin-left: 60px;
 }
 
+.phyto-intro-text{
+    font-family: ClashGrotesk-Regular;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 205%;
+    letter-spacing: 0%;
+    margin-top: 2rem;
+    margin-right: 13%;
+}
+
 .phyto-benefits-text {
     font-family: ClashGrotesk-Regular;
     font-weight: 400;
