@@ -42,14 +42,14 @@
     font-family: "ClashGrotesk-Light", Helvetica;
     font-size: 11.5px;
     font-weight: 400;
-    left: 0;
+    left: -15%;
     letter-spacing: 0;
     line-height: 215%;
     mix-blend-mode: difference;
     position: absolute;
     text-align: right;
-    top: 620px;
-    width: 586px;
+    top: 67%;
+    width: 700px;
 }
 
 .bottom-section3 .box .rectangle {
@@ -70,10 +70,10 @@
     mix-blend-mode: difference;
     position: absolute;
 
-    width: 500px; /* Reduce width slightly */
-    max-width: 90%; /* Ensure it never exceeds the box */
-    left: 49%; /* Center it within the box */
-    top: 2%;
+    width: 555px; /* Reduce width slightly */
+    max-width: 100%; /* Ensure it never exceeds the box */
+    left: 55%; /* Center it within the box */
+    top: 4%;
     transform: translateX(-50%); /* Align to center */
     
     white-space: normal; /* Ensure proper wrapping */
