@@ -61,12 +61,13 @@
   
 .common-names-container .common-names-item {
     position: relative;
-    width: 319px;
+    width: fit-content;
     margin-bottom: 10px;
     transition: all 0.3s ease;
     cursor: pointer;
     z-index: 1;
     overflow: visible;
+    max-width: 90%;
 }
   
 .common-names-container .common-names-item:nth-child(3n+1) {
@@ -196,7 +197,7 @@
 .common-names-container .common-names-content {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0px;
     width: auto;
     max-width: 0;
     opacity: 0;
@@ -220,13 +221,17 @@
 }
 
 .common-names-container .content-text {
+    font-family: ClashGrotesk-Regular;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
     flex: 1;
     margin-left: 0;
 }
 
 .common-names-container .common-names-item.expanded .common-names-content {
     opacity: 1;
-    max-width: 400px;
+    max-width: 90%;
 }
   
 .common-names-container .scientific-name-container {
