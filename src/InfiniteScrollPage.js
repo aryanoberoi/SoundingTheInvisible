@@ -27,6 +27,7 @@ const PollutantPage = () => {
   const leftPanelRef = useRef(null);
   const rightPanelRef = useRef(null);
   const sliderContainerRef = useRef(null);
+  const lastPositionRef = useRef(sliderPosition); // Add ref to track latest position
 
   // Pollutant categorization by waste type
   const pollutantCategories = {
@@ -340,42 +341,77 @@ const PollutantPage = () => {
   // Add state to track dragging
   const [isDragging, setIsDragging] = useState(false);
 
+  // Central function to update slider position and related effects
+  const updateSliderPosition = (newPosition) => {
+    const clampedPosition = Math.max(0, Math.min(100, newPosition));
+
+    document.documentElement.style.setProperty('--slider-position', `${clampedPosition}%`);
+    setSliderPosition(clampedPosition);
+
+    // Toggle visibility and other classes based on dominant panel
+    // Ensures navbar and other styles react correctly to the final snapped position
+    document.body.classList.toggle('right-panel-active', clampedPosition < 3); // Snap target 2 is < 3
+    document.body.classList.toggle('white-panel-active', clampedPosition < 50); // White active only if strictly LESS than 50
+    document.body.classList.toggle('black-panel-active', clampedPosition >= 50); // Black active if GREATER than or EQUAL to 50
+    document.body.classList.toggle('sound-panel-active', clampedPosition < 98); // Snap targets 2, 50 are < 98
+
+    // Calculate rotation based on slider position
+    const newRotation = (clampedPosition / 100) * 360;
+    setRotation(newRotation);
+    document.documentElement.style.setProperty('--rotation', `${newRotation}deg`);
+  };
+
   const handleMouseDown = (e) => {
     e.preventDefault();
     setIsDragging(true);
+    lastPositionRef.current = sliderPosition; // Ensure ref is synced on initial click
+    // Optional: Could temporarily disable transitions during drag if needed for performance
   };
 
   const handleMouseMove = (e) => {
     if (!isDragging) return;
 
     const container = document.getElementById('slider-container');
+    if (!container) return; // Safety check
     const rect = container.getBoundingClientRect();
-    const newPosition = ((e.clientX - rect.left) / rect.width) * 100;
+    let newPosition = ((e.clientX - rect.left) / rect.width) * 100;
 
-    if (newPosition >= 0 && newPosition <= 100) {
-      document.documentElement.style.setProperty('--slider-position', `${newPosition}%`);
-      setSliderPosition(newPosition);
+    // Ensure position stays within bounds during drag
+    newPosition = Math.max(0, Math.min(100, newPosition));
 
-      // For navbar
-      document.body.classList.toggle('right-panel-active', newPosition < 3);
-      
-      // Toggle visibility based on dominant panel
-      document.body.classList.toggle('white-panel-active', newPosition <= 50);
-      document.body.classList.toggle('black-panel-active', newPosition > 50);
-
-      // Custom condition for sound button
-      document.body.classList.toggle('sound-panel-active', newPosition < 98);
-
-      // Calculate rotation based on slider position
-      const newRotation = (newPosition / 100) * 360;
-
-      setRotation(newRotation);
-      document.documentElement.style.setProperty('--rotation', `${newRotation}deg`);
-    }
+    // Update position using the refactored function
+    updateSliderPosition(newPosition);
+    // Update the ref synchronously with the latest calculated position
+    lastPositionRef.current = newPosition;
   };
 
   const handleMouseUp = () => {
+    if (!isDragging) return; // Safety check
     setIsDragging(false);
+
+    // --- Snap Logic ---
+    // Read the latest position from the ref, not state
+    const currentPosition = lastPositionRef.current;
+    const thresholdLeft = 25; // Midway between 2 and 50
+    const thresholdRight = 75; // Midway between 50 and 98
+    const snapLeft = 1;
+    const snapCenter = 50;
+    const snapRight = 99;
+    let snapTarget;
+
+    if (currentPosition <= thresholdLeft) {
+      snapTarget = snapLeft;
+    } else if (currentPosition > thresholdRight) {
+      snapTarget = snapRight;
+    } else {
+      snapTarget = snapCenter;
+    }
+    // --- End Snap Logic ---
+
+    // Update to the snapped position using the refactored function
+    // The CSS transition will handle the smooth animation
+    updateSliderPosition(snapTarget);
+    // Optional: Re-enable transitions if they were disabled in handleMouseDown
   };
 
   // Function to update container height based on panel heights
@@ -560,7 +596,7 @@ const PollutantPage = () => {
             src="slider.png"
             alt="Slider"
             className="slider-image"
-            style={{ 
+            style={{
               transform: `rotate(${rotation}deg) scale(1.7)`,
               transformOrigin: 'center center',
               cursor: 'ew-resize'
