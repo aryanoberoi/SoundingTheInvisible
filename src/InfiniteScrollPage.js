@@ -581,8 +581,6 @@ const PollutantPage = () => {
             <div className="text-wrapper-2" onClick={() => handleNavClick('sound-frequency')}>Sound frequency</div>
             <div className="text-wrapper-3" onClick={() => handleNavClick('common-names')}>Common names of {rightpanelcontent[0].plantNameSplit}</div>
             <div className="text-wrapper-4" onClick={() => handleNavClick('plant-habitat')}>{rightpanelcontent[0].plantNameSplit}'s Habitat</div>
-            <div className="text-wrapper-3" onClick={() => handleNavClick('common-names')}>Common names of {rightpanelcontent[0].plantNameSplit}</div>
-            <div className="text-wrapper-4" onClick={() => handleNavClick('plant-habitat')}>{rightpanelcontent[0].plantNameSplit}'s Habitat</div>
             <div className="text-wrapper-5" onClick={() => handleNavClick('origin')}>Origin and Geographical Distribution</div>
             <p className="p" onClick={() => handleNavClick('phyto-capacity')}>Phytoremediation capacity of {rightpanelcontent[0].plantNameSplit}</p>
             <div className="text-wrapper-6" onClick={() => handleNavClick('uses-of-plant')}>Uses of {rightpanelcontent[0].plantNameSplit}</div>
