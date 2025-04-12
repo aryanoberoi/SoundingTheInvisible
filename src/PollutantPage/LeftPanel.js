@@ -76,10 +76,10 @@ const LeftPanel = ({ sections = [] }) => {
               </div>
               <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={scrollToEffectsOnHealth}/>
               <div className="sectionTitleLeftPanel" style={{paddingBottom: '10px'}}>
-                Enthalpy and sound <br /> Frequency of Pollutant
+                Enthalpy and sound <br /> Frequency of {pollutantName}
                 <br />
               </div>
-              <div style={{ border: '1px solid black', width: '160px' }}>
+              <div style={{ border: '1px solid black', width: '260px', height: '100px', overflow: 'hidden' }}>
                 <SineWaveVisualizer />
               </div>
               <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={scrollToEnthalpy} />
