@@ -84,9 +84,10 @@
     width: 150%;
     left: 0;
     position: absolute;
-    top: -10em;
+    top: -13em;
     max-width: 350px;
     background-color: transparent;
+    transform: scale(1.1);
 } 
   
 .box-container .human-graphics-container {
@@ -108,7 +109,7 @@
     left: 5px;
     max-width: 100%; 
     position: absolute;
-    top: 2em;
+    transform: scale(1.1); /* Increase scale by 10% */
 }
   
 .box-container .content-items-container {
