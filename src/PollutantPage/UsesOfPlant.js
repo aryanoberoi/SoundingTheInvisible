@@ -10,38 +10,13 @@ import nutritionalImage from "./nutritional.png";
 import medicineImage from "./uses2.png";
 import additionalImage from "./uses3.png";
 
-export const UsesOfPlant = ({ sections }) => {
+export const UsesOfPlant = ({ sectionsData }) => {
   const [expandedSection, setExpandedSection] = useState(null);
   const vectorRefs = useRef({});
   const contentRefs = useRef({});
   
-  // Group sections by ID
-  const groupSectionsByID = () => {
-    const grouped = {};
-    
-    sections.forEach(section => {
-      const { id } = section;
-      
-      if (!grouped[id]) {
-        grouped[id] = {
-          id: section.id,
-          title: section.title,
-          plant_name: section.plant_name || sections[0].plant_name,
-          flavourtext: section.flavourtext,
-          items: []
-        };
-      }
-      
-      grouped[id].items.push({
-        header: section.header,
-        text: section.text
-      });
-    });
-    
-    return Object.values(grouped);
-  };
-  
-  const groupedSections = groupSectionsByID();
+  // Destructure props
+  const { plantName, sections: groupedSections } = sectionsData;
   
   // Function to get the appropriate image based on section id
   const getSectionImage = (sectionId) => {
@@ -57,8 +32,8 @@ export const UsesOfPlant = ({ sections }) => {
     }
   };
 
-  const handleReadMore = (section) => {
-    setExpandedSection(prev => prev === section ? null : section);
+  const handleReadMore = (sectionId) => {
+    setExpandedSection(prev => prev === sectionId ? null : sectionId);
   };
   
   // Function to update vector positioning and height
@@ -164,7 +139,7 @@ export const UsesOfPlant = ({ sections }) => {
   return (
     <div className="uses-of-plant-container">
       <div className="uses-of-plant-header">
-        <div className="uses-of-plant-title">Uses of {sections[0].plant_name}</div>
+        <div className="uses-of-plant-title">Uses of {plantName}</div>
       </div>
 
       {groupedSections.map(section => (
@@ -182,9 +157,9 @@ export const UsesOfPlant = ({ sections }) => {
             <div className={`${section.id}-text-text`}>{section.flavourtext}</div>
             
             {/* Content container */}
-            <div ref={el => contentRefs.current[section.id] = el}>
+            <div ref={el => contentRefs.current[section.id] = el} className="items-content-container">
               {/* When collapsed, show only the first item */}
-              {expandedSection !== section.id && (
+              {expandedSection !== section.id && section.items.length > 0 && (
                 <>
                   <div className="collapsed-header-container" style={{ position: 'relative' }}>
                     <img 
@@ -240,11 +215,14 @@ export const UsesOfPlant = ({ sections }) => {
             )}
           </div>
 
-          <div className="button-container">
-            <button className="read-more-button" onClick={() => handleReadMore(section.id)}>
-              {expandedSection === section.id ? 'Show Less' : 'Read More'}
-            </button>
-          </div>
+          {/* Show Read More/Less button if there's at least one item */}
+          {section.items.length >= 1 && (
+            <div className="button-container">
+              <button className="read-more-button" onClick={() => handleReadMore(section.id)}>
+                {expandedSection === section.id ? 'Show Less' : 'Read More'}
+              </button>
+            </div>
+          )}
         </div>
       ))}
 

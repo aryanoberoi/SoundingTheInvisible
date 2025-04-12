@@ -228,115 +228,90 @@ const PollutantPage = () => {
     { text: "Other heavy metals_Salvinia molesta demonstrates effective manganese (Mn) and iron (Fe) accumulation. A 2016 VIT University study revealed Salvinia molesta concentrates Mn in dry tissues five-fold compared to water, using Atomic Absorption Spectrophotometry. Additionally, University of Kelaniy, Sri Lanaka, research showed a 26.6% Fe reduction in sewage sludge over 28 days. These findings, combined with its high growth rate and metal tolerance, solidify Salvinia molesta as a potent heavy metal hyperaccumulator, suitable for phytoremediation." },
     { text: "Micronutrients_Salvinia molesta exhibits strong nitrogen (N) and phosphorus (P) phytoremediation capabilities. Studies show N content ranges from 0.6% to 4.0% of dry weight, with uptake rates up to 8 mg per g of dry weight/day, or 6,000 kg of nitrogen per hectare/year. Australian sewage lagoons recorded 1,580 kg per hectare/year removal. While S. molesta phosphorus uptake data is limited, Salvinia minima and Salvinia auriculata studies indicate phosphorus concentration enhances growth and uptake, respectively, suggesting S. molesta's potential to combat eutrophication." },
   ];
-  const usessections = [
-    {
-      plant_name: rightpanelcontent[0].plantNameSplit,
-      id: 'nutritional',
-      title: 'NUTRITIONAL',
-      header: 'The edibility rating for Salvinia molesta is unavailable.',
-      text: 'Its nutritional value is poor, lacking significant macronutrients like carbohydrates, proteins, and fats. While containing minerals, it poses toxicity risks due to heavy metal accumulation from its phytoremediation abilities. High lignin and tannin content interfere with nutrient absorption. Furthermore, aquatic environments expose it to microbial contamination. Therefore, Salvinia molesta is deemed unsuitable for human consumption, and its primary applications lie in environmental remediation, animal feed research, and biomass production.',
-      flavourtext: 'Salvinia molesta is not suitable for human consumption due to its poor nutritional value and potential toxicity.'
-    },
-    {
-      id: 'medicine',
-      title: 'MEDICINE',
-      header: 'Antimicrobial',
-      text: 'A 2014 Indian study from International Journal of PharmTech Research revealed Salvinia molestas antibacterial properties were attributed to its secondary metabolites (product of metabolism). Methanol and chloroform extracts demonstrated 7-15% antimicrobial activity against Pseudomonas aeruginosa, a bacterium responsible for various infections, including urinary tract infections, respiratory infections and other infections, and also showed excellent potential against Aeromonas hydrophila, bacteria that causes gastroenteritis or infectious diarrhea which is the inflammation of the stomach and small intestine.',
-      flavourtext: 'Salvinia molesta exhibits promising antibacterial properties against certain harmful bacteria.'
-    },
-    {
-      id: 'medicine',
-      title: 'MEDICINE',
-      header: 'Respiratory',
-      text: 'Salvinia molesta roots are used to address respiratory issues such as cough, phlegm, and inflammation. Traditional Chinese medicine utilizes a decoction to address such ailments. Prepared by boiling 10g of the dried roots in 500ml of water for 15-20 minutes, this remedy is sometimes enhanced with ginger for increased anti-inflammatory effects and honey for soothing properties. The strained, warm liquid is then consumed twice daily.',
-      flavourtext: 'Salvinia molesta exhibits promising antibacterial properties against certain harmful bacteria.'
-    },
-    {
-      id: 'medicine',
-      title: 'MEDICINE',
-      header: 'Dermatitis',
-      text: 'In Malay and Indonesian traditional medicine, Salvinia molesta leaves offer a natural remedy. Fresh leaves are washed, crushed into a paste, and sometimes mixed with coconut oil or turmeric for enhanced effects. This paste is applied to affected areas for 15-30 minutes, then rinsed. Twice-daily application aims to reduce redness, itching, and inflammation, promoting skin healing. This traditional use reflects the plants potential soothing and antimicrobial properties.',
-      flavourtext: 'Salvinia molesta exhibits promising antibacterial properties against certain harmful bacteria.'
-    },
-    {
-      id: 'medicine',
-      title: 'MEDICINE',
-      header: 'Anti-cancer activity',
-      text: 'A 2013 study at Stephen F. Austin State University found that Salvinia molesta extracts, specifically abietane diterpenes, could selectively stop cancer cell growth. These compounds were toxic to tumor cells but left healthy cells unharmed, showing potential for targeted cancer treatment.',
-      flavourtext: 'Salvinia molesta exhibits promising antibacterial properties against certain harmful bacteria.'
-    },
-    {
-      id: 'medicine',
-      title: 'MEDICINE',
-      header: 'Wound healing',
-      text: 'A 2015 IIT Varanasi study published in the Journal of Photochemistry and Photobiology B: Biology demonstrated the green synthesis of silver nanoparticles using Salvinia molesta extract. This eco-friendly method converts silver ions into nanoparticles, offering potential applications in wound healing, antibacterial coatings, and drug delivery.',
-      flavourtext: 'Salvinia molesta exhibits promising antibacterial properties against certain harmful bacteria.'
-    },
-    {
-      id: 'medicine',
-      title: 'MEDICINE',
-      header: 'Atioxidant',
-      text: 'A 2014 CSIR (Council of Scientific and Industrial Research) study, documented in Philippine Medicinal Plants, revealed Salvinia molesta extracts (acetone/methanol) possess high antioxidant activity due to phenolic compounds, primarily naringenin and myricetin.This antioxidant capacity may combat oxidative stress, inflammation, and chronic diseases, potentially supporting liver health, metabolism, neuroprotection, and cardiovascular function.',
-      flavourtext: 'Salvinia molesta exhibits promising antibacterial properties against certain harmful bacteria.'
-    },
-    {
-      id: 'additional',
-      title: 'ADDITIONAL',
-      header: 'Wound healing',
-      text: 'A 2015 IIT Varanasi study published in the Journal of Photochemistry and Photobiology B: Biology demonstrated the green synthesis of silver nanoparticles using Salvinia molesta extract. This eco-friendly method converts silver ions into nanoparticles, offering potential applications in wound healing, antibacterial coatings, and drug delivery.',
-    },
-    {
-      id: 'additional',
-      title: 'ADDITIONAL',
-      header: 'Paper industry raw material',
-      text: 'A study from the Bulletin of the National Institute of Ecology, India, suggests S. molesta can be processed into low-grade paper products like kraft, newsprint, and tissue. It can be utilized alone or in conjunction with agricultural byproducts such as rice straw or waste textile cuttings, offering a sustainable alternative to traditional pulp sources.',
-    },
-{
-  id: 'additional',
-  title: 'ADDITIONAL',
-  header: 'Supplemetary animal feed',
-  text: 'While not suitable as a sole feed source due to its high crude ash and tannin content, which can hinder digestibility, S. molesta can supplement the diets of various animals, including ducks, pigs, geese, and fish. It provides a source of nutrients and can be particularly useful in regions with limited feed resources.',
-},
-{
-  id: 'additional',
-  title: 'ADDITIONAL',
-  header: 'Biofuel Production via Anaerobic Digestion',
-  text: 'Research from the Indian Institutes of Technology (IIT) and Indian Agricultural Research Institute (IARI) demonstrates the potential for S. molesta to generate biogas through anaerobic digestion, yielding methane, a valuable energy source. Combining it with other aquatic plants like Eichhornia crassipes can further enhance biogas production.',
-},
-{
-  id: 'additional',
-  title: 'ADDITIONAL',
-  header: 'Ornamental Horticulture and Invasive Spread',
-  text: 'Its aesthetic qualities have made S. molesta popular in botanical gardens and aquariums. However, this widespread use has inadvertently contributed to its classification as an invasive species in many regions',
-},
-{
-  id: 'additional',
-  title: 'ADDITIONAL',
-  header: 'Ornamental Horticulture and Invasive Spread',
-  text: 'Its aesthetic qualities have made S. molesta popular in botanical gardens and aquariums. However, this widespread use has inadvertently contributed to its classification as an invasive species in many regions',
-},
-{
-  id: 'additional',
-  title: 'ADDITIONAL',
-  header: 'Agricultural Fertilizer and Soil Amendment',
-  text: 'S. molesta can be composted or used as mulch, providing a nutrient-rich soil amendment. Its use as mulch is particularly beneficial in dry regions and for citrus crops, enhancing soil fertility and moisture retention.',
-},
-{
-  id: 'additional',
-  title: 'ADDITIONAL',
-  header: 'Aquaculture Enhancement and Fish Feed Supplement',
-  text: 'In aquaculture, S. molesta can serve as a partial feed source for fish species like Nile tilapia, potentially improving growth performance. It also fosters the growth of invertebrate larvae, a valuable food source for prawns and fish.',
-},
-{
-  id: 'additional',
-  title: 'ADDITIONAL',
-  header: 'Ecological Control via Biological Agents',
-  text: 'The introduction of specific weevil species, natural predators of S. molesta, offers a biological control method to manage its rapid growth and prevent ecological imbalances. This approach helps maintain biodiversity and ecosystem health.',
-},
 
-
-  ];
-  
+  // Optimized data structure for UsesOfPlant component
+  const usesSectionsData = {
+    plantName: rightpanelcontent[0].plantNameSplit, // Define plant name once
+    sections: [
+      {
+        id: 'nutritional',
+        title: 'NUTRITIONAL',
+        flavourtext: 'Salvinia molesta is not suitable for human consumption due to its poor nutritional value and potential toxicity.',
+        items: [
+          {
+            header: 'The edibility rating for Salvinia molesta is unavailable.',
+            text: 'Its nutritional value is poor, lacking significant macronutrients like carbohydrates, proteins, and fats. While containing minerals, it poses toxicity risks due to heavy metal accumulation from its phytoremediation abilities. High lignin and tannin content interfere with nutrient absorption. Furthermore, aquatic environments expose it to microbial contamination. Therefore, Salvinia molesta is deemed unsuitable for human consumption, and its primary applications lie in environmental remediation, animal feed research, and biomass production.'
+          }
+        ]
+      },
+      {
+        id: 'medicine',
+        title: 'MEDICINE',
+        flavourtext: 'Salvinia molesta exhibits promising antibacterial properties against certain harmful bacteria.', // Common flavour text for medicine group
+        items: [
+          {
+            header: 'Antimicrobial',
+            text: 'A 2014 Indian study from International Journal of PharmTech Research revealed Salvinia molestas antibacterial properties were attributed to its secondary metabolites (product of metabolism). Methanol and chloroform extracts demonstrated 7-15% antimicrobial activity against Pseudomonas aeruginosa, a bacterium responsible for various infections, including urinary tract infections, respiratory infections and other infections, and also showed excellent potential against Aeromonas hydrophila, bacteria that causes gastroenteritis or infectious diarrhea which is the inflammation of the stomach and small intestine.'
+          },
+          {
+            header: 'Respiratory',
+            text: 'Salvinia molesta roots are used to address respiratory issues such as cough, phlegm, and inflammation. Traditional Chinese medicine utilizes a decoction to address such ailments. Prepared by boiling 10g of the dried roots in 500ml of water for 15-20 minutes, this remedy is sometimes enhanced with ginger for increased anti-inflammatory effects and honey for soothing properties. The strained, warm liquid is then consumed twice daily.'
+          },
+          {
+            header: 'Dermatitis',
+            text: 'In Malay and Indonesian traditional medicine, Salvinia molesta leaves offer a natural remedy. Fresh leaves are washed, crushed into a paste, and sometimes mixed with coconut oil or turmeric for enhanced effects. This paste is applied to affected areas for 15-30 minutes, then rinsed. Twice-daily application aims to reduce redness, itching, and inflammation, promoting skin healing. This traditional use reflects the plants potential soothing and antimicrobial properties.'
+          },
+          {
+            header: 'Anti-cancer activity',
+            text: 'A 2013 study at Stephen F. Austin State University found that Salvinia molesta extracts, specifically abietane diterpenes, could selectively stop cancer cell growth. These compounds were toxic to tumor cells but left healthy cells unharmed, showing potential for targeted cancer treatment.'
+          },
+          {
+            header: 'Wound healing',
+            text: 'A 2015 IIT Varanasi study published in the Journal of Photochemistry and Photobiology B: Biology demonstrated the green synthesis of silver nanoparticles using Salvinia molesta extract. This eco-friendly method converts silver ions into nanoparticles, offering potential applications in wound healing, antibacterial coatings, and drug delivery.'
+          },
+          {
+            header: 'Antioxidant', // Corrected typo
+            text: 'A 2014 CSIR (Council of Scientific and Industrial Research) study, documented in Philippine Medicinal Plants, revealed Salvinia molesta extracts (acetone/methanol) possess high antioxidant activity due to phenolic compounds, primarily naringenin and myricetin.This antioxidant capacity may combat oxidative stress, inflammation, and chronic diseases, potentially supporting liver health, metabolism, neuroprotection, and cardiovascular function.'
+          }
+        ]
+      },
+      {
+        id: 'additional',
+        title: 'ADDITIONAL',
+        flavourtext: 'Salvinia molesta has various other uses beyond medicinal applications.', // Added a generic flavourtext for 'additional'
+        items: [
+          {
+            header: 'Paper industry raw material',
+            text: 'A study from the Bulletin of the National Institute of Ecology, India, suggests S. molesta can be processed into low-grade paper products like kraft, newsprint, and tissue. It can be utilized alone or in conjunction with agricultural byproducts such as rice straw or waste textile cuttings, offering a sustainable alternative to traditional pulp sources.'
+          },
+          {
+            header: 'Supplementary animal feed', // Corrected typo
+            text: 'While not suitable as a sole feed source due to its high crude ash and tannin content, which can hinder digestibility, S. molesta can supplement the diets of various animals, including ducks, pigs, geese, and fish. It provides a source of nutrients and can be particularly useful in regions with limited feed resources.'
+          },
+          {
+            header: 'Biofuel Production via Anaerobic Digestion',
+            text: 'Research from the Indian Institutes of Technology (IIT) and Indian Agricultural Research Institute (IARI) demonstrates the potential for S. molesta to generate biogas through anaerobic digestion, yielding methane, a valuable energy source. Combining it with other aquatic plants like Eichhornia crassipes can further enhance biogas production.'
+          },
+          {
+            header: 'Ornamental Horticulture and Invasive Spread', // Removed duplicate entry
+            text: 'Its aesthetic qualities have made S. molesta popular in botanical gardens and aquariums. However, this widespread use has inadvertently contributed to its classification as an invasive species in many regions'
+          },
+          {
+            header: 'Agricultural Fertilizer and Soil Amendment',
+            text: 'S. molesta can be composted or used as mulch, providing a nutrient-rich soil amendment. Its use as mulch is particularly beneficial in dry regions and for citrus crops, enhancing soil fertility and moisture retention.'
+          },
+          {
+            header: 'Aquaculture Enhancement and Fish Feed Supplement',
+            text: 'In aquaculture, S. molesta can serve as a partial feed source for fish species like Nile tilapia, potentially improving growth performance. It also fosters the growth of invertebrate larvae, a valuable food source for prawns and fish.'
+          },
+          {
+            header: 'Ecological Control via Biological Agents',
+            text: 'The introduction of specific weevil species, natural predators of S. molesta, offers a biological control method to manage its rapid growth and prevent ecological imbalances. This approach helps maintain biodiversity and ecosystem health.'
+          }
+        ]
+      }
+    ]
+  };
 
   // Add state to track dragging
   const [isDragging, setIsDragging] = useState(false);
@@ -697,7 +672,7 @@ const PollutantPage = () => {
               <PhytoCapacity sections={sectionphyto}/>
             </div>
             <div className="bottom-section10" id="uses-of-plant">
-              <UsesOfPlant sections={usessections}/>
+              <UsesOfPlant sectionsData={usesSectionsData}/>
             </div>
           </div>
         </div>

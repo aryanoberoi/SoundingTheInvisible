@@ -149,7 +149,6 @@
     max-width: 80%;
     position: relative;
     z-index: 0;
-    left: 20px;
     margin-top: 10px;
 }
 
@@ -230,7 +229,6 @@
     max-width: 80%;
     position: relative;
     z-index: 0;
-    left: 20px;
     margin-top: 10px;
 }
 
@@ -264,8 +262,15 @@
     max-width: 80%;
     position: relative;
     z-index: 0;
-    left: 20px;
     margin-top: 10px;
+}
+
+/* Added rule to indent text elements ONLY inside the items-content-container */
+.items-content-container .nutritional-text-text,
+.items-content-container .medicine-text-text,
+.items-content-container .additional-text-text {
+    position: relative; /* Keep relative positioning */
+    left: 20px; /* Apply indentation only to these nested elements */
 }
 
 .button-container-bibliography {
