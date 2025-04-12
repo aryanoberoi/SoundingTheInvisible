@@ -22,11 +22,13 @@ const PollutantPage = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [containerHeight, setContainerHeight] = useState('86vw');
+  const [isDragging, setIsDragging] = useState(false);
   
   // Refs for panels to measure their heights
   const leftPanelRef = useRef(null);
   const rightPanelRef = useRef(null);
   const sliderContainerRef = useRef(null);
+  const currentSliderPosRef = useRef(50);
 
   // Pollutant categorization by waste type
   const pollutantCategories = {
@@ -337,61 +339,91 @@ const PollutantPage = () => {
   ];
   
 
-  // Add state to track dragging
-  const [isDragging, setIsDragging] = useState(false);
-
   const handleMouseDown = (e) => {
     e.preventDefault();
     setIsDragging(true);
+    currentSliderPosRef.current = sliderPosition;
+
+    // Add dragging class to prevent transitions
+    const sliderBar = document.querySelector('.slider-bar');
+    const sliderImage = document.querySelector('.slider-image');
+    if (sliderBar) sliderBar.classList.add('dragging');
+    if (sliderImage) sliderImage.classList.add('dragging');
   };
 
   const handleMouseMove = (e) => {
     if (!isDragging) return;
 
     const container = document.getElementById('slider-container');
+    if (!container) return;
     const rect = container.getBoundingClientRect();
-    const newPosition = ((e.clientX - rect.left) / rect.width) * 100;
+    let rawPosition = ((e.clientX - rect.left) / rect.width) * 100;
+    let clampedPosition = Math.max(0, Math.min(100, rawPosition));
 
-    if (newPosition >= 0 && newPosition <= 100) {
-      document.documentElement.style.setProperty('--slider-position', `${newPosition}%`);
-      setSliderPosition(newPosition);
+    // Update both the ref and the state in real-time
+    currentSliderPosRef.current = clampedPosition;
+    setSliderPosition(clampedPosition); // Update state immediately, not just on mouse up
 
-      // For navbar
-      document.body.classList.toggle('right-panel-active', newPosition < 3);
-      
-      // Toggle visibility based on dominant panel
-      document.body.classList.toggle('white-panel-active', newPosition <= 50);
-      document.body.classList.toggle('black-panel-active', newPosition > 50);
+    document.documentElement.style.setProperty('--slider-position', `${clampedPosition}%`);
 
-      // Custom condition for sound button
-      document.body.classList.toggle('sound-panel-active', newPosition < 98);
+    const visualRotation = (clampedPosition / 100) * 360;
+    setRotation(visualRotation); // Also update rotation state immediately
+    document.documentElement.style.setProperty('--rotation', `${visualRotation}deg`);
 
-      // Calculate rotation based on slider position
-      const newRotation = (newPosition / 100) * 360;
-
-      setRotation(newRotation);
-      document.documentElement.style.setProperty('--rotation', `${newRotation}deg`);
-    }
+    document.body.classList.toggle('white-panel-active', clampedPosition <= 50);
+    document.body.classList.toggle('black-panel-active', clampedPosition > 50);
+    document.body.classList.toggle('sound-panel-active', clampedPosition < 98);
+    document.body.classList.toggle('right-panel-active', clampedPosition < 3);
   };
 
   const handleMouseUp = () => {
+    if (!isDragging) return;
     setIsDragging(false);
+
+    // Remove dragging class
+    const sliderBar = document.querySelector('.slider-bar');
+    const sliderImage = document.querySelector('.slider-image');
+    if (sliderBar) sliderBar.classList.remove('dragging');
+    if (sliderImage) sliderImage.classList.remove('dragging');
+
+    const lowerThreshold = 25;
+    const upperThreshold = 75;
+    let snapTarget;
+
+    const finalPosition = currentSliderPosRef.current;
+
+    if (finalPosition < lowerThreshold) {
+      snapTarget = 3.5;
+    } else if (finalPosition > upperThreshold) {
+      snapTarget = 97;
+    } else {
+      snapTarget = 50;
+    }
+
+    setSliderPosition(snapTarget);
+
+    document.documentElement.style.setProperty('--slider-position', `${snapTarget}%`);
+
+    const finalRotation = (snapTarget / 100) * 360;
+    setRotation(finalRotation);
+    document.documentElement.style.setProperty('--rotation', `${finalRotation}deg`);
+
+    document.body.classList.toggle('white-panel-active', snapTarget <= 50);
+    document.body.classList.toggle('black-panel-active', snapTarget > 50);
+    document.body.classList.toggle('sound-panel-active', snapTarget < 98);
+    document.body.classList.toggle('right-panel-active', snapTarget < 3);
   };
 
-  // Function to update container height based on panel heights
   const updateContainerHeight = () => {
     if (!leftPanelRef.current || !rightPanelRef.current || !sliderContainerRef.current) return;
     
-    // Give the panels time to render their content
     setTimeout(() => {
       const leftPanelHeight = leftPanelRef.current.scrollHeight;
       const rightPanelHeight = rightPanelRef.current.scrollHeight;
       
-      // Use the height of the taller panel
       const maxHeight = Math.max(leftPanelHeight, rightPanelHeight);
       setContainerHeight(`${maxHeight}px`);
       
-      // Update slider bar height to match container
       const sliderBar = document.querySelector('.slider-bar');
       if (sliderBar) {
         sliderBar.style.height = `${maxHeight}px`;
@@ -402,34 +434,29 @@ const PollutantPage = () => {
   };
 
   useEffect(() => {
+    const handleMouseMoveWindow = (e) => handleMouseMove(e);
+    const handleMouseUpWindow = () => handleMouseUp();
+
     if (isDragging) {
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', handleMouseUp);
-    } else {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', handleMouseUp);
+      window.addEventListener('mousemove', handleMouseMoveWindow);
+      window.addEventListener('mouseup', handleMouseUpWindow);
     }
 
-    // Clean up on unmount
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', handleMouseUp);
+      window.removeEventListener('mousemove', handleMouseMoveWindow);
+      window.removeEventListener('mouseup', handleMouseUpWindow);
     };
   }, [isDragging]);
 
   useEffect(() => {
-    // Update container height when panels are loaded
     updateContainerHeight();
     
-    // Update height again after a delay to ensure all content is rendered
     const initialTimer = setTimeout(() => {
       updateContainerHeight();
     }, 50);
     
-    // Add resize listener to handle window size changes
     window.addEventListener('resize', updateContainerHeight);
     
-    // Clean up on unmount
     return () => {
       clearTimeout(initialTimer);
       window.removeEventListener('resize', updateContainerHeight);
@@ -448,7 +475,6 @@ const PollutantPage = () => {
       root: null
     });
 
-    // Observe all sections in both panels
     const sections = document.querySelectorAll(`
       [id^="about-"],
       [id^="plant-"],
@@ -470,33 +496,6 @@ const PollutantPage = () => {
     return () => observer.disconnect();
   }, []);
 
-  // // Add effect to detect scrolling at the bottom of phytoremediation section
-  // useEffect(() => {
-  //   if (activeSection === 'phytoremediation') {
-  //     const section = document.getElementById('phytoremediation');
-  //     if (!section) return;
-      
-  //       const handleWheel = (e) => {
-  //         if (e.deltaY <= 0) return; // Only handle scrolling down
-        
-  //         // Check if we're at the bottom of the phytoremediation section
-  //         const rect = section.getBoundingClientRect();
-  //         const atBottom = Math.abs(rect.bottom - window.innerHeight) < 20; // Within 20px of bottom
-        
-  //         if (atBottom) {
-  //           handleNavClick('plant-name');
-  //           e.preventDefault();
-  //         }
-  //       };
-      
-  //       window.addEventListener('wheel', handleWheel, { passive: false });
-      
-  //       return () => {
-  //         window.removeEventListener('wheel', handleWheel);
-  //       };
-  //   }
-  // }, [activeSection]);
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -512,29 +511,34 @@ const PollutantPage = () => {
     const section = document.getElementById(sectionId);
     if (!section) return;
 
-    // Mobile-specific behavior
     if(isMobile) {
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
       return;
     }
 
-    // Determine which panel to activate
-    const isWhitePanel = section.closest('.white-container');
-    const sliderPos = isWhitePanel ? 0 : 100;
-    
-    // Update slider position and panel visibility
-    setSliderPosition(sliderPos);
-    document.documentElement.style.setProperty('--slider-position', `${sliderPos}%`);
-    document.body.classList.toggle('white-panel-active', isWhitePanel);
-    document.body.classList.toggle('black-panel-active', !isWhitePanel);
+    const isWhitePanelSection = section.closest('.white-container') || section.closest('.bottom-section5, .bottom-section6, .bottom-section7, .bottom-section8, .bottom-section9, .bottom-section10');
+    const snapTarget = isWhitePanelSection ? 100 : 0;
 
-    // Scroll after panel transition
+    setSliderPosition(snapTarget);
+    currentSliderPosRef.current = snapTarget;
+
+    document.documentElement.style.setProperty('--slider-position', `${snapTarget}%`);
+
+    const finalRotation = (snapTarget / 100) * 360;
+    setRotation(finalRotation);
+    document.documentElement.style.setProperty('--rotation', `${finalRotation}deg`);
+
+    document.body.classList.toggle('white-panel-active', snapTarget <= 50);
+    document.body.classList.toggle('black-panel-active', snapTarget > 50);
+    document.body.classList.toggle('sound-panel-active', snapTarget < 98);
+    document.body.classList.toggle('right-panel-active', snapTarget < 3);
+
     setTimeout(() => {
-      section.scrollIntoView({ 
+      section.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
-    }, 50);
+    }, 350);
   };
 
   return (
@@ -553,7 +557,7 @@ const PollutantPage = () => {
         </div>
         <div
           className="slider-bar"
-          style={{ left: `${sliderPosition}%`, height: containerHeight }}
+          style={{ left: `var(--slider-position)`, height: containerHeight }}
           onMouseDown={handleMouseDown}
         >
           <img

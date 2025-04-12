@@ -46,6 +46,7 @@ body, html {
   align-items: center;
   z-index: 10;
   top: -15em; /* Ensures the slider is above the panels */
+  transition: left 0.3s ease-out; /* Adjust timing and easing as needed */
 }
 
 .slider-circle {
@@ -1315,4 +1316,10 @@ img {
   width: calc(80%); /* Adjust width to account for margins */
   height: 200px; /* Set desired height */
   background-color: black;
+}
+
+/* Add this to your pollutantPage.css or component styles */
+.slider-bar.dragging,
+.slider-image.dragging {
+  transition: none !important;
 }
