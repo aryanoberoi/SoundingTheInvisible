@@ -174,7 +174,7 @@ const PollutantPage = () => {
   const aboutplantcontent = [
     { 
       plant_name: rightpanelcontent[0].plantNameSplit,
-      description: "About Salvinia molesta_Salvinia molesta, a perennial aquatic fern, exhibits a characteristic structure  that is adapted for its free-floating lifestyle. Its aerial fronds (a large leaf), arranged in triplets, transition from flat, youthful forms to increasingly folded, mature structures, reaching sizes up to 2.2 cm. These fronds possess a specialized upper surface, featuring papillae with intricate, hair-like cages that trap air, enhancing buoyancy and repelling water. The lower surface, covered in dense brown hairs, further contributes to flotation.",
+      description: "About Salvinia molesta_Salvinia molesta, a perennial aquatic fern, exhibits a characteristic structure  that is adapted for its free-floating lifestyle. Its aerial fronds (a large leaf), arranged in triplets, transition from flat, youthful forms to increasingly folded, mature structures, reaching sizes up to 2.2 cm. These fronds possess a specialized upper surface, featuring papillae with intricate, hair-like cages that trap air, enhancing buoyancy and repelling water. The lower surface, covered in dense brown hairs, further contributes to flotation.Beneath the surface, highly divided, feathery fronds act as pseudo-roots, anchoring the plant and facilitating nutrient absorption. These submerged fronds extend significantly, ranging from 2 to 50 cm. At the bottom, rhizomes, which are horizontal stems beneath the water surface , propagate vegetatively through fragmentation, allowing the fern to rapidly colonize aquatic environments and form dense mats. \nMature plants produce sporocarps, small, egg-shaped structures containing infertile microspores and megaspores. These sporocarps, covered in soft hairs, are clustered along the submerged leaves. Lacking sexual reproduction, Salvinia molesta relies entirely on asexual propagation through fragmentation. This strategy enables rapid dispersal and the formation of extensive, floating mats, which can significantly impact aquatic ecosystems.",
       status: "Wetland Status_ OBL (Obligate Wetland Plant) - Almost always occurs in wetlands"
     }
   ];
@@ -196,27 +196,23 @@ const PollutantPage = () => {
     { plantName: rightpanelcontent[0].plantNameSplit },
     {
       title: "Diverse Habitats",
-      content: "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe"
+      content: "Salvinia molesta flourishes in diverse freshwater settings, preferring still or sluggish waters. It establishes itself in sheltered areas like small bays, inlets along irregular shorelines, and the gentle flow of tributary streams. Its presence is common in lakes, wetlands, man-made irrigation channels, ditches, ponds, and canals. It colonizes disturbed environments, including rice paddies, flood control canals, artificial reservoirs, swamps, drainage channels, and the edges of rivers. This adaptability is further highlighted by its tolerance of fluctuating water levels, enabling it to survive in seasonally waterlogged soils and even thrive on nutrient-rich mud banks composed of silt and clay."
     },
     {
-      title: "Flood and Drought adaptability",
-      content: "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe"
+      title: "Light, salinity and pH",
+      content: "Salvinia molesta flourishes in warm, nutrient-rich freshwater, demonstrating a strong preference for environments high in nitrogen and phosphorus, and a slightly acidic to neutral pH between 4.5 and 8.5. Requiring ample sunlight for rapid growth, this aquatic fern has adapted to low-oxygen conditions through specialized leaf structures that enhance gas exchange. While strictly a freshwater species, it is highly intolerant of salinity, succumbing quickly to seawater, though it may endure brief exposure to low salt concentrations. These combined factors contribute to its rapid proliferation and invasive potential in suitable freshwater ecosystems."
+    },
+    {
+      title: "Temperature and Humidity",
+      content: "Salvinia molesta requires high humidity for survival and propagation. Specifically, humidity levels above 60% are necessary to prevent desiccation (removal of moisture). The plant thrives within a temperature range of 20 to 30°C (68–86°F), with optimal growth occurring when relative humidity is between 70% and 90%. It is important to note that Salvinia molesta is intolerant of extreme temperatures, and will not survive below 10°C or above 40°C."
     },
     {
       title: "Climate Resilience",
-      content: "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe"
-    },
-    {
-      title: "Moisture preference",
-      content: "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe"
-    },
-    {
-      title: "Temperature and humidity tolerance",
-      content: "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe"
+      content: "Beyond its primary aquatic habitat, Salvinia molesta exhibits remarkable adaptability, extending its range to semi-terrestrial environments. It has been observed thriving among emergent undergrowth and around trees on flooded shorelines, demonstrating its ability to exploit these transitional zones. Notably, the plant can even survive terrestrially in consistently high-humidity areas, such as the mist-laden environment at the base of Victoria Falls. Moreover, its persistence on moist, waterlogged soils further emphasizes its resilience and capacity to thrive in a wider array of ecological niches than typically associated with a purely aquatic species."
     }
   ];
   const geographicaldistribution = [
-      {text: "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe, particularly in countries like Spain, Italy, and France. In Italy, it is widely distributed across various regions, particularly in northern areas, where it plays a significant role in grasslands, pastures, and as a forage crop. In the Venice lagoons, it is notably adapted to saline and brackish environments, thriving in areas with periodic flooding. Over time, it has spread beyond its native regions due to its adaptability and usefulness in agriculture and land management. Its introduction to North America likely occurred as a contaminant in imported meadow fescue seed before 1880, and while it was initially of minor importance in Europe, it gained prominence in the United States due to its superior growth characteristics and adaptability to diverse environmental conditions. By the late 19th century, this plant was recognized for its value as a forage grass, especially after the release of cultivars like Kentucky 31 in 1943, which became widely planted across the southern U.S. Today,"}
+      {text: "Originating from southeastern Brazil, in the subtropical zone between latitudes 24°050 S and 32°050 S at elevations up to 900 m, Salvinia molesta has become a globally disruptive invasive aquatic fern, spreading rapidly since the mid-20th century. Initially introduced as an ornamental plant and for water treatment, it has since colonized diverse aquatic ecosystems worldwide, causing significant ecological disruption. Its spread accelerated from the 1950s, reaching numerous African countries. By the 1970s and 1980s, it had invaded Cameroon, the Democratic Republic of the Congo, Nigeria, and South Africa, and later spread to Ghana and Kenya, among others. In the Indian subcontinent and Southeast Asia, it is prevalent in India, and is considered an invasive species in Indonesia, Malaysia, and Israel, and has also been observed in Japan. In Europe, it is found in Denmark, France, Germany, and Spain. It is an invasive species in Austria, Belgium, and Italy, notably in Tuscany and near Rome, where it displaces native species and alters ecosystems. The plant is able to thrive in tropical, subtropical, and warm temperate regions, including Australia, New Zealand, the southern United States, and various Pacific islands."}
   ];
   const sectionphyto = [
     { type: 'intro', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque.' },
@@ -287,7 +283,6 @@ const PollutantPage = () => {
       title: 'ADDITIONAL',
       header: 'Wound healing',
       text: 'A 2015 IIT Varanasi study published in the Journal of Photochemistry and Photobiology B: Biology demonstrated the green synthesis of silver nanoparticles using Salvinia molesta extract. This eco-friendly method converts silver ions into nanoparticles, offering potential applications in wound healing, antibacterial coatings, and drug delivery.',
-      flavourtext: 'Placeholder text for additional uses of Salvinia molesta. The placeholder text goes here.'
     },
     {
       id: 'additional',
@@ -584,6 +579,8 @@ const PollutantPage = () => {
             <div className="text-wrapper" onClick={() => handleNavClick('about-pollutant')}>{leftpanelcontent[0].pollutantName}</div>
             <div className="div" onClick={() => handleNavClick('plant-name')}>{rightpanelcontent[0].plantNameSplit}</div>
             <div className="text-wrapper-2" onClick={() => handleNavClick('sound-frequency')}>Sound frequency</div>
+            <div className="text-wrapper-3" onClick={() => handleNavClick('common-names')}>Common names of {rightpanelcontent[0].plantNameSplit}</div>
+            <div className="text-wrapper-4" onClick={() => handleNavClick('plant-habitat')}>{rightpanelcontent[0].plantNameSplit}'s Habitat</div>
             <div className="text-wrapper-3" onClick={() => handleNavClick('common-names')}>Common names of {rightpanelcontent[0].plantNameSplit}</div>
             <div className="text-wrapper-4" onClick={() => handleNavClick('plant-habitat')}>{rightpanelcontent[0].plantNameSplit}'s Habitat</div>
             <div className="text-wrapper-5" onClick={() => handleNavClick('origin')}>Origin and Geographical Distribution</div>
