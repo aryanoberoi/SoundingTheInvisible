@@ -69,13 +69,15 @@ const AppContent = () => {
 
   return (
     <div>
+    <div style={{ maxHeight: '100vh', overflow: 'hidden' }}>
       <Navbar />
+      </div>
       <SoundToggle />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/:customName" element={<PollutantPage categorizedData={categorizedData} />} />
       </Routes>
-    </div>
+      </div>
   );
 };
 
