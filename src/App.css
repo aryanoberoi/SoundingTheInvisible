@@ -50,3 +50,7 @@
   transform: translate(-50%, -50%); /* Center the cursor */
   box-shadow: 0 0 0 5px rgba(255, 255, 255, 0), 0 0 0 0.5px black; /* Larger fully transparent white circle with very thin black border */
 }
+.custom-cursor-inverted {
+  border: 1px solid white;
+  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0), 0 0 0 2px white;
+}

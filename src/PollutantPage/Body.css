@@ -112,6 +112,7 @@
     transform: scale(1.1); /* Increase scale by 10% */
 }
   
+/* Current desktop styles */
 .box-container .content-items-container {
     position: absolute;
     left: 38%;
@@ -120,7 +121,20 @@
     width: auto;
     top: 33px;
 }
-  
+
+/* Add mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .box-container .content-items-container {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: 35%;
+        width: 100%;
+        top: 70%;
+        padding: 0px;
+        height: auto;
+    }
+}
 .box-container .content-item {
     width: 100%;
     max-width: 416px;
@@ -219,14 +233,6 @@
         width: 100%;
         max-width: none;
         margin-top: 40px;
-    }
-    
-    .box-container .content-items-container {
-        position: relative;
-        left: 0;
-        right: 0;
-        margin-top: 100%;
-        padding: 0 20px;
     }
     
     .box-container .content-item:nth-child(even) {

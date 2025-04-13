@@ -356,12 +356,10 @@ body.sound-panel-active .sound-icon span {
 
 .effect-on-health-section {
   background-color: black;
-  min-height: 100vh;
   color: white;
   padding: 0px 69px; /* Match left panel padding */
   height: auto; /* Ensure height adjusts to content */
   box-sizing: border-box;
-  overflow: hidden;
   position: relative;
 }
 
