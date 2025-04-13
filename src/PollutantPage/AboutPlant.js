@@ -29,7 +29,10 @@ export const AboutPlant = ({ sections }) => {
             className="vector-image inverted-image"
           />
         </div>
-        <span className="lorem-ipsum-dolor inverted-text">
+        <span
+          className="lorem-ipsum-dolor inverted-text"
+          style={{ whiteSpace: 'pre-line' }}
+        >
           {aboutPlantText}
         </span>
         <div className="inverted-graphic-container" style={{ height: "auto" }}>
