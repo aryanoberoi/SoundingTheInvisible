@@ -266,6 +266,7 @@ body.sound-panel-active .sound-icon span {
   padding: 0;
   margin-top: 80px;
   width: 80%;
+  height: fit-content;
   max-width: 1200px;
   margin: 50px auto 0;
   padding-bottom: 100px;
@@ -600,7 +601,7 @@ body.sound-panel-active .sound-icon span {
 
 /* Adjust nav-item spacing */
 .nav-item {
-  padding: 25px 15px !important;
+  padding: 25px 15px;
   transition: all 0s;
   position: relative;
   margin-bottom: 50px;
@@ -783,6 +784,12 @@ body.homepage-active .hamburger span {
   padding-left: 0;
   width: 60%;
   height: auto; /* Changed from default */
+}
+
+@media (max-width: 768px) {
+  .content-sections {
+    width: 120%;
+  }
 }
 
 /* Remove any existing margin/padding on these elements */
