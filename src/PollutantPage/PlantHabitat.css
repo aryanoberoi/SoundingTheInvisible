@@ -88,7 +88,7 @@
     mix-blend-mode: difference;
     position: absolute;
     top: 30px;
-    width: 75%;
+    width: 60%;
 }
 
 .plant-habitat-container .section-title {
@@ -105,7 +105,7 @@
 
 .plant-habitat-container .habitat-section-1 {
     height: auto;
-    left: 14%;
+    left: 16%;
     position: absolute;
     top: 9%;
     width: 100%;
@@ -113,33 +113,33 @@
 
 .plant-habitat-container .habitat-section-2 {
     height: auto;
-    left: 14%;
+    left: 16%;
     position: absolute;
-    top: 45%;
+    top: 51%;
     width: 100%;
 }
 
 .plant-habitat-container .habitat-section-3 {
     height: auto;
-    left: 14%;
+    left: 16%;
     position: absolute;
-    top: 62%;
+    top: 72%;
     width: 100%;
 }
 
 .plant-habitat-container .habitat-section-4 {
     height: auto;
-    left: 14%;
+    left: 16%;
     position: absolute;
-    top: 27%;
+    top: 30%;
     width: 100%;
 }
 
 .plant-habitat-container .habitat-section-5 {
     height: auto;
-    left: 18%;
+    left: 16%;
     position: absolute;
-    top: 67%;
+    top: 71%;
     width: 100%;
 }
 
