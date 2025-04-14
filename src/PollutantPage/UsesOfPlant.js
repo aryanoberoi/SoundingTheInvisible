@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./UsesOfPlant.css";
+import vector167 from "./vector-167.svg";
 import ellipse89 from "./ellipse-89.svg";
 import longDownArrow from "./long-down-arrow.svg";
 // Import specific images for each section
@@ -103,13 +104,13 @@ export const UsesOfPlant = ({ sectionsData }) => {
                   ))}
                   {/* Add bottom border for expanded state */}
                   <span className="bottom-border"></span>
+                  {/* Add small circle at the end of bottom border for expanded state */}
+                  <span className="bottom-border-circle"></span>
                   {/* Add small circle at the end of top border */}
                   <span className="top-border-circle"></span>
                 </>
               }
             </div>
-            
-            {/* Remove vector166 and vector166E images - replaced with CSS borders */}
           </div>
 
           {/* Show Read More/Less button if there's at least one item */}

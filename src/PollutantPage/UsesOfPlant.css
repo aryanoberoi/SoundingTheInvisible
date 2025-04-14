@@ -1,8 +1,17 @@
-/* Add small black circle at the end of the top border */
+/* Add small black circle at the end of the bottom border for expanded state */
+.items-content-container .bottom-border-circle {
+    position: absolute;
+    bottom: -2px; /* Slightly lower to center it vertically on the border */
+    left: 140px; /* Position at the end of the 40px bottom border */
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #000;
+}/* Add small black circle at the end of the top border */
 .items-content-container .top-border-circle {
     position: absolute;
     top: 18px; /* Slightly higher than the border to center it vertically */
-    left: 100px; /* Position at the end of the 80px top border */
+    left: 86px; /* Position at the end of the 80px top border */
     width: 6px;
     height: 6px;
     border-radius: 50%;
@@ -153,7 +162,7 @@
     position: absolute;
     top: 20px;
     left: 20px;
-    width: 80px;
+    width: 66px;
     height: 2px;
     background-color: #000;
 }
@@ -163,7 +172,7 @@
     position: absolute;
     bottom: 0px;
     left: 20px;
-    width: 40px;
+    width: 120px;
     height: 2px;
     background-color: #000;
 }
@@ -173,7 +182,7 @@
     position: absolute;
     bottom: 0px;
     left: 60px; /* Position right after the solid border */
-    width: 100px;
+    width: 270px;
     height: 0;
     border-top: 2px dashed #000;
     display: none; /* Hidden by default */
@@ -221,15 +230,6 @@
     z-index: 0;
     margin-top: 10px;
     margin-bottom: 10px;
-}
-
-.vector-167 {
-    width: 190px;
-    height: 77px;
-    position: absolute;
-    left: 300px;
-    bottom: -60px;
-    z-index: 1;
 }
 
 .ellipse-89 {
