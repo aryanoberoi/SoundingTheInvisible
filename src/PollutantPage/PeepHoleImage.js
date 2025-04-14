@@ -11,27 +11,31 @@ const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
     const containerElement = containerRef.current;
     if (!containerElement) return; // Exit if ref is not available yet
 
-    // Function to calculate and set center position
-    const updateCenter = () => {
+    // Function to calculate and set the initial position
+    const updateInitialPosition = () => {
       const rect = containerElement.getBoundingClientRect();
+      const initialX = rect.width * (2 / 3); // Two-thirds from the left
+      const initialY = rect.height * (1 / 3); // One-third from the top
       setPosition({
-        x: rect.width / 2,
-        y: rect.height / 2,
+        x: initialX,
+        y: initialY,
       });
-      console.log("Peephole centered at:", rect.width / 2, rect.height / 2); // Optional: for debugging
+      console.log("Peephole initial position set to:", initialX, initialY); // Optional: for debugging
     };
 
     // Create a ResizeObserver to watch the container element
     const resizeObserver = new ResizeObserver(() => {
-      // When the container size changes, re-center the peephole
-      updateCenter();
+      // When the container size changes, re-calculate the initial position
+      // Note: You might want different behavior on resize, e.g., keep the relative position.
+      // For now, it resets to the initial relative position based on the new size.
+      updateInitialPosition();
     });
 
     // Start observing the container element
     resizeObserver.observe(containerElement);
 
-    // Perform initial centering right after observing
-    updateCenter();
+    // Perform initial positioning right after observing
+    updateInitialPosition();
 
     // Cleanup function: stop observing when the component unmounts
     return () => {
