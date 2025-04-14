@@ -617,7 +617,7 @@ const PollutantPage = (categorizedData) => {
             <div className="text-wrapper-5" onClick={() => handleNavClick('origin')}>Origin and Geographical Distribution</div>
             <p className="p" onClick={() => handleNavClick('phyto-capacity')}>Phytoremediation capacity of {rightpanelcontent[0].plantNameSplit}</p>
             <div className="text-wrapper-6" onClick={() => handleNavClick('uses-of-plant')}>Uses of {rightpanelcontent[0].plantNameSplit}</div>
-            <div className="text-wrapper-7" onClick={() => handleNavClick('references')}>References</div>
+            <div className="text-wrapper-7" onClick={() => handleNavClick('references')}>Bibliography</div>
             <div className="text-wrapper-8" onClick={() => handleNavClick('effect-on-health')}>Effect on health</div>
             <div className="text-wrapper-9" onClick={() => handleNavClick('case-study')}>Case study</div>
             <p className="text-wrapper-10" onClick={() => handleNavClick('phytoremediation')}>
