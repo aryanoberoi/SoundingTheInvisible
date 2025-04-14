@@ -493,32 +493,213 @@ const PollutantPage = (categorizedData) => {
     return () => observer.disconnect();
   }, []);
 
-  // Add effect to detect scrolling at the bottom of phytoremediation section
-  useEffect(() => {
-    if (activeSection === 'phytoremediation') {
-      const section = document.getElementById('phytoremediation');
-      if (!section) return;
+// Replace the current phyto section scroll effect with this code
+useEffect(() => {
+  if (activeSection === 'phytoremediation') {
+    const section = document.getElementById('phytoremediation');
+    if (!section) return;
+    
+    // Create visual indicator
+    const indicator = document.createElement('div');
+    indicator.className = 'phyto-scroll-indicator';
+    indicator.innerHTML = `
+      <div class="indicator-arrow">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="indicator-text">Continue to Plant Details</div>
+    `;
+    section.appendChild(indicator);
+    
+    // Add styles
+    const style = document.createElement('style');
+    style.textContent = `
+      .phyto-scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%) translateY(70px);
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s;
+        opacity: 0;
+        z-index: 100;
+        pointer-events: none;
+      }
       
-        const handleWheel = (e) => {
-          if (e.deltaY <= 0) return; // Only handle scrolling down
+      .phyto-scroll-indicator.visible {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+      }
+      
+      .indicator-arrow {
+        margin-bottom: 5px;
+        animation: pulse 1.5s infinite;
+      }
+      
+      .indicator-text {
+        font-size: 14px;
+        white-space: nowrap;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(5px); }
+      }
+      
+      .transition-flash {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: white;
+        z-index: 9999;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      
+      .transition-flash.active {
+        opacity: 0.7;
+      }
+    `;
+    document.head.appendChild(style);
+    
+    // Add transition flash element
+    const flash = document.createElement('div');
+    flash.className = 'transition-flash';
+    document.body.appendChild(flash);
+    
+    let isTransitioning = false;
+    let scrollTriggerCount = 0;
+    let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    const handleScroll = () => {
+      if (isTransitioning) return;
+      
+      const rect = section.getBoundingClientRect();
+      const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollingDown = currentScrollTop > lastScrollTop;
+      lastScrollTop = currentScrollTop;
+      
+      // Distance from bottom of section to bottom of viewport
+      const distanceToBottom = rect.bottom - window.innerHeight;
+      
+      // Show indicator when approaching bottom
+      if (distanceToBottom < 100 && scrollingDown) {
+        indicator.classList.add('visible');
         
-          // Check if we're at the bottom of the phytoremediation section
-          const rect = section.getBoundingClientRect();
-          const atBottom = Math.abs(rect.bottom - window.innerHeight) < 20; // Within 20px of bottom
-        
-          if (atBottom) {
-            handleNavClick('plant-name');
-            e.preventDefault();
+        // If very close to the bottom, increment the trigger counter
+        if (distanceToBottom < 20) {
+          scrollTriggerCount++;
+          
+          // If user keeps scrolling at the bottom, trigger transition
+          if (scrollTriggerCount > 2 || distanceToBottom <= 0) {
+            triggerTransition();
           }
-        };
+        }
+      } else {
+        // Hide indicator when scrolling up or away from bottom
+        indicator.classList.remove('visible');
+        scrollTriggerCount = Math.max(0, scrollTriggerCount - 1);
+      }
+    };
+    
+    const handleWheel = (e) => {
+      if (isTransitioning) {
+        e.preventDefault();
+        return;
+      }
       
-        window.addEventListener('wheel', handleWheel, { passive: false });
+      const rect = section.getBoundingClientRect();
+      const distanceToBottom = rect.bottom - window.innerHeight;
       
-        return () => {
-          window.removeEventListener('wheel', handleWheel);
-        };
-    }
-  }, [activeSection]);
+      // If scrolling down forcefully while near the bottom
+      if (e.deltaY > 30 && distanceToBottom < 50) {
+        scrollTriggerCount++;
+        
+        // Trigger transition on forceful scroll
+        if (scrollTriggerCount > 1 || e.deltaY > 60) {
+          triggerTransition();
+          e.preventDefault();
+        }
+      }
+    };
+    
+    let touchStartY = 0;
+    
+    const handleTouchStart = (e) => {
+      touchStartY = e.touches[0].clientY;
+    };
+    
+    const handleTouchMove = (e) => {
+      if (isTransitioning) {
+        e.preventDefault();
+        return;
+      }
+      
+      const touchY = e.touches[0].clientY;
+      const touchDiff = touchStartY - touchY;
+      const rect = section.getBoundingClientRect();
+      const distanceToBottom = rect.bottom - window.innerHeight;
+      
+      // If swiping down near the bottom
+      if (touchDiff > 20 && distanceToBottom < 50) {
+        scrollTriggerCount++;
+        
+        // Trigger on strong swipe
+        if (scrollTriggerCount > 1 || touchDiff > 50) {
+          triggerTransition();
+          e.preventDefault();
+        }
+      }
+    };
+    
+    const triggerTransition = () => {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      
+      // Show flash effect
+      flash.classList.add('active');
+      
+      // Navigate after a short delay
+      setTimeout(() => {
+        handleNavClick('plant-name');
+        
+        // Hide flash and reset when transition complete
+        setTimeout(() => {
+          flash.classList.remove('active');
+          isTransitioning = false;
+          scrollTriggerCount = 0;
+        }, 300);
+      }, 200);
+    };
+    
+    // Add all event listeners
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    
+    return () => {
+      // Clean up
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+      if (indicator.parentNode) indicator.remove();
+      if (style.parentNode) style.remove();
+      if (flash.parentNode) flash.remove();
+    };
+  }
+}, [activeSection]);
 
   useEffect(() => {
     const handleResize = () => {
