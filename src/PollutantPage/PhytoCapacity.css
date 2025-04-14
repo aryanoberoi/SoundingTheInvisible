@@ -85,7 +85,7 @@
 
 .phyto-content-wrapper-reversed {
     flex-direction: row-reverse;
-    margin-top: 4rem;
+    margin-top: 2rem;
 }
 
 .phyto-content-wrapper-reversed .phyto-info-section {
@@ -120,7 +120,7 @@
     font-size: 28px;
     line-height: 37.8px;
     letter-spacing: 0.03em;
-    margin-left: 60px;
+    margin-left: 35px;
 }
 
 .phyto-intro-text{
@@ -140,7 +140,7 @@
     line-height: 205%;
     letter-spacing: 0%;
     margin-top: 1rem;
-    margin-left: 60px;
+    margin-left: 35px;
     padding-right: 20px;
 }
 
@@ -148,7 +148,7 @@
     position: absolute;
     right: 0;
     top: 46px;
-    bottom: -160px;
+    bottom: -129px;
     border-right: 1px solid black;
     transform: translateX(50%);
 }
@@ -171,7 +171,7 @@
 
 .phyto-content-wrapper-reversed .phyto-benefits-text {
     text-align: right;
-    margin-right: 80px;
+    margin-right: 35px;
 }
 
 .phyto-content-wrapper-reversed .phyto-svg-container img {
