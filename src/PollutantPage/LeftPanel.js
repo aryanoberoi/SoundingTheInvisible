@@ -79,7 +79,7 @@ const LeftPanel = ({ sections = [] }) => {
                 Enthalpy and sound <br /> Frequency of {pollutantName}
                 <br />
               </div>
-              <div style={{ border: '1px solid black', width: '260px', height: '100px', overflow: 'hidden' }}>
+              <div style={{ border: '1px solid black', width: '260px', height: '50px', overflow: 'hidden' }}>
                 <SineWaveVisualizer />
               </div>
               <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={scrollToEnthalpy} />

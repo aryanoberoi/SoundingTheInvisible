@@ -1318,6 +1318,6 @@ img {
   margin-top: 20px;
   margin-left: 69px;
   width: calc(66%); /* Adjust width to account for margins */
-  height: 200px; /* Set desired height */
+  height: 120px; /* Set desired height */
   background-color: black;
 }
