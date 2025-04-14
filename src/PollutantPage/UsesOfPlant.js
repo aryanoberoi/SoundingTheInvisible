@@ -130,7 +130,7 @@ export const UsesOfPlant = ({ sectionsData }) => {
           className="down-arrow-icon"
           style={{ marginTop: '120px', marginBottom: '160px', marginLeft: '40px' }}
         />
-        <div className="button-container-bibliography">
+        <div id="references" className="button-container-bibliography">
           <a href="" className="bibliography-button">
             BIBLIOGRAPHY
           </a>
