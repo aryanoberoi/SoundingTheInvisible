@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 
 const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [radius, setRadius] = useState(200);
+  const [radius, setRadius] = useState(180);
   const [showSlider, setShowSlider] = useState(false);
   const containerRef = useRef(null);
 
