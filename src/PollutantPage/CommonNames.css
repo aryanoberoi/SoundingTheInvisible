@@ -28,8 +28,7 @@
 .common-names-container .common-names-title {
     background-color: #000 !important;
     color: #fff;
-    font: 378 28px 'Nippo-Light', sans-serif;
-    font-size: clamp(20px, 2vw, 28px); 
+    font: 378 32px 'Nippo-Light', sans-serif;
     font-weight: 400;
     left: 0;
     letter-spacing: 3%;
@@ -91,8 +90,7 @@
     width: auto;
     max-width: 100%;
     right: 0;
-    margin: 2rem 0;
-    height: fit-content;
+    margin: 1rem 0;
     display: flex;
     align-items: center;
 }

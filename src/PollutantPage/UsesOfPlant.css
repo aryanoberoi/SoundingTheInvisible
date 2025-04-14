@@ -29,8 +29,7 @@
 .uses-of-plant-container .uses-of-plant-title {
     background-color: #000 !important;
     color: #fff;
-    font: 378 28px 'Nippo-Light', sans-serif;
-    font-size: clamp(20px, 2vw, 28px); 
+    font: 378 32px 'Nippo-Light', sans-serif;
     font-weight: 400;
     left: 0;
     letter-spacing: 3%;

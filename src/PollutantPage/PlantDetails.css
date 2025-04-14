@@ -49,8 +49,8 @@
 }
 
 .plantDescription {
-  width: 40%;
-  margin-left: 20px;
+  width: 30%;
+  margin-left: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

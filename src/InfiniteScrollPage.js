@@ -132,7 +132,7 @@ const PollutantPage = (categorizedData) => {
       pollutantName: leftpanelcontent[0].pollutantName,
       enthalpy: "90 KJ/mol",
       soundfrequency: "22.56 Hz",
-      wavefrequency: 220.5
+      wavefrequency: -200.5
     }
   ];
   const effectonhealthcontent = [
@@ -151,31 +151,31 @@ const PollutantPage = (categorizedData) => {
     {
       medium: "Chenopodium quinoa_soil",
       timePeriod: "Chenopodium quinoa_70 days",
-      remediation: "Chenopodium quinoa_66%"
+      remediation: "Chenopodium quinoa_66"
     },
     {
       medium: "Cucurbita pepo_soil",
       timePeriod: "Cucurbita pepo_15/30/45",
-      remediation: "Cucurbita pepo_60%/70%/80%"
+      remediation: "Cucurbita pepo_60/70/80"
     },
     {
       medium: "Artemisia annua_soil",
       timePeriod: "Artemisia annua_15/30/45",
-      remediation: "Artemisia annua_30%/40%/47.36%"
+      remediation: "Artemisia annua_30/40/47.36"
     },{
       medium: "Amaranthus dubius_soil",
       timePeriod: "Amaranthus dubius_15/30/45",
-      remediation: "Amaranthus dubius_25%/35%/40.72%"
+      remediation: "Amaranthus dubius_25/35/40.72"
     },
     {
       medium: "Ipomoea aquatica_water",
       timePeriod: "Ipomoea aquatica_15/30/45",
-      remediation: "Ipomoea aquatica_60%/70%/79.17%"
+      remediation: "Ipomoea aquatica_60/70/79.17"
     },
     {
       medium: "Salvinia molesta_water",
       timePeriod: "Salvinia molesta_15/30",
-      remediation: "Salvinia molesta_50%/90%"
+      remediation: "Salvinia molesta_50/90"
     }
   ];
   const aboutplantcontent = [
@@ -232,6 +232,7 @@ const PollutantPage = (categorizedData) => {
     { text: "Chromium_Salvinia molesta exhibits varying chromium (Cr) tolerance. Pondicherry University studies showed healthy growth for 45 days at 1 ppm Cr, 25 days at 10 ppm, but immediate decay at 100 ppm. A Vellore Institute of Technology study demonstrated a 47.95% Cr reduction from industrial effluent, decreasing from 2.021 ppm to 1.052 ppm. This indicates effective Cr removal at lower concentrations, but highlights sensitivity to higher Cr levels." },
     { text: "Zinc_Salvinia molesta demonstrates a strong capacity for zinc (Zn) accumulation and removal. Experiments show it concentrates Zinc in dry tissues 10,000-fold compared to water, indicating purification potential. Studies in Loyola College, Tamil Nadu confirm significant Zn reduction in wastewater after 10 days. Research done by  Centre for Water Resources Development & Management, Kunnamangalam, Kerala published in Resources and Conservation further highlights its efficiency, with 50% Zn removal in 15 days and 90% in 30 days, showcasing its ability to effectively absorb and cleanse Zn from contaminated water." },
     { text: "Other heavy metals_Salvinia molesta demonstrates effective manganese (Mn) and iron (Fe) accumulation. A 2016 VIT University study revealed Salvinia molesta concentrates Mn in dry tissues five-fold compared to water, using Atomic Absorption Spectrophotometry. Additionally, University of Kelaniy, Sri Lanaka, research showed a 26.6% Fe reduction in sewage sludge over 28 days. These findings, combined with its high growth rate and metal tolerance, solidify Salvinia molesta as a potent heavy metal hyperaccumulator, suitable for phytoremediation." },
+    { text: "Nickel_Salvinia molesta demonstrates effective manganese (Mn) and iron (Fe) accumulation. A 2016 VIT University study revealed Salvinia molesta concentrates Mn in dry tissues five-fold compared to water, using Atomic Absorption Spectrophotometry. Additionally, University of Kelaniy, Sri Lanaka, research showed a 26.6% Fe reduction in sewage sludge over 28 days. These findings, combined with its high growth rate and metal tolerance, solidify Salvinia molesta as a potent heavy metal hyperaccumulator, suitable for phytoremediation." },
     { text: "Micronutrients_Salvinia molesta exhibits strong nitrogen (N) and phosphorus (P) phytoremediation capabilities. Studies show N content ranges from 0.6% to 4.0% of dry weight, with uptake rates up to 8 mg per g of dry weight/day, or 6,000 kg of nitrogen per hectare/year. Australian sewage lagoons recorded 1,580 kg per hectare/year removal. While S. molesta phosphorus uptake data is limited, Salvinia minima and Salvinia auriculata studies indicate phosphorus concentration enhances growth and uptake, respectively, suggesting S. molesta's potential to combat eutrophication." },
   ];
 
@@ -496,32 +497,32 @@ const PollutantPage = (categorizedData) => {
     return () => observer.disconnect();
   }, []);
 
-  // // Add effect to detect scrolling at the bottom of phytoremediation section
-  // useEffect(() => {
-  //   if (activeSection === 'phytoremediation') {
-  //     const section = document.getElementById('phytoremediation');
-  //     if (!section) return;
+  // Add effect to detect scrolling at the bottom of phytoremediation section
+  useEffect(() => {
+    if (activeSection === 'phytoremediation') {
+      const section = document.getElementById('phytoremediation');
+      if (!section) return;
       
-  //       const handleWheel = (e) => {
-  //         if (e.deltaY <= 0) return; // Only handle scrolling down
+        const handleWheel = (e) => {
+          if (e.deltaY <= 0) return; // Only handle scrolling down
         
-  //         // Check if we're at the bottom of the phytoremediation section
-  //         const rect = section.getBoundingClientRect();
-  //         const atBottom = Math.abs(rect.bottom - window.innerHeight) < 20; // Within 20px of bottom
+          // Check if we're at the bottom of the phytoremediation section
+          const rect = section.getBoundingClientRect();
+          const atBottom = Math.abs(rect.bottom - window.innerHeight) < 20; // Within 20px of bottom
         
-  //         if (atBottom) {
-  //           handleNavClick('plant-name');
-  //           e.preventDefault();
-  //         }
-  //       };
+          if (atBottom) {
+            handleNavClick('plant-name');
+            e.preventDefault();
+          }
+        };
       
-  //       window.addEventListener('wheel', handleWheel, { passive: false });
+        window.addEventListener('wheel', handleWheel, { passive: false });
       
-  //       return () => {
-  //         window.removeEventListener('wheel', handleWheel);
-  //       };
-  //   }
-  // }, [activeSection]);
+        return () => {
+          window.removeEventListener('wheel', handleWheel);
+        };
+    }
+  }, [activeSection]);
 
   useEffect(() => {
     const handleResize = () => {

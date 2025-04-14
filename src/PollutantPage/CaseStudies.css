@@ -1,24 +1,24 @@
 .bottom-section3 {
     position: relative;
-    height: 1134px;
-    width: 100%;
+    height: 1300px;
+    width: 80%;
     overflow: hidden;
-    margin: 0px 0px 60px 0px;
+    margin: 0px 0px 60px 100px;
 }
 
 .bottom-section3 .box {
-    height: 1134px;
+    height: 1300px;
     position: relative;
-    width: 637px;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0 20px;
 }
 
 .bottom-section3 .box .group {
-    height: 1134px;
+    height: 1300px;
     left: 0;
     position: absolute;
     top: 0;
-    width: 645px;
+    width: 100%;
 }
 
 .bottom-section3 .box .overlap {
@@ -26,7 +26,7 @@
     left: 0;
     position: absolute;
     top: 180px;
-    width: 637px;
+    width: 1000px;
 }
 
 .bottom-section3 .box .overlap-group {
@@ -34,22 +34,21 @@
     left: 0;
     position: absolute;
     top: 0;
-    width: 637px;
+    width: 800px;
 }
 
 .bottom-section3 .box .text-wrapper {
     color: #ffffff;
     font-family: "ClashGrotesk-Light", Helvetica;
-    font-size: 11.5px;
+    font-size: 14px;
     font-weight: 400;
-    left: -20%;
     letter-spacing: 0;
     line-height: 215%;
     mix-blend-mode: difference;
     position: absolute;
     text-align: right;
-    top: 67%;
-    width: 700px;
+    top: 69%;
+    width: fit-content;
 }
 
 .bottom-section3 .box .rectangle {
@@ -63,28 +62,25 @@
 .bottom-section3 .box .div {
     color: #ffffff;
     font-family: "ClashGrotesk-Light", Helvetica;
-    font-size: 11.5px; /* Reduce font size slightly */
-    font-weight: 390;
+    font-size: 14px; /* Reduce font size slightly */
+    font-weight: 400;
     letter-spacing: 0;
     line-height: 200%;
     mix-blend-mode: difference;
     position: absolute;
-
-    width: 555px; /* Reduce width slightly */
-    max-width: 100%; /* Ensure it never exceeds the box */
-    left: 55%; /* Center it within the box */
+    width: 100%; /* Reduce width slightly */
+    left: 61%; /* Center it within the box */
     top: 4%;
     transform: translateX(-50%); /* Align to center */
     
     white-space: normal; /* Ensure proper wrapping */
     word-wrap: break-word; /* Ensure long words break instead of overflowing */
-    text-align: justify; /* Distribute text evenly */
     padding: 10px; /* Prevent text from touching the edges */
 }
 
 .bottom-section3 .box .overlap-wrapper {
     height: 331px;
-    left: 297px;
+    left: 400px;
     position: absolute;
     top: 315px;
     transform: rotate(-90.00deg);
@@ -136,9 +132,9 @@
 .bottom-section3 .box .text-wrapper-2 {
     color: #ffffff;
     font-family: "Nippo-Light", Helvetica;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 378;
-    left: 240px;
+    left: 333px;
     letter-spacing: 0%;
     line-height: 165%;
     mix-blend-mode: difference;
@@ -149,15 +145,17 @@
 }
 
 .bottom-section3 .box .rectangle-5 {
-    height: 418px;
-    left: 106px;
+    height: 518px;
+    left: 0;
     position: absolute;
     top: 536px;
-    width: 522px;
+    width: 100%;
+    transform: scaleX(1.2);
+    transform-origin: left;
 }
 
 .bottom-section3 .box .vector-3 {
-    left: 166px;
+    left: 270px;
     position: absolute;
     top: 446px;
     width: 1px;
@@ -169,7 +167,7 @@
     left: 13px;
     position: absolute;
     top: 0;
-    width: 529px;
+    width: fit-content;
 }
 
 .bottom-section3 .box .overlap-group-2 {
@@ -185,8 +183,7 @@
 .bottom-section3 .box .text-wrapper-3 {
     background-color: #fff !important;
     color: #181818;
-    font: 378 28px 'Nippo-Light', sans-serif;
-    font-size: clamp(20px, 2vw, 28px); 
+    font: 378 32px 'Nippo-Light', sans-serif;
     font-weight: 400;
     left: 0;
     letter-spacing: 3%;
@@ -213,7 +210,7 @@
 .bottom-section3 .box .text-wrapper-4 {
     color: #ffffff;
     font-family: "Nippo-Light", Helvetica;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 400;
     left: 15px;
     letter-spacing: 0;

@@ -31,7 +31,7 @@ export const AboutPlant = ({ sections }) => {
         </div>
         <span
           className="lorem-ipsum-dolor inverted-text"
-          style={{ whiteSpace: 'pre-line' }}
+          style={{ whiteSpace: 'pre-line', width: '100%' }}
         >
           {aboutPlantText}
         </span>

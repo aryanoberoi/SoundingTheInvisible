@@ -39,7 +39,7 @@
 .bottom-section4 .box .text-wrapper {
     color: #ffffff;
     font-family: "Nippo-Light", Helvetica;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 300;
     left: 44px;
     letter-spacing: 3%;
@@ -253,8 +253,7 @@
 .bottom-section4 .box .text-wrapper-3 {
     background-color: #fff !important;
     color: #181818;
-    font: 378 28px 'Nippo-Light', sans-serif;
-    font-size: clamp(20px, 2vw, 28px); 
+    font: 378 32px 'Nippo-Light', sans-serif;
     font-weight: 400;
     left: 0;
     letter-spacing: 3%;

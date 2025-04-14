@@ -31,6 +31,7 @@ export const AboutPollutantSection = ({ sections }) => {
             src="l1.png" 
             alt="Vector graphic" 
             className="vector-image"
+            style={{width: '100%'}}
           />
         </div>
 

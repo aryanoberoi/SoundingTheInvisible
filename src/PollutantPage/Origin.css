@@ -34,8 +34,7 @@
 .origin-section-container .origin-section-title {
     background-color: #000 !important;
     color: #fff;
-    font: 378 28px 'Nippo-Light', sans-serif;
-    font-size: clamp(20px, 2vw, 28px); 
+    font: 378 32px 'Nippo-Light', sans-serif;
     font-weight: 400;
     left: 0;
     letter-spacing: 3%;
@@ -337,8 +336,8 @@
 .origin-section-container .overlay-text {
     position: absolute;
     left: 360px;
-    top: 100%;
-    transform: translate(-50%, -50%);
+    top: 444px;
+    transform: translate(-180px, -430px);
     color: transparent;
     background: 
         linear-gradient(
@@ -355,7 +354,7 @@
             #000 var(--gradient-height, 50%), 
             #000 100%
         );
-    background-size: 100% var(--gradient-height, 50%), 100% 100%;
+    background-size: 100% var(--gradient-height, 480px), 100% 100%;
     background-repeat: no-repeat;
     -webkit-background-clip: text;
     background-clip: text;
@@ -364,7 +363,7 @@
     font-weight: 400;
     font-size: 15px;
     line-height: 30.6px;
-    letter-spacing: 0.02em;
+    letter-spacing: 2%;
     text-align: left;
     z-index: 2;
     pointer-events: none;

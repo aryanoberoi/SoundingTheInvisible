@@ -2,20 +2,42 @@ import React, { useState, useRef, useEffect } from "react";
 
 const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [radius, setRadius] = useState(100);
+  const [radius, setRadius] = useState(200);
   const [showSlider, setShowSlider] = useState(false);
   const containerRef = useRef(null);
 
-  // Initialize position in the center
+  // Initialize position in the center and update on resize
   useEffect(() => {
-    if (containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect();
+    const containerElement = containerRef.current;
+    if (!containerElement) return; // Exit if ref is not available yet
+
+    // Function to calculate and set center position
+    const updateCenter = () => {
+      const rect = containerElement.getBoundingClientRect();
       setPosition({
         x: rect.width / 2,
         y: rect.height / 2,
       });
-    }
-  }, []);
+      console.log("Peephole centered at:", rect.width / 2, rect.height / 2); // Optional: for debugging
+    };
+
+    // Create a ResizeObserver to watch the container element
+    const resizeObserver = new ResizeObserver(() => {
+      // When the container size changes, re-center the peephole
+      updateCenter();
+    });
+
+    // Start observing the container element
+    resizeObserver.observe(containerElement);
+
+    // Perform initial centering right after observing
+    updateCenter();
+
+    // Cleanup function: stop observing when the component unmounts
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []); // Empty dependency array: setup observer once on mount
 
   const handleMouseMove = (e) => {
     if (containerRef.current) {

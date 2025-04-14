@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 
-const SineWaveVisualizer = ({ frequency = 1000.5 }) => { // Default frequency set to 1 Hz for slower propagation
+const SineWaveVisualizer = ({ frequency = 200.5 }) => { // Default frequency set to 1 Hz for slower propagation
   const canvasRef = useRef(null);
 
   useEffect(() => {

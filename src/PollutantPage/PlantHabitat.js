@@ -22,6 +22,7 @@ export const PlantHabitat = ({ sections }) => {
               className="plant-svg"
               alt="Plant habitat diagram"
               src={plantSvg}
+              style={{marginTop: '38px'}}
             />
 
             {sections.slice(1).map((section, index) => ( // Start mapping from the second element

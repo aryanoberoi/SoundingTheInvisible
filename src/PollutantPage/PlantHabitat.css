@@ -29,7 +29,6 @@
     height: 43px;
     left: 0;
     position: absolute;
-    top: -20px;
     width: fit-content;
 }
 
@@ -46,8 +45,7 @@
 .plant-habitat-container .habitat-title {
     background-color: #000 !important;
     color: #fff;
-    font: 378 28px 'Nippo-Light', sans-serif;
-    font-size: clamp(20px, 2vw, 28px); 
+    font: 378 32px 'Nippo-Light', sans-serif;
     font-weight: 400;
     left: 0;
     letter-spacing: 3%;
@@ -89,8 +87,8 @@
     line-height: 205%;
     mix-blend-mode: difference;
     position: absolute;
-    top: 53px;
-    width: 446px;
+    top: 30px;
+    width: 75%;
 }
 
 .plant-habitat-container .section-title {
@@ -107,31 +105,31 @@
 
 .plant-habitat-container .habitat-section-1 {
     height: auto;
-    left: 25%;
+    left: 14%;
     position: absolute;
-    top: 8%;
+    top: 9%;
     width: 100%;
 }
 
 .plant-habitat-container .habitat-section-2 {
     height: auto;
-    left: 25%;
+    left: 14%;
     position: absolute;
-    top: 47%;
+    top: 45%;
     width: 100%;
 }
 
 .plant-habitat-container .habitat-section-3 {
     height: auto;
-    left: 25%;
+    left: 14%;
     position: absolute;
-    top: 87%;
+    top: 62%;
     width: 100%;
 }
 
 .plant-habitat-container .habitat-section-4 {
     height: auto;
-    left: 25%;
+    left: 14%;
     position: absolute;
     top: 27%;
     width: 100%;
@@ -139,7 +137,7 @@
 
 .plant-habitat-container .habitat-section-5 {
     height: auto;
-    left: 25%;
+    left: 18%;
     position: absolute;
     top: 67%;
     width: 100%;

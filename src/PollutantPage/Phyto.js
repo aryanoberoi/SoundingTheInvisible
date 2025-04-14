@@ -84,7 +84,7 @@ export const Phyto = ({ sections, pollutantName }) => {
 
               <div className="group-2">
                 <div className="rectangle" />
-                <div className="text-wrapper-2">Petroleum removal (%)</div>
+                <div className="text-wrapper-2">{pollutantName} removal (%)</div>
               </div>
             </div>
           </div>
