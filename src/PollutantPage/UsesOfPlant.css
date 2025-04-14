@@ -220,6 +220,7 @@
     position: relative;
     z-index: 0;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .vector-167 {
@@ -300,6 +301,7 @@
     position: relative;
     z-index: 0;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .additional {
@@ -333,6 +335,7 @@
     position: relative;
     z-index: 0;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 /* Added rule to indent text elements ONLY inside the items-content-container */
