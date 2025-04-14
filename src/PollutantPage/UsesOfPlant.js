@@ -1,9 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./UsesOfPlant.css";
-import vector166 from "./vector-166.svg";
-import vector167 from "./vector-167.svg";
 import ellipse89 from "./ellipse-89.svg";
-import vector166E from "./vector-166-e.svg";
 import longDownArrow from "./long-down-arrow.svg";
 // Import specific images for each section
 import nutritionalImage from "./nutritional.png";
@@ -12,7 +9,6 @@ import additionalImage from "./uses3.png";
 
 export const UsesOfPlant = ({ sectionsData }) => {
   const [expandedSection, setExpandedSection] = useState(null);
-  const vectorRefs = useRef({});
   const contentRefs = useRef({});
   
   // Destructure props
@@ -35,106 +31,6 @@ export const UsesOfPlant = ({ sectionsData }) => {
   const handleReadMore = (sectionId) => {
     setExpandedSection(prev => prev === sectionId ? null : sectionId);
   };
-  
-  // Function to update vector positioning and height
-  const updateVectorPositioning = () => {
-    requestAnimationFrame(() => {
-      Object.keys(vectorRefs.current).forEach(sectionId => {
-        const vectorEl = vectorRefs.current[sectionId];
-        const containerEl = document.querySelector(`.uses-container-${sectionId}`);
-        const textVectorGroupEl = containerEl?.querySelector(`.text-vector-group`);
-        const firstTextEl = containerEl?.querySelector(`.${sectionId}-text-text`);
-        
-        if (vectorEl && containerEl && textVectorGroupEl && firstTextEl) {
-          // Get the position of the first text element to set top position
-          const textBottom = firstTextEl.offsetTop + firstTextEl.offsetHeight;
-          vectorEl.style.top = `${textBottom}px`;
-          
-          if (expandedSection === sectionId) {
-            // For expanded state: height = container height - 180px
-            const containerHeight = containerEl.offsetHeight;
-            vectorEl.style.height = `${containerHeight - 180}px`;
-            vectorEl.classList.add('expanded');
-          } else {
-            // For unexpanded state: height = text-vector-group height - 80px
-            const textVectorGroupHeight = textVectorGroupEl.offsetHeight;
-            vectorEl.style.height = `${textVectorGroupHeight - 80}px`;
-            vectorEl.classList.remove('expanded');
-          }
-        }
-      });
-    });
-  };
-
-  // Run when expandedSection changes
-  useEffect(() => {
-    updateVectorPositioning();
-  }, [expandedSection]);
-  
-  // Run multiple times to ensure correct positioning on initial render
-  useEffect(() => {
-    // Initial render with slight delay to ensure DOM is ready
-    const initialRenderTimer = setTimeout(() => {
-      updateVectorPositioning();
-    }, 0);
-    
-    // Additional check after a longer delay to catch any late layout changes
-    const secondaryRenderTimer = setTimeout(() => {
-      updateVectorPositioning();
-    }, 500);
-    
-    // For handling resize events
-    const handleResize = () => {
-      updateVectorPositioning();
-    };
-    
-    window.addEventListener('resize', handleResize);
-    
-    // For ensuring all images and assets are loaded
-    window.addEventListener('load', updateVectorPositioning);
-    
-    // Create a MutationObserver to watch for DOM changes that might affect layout
-    const observer = new MutationObserver(() => {
-      updateVectorPositioning();
-    });
-    
-    // Start observing the container element
-    const containers = document.querySelectorAll('[class^="uses-container-"]');
-    if (containers.length > 0) {
-      observer.observe(document.body, { 
-        childList: true, 
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['style', 'class']
-      });
-    }
-    
-    // Cleanup
-    return () => {
-      clearTimeout(initialRenderTimer);
-      clearTimeout(secondaryRenderTimer);
-      window.removeEventListener('resize', handleResize);
-      window.removeEventListener('load', updateVectorPositioning);
-      observer.disconnect();
-    };
-  }, []);
-  
-  // Force positioning update after component has fully rendered
-  useEffect(() => {
-    // Use requestIdleCallback or setTimeout as fallback
-    const idleCallback = window.requestIdleCallback || setTimeout;
-    const id = idleCallback(() => {
-      updateVectorPositioning();
-    });
-    
-    return () => {
-      if (window.requestIdleCallback) {
-        window.cancelIdleCallback(id);
-      } else {
-        clearTimeout(id);
-      }
-    };
-  }, []);
   
   return (
     <div className="uses-of-plant-container">
@@ -182,37 +78,38 @@ export const UsesOfPlant = ({ sectionsData }) => {
                   <div className={`${section.id}-text-text`}>
                     {section.items[0].text}
                   </div>
+                  {/* Add bottom border element */}
+                  <span className="bottom-border"></span>
+                  {/* Add dotted border extension for unexpanded state */}
+                  <span className="bottom-border-dotted"></span>
+                  {/* Add small circle at the end of top border */}
+                  <span className="top-border-circle"></span>
                 </>
               )}
               
               {/* When expanded, show all items with each having its own ellipse */}
               {expandedSection === section.id && 
-                section.items.map((item, index) => (
-                  <div key={index} className="overlay-container" style={{ position: 'relative', marginBottom: '25px' }}>
-                    <img src={ellipse89} alt="ellipse" className="ellipse-89" />
-                    <div className={`${section.id}-text-header`}>
-                      {item.header}
+                <>
+                  {section.items.map((item, index) => (
+                    <div key={index} className="overlay-container" style={{ position: 'relative', marginBottom: '25px' }}>
+                      <img src={ellipse89} alt="ellipse" className="ellipse-89" />
+                      <div className={`${section.id}-text-header`}>
+                        {item.header}
+                      </div>
+                      <div className={`${section.id}-text-text`}>
+                        {item.text}
+                      </div>
                     </div>
-                    <div className={`${section.id}-text-text`}>
-                      {item.text}
-                    </div>
-                  </div>
-                ))
+                  ))}
+                  {/* Add bottom border for expanded state */}
+                  <span className="bottom-border"></span>
+                  {/* Add small circle at the end of top border */}
+                  <span className="top-border-circle"></span>
+                </>
               }
             </div>
             
-            {/* Background vector - use different SVGs for expanded/collapsed states */}
-            <img
-              alt="nsvg"
-              src={expandedSection === section.id ? vector166E : vector166}
-              className={`vector-166 ${expandedSection === section.id ? 'expanded' : ''}`}
-              ref={el => vectorRefs.current[section.id] = el}
-            />
-            
-            {/* Only show the decorative vector when collapsed */}
-            {expandedSection !== section.id && (
-              <img alt="nsvg" src={vector167} className="vector-167" />
-            )}
+            {/* Remove vector166 and vector166E images - replaced with CSS borders */}
           </div>
 
           {/* Show Read More/Less button if there's at least one item */}
