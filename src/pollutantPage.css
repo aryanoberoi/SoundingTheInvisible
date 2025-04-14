@@ -732,6 +732,7 @@ body.homepage-active .hamburger span {
   margin: 20px auto 0; /* Changed from margin-top to margin with auto horizontal */
   object-fit: contain;
   background: none;
+  padding-top: 20px;
 }
 
 .nav-bar .text-wrapper,
