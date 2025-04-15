@@ -1331,16 +1331,19 @@ img {
 }
 
 @keyframes sliderPulse {
-  0%, 100% { transform: rotate(var(--rotation)) scale(1.7); }
-  50% { transform: rotate(var(--rotation)) scale(1.85); }
+  0%, 100% {
+    transform: rotate(var(--rotation, 0deg)) scale(1.7);
+  }
+  50% {
+    transform: rotate(var(--rotation, 0deg)) scale(1.87);
+  }
 }
 
 .slider-image {
-  /* Apply the animation */
-  animation: sliderPulse 1.5s infinite ease-in-out;
-  /* Keep necessary base styles */
+  /* Set base scale consistently */
+  transform: rotate(var(--rotation, 0deg)) scale(1.7);
   transform-origin: center center;
   cursor: ew-resize;
-  /* Ensure rotation variable is applied if not rotating */
-  transform: rotate(var(--rotation)) scale(1.7); /* Set initial state */
+  /* Add the pulse animation on top of the base scale */
+  animation: sliderPulse 1.5s infinite ease-in-out;
 }
