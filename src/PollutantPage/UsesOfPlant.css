@@ -73,8 +73,8 @@
 
 .circle-inverted {
     border-radius: 50%;
-    width: 78px;
-    height: 78px;
+    width: 57px;
+    height: 57px;
     border: 1px solid #000;
     position: absolute;
     left: 0;
@@ -84,12 +84,12 @@
 
 /* Added styling for the circle image */
 .circle-image {
-    width: 70px;
-    height: 70px;
+    width: 37px;
+    height: 37px;
     border-radius: 50%;
     position: absolute;
-    left: 4px;
-    top: 4px;
+    left: 10px;
+    top: 10px;
     z-index: 2;
     object-fit: cover;
 }
@@ -100,8 +100,9 @@
     align-items: start;
     position: relative;
     width: 100%;
-    padding-left: 100px;
+    padding-left: 80px;
     padding-bottom: 10px;
+    padding-top: 7px;
     flex-grow: 1;
 }
 
