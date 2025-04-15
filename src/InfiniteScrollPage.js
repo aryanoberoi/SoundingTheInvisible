@@ -438,7 +438,7 @@ const PollutantPage = (categorizedData) => {
     // Update height again after a delay to ensure all content is rendered
     const initialTimer = setTimeout(() => {
       updateContainerHeight();
-    }, 50);
+    }, 10);
     
     // Add resize listener to handle window size changes
     window.addEventListener('resize', updateContainerHeight);
@@ -725,30 +725,30 @@ useEffect(() => {
 
     // --- REVISED DESKTOP LOGIC ---
     // Determine which panel the section belongs to
-    // Sections in '.white-container' are on the right panel (plant details)
-    // Sections outside '.white-container' are on the left panel (pollutant details)
     const isInRightPanel = section.closest('.white-container') !== null;
 
     // Set the target snap position based on the panel
-    // Right panel (white) should snap slider fully to the left (position 1)
-    // Left panel (black) should snap slider fully to the right (position 99)
-    const targetSliderPos = isInRightPanel ? 1 : 99; // Use exact snap targets
+    const targetSliderPos = isInRightPanel ? 1 : 99;
 
-    // Use the central function to update position, rotation, and body classes
+    // Get current scroll position and target section position
+    const currentScroll = window.scrollY || document.documentElement.scrollTop;
+    const targetRect = section.getBoundingClientRect();
+    const targetPositionY = targetRect.top + window.scrollY;
+    
+    // Determine if we're scrolling up or down
+    const scrollingDown = targetPositionY > currentScroll;
+
+    // Update slider position 
     updateSliderPosition(targetSliderPos);
-
-    // Update the ref as well, so subsequent drags start from the correct snapped position
     lastPositionRef.current = targetSliderPos;
 
-    // Scroll into view after the panel transition (handled by CSS) has likely started
-    // Adjust timeout if needed, 50ms is usually enough for transition start
+    // Use instant scroll for upward movement, smooth scroll for downward
     setTimeout(() => {
       section.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start' // Scrolls the top of the section to the top of the viewport
+        behavior: scrollingDown ? 'smooth' : 'auto', // Instant for upward scrolling
+        block: 'start'
       });
-    }, 50); // Keep a small delay for the visual transition
-    // --- END REVISED DESKTOP LOGIC ---
+    }, 50);
   };
 
   return (
@@ -774,11 +774,6 @@ useEffect(() => {
             src="slider.png"
             alt="Slider"
             className="slider-image"
-            style={{
-              transform: `rotate(${rotation}deg) scale(1.7)`,
-              transformOrigin: 'center center',
-              cursor: 'ew-resize'
-            }}
           />
         </div>
       </div>

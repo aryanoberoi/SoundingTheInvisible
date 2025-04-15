@@ -134,14 +134,15 @@
     font-family: "Nippo-Light", Helvetica;
     font-size: 28px;
     font-weight: 378;
-    left: 380px;
+    left: 280px;
     letter-spacing: 0%;
     line-height: 165%;
     mix-blend-mode: difference;
     position: absolute;
     top: 570px;
     white-space: nowrap;
-    width: 500px;
+    width: 400px;
+    text-align: right;
 }
 
 .bottom-section3 .box .rectangle-5 {

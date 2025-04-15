@@ -102,21 +102,20 @@
     width: auto;
     max-width: 100%;
     right: 0;
-    margin: 1rem 0;
+    margin: 2rem 0;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
   
 .common-names-container .common-names-item-title {
     color: #000 !important;
     font-family: "ClashGrotesk-Regular", Helvetica;
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 3%;
-    line-height: 297%;
+    line-height: 166%;
     width: fit-content;
     position: relative;
-    /* Removed absolute positioning */
 }
   
 .common-names-container .common-names-item-icon-wrapper {
@@ -129,7 +128,7 @@
     transition: transform 0.3s ease;
     margin-left: 10px;
     position: relative;
-    /* Removed absolute positioning */
+    top: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -206,7 +205,7 @@
   
 .common-names-container .common-names-content {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 0px;
     width: auto;
     max-width: 0;
@@ -223,7 +222,8 @@
 }
 
 .common-names-container .content-line {
-    width: 30px;
+    margin-top: 1em;
+    width: 102px;
     height: 1px;
     background: #000;
     flex-shrink: 0;
@@ -232,16 +232,16 @@
 
 .common-names-container .content-text {
     font-family: ClashGrotesk-Regular;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 20px;
-    text-align: center;
+    text-align: left;
     flex: 1;
     margin-left: 0;
 }
 
 .common-names-container .common-names-item.expanded .common-names-content {
     opacity: 1;
-    max-width: 90%;
+    max-width: 80%;
 }
   
 .common-names-container .scientific-name-container {

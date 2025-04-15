@@ -14,8 +14,8 @@ const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
     // Function to calculate and set the initial position
     const updateInitialPosition = () => {
       const rect = containerElement.getBoundingClientRect();
-      const initialX = rect.width * (2 / 3); // Two-thirds from the left
-      const initialY = rect.height * (1 / 3); // One-third from the top
+      const initialX = rect.width * (3 / 4); // Two-thirds from the left
+      const initialY = rect.height * (1 / 4); // One-third from the top
       setPosition({
         x: initialX,
         y: initialY,

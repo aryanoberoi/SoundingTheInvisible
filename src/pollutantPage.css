@@ -658,6 +658,7 @@ body.homepage-active .hamburger span {
   height: auto;
   overflow: hidden;
   margin: 10%;
+  padding-bottom: 70px;
 }
 
 /* Add this new rule for inverted section */
@@ -1266,6 +1267,7 @@ img {
 
 .sound-frequency-container{
   background-color: #000 !important;
+  margin-top: 100px;
 }
 
 .content-container-title {
@@ -1326,4 +1328,19 @@ img {
   width: calc(66%); /* Adjust width to account for margins */
   height: 120px; /* Set desired height */
   background-color: black;
+}
+
+@keyframes sliderPulse {
+  0%, 100% { transform: rotate(var(--rotation)) scale(1.7); }
+  50% { transform: rotate(var(--rotation)) scale(1.85); }
+}
+
+.slider-image {
+  /* Apply the animation */
+  animation: sliderPulse 1.5s infinite ease-in-out;
+  /* Keep necessary base styles */
+  transform-origin: center center;
+  cursor: ew-resize;
+  /* Ensure rotation variable is applied if not rotating */
+  transform: rotate(var(--rotation)) scale(1.7); /* Set initial state */
 }

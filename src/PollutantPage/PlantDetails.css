@@ -153,11 +153,9 @@
   text-align: left;
   text-transform: uppercase;
   letter-spacing: 1.4px;
-  padding: 6px 12px;
   font: 378 12px 'Nippo-Regular', sans-serif;
   border: 1px solid black;
   cursor: pointer;
-  margin: 5px 0;
   align-self: flex-start;
 }
 

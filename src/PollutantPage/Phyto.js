@@ -21,7 +21,7 @@ export const Phyto = ({ sections, pollutantName }) => {
 
       {/* Map through the sections to create species boxes */}
       {sections.map((section, index) => (
-        <div key={index} className={`box ${index % 2 === 1 ? 'right-aligned' : ''}`}>
+        <div key={index} className={`box ${index % 3 === 1 ? 'right-aligned' : ''}`}>
           <div className="group">
             <div className="text-wrapper">{getSpeciesName(section.medium)}</div>
 
@@ -33,15 +33,15 @@ export const Phyto = ({ sections, pollutantName }) => {
                 src={vector165} 
                 style={{ 
                   top: '60px', 
-                  transform: index % 2 === 1 ? 'none' : 'scaleX(-1)', 
-                  left: index % 2 === 1 ? 'calc(64%)' : 'calc(69%)'
+                  transform: index % 3 === 1 ? 'none' : 'scaleX(-1)', 
+                  left: index % 3 === 1 ? 'calc(64%)' : 'calc(69%)'
                 }} 
               />
               <div className="soil-label" style={{ fontSize: '26px', textAlign: 'right'}}>
                 {getMedium(section.medium)}
               </div>
               
-              <div className={`time-period-container ${index % 2 === 1 ? 'time-period-container-group2' : ''}`}>
+              <div className={`time-period-container ${index % 3 === 1 ? 'time-period-container-group2' : ''}`}>
                 <p className="div">{getTimePeriod(section.timePeriod)}</p>
                 <div className="div-wrapper">
                   <div className="text-wrapper-2">Time period (days)</div>
@@ -52,7 +52,7 @@ export const Phyto = ({ sections, pollutantName }) => {
                 className="vector" 
                 alt="Vector" 
                 src={vector164} 
-                style={index % 2 === 1 ? { 
+                style={index % 3 === 1 ? { 
                   transform: 'scaleX(-1)', 
                   left: 'calc(45%)' 
                 } : {}} 
@@ -62,7 +62,7 @@ export const Phyto = ({ sections, pollutantName }) => {
                 className="img" 
                 alt="Vector" 
                 src={vector165} 
-                style={index % 2 === 1 ? {
+                style={index % 3 === 1 ? {
                   transform: 'scaleX(-1)',
                   left: 'calc(76%)'
                 } : {}} 
@@ -72,17 +72,16 @@ export const Phyto = ({ sections, pollutantName }) => {
                 className="ellipse" 
                 alt="Ellipse" 
                 src={ellipse88} 
-                style={index % 2 === 1 ? {
+                style={index % 3 === 1 ? {
                   transform: 'scaleX(-1)',
                   left: 'calc(65%)'
                 } : {}} 
               />
             </div>
 
-            <div className={`overlap ${index % 2 === 1 ? 'overlap-group-right' : ''}`}>
-              <div className="element">{getRemediation(section.remediation)}</div>
-
-              <div className="group-2">
+            <div className={`overlap ${index % 3 === 1 ? 'overlap-group-right' : ''}`}>
+              <div className={`group-2 ${index % 3 === 1 ? 'right-aligned-group' : ''}`}>
+                <div className="element">{getRemediation(section.remediation)}</div>
                 <div className="rectangle" />
                 <div className="text-wrapper-2">{pollutantName} removal (%)</div>
               </div>

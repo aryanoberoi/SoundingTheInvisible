@@ -43,14 +43,32 @@
   width: 50px; /* Diameter of the inner circle */
   height: 50px; /* Diameter of the inner circle */
   background-color: transparent; /* Non-transparent circle color */
-  border: 1px solid black; /* Black border for the inner circle */
+  border: 1px solid #333; /* Changed border color to deep grey */
   border-radius: 50%; /* Ensures the element is a perfect circle */
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%); /* Center the cursor */
-  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0), 0 0 0 0.5px black; /* Larger fully transparent white circle with very thin black border */
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0), 0 0 0 0.5px #333; /* Updated box-shadow color */
+  /* Added ::after pseudo-element for the inner dot */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px; /* Size of the inner dot */
+    height: 6px; /* Size of the inner dot */
+    background-color: #333; /* Color of the inner dot */
+    border-radius: 50%;
+    z-index: 1; /* Ensure dot is visible */
+  }
 }
+
 .custom-cursor-inverted {
-  border: 1px solid white;
-  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0), 0 0 0 2px white;
+  border: 1px solid #ccc; /* Changed border color to light grey for inverted */
+  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0), 0 0 0 2px #ccc; /* Updated box-shadow color */
+  /* Style for the inverted inner dot */
+  &::after {
+    background-color: #ccc; /* Color of the inverted inner dot */
+  }
 }
