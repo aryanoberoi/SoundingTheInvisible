@@ -16,6 +16,7 @@ import { SoundFrequency } from './PollutantPage/SoundFrequency';
 
 
 const PollutantPage = (categorizedData) => {
+  //this was hell to make 
   let data = categorizedData?.undefined || [];
   console.log("this is the data", data);
   const [sliderPosition, setSliderPosition] = useState(50);
