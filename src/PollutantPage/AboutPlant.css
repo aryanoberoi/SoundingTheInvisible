@@ -127,7 +127,7 @@
 .rectangle-inv {
   background-color: #000;
   position: absolute;
-  width: 53%;
+  width: 196px;
   height: 60%;
   left: 0;
   top: 0;
@@ -144,7 +144,7 @@
 
 .wetland-status-text {
   position: absolute;
-  font-family: 'Nippo-Light';
+  font-family: 'Nippo-Regular';
   font-weight: 378;
   font-size: 28px;
   line-height: 100%;
@@ -156,4 +156,5 @@
   align-items: left;
   justify-content: left;
   z-index: 1;
+  top: 2px;
 }

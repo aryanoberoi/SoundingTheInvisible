@@ -251,30 +251,43 @@
 }
 
 .bottom-section4 .box .text-wrapper-3 {
-    background-color: #fff !important;
+    background-color: transparent !important; /* Remove original background */
     color: #181818;
-    font: 378 32px 'Nippo-Light', sans-serif;
+    font: 378 32px 'Nippo-Regular', sans-serif;
     font-weight: 400;
     left: 0;
     letter-spacing: 3%;
     line-height: 100%;
-    position: absolute;
+    position: relative; /* Ensure positioning context */
     top: 10px;
     width: fit-content;
     text-align: left;
     white-space: nowrap;
-    z-index: 1;
+    z-index: 1; /* Keep text above the new background */
     padding-block: 12px;
+}
+
+/* Add new ::before pseudo-element for the inset background */
+.bottom-section4 .box .text-wrapper-3::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 3px; /* Inset from left */
+    right: 2px; /* Inset from right */
+    bottom: 0;
+    background-color: #fff;
+    z-index: -1; /* Place behind text */
 }
 
 .bottom-section4 .box .text-wrapper-3::after {
     content: '';
     position: absolute;
-    left: 0;
-    bottom: -5%; /* Position it at the same level as the underline */
+    left: 3px; /* Match the left inset of the background */
+    bottom: 0;
     width: 111%;
     height: 12px;
     background-color: #ffffff;
+    z-index: -1;
 }
 
 .bottom-section4 .box.right-aligned .overlap-group {
