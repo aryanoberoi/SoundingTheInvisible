@@ -45,30 +45,42 @@
 }
 
 .uses-of-plant-container .uses-of-plant-title {
-    background-color: #000 !important;
+    background-color: transparent !important; /* Remove original background */
     color: #fff;
-    font: 378 32px 'Nippo-Light', sans-serif;
+    font: 378 32px 'Nippo-Regular', sans-serif;
     font-weight: 400;
     left: 0;
     letter-spacing: 3%;
     line-height: 100%;
-    position: absolute;
+    position: relative; /* Ensure positioning context */
     top: 10px;
     width: fit-content;
     text-align: left;
     white-space: nowrap;
-    z-index: 1;
+    z-index: 1; /* Keep text above the new background */
     padding-block: 12px;
+}
+
+.uses-of-plant-container .uses-of-plant-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 3px !important; /* Inset from left */
+    right: 2px !important; /* Inset from right */
+    bottom: 0;
+    background-color: #000;
+    z-index: -1; /* Place behind text */
 }
 
 .uses-of-plant-container .uses-of-plant-title::after {
     content: '';
     position: absolute;
-    left: 0;
-    bottom: -5%; /* Position it at the same level as the underline */
+    left: 3px; /* Match the left inset of the background */
+    bottom: 0;
     width: 111%;
     height: 12px;
     background-color: #000;
+    z-index: -1;
 }
 
 .circle-inverted {
