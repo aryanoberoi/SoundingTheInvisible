@@ -351,8 +351,8 @@
         linear-gradient(
             to bottom, 
             #fff 0%, 
-            #fff var(--gradient-height, 50%), 
-            #000 var(--gradient-height, 50%), 
+            #fff var(--gradient-height, 480px), 
+            #000 var(--gradient-height, 480px), 
             #000 100%
         );
     background-size: 100% var(--gradient-height, 480px), 100% 100%;
