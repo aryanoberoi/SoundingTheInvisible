@@ -20,29 +20,24 @@ const LeftPanel = ({ sections = [] }) => {
   // Process health effects into titles
   const healthEffectsTitles = effect.split('_');
 
-  const scrollToAboutPollutant = () => {
-    const aboutPollutantSection = document.getElementById("about-pollutant-section");
-    if (aboutPollutantSection) {
-      aboutPollutantSection.scrollIntoView({ behavior: "smooth" });
-    }};
+  // 1. Modify the scroll function
+  const scrollToId = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 50; // Pixels to offset from the top. Adjust as needed.
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
 
-  const scrollToEffectsOnHealth = () => {
-    const effectsOnHealthSection = document.getElementById("effects-on-health-section");
-    if (effectsOnHealthSection) {
-      effectsOnHealthSection.scrollIntoView({ behavior: "smooth" });
-    }};
-
-  const scrollToEnthalpy = () => {
-    const enthalpySection = document.getElementById("enthalpy-section");
-    if (enthalpySection) {
-      enthalpySection.scrollIntoView({ behavior: "smooth" });
-    }};
-  
-  const scrollToSources = () => {
-    const sourcesSection = document.getElementById("sources-section");
-    if (sourcesSection) {
-      sourcesSection.scrollIntoView({ behavior: "smooth" });
-    }};
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    } else {
+      console.warn(`Element with ID "${id}" not found.`);
+    }
+  };
 
   return (
     <div className="left-panel">
@@ -58,7 +53,7 @@ const LeftPanel = ({ sections = [] }) => {
                 {pollutantDescription}
               </div>
               <div className='knowone'>
-                <KnowMoreButtonInverted className="knowMoreButtonInverted" onClick={scrollToAboutPollutant} />
+                <KnowMoreButtonInverted className="knowMoreButtonInverted" onClick={() => scrollToId('about-pollutant-section')} />
               </div>
               <div className="imageContainer" />
             </div>
@@ -74,7 +69,7 @@ const LeftPanel = ({ sections = [] }) => {
                   </div>
                 ))}
               </div>
-              <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={scrollToEffectsOnHealth}/>
+              <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={() => scrollToId('effects-on-health-section')}/>
               <div className="sectionTitleLeftPanel" style={{paddingBottom: '10px'}}>
                 Enthalpy and sound <br /> Frequency of {pollutantName}
                 <br />
@@ -82,13 +77,13 @@ const LeftPanel = ({ sections = [] }) => {
               <div style={{ border: '1px solid black', width: '260px', height: '50px', overflow: 'hidden' }}>
                 <SineWaveVisualizer />
               </div>
-              <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={scrollToEnthalpy} />
+              <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={() => scrollToId('enthalpy-section')} />
             </div>
             <div className="sourcesTitle">Sources In Venice Lagoon:</div>
             <div className="sourcesDescription">
               {sources}
             </div>
-            <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={scrollToSources}/>
+            <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={() => scrollToId('sources-section')}/>
           </div>
         </div>
       </div>
