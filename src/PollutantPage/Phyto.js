@@ -37,7 +37,7 @@ export const Phyto = ({ sections, pollutantName }) => {
                   left: index % 3 === 1 ? 'calc(64%)' : 'calc(69%)'
                 }} 
               />
-              <div className="soil-label" style={{ fontSize: '26px', textAlign: 'right'}}>
+              <div className="soil-label" style={{ fontSize: '26px'}}>
                 {getMedium(section.medium)}
               </div>
               

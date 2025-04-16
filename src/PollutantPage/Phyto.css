@@ -247,8 +247,9 @@
   .bottom-section4 .box .overlap-group .soil-label {
       top: 60px;
       left: auto;
-      right: -5px;
+      right: -60px;
       text-align: left;
+      width: 100px;
   }
   
   /* For right-aligned box */
