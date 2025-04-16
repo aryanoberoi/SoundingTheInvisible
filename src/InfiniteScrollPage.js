@@ -23,7 +23,9 @@ const PollutantPage = (categorizedData) => {
   const [activeSection, setActiveSection] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [containerHeight, setContainerHeight] = useState('78vw');
+  const [containerHeight, setContainerHeight] = useState('100vh');
+  const [leftPanelLoaded, setLeftPanelLoaded] = useState(false); // Track left panel load
+  const [rightPanelLoaded, setRightPanelLoaded] = useState(false); // Track right panel load
   
   // Refs for panels to measure their heights
   const leftPanelRef = useRef(null);
@@ -394,26 +396,38 @@ const PollutantPage = (categorizedData) => {
 
   // Function to update container height based on panel heights
   const updateContainerHeight = () => {
-    if (!leftPanelRef.current || !rightPanelRef.current || !sliderContainerRef.current) return;
-    
-    // Give the panels time to render their content
-    setTimeout(() => {
-      const leftPanelHeight = leftPanelRef.current.scrollHeight;
-      const rightPanelHeight = rightPanelRef.current.scrollHeight;
-      
-      // Use the height of the taller panel
-      const maxHeight = Math.max(leftPanelHeight, rightPanelHeight);
-      setContainerHeight(`${maxHeight}px`);
-      
-      // Update slider bar height to match container
-      const sliderBar = document.querySelector('.slider-bar');
-      if (sliderBar) {
-        sliderBar.style.height = `${maxHeight}px`;
-      }
-      
-      console.log(`Left panel height: ${leftPanelHeight}px, Right panel height: ${rightPanelHeight}px, Using: ${maxHeight}px`);
-    }, 100);
+    // Ensure refs are available before proceeding
+    if (!leftPanelRef.current || !rightPanelRef.current || !sliderContainerRef.current) {
+      console.log("Height update skipped: Refs not ready.");
+      return;
+    }
+
+    // Calculate heights directly now that we know components are loaded
+    const leftPanelHeight = leftPanelRef.current.scrollHeight;
+    const rightPanelHeight = rightPanelRef.current.scrollHeight;
+
+    // Use the height of the taller panel
+    const maxHeight = Math.max(leftPanelHeight, rightPanelHeight);
+
+    // Add a minimum height fallback if calculation results in 0 or very small value
+    const finalHeight = maxHeight > 50 ? `${maxHeight}px` : '78vw'; // Use '78vw' or another sensible default
+
+    setContainerHeight(finalHeight);
+
+    console.log(`Left panel height: ${leftPanelHeight}px, Right panel height: ${rightPanelHeight}px, Using: ${finalHeight}`);
   };
+
+  // Effect to update height when both panels signal loaded state
+  useEffect(() => {
+    if (leftPanelLoaded && rightPanelLoaded) {
+      console.log("Both panels loaded, updating container height.");
+      // Use requestAnimationFrame to wait for the next browser paint after state updates
+      requestAnimationFrame(() => {
+         // A small delay can still be helpful for complex layouts to fully settle
+        setTimeout(updateContainerHeight, 100);
+      });
+    }
+  }, [leftPanelLoaded, rightPanelLoaded]); // Rerun when load states change
 
   useEffect(() => {
     if (isDragging) {
@@ -435,23 +449,14 @@ const PollutantPage = (categorizedData) => {
     // Set the initial rotation CSS variable directly on mount
     document.documentElement.style.setProperty('--rotation', `180deg`);
 
-    // Update container height when panels are loaded
-    updateContainerHeight();
-    
-    // Update height again after a delay to ensure all content is rendered
-    const initialTimer = setTimeout(() => {
-      updateContainerHeight();
-    }, 10);
-    
-    // Add resize listener to handle window size changes
+    // Update container height on window resize
     window.addEventListener('resize', updateContainerHeight);
-    
+
     // Clean up on unmount
     return () => {
-      clearTimeout(initialTimer);
       window.removeEventListener('resize', updateContainerHeight);
     };
-  }, []);
+  }, []); // Initial setup effect, height update logic moved
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -762,15 +767,15 @@ useEffect(() => {
         ref={sliderContainerRef}
         style={{ height: containerHeight }}
       >
-        <div ref={leftPanelRef} style={{ height: '100%' }}>
-          <LeftPanel sections={leftpanelcontent} />
+        <div ref={leftPanelRef}>
+          <LeftPanel sections={leftpanelcontent} onLoad={() => setLeftPanelLoaded(true)} />
         </div>
-        <div ref={rightPanelRef} style={{ height: '100%' }}>
-          <RightPanel sections={rightpanelcontent} />
+        <div ref={rightPanelRef}>
+          <RightPanel sections={rightpanelcontent} onLoad={() => setRightPanelLoaded(true)} />
         </div>
         <div
           className="slider-bar"
-          style={{ left: `${sliderPosition}%`, height: containerHeight }}
+          style={{ left: `${sliderPosition}%`, height: `calc(${containerHeight} + 57%)` }}
           onMouseDown={handleMouseDown}
         >
           <img
