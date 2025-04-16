@@ -1267,7 +1267,12 @@ img {
 
 .sound-frequency-container{
   background-color: #000 !important;
+}
+
+.sound-frequency-section {
+  padding-block: 100px !important;
   margin-top: 100px;
+  height: calc(10%);
 }
 
 .content-container-title {

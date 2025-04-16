@@ -16,6 +16,7 @@
       align-items: left;     /* Center items horizontally */
       gap: 0;                  /* Remove flex gap */
       margin-left: 10%;
+      padding-top: 50px;
   }
   
   .bottom-section4 .box > .box {  /* Target species boxes */

@@ -9,6 +9,7 @@
 }
   
 .box-container .box-content-sections {
+    padding-top: 50px;
     height: auto;
     position: relative;
     width: 100%;
