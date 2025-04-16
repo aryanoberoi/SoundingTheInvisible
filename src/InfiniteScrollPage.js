@@ -19,11 +19,11 @@ const PollutantPage = (categorizedData) => {
   let data = categorizedData?.undefined || [];
   console.log("this is the data", data);
   const [sliderPosition, setSliderPosition] = useState(50);
-  const [rotation, setRotation] = useState(0);
+  const [rotation, setRotation] = useState(180);
   const [activeSection, setActiveSection] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [containerHeight, setContainerHeight] = useState('86vw');
+  const [containerHeight, setContainerHeight] = useState('78vw');
   
   // Refs for panels to measure their heights
   const leftPanelRef = useRef(null);
@@ -432,6 +432,9 @@ const PollutantPage = (categorizedData) => {
   }, [isDragging]);
 
   useEffect(() => {
+    // Set the initial rotation CSS variable directly on mount
+    document.documentElement.style.setProperty('--rotation', `180deg`);
+
     // Update container height when panels are loaded
     updateContainerHeight();
     
