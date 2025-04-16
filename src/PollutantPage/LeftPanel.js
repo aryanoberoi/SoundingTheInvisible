@@ -24,7 +24,7 @@ const LeftPanel = ({ sections = [] }) => {
   const scrollToId = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 50; // Pixels to offset from the top. Adjust as needed.
+      const offset = 100; // Pixels to offset from the top. Adjust as needed.
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;

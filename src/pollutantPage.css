@@ -367,11 +367,11 @@ body.sound-panel-active .sound-icon span {
   display: flex;
   flex-direction: row-reverse;
   position: relative;
-  min-height: 100vh;
+  height: auto; /* Or remove this line, should default to auto */
   overflow: visible;
   background-color: #000;
   gap: 0;
-  height: calc(500vw + 100px);
+  align-items: flex-start; /* Add this line */
 }
 
 .nav-bar {
@@ -1272,7 +1272,7 @@ img {
 .sound-frequency-section {
   padding-block: 100px !important;
   margin-top: 100px;
-  height: calc(10%);
+  padding-bottom: 200px;
 }
 
 .content-container-title {
