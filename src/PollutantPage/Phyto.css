@@ -67,7 +67,6 @@
       font-family: "Nippo-Light", Helvetica;
       font-size: 26px;
       font-weight: 300;
-      left: 0;
       letter-spacing: 0.78px;
       line-height: normal;
       position: absolute;
@@ -194,8 +193,10 @@
   }
   
   .bottom-section4 .box .div {
-    left: 0;
+    /* left: 29px; */
     top: 110px;
+    width: 130px;
+    text-align: right;
   }
   
   .bottom-section4 .box .div-wrapper {
@@ -208,8 +209,9 @@
   }
   
   .bottom-section4 .box .time-period-container-group2 .div {
-      left: calc(45%);  /* Match parent element positioning */
+      left: 90px;  /* Match parent element positioning */
       width: calc(100%);
+      text-align: right;
   }
   
   .bottom-section4 .box .time-period-container-group2 .div-wrapper {
@@ -240,7 +242,7 @@
   .bottom-section4 .box .overlap-group .medium-label {
       top: 30px;
       left: auto;
-      right: -15px;
+      right: -15px; 
       text-align: left;
   }
   
