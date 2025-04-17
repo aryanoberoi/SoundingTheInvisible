@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import { KnowMoreButton } from './Knowmorebutton';
 import './RightPanel.css';
 import { PlantInfoSection } from './PlantInfoSection';
@@ -42,11 +42,25 @@ const RightPanel = ({ sections = [] }) => {
     }
   ];
 
-  const scrollToAboutPlant = () => {
-    const aboutPlantSection = document.getElementById("about-plant-section");
-    if (aboutPlantSection) {
-      aboutPlantSection.scrollIntoView({ behavior: "smooth" });
-    }};
+  const scrollToId = (id, specificOffset) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const defaultOffset = 77;
+      const offset = specificOffset !== undefined ? specificOffset : defaultOffset;
+
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition + offset;
+
+      window.scrollTo({
+         top: offsetPosition,
+         behavior: "smooth"
+      });
+    } else {
+      console.warn(`Element with ID "${id}" not found.`);
+    }
+  };
 
   return (
     <div className="right-panel">
@@ -55,6 +69,13 @@ const RightPanel = ({ sections = [] }) => {
           <aside className="sidebar">
             {plantData.map((section, index) => {
               if (index >= 1) {
+                let targetId = '';
+                if (index === 1) {
+                  targetId = 'phyto-capacity';
+                } else if (index === 2) {
+                  targetId = 'plant-habitat';
+                }
+
                 return (
                   <div key={index}>
                     <div className="sectionTitle">{section.title}</div>
@@ -82,7 +103,7 @@ const RightPanel = ({ sections = [] }) => {
                         ))
                       )}
                     </div>
-                    <KnowMoreButton className="knowMoreButtonRightPanel" onClick={scrollToAboutPlant} />
+                    {targetId && <KnowMoreButton className="knowMoreButtonRightPanel" onClick={() => scrollToId(targetId)} />}
                   </div>
                 );
               }
@@ -109,7 +130,7 @@ const RightPanel = ({ sections = [] }) => {
                 <p className="plantDetails">
                   {plantDetails}
                 </p>
-                <KnowMoreButton className="knowMoreButtonRightPanel" onClick={scrollToAboutPlant} />
+                <KnowMoreButton className="knowMoreButtonRightPanel" onClick={() => scrollToId('plant-name', 130)} />
               </div>
             </div>
           </main>

@@ -20,11 +20,13 @@ const PollutantPage = (categorizedData) => {
   let data = categorizedData?.undefined || [];
   console.log("this is the data", data);
   const [sliderPosition, setSliderPosition] = useState(50);
-  const [rotation, setRotation] = useState(0);
+  const [rotation, setRotation] = useState(180);
   const [activeSection, setActiveSection] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [containerHeight, setContainerHeight] = useState('86vw');
+  const [containerHeight, setContainerHeight] = useState('100vh');
+  const [leftPanelLoaded, setLeftPanelLoaded] = useState(false); // Track left panel load
+  const [rightPanelLoaded, setRightPanelLoaded] = useState(false); // Track right panel load
   
   // Refs for panels to measure their heights
   const leftPanelRef = useRef(null);
@@ -395,26 +397,38 @@ const PollutantPage = (categorizedData) => {
 
   // Function to update container height based on panel heights
   const updateContainerHeight = () => {
-    if (!leftPanelRef.current || !rightPanelRef.current || !sliderContainerRef.current) return;
-    
-    // Give the panels time to render their content
-    setTimeout(() => {
-      const leftPanelHeight = leftPanelRef.current.scrollHeight;
-      const rightPanelHeight = rightPanelRef.current.scrollHeight;
-      
-      // Use the height of the taller panel
-      const maxHeight = Math.max(leftPanelHeight, rightPanelHeight);
-      setContainerHeight(`${maxHeight}px`);
-      
-      // Update slider bar height to match container
-      const sliderBar = document.querySelector('.slider-bar');
-      if (sliderBar) {
-        sliderBar.style.height = `${maxHeight}px`;
-      }
-      
-      console.log(`Left panel height: ${leftPanelHeight}px, Right panel height: ${rightPanelHeight}px, Using: ${maxHeight}px`);
-    }, 100);
+    // Ensure refs are available before proceeding
+    if (!leftPanelRef.current || !rightPanelRef.current || !sliderContainerRef.current) {
+      console.log("Height update skipped: Refs not ready.");
+      return;
+    }
+
+    // Calculate heights directly now that we know components are loaded
+    const leftPanelHeight = leftPanelRef.current.scrollHeight;
+    const rightPanelHeight = rightPanelRef.current.scrollHeight;
+
+    // Use the height of the taller panel
+    const maxHeight = Math.max(leftPanelHeight, rightPanelHeight);
+
+    // Add a minimum height fallback if calculation results in 0 or very small value
+    const finalHeight = maxHeight > 50 ? `${maxHeight}px` : '78vw'; // Use '78vw' or another sensible default
+
+    setContainerHeight(finalHeight);
+
+    console.log(`Left panel height: ${leftPanelHeight}px, Right panel height: ${rightPanelHeight}px, Using: ${finalHeight}`);
   };
+
+  // Effect to update height when both panels signal loaded state
+  useEffect(() => {
+    if (leftPanelLoaded && rightPanelLoaded) {
+      console.log("Both panels loaded, updating container height.");
+      // Use requestAnimationFrame to wait for the next browser paint after state updates
+      requestAnimationFrame(() => {
+         // A small delay can still be helpful for complex layouts to fully settle
+        setTimeout(updateContainerHeight, 100);
+      });
+    }
+  }, [leftPanelLoaded, rightPanelLoaded]); // Rerun when load states change
 
   useEffect(() => {
     if (isDragging) {
@@ -433,23 +447,19 @@ const PollutantPage = (categorizedData) => {
   }, [isDragging]);
 
   useEffect(() => {
-    // Update container height when panels are loaded
-    updateContainerHeight();
-    
-    // Update height again after a delay to ensure all content is rendered
-    const initialTimer = setTimeout(() => {
-      updateContainerHeight();
-    }, 50);
-    
-    // Add resize listener to handle window size changes
+    // Set the initial rotation CSS variable directly on mount
+    document.documentElement.style.setProperty('--rotation', `180deg`);
+    // Add slider transition variable for dynamic control
+    document.documentElement.style.setProperty('--slider-transition', 'left 0.3s ease-in-out');
+
+    // Update container height on window resize
     window.addEventListener('resize', updateContainerHeight);
-    
+
     // Clean up on unmount
     return () => {
-      clearTimeout(initialTimer);
       window.removeEventListener('resize', updateContainerHeight);
     };
-  }, []);
+  }, []); // Initial setup effect, height update logic moved
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -494,66 +504,20 @@ const PollutantPage = (categorizedData) => {
     return () => observer.disconnect();
   }, []);
 
-// Replace the current phyto section scroll effect with this code
+// Replace the current phyto section scroll effect with this updated code for instant transition
 useEffect(() => {
   if (activeSection === 'phytoremediation') {
     const section = document.getElementById('phytoremediation');
     if (!section) return;
     
-    // Create visual indicator
-    const indicator = document.createElement('div');
-    indicator.className = 'phyto-scroll-indicator';
-    indicator.innerHTML = `
-      <div class="indicator-arrow">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div class="indicator-text">Continue to Plant Details</div>
-    `;
-    section.appendChild(indicator);
+    // Create the transition flash element only
+    const flash = document.createElement('div');
+    flash.className = 'transition-flash';
+    document.body.appendChild(flash);
     
-    // Add styles
+    // Add styles with minimal transition time
     const style = document.createElement('style');
     style.textContent = `
-      .phyto-scroll-indicator {
-        position: absolute;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%) translateY(70px);
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 12px 20px;
-        border-radius: 24px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s;
-        opacity: 0;
-        z-index: 100;
-        pointer-events: none;
-      }
-      
-      .phyto-scroll-indicator.visible {
-        transform: translateX(-50%) translateY(0);
-        opacity: 1;
-      }
-      
-      .indicator-arrow {
-        margin-bottom: 5px;
-        animation: pulse 1.5s infinite;
-      }
-      
-      .indicator-text {
-        font-size: 14px;
-        white-space: nowrap;
-      }
-      
-      @keyframes pulse {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(5px); }
-      }
-      
       .transition-flash {
         position: fixed;
         top: 0;
@@ -564,52 +528,36 @@ useEffect(() => {
         z-index: 9999;
         pointer-events: none;
         opacity: 0;
-        transition: opacity 0.3s;
+        transition: opacity 0.05s; /* Ultra-fast transition */
       }
       
       .transition-flash.active {
         opacity: 0.7;
       }
+      
+      /* Hide the indicator entirely since transition will be instant */
+      .phyto-scroll-indicator {
+        display: none;
+      }
+      
+      /* Add style for the slider bar transition */
+      .slider-bar {
+        transition: var(--slider-transition);
+      }
     `;
     document.head.appendChild(style);
     
-    // Add transition flash element
-    const flash = document.createElement('div');
-    flash.className = 'transition-flash';
-    document.body.appendChild(flash);
-    
     let isTransitioning = false;
-    let scrollTriggerCount = 0;
-    let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
     
     const handleScroll = () => {
       if (isTransitioning) return;
       
       const rect = section.getBoundingClientRect();
-      const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const scrollingDown = currentScrollTop > lastScrollTop;
-      lastScrollTop = currentScrollTop;
       
-      // Distance from bottom of section to bottom of viewport
+      // Trigger transition as soon as we're near the bottom
       const distanceToBottom = rect.bottom - window.innerHeight;
-      
-      // Show indicator when approaching bottom
-      if (distanceToBottom < 100 && scrollingDown) {
-        indicator.classList.add('visible');
-        
-        // If very close to the bottom, increment the trigger counter
-        if (distanceToBottom < 20) {
-          scrollTriggerCount++;
-          
-          // If user keeps scrolling at the bottom, trigger transition
-          if (scrollTriggerCount > 2 || distanceToBottom <= 0) {
-            triggerTransition();
-          }
-        }
-      } else {
-        // Hide indicator when scrolling up or away from bottom
-        indicator.classList.remove('visible');
-        scrollTriggerCount = Math.max(0, scrollTriggerCount - 1);
+      if (distanceToBottom < 50) {
+        triggerTransition();
       }
     };
     
@@ -622,22 +570,11 @@ useEffect(() => {
       const rect = section.getBoundingClientRect();
       const distanceToBottom = rect.bottom - window.innerHeight;
       
-      // If scrolling down forcefully while near the bottom
-      if (e.deltaY > 30 && distanceToBottom < 50) {
-        scrollTriggerCount++;
-        
-        // Trigger transition on forceful scroll
-        if (scrollTriggerCount > 1 || e.deltaY > 60) {
-          triggerTransition();
-          e.preventDefault();
-        }
+      // Immediately trigger on any downward scroll near bottom
+      if (e.deltaY > 0 && distanceToBottom < 100) {
+        triggerTransition();
+        e.preventDefault();
       }
-    };
-    
-    let touchStartY = 0;
-    
-    const handleTouchStart = (e) => {
-      touchStartY = e.touches[0].clientY;
     };
     
     const handleTouchMove = (e) => {
@@ -646,20 +583,13 @@ useEffect(() => {
         return;
       }
       
-      const touchY = e.touches[0].clientY;
-      const touchDiff = touchStartY - touchY;
       const rect = section.getBoundingClientRect();
       const distanceToBottom = rect.bottom - window.innerHeight;
       
-      // If swiping down near the bottom
-      if (touchDiff > 20 && distanceToBottom < 50) {
-        scrollTriggerCount++;
-        
-        // Trigger on strong swipe
-        if (scrollTriggerCount > 1 || touchDiff > 50) {
-          triggerTransition();
-          e.preventDefault();
-        }
+      // Immediately trigger when near bottom
+      if (distanceToBottom < 100) {
+        triggerTransition();
+        e.preventDefault();
       }
     };
     
@@ -667,35 +597,26 @@ useEffect(() => {
       if (isTransitioning) return;
       isTransitioning = true;
       
-      // Show flash effect
-      flash.classList.add('active');
+      // Skip the flash animation delay
+      handleNavClick('plant-name');
       
-      // Navigate after a short delay
+      // Reset state after minimal delay
       setTimeout(() => {
-        handleNavClick('plant-name');
-        
-        // Hide flash and reset when transition complete
-        setTimeout(() => {
-          flash.classList.remove('active');
-          isTransitioning = false;
-          scrollTriggerCount = 0;
-        }, 300);
-      }, 200);
+        flash.classList.remove('active');
+        isTransitioning = false;
+      }, 10);
     };
     
-    // Add all event listeners
+    // Add simplified event listeners
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('wheel', handleWheel, { passive: false });
-    window.addEventListener('touchstart', handleTouchStart, { passive: true });
     window.addEventListener('touchmove', handleTouchMove, { passive: false });
     
     return () => {
       // Clean up
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('wheel', handleWheel);
-      window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
-      if (indicator.parentNode) indicator.remove();
       if (style.parentNode) style.remove();
       if (flash.parentNode) flash.remove();
     };
@@ -719,37 +640,35 @@ useEffect(() => {
 
     // Mobile-specific behavior
     if(isMobile) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setMenuOpen(false); // Close mobile menu on click
+      section.scrollIntoView({ behavior: 'auto', block: 'start' }); // Changed to instant
+      setMenuOpen(false);
       return;
     }
 
-    // --- REVISED DESKTOP LOGIC ---
     // Determine which panel the section belongs to
-    // Sections in '.white-container' are on the right panel (plant details)
-    // Sections outside '.white-container' are on the left panel (pollutant details)
     const isInRightPanel = section.closest('.white-container') !== null;
+    const targetSliderPos = isInRightPanel ? 1 : 99;
 
-    // Set the target snap position based on the panel
-    // Right panel (white) should snap slider fully to the left (position 1)
-    // Left panel (black) should snap slider fully to the right (position 99)
-    const targetSliderPos = isInRightPanel ? 1 : 99; // Use exact snap targets
-
-    // Use the central function to update position, rotation, and body classes
+    // Temporarily disable slider transition for immediate movement
+    document.documentElement.style.setProperty('--slider-transition', 'none');
+    
+    // Update slider position instantly
     updateSliderPosition(targetSliderPos);
-
-    // Update the ref as well, so subsequent drags start from the correct snapped position
     lastPositionRef.current = targetSliderPos;
-
-    // Scroll into view after the panel transition (handled by CSS) has likely started
-    // Adjust timeout if needed, 50ms is usually enough for transition start
+    
+    // Force a reflow to apply the transition removal
+    const _ = document.body.offsetHeight; // Using a throwaway variable to satisfy ESLint
+    
+    // Instant scroll to section
+    section.scrollIntoView({
+      behavior: 'auto',
+      block: 'start'
+    });
+    
+    // Restore transition after a minimal delay
     setTimeout(() => {
-      section.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start' // Scrolls the top of the section to the top of the viewport
-      });
-    }, 50); // Keep a small delay for the visual transition
-    // --- END REVISED DESKTOP LOGIC ---
+      document.documentElement.style.setProperty('--slider-transition', 'left 0.3s ease-in-out');
+    }, 50);
   };
 
   return (
@@ -760,26 +679,21 @@ useEffect(() => {
         ref={sliderContainerRef}
         style={{ height: containerHeight }}
       >
-        <div ref={leftPanelRef} style={{ height: '100%' }}>
-          <LeftPanel sections={leftpanelcontent} />
+        <div ref={leftPanelRef}>
+          <LeftPanel sections={leftpanelcontent} onLoad={() => setLeftPanelLoaded(true)} />
         </div>
-        <div ref={rightPanelRef} style={{ height: '100%' }}>
-          <RightPanel sections={rightpanelcontent} />
+        <div ref={rightPanelRef}>
+          <RightPanel sections={rightpanelcontent} onLoad={() => setRightPanelLoaded(true)} />
         </div>
         <div
           className="slider-bar"
-          style={{ left: `${sliderPosition}%`, height: containerHeight }}
+          style={{ left: `${sliderPosition}%`, height: `calc(${containerHeight} + 57%)` }}
           onMouseDown={handleMouseDown}
         >
           <img
             src="slider.png"
             alt="Slider"
             className="slider-image"
-            style={{
-              transform: `rotate(${rotation}deg) scale(1.7)`,
-              transformOrigin: 'center center',
-              cursor: 'ew-resize'
-            }}
           />
         </div>
       </div>

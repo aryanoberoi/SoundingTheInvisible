@@ -367,11 +367,11 @@ body.sound-panel-active .sound-icon span {
   display: flex;
   flex-direction: row-reverse;
   position: relative;
-  min-height: 100vh;
+  height: auto; /* Or remove this line, should default to auto */
   overflow: visible;
   background-color: #000;
   gap: 0;
-  margin-top: -60vh; /* Changed from top: -calc(100%) to margin-top: -100vh */
+  align-items: flex-start; /* Add this line */
 }
 
 .nav-bar {
@@ -658,6 +658,7 @@ body.homepage-active .hamburger span {
   height: auto;
   overflow: hidden;
   margin: 10%;
+  padding-bottom: 70px;
 }
 
 /* Add this new rule for inverted section */
@@ -1268,6 +1269,12 @@ img {
   background-color: #000 !important;
 }
 
+.sound-frequency-section {
+  padding-block: 100px !important;
+  margin-top: 100px;
+  padding-bottom: 200px;
+}
+
 .content-container-title {
     background-color: black !important; /* Remove original background */
     color: #181818;
@@ -1326,4 +1333,22 @@ img {
   width: calc(66%); /* Adjust width to account for margins */
   height: 120px; /* Set desired height */
   background-color: black;
+}
+
+@keyframes sliderPulse {
+  0%, 100% {
+    transform: rotate(var(--rotation, 0deg)) scale(1.7);
+  }
+  50% {
+    transform: rotate(var(--rotation, 0deg)) scale(1.87);
+  }
+}
+
+.slider-image {
+  /* Set base scale consistently */
+  transform: rotate(var(--rotation, 0deg)) scale(1.7);
+  transform-origin: center center;
+  cursor: ew-resize;
+  /* Add the pulse animation on top of the base scale */
+  animation: sliderPulse 1.5s infinite ease-in-out;
 }

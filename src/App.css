@@ -40,17 +40,40 @@
 /* Custom Cursor */
 .custom-cursor {
   position: fixed;
-  width: 50px; /* Diameter of the inner circle */
-  height: 50px; /* Diameter of the inner circle */
-  background-color: transparent; /* Non-transparent circle color */
-  border: 1px solid black; /* Black border for the inner circle */
-  border-radius: 50%; /* Ensures the element is a perfect circle */
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border: 1px solid #333;
+  border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
-  transform: translate(-50%, -50%); /* Center the cursor */
-  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0), 0 0 0 0.5px black; /* Larger fully transparent white circle with very thin black border */
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0), 0 0 0 1px #333;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  /* Offset to avoid direct overlap with system cursor */
+  margin-left: 2px;
+  margin-top: 2px;
 }
+
+.custom-cursor::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background-color: #333;
+  border-radius: 50%;
+  z-index: 1;
+  transition: background-color 0.2s;
+}
+
 .custom-cursor-inverted {
-  border: 1px solid white;
-  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0), 0 0 0 2px white;
+  border-color: #ccc;
+  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0), 0 0 0 1px #ccc;
+}
+
+.custom-cursor-inverted::after {
+  background-color: #ccc;
 }
