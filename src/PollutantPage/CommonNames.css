@@ -222,7 +222,7 @@
 }
 
 .common-names-container .content-line {
-    margin-top: 1em;
+    margin-top: 1.1em;
     width: 102px;
     height: 1px;
     background: #000;
@@ -240,6 +240,7 @@
 }
 
 .common-names-container .common-names-item.expanded .common-names-content {
+    margin-top: 0.2em;
     opacity: 1;
     max-width: 80%;
 }
