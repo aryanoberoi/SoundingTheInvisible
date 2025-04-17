@@ -103,6 +103,7 @@
 .phyto-content-wrapper-reversed .phyto-info-section {
     margin-left: 2rem;
     margin-right: 0;
+    width: 120%;
 }
 
 .phyto-info-section {
@@ -198,7 +199,6 @@
 }
 
 .phyto-content-wrapper-reversed {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    margin-left: -100px;
 }
