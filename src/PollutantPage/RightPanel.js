@@ -45,7 +45,13 @@ const RightPanel = ({ sections = [] }) => {
   const scrollToId = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = window.pageYOffset + elementPosition + 77;
+
+      window.scrollTo({
+         top: offsetPosition,
+         behavior: "smooth"
+      });
     } else {
       console.warn(`Element with ID "${id}" not found.`);
     }
