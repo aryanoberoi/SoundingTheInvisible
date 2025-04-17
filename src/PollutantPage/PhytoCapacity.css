@@ -97,7 +97,7 @@
 
 .phyto-content-wrapper-reversed {
     flex-direction: row-reverse;
-    margin-top: 2rem;
+    margin-top: 0rem;
 }
 
 .phyto-content-wrapper-reversed .phyto-info-section {
@@ -160,7 +160,7 @@
     position: absolute;
     right: 0;
     top: 46px;
-    bottom: -129px;
+    bottom: -97px;
     border-right: 1px solid black;
     transform: translateX(50%);
 }
