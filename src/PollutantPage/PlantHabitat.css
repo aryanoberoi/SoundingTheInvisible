@@ -1,39 +1,79 @@
-.plant-habitat-container {
+/* Base container styles */
+:root {
+    --section-spacing: 20%;
+    --left-offset: 16%;
+    --group-left-offset: 22%;
+    --content-width: 60%;
+    --group-width: 61%;
+    --title-font: "Nippo-Regular", Helvetica;
+    --content-font: "ClashGrotesk-Light", Helvetica;
+    --title-size: 28px;
+    --content-size: 14px;
+  }
+  
+  .plant-habitat-container {
     width: 100%;
     height: auto;
     position: relative;
     padding-top: 50px;
-}
-
-.plant-habitat-container .habitat-main-group {
+  }
+  
+  /* Header styles */
+  .plant-habitat-container .habitat-main-group {
     height: auto;
     position: relative;
     width: 100%;
     top: 0;
     left: 0;
-}
-
-.plant-habitat-container .habitat-overlap {
-    height: 1194px;
+  }
+  
+  .plant-habitat-container .habitat-overlap {
+    height: auto;
     position: relative;
-}
-
-.plant-habitat-container .habitat-overlap-group {
+  }
+  
+  .plant-habitat-container .habitat-overlap-group {
     width: 100%;
     height: auto;
     position: relative;
     left: 0;
     top: 0;
-}
-
-.plant-habitat-container .header-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Create a flex container for the plant SVG and sections */
+  .plant-habitat-container .content-wrapper {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    width: 100%;
+  }
+  
+  /* Styles for the plant SVG container */
+  .plant-habitat-container .plant-svg-container {
+    flex: 0 0 auto;
+    width: 150px; /* Adjust based on desired width */
+    display: flex;
+    justify-content: flex-start;
+    
+  }
+  
+  /* Plant SVG image */
+  .plant-habitat-container .plant-svg {
+    height: 1111px;
+    margin-top: -77px;
+  }
+  
+  .plant-habitat-container .header-wrapper {
     height: 43px;
     left: 0;
-    position: absolute;
+    position: relative;
     width: fit-content;
-}
-
-.plant-habitat-container .header-content {
+    margin-bottom: 20px;
+  }
+  
+  .plant-habitat-container .header-content {
     background-color: #fff;
     height: 57px;
     position: relative;
@@ -42,239 +82,198 @@
     white-space: nowrap;
     overflow: visible;
     left: -5px;
-}
-
-.plant-habitat-container .habitat-title {
-    background-color: transparent !important; /* Remove original background */
+  }
+  
+  .plant-habitat-container .habitat-title {
+    background-color: transparent !important;
     color: #fff;
-    font: 378 32px 'Nippo-Regular', sans-serif;
+    font: 378 32px var(--title-font);
     font-weight: 400;
     left: 0;
     letter-spacing: 3%;
     line-height: 100%;
-    position: relative; /* Ensure positioning context */
+    position: relative;
     top: 10px;
     width: fit-content;
     text-align: left;
     white-space: nowrap;
-    z-index: 1; /* Keep text above the new background */
+    z-index: 1;
     padding-block: 12px;
-}
-
-.plant-habitat-container .habitat-title::before {
+  }
+  
+  .plant-habitat-container .habitat-title::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 3px !important; /* Inset from left */
-    right: 2px !important; /* Inset from right */
+    left: 3px !important;
+    right: 2px !important;
     bottom: 0;
     background-color: #000;
-    z-index: -1; /* Place behind text */
-}
-
-.plant-habitat-container .habitat-title::after {
+    z-index: -1;
+  }
+  
+  .plant-habitat-container .habitat-title::after {
     content: '';
     position: absolute;
-    left: 3px; /* Match the left inset of the background */
+    left: 3px;
     bottom: 0;
     width: 111%;
     height: 12px;
     background-color: #000;
     z-index: -1;
-}
-
-.plant-habitat-container .decorative-line-1 {
+  }
+  
+  /* Decorative elements */
+  .plant-habitat-container [class^="decorative-line"] {
     height: 430px;
-    left: 2px;
     position: absolute;
-    top: 46px;
     width: 36px;
-}
-
-.plant-habitat-container .section-content {
+  }
+  
+  .plant-habitat-container .decorative-line-1 {
+    left: 2px;
+    top: 46px;
+  }
+  
+  /* Vector elements - consolidated with variable positions */
+  .plant-habitat-container [class^="vector-"] {
+    position: absolute;
+  }
+  
+  .plant-habitat-container .vector-2 {
+    height: 430px;
+    left: 104px;
+    top: 706px;
+    width: 36px;
+  }
+  
+  .plant-habitat-container .vector-3 {
+    height: 430px;
+    left: 86px;
+    top: 720px;
+    width: 36px;
+  }
+  
+  .plant-habitat-container .vector-4 {
+    height: 430px;
+    left: 64px;
+    top: 744px;
+    width: 36px;
+  }
+  
+  .plant-habitat-container .vector-5 {
+    height: 936px;
+    left: 61px;
+    top: 42px;
+    width: 61px;
+  }
+  
+  .plant-habitat-container .vector-6 {
+    height: 933px;
+    left: 44px;
+    top: 36px;
+    width: 61px;
+  }
+  
+  .plant-habitat-container .vector-7 {
+    height: 933px;
+    left: 26px;
+    top: 22px;
+    width: 61px;
+  }
+  
+  .plant-habitat-container .vector-8 {
+    height: 933px;
+    left: 8px;
+    top: 6px;
+    width: 61px;
+  }
+  
+  /* Container for all sections - positioned beside the plant SVG */
+  .plant-habitat-container .sections-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px; /* Space between plant SVG and sections */
+  }
+  
+  /* Section base styles - changed from absolute to relative positioning */
+  .plant-habitat-container [class^="habitat-section"] {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px; /* Space between sections */
+    min-height: 120px; /* Minimum height to ensure spacing */
+  }
+  
+  /* Generic section-specific styles through CSS variables */
+  /* Updated section content positioning for relative layout */
+  .plant-habitat-container .section-content {
     color: #ffffff;
-    font-family: "ClashGrotesk-Light", Helvetica;
-    font-size: 14px;
+    font-family: var(--content-font);
+    font-size: var(--content-size);
     font-weight: 400;
-    left: 1px;
     letter-spacing: 0;
     line-height: 205%;
     mix-blend-mode: difference;
-    position: absolute;
-    top: 30px;
-    width: 60%;
-}
-
-.plant-habitat-container .section-title {
+    width: var(--content-width);
+    margin-top: 10px; /* Space between title and content */
+  }
+  
+  .plant-habitat-container .section-title {
     color: #000000;
-    font-family: "Nippo-Regular", Helvetica;
-    font-size: 28px;
+    font-family: var(--title-font);
+    font-size: var(--title-size);
     font-weight: 400;
-    left: 0;
     letter-spacing: 0.84px;
     line-height: normal;
-    position: absolute;
-    top: 0;
-}
-
-.plant-habitat-container .habitat-section-1 {
-    height: auto;
-    left: 16%;
-    position: absolute;
-    top: 9%;
-    width: 100%;
-}
-
-.plant-habitat-container .habitat-section-2 {
-    height: auto;
-    left: 16%;
-    position: absolute;
-    top: 51%;
-    width: 100%;
-}
-
-.plant-habitat-container .habitat-section-3 {
-    height: auto;
-    left: 16%;
-    position: absolute;
-    top: 72%;
-    width: 100%;
-}
-
-.plant-habitat-container .habitat-section-4 {
-    height: auto;
-    left: 16%;
-    position: absolute;
-    top: 30%;
-    width: 100%;
-}
-
-.plant-habitat-container .habitat-section-5 {
-    height: auto;
-    left: 16%;
-    position: absolute;
-    top: 71%;
-    width: 100%;
-}
-
-.plant-habitat-container .vector-2 {
-    height: 430px;
-    left: 104px;
-    position: absolute;
-    top: 706px;
-    width: 36px;
-}
-
-.plant-habitat-container .vector-3 {
-    height: 430px;
-    left: 86px;
-    position: absolute;
-    top: 720px;
-    width: 36px;
-}
-
-.plant-habitat-container .vector-4 {
-    height: 430px;
-    left: 64px;
-    position: absolute;
-    top: 744px;
-    width: 36px;
-}
-
-.plant-habitat-container .vector-5 {
-    height: 936px;
-    left: 61px;
-    position: absolute;
-    top: 42px;
-    width: 61px;
-}
-
-.plant-habitat-container .vector-6 {
-    height: 933px;
-    left: 44px;
-    position: absolute;
-    top: 36px;
-    width: 61px;
-}
-
-.plant-habitat-container .vector-7 {
-    height: 933px;
-    left: 26px;
-    position: absolute;
-    top: 22px;
-    width: 61px;
-}
-
-.plant-habitat-container .vector-8 {
-    height: 933px;
-    left: 8px;
-    position: absolute;
-    top: 6px;
-    width: 61px;
-}
-
-.plant-habitat-container .group-2 {
-    height: auto;
-    left: 22%;
-    position: absolute;
-    top: 8%;
-    width: 61%;
-}
-
-.plant-habitat-container .p {
+  }
+  
+  /* Group base styles - updated for relative positioning */
+  .plant-habitat-container [class^="group"] {
+    position: relative;
+    width: var(--group-width);
+    margin-left: calc(var(--group-left-offset) - var(--left-offset));
+    margin-bottom: 60px;
+  }
+  
+  /* Remove absolute positioning for groups */
+  
+  /* Updated p text styles for relative positioning */
+  .plant-habitat-container .p {
     color: #ffffff;
     font-family: "ClashGrotesk-Regular", Helvetica;
     font-size: 16px;
     font-weight: 400;
-    left: 1px;
     letter-spacing: 0.32px;
     line-height: 32.8px;
     mix-blend-mode: difference;
-    position: absolute;
-    top: 53px;
+    margin-top: 53px;
     width: 446px;
-}
-
-.plant-habitat-container .text-wrapper-2 {
+  }
+  
+  .plant-habitat-container .text-wrapper-2 {
     color: #000000;
-    font-family: "Nippo-Regular", Helvetica;
-    font-size: 28px;
+    font-family: var(--title-font);
+    font-size: var(--title-size);
     font-weight: 400;
-    left: 0;
     letter-spacing: 0.84px;
     line-height: normal;
-    position: absolute;
-    top: 0;
-}
-
-.plant-habitat-container .group-3 {
-    height: auto;
-    left: 22%;
-    position: absolute;
-    top: 47%;
-    width: 61%;
-}
-
-.plant-habitat-container .group-4 {
-    height: auto;
-    left: 22%;
-    position: absolute;
-    top: 87%;
-    width: 61%;
-}
-
-.plant-habitat-container .group-5 {
-    height: auto;
-    left: 22%;
-    position: absolute;
-    top: 27%;
-    width: 61%;
-}
-
-.plant-habitat-container .group-6 {
-    height: auto;
-    left: 22%;
-    position: absolute;
-    top: 67%;
-    width: 61%;
-}
+  }
+  
+  /* Media queries for responsive design */
+  @media screen and (max-width: 768px) {
+    :root {
+      --left-offset: 10%;
+      --group-left-offset: 15%;
+      --content-width: 80%;
+      --group-width: 80%;
+    }
+    
+    .plant-habitat-container .section-content {
+      font-size: 12px;
+    }
+    
+    .plant-habitat-container .section-title {
+      font-size: 24px;
+    }
+  }
