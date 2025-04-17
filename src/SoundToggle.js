@@ -1,51 +1,71 @@
 import React, { useState, useEffect, useRef } from "react";
+import { io } from "socket.io-client";
 
-const SoundToggle = ({ isWhiteBg }) => {
+const SoundToggle = ({ isWhiteBg, padNumber }) => {
   const [isPlaying, setIsPlaying] = useState(true);
-  const [audioUrl, setAudioUrl] = useState(null);
+  const socketRef = useRef(null);
   const audioRef = useRef(null);
-  const wsRef = useRef(null);
+  const audioUrlRef = useRef(null);
 
   useEffect(() => {
-    // Establish WebSocket connection to Flask server
-    wsRef.current = new WebSocket("ws://localhost:5000/audio"); // Update with your Flask WebSocket URL
+    socketRef.current = io(process.env.REACT_APP_SOCKET_URL);
 
-    wsRef.current.binaryType = "arraybuffer";
-
-    wsRef.current.onopen = () => {
-      // Request the audio file
-      wsRef.current.send("get_audio");
-    };
-
-    wsRef.current.onmessage = (event) => {
-      // Receive audio data as ArrayBuffer
-      const arrayBuffer = event.data;
-      const blob = new Blob([arrayBuffer], { type: "audio/mp3" });
+    socketRef.current.on("mp3_file", (data) => {
+      if (data.error) {
+        console.error(data.error);
+        return;
+      }
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+      if (audioUrlRef.current) {
+        URL.revokeObjectURL(audioUrlRef.current);
+        audioUrlRef.current = null;
+      }
+      const byteCharacters = atob(data.data);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: "audio/mp3" });
       const url = URL.createObjectURL(blob);
-      setAudioUrl(url);
+      audioUrlRef.current = url;
       audioRef.current = new Audio(url);
       audioRef.current.loop = true;
       if (isPlaying) {
         audioRef.current.play().catch((err) => console.error("Audio play error:", err));
       }
-    };
-
-    wsRef.current.onerror = (err) => {
-      console.error("WebSocket error:", err);
-    };
+    });
 
     return () => {
-      // Cleanup
       if (audioRef.current) {
         audioRef.current.pause();
-        URL.revokeObjectURL(audioUrl);
+        audioRef.current = null;
       }
-      if (wsRef.current) {
-        wsRef.current.close();
+      if (audioUrlRef.current) {
+        URL.revokeObjectURL(audioUrlRef.current);
+        audioUrlRef.current = null;
+      }
+      if (socketRef.current) {
+        socketRef.current.disconnect();
       }
     };
-    // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (!socketRef.current) return;
+    if (isPlaying) {
+      // Use the padNumber prop
+      socketRef.current.emit("play_pad", { pad: padNumber });
+    } else {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+      socketRef.current.emit("stop_sounds");
+    }
+  }, [isPlaying, padNumber]);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -58,7 +78,10 @@ const SoundToggle = ({ isWhiteBg }) => {
   }, [isPlaying]);
 
   return (
-    <button className={`sound-button ${isWhiteBg ? "white-bg" : ""}`} onClick={() => setIsPlaying(!isPlaying)}>
+    <button
+      className={`sound-button ${isWhiteBg ? "white-bg" : ""}`}
+      onClick={() => setIsPlaying((prev) => !prev)}
+    >
       <div className={`sound-icon ${isPlaying ? "playing" : "muted"}`}>
         <span></span>
         <span></span>

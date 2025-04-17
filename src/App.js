@@ -1,17 +1,14 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import Homepage from "./Homepage"; // Import the home page
-import PollutantPage from "./InfiniteScrollPage"; // Pollutant page
-import SoundToggle from "./SoundToggle"; // Sound button
-import Navbar from "./Navbar"; // Navbar
+import Homepage from "./Homepage"; 
+import PollutantPage from "./PollutantPage"; 
+import Navbar from "./Navbar"; 
 
 const AppContent = () => {
   const location = useLocation();
   const [categorizedData, setCategorizedData] = React.useState({});
 
   useEffect(() => {
-    // Custom cursor implementation (Updated Logic)
-    // Create cursor element if it doesn't exist
     let cursor = document.querySelector('.custom-cursor');
     if (!cursor) {
       cursor = document.createElement('div');
@@ -204,7 +201,6 @@ const AppContent = () => {
   return (
     <div>
       <Navbar />
-      <SoundToggle />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/:customName" element={<PollutantPage categorizedData={categorizedData} />} />

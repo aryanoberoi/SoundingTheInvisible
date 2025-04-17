@@ -13,6 +13,7 @@ import { UsesOfPlant } from './PollutantPage/UsesOfPlant';
 import { PhytoCapacity } from './PollutantPage/PhytoCapacity';
 import { AboutPollutantSection } from './PollutantPage/AboutPollutant';
 import { SoundFrequency } from './PollutantPage/SoundFrequency';
+import SoundToggle from "./SoundToggle"; // Sound button
 
 
 const PollutantPage = (categorizedData) => {
@@ -99,6 +100,7 @@ const PollutantPage = (categorizedData) => {
 
   const leftpanelcontent = [
     { 
+      pollutantNumber: 1,
       pollutantName: "Potassium",
       ...pollutantWasteTypeMapping['potassium'],
       pollutantDescription: "Potassium (K) is a soft, silvery alkali metal discovered in 1807 by Sir Humphry Davy through electrolysis of potash (KOH). Radioactive K-40 has a 1.25 billion-year half-life; stable isotopes are K-39 and K-41. Excess potassium causes eutrophication. Canada leads potash production, used mainly in fertilizers.",
@@ -673,6 +675,7 @@ useEffect(() => {
 
   return (
     <>
+          <SoundToggle padNumber={leftpanelcontent[0].pollutantNumber}/>
       <div 
         id="slider-container" 
         className="slider-container"
