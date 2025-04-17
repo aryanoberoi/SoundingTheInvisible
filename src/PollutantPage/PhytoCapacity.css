@@ -127,6 +127,10 @@
     margin: 0.5rem 0;
 }
 
+.phyto-content-wrapper-reversed .section-divider{
+    margin-left: 150px;
+}
+
 .phyto-benefits-heading {
     font-family: Nippo-Regular;
     font-weight: 378;
@@ -180,6 +184,11 @@
     margin-left: 0;
     padding-right: 10px;
     margin-right: 10px;
+    padding-right: inherit;
+}
+
+.phyto-content-wrapper-reversed .phyto-benefits-heading {
+    margin-left: 150px;
 }
 
 .phyto-content-wrapper-reversed .phyto-benefits-text {
