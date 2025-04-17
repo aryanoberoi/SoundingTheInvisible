@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
-import { io } from "socket.io-client";
+
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:6000";
 
 const SoundToggle = ({ isWhiteBg, padNumber }) => {
   const [isPlaying, setIsPlaying] = useState(true);
-  const socketRef = useRef(null);
   const audioRef = useRef(null);
   const audioUrlRef = useRef(null);
 
+  // Fetch and play mp3 when toggled ON or padNumber changes
   useEffect(() => {
-    socketRef.current = io(process.env.REACT_APP_SOCKET_URL);
+    let cancelled = false;
 
-    socketRef.current.on("mp3_file", (data) => {
-      if (data.error) {
-        console.error(data.error);
-        return;
-      }
+    async function fetchAndPlay() {
+      if (!isPlaying || !padNumber) return;
+
+      // Clean up previous audio
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
@@ -23,23 +23,28 @@ const SoundToggle = ({ isWhiteBg, padNumber }) => {
         URL.revokeObjectURL(audioUrlRef.current);
         audioUrlRef.current = null;
       }
-      const byteCharacters = atob(data.data);
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
+
+      try {
+        const response = await fetch(`${API_URL}/play_pad?pad=${padNumber}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch mp3");
+        }
+        const blob = await response.blob();
+        if (cancelled) return;
+        const url = URL.createObjectURL(blob);
+        audioUrlRef.current = url;
+        audioRef.current = new Audio(url);
+        audioRef.current.loop = true;
+        await audioRef.current.play();
+      } catch (err) {
+        console.error("Audio fetch/play error:", err);
       }
-      const byteArray = new Uint8Array(byteNumbers);
-      const blob = new Blob([byteArray], { type: "audio/mp3" });
-      const url = URL.createObjectURL(blob);
-      audioUrlRef.current = url;
-      audioRef.current = new Audio(url);
-      audioRef.current.loop = true;
-      if (isPlaying) {
-        audioRef.current.play().catch((err) => console.error("Audio play error:", err));
-      }
-    });
+    }
+
+    fetchAndPlay();
 
     return () => {
+      cancelled = true;
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
@@ -48,25 +53,10 @@ const SoundToggle = ({ isWhiteBg, padNumber }) => {
         URL.revokeObjectURL(audioUrlRef.current);
         audioUrlRef.current = null;
       }
-      if (socketRef.current) {
-        socketRef.current.disconnect();
-      }
     };
-  }, []);
-
-  useEffect(() => {
-    if (!socketRef.current) return;
-    if (isPlaying) {
-      // Use the padNumber prop
-      socketRef.current.emit("play_pad", { pad: padNumber });
-    } else {
-      if (audioRef.current) {
-        audioRef.current.pause();
-      }
-      socketRef.current.emit("stop_sounds");
-    }
   }, [isPlaying, padNumber]);
 
+  // Pause/resume audio when toggled
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying) {
