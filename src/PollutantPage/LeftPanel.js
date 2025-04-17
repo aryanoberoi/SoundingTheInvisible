@@ -20,11 +20,12 @@ const LeftPanel = ({ sections = [] }) => {
   // Process health effects into titles
   const healthEffectsTitles = effect.split('_');
 
-  // 1. Modify the scroll function
-  const scrollToId = (id) => {
+  // 1. Modify the scroll function to accept an offset parameter
+  const scrollToId = (id, specificOffset) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 100; // Pixels to offset from the top. Adjust as needed.
+      const defaultOffset = 100; // Default offset
+      const offset = specificOffset !== undefined ? specificOffset : defaultOffset; // Use specific offset if provided, otherwise default
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -77,7 +78,7 @@ const LeftPanel = ({ sections = [] }) => {
               <div style={{ border: '1px solid black', width: '260px', height: '50px', overflow: 'hidden' }}>
                 <SineWaveVisualizer />
               </div>
-              <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={() => scrollToId('enthalpy-section')} />
+              <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={() => scrollToId('enthalpy-section', 320)} />
             </div>
             <div className="sourcesTitle">Sources In Venice Lagoon:</div>
             <div className="sourcesDescription">
