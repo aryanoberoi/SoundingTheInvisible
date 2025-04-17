@@ -448,6 +448,8 @@ const PollutantPage = (categorizedData) => {
   useEffect(() => {
     // Set the initial rotation CSS variable directly on mount
     document.documentElement.style.setProperty('--rotation', `180deg`);
+    // Add slider transition variable for dynamic control
+    document.documentElement.style.setProperty('--slider-transition', 'left 0.3s ease-in-out');
 
     // Update container height on window resize
     window.addEventListener('resize', updateContainerHeight);
@@ -501,66 +503,20 @@ const PollutantPage = (categorizedData) => {
     return () => observer.disconnect();
   }, []);
 
-// Replace the current phyto section scroll effect with this code
+// Replace the current phyto section scroll effect with this updated code for instant transition
 useEffect(() => {
   if (activeSection === 'phytoremediation') {
     const section = document.getElementById('phytoremediation');
     if (!section) return;
     
-    // Create visual indicator
-    const indicator = document.createElement('div');
-    indicator.className = 'phyto-scroll-indicator';
-    indicator.innerHTML = `
-      <div class="indicator-arrow">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div class="indicator-text">Continue to Plant Details</div>
-    `;
-    section.appendChild(indicator);
+    // Create the transition flash element only
+    const flash = document.createElement('div');
+    flash.className = 'transition-flash';
+    document.body.appendChild(flash);
     
-    // Add styles
+    // Add styles with minimal transition time
     const style = document.createElement('style');
     style.textContent = `
-      .phyto-scroll-indicator {
-        position: absolute;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%) translateY(70px);
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 12px 20px;
-        border-radius: 24px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s;
-        opacity: 0;
-        z-index: 100;
-        pointer-events: none;
-      }
-      
-      .phyto-scroll-indicator.visible {
-        transform: translateX(-50%) translateY(0);
-        opacity: 1;
-      }
-      
-      .indicator-arrow {
-        margin-bottom: 5px;
-        animation: pulse 1.5s infinite;
-      }
-      
-      .indicator-text {
-        font-size: 14px;
-        white-space: nowrap;
-      }
-      
-      @keyframes pulse {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(5px); }
-      }
-      
       .transition-flash {
         position: fixed;
         top: 0;
@@ -571,52 +527,36 @@ useEffect(() => {
         z-index: 9999;
         pointer-events: none;
         opacity: 0;
-        transition: opacity 0.3s;
+        transition: opacity 0.05s; /* Ultra-fast transition */
       }
       
       .transition-flash.active {
         opacity: 0.7;
       }
+      
+      /* Hide the indicator entirely since transition will be instant */
+      .phyto-scroll-indicator {
+        display: none;
+      }
+      
+      /* Add style for the slider bar transition */
+      .slider-bar {
+        transition: var(--slider-transition);
+      }
     `;
     document.head.appendChild(style);
     
-    // Add transition flash element
-    const flash = document.createElement('div');
-    flash.className = 'transition-flash';
-    document.body.appendChild(flash);
-    
     let isTransitioning = false;
-    let scrollTriggerCount = 0;
-    let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
     
     const handleScroll = () => {
       if (isTransitioning) return;
       
       const rect = section.getBoundingClientRect();
-      const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const scrollingDown = currentScrollTop > lastScrollTop;
-      lastScrollTop = currentScrollTop;
       
-      // Distance from bottom of section to bottom of viewport
+      // Trigger transition as soon as we're near the bottom
       const distanceToBottom = rect.bottom - window.innerHeight;
-      
-      // Show indicator when approaching bottom
-      if (distanceToBottom < 100 && scrollingDown) {
-        indicator.classList.add('visible');
-        
-        // If very close to the bottom, increment the trigger counter
-        if (distanceToBottom < 20) {
-          scrollTriggerCount++;
-          
-          // If user keeps scrolling at the bottom, trigger transition
-          if (scrollTriggerCount > 2 || distanceToBottom <= 0) {
-            triggerTransition();
-          }
-        }
-      } else {
-        // Hide indicator when scrolling up or away from bottom
-        indicator.classList.remove('visible');
-        scrollTriggerCount = Math.max(0, scrollTriggerCount - 1);
+      if (distanceToBottom < 50) {
+        triggerTransition();
       }
     };
     
@@ -629,22 +569,11 @@ useEffect(() => {
       const rect = section.getBoundingClientRect();
       const distanceToBottom = rect.bottom - window.innerHeight;
       
-      // If scrolling down forcefully while near the bottom
-      if (e.deltaY > 30 && distanceToBottom < 50) {
-        scrollTriggerCount++;
-        
-        // Trigger transition on forceful scroll
-        if (scrollTriggerCount > 1 || e.deltaY > 60) {
-          triggerTransition();
-          e.preventDefault();
-        }
+      // Immediately trigger on any downward scroll near bottom
+      if (e.deltaY > 0 && distanceToBottom < 100) {
+        triggerTransition();
+        e.preventDefault();
       }
-    };
-    
-    let touchStartY = 0;
-    
-    const handleTouchStart = (e) => {
-      touchStartY = e.touches[0].clientY;
     };
     
     const handleTouchMove = (e) => {
@@ -653,20 +582,13 @@ useEffect(() => {
         return;
       }
       
-      const touchY = e.touches[0].clientY;
-      const touchDiff = touchStartY - touchY;
       const rect = section.getBoundingClientRect();
       const distanceToBottom = rect.bottom - window.innerHeight;
       
-      // If swiping down near the bottom
-      if (touchDiff > 20 && distanceToBottom < 50) {
-        scrollTriggerCount++;
-        
-        // Trigger on strong swipe
-        if (scrollTriggerCount > 1 || touchDiff > 50) {
-          triggerTransition();
-          e.preventDefault();
-        }
+      // Immediately trigger when near bottom
+      if (distanceToBottom < 100) {
+        triggerTransition();
+        e.preventDefault();
       }
     };
     
@@ -674,35 +596,26 @@ useEffect(() => {
       if (isTransitioning) return;
       isTransitioning = true;
       
-      // Show flash effect
-      flash.classList.add('active');
+      // Skip the flash animation delay
+      handleNavClick('plant-name');
       
-      // Navigate after a short delay
+      // Reset state after minimal delay
       setTimeout(() => {
-        handleNavClick('plant-name');
-        
-        // Hide flash and reset when transition complete
-        setTimeout(() => {
-          flash.classList.remove('active');
-          isTransitioning = false;
-          scrollTriggerCount = 0;
-        }, 300);
-      }, 200);
+        flash.classList.remove('active');
+        isTransitioning = false;
+      }, 10);
     };
     
-    // Add all event listeners
+    // Add simplified event listeners
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('wheel', handleWheel, { passive: false });
-    window.addEventListener('touchstart', handleTouchStart, { passive: true });
     window.addEventListener('touchmove', handleTouchMove, { passive: false });
     
     return () => {
       // Clean up
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('wheel', handleWheel);
-      window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
-      if (indicator.parentNode) indicator.remove();
       if (style.parentNode) style.remove();
       if (flash.parentNode) flash.remove();
     };
@@ -726,36 +639,34 @@ useEffect(() => {
 
     // Mobile-specific behavior
     if(isMobile) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setMenuOpen(false); // Close mobile menu on click
+      section.scrollIntoView({ behavior: 'auto', block: 'start' }); // Changed to instant
+      setMenuOpen(false);
       return;
     }
 
-    // --- REVISED DESKTOP LOGIC ---
     // Determine which panel the section belongs to
     const isInRightPanel = section.closest('.white-container') !== null;
-
-    // Set the target snap position based on the panel
     const targetSliderPos = isInRightPanel ? 1 : 99;
 
-    // Get current scroll position and target section position
-    const currentScroll = window.scrollY || document.documentElement.scrollTop;
-    const targetRect = section.getBoundingClientRect();
-    const targetPositionY = targetRect.top + window.scrollY;
+    // Temporarily disable slider transition for immediate movement
+    document.documentElement.style.setProperty('--slider-transition', 'none');
     
-    // Determine if we're scrolling up or down
-    const scrollingDown = targetPositionY > currentScroll;
-
-    // Update slider position 
+    // Update slider position instantly
     updateSliderPosition(targetSliderPos);
     lastPositionRef.current = targetSliderPos;
-
-    // Use instant scroll for upward movement, smooth scroll for downward
+    
+    // Force a reflow to apply the transition removal
+    const _ = document.body.offsetHeight; // Using a throwaway variable to satisfy ESLint
+    
+    // Instant scroll to section
+    section.scrollIntoView({
+      behavior: 'auto',
+      block: 'start'
+    });
+    
+    // Restore transition after a minimal delay
     setTimeout(() => {
-      section.scrollIntoView({
-        behavior: scrollingDown ? 'smooth' : 'auto', // Instant for upward scrolling
-        block: 'start'
-      });
+      document.documentElement.style.setProperty('--slider-transition', 'left 0.3s ease-in-out');
     }, 50);
   };
 
