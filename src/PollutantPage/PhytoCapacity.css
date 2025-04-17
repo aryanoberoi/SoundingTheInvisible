@@ -142,7 +142,7 @@
     line-height: 205%;
     letter-spacing: 0%;
     margin-top: 2rem;
-    margin-right: 13%;
+    margin-right: 5%;
 }
 
 .phyto-benefits-text {
@@ -189,4 +189,16 @@
 .phyto-content-wrapper-reversed .phyto-svg-container img {
     transform: rotate(180deg);
     transform-origin: center center;
+}
+
+.phyto-content-wrapper {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.phyto-content-wrapper-reversed {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
