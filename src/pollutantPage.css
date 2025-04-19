@@ -1430,6 +1430,14 @@ img {
   padding-bottom: 200px;
 }
 
+.optional-text-container {
+  margin-top: 2em; /* Creates approximately a 2-line gap */
+  padding: 10px;
+  width: 100%;
+  line-height: 1.5;
+  color: white;
+}
+
 .content-container-title {
     background-color: black !important; /* Remove original background */
     color: #181818;

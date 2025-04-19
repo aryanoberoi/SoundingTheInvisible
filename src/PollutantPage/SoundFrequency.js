@@ -24,6 +24,12 @@ export const SoundFrequency = ({ sections }) => {
             <span className="value">{sections[0].soundfrequency}</span>
           </div>
         </div>
+        
+        {sections[0].optionalText && (
+          <div className="optional-text-container">
+            {sections[0].optionalText}
+          </div>
+        )}
       </div>
     </div>
   );
