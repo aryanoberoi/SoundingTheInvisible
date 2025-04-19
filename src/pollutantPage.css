@@ -246,12 +246,90 @@ body.right-panel-active .hamburger-line {
   align-items: center;
   transition: left 0.3s ease-in-out;
   z-index: 1001;
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  /* Improve scroll momentum on different browsers */
+  -webkit-overflow-scrolling: touch;
 }
 
 .nav-menu.open {
   left: 0;
+}
+
+/* When an item is expanded, allow scrolling */
+.nav-menu.has-expanded-item {
+  overflow-y: auto;
+}
+
+/* Menu container for scaling */
+.menu-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, padding-top 0.3s ease;
+}
+
+/* Navigation links list */
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1200px;
+  transition: opacity 0.3s;
+}
+
+/* Individual menu items */
+.nav-item {
+  margin-bottom: min(50px, 6vh);
+  transition: all 0.3s ease;
+}
+
+/* Update fixed sizes to responsive units */
+.nav-item-text {
+  font-family: "Nippo-Light";
+  font-weight: 300;
+  font-size: clamp(28px, 5vw, 48px);
+  line-height: 1;
+}
+
+.nav-icon {
+  height: clamp(40px, 10vh, 98px);
+  width: auto;
+}
+
+/* Media queries for additional height responsiveness */
+@media (max-height: 700px) {
+  .nav-item {
+    margin-bottom: 4vh;
+  }
+  
+  .nav-item-text {
+    font-size: clamp(24px, 4vw, 36px);
+  }
+  
+  .nav-icon {
+    height: clamp(30px, 8vh, 60px);
+  }
+}
+
+@media (max-height: 500px) {
+  /* For extremely short screens, stack items horizontally */
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .nav-item {
+    width: 45%;
+    margin-bottom: 2vh;
+  }
+  
+  .nav-item-text {
+    font-size: clamp(18px, 3vw, 24px);
+  }
 }
 
 /* Close Button */
@@ -1436,4 +1514,16 @@ img {
   font-size: 48px;
   line-height: 100%;
   letter-spacing: 0%;
+}
+
+.nav-item.expanded {
+  transition: all 0.3s ease;
+  /* Ensure expanded content has explicit transition */
+  max-height: 1000px;
+  transition-delay: 0.05s; /* Small delay to help with rendering timing */
+}
+
+/* Make sure expanded content has space at the bottom */
+.nav-item:last-child.expanded {
+  margin-bottom: 150px; /* Add more space for the last item */
 }
