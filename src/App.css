@@ -38,25 +38,35 @@
 }
 
 /* Custom Cursor */
+/* Base Custom Cursor Styles */
 .custom-cursor {
   position: fixed;
   width: 50px;
   height: 50px;
   background-color: transparent;
-  border: 1px solid #333;
+  border: 2px solid #333; /* Thicker border for better visibility */
   border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
+  pointer-events: none !important; /* Never allow cursor to block mouse events */
+  z-index: 99999 !important; /* Extremely high z-index */
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0), 0 0 0 1px #333;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2), 0 0 5px #333; /* Enhanced glow */
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.1s;
   margin-left: 2px;
   margin-top: 2px;
-  will-change: transform;
+  will-change: transform; /* Performance optimization */
+  display: block !important; /* Force display */
+  visibility: visible !important; /* Force visibility */
+  opacity: 1 !important; /* Force opacity */
+  mix-blend-mode: difference; /* Alternative approach to inversion */
+
+  /* Add webkit prefixes for maximum compatibility */
+  -webkit-transform: translate(-50%, -50%);
+  -webkit-transition: border-color 0.2s, box-shadow 0.2s, transform 0.1s;
+  -webkit-backface-visibility: hidden; /* Prevent jagged edges during animation */
 }
 
-.custom-cursor::after {
-  content: '';
+/* Center dot */
+.custom-cursor .cursor-dot {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -69,13 +79,65 @@
   transition: background-color 0.2s;
 }
 
+/* Inverted state - for dark backgrounds */
 .custom-cursor-inverted {
-  border-color: #ccc;
-  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0), 0 0 0 1px #ccc;
+  border-color: #fff !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 5px #fff !important;
 }
 
-.custom-cursor-inverted::after {
-  background-color: #ccc;
+.custom-cursor-inverted .cursor-dot {
+  background-color: #fff !important;
+}
+
+/* Hover animation */
+.custom-cursor:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Make sure elements that need cursor inversion show custom cursor */
+[data-cursor-invert="true"],
+.nav-menu,
+.nav-menu *,
+.nav-item,
+.nav-arrow-button,
+svg,
+svg * {
+  cursor: none !important;
+}
+
+/* Override any specificity issues */
+body .custom-cursor {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Scale animation on clicks */
+.custom-cursor.clicking {
+  transform: translate(-50%, -50%) scale(0.8);
+  transition: transform 0.1s;
+}
+
+/* Firefox specific fix */
+@-moz-document url-prefix() {
+  .custom-cursor {
+    transform: translate(-50%, -50%) !important;
+  }
+}
+
+/* Safari specific fix */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  .custom-cursor {
+    -webkit-transform: translate3d(-50%, -50%, 0) !important;
+    transform: translate3d(-50%, -50%, 0) !important;
+  }
+}
+
+/* Mobile devices - hide custom cursor */
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor {
+    display: none !important;
+  }
 }
 
 /* Ensure SVG elements work with the custom cursor */
