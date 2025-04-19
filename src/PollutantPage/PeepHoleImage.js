@@ -4,6 +4,7 @@ const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [radius, setRadius] = useState(180);
   const [showSlider, setShowSlider] = useState(false);
+  const [locked, setLocked] = useState(false); // New state to track if position is locked
   const containerRef = useRef(null);
 
   // Initialize position in the center and update on resize
@@ -44,6 +45,9 @@ const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
   }, []); // Empty dependency array: setup observer once on mount
 
   const handleMouseMove = (e) => {
+    // Only update position if not locked
+    if (locked) return;
+    
     if (containerRef.current) {
       // Get position relative to the container
       const rect = containerRef.current.getBoundingClientRect();
@@ -55,6 +59,11 @@ const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
         setPosition({ x, y });
       }
     }
+  };
+
+  // Toggle the locked state on click
+  const toggleLock = () => {
+    setLocked(!locked);
   };
 
   return (
@@ -69,8 +78,10 @@ const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        cursor: "default", // Use default cursor
       }} 
       onMouseMove={handleMouseMove}
+      onClick={toggleLock} // Toggle lock on click
     >
       {/* Hidden SVG image (only visible through peephole) */}
       <img
@@ -140,6 +151,8 @@ const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
           />
         </div>
       </div>
+
+      {/* Lock indicator removed as requested */}
 
       {/* Radius Adjuster with hide/show on hover */}
       <div 
