@@ -606,7 +606,7 @@ useEffect(() => {
       setTimeout(() => {
         flash.classList.remove('active');
         isTransitioning = false;
-      }, 10);
+      }, 150);
     };
     
     // Add simplified event listeners
