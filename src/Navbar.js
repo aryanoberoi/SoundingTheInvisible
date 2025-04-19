@@ -1,6 +1,4 @@
-import React, { useState, useRef } from "react";
-import "./App.css"; // All styles go here
-import "./pollutantPage.css";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
@@ -8,117 +6,163 @@ const Navbar = () => {
   const [expandedItem, setExpandedItem] = useState(null);
   const menuRef = useRef(null);
   const navigate = useNavigate();
+  
+  // List of navigation items for easy maintenance
+  const navItems = [
+    { id: "agriculture-waste", text: "Agriculture waste" },
+    { id: "heavy-metal-waste", text: "Heavy metal waste" },
+    { id: "radioactive-waste", text: "Radioactive waste" },
+    { id: "sewage-waste", text: "Sewage waste" }
+  ];
 
   const handleItemClick = (text) => {
-    // Only expand if not already expanded
-    if (expandedItem !== text) {
-      setExpandedItem(text);
-      
-      // Scroll to expanded item after state update
-      setTimeout(() => {
-        const element = menuRef.current?.querySelector('.expanded');
-        if (element) {
-          element.scrollIntoView({ 
-            behavior: 'auto', 
-            block: 'start' 
-          });
-        }
-      }, 0);
-    }
+    setExpandedItem(prevExpanded => prevExpanded === text ? null : text);
   };
+  
+  // Effect to scroll to expanded item
+  useEffect(() => {
+    if (!expandedItem) return;
+    
+    const element = menuRef.current?.querySelector('.expanded');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [expandedItem]);
+  
+  // Close menu when escape key is pressed
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && isOpen) {
+        setIsOpen(false);
+      }
+    };
+    
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [isOpen]);
+  
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
   return (
     <>
-      {/* Hamburger Button */}
+      {/* Hamburger Button - only visible when menu is closed */}
       {!isOpen && (
-        <button className="nav-button" onClick={() => setIsOpen(true)}>
+        <button 
+          className="nav-button" 
+          onClick={() => setIsOpen(true)}
+          aria-label="Open navigation menu"
+          aria-expanded={isOpen}
+        >
           <div className="hamburger">
-          <span className={`hamburger-line ${isOpen ? "open" : ""}`}></span>
-          <span className={`hamburger-line ${isOpen ? "open" : ""}`}></span>
-          <span className={`hamburger-line ${isOpen ? "open" : ""}`}></span>
+            <span className="hamburger-line"></span>
+            <span className="hamburger-line"></span>
+            <span className="hamburger-line"></span>
           </div>
         </button>
       )}
 
       {/* Fullscreen Menu */}
-      <div 
+      <nav 
         className={`nav-menu ${isOpen ? "open" : ""}`} 
         ref={menuRef}
+        aria-hidden={!isOpen}
+        role="navigation"
       >
-        <span className="close-btn" onClick={() => {
-          setIsOpen(false);
-        }} style={{ color: 'white' }}>✕</span>
+        <button 
+          className="close-btn" 
+          onClick={() => setIsOpen(false)}
+          aria-label="Close navigation menu"
+        >
+          ✕
+        </button>
 
-        <ul className={`nav-links ${expandedItem ? 'has-expanded' : ''}`}>
-          {["Agriculture waste", "Heavy metal waste", "Radioactive waste", "Sewage waste"].map((text, index) => (
-            <li 
-              key={index} 
-              className={`nav-item ${expandedItem === text ? 'expanded' : ''}`}
-              style={{ width: '100%' }}
-            >
-              <div 
-                onClick={() => handleItemClick(text)}
-                className="nav-item-header"
-                style={{ width: '100%' }}
+        <ul 
+          className={`nav-links ${expandedItem ? 'has-expanded' : ''}`}
+          role="menu"
+        >
+          {navItems.map((item) => {
+            const isExpanded = expandedItem === item.text;
+            const iconPath = `${item.id}-icon.svg`;
+            const expandedPath = `${item.id}-expanded.svg`;
+            
+            return (
+              <li 
+                key={item.id} 
+                className={`nav-item ${isExpanded ? 'expanded' : ''}`}
+                role="menuitem"
               >
-                <div className="nav-item-content">
-                  <object
-                    type="image/svg+xml" 
-                    data={`${text.toLowerCase().replace(/ /g, "-")}-icon.svg`}  
-                    aria-label={text}
-                    className="nav-icon" 
-                  />
-                  <div className="nav-item-text" style={{ fontSize: '40px' }}>{text}</div>
-                  {expandedItem === text ? (
-                    <span
-                      className="nav-arrow"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setExpandedItem(null);
-                      }}
-                    >
-                      ✕
-                    </span>
-                  ) : (
-                    <img
-                      src="down-arrow.svg"
-                      alt="More info"
-                      className="nav-arrow"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleItemClick(text);
-                      }}
-                    />
-                  )}
-                </div>
                 <div 
-                  className="underline-container"
+                  onClick={() => handleItemClick(item.text)}
+                  className="nav-item-header"
+                  tabIndex={isOpen ? 0 : -1}
+                  aria-expanded={isExpanded}
+                  aria-controls={`${item.id}-content`}
                 >
-                  <object
-                    type="image/svg+xml" 
-                    data={expandedItem === text ? 
-                      `${text.toLowerCase().replace(/ /g, "-")}-expanded.svg` : 
-                      "underline.svg"}
-                    aria-label={expandedItem === text ? "Expanded section indicator" : "Section underline"}
-                    className={`nav-underline ${expandedItem === text ? 'expanded-underline' : ''}`}
-                    style={{ 
-                      display: 'flex',
-                      justifyContent: 'flex-end',
-                      width: '97%',
-                      left: '50px'
-                    }}
-                  />
+                  <div className="nav-item-content">
+                    {/* Use img instead of object for better performance */}
+                    <img
+                      src={iconPath}
+                      alt={`${item.text} icon`}
+                      className="nav-icon"
+                      loading="lazy"
+                    />
+                    <div className="nav-item-text">{item.text}</div>
+                    
+                    {/* Toggle button with appropriate semantics */}
+                    <button
+                      className="nav-arrow-button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleItemClick(item.text);
+                      }}
+                      aria-label={isExpanded ? `Collapse ${item.text}` : `Expand ${item.text}`}
+                    >
+                      {isExpanded ? (
+                        <span className="nav-arrow">✕</span>
+                      ) : (
+                        <img
+                          src="down-arrow.svg"
+                          alt="Expand"
+                          className="nav-arrow"
+                        />
+                      )}
+                    </button>
+                  </div>
+                  
+                  <div className="underline-container">
+                    <img
+                      src={isExpanded ? expandedPath : "underline.svg"}
+                      alt=""
+                      className={`nav-underline ${isExpanded ? 'expanded-underline' : ''}`}
+                      aria-hidden="true"
+                    />
+                  </div>
                 </div>
-              </div>
-              {expandedItem === text && (
-                <div className="expanded-content" style={{ width: '0%', height: 'auto' }}>
-                  {/* Add your expanded content here */}
-                </div>
-              )}
-            </li>
-          ))}
+              </li>
+            );
+          })}
         </ul>
-      </div>
+      </nav>
+      
+      {/* Optional backdrop for better UX */}
+      {isOpen && (
+        <div 
+          className="nav-backdrop" 
+          onClick={() => setIsOpen(false)}
+          aria-hidden="true"
+        />
+      )}
     </>
   );
 };

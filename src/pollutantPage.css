@@ -203,7 +203,13 @@ body.sound-panel-active .sound-icon span {
   border: none;
   cursor: pointer;
   padding: 10px;
-  z-index: 10;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.nav-button:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
 }
 
 /* Hamburger Icon */
@@ -213,41 +219,39 @@ body.sound-panel-active .sound-icon span {
   gap: 5px;
 }
 
-/* Default White Icon */
-.hamburger span {
+.hamburger-line {
   display: block;
   width: 30px;
   height: 3px;
   background: white;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.3s;
 }
 
-/* Change to Black Icon When on White Background */
-.white-bg .hamburger span {
-  background: black;
+/* Adjust hamburger color based on background */
+body.right-panel-active .hamburger-line {
+  background-color: black;
 }
 
 /* Fullscreen Menu */
 .nav-menu {
   position: fixed;
   top: 0;
-  left: -106%;
-  width: 100vw;
+  left: -100%;
+  width: 100%;
   height: 100vh;
   background: black;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: 0.4s ease-in-out;
-  z-index: 99 !important;
-  overflow-y: hidden; /* Changed from auto to hidden */
+  transition: left 0.3s ease-in-out;
+  z-index: 1001;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .nav-menu.open {
   left: 0;
-  overflow-y: auto; /* Only enable scrolling when open */
-  z-index: 99 !important;
 }
 
 /* Close Button */
@@ -258,67 +262,201 @@ body.sound-panel-active .sound-icon span {
   font-size: 30px;
   color: white;
   cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 5px;
+  z-index: 1002;
+  transition: transform 0.2s;
+}
+
+.close-btn:hover, 
+.close-btn:focus {
+  transform: scale(1.1);
+  outline: none;
 }
 
 /* Menu List */
 .nav-links {
   list-style: none;
   padding: 0;
-  margin-top: 80px;
-  width: 80%;
-  height: fit-content;
-  max-width: 1200px;
-  margin: 50px auto 0;
-  padding-bottom: 100px;
+  margin: 0px auto 0;
+  transition: opacity 0.3s;
+  margin-top: 10px;
 }
 
 /* Individual Menu Items */
 .nav-item {
-  display: flex;
-  align-items: center;
-  padding: 25px 15px !important;
-  cursor: default;
   margin-bottom: 50px;
-  transition: all 0s;
+  transition: opacity 0.3s ease;
   position: relative;
 }
 
-.nav-item:not(.expanded):hover {
+.nav-item-header {
+  cursor: pointer;
+  padding: 25px 15px;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.nav-item:not(.expanded) .nav-item-header:hover,
+.nav-item:not(.expanded) .nav-item-header:focus {
   background: rgba(255, 255, 255, 0.1);
+  outline: none;
 }
 
 /* Add this rule to disable hover when expanded */
-.nav-item.expanded:hover {
-  background: transparent !important;
+.nav-item.expanded .nav-item-header:hover {
+  background: transparent;
 }
 
-/* Icons on Left */
+/* Item content layout */
+.nav-item-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  gap: 15px;
+}
+
+/* Item text styling */
+.nav-item-text {
+  font-family: Nippo-Light, sans-serif;
+  font-weight: 300;
+  font-size: 48px;
+  line-height: 100%;
+  flex-grow: 1;
+  padding-left: 20px;
+}
+
+/* Navigation icon */
 .nav-icon {
-  width: fit-content;
-  height: 100%;
-  object-fit: fill;
+  width: auto;
+  height: 98px;
+  object-fit: contain;
 }
 
-/* Text on Left */
-.nav-text {
-  flex: 1;
-  font-size: 20px;
-}
-
-/* Dropdown Icon on Right */
-.dropdown-icon {
-  font-size: 20px;
-}
-
-/* Sound Button (Fixed on Top Right) */
-.sound-button {
-  position: fixed;
-  top: 20px;
-  right: 20px;
+/* Arrow button */
+.nav-arrow-button {
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 1000;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-arrow {
+  font-size: 20px;
+  transition: transform 0.2s;
+}
+
+.nav-arrow-button:hover .nav-arrow,
+.nav-arrow-button:focus .nav-arrow {
+  transform: scale(1.1);
+}
+
+/* Underline styling */
+.underline-container {
+  position: relative;
+  width: 100%;
+  min-height: 10px;
+}
+
+.nav-underline {
+  width: 97%;
+  margin-left: 38px;
+  transition: all 0.3s ease;
+}
+
+.expanded-underline {
+  width: 100%;
+}
+
+/* Expanded content styling */
+.expanded-content {
+  padding: 0px 0;
+  overflow: hidden;
+  animation: expandContent 0.3s ease-in-out;
+  max-height: 1000px; /* Generous height, will be animated */
+}
+
+/* Item state for when some item is expanded */
+.nav-links.has-expanded .nav-item:not(.expanded) {
+  opacity: 0.3;
+}
+
+/* Optional backdrop */
+.nav-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* Animations */
+@keyframes expandContent {
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    max-height: 1000px;
+    opacity: 1;
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .nav-links {
+    width: 90%;
+    margin-top: 60px;
+  }
+  
+  .nav-item-text {
+    font-size: 36px;
+  }
+  
+  .nav-icon {
+    height: 36px;
+  }
+  
+  .nav-item.expanded:nth-child(1),
+  .nav-item.expanded:nth-child(2),
+  .nav-item.expanded:nth-child(3),
+  .nav-item.expanded:nth-child(4) {
+    margin-bottom: 200px; /* More reasonable size on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-item-text {
+    font-size: 24px;
+  }
+  
+  .nav-icon {
+    height: 24px;
+  }
+}
+
+/* Accessibility: focus styles */
+:focus-visible {
+  outline: 2px solid #61dafb;
+  outline-offset: 2px;
+}
+
+/* High contrast mode improvements */
+@media (forced-colors: active) {
+  .hamburger-line {
+    background: CanvasText;
+  }
+  
+  .nav-menu {
+    border: 1px solid CanvasText;
+  }
 }
 
 /* ✅ Ensuring Full-Page Scroll */
@@ -597,59 +735,6 @@ body.sound-panel-active .sound-icon span {
   display: none !important;
 }
 
-/* Adjust nav-item spacing */
-.nav-item {
-  padding: 25px 15px;
-  transition: all 0s;
-  position: relative;
-  margin-bottom: 50px;
-}
-
-.nav-item.expanded {
-  margin-bottom: 300px !important;  /* Default for first item */
-}
-
-/* Apply different margins based on item order */
-.nav-item.expanded:nth-child(1) { margin-bottom: 330px !important; }  /* Agriculture waste */
-.nav-item.expanded:nth-child(2) { margin-bottom: 415px !important; }  /* Heavy metal waste */
-.nav-item.expanded:nth-child(3) { margin-bottom: 230px !important; }  /* Radioactive waste */
-.nav-item.expanded:nth-child(4) { margin-bottom: 480px !important; }  /* Sewage waste */
-
-.expanded-underline {
-  transform: none !important;
-  transition: all 0s;
-}
-
-.underline-container {
-  position: relative;
-  width: 100%;
-  min-height: 10px; /* Reserve space for expanded underline */
-}
-
-/* Hamburger icon lines */
-.hamburger-line {
-  background-color: white;
-  transition: all 0.3s ease;
-}
-
-body.right-panel-active .hamburger-line {
-  background-color: black;
-}
-
-/* Keep black color when menu is open */
-.nav-menu.open .hamburger-line {
-  background-color: white !important;
-}
-
-/* Homepage overrides */
-body.homepage-active .sound-icon span {
-  background: black !important;
-}
-
-body.homepage-active .hamburger span {
-  background: black !important;
-}
-
 /* Add to bottom of file */
 .main-container {
   position: relative;
@@ -821,14 +906,6 @@ body.homepage-active .hamburger span {
 .ellipse-12.active {
   background: white;
   box-shadow: 0 0 10px rgba(255,255,255,0.5);
-}
-
-.expanded-content {
-  height: auto;
-  min-height: 100px; /* Set minimum height if needed */
-  width: 100%;
-  padding: 20px 0;
-  position: relative;
 }
 
 .nav-item:not(.expanded) {
@@ -1351,4 +1428,12 @@ img {
   cursor: ew-resize;
   /* Add the pulse animation on top of the base scale */
   animation: sliderPulse 1.5s infinite ease-in-out;
+}
+
+.nav-item-text {
+  font-family: Nippo-Light;
+  font-weight: 300;
+  font-size: 48px;
+  line-height: 100%;
+  letter-spacing: 0%;
 }
