@@ -1,6 +1,35 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
+// New component to handle interactive SVGs
+const InteractiveSVG = ({ src, className, isExpanded }) => {
+  const [svgContent, setSvgContent] = useState(null);
+  
+  useEffect(() => {
+    // Fetch the SVG content
+    fetch(src)
+      .then(response => response.text())
+      .then(text => {
+        setSvgContent(text);
+      })
+      .catch(error => {
+        console.error("Error loading SVG:", error);
+      });
+  }, [src]);
+
+  if (!svgContent) {
+    return <div className={className}>Loading...</div>;
+  }
+
+  // Create a container that will render the SVG content as HTML
+  return (
+    <div 
+      className={className}
+      dangerouslySetInnerHTML={{ __html: svgContent }}
+    />
+  );
+};
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [expandedItem, setExpandedItem] = useState(null);
@@ -116,14 +145,63 @@ const Navbar = () => {
       setExpandedItem(text);
     }
     // If the clicked item is already expanded, we'll leave it to the X button to collapse
-    // (This function won't be called for collapse anymore)
   };
   
-  // New function specifically for collapsing
+  // Function specifically for collapsing
   const handleCollapseClick = (e) => {
     e.stopPropagation(); // Prevent event bubbling
     setExpandedItem(null);
   };
+  
+  // New function to handle SVG element clicks
+  const handleSvgElementClick = (e, action) => {
+    e.stopPropagation();
+    
+    // Check if the click was on or within an SVG element with data-action attribute
+    const clickedElement = e.target.closest('[data-action]');
+    if (clickedElement) {
+      const action = clickedElement.getAttribute('data-action');
+      
+      // Handle different actions
+      switch (action) {
+        case 'navigate':
+          const route = clickedElement.getAttribute('data-route');
+          if (route) {
+            navigate(route);
+          }
+          break;
+        case 'link':
+          const url = clickedElement.getAttribute('data-url');
+          if (url) {
+            window.open(url, '_blank');
+          }
+          break;
+        case 'toggle':
+          const targetId = clickedElement.getAttribute('data-target');
+          // Handle toggle logic here
+          break;
+        default:
+          console.log(`Unknown action: ${action}`);
+      }
+    }
+  };
+  
+  // Event delegation for SVG interactions
+  useEffect(() => {
+    // Add global click handler for SVG interactions
+    const handleDocumentClick = (e) => {
+      // Check if click is within an expanded item's SVG
+      const expandedSvg = document.querySelector('.nav-item.expanded .nav-underline');
+      if (expandedSvg && expandedSvg.contains(e.target)) {
+        handleSvgElementClick(e);
+      }
+    };
+    
+    document.addEventListener('click', handleDocumentClick);
+    return () => {
+      document.removeEventListener('click', handleDocumentClick);
+    };
+  }, [expandedItem]);
   
   // Close menu when escape key is pressed
   useEffect(() => {
@@ -254,12 +332,22 @@ const Navbar = () => {
                     </div>
                     
                     <div className="underline-container">
-                      <img
-                        src={isExpanded ? expandedPath : "underline.svg"}
-                        alt=""
-                        className={`nav-underline ${isExpanded ? 'expanded-underline' : ''}`}
-                        aria-hidden="true"
-                      />
+                      {isExpanded ? (
+                        // Use the InteractiveSVG component for expanded items
+                        <InteractiveSVG
+                          src={expandedPath}
+                          className={`nav-underline expanded-underline`}
+                          isExpanded={isExpanded}
+                        />
+                      ) : (
+                        // Use regular img for non-expanded items
+                        <img
+                          src="underline.svg"
+                          alt=""
+                          className="nav-underline"
+                          aria-hidden="true"
+                        />
+                      )}
                     </div>
                   </div>
                 </li>
