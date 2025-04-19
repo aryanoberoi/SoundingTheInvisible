@@ -33,14 +33,27 @@ export const UsesOfPlant = ({ sectionsData }) => {
   const handleReadMore = (sectionId) => {
     // If we're currently expanded and about to collapse
     if (expandedSection === sectionId) {
-      setExpandedSection(null);
-      // Scroll back to the top of the section after state update
-      setTimeout(() => {
-        const sectionElement = sectionRefs.current[sectionId];
-        if (sectionElement) {
-          sectionElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 10); // Small timeout to ensure DOM has updated
+      // Store reference to section element before state update
+      const sectionElement = sectionRefs.current[sectionId];
+      
+      if (sectionElement) {
+        // Get the current position of the section
+        const rect = sectionElement.getBoundingClientRect();
+        const offsetPosition = window.pageYOffset + rect.top - 50; // 50px above the section
+        
+        // First update state
+        setExpandedSection(null);
+        
+        // Then scroll in the next tick after React has updated the DOM
+        requestAnimationFrame(() => {
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        });
+      } else {
+        setExpandedSection(null);
+      }
     } else {
       // If we're expanding, just set the state
       setExpandedSection(sectionId);
