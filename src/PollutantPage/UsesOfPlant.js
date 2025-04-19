@@ -11,6 +11,7 @@ import additionalImage from "./uses3.png";
 export const UsesOfPlant = ({ sectionsData }) => {
   const [expandedSection, setExpandedSection] = useState(null);
   const contentRefs = useRef({});
+  const sectionRefs = useRef({});
   
   // Destructure props
   const { plantName, sections: groupedSections } = sectionsData;
@@ -30,7 +31,20 @@ export const UsesOfPlant = ({ sectionsData }) => {
   };
 
   const handleReadMore = (sectionId) => {
-    setExpandedSection(prev => prev === sectionId ? null : sectionId);
+    // If we're currently expanded and about to collapse
+    if (expandedSection === sectionId) {
+      setExpandedSection(null);
+      // Scroll back to the top of the section after state update
+      setTimeout(() => {
+        const sectionElement = sectionRefs.current[sectionId];
+        if (sectionElement) {
+          sectionElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 10); // Small timeout to ensure DOM has updated
+    } else {
+      // If we're expanding, just set the state
+      setExpandedSection(sectionId);
+    }
   };
   
   return (
@@ -40,7 +54,11 @@ export const UsesOfPlant = ({ sectionsData }) => {
       </div>
 
       {groupedSections.map(section => (
-        <div key={section.id} className={`uses-container-${section.id}`}>
+        <div 
+          key={section.id} 
+          className={`uses-container-${section.id}`}
+          ref={el => sectionRefs.current[section.id] = el}
+        >
           <div className="circle-inverted" />
           <img 
             src={getSectionImage(section.id)} 
