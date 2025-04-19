@@ -46,13 +46,13 @@
   border: 1px solid #333;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 10000;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 0 5px rgba(255, 255, 255, 0), 0 0 0 1px #333;
   transition: border-color 0.2s, box-shadow 0.2s;
-  /* Offset to avoid direct overlap with system cursor */
   margin-left: 2px;
   margin-top: 2px;
+  will-change: transform;
 }
 
 .custom-cursor::after {
@@ -76,4 +76,37 @@
 
 .custom-cursor-inverted::after {
   background-color: #ccc;
+}
+
+/* Ensure SVG elements work with the custom cursor */
+svg {
+  pointer-events: auto;
+}
+
+/* Enhance the cursor to work better with SVG elements */
+/* The .custom-cursor rule above was updated */
+
+/* Ensure the cursor is visible when over SVG elements */
+[data-cursor-invert="true"] {
+  cursor: none !important;
+}
+
+/* Dark elements should have correct cursor behavior */
+.nav-menu.open [data-cursor-invert="true"],
+.nav-item [data-cursor-invert="true"],
+svg[data-cursor-invert="true"] {
+  cursor: none !important;
+}
+
+/* Define a specific cursor style for clickable SVG elements */
+svg [data-action] {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+/* Fix for InteractiveSVG component */
+.nav-underline.expanded-underline svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }

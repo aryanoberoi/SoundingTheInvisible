@@ -1,21 +1,40 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
-// New component to handle interactive SVGs
+// Enhanced InteractiveSVG component with cursor support
 const InteractiveSVG = ({ src, className, isExpanded }) => {
   const [svgContent, setSvgContent] = useState(null);
+  const svgContainerRef = useRef(null);
   
   useEffect(() => {
     // Fetch the SVG content
     fetch(src)
       .then(response => response.text())
       .then(text => {
-        setSvgContent(text);
+        // Add data-cursor-invert attributes to SVG elements before rendering
+        const enhancedSvg = text.replace('<svg', '<svg data-cursor-invert="true"');
+        setSvgContent(enhancedSvg);
       })
       .catch(error => {
         console.error("Error loading SVG:", error);
       });
   }, [src]);
+
+  // Make SVG container mouse-transparent for cursor tracking
+  useEffect(() => {
+    if (svgContainerRef.current) {
+      // Ensure mouse events pass through for cursor tracking
+      const svgElement = svgContainerRef.current.querySelector('svg');
+      if (svgElement) {
+        // Make sure SVG responds to mouse events for interactivity
+        // but still allows events to bubble up for cursor tracking
+        svgElement.style.pointerEvents = 'auto';
+      }
+      
+      // Add data attribute to container for cursor inversion
+      svgContainerRef.current.setAttribute('data-cursor-invert', 'true');
+    }
+  }, [svgContent]);
 
   if (!svgContent) {
     return <div className={className}>Loading...</div>;
@@ -24,6 +43,7 @@ const InteractiveSVG = ({ src, className, isExpanded }) => {
   // Create a container that will render the SVG content as HTML
   return (
     <div 
+      ref={svgContainerRef}
       className={className}
       dangerouslySetInnerHTML={{ __html: svgContent }}
     />
@@ -46,6 +66,20 @@ const Navbar = () => {
     { id: "radioactive-waste", text: "Radioactive waste" },
     { id: "sewage-waste", text: "Sewage waste" }
   ];
+
+  // Add cursor interaction to the navbar
+  useEffect(() => {
+    // Set data attributes for cursor inversion on navbar elements
+    const navElements = document.querySelectorAll('.nav-menu, .nav-item, .nav-arrow-button');
+    navElements.forEach(el => {
+      el.setAttribute('data-cursor-invert', 'true');
+    });
+    
+    // Ensure menu is properly marked for cursor inversion
+    if (menuRef.current) {
+      menuRef.current.setAttribute('data-cursor-invert', 'true');
+    }
+  }, [isOpen, expandedItem]);
 
   // Calculate and apply scaling to fit menu in viewport including the 5% gap
   useEffect(() => {
@@ -237,6 +271,7 @@ const Navbar = () => {
           onClick={() => setIsOpen(true)}
           aria-label="Open navigation menu"
           aria-expanded={isOpen}
+          data-cursor-invert="true"
         >
           <div className="hamburger">
             <span className="hamburger-line"></span>
@@ -253,11 +288,13 @@ const Navbar = () => {
         aria-hidden={!isOpen}
         role="navigation"
         style={{ scrollBehavior: 'smooth' }}
+        data-cursor-invert="true"
       >
         <button 
           className="close-btn" 
           onClick={() => setIsOpen(false)}
           aria-label="Close navigation menu"
+          data-cursor-invert="true"
         >
           ✕
         </button>
@@ -275,11 +312,13 @@ const Navbar = () => {
             transition: 'transform 0.3s ease',
             paddingTop: expandedItem ? '0' : '7%',
           }}
+          data-cursor-invert="true"
         >
           <ul 
             className={`nav-links ${expandedItem ? 'has-expanded' : ''}`}
             ref={navLinksRef}
             role="menu"
+            data-cursor-invert="true"
           >
             {navItems.map((item) => {
               const isExpanded = expandedItem === item.text;
@@ -291,6 +330,7 @@ const Navbar = () => {
                   key={item.id} 
                   className={`nav-item ${isExpanded ? 'expanded' : ''}`}
                   role="menuitem"
+                  data-cursor-invert="true"
                 >
                   <div 
                     // Only attach click handler if not expanded
@@ -299,16 +339,18 @@ const Navbar = () => {
                     tabIndex={isOpen ? 0 : -1}
                     aria-expanded={isExpanded}
                     aria-controls={`${item.id}-content`}
+                    data-cursor-invert="true"
                   >
-                    <div className="nav-item-content">
+                    <div className="nav-item-content" data-cursor-invert="true">
                       {/* Use img instead of object for better performance */}
                       <img
                         src={iconPath}
                         alt={`${item.text} icon`}
                         className="nav-icon"
                         loading="lazy"
+                        data-cursor-invert="true"
                       />
-                      <div className="nav-item-text">{item.text}</div>
+                      <div className="nav-item-text" data-cursor-invert="true">{item.text}</div>
                       
                       {/* Toggle button with appropriate semantics */}
                       <button
@@ -318,20 +360,22 @@ const Navbar = () => {
                           handleItemClick(item.text);
                         }}
                         aria-label={isExpanded ? `Collapse ${item.text}` : `Expand ${item.text}`}
+                        data-cursor-invert="true"
                       >
                         {isExpanded ? (
-                          <span className="nav-arrow">✕</span>
+                          <span className="nav-arrow" data-cursor-invert="true">✕</span>
                         ) : (
                           <img
                             src="down-arrow.svg"
                             alt="Expand"
                             className="nav-arrow"
+                            data-cursor-invert="true"
                           />
                         )}
                       </button>
                     </div>
                     
-                    <div className="underline-container">
+                    <div className="underline-container" data-cursor-invert="true">
                       {isExpanded ? (
                         // Use the InteractiveSVG component for expanded items
                         <InteractiveSVG
@@ -346,6 +390,7 @@ const Navbar = () => {
                           alt=""
                           className="nav-underline"
                           aria-hidden="true"
+                          data-cursor-invert="true"
                         />
                       )}
                     </div>
@@ -363,6 +408,7 @@ const Navbar = () => {
           className="nav-backdrop" 
           onClick={() => setIsOpen(false)}
           aria-hidden="true"
+          data-cursor-invert="true"
         />
       )}
     </>

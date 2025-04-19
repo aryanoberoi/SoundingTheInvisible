@@ -1,33 +1,36 @@
-import React, { useEffect } from "react";
+// App.js - Custom Cursor Implementation Fix
+
+import React, { useEffect, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Homepage from "./Homepage"; 
 import PollutantPage from "./PollutantPage"; 
 import Navbar from "./Navbar"; 
+import "./App.css"; // New separate file for cursor styles
 
-const AppContent = () => {
-  const location = useLocation();
-  const [categorizedData, setCategorizedData] = React.useState({});
-
+// Custom cursor component
+const CustomCursor = () => {
+  const cursorRef = useRef(null);
+  
   useEffect(() => {
-    let cursor = document.querySelector('.custom-cursor');
-    if (!cursor) {
-      cursor = document.createElement('div');
-      cursor.classList.add('custom-cursor');
-      document.body.appendChild(cursor);
-    }
-
+    const cursor = cursorRef.current;
+    
     // Track mouse position with throttling for performance
     let mouseX = 0;
     let mouseY = 0;
     let cursorX = 0;
     let cursorY = 0;
     let isUpdating = false;
-    let animationFrameId = null; // Keep track of animation frame
+    let animationFrameId = null;
 
     // Throttled mousemove handler
     const handleMouseMove = (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
+
+      // Force cursor to be visible when mouse moves
+      if (cursor.style.display === 'none') {
+        cursor.style.display = 'block';
+      }
 
       // Start update loop if not already running
       if (!isUpdating) {
@@ -80,7 +83,7 @@ const AppContent = () => {
       }
     }
 
-    // Helper function to determine if element has dark background (Updated Logic)
+    // Helper function to determine if element has dark background
     function isElementDark(element) {
       if (!element) return false; // Base case
 
@@ -92,54 +95,57 @@ const AppContent = () => {
       if (element.classList.contains('dark') ||
           element.classList.contains('bg-dark') ||
           element.classList.contains('dark-mode') ||
-          element.closest('.dark, .bg-dark, .dark-mode')) { // Check ancestors too
+          element.closest('.dark, .bg-dark, .dark-mode')) {
         return true;
       }
 
-      // Check computed background color if reasonable performance
-      // Only checking direct element, not traversing up further here for performance reasons
-      try { // Added try-catch block
+      // Check computed background color
+      try {
         const bgColor = window.getComputedStyle(element).backgroundColor;
         if (bgColor && bgColor !== 'transparent' && bgColor !== 'rgba(0, 0, 0, 0)') {
           // Parse RGB values
           const rgb = bgColor.match(/\d+/g);
           if (rgb && rgb.length >= 3) {
-            // Simple brightness formula (max value 255*3 = 765)
+            // Simple brightness formula
             const brightness = parseInt(rgb[0]) + parseInt(rgb[1]) + parseInt(rgb[2]);
-            if (brightness < 380) { // Threshold for "dark" (adjust as needed)
+            if (brightness < 380) { // Threshold for "dark"
                return true;
             }
-            // No need for explicit light check here if parent check follows
           }
         }
       } catch(e) {
-          // Ignore errors from pseudo-elements or elements not in the DOM
-          console.warn("Could not compute style for element:", element, e);
+        console.warn("Could not compute style for element:", element, e);
       }
 
-      // Check parent element recursively if direct element doesn't provide conclusive result
+      // Check parent element recursively
       const parent = element.parentElement;
-      if (parent && parent !== document.body) { // Stop at body
-         return isElementDark(parent);
+      if (parent && parent !== document.body) {
+        return isElementDark(parent);
       }
 
       return false; // Default to not dark
     }
 
-    // Keep default cursor visible (as per new logic)
-    // const originalCursorStyle = document.body.style.cursor; // No longer needed
-    // document.body.style.cursor = 'none'; // No longer hiding default cursor
-
     // Handle cursor showing/hiding when leaving/entering window
     const handleMouseEnter = () => {
-      if (cursor) cursor.style.display = 'block';
+      cursor.style.display = 'block';
     };
+    
     const handleMouseLeave = () => {
-      if (cursor) cursor.style.display = 'none';
+      cursor.style.display = 'none';
     };
 
     document.addEventListener('mouseenter', handleMouseEnter);
     document.addEventListener('mouseleave', handleMouseLeave);
+
+    // Initial cursor position at center of screen
+    cursorX = window.innerWidth / 2;
+    cursorY = window.innerHeight / 2;
+    cursor.style.left = `${cursorX}px`;
+    cursor.style.top = `${cursorY}px`;
+    
+    // Force cursor to be visible initially
+    cursor.style.display = 'block';
 
     // Cleanup function
     return () => {
@@ -149,13 +155,23 @@ const AppContent = () => {
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
       }
-      if (cursor && cursor.parentNode) {
-        cursor.remove(); // Clean up the cursor element
-      }
-      // No need to restore original cursor style as it wasn't changed
-      // document.body.style.cursor = originalCursorStyle;
     };
-  }, []); // Empty dependency array ensures this runs only once on mount
+  }, []);
+
+  return (
+    <div 
+      ref={cursorRef} 
+      className="custom-cursor"
+      style={{ display: 'block' }} // Ensure it's visible by default
+    >
+      <div className="cursor-dot"></div>
+    </div>
+  );
+};
+
+const AppContent = () => {
+  const location = useLocation();
+  const [categorizedData, setCategorizedData] = React.useState({});
 
   useEffect(() => {
     const sheetId = "1az7_Vg0GPH2FF393w0sjCmGUxHKEYnIsSDyAJIq8fxs";
@@ -184,11 +200,9 @@ const AppContent = () => {
           return acc;
         }, {});
         setCategorizedData(categorizedData); // Set the state with categorized data
-
-        console.log(categorizedData);
     })
     .catch(err => console.error("Error fetching sheet:", err));
-}, []);
+  }, []);
 
   useEffect(() => {
     if (location.pathname === "/") {
@@ -200,6 +214,7 @@ const AppContent = () => {
 
   return (
     <div>
+      <CustomCursor />
       <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
@@ -210,8 +225,6 @@ const AppContent = () => {
 };
 
 const App = () => {
-
-
   return (
     <Router>
       <AppContent />
