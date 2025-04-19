@@ -1527,3 +1527,28 @@ img {
 .nav-item:last-child.expanded {
   margin-bottom: 150px; /* Add more space for the last item */
 }
+
+/* Make the X symbol visible in expanded state */
+.nav-item.expanded .nav-arrow {
+  color: white; /* Ensure contrast against the dark background */
+  font-size: 24px; /* Make it slightly larger */
+  font-weight: bold; /* Make it bolder */
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Add subtle shadow for better visibility */
+  position: relative;
+  z-index: 10; /* Ensure it's above any potential overlapping elements */
+}
+
+/* Add hover effect specific to the close button */
+.nav-item.expanded .nav-arrow-button:hover .nav-arrow {
+  transform: scale(1.2); /* Slightly larger scale on hover */
+  color: #61dafb; /* Light blue highlight on hover (matching the App-link color) */
+}
+
+/* Ensure the button itself is properly positioned and visible */
+.nav-item.expanded .nav-arrow-button {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

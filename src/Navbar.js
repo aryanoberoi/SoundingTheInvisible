@@ -109,8 +109,20 @@ const Navbar = () => {
     }
   }, [expandedItem, previousExpanded]); // Depend on both states
 
+  // Modified to separate expand and collapse logic
   const handleItemClick = (text) => {
-    setExpandedItem(prevExpanded => prevExpanded === text ? null : text);
+    // If no item is currently expanded, expand the clicked item
+    if (!expandedItem) {
+      setExpandedItem(text);
+    }
+    // If the clicked item is already expanded, we'll leave it to the X button to collapse
+    // (This function won't be called for collapse anymore)
+  };
+  
+  // New function specifically for collapsing
+  const handleCollapseClick = (e) => {
+    e.stopPropagation(); // Prevent event bubbling
+    setExpandedItem(null);
   };
   
   // Close menu when escape key is pressed
@@ -203,7 +215,8 @@ const Navbar = () => {
                   role="menuitem"
                 >
                   <div 
-                    onClick={() => handleItemClick(item.text)}
+                    // Only attach click handler if not expanded
+                    onClick={!isExpanded ? () => handleItemClick(item.text) : undefined}
                     className="nav-item-header"
                     tabIndex={isOpen ? 0 : -1}
                     aria-expanded={isExpanded}
@@ -222,7 +235,7 @@ const Navbar = () => {
                       {/* Toggle button with appropriate semantics */}
                       <button
                         className="nav-arrow-button"
-                        onClick={(e) => {
+                        onClick={isExpanded ? handleCollapseClick : (e) => {
                           e.stopPropagation();
                           handleItemClick(item.text);
                         }}
