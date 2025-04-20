@@ -1,8 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
+// Import the expanded content components directly
+// Assuming these files export React components
+// If these imports cause errors, check the exact path to your files
+import AgricultureWasteExpanded from './agriculture-waste-expanded';
+import HeavyMetalWasteExpanded from './heavy-metal-waste-expanded';
+import RadioactiveWasteExpanded from './radioactive-waste-expanded';
+import SewageWasteExpanded from './sewage-waste-expanded';
+
 // Enhanced InteractiveSVG component with cursor support
-const InteractiveSVG = ({ src, className, isExpanded }) => {
+const InteractiveSVG = ({ src, className }) => {
   const [svgContent, setSvgContent] = useState(null);
   const svgContainerRef = useRef(null);
   
@@ -59,12 +67,12 @@ const Navbar = () => {
   const [menuScale, setMenuScale] = useState(1);
   const navigate = useNavigate();
   
-  // List of navigation items for easy maintenance
+  // List of navigation items for easy maintenance with their corresponding components
   const navItems = [
-    { id: "agriculture-waste", text: "Agriculture waste" },
-    { id: "heavy-metal-waste", text: "Heavy metal waste" },
-    { id: "radioactive-waste", text: "Radioactive waste" },
-    { id: "sewage-waste", text: "Sewage waste" }
+    { id: "agriculture-waste", text: "Agriculture waste", component: AgricultureWasteExpanded },
+    { id: "heavy-metal-waste", text: "Heavy metal waste", component: HeavyMetalWasteExpanded },
+    { id: "radioactive-waste", text: "Radioactive waste", component: RadioactiveWasteExpanded },
+    { id: "sewage-waste", text: "Sewage waste", component: SewageWasteExpanded }
   ];
 
   // Add cursor interaction to the navbar
@@ -323,7 +331,7 @@ const Navbar = () => {
             {navItems.map((item) => {
               const isExpanded = expandedItem === item.text;
               const iconPath = `${item.id}-icon.svg`;
-              const expandedPath = `${item.id}-expanded.svg`;
+              const { component: ExpandedComponent } = item;
               
               return (
                 <li 
@@ -377,12 +385,7 @@ const Navbar = () => {
                     
                     <div className="underline-container" data-cursor-invert="true">
                       {isExpanded ? (
-                        // Use the InteractiveSVG component for expanded items
-                        <InteractiveSVG
-                          src={expandedPath}
-                          className={`nav-underline expanded-underline`}
-                          isExpanded={isExpanded}
-                        />
+                        <ExpandedComponent className="nav-underline expanded-underline" />
                       ) : (
                         // Use regular img for non-expanded items
                         <img

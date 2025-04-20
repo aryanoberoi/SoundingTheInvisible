@@ -1,0 +1,111 @@
+.potassium-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .potassium-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .potassium-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .simazine-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .simazine-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .simazine-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .imidacloprid-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .imidacloprid-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .imidacloprid-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .atrazine-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .atrazine-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .atrazine-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .glyphosate-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .glyphosate-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .glyphosate-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .phosphorus-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .phosphorus-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .phosphorus-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .nitrates-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .nitrates-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .nitrates-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .nitrates-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .nitrates-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .nitrates-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
