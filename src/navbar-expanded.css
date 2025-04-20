@@ -277,3 +277,45 @@
   .chromium-link:hover .original-path {
     opacity: 0.3; /* Optional: fade the original path when hovering */
   }
+  
+  .thorium-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .thorium-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .thorium-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .strontium-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .strontium-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .strontium-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .strontium-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .strontium-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .strontium-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
