@@ -96,16 +96,184 @@
     opacity: 0.3; /* Optional: fade the original path when hovering */
   }
 
-  .nitrates-link .hover-component {
+  .mercury-link .hover-component {
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none; /* Prevents hover component from interfering with clicks */
   }
   
-  .nitrates-link:hover .hover-component {
+  .mercury-link:hover .hover-component {
     opacity: 1;
   }
   
-  .nitrates-link:hover .original-path {
+  .mercury-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .cadmium-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .cadmium-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .cadmium-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .lead-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .lead-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .lead-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .copper-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .copper-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .copper-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  } 
+
+  .arsenic-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .arsenic-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .arsenic-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .thallium-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .thallium-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .thallium-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .selenium-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .selenium-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .selenium-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .nickel-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .nickel-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .nickel-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .zinc-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .zinc-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .zinc-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .iron-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .iron-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .iron-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .aluminium-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .aluminium-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .aluminium-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .manganese-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .manganese-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .manganese-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .chromium-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .chromium-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .chromium-link:hover .original-path {
     opacity: 0.3; /* Optional: fade the original path when hovering */
   }
