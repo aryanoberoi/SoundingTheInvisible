@@ -675,7 +675,11 @@ useEffect(() => {
 
   return (
     <>
-          <SoundToggle padNumber={leftpanelcontent[0].pollutantNumber}/>
+          <SoundToggle 
+            padNumber={leftpanelcontent[0].pollutantNumber}
+            sliderPosition={sliderPosition}
+            isInCombinedSection={false} // Will be updated through scroll detection
+          />
       <div 
         id="slider-container" 
         className="slider-container"
