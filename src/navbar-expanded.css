@@ -306,16 +306,198 @@
     opacity: 0.3; /* Optional: fade the original path when hovering */
   }
 
-  .strontium-link .hover-component {
+  .vallisneria-link .hover-component {
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none; /* Prevents hover component from interfering with clicks */
   }
   
-  .strontium-link:hover .hover-component {
+  .vallisneria-link:hover .hover-component {
     opacity: 1;
   }
   
-  .strontium-link:hover .original-path {
+  .vallisneria-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .ammonium-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .ammonium-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .ammonium-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .benzene-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .benzene-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .benzene-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .crude-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .crude-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .crude-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .petrol-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .petrol-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .petrol-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .sulphide-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .sulphide-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .sulphide-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .diesel-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .diesel-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .diesel-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .phthalate-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .phthalate-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .phthalate-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .phenol-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .phenol-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .phenol-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .organic-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .organic-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .organic-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .estrogen-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .estrogen-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .estrogen-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .fragrance-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .fragrance-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .fragrance-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .diclofenac-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .diclofenac-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .diclofenac-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .bht-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .bht-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .bht-link:hover .original-path {
     opacity: 0.3; /* Optional: fade the original path when hovering */
   }
