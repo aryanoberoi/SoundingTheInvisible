@@ -449,6 +449,24 @@ body.right-panel-active .hamburger-line {
 
 .expanded-underline {
   width: 100%;
+  margin-left: 0;
+}
+
+/* Target by position in the list - more reliable than attributes */
+.nav-links .nav-item:nth-child(1) .expanded-underline {
+  margin-left: 0px;
+}
+
+.nav-links .nav-item:nth-child(2) .expanded-underline {
+  margin-left: 42px;
+}
+
+.nav-links .nav-item:nth-child(3) .expanded-underline {
+  margin-left: -170px;
+}
+
+.nav-links .nav-item:nth-child(4) .expanded-underline {
+  margin-left: 20px;
 }
 
 /* Expanded content styling */
