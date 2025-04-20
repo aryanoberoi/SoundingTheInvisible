@@ -6,7 +6,7 @@ import Homepage from "./Homepage";
 import PollutantPage from "./PollutantPage"; 
 import Navbar from "./Navbar"; 
 import "./App.css"; // New separate file for cursor styles
-
+import PlayPads from "./PlayPads";
 // Custom cursor component
 const CustomCursor = () => {
   const cursorRef = useRef(null);
@@ -219,6 +219,7 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/:customName" element={<PollutantPage categorizedData={categorizedData} />} />
+        <Route path="/playtest" element={<PlayPads />} />
       </Routes>
     </div>
   );
