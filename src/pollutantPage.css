@@ -45,7 +45,6 @@ body, html {
   justify-content: center;
   align-items: center;
   z-index: 10;
-  top: -15em; /* Ensures the slider is above the panels */
 }
 
 .slider-circle {

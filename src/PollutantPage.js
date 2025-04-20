@@ -29,10 +29,14 @@ const PollutantPage = (categorizedData) => {
   const [leftPanelLoaded, setLeftPanelLoaded] = useState(false); // Track left panel load
   const [rightPanelLoaded, setRightPanelLoaded] = useState(false); // Track right panel load
   
+  // Add a resize observer ref
+  const resizeObserverRef = useRef(null);
+
   // Refs for panels to measure their heights
   const leftPanelRef = useRef(null);
   const rightPanelRef = useRef(null);
   const sliderContainerRef = useRef(null);
+  const sliderBarRef = useRef(null); // Add this new ref
   const lastPositionRef = useRef(sliderPosition); // Add ref to track latest position
 
   // Pollutant categorization by waste type
@@ -399,26 +403,41 @@ const PollutantPage = (categorizedData) => {
 
   // Function to update container height based on panel heights
   const updateContainerHeight = () => {
-    // Ensure refs are available before proceeding
-    if (!leftPanelRef.current || !rightPanelRef.current || !sliderContainerRef.current) {
-      console.log("Height update skipped: Refs not ready.");
+    console.log("Attempting to update container height...");
+
+    // Ensure refs are available
+    if (!leftPanelRef.current || !rightPanelRef.current) {
+      console.log("Height update skipped: Panel refs not ready");
       return;
     }
 
-    // Calculate heights directly now that we know components are loaded
-    const leftPanelHeight = leftPanelRef.current.scrollHeight;
-    const rightPanelHeight = rightPanelRef.current.scrollHeight;
+    // Force layout calculations with getBoundingClientRect()
+    const leftRect = leftPanelRef.current.getBoundingClientRect();
+    const rightRect = rightPanelRef.current.getBoundingClientRect();
 
-    // Use the height of the taller panel
-    const maxHeight = Math.max(leftPanelHeight, rightPanelHeight);
+    // Use the height from getBoundingClientRect instead of scrollHeight
+    const leftPanelHeight = leftRect.height;
+    const rightPanelHeight = rightRect.height;
 
-    // Add a minimum height fallback if calculation results in 0 or very small value
-    const finalHeight = maxHeight > 50 ? `${maxHeight}px` : '78vw'; // Use '78vw' or another sensible default
+    console.log(`Left panel height: ${leftPanelHeight}px, Right panel height: ${rightPanelHeight}px`);
 
+    // Calculate max height with a minimum threshold
+    const maxHeight = Math.max(leftPanelHeight, rightPanelHeight, window.innerHeight);
+    const finalHeight = maxHeight > 100 ? `${maxHeight}px` : '100vh';
+
+    console.log(`Setting container height to: ${finalHeight}`);
     setContainerHeight(finalHeight);
 
-    console.log(`Left panel height: ${leftPanelHeight}px, Right panel height: ${rightPanelHeight}px, Using: ${finalHeight}`);
-  };
+    // Force slider-container to update as well
+    if (sliderContainerRef.current) {
+      sliderContainerRef.current.style.height = finalHeight;
+    }
+    // Directly update slider-bar height using its ref
+    if (sliderBarRef.current) {
+      sliderBarRef.current.style.height = finalHeight;
+      console.log(`Slider bar height set directly to ${finalHeight}`);
+    }
+  }
 
   // Effect to update height when both panels signal loaded state
   useEffect(() => {
@@ -454,12 +473,8 @@ const PollutantPage = (categorizedData) => {
     // Add slider transition variable for dynamic control
     document.documentElement.style.setProperty('--slider-transition', 'left 0.3s ease-in-out');
 
-    // Update container height on window resize
-    window.addEventListener('resize', updateContainerHeight);
-
     // Clean up on unmount
     return () => {
-      window.removeEventListener('resize', updateContainerHeight);
     };
   }, []); // Initial setup effect, height update logic moved
 
@@ -625,10 +640,86 @@ useEffect(() => {
   }
 }, [activeSection]);
 
+  // Add ResizeObserver implementation in a useEffect
+  useEffect(() => {
+    console.log("Setting up ResizeObserver...");
+
+    // Clean up any existing observer
+    if (resizeObserverRef.current) {
+      resizeObserverRef.current.disconnect();
+    }
+
+    // Create a new ResizeObserver
+    resizeObserverRef.current = new ResizeObserver((entries) => {
+      console.log("ResizeObserver detected size change");
+      // Use a short timeout to ensure all layout calculations are complete
+      setTimeout(updateContainerHeight, 100);
+    });
+
+    // Observe both panels for size changes
+    if (leftPanelRef.current) {
+      resizeObserverRef.current.observe(leftPanelRef.current);
+    }
+
+    if (rightPanelRef.current) {
+      resizeObserverRef.current.observe(rightPanelRef.current);
+    }
+
+    // Also attach window resize listener as a fallback
+    const handleWindowResize = () => { // Define the handler to remove later
+      console.log("Window resize detected");
+      setTimeout(updateContainerHeight, 100);
+    };
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      // Clean up
+      if (resizeObserverRef.current) {
+        resizeObserverRef.current.disconnect();
+      }
+      window.removeEventListener('resize', handleWindowResize); // Remove the correct handler
+    };
+  }, [leftPanelLoaded, rightPanelLoaded]); // Reinitialize when panel load status changes
+
+  // Add CSS override to ensure our height settings take precedence
+  useEffect(() => {
+    // Add style tag to override any conflicting CSS
+    const styleElement = document.createElement('style');
+    styleElement.textContent = `
+      .slider-container {
+        min-height: ${containerHeight} !important;
+        height: ${containerHeight} !important;
+        overflow: visible !important;
+      }
+
+      .slider-bar {
+        height: ${containerHeight} !important;
+      }
+    `;
+    document.head.appendChild(styleElement);
+
+    return () => {
+      if (styleElement.parentNode) {
+        styleElement.parentNode.removeChild(styleElement);
+      }
+    };
+  }, [containerHeight]); // Update when containerHeight changes
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
-      updateContainerHeight();
+      
+      // Give the browser a moment to finish layout calculations
+      requestAnimationFrame(() => {
+        // Force a recalculation of panel dimensions
+        if (leftPanelRef.current && rightPanelRef.current) {
+          const leftPanelHeight = leftPanelRef.current.scrollHeight;
+          const rightPanelHeight = rightPanelRef.current.scrollHeight;
+          const maxHeight = Math.max(leftPanelHeight, rightPanelHeight);
+          const finalHeight = maxHeight > 50 ? `${maxHeight}px` : '78vw';
+          setContainerHeight(finalHeight);
+        }
+      });
     };
     
     handleResize();
@@ -673,6 +764,81 @@ useEffect(() => {
     }, 50);
   };
 
+  // Add this new effect after the other useEffect blocks but before the return statement
+  useEffect(() => {
+    const handleResize = () => {
+      console.log("Window resize detected");
+      
+      // Immediate fix: Directly set slider-bar height to match window
+      if (sliderBarRef.current) {
+        // Get the container height first
+        const container = sliderContainerRef.current;
+        const containerHeight = container ? 
+          `${container.offsetHeight}px` : 
+          `${window.innerHeight}px`;
+        
+        // Apply the height directly
+        sliderBarRef.current.style.height = containerHeight;
+        console.log(`Direct resize: set slider-bar to ${containerHeight}`);
+      }
+      
+      // Still call the full update for React state
+      updateContainerHeight();
+    };
+    
+    // Attach resize listener
+    window.addEventListener('resize', handleResize);
+    
+    // Initial setup
+    handleResize();
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [leftPanelLoaded, rightPanelLoaded]); // Re-setup when panels load
+
+  // Add this new effect after the other useEffect blocks but before the return statement
+  useEffect(() => {
+    if (!sliderBarRef.current) return;
+    
+    console.log("Setting up height debugging...");
+    
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach(mutation => {
+        if (mutation.attributeName === 'style') {
+          const height = sliderBarRef.current.style.height;
+          console.log(`Detected slider-bar height change: ${height}`);
+        }
+      });
+    });
+    
+    observer.observe(sliderBarRef.current, { 
+      attributes: true,
+      attributeFilter: ['style'] 
+    });
+    
+    return () => observer.disconnect();
+  }, [sliderBarRef.current]);
+
+  // Add this new effect after the other useEffect blocks but before the return statement
+  useEffect(() => {
+    const styleEl = document.createElement('style');
+    styleEl.textContent = `
+      .slider-bar {
+        top: 0 !important;
+        bottom: 0 !important;
+        height: 100% !important;
+      }
+    `;
+    document.head.appendChild(styleEl);
+    
+    return () => {
+      if (styleEl.parentNode) {
+        styleEl.parentNode.removeChild(styleEl);
+      }
+    };
+  }, []);
+
   return (
     <>
           <SoundToggle 
@@ -693,8 +859,15 @@ useEffect(() => {
           <RightPanel sections={rightpanelcontent} onLoad={() => setRightPanelLoaded(true)} />
         </div>
         <div
+          ref={sliderBarRef}
           className="slider-bar"
-          style={{ left: `${sliderPosition}%`, height: `calc(${containerHeight} + 57%)` }}
+          style={{ 
+            left: `${sliderPosition}%`,
+            height: containerHeight,
+            minHeight: '100%',  // Fallback to ensure full container height
+            position: 'absolute',
+            top: 0
+          }}
           onMouseDown={handleMouseDown}
         >
           <img
