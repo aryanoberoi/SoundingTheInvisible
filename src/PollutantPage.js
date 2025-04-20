@@ -864,17 +864,19 @@ useEffect(() => {
           style={{ 
             left: `${sliderPosition}%`,
             height: containerHeight,
-            minHeight: '100%',  // Fallback to ensure full container height
+            minHeight: '100%',
             position: 'absolute',
             top: 0
           }}
           onMouseDown={handleMouseDown}
         >
-          <img
-            src="slider.png"
-            alt="Slider"
-            className="slider-image"
-          />
+          <div style={{ position: 'relative', left: '-4px' }}>
+            <img
+              src="slider.png"
+              alt="Slider"
+              className="slider-image"
+            />
+          </div>
         </div>
       </div>
       <div className="combined-section">
