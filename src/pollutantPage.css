@@ -634,7 +634,7 @@ body.right-panel-active .hamburger-line {
   position: sticky !important;
   top: 20px; /* Distance from top of viewport */
   width: 100%;
-  height: calc(100vh - 40px); /* Fixed height instead of max-height */
+  height: calc(100vh); /* Fixed height instead of max-height */
   margin: 0;
   padding: 20px 10px 20px 0;
   overflow-y: auto !important; /* Scrolling within the nav itself */
