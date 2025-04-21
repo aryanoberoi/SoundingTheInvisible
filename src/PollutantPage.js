@@ -335,12 +335,20 @@ const PollutantPage = (categorizedData) => {
     document.documentElement.style.setProperty('--slider-position', `${clampedPosition}%`);
     setSliderPosition(clampedPosition);
 
-    // Toggle visibility and other classes based on dominant panel
-    // Ensures navbar and other styles react correctly to the final snapped position
-    document.body.classList.toggle('right-panel-active', clampedPosition < 3); // Snap target 2 is < 3
-    document.body.classList.toggle('white-panel-active', clampedPosition < 50); // White active only if strictly LESS than 50
-    document.body.classList.toggle('black-panel-active', clampedPosition >= 50); // Black active if GREATER than or EQUAL to 50
-    document.body.classList.toggle('sound-panel-active', clampedPosition < 98); // Snap targets 2, 50 are < 98
+    // Handle panel classes more explicitly to ensure sound button color works correctly
+    if (clampedPosition < 50) {
+      // White panel is active
+      document.body.classList.add('white-panel-active');
+      document.body.classList.remove('black-panel-active');
+    } else {
+      // Black panel is active
+      document.body.classList.add('black-panel-active');
+      document.body.classList.remove('white-panel-active');
+    }
+
+    // Other class toggles remain the same
+    document.body.classList.toggle('right-panel-active', clampedPosition < 3);
+    document.body.classList.toggle('sound-panel-active', clampedPosition < 98);
 
     // Calculate rotation based on slider position
     const newRotation = (clampedPosition / 100) * 360;
@@ -383,7 +391,7 @@ const PollutantPage = (categorizedData) => {
     const thresholdRight = 75; // Midway between 50 and 98
     const snapLeft = 1;
     const snapCenter = 50;
-    const snapRight = 99;
+    const snapRight = 99; // Keep the original 99% snap point
     let snapTarget;
 
     if (currentPosition <= thresholdLeft) {
@@ -395,10 +403,8 @@ const PollutantPage = (categorizedData) => {
     }
     // --- End Snap Logic ---
 
-    // Update to the snapped position using the refactored function
-    // The CSS transition will handle the smooth animation
+    // Update to the snapped position using the original function
     updateSliderPosition(snapTarget);
-    // Optional: Re-enable transitions if they were disabled in handleMouseDown
   };
 
   // Function to update container height based on panel heights
@@ -764,70 +770,68 @@ useEffect(() => {
     }, 50);
   };
 
-  // Add this new effect after the other useEffect blocks but before the return statement
-  useEffect(() => {
-    const handleResize = () => {
-      console.log("Window resize detected");
-      
-      // Immediate fix: Directly set slider-bar height to match window
-      if (sliderBarRef.current) {
-        // Get the container height first
-        const container = sliderContainerRef.current;
-        const containerHeight = container ? 
-          `${container.offsetHeight}px` : 
-          `${window.innerHeight}px`;
-        
-        // Apply the height directly
-        sliderBarRef.current.style.height = containerHeight;
-        console.log(`Direct resize: set slider-bar to ${containerHeight}`);
-      }
-      
-      // Still call the full update for React state
-      updateContainerHeight();
-    };
-    
-    // Attach resize listener
-    window.addEventListener('resize', handleResize);
-    
-    // Initial setup
-    handleResize();
-    
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [leftPanelLoaded, rightPanelLoaded]); // Re-setup when panels load
-
-  // Add this new effect after the other useEffect blocks but before the return statement
-  useEffect(() => {
-    if (!sliderBarRef.current) return;
-    
-    console.log("Setting up height debugging...");
-    
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach(mutation => {
-        if (mutation.attributeName === 'style') {
-          const height = sliderBarRef.current.style.height;
-          console.log(`Detected slider-bar height change: ${height}`);
-        }
-      });
-    });
-    
-    observer.observe(sliderBarRef.current, { 
-      attributes: true,
-      attributeFilter: ['style'] 
-    });
-    
-    return () => observer.disconnect();
-  }, [sliderBarRef.current]);
-
-  // Add this new effect after the other useEffect blocks but before the return statement
+  // Updated useEffect for CSS-based overflow handling AND sound button color
   useEffect(() => {
     const styleEl = document.createElement('style');
     styleEl.textContent = `
+      /* Main container must hide horizontal overflow */
+      body, html, #root {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+        width: 100% !important;
+      }
+      
+      /* Ensure the slider container clips its contents */
+      .slider-container {
+        overflow: hidden !important; /* Use overflow hidden on the container */
+        width: 100% !important;
+        max-width: 100% !important;
+        position: relative !important;
+      }
+      
+      /* Special handling for the slider bar */
       .slider-bar {
-        top: 0 !important;
-        bottom: 0 !important;
-        height: 100% !important;
+        /* Allow internal content to overflow the bar itself */
+        overflow: visible; 
+        /* Use CSS variable for positioning */
+        left: var(--slider-position, 50%); 
+        /* Adjust clip-path slightly to better contain the image */
+        clip-path: inset(0 -40px 0 -40px); /* Allow space for the image */
+      }
+      
+      /* When slider is at far right edge (position approaches 100%) */
+      /* Adjust clipping more aggressively */
+      /* Note: Direct style selection [style*="..."] can be brittle. */
+      /* A class-based approach triggered by sliderPosition might be more robust */
+      /* For now, relying on container overflow and slight image adjustment */
+      .slider-bar[style*="left: 99%"] .slider-image-container {
+         /* transform: translateX(-10px); Might still be needed */
+      }
+
+      /* --- Sound Button Color Overrides --- */
+
+      /* Default sound icon color for black panel (left side) */
+      .sound-icon span {
+        background-color: white; /* Default to white */
+        transition: background-color 0.3s ease; /* Add transition */
+      }
+      
+      /* When in white panel (right side), always show black icons */
+      body.white-panel-active .sound-icon span {
+        background-color: black !important; 
+      }
+      
+      /* Ensure menu state takes precedence regardless of panel */
+      /* Assuming .nav-menu.open is added to body or a high-level container */
+      /* If .nav-menu is separate, target might need adjustment */
+      body.nav-menu-open .sound-icon span, /* Example if class is on body */
+      .nav-menu.open ~ .sound-button .sound-icon span /* Example if button is sibling */ {
+        background-color: white !important;
+      }
+      
+      /* Ensure sound button itself is visible */
+      .sound-button {
+         z-index: 1000; /* Make sure it's above panels */
       }
     `;
     document.head.appendChild(styleEl);
@@ -837,15 +841,16 @@ useEffect(() => {
         styleEl.parentNode.removeChild(styleEl);
       }
     };
-  }, []);
+  }, []); // Empty dependency array, runs once on mount
 
   return (
     <>
-          <SoundToggle 
-            padNumber={leftpanelcontent[0].pollutantNumber}
-            sliderPosition={sliderPosition}
-            isInCombinedSection={false} // Will be updated through scroll detection
-          />
+      <SoundToggle 
+        padNumber={leftpanelcontent[0].pollutantNumber}
+        sliderPosition={sliderPosition}
+        isInCombinedSection={false} // Will be updated through scroll detection
+        panelMode={sliderPosition < 50 ? 'white' : 'black'} // Add panelMode prop
+      />
       <div 
         id="slider-container" 
         className="slider-container"
@@ -862,15 +867,17 @@ useEffect(() => {
           ref={sliderBarRef}
           className="slider-bar"
           style={{ 
-            left: `${sliderPosition}%`,
+            // Use CSS variable for left position (set in .slider-bar rule)
             height: containerHeight,
             minHeight: '100%',
             position: 'absolute',
             top: 0
+            // overflow: 'visible' removed - handled by CSS rules now
           }}
           onMouseDown={handleMouseDown}
         >
-          <div style={{ position: 'relative', left: '-4px' }}>
+          {/* Added container for image */}
+          <div className="slider-image-container" style={{ position: 'relative', left: '-4px' }}>
             <img
               src="slider.png"
               alt="Slider"
