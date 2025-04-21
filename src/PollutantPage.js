@@ -38,6 +38,7 @@ const PollutantPage = (categorizedData) => {
   const sliderContainerRef = useRef(null);
   const sliderBarRef = useRef(null); // Add this new ref
   const lastPositionRef = useRef(sliderPosition); // Add ref to track latest position
+  const navBarRef = useRef(null); // New ref for implementing fallback sticky behavior
 
   // Pollutant categorization by waste type
   const pollutantCategories = {
@@ -843,6 +844,86 @@ useEffect(() => {
     };
   }, []); // Empty dependency array, runs once on mount
 
+  // Add this effect after your other useEffects
+  useEffect(() => {
+    // Skip on mobile
+    if (isMobile) return;
+
+    const navBar = navBarRef.current;
+    const navBarContainer = navBar?.parentElement;
+    
+    if (!navBar || !navBarContainer) return;
+    
+    // Check if native sticky is working by checking position after scroll
+    // We'll use this as a backup in case CSS sticky fails
+    const checkStickySupport = () => {
+      // If the element is out of view, getBoundingClientRect might not work right
+      // So we'll use a more reliable check based on offsetTop
+      const containerRect = navBarContainer.getBoundingClientRect();
+      const navbarTop = navBar.getBoundingClientRect().top;
+      
+      // If navbar is not sticking when it should be...
+      if (containerRect.top < 0 && navbarTop !== 20) {
+        // Native sticky isn't working, apply manual positioning
+        console.log("Sticky positioning not working, applying fallback...");
+        
+        // Enable fallback mode
+        enableFallbackMode();
+      } else {
+        // Native sticky is working fine
+        disableFallbackMode();
+      }
+    };
+    
+    const enableFallbackMode = () => {
+      // Don't re-apply if already in fallback mode
+      if (navBar.classList.contains('using-fallback')) return;
+      
+      navBar.classList.add('using-fallback');
+      
+      // Apply fixed positioning
+      navBar.style.position = 'fixed';
+      navBar.style.top = '20px';
+      navBar.style.width = `${navBarContainer.offsetWidth}px`;
+      
+      // Add placeholder to prevent layout jump
+      const placeholder = document.createElement('div');
+      placeholder.className = 'nav-placeholder';
+      placeholder.style.height = `${navBar.offsetHeight}px`;
+      placeholder.style.width = `${navBar.offsetWidth}px`;
+      navBarContainer.appendChild(placeholder);
+    };
+    
+    const disableFallbackMode = () => {
+      if (!navBar.classList.contains('using-fallback')) return;
+      
+      navBar.classList.remove('using-fallback');
+      
+      // Restore normal positioning
+      navBar.style.position = '';
+      navBar.style.top = '';
+      navBar.style.width = '';
+      
+      // Remove placeholder
+      const placeholder = navBarContainer.querySelector('.nav-placeholder');
+      if (placeholder) {
+        navBarContainer.removeChild(placeholder);
+      }
+    };
+    
+    // Update positioning on scroll and resize
+    window.addEventListener('scroll', checkStickySupport);
+    window.addEventListener('resize', checkStickySupport);
+    
+    // Initial check
+    setTimeout(checkStickySupport, 100);
+    
+    return () => {
+      window.removeEventListener('scroll', checkStickySupport);
+      window.removeEventListener('resize', checkStickySupport);
+    };
+  }, [isMobile]);
+
   return (
     <>
       <SoundToggle 
@@ -887,41 +968,88 @@ useEffect(() => {
         </div>
       </div>
       <div className="combined-section">
-        <div className="nav-bar">
-          {isMobile && (
-            <div className="mobile-menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
-              ☰
+        <div className="nav-bar-container">
+          <div className="nav-bar" ref={navBarRef}>
+            {isMobile && (
+              <div className="mobile-menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+                ☰
+              </div>
+            )}
+            <div className={`nav-items-container ${isMobile ? 'mobile' : ''} ${isMobile && menuOpen ? 'mobile-active' : ''}`}>
+              <div className={`text-wrapper`}
+                   onClick={() => handleNavClick('about-pollutant')}>
+                <span>{leftpanelcontent[0].pollutantName}</span>
+              </div>
+
+              <div className={`div`}
+                   onClick={() => handleNavClick('plant-name')}>
+                <span>{rightpanelcontent[0].plantNameSplit}</span>
+              </div>
+
+              <div className={`text-wrapper-2`}
+                   onClick={() => handleNavClick('sound-frequency')}>
+                <span>Sound frequency</span>
+              </div>
+
+              <div className={`text-wrapper-3`}
+                   onClick={() => handleNavClick('common-names')}>
+                <span>Common names of {rightpanelcontent[0].plantNameSplit}</span>
+              </div>
+
+              <div className={`text-wrapper-4`}
+                   onClick={() => handleNavClick('plant-habitat')}>
+                <span>{rightpanelcontent[0].plantNameSplit}'s Habitat</span>
+              </div>
+
+              <div className={`text-wrapper-5`}
+                   onClick={() => handleNavClick('origin')}>
+                <span>Origin and Geographical Distribution</span>
+              </div>
+
+              <p className={`p`}
+                 onClick={() => handleNavClick('phyto-capacity')}>
+                <span>Phytoremediation capacity of {rightpanelcontent[0].plantNameSplit}</span>
+              </p>
+
+              <div className={`text-wrapper-6`}
+                   onClick={() => handleNavClick('uses-of-plant')}>
+                <span>Uses of {rightpanelcontent[0].plantNameSplit}</span>
+              </div>
+
+              <div className={`text-wrapper-7`}
+                   onClick={() => handleNavClick('references')}>
+                <span>Bibliography</span>
+              </div>
+
+              <div className={`text-wrapper-8`}
+                   onClick={() => handleNavClick('effect-on-health')}>
+                <span>Effect on health</span>
+              </div>
+
+              <div className={`text-wrapper-9`}
+                   onClick={() => handleNavClick('case-study')}>
+                <span>Case study</span>
+              </div>
+
+              <p className={`text-wrapper-10`}
+                 onClick={() => handleNavClick('phytoremediation')}>
+                <span>Phytoremediation of {leftpanelcontent[0].pollutantName}</span>
+              </p>
             </div>
-          )}
-          <div className={`nav-items-container ${isMobile ? 'mobile' : ''}`}>
-            <div className="text-wrapper" onClick={() => handleNavClick('about-pollutant')}>{leftpanelcontent[0].pollutantName}</div>
-            <div className="div" onClick={() => handleNavClick('plant-name')}>{rightpanelcontent[0].plantNameSplit}</div>
-            <div className="text-wrapper-2" onClick={() => handleNavClick('sound-frequency')}>Sound frequency</div>
-            <div className="text-wrapper-3" onClick={() => handleNavClick('common-names')}>Common names of {rightpanelcontent[0].plantNameSplit}</div>
-            <div className="text-wrapper-4" onClick={() => handleNavClick('plant-habitat')}>{rightpanelcontent[0].plantNameSplit}'s Habitat</div>
-            <div className="text-wrapper-5" onClick={() => handleNavClick('origin')}>Origin and Geographical Distribution</div>
-            <p className="p" onClick={() => handleNavClick('phyto-capacity')}>Phytoremediation capacity of {rightpanelcontent[0].plantNameSplit}</p>
-            <div className="text-wrapper-6" onClick={() => handleNavClick('uses-of-plant')}>Uses of {rightpanelcontent[0].plantNameSplit}</div>
-            <div className="text-wrapper-7" onClick={() => handleNavClick('references')}>Bibliography</div>
-            <div className="text-wrapper-8" onClick={() => handleNavClick('effect-on-health')}>Effect on health</div>
-            <div className="text-wrapper-9" onClick={() => handleNavClick('case-study')}>Case study</div>
-            <p className="text-wrapper-10" onClick={() => handleNavClick('phytoremediation')}>
-              Phytoremediation of {leftpanelcontent[0].pollutantName}
-            </p>
-          </div>
-          <div className="overlap-group">
-            <div className={`ellipse ${activeSection === 'about-pollutant' ? 'active' : ''}`} />
-            <div className={`ellipse-2 ${activeSection === 'sound-frequency' ? 'active' : ''}`} />
-            <div className={`ellipse-3 ${activeSection === 'effect-on-health' ? 'active' : ''}`} />
-            <div className={`ellipse-4 ${activeSection === 'case-study' ? 'active' : ''}`} />
-            <div className={`ellipse-5 ${activeSection === 'phytoremediation' ? 'active' : ''}`} />
-            <div className={`ellipse-6 ${activeSection === 'plant-name' ? 'active' : ''}`} />
-            <div className={`ellipse-7 ${activeSection === 'common-names' ? 'active' : ''}`} />
-            <div className={`ellipse-8 ${activeSection === 'plant-habitat' ? 'active' : ''}`} />
-            <div className={`ellipse-9 ${activeSection === 'origin' ? 'active' : ''}`} />
-            <div className={`ellipse-10 ${activeSection === 'phyto-capacity' ? 'active' : ''}`} />
-            <div className={`ellipse-11 ${activeSection === 'uses-of-plant' ? 'active' : ''}`} />
-            <div className={`ellipse-12 ${activeSection === 'references' ? 'active' : ''}`} />
+            <div className="overlap-group">
+              <div className={`ellipse ${activeSection === 'about-pollutant' ? 'active' : ''}`} />
+              <div className={`ellipse-2 ${activeSection === 'sound-frequency' ? 'active' : ''}`} />
+              <div className={`ellipse-3 ${activeSection === 'effect-on-health' ? 'active' : ''}`} />
+              <div className={`ellipse-4 ${activeSection === 'case-study' ? 'active' : ''}`} />
+              <div className={`ellipse-5 ${activeSection === 'phytoremediation' ? 'active' : ''}`} />
+              <div className={`ellipse-6 ${activeSection === 'plant-name' ? 'active' : ''}`} />
+              <div className={`ellipse-7 ${activeSection === 'common-names' ? 'active' : ''}`} />
+              <div className={`ellipse-8 ${activeSection === 'plant-habitat' ? 'active' : ''}`} />
+              <div className={`ellipse-9 ${activeSection === 'origin' ? 'active' : ''}`} />
+              <div className={`ellipse-10 ${activeSection === 'phyto-capacity' ? 'active' : ''}`} />
+              <div className={`ellipse-11 ${activeSection === 'uses-of-plant' ? 'active' : ''}`} />
+              <div className={`ellipse-12 ${activeSection === 'references' ? 'active' : ''}`} />
+            </div>
           </div>
         </div>
         

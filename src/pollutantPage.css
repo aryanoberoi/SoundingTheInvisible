@@ -5,6 +5,13 @@ body, html {
   width: 100%;
 }
 
+/* CRITICAL: Fix the document/body scrolling context */
+html, body, #root {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 .slider-container {
   position: relative;
   width: 100%;
@@ -597,29 +604,67 @@ body.right-panel-active .hamburger-line {
   position: relative;
 }
 
+/* Fix the combined section - REMOVE any overflow properties that could break sticky */
 .combined-section {
   display: flex;
   flex-direction: row-reverse;
   position: relative;
-  height: auto; /* Or remove this line, should default to auto */
-  overflow: visible;
+  min-height: 100vh;
   background-color: #000;
   gap: 0;
-  align-items: flex-start; /* Add this line */
+  /* REMOVE overflow: initial/visible/hidden */
 }
 
-.nav-bar {
-  position: sticky;
-  top: 20px;
-  height: calc(100vh - 10px); /* Use viewport height minus top offset */
+/* Fix the nav-bar-container to create proper sticky context */
+.nav-bar-container {
+  position: relative; /* Must be relative to create proper sticky context */
   width: 25%;
-  z-index: 10;
-  margin-top: 20px;
-  margin-bottom: 20px; /* Added bottom margin */
-  align-self: flex-start;
-  overflow-y: auto; /* Allow scrolling if content exceeds height */
   margin-left: 3%;
   margin-right: 3%;
+  /* Add explicit height to ensure scrolling context works */
+  min-height: 100vh;
+  /* CRITICAL: Don't add overflow properties here */
+  display: block; /* Ensure block context */
+  z-index: 20;
+}
+
+/* Fix the nav-bar with aggressive sticky styling */
+.nav-bar {
+  position: -webkit-sticky !important; /* For Safari */
+  position: sticky !important;
+  top: 20px; /* Distance from top of viewport */
+  width: 100%;
+  height: calc(100vh - 40px); /* Fixed height instead of max-height */
+  margin: 0;
+  padding: 20px 10px 20px 0;
+  overflow-y: auto !important; /* Scrolling within the nav itself */
+  overflow-x: hidden;
+  box-sizing: border-box;
+  z-index: 10;
+  /* Debug outline - remove in production */
+  /* outline: 2px solid yellow; */
+  
+  /* No transform, will-change, or other properties that break sticky */
+  transform: none !important;
+  will-change: auto !important;
+  
+  /* Better scroll behavior */
+  scrollbar-width: thin;
+  -ms-overflow-style: none;
+}
+
+/* Custom scrollbar styling */
+.nav-bar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.nav-bar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+}
+
+body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* ✅ Styling Each Text Item */
@@ -640,10 +685,44 @@ body.right-panel-active .hamburger-line {
   font-size: 14px;
   font-weight: 400;
   position: absolute;
-  text-align: right; 
-  width: 122px;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  transition: color 0.2s ease; /* Only transition color on the container */
+  width: auto; /* Allow natural width based on content */
+  max-width: 100%; /* Prevent exceeding parent */
+}
+
+/* 2. Enhanced approach for multi-line text hover effects */
+.nav-bar .text-wrapper > span,
+.nav-bar .div > span,
+.nav-bar [class^="text-wrapper-"] > span,
+.nav-bar .p > span {
+  display: inline; /* Critical for natural line wrapping */
+  position: relative;
+  white-space: pre-wrap; /* Allow natural wrapping */
+  padding: 1px 2px; /* Small padding for inset effect */
+  background-clip: content-box; /* Background only behind content */
+  -webkit-background-clip: content-box; /* Safari support */
+  box-decoration-break: clone; /* Create separate styles for each line */
+  -webkit-box-decoration-break: clone; /* Safari support */
+  line-height: 1.4em; /* Adjust for multi-line spacing */
+  word-spacing: normal;
+  background-color: transparent;
+  color: inherit; /* Inherit color */
+  transition: color 0.2s ease, background-color 0.2s ease;
+  border: none;
+  margin: 0;
+  z-index: 1; /* Keep above potential pseudo-elements if added later */
+}
+
+/* Fallback for browsers without box-decoration-break: clone support */
+@supports not (box-decoration-break: clone) {
+  .nav-bar .text-wrapper > span,
+  .nav-bar .div > span,
+  .nav-bar [class^="text-wrapper-"] > span,
+  .nav-bar .p > span {
+    display: inline-block; /* Fallback display */
+    margin-bottom: 2px; /* Add space between wrapped lines */
+  }
 }
 
 /* ✅ Adjusting Positions Based on Your CSS */
@@ -659,6 +738,25 @@ body.right-panel-active .hamburger-line {
 .nav-bar .p { top: 650px; left: 155px; }
 .nav-bar .text-wrapper-6 { top: 730px; left: 155px; }
 .nav-bar .text-wrapper-7 { top: 780px; left: 0; }
+
+/* Ensure text alignment is correct for spans within left/right positioned items */
+.nav-bar .text-wrapper > span,
+.nav-bar .div > span,
+.nav-bar .text-wrapper-7 > span {
+  text-align: right; /* Apply text-align directly to span */
+}
+
+.nav-bar .text-wrapper-2 > span,
+.nav-bar .text-wrapper-3 > span,
+.nav-bar .text-wrapper-4 > span,
+.nav-bar .text-wrapper-5 > span,
+.nav-bar .text-wrapper-6 > span,
+.nav-bar .text-wrapper-8 > span,
+.nav-bar .text-wrapper-9 > span,
+.nav-bar .text-wrapper-10 > span,
+.nav-bar .p > span {
+  text-align: left; /* Apply text-align directly to span */
+}
 
 /* ✅ Timeline Vertical Line & Circles */
 .nav-bar .overlap-group {
@@ -959,17 +1057,19 @@ body.right-panel-active .hamburger-line {
   left: 0;  /* Maintain circle alignment */
 }
 
+/* Make sure content-sections doesn't interfere with sticky positioning */
 .content-sections {
-  flex: 2;
+  flex: 1;
   position: relative;
   padding-left: 0;
-  width: 60%;
-  height: auto; /* Changed from default */
+  min-height: 100vh;
+  /* No overflow properties unless absolutely necessary */
 }
 
 @media (max-width: 768px) {
   .content-sections {
-    width: 120%;
+    width: 100% !important; /* Override inline style if present */
+    min-height: auto; /* Reset min-height */
   }
 }
 
@@ -1160,11 +1260,12 @@ body.right-panel-active .hamburger-line {
 
 /* Remove conflicting min-height declarations */
 .content-sections {
-  flex: 2;
-  position: relative;
+  flex: 1; /* Take remaining space */
+  position: relative; /* Keep relative positioning */
   padding-left: 0;
-  width: 60%;
-  height: auto; /* Changed from default */
+  /* width: 60%; REMOVED - flex: 1 handles width now */
+  height: auto;
+  min-height: 100vh; /* Ensure it takes at least full height */
 }
 
 .bottom-section7{
@@ -1275,34 +1376,72 @@ body.white-panel-active .combined-section {
   background-color: transparent;
 }
 
-/* Add hover effect */
+/* === BEGIN NEW HOVER/ACTIVE STYLES === */
+
+/* Ensure parent container doesn't change opacity */
 .nav-bar .text-wrapper:hover,
 .nav-bar .div:hover,
-.nav-bar .text-wrapper-2:hover,
-.nav-bar .text-wrapper-3:hover,
-.nav-bar .text-wrapper-4:hover,
-.nav-bar .text-wrapper-5:hover,
-.nav-bar .text-wrapper-6:hover,
-.nav-bar .text-wrapper-7:hover,
-.nav-bar .text-wrapper-8:hover,
-.nav-bar .text-wrapper-9:hover,
-.nav-bar .text-wrapper-10:hover,
+.nav-bar [class^="text-wrapper-"]:hover,
 .nav-bar .p:hover {
-  opacity: 0.7;
+  opacity: 1; /* Reset opacity */
 }
+
+/* 3. Apply hover styles (black panel mode) */
+.nav-bar .text-wrapper:hover > span,
+.nav-bar .div:hover > span,
+.nav-bar [class^="text-wrapper-"]:hover > span,
+.nav-bar .p:hover > span {
+  color: #000; /* Black text */
+  background-color: #fff; /* White background */
+}
+
+/* 4. Apply hover styles (white panel mode) */
+body.white-panel-active .nav-bar .text-wrapper:hover > span,
+body.white-panel-active .nav-bar .div:hover > span,
+body.white-panel-active .nav-bar [class^="text-wrapper-"]:hover > span,
+body.white-panel-active .nav-bar .p:hover > span {
+  color: #fff !important; /* White text */
+  background-color: #000; /* Black background */
+}
+
+/* 5. Handle active state styling (black panel mode) */
+.nav-bar .text-wrapper.active > span,
+.nav-bar .div.active > span,
+.nav-bar [class^="text-wrapper-"].active > span,
+.nav-bar .p.active > span {
+  color: #000; /* Black text */
+  background-color: #fff; /* White background */
+}
+
+/* 6. Handle active state styling (white panel mode) */
+body.white-panel-active .nav-bar .text-wrapper.active > span,
+body.white-panel-active .nav-bar .div.active > span,
+body.white-panel-active .nav-bar [class^="text-wrapper-"].active > span,
+body.white-panel-active .nav-bar .p.active > span {
+  color: #fff !important; /* White text */
+  background-color: #000; /* Black background */
+}
+/* === END NEW HOVER/ACTIVE STYLES === */
 
 /* Add responsive breakpoints */
 @media (max-width: 768px) {
   .combined-section {
     flex-direction: column;
     padding-top: 60px;
+    min-height: auto; /* Reset min-height */
+  }
+
+  /* Mobile styles for nav-bar container */
+  .nav-bar-container {
+    width: 100%;
+    margin: 0;
+    min-height: auto; /* Reset min-height */
   }
 
   .nav-bar {
-    position: static;
-    width: 100% !important;
-    margin: 0;
-    padding: 1rem;
+    position: relative !important; /* Not sticky on mobile */
+    height: auto; /* Auto height on mobile */
+    overflow-y: visible !important;
   }
 
   .nav-items-container {
@@ -1318,8 +1457,10 @@ body.white-panel-active .combined-section {
   }
 
   .content-sections {
-    width: 100% !important;
+    width: 100% !important; /* Ensure full width */
     padding: 0 1rem;
+    flex: none; /* Disable flex sizing */
+    min-height: auto; /* Reset min-height */
   }
 
   .main-container {
@@ -1328,7 +1469,7 @@ body.white-panel-active .combined-section {
     /* padding: 1rem; */
   }
 
-  .bottom-section1, 
+  .bottom-section1,
   .effect-on-health-section,
   .white-container > div {
     padding: 2rem 1rem !important;
@@ -1577,4 +1718,26 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Add extra specificity to make sure these rules are applied */
+html body .nav-bar {
+  position: sticky !important;
+}
+
+/* Super high specificity rule to override any other styles */
+html body .combined-section .nav-bar-container .nav-bar {
+  position: sticky !important;
+  position: -webkit-sticky !important;
+}
+
+/* Add fix for Firefox */
+@-moz-document url-prefix() {
+  .nav-bar-container {
+    contain: none !important;
+  }
+
+  .nav-bar {
+    position: sticky !important;
+  }
 }
