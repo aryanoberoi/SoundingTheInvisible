@@ -3,7 +3,9 @@
         width: 100%;
         overflow: hidden;
         margin: 60px 0;
-        padding-bottom: 999px;
+        height: 3900px;
+        background-color: #000 !important;
+        /* padding-bottom: 699px; */
     }
 
   .bottom-section4 .box {

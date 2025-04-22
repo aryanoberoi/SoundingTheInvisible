@@ -612,6 +612,7 @@ body.right-panel-active .hamburger-line {
   min-height: 100vh;
   background-color: #000;
   gap: 0;
+  height: fit-content;
   /* REMOVE overflow: initial/visible/hidden */
 }
 
@@ -1272,8 +1273,8 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
   position: relative; /* Keep relative positioning */
   padding-left: 0;
   /* width: 60%; REMOVED - flex: 1 handles width now */
-  height: auto;
-  min-height: 100vh; /* Ensure it takes at least full height */
+  height: fit-content;
+  min-height: 1200px; /* Ensure it takes at least full height */
 }
 
 .bottom-section7{

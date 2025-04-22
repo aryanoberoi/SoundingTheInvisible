@@ -8,8 +8,35 @@ import nutritionalImage from "./nutritional.png";
 import medicineImage from "./uses2.png";
 import additionalImage from "./uses3.png";
 
+// Helper function to find the scrollable parent container
+const getScrollableParent = (element) => {
+  if (!element) return document.body;
+
+  // Start with the element's parent
+  let parent = element.parentElement;
+  
+  while (parent) {
+    // Check if this parent is scrollable
+    const hasScrollableContent = parent.scrollHeight > parent.clientHeight;
+    const overflowYStyle = window.getComputedStyle(parent).overflowY;
+    const isScrollable = overflowYStyle !== 'hidden' && overflowYStyle !== 'visible';
+    
+    if (hasScrollableContent && isScrollable) {
+      return parent;
+    }
+    
+    // Move up the DOM tree
+    parent = parent.parentElement;
+  }
+  
+  // If no scrollable parent found, return document.body
+  return document.body;
+};
+
 export const UsesOfPlant = ({ sectionsData }) => {
   const [expandedSection, setExpandedSection] = useState(null);
+  const [previouslyCollapsed, setPreviouslyCollapsed] = useState(null);
+  const [scrollData, setScrollData] = useState(null);
   const contentRefs = useRef({});
   const sectionRefs = useRef({});
   
@@ -30,35 +57,96 @@ export const UsesOfPlant = ({ sectionsData }) => {
     }
   };
 
+  // Updated handler that captures scroll data before collapsing
   const handleReadMore = (sectionId) => {
-    // If we're currently expanded and about to collapse
     if (expandedSection === sectionId) {
-      // Store reference to section element before state update
+      // We're about to collapse, store section id and capture positioning data
       const sectionElement = sectionRefs.current[sectionId];
+      if (sectionElement) {
+        // Record section ID to track which one was collapsed
+        setPreviouslyCollapsed(sectionId);
+        
+        try {
+          // Find the scrollable container (either combined-section or content-sections)
+          const scrollContainer = getScrollableParent(sectionElement);
+          
+          // Store container and position information
+          setScrollData({
+            sectionId,
+            // Store section position relative to its scrollable container
+            sectionTop: sectionElement.getBoundingClientRect().top - 
+                        scrollContainer.getBoundingClientRect().top,
+            // Store container reference for later use
+            containerId: scrollContainer.id || 
+                         scrollContainer.className.split(' ')[0] || 
+                         'unknown-container'
+          });
+        } catch (err) {
+          console.error("Error capturing scroll position:", err);
+        }
+      }
+    }
+    
+    // Toggle the expanded state
+    setExpandedSection(expandedSection === sectionId ? null : sectionId);
+  };
+  
+  // Effect to handle scrolling after DOM updates
+  useEffect(() => {
+    // Only run when we have collapse data and section is no longer expanded
+    if (previouslyCollapsed && expandedSection === null && scrollData) {
+      const sectionElement = sectionRefs.current[previouslyCollapsed];
       
       if (sectionElement) {
-        // Get the current position of the section
-        const rect = sectionElement.getBoundingClientRect();
-        const offsetPosition = window.pageYOffset + rect.top - 50; // 50px above the section
-        
-        // First update state
-        setExpandedSection(null);
-        
-        // Then scroll in the next tick after React has updated the DOM
-        requestAnimationFrame(() => {
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
+        // Use animation frame to wait for rendering
+        window.requestAnimationFrame(() => {
+          // Add longer delay to ensure transitions complete
+          setTimeout(() => {
+            try {
+              // Find the scrollable container again after DOM update
+              const scrollContainer = getScrollableParent(sectionElement);
+              
+              if (scrollContainer) {
+                // Get current positions after collapse
+                const sectionRect = sectionElement.getBoundingClientRect();
+                const containerRect = scrollContainer.getBoundingClientRect();
+                
+                // Calculate the target scroll position
+                // This uses the section's position relative to the scroll container
+                const targetScrollTop = scrollContainer.scrollTop + 
+                                       (sectionRect.top - containerRect.top) - 
+                                       70; // Offset for better visibility
+                
+                // Perform the scroll on the container element
+                scrollContainer.scrollTo({
+                  top: targetScrollTop,
+                  behavior: 'smooth'
+                });
+                
+                console.log(`Scrolled ${scrollContainer.className} to ${targetScrollTop}px for section ${previouslyCollapsed}`);
+              }
+            } catch (err) {
+              console.error("Error scrolling to collapsed section:", err);
+              
+              // Fallback: try simple scrollIntoView
+              try {
+                sectionElement.scrollIntoView({ 
+                  behavior: 'smooth', 
+                  block: 'center'
+                });
+              } catch (fallbackErr) {
+                console.error("Fallback scroll also failed:", fallbackErr);
+              }
+            }
+            
+            // Clear tracking state
+            setPreviouslyCollapsed(null);
+            setScrollData(null);
+          }, 50); // Increased delay to ensure transitions complete
         });
-      } else {
-        setExpandedSection(null);
       }
-    } else {
-      // If we're expanding, just set the state
-      setExpandedSection(sectionId);
     }
-  };
+  }, [expandedSection, previouslyCollapsed, scrollData]);
   
   return (
     <div className="uses-of-plant-container">
