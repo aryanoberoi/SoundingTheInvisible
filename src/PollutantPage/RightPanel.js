@@ -7,7 +7,7 @@ import humidityIcon from './humidity.png';
 import soilIcon from './soil.png';
 import areaIcon from './area.png';
 
-const RightPanel = ({ sections = [] }) => {
+const RightPanel = ({ sections = [], onLoad, onNavigate }) => {
   const {
     wetlandDescription = "",
     phytoCapacity = "",
@@ -41,26 +41,6 @@ const RightPanel = ({ sections = [] }) => {
       ].join('\n')
     }
   ];
-
-  const scrollToId = (id, specificOffset) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const defaultOffset = 77;
-      const offset = specificOffset !== undefined ? specificOffset : defaultOffset;
-
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition + offset;
-
-      window.scrollTo({
-         top: offsetPosition,
-         behavior: "smooth"
-      });
-    } else {
-      console.warn(`Element with ID "${id}" not found.`);
-    }
-  };
 
   return (
     <div className="right-panel">
@@ -103,7 +83,7 @@ const RightPanel = ({ sections = [] }) => {
                         ))
                       )}
                     </div>
-                    {targetId && <KnowMoreButton className="knowMoreButtonRightPanel" onClick={() => scrollToId(targetId)} />}
+                    {targetId && <KnowMoreButton className="knowMoreButtonRightPanel" onClick={() => onNavigate(targetId)} />}
                   </div>
                 );
               }
@@ -130,7 +110,7 @@ const RightPanel = ({ sections = [] }) => {
                 <p className="plantDetails">
                   {plantDetails}
                 </p>
-                <KnowMoreButton className="knowMoreButtonRightPanel" onClick={() => scrollToId('plant-name', 130)} />
+                <KnowMoreButton className="knowMoreButtonRightPanel" onClick={() => onNavigate('plant-name')} />
               </div>
             </div>
           </main>

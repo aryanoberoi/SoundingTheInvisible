@@ -5,7 +5,7 @@ import { KnowMoreButtonInvertedRA } from './Knowmorebutton';
 import { KnowMoreButtonInverted } from './Knowmorebutton';
 import SineWaveVisualizer from './sinwave';
 
-const LeftPanel = ({ sections = [] }) => {
+const LeftPanel = ({ sections = [], onLoad, onNavigate }) => {
   if (sections.length === 0) return null;
   
   const { 
@@ -19,26 +19,6 @@ const LeftPanel = ({ sections = [] }) => {
 
   // Process health effects into titles
   const healthEffectsTitles = effect.split('_');
-
-  // 1. Modify the scroll function to accept an offset parameter
-  const scrollToId = (id, specificOffset) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const defaultOffset = 100; // Default offset
-      const offset = specificOffset !== undefined ? specificOffset : defaultOffset; // Use specific offset if provided, otherwise default
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    } else {
-      console.warn(`Element with ID "${id}" not found.`);
-    }
-  };
 
   return (
     <div className="left-panel">
@@ -54,7 +34,7 @@ const LeftPanel = ({ sections = [] }) => {
                 {pollutantDescription}
               </div>
               <div className='knowone'>
-                <KnowMoreButtonInverted className="knowMoreButtonInverted" onClick={() => scrollToId('about-pollutant-section')} />
+                <KnowMoreButtonInverted className="knowMoreButtonInverted" onClick={() => onNavigate('about-pollutant')} />
               </div>
               <div className="imageContainer" />
             </div>
@@ -70,7 +50,7 @@ const LeftPanel = ({ sections = [] }) => {
                   </div>
                 ))}
               </div>
-              <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={() => scrollToId('effects-on-health-section')}/>
+              <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={() => onNavigate('effect-on-health')}/>
               <div className="sectionTitleLeftPanel" style={{paddingBottom: '10px'}}>
                 Enthalpy and sound <br /> Frequency of {pollutantName}
                 <br />
@@ -78,13 +58,13 @@ const LeftPanel = ({ sections = [] }) => {
               <div style={{ border: '1px solid black', width: '260px', height: '50px', overflow: 'hidden' }}>
                 <SineWaveVisualizer />
               </div>
-              <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={() => scrollToId('enthalpy-section', 333)} />
+              <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={() => onNavigate('sound-frequency')} />
             </div>
             <div className="sourcesTitle">Sources In Venice Lagoon:</div>
             <div className="sourcesDescription">
               {sources}
             </div>
-            <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={() => scrollToId('sources-section')}/>
+            <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={() => onNavigate('case-study')}/>
           </div>
         </div>
       </div>

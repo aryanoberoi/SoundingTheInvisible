@@ -1584,9 +1584,8 @@ img {
 }
 
 .sound-frequency-section {
-  padding-block: 100px !important;
-  margin-top: 100px;
-  padding-bottom: 200px;
+  padding-block: 200px !important;
+  height: 11%;
 }
 
 .optional-text-container {

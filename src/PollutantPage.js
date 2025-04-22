@@ -962,10 +962,18 @@ useEffect(() => {
         style={{ height: containerHeight }}
       >
         <div ref={leftPanelRef}>
-          <LeftPanel sections={leftpanelcontent} onLoad={() => setLeftPanelLoaded(true)} />
+          <LeftPanel 
+            sections={leftpanelcontent} 
+            onLoad={() => setLeftPanelLoaded(true)} 
+            onNavigate={handleNavClick}
+          />
         </div>
         <div ref={rightPanelRef}>
-          <RightPanel sections={rightpanelcontent} onLoad={() => setRightPanelLoaded(true)} />
+          <RightPanel 
+            sections={rightpanelcontent} 
+            onLoad={() => setRightPanelLoaded(true)} 
+            onNavigate={handleNavClick}
+          />
         </div>
         <div
           ref={sliderBarRef}
