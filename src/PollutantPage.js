@@ -336,20 +336,34 @@ const PollutantPage = (categorizedData) => {
     document.documentElement.style.setProperty('--slider-position', `${clampedPosition}%`);
     setSliderPosition(clampedPosition);
 
-    // Handle panel classes more explicitly to ensure sound button color works correctly
+    // First, clear all region classes to avoid conflicts
+    document.body.classList.remove('sound-left-region', 'sound-center-region', 'sound-right-region');
+    
+    // Add appropriate region class based on position
+    if (clampedPosition < 25) {
+      document.body.classList.add('sound-left-region');
+    } else if (clampedPosition >= 95) {
+      document.body.classList.add('sound-right-region');
+    } else {
+      document.body.classList.add('sound-center-region');
+    }
+
+    // Panel active classes control which content is shown
     if (clampedPosition < 50) {
-      // White panel is active
+      // White panel is active (right side content)
       document.body.classList.add('white-panel-active');
       document.body.classList.remove('black-panel-active');
     } else {
-      // Black panel is active
+      // Black panel is active (left side content)
       document.body.classList.add('black-panel-active');
       document.body.classList.remove('white-panel-active');
     }
 
-    // Other class toggles remain the same
+    // These other classes are used for specific positioning
     document.body.classList.toggle('right-panel-active', clampedPosition < 3);
-    document.body.classList.toggle('sound-panel-active', clampedPosition < 98);
+    
+    // Remove sound-panel-active class as we'll control sound button color directly
+    document.body.classList.remove('sound-panel-active');
 
     // Calculate rotation based on slider position
     const newRotation = (clampedPosition / 100) * 360;
@@ -771,68 +785,77 @@ useEffect(() => {
     }, 50);
   };
 
-  // Updated useEffect for CSS-based overflow handling AND sound button color
+  // Replace the scroll-based combined section detection with Intersection Observer
+  useEffect(() => {
+    // Skip if the ref isn't available
+    if (!document.querySelector('.combined-section')) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+      // Check if combined section is intersecting
+      const isIntersecting = entries[0]?.isIntersecting || false;
+      
+      // Add/remove class based on visibility
+      if (isIntersecting) {
+        document.body.classList.add('viewing-combined-section');
+      } else {
+        document.body.classList.remove('viewing-combined-section');
+      }
+    }, {
+      // Lower threshold means it triggers earlier when scrolling down
+      threshold: 0.1
+    });
+    
+    // Start observing the combined section
+    observer.observe(document.querySelector('.combined-section'));
+    
+    return () => observer.disconnect();
+  }, []);
+
+  // Update the CSS rules for sound button color management
   useEffect(() => {
     const styleEl = document.createElement('style');
     styleEl.textContent = `
-      /* Main container must hide horizontal overflow */
-      body, html, #root {
-        overflow-x: hidden !important;
-        max-width: 100vw !important;
-        width: 100% !important;
-      }
-      
-      /* Ensure the slider container clips its contents */
-      .slider-container {
-        overflow: hidden !important; /* Use overflow hidden on the container */
-        width: 100% !important;
-        max-width: 100% !important;
-        position: relative !important;
-      }
-      
-      /* Special handling for the slider bar */
-      .slider-bar {
-        /* Allow internal content to overflow the bar itself */
-        overflow: visible; 
-        /* Use CSS variable for positioning */
-        left: var(--slider-position, 50%); 
-        /* Adjust clip-path slightly to better contain the image */
-        clip-path: inset(0 -40px 0 -40px); /* Allow space for the image */
-      }
-      
-      /* When slider is at far right edge (position approaches 100%) */
-      /* Adjust clipping more aggressively */
-      /* Note: Direct style selection [style*="..."] can be brittle. */
-      /* A class-based approach triggered by sliderPosition might be more robust */
-      /* For now, relying on container overflow and slight image adjustment */
-      .slider-bar[style*="left: 99%"] .slider-image-container {
-         /* transform: translateX(-10px); Might still be needed */
-      }
-
-      /* --- Sound Button Color Overrides --- */
-
-      /* Default sound icon color for black panel (left side) */
+      /* Default sound button color (white for dark backgrounds) */
       .sound-icon span {
-        background-color: white; /* Default to white */
-        transition: background-color 0.3s ease; /* Add transition */
+        background-color: white;
+        transition: background-color 0.3s ease;
       }
       
-      /* When in white panel (right side), always show black icons */
-      body.white-panel-active .sound-icon span {
-        background-color: black !important; 
+      /* SLIDER VIEW (not scrolled to combined section) */
+      
+      /* Case 1: Left region (~1%) or Center region (50/50) - Sound button BLACK */
+      body:not(.viewing-combined-section).sound-left-region .sound-icon span,
+      body:not(.viewing-combined-section).sound-center-region .sound-icon span {
+        background-color: black !important;
       }
       
-      /* Ensure menu state takes precedence regardless of panel */
-      /* Assuming .nav-menu.open is added to body or a high-level container */
-      /* If .nav-menu is separate, target might need adjustment */
-      body.nav-menu-open .sound-icon span, /* Example if class is on body */
-      .nav-menu.open ~ .sound-button .sound-icon span /* Example if button is sibling */ {
+      /* Case 2: Right region (~99%) - Sound button WHITE */
+      body:not(.viewing-combined-section).sound-right-region .sound-icon span {
         background-color: white !important;
       }
       
-      /* Ensure sound button itself is visible */
-      .sound-button {
-         z-index: 1000; /* Make sure it's above panels */
+      /* COMBINED SECTION VIEW (scrolled down) */
+      
+      /* Case 3: White panel active - Sound button BLACK */
+      body.viewing-combined-section.white-panel-active .sound-icon span {
+        background-color: black !important;
+      }
+      
+      /* Case 4: Black panel active - Sound button WHITE */
+      body.viewing-combined-section.black-panel-active .sound-icon span {
+        background-color: white !important;
+      }
+      
+      /* SPECIAL CASE: Center region (50/50) in combined section - force WHITE */
+      body.viewing-combined-section.sound-center-region .sound-icon span {
+        background-color: white !important;
+      }
+      
+      /* MENU OPEN OVERRIDE - Always WHITE */
+      .nav-menu.open ~ .sound-button .sound-icon span,
+      body.nav-menu-open .sound-icon span {
+        background-color: white !important;
+        z-index: 100;
       }
     `;
     document.head.appendChild(styleEl);
@@ -842,7 +865,7 @@ useEffect(() => {
         styleEl.parentNode.removeChild(styleEl);
       }
     };
-  }, []); // Empty dependency array, runs once on mount
+  }, []);
 
   // Add this effect after your other useEffects
   useEffect(() => {
@@ -929,9 +952,9 @@ useEffect(() => {
       <SoundToggle 
         padNumber={leftpanelcontent[0].pollutantNumber}
         sliderPosition={sliderPosition}
-        isInCombinedSection={false} // Will be updated through scroll detection
-        panelMode={sliderPosition < 50 ? 'white' : 'black'} // Add panelMode prop
+        panelMode={sliderPosition < 50 ? 'white' : 'black'}
       />
+      
       <div 
         id="slider-container" 
         className="slider-container"
@@ -948,16 +971,14 @@ useEffect(() => {
           ref={sliderBarRef}
           className="slider-bar"
           style={{ 
-            // Use CSS variable for left position (set in .slider-bar rule)
+            left: `${sliderPosition}%`, // Use state directly for slider position
             height: containerHeight,
             minHeight: '100%',
             position: 'absolute',
             top: 0
-            // overflow: 'visible' removed - handled by CSS rules now
           }}
           onMouseDown={handleMouseDown}
         >
-          {/* Added container for image */}
           <div className="slider-image-container" style={{ position: 'relative', left: '-4px' }}>
             <img
               src="slider.png"
