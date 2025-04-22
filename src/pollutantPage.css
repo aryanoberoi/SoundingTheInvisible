@@ -1205,39 +1205,47 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
   z-index: 2;
 }
 
+.bottom-section5 {
+  background-color: white;
+  color: black;
+  min-height: 100vh;
+  padding: 30px 69px 155px 69px;
+}
+
+
 .bottom-section6 {
   background-color: white;
   color: black;
   min-height: 100vh;
-  padding: 95px 69px;
+  padding: 30px 69px 155px 69px;
 }
 
 .bottom-section7 {
   background-color: white;
   color: black;
   min-height: 100vh;
-  padding: 95px 69px;
+  padding: 30px 69px 155px 69px;
 }
 
 .bottom-section8 {
   background-color: white;
   color: black;
   min-height: 100vh;
-  padding: 95px 69px;
+  padding: 30px 69px 155px 69px;
 }
 
 .bottom-section9 {
   background-color: white;
   color: black;
   min-height: 100vh;
-  padding: 95px 69px;
+  padding: 30px 69px 155px 69px;
 }
 
 .bottom-section10 {
   background-color: white;
   color: black;
   min-height: 100vh;
-  padding: 95px 69px;
+  padding: 30px 69px 95px 69px;
 }
 
 /* Ensure all sections take full viewport height */
