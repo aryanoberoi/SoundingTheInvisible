@@ -754,7 +754,7 @@ useEffect(() => {
 
     // Mobile-specific behavior
     if(isMobile) {
-      section.scrollIntoView({ behavior: 'auto', block: 'start' }); // Changed to instant
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' }); // Changed to smooth
       setMenuOpen(false);
       return;
     }
@@ -763,26 +763,18 @@ useEffect(() => {
     const isInRightPanel = section.closest('.white-container') !== null;
     const targetSliderPos = isInRightPanel ? 1 : 99;
 
-    // Temporarily disable slider transition for immediate movement
-    document.documentElement.style.setProperty('--slider-transition', 'none');
+    // Set smooth transition for slider
+    document.documentElement.style.setProperty('--slider-transition', 'left 0.5s ease-in-out');
     
-    // Update slider position instantly
+    // Update slider position with smooth transition
     updateSliderPosition(targetSliderPos);
     lastPositionRef.current = targetSliderPos;
     
-    // Force a reflow to apply the transition removal
-    const _ = document.body.offsetHeight; // Using a throwaway variable to satisfy ESLint
-    
-    // Instant scroll to section
+    // Smooth scroll to section
     section.scrollIntoView({
-      behavior: 'auto',
+      behavior: 'smooth',
       block: 'start'
     });
-    
-    // Restore transition after a minimal delay
-    setTimeout(() => {
-      document.documentElement.style.setProperty('--slider-transition', 'left 0.3s ease-in-out');
-    }, 50);
   };
 
   // Replace the scroll-based combined section detection with Intersection Observer
