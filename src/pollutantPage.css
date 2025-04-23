@@ -627,6 +627,7 @@ body.right-panel-active .hamburger-line {
   /* CRITICAL: Don't add overflow properties here */
   display: block; /* Ensure block context */
   z-index: 20;
+  margin-top: 120px;
 }
 
 /* Fix the nav-bar with aggressive sticky styling */

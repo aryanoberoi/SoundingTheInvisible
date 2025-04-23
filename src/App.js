@@ -72,13 +72,15 @@ const CustomCursor = () => {
       const element = document.elementFromPoint(e.clientX, e.clientY);
       if (!element) return;
 
-      // Check if element or its parents have a dark background
-      const shouldInvert = isElementDark(element);
-
-      // Apply inverted class based on background
-      if (shouldInvert) {
+      // Check if in a dark section
+      const isInBlackPanel = document.body.classList.contains('black-panel-active') || 
+                           !element.closest('.white-container, .bottom-section5, .bottom-section6, .bottom-section7, .bottom-section8, .bottom-section9, .bottom-section10');
+      
+      // Apply inverted class (white cursor) in dark sections
+      if (isInBlackPanel) {
         cursor.classList.add('custom-cursor-inverted');
       } else {
+        // Remove inverted class (black cursor) in white sections
         cursor.classList.remove('custom-cursor-inverted');
       }
     }
