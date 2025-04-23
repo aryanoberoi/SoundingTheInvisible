@@ -154,8 +154,8 @@
     object-fit: contain;
     z-index: 20;
     position: absolute;
-    top: 18.3em; /* Moved upwards by adjusting the top position */
-    left: 550px; /* Moved to the right by adjusting the left position */
+    top: 17vw; /* Moved upwards by adjusting the top position */
+    left: 55%; /* Moved to the right by adjusting the left position */
   }
   .pollutantImage {
     padding-right: 0;

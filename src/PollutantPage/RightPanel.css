@@ -117,9 +117,9 @@
     aspect-ratio: 1;
     object-fit: contain;
     border-radius: 0;
-    margin-top: 40px;
+    margin-top: 5px;
     display: block;
-    transform: translateX(120px);
+    transform: translateX(70px);
 }
 
 @media (max-width: 991px) {
