@@ -37,32 +37,21 @@
   }
 }
 
-/* Custom Cursor */
 /* Base Custom Cursor Styles */
 .custom-cursor {
   position: fixed;
   width: 50px;
   height: 50px;
   background-color: transparent;
-  border: 2px solid #000; /* Thicker border for better visibility */
+  border: 2px solid #000; /* Black border for white backgrounds */
   border-radius: 50%;
-  pointer-events: none !important; /* Never allow cursor to block mouse events */
-  z-index: 99999 !important; /* Extremely high z-index */
+  pointer-events: none !important;
+  z-index: 999999 !important; /* Extremely high z-index */
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 5px #000; /* Enhanced glow */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 5px #000;
   transition: border-color 0.2s, box-shadow 0.2s, transform 0.1s;
-  margin-left: 2px;
-  margin-top: 2px;
-  will-change: transform; /* Performance optimization */
-  display: block !important; /* Force display */
-  visibility: visible !important; /* Force visibility */
-  opacity: 1 !important; /* Force opacity */
-  mix-blend-mode: difference; /* Alternative approach to inversion */
-
-  /* Add webkit prefixes for maximum compatibility */
-  -webkit-transform: translate(-50%, -50%);
-  -webkit-transition: border-color 0.2s, box-shadow 0.2s, transform 0.1s;
-  -webkit-backface-visibility: hidden; /* Prevent jagged edges during animation */
+  will-change: transform;
+  mix-blend-mode: difference; /* This helps create contrast with the background */
 }
 
 /* Center dot */
@@ -89,81 +78,40 @@
   background-color: #fff !important;
 }
 
-/* Hover animation */
-.custom-cursor:hover {
-  transform: translate(-50%, -50%) scale(1.1);
-}
-
-/* Make sure elements that need cursor inversion show custom cursor */
-[data-cursor-invert="true"],
-.nav-menu,
-.nav-menu *,
-.nav-item,
-.nav-arrow-button,
-svg,
-svg * {
-  cursor: none !important;
-}
-
-/* Override any specificity issues */
-body .custom-cursor {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
-/* Scale animation on clicks */
+/* Clicking animation */
 .custom-cursor.clicking {
   transform: translate(-50%, -50%) scale(0.8);
   transition: transform 0.1s;
 }
 
-/* Firefox specific fix */
-@-moz-document url-prefix() {
-  .custom-cursor {
-    transform: translate(-50%, -50%) !important;
-  }
+/* Hide default cursor on key elements */
+html,
+body,
+#root,
+.slider-container,
+.left-panel,
+.right-panel,
+.white-container,
+.combined-section,
+.bottom-section1,
+.bottom-section5,
+.bottom-section6,
+.bottom-section7,
+.bottom-section8,
+.bottom-section9,
+.bottom-section10 {
+  cursor: none !important;
 }
 
-/* Safari specific fix */
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  .custom-cursor {
-    -webkit-transform: translate3d(-50%, -50%, 0) !important;
-    transform: translate3d(-50%, -50%, 0) !important;
-  }
-}
-
-/* Mobile devices - hide custom cursor */
+/* Mobile devices - hide custom cursor and restore default */
 @media (hover: none) and (pointer: coarse) {
   .custom-cursor {
     display: none !important;
   }
-}
 
-/* Ensure SVG elements work with the custom cursor */
-svg {
-  pointer-events: auto;
-}
-
-/* Enhance the cursor to work better with SVG elements */
-/* The .custom-cursor rule above was updated */
-
-/* Ensure the cursor is visible when over SVG elements */
-[data-cursor-invert="true"] {
-  cursor: none !important;
-}
-
-/* Dark elements should have correct cursor behavior */
-.nav-menu.open [data-cursor-invert="true"],
-.nav-item [data-cursor-invert="true"],
-svg[data-cursor-invert="true"] {
-  cursor: none !important;
-}
-
-/* Define a specific cursor style for clickable SVG elements */
-svg [data-action] {
-  cursor: pointer !important;
-  pointer-events: auto !important;
+  html, body, #root, * {
+    cursor: auto !important;
+  }
 }
 
 /* Fix for InteractiveSVG component */
@@ -171,4 +119,145 @@ svg [data-action] {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+/* Global cursor hiding */
+html,
+body,
+#root,
+.App,
+.white-container,
+.white-container *,
+.bottom-section5,
+.bottom-section6,
+.bottom-section7,
+.bottom-section8,
+.bottom-section9,
+.bottom-section10,
+.bottom-section5 *,
+.bottom-section6 *,
+.bottom-section7 *,
+.bottom-section8 *,
+.bottom-section9 *,
+.bottom-section10 * {
+  cursor: none !important;
+}
+
+/* Fix for margin/padding areas */
+.white-container::before,
+.bottom-section5::before,
+.bottom-section6::before,
+.bottom-section7::before,
+.bottom-section8::before,
+.bottom-section9::before,
+.bottom-section10::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: auto;
+  cursor: none !important;
+}
+
+/* Add to your global CSS or create a new file */
+.isolated-cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2147483647; /* Maximum possible z-index */
+  overflow: visible;
+}
+
+/* Enhanced cursor styles */
+.isolated-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  margin-left: -25px; /* Half the width */
+  margin-top: -25px; /* Half the height */
+  border: 2px solid #000;
+  border-radius: 50%;
+  transform-origin: center center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  will-change: transform;
+  /* Optional: mix-blend-mode can sometimes help with contrast */
+  /* mix-blend-mode: difference; */
+}
+
+.isolated-cursor-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background-color: #000;
+  border-radius: 50%;
+}
+
+.isolated-cursor.inverted {
+  border-color: #fff;
+  box-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+.isolated-cursor.inverted .isolated-cursor-dot {
+  background-color: #fff;
+}
+
+.isolated-cursor.clicking {
+  transform: scale(0.8);
+}
+
+/* Ensure good visibility on edge cases */
+.left-panel .isolated-cursor {
+  border-color: #fff !important;
+}
+
+.left-panel .isolated-cursor .isolated-cursor-dot {
+  background-color: #fff !important;
+}
+
+.right-panel .isolated-cursor {
+  border-color: #000 !important;
+}
+
+.right-panel .isolated-cursor .isolated-cursor-dot {
+  background-color: #000 !important;
+}
+
+/* Hide default cursor */
+html, body, #root, * {
+  cursor: none !important;
+}
+
+/* Restore cursor on mobile */
+@media (hover: none) and (pointer: coarse) {
+  .isolated-cursor-container {
+    display: none;
+  }
+
+  html, body, #root, * {
+    cursor: auto !important;
+  }
+}
+
+/* Add these to your global CSS or create a new file */
+.dark-bg,
+.black-bg {
+  background-color: #000; /* or your dark color */
+}
+
+/* This helps with SVG color detection */
+svg[data-cursor-invert="true"],
+.invert-cursor {
+  cursor: none !important;
 }

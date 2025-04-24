@@ -117,7 +117,7 @@
   aspect-ratio: 1;
   object-fit: contain;
   position: absolute;
-  top: 4vw;
+  top: 8%;
   left: 37%;
   z-index: 20;
 }
