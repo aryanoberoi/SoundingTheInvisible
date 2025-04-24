@@ -236,7 +236,7 @@ body,
 
 /* Hide default cursor */
 html, body, #root, * {
-  cursor: none !important;
+  cursor: default !important;
 }
 
 /* Restore cursor on mobile */
