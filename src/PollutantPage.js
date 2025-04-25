@@ -14,9 +14,10 @@ import { PhytoCapacity } from './PollutantPage/PhytoCapacity';
 import { AboutPollutantSection } from './PollutantPage/AboutPollutant';
 import { SoundFrequency } from './PollutantPage/SoundFrequency';
 import SoundToggle from "./SoundToggle"; // Sound button
+import { useParams } from 'react-router-dom';
 
 
-const PollutantPage = (categorizedData) => {
+const PollutantPage = ({ categorizedData }) => {
   //this was hell to make 
   let data = categorizedData?.undefined || [];
   console.log("this is the data", data);
