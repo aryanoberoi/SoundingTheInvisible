@@ -47,6 +47,9 @@ export const Box = ({ sections }) => {
         <div className="content-items-container" style={{ transform: 'translate(-8em, 13em)' }}>
           {sections.map((section, index) => {
             const { title, content } = parseSection(section.text);
+            if (!title && !content) {
+              return null;
+            }
             return (
               <div 
                 className={`content-item content-item-${index + 1} ${expandedItem === index + 1 ? 'expanded' : ''}`} 
