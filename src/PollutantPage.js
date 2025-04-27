@@ -310,6 +310,7 @@ const PollutantPage = ({ categorizedData }) => {
   // More efficient structure for plant uses
   const plantUses = {
     plantName: dataContext.plant.name,
+    bibliography: matchedRow.Bibliography,
     sections: [
       {
         id: 'nutritional',

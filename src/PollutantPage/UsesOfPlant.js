@@ -251,7 +251,7 @@ export const UsesOfPlant = ({ sectionsData }) => {
           style={{ marginTop: '120px', marginBottom: '160px', marginLeft: '40px' }}
         />
         <div id="references" className="button-container-bibliography">
-          <a href="" className="bibliography-button">
+          <a href={sectionsData.bibliography} className="bibliography-button">
             BIBLIOGRAPHY
           </a>
         </div>
