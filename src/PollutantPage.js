@@ -233,17 +233,28 @@ const PollutantPage = ({ categorizedData }) => {
     }
   ];
 
-  // Update aboutpollutantcontent to use the new dataContext
+  // Check if we have an image from the database, otherwise try to determine one based on pollutant type
+  const pollutantImage = matchedRow.AboutPollutantSection_image ||
+                         (wasteTypeData.typeOfWaste === 2 ? 'heavy-metal-pollutant.jpg' :
+                          wasteTypeData.typeOfWaste === 3 ? 'radioactive-pollutant.jpg' :
+                          wasteTypeData.typeOfWaste === 4 ? 'organic-pollutant.jpg' :
+                          'agricultural-pollutant.jpg');
+
+  // Create aboutpollutantcontent with the same approach as other content objects
   const aboutpollutantcontent = [
     {
-      text: dataContext.pollutant.about.description,
-      image: dataContext.pollutant.about.image
+      text: dataContext.pollutant.about.description ||
+            `About ${pollutantNameRaw}_This is a description of the pollutant.`,
+      image: dataContext.pollutant.about.image // Use image directly from context
     }
   ];
 
+  // Debug log to verify image path
+  console.log(`Using pollutant image: ${pollutantImage} for ${pollutantNameRaw}`);
+
   // Update sinewavefreq to use the new dataContext
   const sinewavefreq = [
-    { 
+    {
       pollutantName: dataContext.pollutant.name,
       enthalpy: dataContext.pollutant.soundFrequency.enthalpy,
       soundfrequency: dataContext.pollutant.soundFrequency.frequency,
@@ -1079,7 +1090,10 @@ useEffect(() => {
         
         <div className="content-sections">
           <div className="bottom-section1" id="about-pollutant">
-            <AboutPollutantSection  sections={aboutpollutantcontent} />
+            <AboutPollutantSection
+              sections={aboutpollutantcontent}
+              wasteTypeIcon={wasteTypeData.atomImage}
+            />
           </div>
           <div className="sound-frequency-section" id="sound-frequency">
               <SoundFrequency sections={sinewavefreq}/>

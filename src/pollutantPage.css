@@ -962,6 +962,13 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
   border-radius: 50%;
 }
 
+.imagePollutant {
+  width: 71px;
+  height: 71px;
+  background: #000;
+  border-radius: 50%;
+}
+
 .about-pollutant {
   width: 370.561px;
   height: 43.126px;
