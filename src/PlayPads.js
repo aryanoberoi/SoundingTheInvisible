@@ -29,28 +29,52 @@ function PlayPads() {
     }
   };
 
+  const stopPad = (padNumber) => {
+    if (audioRefs.current[padNumber]) {
+      audioRefs.current[padNumber].pause();
+      audioRefs.current[padNumber].currentTime = 0; // Reset to start
+    }
+  };
+
   return (
     <div style={{ padding: 24 }}>
       <h2>Play Pads 1-36</h2>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
         {Array.from({ length: 36 }, (_, i) => (
-          <button
-            key={i + 1}
-            style={{
-              width: 60,
-              height: 60,
-              fontSize: 20,
-              margin: 4,
-              borderRadius: "50%",
-              background: "#1976d2",
-              color: "#fff",
-              border: "none",
-              cursor: "pointer",
-            }}
-            onClick={() => playPad(i + 1)}
-          >
-            {i + 1}
-          </button>
+          <div key={i + 1} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <button
+              style={{
+                width: 60,
+                height: 60,
+                fontSize: 20,
+                margin: 4,
+                borderRadius: "50%",
+                background: "#1976d2",
+                color: "#fff",
+                border: "none",
+                cursor: "pointer",
+              }}
+              onClick={() => playPad(i + 1)}
+            >
+              {i + 1}
+            </button>
+            <button
+              style={{
+                width: 60,
+                height: 30,
+                fontSize: 12,
+                margin: 4,
+                borderRadius: "50%",
+                background: "#d32f2f",
+                color: "#fff",
+                border: "none",
+                cursor: "pointer",
+              }}
+              onClick={() => stopPad(i + 1)}
+            >
+              Stop
+            </button>
+          </div>
         ))}
       </div>
     </div>
