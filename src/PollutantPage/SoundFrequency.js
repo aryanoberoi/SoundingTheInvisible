@@ -16,16 +16,16 @@ export const SoundFrequency = ({ sections }) => {
         <SineWaveVisualizer frequency={sections[0].wavefrequency} />
         <div className="frequency-details">
           <div className="detail-item">
-            <span className="label">Enthalpy of formation:</span>
+            <span className="label">Enthalpy of formation of {pollutantName}:</span>
             <span className="value">{sections[0].enthalpy}</span>
           </div>
           <div className="detail-item">
-            <span className="label">Frequency:</span>
+            <span className="label">Sound frequency(Hz) derived from Enthalpy:</span>
             <span className="value">{sections[0].wavefrequency}</span>
           </div>
           <div className="detail-item">
-            <span className="label">Audible Frequency:</span>
-            <span className="value">{sections[0].soundfrequency}</span>
+            <span className="label">Audible Sound Frequency (Hz):</span>
+            <span className="value">{sections[0].SoundFrequency}</span>
           </div>
         </div>
         
