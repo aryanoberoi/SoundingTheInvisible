@@ -419,9 +419,9 @@ const PollutantPage = ({ categorizedData }) => {
     const currentPosition = lastPositionRef.current;
     const thresholdLeft = 25; // Midway between 2 and 50
     const thresholdRight = 75; // Midway between 50 and 98
-    const snapLeft = 1;
+    const snapLeft = 0;
     const snapCenter = 50;
-    const snapRight = 99; // Keep the original 99% snap point
+    const snapRight = 100; // Keep the original 99% snap point
     let snapTarget;
 
     if (currentPosition <= thresholdLeft) {
