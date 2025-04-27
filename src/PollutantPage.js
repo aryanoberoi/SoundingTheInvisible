@@ -14,12 +14,21 @@ import { PhytoCapacity } from './PollutantPage/PhytoCapacity';
 import { AboutPollutantSection } from './PollutantPage/AboutPollutant';
 import { SoundFrequency } from './PollutantPage/SoundFrequency';
 import SoundToggle from "./SoundToggle"; // Sound button
+import { useParams } from 'react-router-dom';
 
 
-const PollutantPage = (categorizedData) => {
+const PollutantPage = ({ categorizedData }) => {
   //this was hell to make 
-  let data = categorizedData?.undefined || [];
-  console.log("this is the data", data);
+  const { customName } = useParams();
+  const allRows = Object.values(categorizedData).flat();
+  console.log("All Rows:", allRows);
+  console.log("Custom Name:", customName);
+  const matchedRow = allRows.find(row => {
+    return row['id'].trim().toLowerCase() === customName.trim().toLowerCase();
+  }) || {};
+  
+  console.log("Matched Row:", matchedRow); // Verify match clearly again
+  console.log("Pollutant Name:", matchedRow["Pollutantname_split"]);
   const [sliderPosition, setSliderPosition] = useState(50);
   const [rotation, setRotation] = useState(180);
   const [activeSection, setActiveSection] = useState(null);
@@ -74,6 +83,8 @@ const PollutantPage = (categorizedData) => {
     'chromium': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
     'cadmium': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
     'thalium': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
+    'thallium': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
+    'Thallium ': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
     'selenium': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
     'nickel': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
     'arsenic': { typeOfWaste: 2, atomImage: 'heavy-metal-waste-icon.svg' },
@@ -106,140 +117,158 @@ const PollutantPage = (categorizedData) => {
   const leftpanelcontent = [
     { 
       pollutantNumber: 1,
-      pollutantName: "Potassium",
+      pollutantName: matchedRow.Pollutantname_split,
       ...pollutantWasteTypeMapping['potassium'],
-      pollutantDescription: "Potassium (K) is a soft, silvery alkali metal discovered in 1807 by Sir Humphry Davy through electrolysis of potash (KOH). Radioactive K-40 has a 1.25 billion-year half-life; stable isotopes are K-39 and K-41. Excess potassium causes eutrophication. Canada leads potash production, used mainly in fertilizers.",
-      effect: "Cardiac arrhythmias and potential heart failure_Weakness and fatigue_Nausea and vomiting_Breathing difficulties",
-      sources: "Research on nutrient pollution in the Venice Lagoon, primarily from agricultural runoff, urban wastewater, and industrial discharges, has been extensive. Fertilizers, a key potassium source, are a major contributor, alongside urban wastewater and industrial activities. While potassium-specific studies are limited, these sources contribute to overall nutrient pollution impacting the lagoon."
+      pollutantDescription: matchedRow.pollutant_description_split,
+      effect: matchedRow.effects_on_human_Health_description_split,
+      sources: matchedRow.sources_venice_Description_split
     }
   ];
   const rightpanelcontent = [
     {
-      plantNameSplit: "Salvinia molesta",
-      wetlandDescription: "OBL (Obligate Wetland Plant) - Almost always occurs in wetlands",
-      phytoCapacity: "Copper_Nickel_Lead_Mercury_Heavy metals",
-      temperature: "Ideal temperatures of 20 and 30°C (68–86°F)",
-      humidity: "Prefers humidity levels >60%",
-      soil: "Can survive in waterlogged soils",
-      ph: "4.5 to 8.5",
-      imgUrl: "",
-      plantName: "Salvinia molesta",
-      plantDetails: "Salvinia molesta is a floating fern with whorled fronds and root-like submerged structures. It reproduces asexually, forming dense mats. Native to Brazil, it spread globally post-1950s, becoming invasive. Human activity, like ornamental trade, aided its dispersal across continents, impacting ecosystems."
+      plantNameSplit: matchedRow.plantName_Split,
+      wetlandDescription: matchedRow.plantData_WetlandDescription_split,
+      phytoCapacity: matchedRow.phytoremediation_capacity_split,
+      temperature: matchedRow.PlantHabitat_temperature,
+      humidity: matchedRow.PlantHabitat_humidity_moisture,
+      soil: matchedRow.PlantHabitat_soil,
+      ph: matchedRow.PlantHabitat_pH,
+      imgUrl: matchedRow.image_split_plant,
+      plantName: matchedRow.plant_name,
+      plantDetails: matchedRow.split_plant_details
     }
   ];
   const aboutpollutantcontent = [
     {
-      text: "About Potassium_Potassium is a highly reactive and soft metal that rapidly tarnishes in air and reacts violently with water, generating sufficient heat to ignite the hydrogen emitted in the reaction. Its name originates from \"potash,\" while its symbol(K) derives from the Latin \"kalium,\" reflecting its historical association with ashes. Long before its scientific discovery, potassium compounds were utilized in ancient practices like glassmaking and soap production, and as a component of gunpowder. Today, it remains crucial in various industries, notably as a fertilizer to enhance agricultural yields. Canada stands as the leading potash producer, followed by other nations like China, highlighting potassium's global economic significance. While stable potassium is generally benign, excessive potassium-based fertilizer runoff contributes to eutrophication, disrupting aquatic ecosystems by promoting algal blooms and oxygen depletion. Furthermore, the naturally occurring radioactive isotope potassium-40, present in all living organisms, contributes to low-level radiation exposure and raises concerns about long-term bioaccumulation in the environment. This necessitates careful management of potassium use to balance its industrial and agricultural benefits with its potential environmental impacts.",
-      image: ""
+      text: matchedRow.AboutPollutantSection_description,
+      image: matchedRow.AboutPollutantSection_image
     }
   ];
   const sinewavefreq = [
     { 
       pollutantName: leftpanelcontent[0].pollutantName,
-      enthalpy: "90 KJ/mol",
-      soundfrequency: "22.56 Hz",
-      wavefrequency: -200.5
+      enthalpy: matchedRow.Enthalpy_ ,
+      soundfrequency: matchedRow.SineWaveVisualizer_frequency_audiblefrequency,
+      wavefrequency: matchedRow.Sound_frequency
     }
   ];
   const effectonhealthcontent = [
-    { text: "Cardiac Effects_Potassium imbalances disrupt the heart's electrical activity. Hyperkalemia(elevated potassium levels) causes erratic signals, irregular beats, and potential heart failure. Hypokalemia (low potassium levels) also disrupts rhythm, increasing arrhythmia risk. Maintaining potassium balance is essential for preventing cardiac arrhythmias and heart failure." },
-    { text: "Musculoskeletal Effects_Potassium is crucial for muscle function. Hypokalemia and hyperkaemia causes weakness, cramps, and may even lead to paralysis. The balance of potassium is vital for preventing muscle weakness and other harmful effects." },
-    { text: "Neurological Effects_Potassium aids nerve signal transmission. Imbalances disrupt this process, affecting nerve function. Though not always noticeable, these disruptions contribute to weakness and fatigue. Maintaining proper potassium levels is important for preventing nerve signal transmission disruption." },
-    { text: "Gastrointestinal Effects_Hyperkalemia induces nausea and vomiting. High potassium impacts the gastrointestinal system's nerves and muscles, possibly affecting the brain's chemoreceptor trigger zone. This helps to prevent nausea and vomiting related to hyperkalemia." },
-    { text: "Respiratory Effects_Severe hyperkalemia causes breathing difficulties. High potassium affects respiratory muscles, leading to shallow or labored respiration. Maintaining proper potassium levels is essential for preventing respiratory distress due to muscle weakness." },
-    { text: "General Systemic Effects_Hyperkalemia leads to fatigue and chest pain. Potassium chlorate poisoning causes organ damage and death. Untreated, severe hyperkalemia can be fatal due to cardiac arrest or respiratory failure. Proper potassium management is crucial for preventing fatal outcomes." },
+    { text: matchedRow.healtheffects_1},
+    { text: matchedRow.healtheffects_2 },
+    { text: matchedRow.healtheffects_3  },
+    { text: matchedRow.healtheffects_4  },
+    { text: matchedRow.healtheffects_5  },
+    { text: matchedRow.healtheffects_6  },
+    { text: matchedRow.healtheffects_7},
+    { text: matchedRow.healtheffects_8 },
+    { text: matchedRow.healtheffects_9  },
+    { text: matchedRow.healtheffects_10  },
+    { text: matchedRow.healtheffects_11 }
   ];
   const casestudiescontent = [
-    { text: "Venice lagoon_Research in the Venice Lagoon, notably a 2007 study on PM2.5, revealed potassium's presence, with concentrations averaging about 99 ng/m³, primarily originating from natural marine aerosols generated by the interaction between seawater and the atmosphere. While not a primary pollutant, potassium contributes to the lagoon's particulate matter composition, alongside sulfates, nitrates, and organic carbon. The study also addressed broader environmental concerns, linking agricultural runoff to nutrient pollution, particularly nitrogen and phosphorus, leading to eutrophication within the lagoon. Industrial activities in Porto Marghera are significant contributors of potassium to the lagoon's ecosystem. Companies like Giammarco-Vetrocoke, employing potassium carbonate in carbon capture, and various chemical, petrochemical, pulp and paper, and food processing plants, release potassium-bearing effluents. These industries utilize potassium compounds in diverse manufacturing and processing procedures. Studies from 1998-2000, as part of the DRAIN project, identified canals, such as the San Giuliano Canal, as conduits for pollutants from industrial zones into the lagoon. This research underscores the necessity for continuous monitoring of air quality and nutrient dynamics in coastal ecosystems like the Venice Lagoon. Understanding both natural and anthropogenic sources of pollution is crucial for effective environmental management and preservation of such delicate ecosystems." },
-    { text: "Saskatchewan, Canada_Potash mining in Saskatchewan, Canada, initiated in the 1950s, has increasingly revealed its environmental consequences, particularly in the Qu'Appelle Valley. By the 1980s, leaching of salt-rich tailings, primarily potassium chloride, into water systems raised significant concerns. This contamination manifested as heightened water salinity, eutrophication, and subsequent fish kills, disrupting the valley's delicate ecological balance. The tailings, rich in potassium, stimulate excessive algal proliferation, leading to oxygen depletion upon decomposition and creating hypoxic conditions that severely impact aquatic life. Local agriculture bears the brunt of saline irrigation water, which degrades soil quality and reduces crop yields. The fishing industry faces a decline in biodiversity and experiences mortality events due to these hypoxic conditions. While corporations like Yancoal have implemented mitigation measures, including enhanced tailings containment, advanced water treatment, and isolating the mining site from natural drainage with regular water monitoring, environmental advocacy groups remain vigilant. They voice concerns regarding the potential impact of solution mining on local water supplies and the broader Qu'Appelle watershed, advocating for caution and more stringent regulatory frameworks to address the long-term ramifications of potassium contamination."}
+    { text: matchedRow.CaseStudies_venice_lagoon},
+    { text: matchedRow.CaseStudies_area}
   ];
   const phytocontent = [
     {
-      medium: "Chenopodium quinoa_soil",
-      timePeriod: "Chenopodium quinoa_70 days",
-      remediation: "Chenopodium quinoa_66"
+      medium: matchedRow.Phyto_Species1_medium,
+      timePeriod: matchedRow.Phyto_Species1_timePeriod,
+      remediation: matchedRow.Phyto_Species1_remediation
     },
     {
-      medium: "Cucurbita pepo_soil",
-      timePeriod: "Cucurbita pepo_15/30/45",
-      remediation: "Cucurbita pepo_60/70/80"
+      medium: matchedRow.Phyto_Species2_medium,
+      timePeriod: matchedRow.Phyto_Species2_timePeriod,
+      remediation: matchedRow.Phyto_Species2_remediation
     },
     {
-      medium: "Artemisia annua_soil",
-      timePeriod: "Artemisia annua_15/30/45",
-      remediation: "Artemisia annua_30/40/47.36"
+      medium: matchedRow.Phyto_Species3_medium,
+      timePeriod: matchedRow.Phyto_Species3_timePeriod,
+      remediation: matchedRow.Phyto_Species3_remediation
     },{
-      medium: "Amaranthus dubius_soil",
-      timePeriod: "Amaranthus dubius_15/30/45",
-      remediation: "Amaranthus dubius_25/35/40.72"
+      medium: matchedRow.Phyto_Species4_medium,
+      timePeriod: matchedRow.Phyto_Species4_timePeriod,
+      remediation: matchedRow.Phyto_Species4_remediation
     },
     {
-      medium: "Ipomoea aquatica_water",
-      timePeriod: "Ipomoea aquatica_15/30/45",
-      remediation: "Ipomoea aquatica_60/70/79.17"
+      medium: matchedRow.Phyto_Species5_medium,
+      timePeriod: matchedRow.Phyto_Species5_timePeriod,
+      remediation: matchedRow.Phyto_Species5_remediation
     },
     {
-      medium: "Salvinia molesta_water",
-      timePeriod: "Salvinia molesta_15/30",
-      remediation: "Salvinia molesta_50/90"
+      medium: matchedRow.Phyto_Species6_medium,
+      timePeriod: matchedRow.Phyto_Species6_timePeriod,
+      remediation: matchedRow.Phyto_Species6_remediation
     }
   ];
   const aboutplantcontent = [
     { 
       plant_name: rightpanelcontent[0].plantNameSplit,
-      description: "About Salvinia molesta_Salvinia molesta, a perennial aquatic fern, exhibits a characteristic structure  that is adapted for its free-floating lifestyle. Its aerial fronds (a large leaf), arranged in triplets, transition from flat, youthful forms to increasingly folded, mature structures, reaching sizes up to 2.2 cm. These fronds possess a specialized upper surface, featuring papillae with intricate, hair-like cages that trap air, enhancing buoyancy and repelling water. The lower surface, covered in dense brown hairs, further contributes to flotation.Beneath the surface, highly divided, feathery fronds act as pseudo-roots, anchoring the plant and facilitating nutrient absorption. These submerged fronds extend significantly, ranging from 2 to 50 cm. At the bottom, rhizomes, which are horizontal stems beneath the water surface , propagate vegetatively through fragmentation, allowing the fern to rapidly colonize aquatic environments and form dense mats. \nMature plants produce sporocarps, small, egg-shaped structures containing infertile microspores and megaspores. These sporocarps, covered in soft hairs, are clustered along the submerged leaves. Lacking sexual reproduction, Salvinia molesta relies entirely on asexual propagation through fragmentation. This strategy enables rapid dispersal and the formation of extensive, floating mats, which can significantly impact aquatic ecosystems.",
-      status: "Wetland Status_ OBL (Obligate Wetland Plant) - Almost always occurs in wetlands"
+      description: matchedRow.AboutPlant_description,
+      status: matchedRow.AboutPlant_WetlandStatus
     }
   ];
   const commonname = [
     { plantName: rightpanelcontent[0].plantNameSplit },
-    { text: "Chinese; rén yàn huái cài pín, rén yàn huái yè píng" },
-    { text: "Dutch; Grote vlotvaren" },
-    { text: "English; African payal, African pyle, Aquarium water moss, Azolla, Giant azolla, Giant salvinia, Kariba weed, Salvinia, Salvinia moss, Water fern, Water spangles, Australian azolla, butterfly fern, cats tongue, koi kandy, velvet weed, watermoss" },
-    { text: "Finland; rikkakellussaniainen" },
-    { text: "Germany; Lästiger büschelfarn; Schwimmfarn, Bueschelfarn, Leastiger Schwimmfarn" },
-    { text: "Italy; Salvinia molesta (The genus name Salvinia honors the Italian scholar Antonio Maria Salvini (1633–1729), a professor of the Greek language at the University of Florence)" },
-    { text: "Netherlands; drijfplantje" },
-    { text: "Portuguese; mururé carrapatinho" },
-    { text: "South Africa; Water varing" },
-    { text: "Swedish; öronsimbräken" },
-    { text: "Thailand; Chawk hunu" }
+    { text: matchedRow.CommonNames_content1 },
+    { text: matchedRow.CommonNames_content2},
+    { text: matchedRow.CommonNames_content3 },
+    { text: matchedRow.CommonNames_content4 },
+    { text: matchedRow.CommonNames_content5 },
+    { text: matchedRow.CommonNames_content6},
+    { text: matchedRow.CommonNames_content7 },
+    { text: matchedRow.CommonNames_content8},
+    { text: matchedRow.CommonNames_content9 },
+    { text: matchedRow.CommonNames_content10 },
+    { text: matchedRow.CommonNames_content11 },
+    { text: matchedRow.CommonNames_content12 },
+    { text: matchedRow.CommonNames_content13 },
+    { text: matchedRow.CommonNames_content14 },
+    { text: matchedRow.CommonNames_content15 },
+    { text: matchedRow.CommonNames_content16 },
+    { text: matchedRow.CommonNames_content17 },
+    { text: matchedRow.CommonNames_content18 },
   ];
   const habitat = [
     { plantName: rightpanelcontent[0].plantNameSplit },
     {
-      title: "Diverse Habitats",
-      content: "Salvinia molesta flourishes in diverse freshwater settings, preferring still or sluggish waters. It establishes itself in sheltered areas like small bays, inlets along irregular shorelines, and the gentle flow of tributary streams. Its presence is common in lakes, wetlands, man-made irrigation channels, ditches, ponds, and canals. It colonizes disturbed environments, including rice paddies, flood control canals, artificial reservoirs, swamps, drainage channels, and the edges of rivers. This adaptability is further highlighted by its tolerance of fluctuating water levels, enabling it to survive in seasonally waterlogged soils and even thrive on nutrient-rich mud banks composed of silt and clay."
+      title: matchedRow.PlantHabitat_title1,
+      content: matchedRow.PlantHabitat_content1
     },
     {
-      title: "Light, salinity and pH",
-      content: "Salvinia molesta flourishes in warm, nutrient-rich freshwater, demonstrating a strong preference for environments high in nitrogen and phosphorus, and a slightly acidic to neutral pH between 4.5 and 8.5. Requiring ample sunlight for rapid growth, this aquatic fern has adapted to low-oxygen conditions through specialized leaf structures that enhance gas exchange. While strictly a freshwater species, it is highly intolerant of salinity, succumbing quickly to seawater, though it may endure brief exposure to low salt concentrations. These combined factors contribute to its rapid proliferation and invasive potential in suitable freshwater ecosystems."
+      title: matchedRow.PlantHabitat_title2,
+      content: matchedRow.PlantHabitat_content2
     },
     {
-      title: "Temperature and Humidity",
-      content: "Salvinia molesta requires high humidity for survival and propagation. Specifically, humidity levels above 60% are necessary to prevent desiccation (removal of moisture). The plant thrives within a temperature range of 20 to 30°C (68–86°F), with optimal growth occurring when relative humidity is between 70% and 90%. It is important to note that Salvinia molesta is intolerant of extreme temperatures, and will not survive below 10°C or above 40°C."
+      title:matchedRow.PlantHabitat_title3,
+      content:matchedRow.PlantHabitat_content3
     },
     {
-      title: "Climate Resilience",
-      content: "Beyond its primary aquatic habitat, Salvinia molesta exhibits remarkable adaptability, extending its range to semi-terrestrial environments. It has been observed thriving among emergent undergrowth and around trees on flooded shorelines, demonstrating its ability to exploit these transitional zones. Notably, the plant can even survive terrestrially in consistently high-humidity areas, such as the mist-laden environment at the base of Victoria Falls. Moreover, its persistence on moist, waterlogged soils further emphasizes its resilience and capacity to thrive in a wider array of ecological niches than typically associated with a purely aquatic species."
+      title: matchedRow.PlantHabitat_title4,
+      content: matchedRow.PlantHabitat_content4
+    },
+    {
+      title: matchedRow.PlantHabitat_title5,
+      content: matchedRow.PlantHabitat_content5
     }
+
   ];
   const geographicaldistribution = [
-      {text: "Originating from southeastern Brazil, in the subtropical zone between latitudes 24°050 S and 32°050 S at elevations up to 900 m, Salvinia molesta has become a globally disruptive invasive aquatic fern, spreading rapidly since the mid-20th century. Initially introduced as an ornamental plant and for water treatment, it has since colonized diverse aquatic ecosystems worldwide, causing significant ecological disruption. Its spread accelerated from the 1950s, reaching numerous African countries. By the 1970s and 1980s, it had invaded Cameroon, the Democratic Republic of the Congo, Nigeria, and South Africa, and later spread to Ghana and Kenya, among others. In the Indian subcontinent and Southeast Asia, it is prevalent in India, and is considered an invasive species in Indonesia, Malaysia, and Israel, and has also been observed in Japan. In Europe, it is found in Denmark, France, Germany, and Spain. It is an invasive species in Austria, Belgium, and Italy, notably in Tuscany and near Rome, where it displaces native species and alters ecosystems. The plant is able to thrive in tropical, subtropical, and warm temperate regions, including Australia, New Zealand, the southern United States, and various Pacific islands."}
+      {text: matchedRow.Geographicaldistribution_text}
   ];
   const sectionphyto = [
-    { type: 'intro', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque.' },
+    { type: 'intro', text: matchedRow.PhytoCapacity_description },
     { plantName: rightpanelcontent[0].plantNameSplit },
-    { text: "Potassium_Salvinia molesta effectively concentrates potassium in its roots and fronds, enabling phytoremediation of polluted waters. Studies from the Cochin University of Science and Technology show dried plants contain 2.8 g/kg potassium, with removal rates of 50-90% within 15-30 days, dependent on initial potassium levels, growth period, environment, and biomass." },
-    { text: "Lead _Salvinia molesta demonstrates significant lead (Pb) removal capabilities in polluted water. Studies in Patna,India, reported 85% Pb accumulation, and a Tamil Nadu study documented a 35.3% reduction in Pb from industrial effluent (2.974 ppm to 1.924 ppm). A study from the Department of Biological Sciences, Faculty of Science, Ahmadu Bello University, Zaria, Nigeria, observed increasing Pb uptake over 18 days, reaching 0.087% of dry weight without visible plant damage, suggesting a unique stress response. These findings highlight Salvinia molesta's potential for Pb phytoremediation, even at varying initial concentrations." },
-    { text: "Mercury_A study conducted by the Ganga Devi Mahila College (Magadh University), Kankarbagh in Patna, India, further explored Salvinia molesta's phytoremediation potential by assessing its ability to remove mercury (Hg) from polluted water. The research indicated that when exposed to a 100% concentration of Hg in the experimental solution, Salvinia molesta accumulated up to 74% of the mercury in 15 days within its plant tissues." },
-    { text: "Copper_Salvinia molesta effectively removes copper (Cu) from polluted environments. Studies show it accumulates Cu without visible damage, even at high concentrations. A University of Vellore, India, study revealed an 86.4% increase of Cu within plant tissues over 15 days, while a study from University of Kelaniya, Srilanka, demonstrated a 32.6% Cu reduction in sewage sludge over 28 days. These findings confirm Salvinia molesta's capacity for both Cu bioaccumulation and removal, making it a promising phytoremediation agent." },
-    { text: "Cadmium_Salvinia molesta demonstrates cadmium (Cd) removal capabilities, though its tolerance varies with concentration. Pondicherry University research found survival at 1 ppm Cd for 16 days, but limited growth at higher concentrations (10 ppm for a week, 100 ppm for 5 days). A Vellore Institute of Technology study showed a 92.83% Cd reduction from industrial effluent, decreasing from 0.251 ppm to 0.018 ppm. This indicates effective Cd absorption, particularly at lower concentrations, but also highlights Salvinia molesta's sensitivity to elevated Cd levels." },
-    { text: "Chromium_Salvinia molesta exhibits varying chromium (Cr) tolerance. Pondicherry University studies showed healthy growth for 45 days at 1 ppm Cr, 25 days at 10 ppm, but immediate decay at 100 ppm. A Vellore Institute of Technology study demonstrated a 47.95% Cr reduction from industrial effluent, decreasing from 2.021 ppm to 1.052 ppm. This indicates effective Cr removal at lower concentrations, but highlights sensitivity to higher Cr levels." },
-    { text: "Zinc_Salvinia molesta demonstrates a strong capacity for zinc (Zn) accumulation and removal. Experiments show it concentrates Zinc in dry tissues 10,000-fold compared to water, indicating purification potential. Studies in Loyola College, Tamil Nadu confirm significant Zn reduction in wastewater after 10 days. Research done by  Centre for Water Resources Development & Management, Kunnamangalam, Kerala published in Resources and Conservation further highlights its efficiency, with 50% Zn removal in 15 days and 90% in 30 days, showcasing its ability to effectively absorb and cleanse Zn from contaminated water." },
-    { text: "Other heavy metals_Salvinia molesta demonstrates effective manganese (Mn) and iron (Fe) accumulation. A 2016 VIT University study revealed Salvinia molesta concentrates Mn in dry tissues five-fold compared to water, using Atomic Absorption Spectrophotometry. Additionally, University of Kelaniy, Sri Lanaka, research showed a 26.6% Fe reduction in sewage sludge over 28 days. These findings, combined with its high growth rate and metal tolerance, solidify Salvinia molesta as a potent heavy metal hyperaccumulator, suitable for phytoremediation." },
-    { text: "Nickel_Salvinia molesta demonstrates effective manganese (Mn) and iron (Fe) accumulation. A 2016 VIT University study revealed Salvinia molesta concentrates Mn in dry tissues five-fold compared to water, using Atomic Absorption Spectrophotometry. Additionally, University of Kelaniy, Sri Lanaka, research showed a 26.6% Fe reduction in sewage sludge over 28 days. These findings, combined with its high growth rate and metal tolerance, solidify Salvinia molesta as a potent heavy metal hyperaccumulator, suitable for phytoremediation." },
-    { text: "Micronutrients_Salvinia molesta exhibits strong nitrogen (N) and phosphorus (P) phytoremediation capabilities. Studies show N content ranges from 0.6% to 4.0% of dry weight, with uptake rates up to 8 mg per g of dry weight/day, or 6,000 kg of nitrogen per hectare/year. Australian sewage lagoons recorded 1,580 kg per hectare/year removal. While S. molesta phosphorus uptake data is limited, Salvinia minima and Salvinia auriculata studies indicate phosphorus concentration enhances growth and uptake, respectively, suggesting S. molesta's potential to combat eutrophication." },
+    { text: matchedRow.PhytoCapacity_contentPara1 },
+    { text: matchedRow.PhytoCapacity_contentPara2 },
+    { text:  matchedRow.PhytoCapacity_contentPara3  },
+    { text:  matchedRow.PhytoCapacity_contentPara4  },
+    { text:  matchedRow.PhytoCapacity_contentPara5  },
+    { text:  matchedRow.PhytoCapacity_contentPara6  },
+    { text:  matchedRow.PhytoCapacity_contentPara7  },
+    { text:  matchedRow.PhytoCapacity_contentPara8  },
+    { text:  matchedRow.PhytoCapacity_contentPara9  },
+    { text:  matchedRow.PhytoCapacity_contentPara10  },
+    { text:  matchedRow.PhytoCapacity_contentPara11  },
   ];
 
   // Optimized data structure for UsesOfPlant component
@@ -249,77 +278,144 @@ const PollutantPage = (categorizedData) => {
       {
         id: 'nutritional',
         title: 'NUTRITIONAL',
-        flavourtext: 'Salvinia molesta is not suitable for human consumption due to its poor nutritional value and potential toxicity.',
+        flavourtext: matchedRow.Nutritional_flavourtext,
         items: [
           {
-            header: 'The edibility rating for Salvinia molesta is unavailable.',
-            text: 'Its nutritional value is poor, lacking significant macronutrients like carbohydrates, proteins, and fats. While containing minerals, it poses toxicity risks due to heavy metal accumulation from its phytoremediation abilities. High lignin and tannin content interfere with nutrient absorption. Furthermore, aquatic environments expose it to microbial contamination. Therefore, Salvinia molesta is deemed unsuitable for human consumption, and its primary applications lie in environmental remediation, animal feed research, and biomass production.'
+            header: matchedRow.Medicinal_flavourtext,
+            text: matchedRow.UsesOfPlant_nutritional_description1
+          },
+          {
+            header: matchedRow.Medicinal_flavourtext,
+            text: matchedRow.UsesOfPlant_nutritional_description2
+          },
+          {
+            header: matchedRow.Medicinal_flavourtext,
+            text: matchedRow.UsesOfPlant_nutritional_description3
+          },
+          {
+            header: matchedRow.Medicinal_flavourtext,
+            text: matchedRow.UsesOfPlant_nutritional_description4
+          },
+          {
+            header: matchedRow.Medicinal_flavourtext,
+            text: matchedRow.UsesOfPlant_nutritional_description5
+          },
+          {
+            header: matchedRow.Medicinal_flavourtext,
+            text: matchedRow.UsesOfPlant_nutritional_description6
+          },
+          {
+            header: matchedRow.Medicinal_flavourtext,
+            text: matchedRow.UsesOfPlant_nutritional_description7
+          },
+          {
+            header: matchedRow.Medicinal_flavourtext,
+            text: matchedRow.UsesOfPlant_nutritional_description8
+          },
+          {
+            header: matchedRow.Medicinal_flavourtext,
+            text: matchedRow.UsesOfPlant_nutritional_description9
+          },
+          {
+            header: matchedRow.Medicinal_flavourtext,
+            text: matchedRow.UsesOfPlant_nutritional_description10
           }
         ]
       },
       {
         id: 'medicine',
         title: 'MEDICINE',
-        flavourtext: 'Salvinia molesta exhibits promising antibacterial properties against certain harmful bacteria.', // Common flavour text for medicine group
+        flavourtext: matchedRow.UsesOfPlant_medicinal_flavourtext, // Common flavour text for medicine group
         items: [
           {
-            header: 'Antimicrobial',
-            text: 'A 2014 Indian study from International Journal of PharmTech Research revealed Salvinia molestas antibacterial properties were attributed to its secondary metabolites (product of metabolism). Methanol and chloroform extracts demonstrated 7-15% antimicrobial activity against Pseudomonas aeruginosa, a bacterium responsible for various infections, including urinary tract infections, respiratory infections and other infections, and also showed excellent potential against Aeromonas hydrophila, bacteria that causes gastroenteritis or infectious diarrhea which is the inflammation of the stomach and small intestine.'
+            header: matchedRow.UsesOfPlant_title1,
+            text: matchedRow.UsesOfPlant_description1
           },
           {
-            header: 'Respiratory',
-            text: 'Salvinia molesta roots are used to address respiratory issues such as cough, phlegm, and inflammation. Traditional Chinese medicine utilizes a decoction to address such ailments. Prepared by boiling 10g of the dried roots in 500ml of water for 15-20 minutes, this remedy is sometimes enhanced with ginger for increased anti-inflammatory effects and honey for soothing properties. The strained, warm liquid is then consumed twice daily.'
+            header: matchedRow.UsesOfPlant_title2,
+            text: matchedRow.UsesOfPlant_description2
           },
           {
-            header: 'Dermatitis',
-            text: 'In Malay and Indonesian traditional medicine, Salvinia molesta leaves offer a natural remedy. Fresh leaves are washed, crushed into a paste, and sometimes mixed with coconut oil or turmeric for enhanced effects. This paste is applied to affected areas for 15-30 minutes, then rinsed. Twice-daily application aims to reduce redness, itching, and inflammation, promoting skin healing. This traditional use reflects the plants potential soothing and antimicrobial properties.'
+            header: matchedRow.UsesOfPlant_title3,
+            text: matchedRow.UsesOfPlant_description3
           },
           {
-            header: 'Anti-cancer activity',
-            text: 'A 2013 study at Stephen F. Austin State University found that Salvinia molesta extracts, specifically abietane diterpenes, could selectively stop cancer cell growth. These compounds were toxic to tumor cells but left healthy cells unharmed, showing potential for targeted cancer treatment.'
+            header: matchedRow.UsesOfPlant_title4,
+            text: matchedRow.UsesOfPlant_description4
           },
           {
-            header: 'Wound healing',
-            text: 'A 2015 IIT Varanasi study published in the Journal of Photochemistry and Photobiology B: Biology demonstrated the green synthesis of silver nanoparticles using Salvinia molesta extract. This eco-friendly method converts silver ions into nanoparticles, offering potential applications in wound healing, antibacterial coatings, and drug delivery.'
+            header: matchedRow.UsesOfPlant_title5,
+            text: matchedRow.UsesOfPlant_description5
           },
           {
-            header: 'Antioxidant', // Corrected typo
-            text: 'A 2014 CSIR (Council of Scientific and Industrial Research) study, documented in Philippine Medicinal Plants, revealed Salvinia molesta extracts (acetone/methanol) possess high antioxidant activity due to phenolic compounds, primarily naringenin and myricetin.This antioxidant capacity may combat oxidative stress, inflammation, and chronic diseases, potentially supporting liver health, metabolism, neuroprotection, and cardiovascular function.'
+            header: matchedRow.UsesOfPlant_title6,
+            text: matchedRow.UsesOfPlant_description6
+          },
+          {
+            header: matchedRow.UsesOfPlant_title7,
+            text: matchedRow.UsesOfPlant_description7
+          },
+          {
+            header: matchedRow.UsesOfPlant_title8,
+            text: matchedRow.UsesOfPlant_description8
+          },
+          {
+            header: matchedRow.UsesOfPlant_title9,
+            text: matchedRow.UsesOfPlant_description9
+          },
+          {
+            header: matchedRow.UsesOfPlant_title10,
+            text: matchedRow.UsesOfPlant_description10
           }
         ]
       },
       {
         id: 'additional',
         title: 'ADDITIONAL',
-        flavourtext: 'Salvinia molesta has various other uses beyond medicinal applications.', // Added a generic flavourtext for 'additional'
         items: [
           {
-            header: 'Paper industry raw material',
-            text: 'A study from the Bulletin of the National Institute of Ecology, India, suggests S. molesta can be processed into low-grade paper products like kraft, newsprint, and tissue. It can be utilized alone or in conjunction with agricultural byproducts such as rice straw or waste textile cuttings, offering a sustainable alternative to traditional pulp sources.'
+            header: matchedRow.Add_UsesOfPlant_title1,
+            text: matchedRow.Add_UsesOfPlant_description1
           },
           {
-            header: 'Supplementary animal feed', // Corrected typo
-            text: 'While not suitable as a sole feed source due to its high crude ash and tannin content, which can hinder digestibility, S. molesta can supplement the diets of various animals, including ducks, pigs, geese, and fish. It provides a source of nutrients and can be particularly useful in regions with limited feed resources.'
+            header: matchedRow.Add_UsesOfPlant_title2,
+            text: matchedRow.Add_UsesOfPlant_description2
           },
           {
-            header: 'Biofuel Production via Anaerobic Digestion',
-            text: 'Research from the Indian Institutes of Technology (IIT) and Indian Agricultural Research Institute (IARI) demonstrates the potential for S. molesta to generate biogas through anaerobic digestion, yielding methane, a valuable energy source. Combining it with other aquatic plants like Eichhornia crassipes can further enhance biogas production.'
+            header: matchedRow.Add_UsesOfPlant_title3,
+            text: matchedRow.Add_UsesOfPlant_description3
           },
           {
-            header: 'Ornamental Horticulture and Invasive Spread', // Removed duplicate entry
-            text: 'Its aesthetic qualities have made S. molesta popular in botanical gardens and aquariums. However, this widespread use has inadvertently contributed to its classification as an invasive species in many regions'
+            header: matchedRow.Add_UsesOfPlant_title4,
+            text: matchedRow.Add_UsesOfPlant_description4
           },
           {
-            header: 'Agricultural Fertilizer and Soil Amendment',
-            text: 'S. molesta can be composted or used as mulch, providing a nutrient-rich soil amendment. Its use as mulch is particularly beneficial in dry regions and for citrus crops, enhancing soil fertility and moisture retention.'
+            header: matchedRow.Add_UsesOfPlant_title5,
+            text: matchedRow.Add_UsesOfPlant_description5
           },
           {
-            header: 'Aquaculture Enhancement and Fish Feed Supplement',
-            text: 'In aquaculture, S. molesta can serve as a partial feed source for fish species like Nile tilapia, potentially improving growth performance. It also fosters the growth of invertebrate larvae, a valuable food source for prawns and fish.'
+            header: matchedRow.Add_UsesOfPlant_title6,
+            text: matchedRow.Add_UsesOfPlant_description6
           },
           {
-            header: 'Ecological Control via Biological Agents',
-            text: 'The introduction of specific weevil species, natural predators of S. molesta, offers a biological control method to manage its rapid growth and prevent ecological imbalances. This approach helps maintain biodiversity and ecosystem health.'
+            header: matchedRow.Add_UsesOfPlant_title7,
+            text: matchedRow.Add_UsesOfPlant_description7
+          },
+          {
+            header: matchedRow.Add_UsesOfPlant_title8,
+            text: matchedRow.Add_UsesOfPlant_description8
+          },
+          {
+            header: matchedRow.Add_UsesOfPlant_title9,
+            text: matchedRow.Add_UsesOfPlant_description9
+          },
+          {
+            header: matchedRow.Add_UsesOfPlant_title10,
+            text: matchedRow.Add_UsesOfPlant_description10
+          },
+          {
+            header: matchedRow.Add_UsesOfPlant_title11,
+            text: matchedRow.Add_UsesOfPlant_description11
           }
         ]
       }

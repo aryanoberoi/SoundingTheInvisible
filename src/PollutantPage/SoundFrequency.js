@@ -20,7 +20,11 @@ export const SoundFrequency = ({ sections }) => {
             <span className="value">{sections[0].enthalpy}</span>
           </div>
           <div className="detail-item">
-            <span className="label">Sound Frequency:</span>
+            <span className="label">Frequency:</span>
+            <span className="value">{sections[0].wavefrequency}</span>
+          </div>
+          <div className="detail-item">
+            <span className="label">Audible Frequency:</span>
             <span className="value">{sections[0].soundfrequency}</span>
           </div>
         </div>
