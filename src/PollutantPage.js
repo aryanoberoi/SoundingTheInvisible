@@ -206,7 +206,7 @@ const PollutantPage = ({ categorizedData }) => {
   // Update the leftpanelcontent to use the new dataContext
   const leftpanelcontent = [
     { 
-      pollutantNumber: 1,
+      pollutantNumber: matchedRow.Number,
       // Use the non-empty name for display
       pollutantName: matchedRow.Pollutantname_split || matchedRow.id || "Unknown Pollutant",
       typeOfWaste: wasteTypeData.typeOfWaste,
@@ -257,8 +257,8 @@ const PollutantPage = ({ categorizedData }) => {
     {
       pollutantName: dataContext.pollutant.name,
       enthalpy: dataContext.pollutant.soundFrequency.enthalpy,
-      soundfrequency: dataContext.pollutant.soundFrequency.frequency,
-      wavefrequency: dataContext.pollutant.soundFrequency.wave
+      soundfrequency: dataContext.pollutant.soundFrequency.wave,
+      wavefrequency: dataContext.pollutant.soundFrequency.frequency
     }
   ];
 
