@@ -25,7 +25,7 @@ export const SoundFrequency = ({ sections }) => {
           </div>
           <div className="detail-item">
             <span className="label">Audible Sound Frequency (Hz):</span>
-            <span className="value">{sections[0].SoundFrequency}</span>
+            <span className="value">{sections[0].soundfrequency}</span>
           </div>
         </div>
         
