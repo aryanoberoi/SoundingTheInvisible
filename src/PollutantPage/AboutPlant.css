@@ -42,8 +42,9 @@
 .image.inverted-text {
   width: 71px;
   height: 71px;
-  background: #fff;
+  background: #000;
   border-radius: 50%;
+  filter: invert(1);
 }
 
 .about-pollutant {
@@ -73,6 +74,7 @@
 
 .vector-image.inverted-image {
   filter: invert(1);
+  margin-left: 10px;
 }
 
 .lorem-ipsum-dolor.inverted-text {

@@ -124,7 +124,7 @@ const PollutantPage = ({ categorizedData }) => {
   console.log(`Looking up waste type for pollutant: "${pollutantNameNormalized}" (from ${pollutantNameRaw})`);
 
   // Look up the waste type data with a fallback
-  const wasteTypeData = pollutantWasteTypeMapping[pollutantNameNormalized] || 
+  const wasteTypeData = pollutantWasteTypeMapping[pollutantNameNormalized] ||
     // Try alternative formats (with/without hyphens)
     pollutantWasteTypeMapping[pollutantNameNormalized.replace(/\s+/g, '-')] ||
     pollutantWasteTypeMapping[pollutantNameNormalized.replace(/-/g, ' ')] ||
@@ -1110,7 +1110,10 @@ useEffect(() => {
           <div className="white-container">
             <div className="bottom-section5" id="plant-name">
               <div className="content-container">
-                <AboutPlant sections={aboutplantcontent}/>
+                <AboutPlant
+                  sections={aboutplantcontent}
+                  wasteTypeIcon={wasteTypeData.atomImage}
+                />
               </div>
             </div>
             <div className="bottom-section6" id="common-names">
