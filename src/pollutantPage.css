@@ -602,7 +602,6 @@ body.right-panel-active .hamburger-line {
   position: relative;
 }
 
-/* Fix the combined section - REMOVE any overflow properties that could break sticky */
 .combined-section {
   display: flex;
   flex-direction: row-reverse;
@@ -611,21 +610,21 @@ body.right-panel-active .hamburger-line {
   background-color: #000;
   gap: 0;
   height: fit-content;
-  /* REMOVE overflow: initial/visible/hidden */
 }
 
 /* Fix the nav-bar-container to create proper sticky context */
 .nav-bar-container {
   position: relative; /* Must be relative to create proper sticky context */
-  width: 25%;
-  margin-left: 3%;
-  margin-right: 3%;
+  width: 30%;
+  /* left: 5%; */
+  /* margin-right: 3%; */
   /* Add explicit height to ensure scrolling context works */
   min-height: 100vh;
   /* CRITICAL: Don't add overflow properties here */
   display: block; /* Ensure block context */
   z-index: 20;
   margin-top: 120px;
+  overflow: visible !important;
 }
 
 /* Fix the nav-bar with aggressive sticky styling */
@@ -735,7 +734,7 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
 .nav-bar .text-wrapper-3 { top: 460px; left: 155px; }
 .nav-bar .text-wrapper-4 { top: 530px; left: 155px; }
 .nav-bar .text-wrapper-5 { top: 590px; left: 155px; }
-.nav-bar .p { top: 650px; left: 155px; }
+.nav-bar .p { top: 630px; left: 155px; }
 .nav-bar .text-wrapper-6 { top: 730px; left: 155px; }
 .nav-bar .text-wrapper-7 { top: 780px; left: 0; }
 
@@ -761,7 +760,7 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
 /* ✅ Timeline Vertical Line & Circles */
 .nav-bar .overlap-group {
   height: calc(765px); /* Explicit calculation from first to last bullet */
-  left: 130px;
+  left: 155px;
   position: absolute;
   top: 25px; /* Matches first bullet's top position */
   width: 10px;
@@ -1025,9 +1024,18 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
 .nav-bar .text-wrapper,
 .nav-bar .div,
 .nav-bar .text-wrapper-7 {
-  left: -5px;  /* Adjusted to align with circle positions */
+  left: 15px;  /* Adjusted to align with circle positions */
   width: 122px;
   text-align: right;
+}
+
+.nav-bar .text-wrapper {
+  left: 15px;
+}
+
+.nav-bar .div {
+  left: -25px;
+  width: 170px;
 }
 
 /* Right-side elements */
@@ -1040,13 +1048,9 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
 .nav-bar .text-wrapper-9,
 .nav-bar .text-wrapper-10,
 .nav-bar .p {
-  left: 150px;  /* Adjusted to align with circle positions */
+  left: 175px;  /* Adjusted to align with circle positions */
   width: 150px;
   text-align: left;  /* Changed from right to left for better alignment */
-}
-
-.nav-bar .overlap-group {
-  left: 130px;  /* Maintain timeline position */
 }
 
 .nav-bar .ellipse,
