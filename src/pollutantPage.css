@@ -47,10 +47,8 @@ html, body, #root {
   width: 40px;
   left: var(--slider-position, 50%);
   cursor: ew-resize;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* Remove vertical centering for desktop */
+  display: block;
   z-index: 10;
 }
 
@@ -1748,5 +1746,32 @@ html body .combined-section .nav-bar-container .nav-bar {
 
   .nav-bar {
     position: sticky !important;
+  }
+}
+
+/* Desktop only: position the slider-image-container absolutely at 600px from the top of the page */
+@media (min-width: 769px) {
+  .slider-image-container {
+    position: absolute !important;
+    top: 370px !important;
+    left: -23px !important;
+    width: 111%;
+    /* Remove centering styles */
+    display: block !important;
+  }
+}
+
+/* Mobile: fallback to original centering (optional, for clarity) */
+@media (max-width: 768px) {
+  .slider-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .slider-image-container {
+    position: relative !important;
+    top: 0 !important;
+    width: auto;
+    display: block !important;
   }
 }

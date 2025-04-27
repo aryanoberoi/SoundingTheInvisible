@@ -113,12 +113,13 @@
 }
 
 .plantImageRightPanel {
-  width: 39%;
+  width: 610px;
   aspect-ratio: 1;
   object-fit: contain;
   position: absolute;
-  top: 8%;
-  left: 37%;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-32%);
   z-index: 20;
 }
 

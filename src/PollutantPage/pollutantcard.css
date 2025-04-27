@@ -154,9 +154,11 @@
     object-fit: contain;
     z-index: 20;
     position: absolute;
-    top: 17vw; /* Moved upwards by adjusting the top position */
-    left: 55%; /* Moved to the right by adjusting the left position */
+    top: 270px; /* Moved upwards by adjusting the top position */
+    left: 50%; /* Center horizontally */
+    transform: translateX(35px); /* Shift left by half its width */
   }
+  
   .pollutantImage {
     padding-right: 0;
     aspect-ratio: 1.1;
@@ -239,4 +241,16 @@
     top: 330px;
     left: 265px;
     transform: rotate(90deg);
+  }
+
+  .pollutantVisualImage {
+    background: transparent;
+    aspect-ratio: 1;
+    width: 500px;
+    object-fit: contain;
+    z-index: 20;
+    position: absolute;
+    top: 205px;
+    left: 50%;
+    transform: translateX(-80px);
   }

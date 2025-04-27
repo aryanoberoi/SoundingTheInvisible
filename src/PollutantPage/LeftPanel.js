@@ -36,7 +36,11 @@ const LeftPanel = ({ sections = [], onLoad, onNavigate }) => {
               <div className='knowone'>
                 <KnowMoreButtonInverted className="knowMoreButtonInverted" onClick={() => onNavigate('about-pollutant')} />
               </div>
-              <div className="imageContainer" />
+              <img
+                src="https://res.cloudinary.com/dj1km5iax/image/upload/v1745676198/xejwbtmg6pic01osjkdn.png"
+                alt="Pollutant visual"
+                className="pollutantVisualImage"
+              />
             </div>
           </div>
           <div className="sideContent">
