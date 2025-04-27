@@ -776,7 +776,7 @@ useEffect(() => {
 
     // Determine which panel the section belongs to
     const isInRightPanel = section.closest('.white-container') !== null;
-    const targetSliderPos = isInRightPanel ? 1 : 99;
+    const targetSliderPos = isInRightPanel ? 0 : 100;
 
     // Set smooth transition for slider
     document.documentElement.style.setProperty('--slider-transition', 'left 0.5s ease-in-out');
