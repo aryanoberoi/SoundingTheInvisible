@@ -114,310 +114,203 @@ const PollutantPage = ({ categorizedData }) => {
     'bht': { typeOfWaste: 4, atomImage: 'sewage-waste-icon.svg' }
   };
 
+  
+
+  // FIXED VERSION - Uses the actual pollutant name
+  const pollutantName = matchedRow.Pollutantname_split?.toLowerCase();
+  const wasteTypeInfo = pollutantWasteTypeMapping[pollutantName] || 
+                       pollutantWasteTypeMapping['potassium']; // Fallback if not found
+
+  // Create a single data context object instead of multiple separate arrays
+  const dataContext = {
+    pollutant: {
+      name: matchedRow.Pollutantname_split,
+      description: matchedRow.pollutant_description_split,
+      wasteType: wasteTypeInfo.typeOfWaste,
+      atomImage: wasteTypeInfo.atomImage,
+      effects: {
+        summary: matchedRow.effects_on_human_Health_description_split,
+        details: [
+          matchedRow.healtheffects_1,
+          matchedRow.healtheffects_2,
+          // Compact array generation for remaining health effects
+          ...Array(9).fill(0).map((_, i) => matchedRow[`healtheffects_${i+3}`]).filter(Boolean)
+        ]
+      },
+      sources: matchedRow.sources_venice_Description_split,
+      soundFrequency: {
+        enthalpy: matchedRow.Enthalpy_,
+        frequency: matchedRow.SineWaveVisualizer_frequency_audiblefrequency,
+        wave: matchedRow.Sound_frequency
+      },
+      caseStudies: {
+        venice: matchedRow.CaseStudies_venice_lagoon,
+        area: matchedRow.CaseStudies_area
+      },
+      phytoSpecies: Array(6).fill(0).map((_, i) => ({
+        medium: matchedRow[`Phyto_Species${i+1}_medium`],
+        timePeriod: matchedRow[`Phyto_Species${i+1}_timePeriod`],
+        remediation: matchedRow[`Phyto_Species${i+1}_remediation`]
+      })).filter(item => item.medium || item.timePeriod || item.remediation),
+      about: {
+        description: matchedRow.AboutPollutantSection_description,
+        image: matchedRow.AboutPollutantSection_image
+      }
+    },
+    
+    plant: {
+      name: matchedRow.plantName_Split,
+      latinName: matchedRow.plant_name,
+      image: matchedRow.image_split_plant,
+      details: matchedRow.split_plant_details,
+      wetlandDescription: matchedRow.plantData_WetlandDescription_split,
+      phytoCapacity: matchedRow.phytoremediation_capacity_split,
+      habitat: {
+        temperature: matchedRow.PlantHabitat_temperature,
+        humidity: matchedRow.PlantHabitat_humidity_moisture,
+        soil: matchedRow.PlantHabitat_soil,
+        ph: matchedRow.PlantHabitat_pH,
+        details: Array(5).fill(0).map((_, i) => ({
+          title: matchedRow[`PlantHabitat_title${i+1}`],
+          content: matchedRow[`PlantHabitat_content${i+1}`]
+        })).filter(item => item.title || item.content)
+      },
+      about: {
+        description: matchedRow.AboutPlant_description,
+        status: matchedRow.AboutPlant_WetlandStatus
+      },
+      commonNames: Array(19).fill(0).map((_, i) => matchedRow[`CommonNames_content${i}`]).filter(Boolean),
+      geographicalDistribution: matchedRow.Geographicaldistribution_text,
+      phytoCapacityDetails: {
+        description: matchedRow.PhytoCapacity_description,
+        paragraphs: Array(11).fill(0).map((_, i) => 
+          matchedRow[`PhytoCapacity_contentPara${i+1}`]
+        ).filter(Boolean)
+      }
+    }
+  };
+
+  // Update the leftpanelcontent to use the new dataContext
   const leftpanelcontent = [
     { 
       pollutantNumber: 1,
-      pollutantName: matchedRow.Pollutantname_split,
-      ...pollutantWasteTypeMapping['potassium'],
-      pollutantDescription: matchedRow.pollutant_description_split,
-      effect: matchedRow.effects_on_human_Health_description_split,
-      sources: matchedRow.sources_venice_Description_split
+      pollutantName: dataContext.pollutant.name,
+      typeOfWaste: dataContext.pollutant.wasteType,
+      atomImage: dataContext.pollutant.atomImage,
+      pollutantDescription: dataContext.pollutant.description,
+      effect: dataContext.pollutant.effects.summary,
+      sources: dataContext.pollutant.sources
     }
   ];
+
+  // Update the rightpanelcontent to use the new dataContext
   const rightpanelcontent = [
     {
-      plantNameSplit: matchedRow.plantName_Split,
-      wetlandDescription: matchedRow.plantData_WetlandDescription_split,
-      phytoCapacity: matchedRow.phytoremediation_capacity_split,
-      temperature: matchedRow.PlantHabitat_temperature,
-      humidity: matchedRow.PlantHabitat_humidity_moisture,
-      soil: matchedRow.PlantHabitat_soil,
-      ph: matchedRow.PlantHabitat_pH,
-      imgUrl: matchedRow.image_split_plant,
-      plantName: matchedRow.plant_name,
-      plantDetails: matchedRow.split_plant_details
+      plantNameSplit: dataContext.plant.name,
+      wetlandDescription: dataContext.plant.wetlandDescription,
+      phytoCapacity: dataContext.plant.phytoCapacity,
+      temperature: dataContext.plant.habitat.temperature,
+      humidity: dataContext.plant.habitat.humidity,
+      soil: dataContext.plant.habitat.soil,
+      ph: dataContext.plant.habitat.ph,
+      imgUrl: dataContext.plant.image,
+      plantName: dataContext.plant.latinName,
+      plantDetails: dataContext.plant.details
     }
   ];
+
+  // Update aboutpollutantcontent to use the new dataContext
   const aboutpollutantcontent = [
     {
-      text: matchedRow.AboutPollutantSection_description,
-      image: matchedRow.AboutPollutantSection_image
+      text: dataContext.pollutant.about.description,
+      image: dataContext.pollutant.about.image
     }
   ];
+
+  // Update sinewavefreq to use the new dataContext
   const sinewavefreq = [
     { 
-      pollutantName: leftpanelcontent[0].pollutantName,
-      enthalpy: matchedRow.Enthalpy_ ,
-      soundfrequency: matchedRow.SineWaveVisualizer_frequency_audiblefrequency,
-      wavefrequency: matchedRow.Sound_frequency
+      pollutantName: dataContext.pollutant.name,
+      enthalpy: dataContext.pollutant.soundFrequency.enthalpy,
+      soundfrequency: dataContext.pollutant.soundFrequency.frequency,
+      wavefrequency: dataContext.pollutant.soundFrequency.wave
     }
   ];
-  const effectonhealthcontent = [
-    { text: matchedRow.healtheffects_1},
-    { text: matchedRow.healtheffects_2 },
-    { text: matchedRow.healtheffects_3  },
-    { text: matchedRow.healtheffects_4  },
-    { text: matchedRow.healtheffects_5  },
-    { text: matchedRow.healtheffects_6  },
-    { text: matchedRow.healtheffects_7},
-    { text: matchedRow.healtheffects_8 },
-    { text: matchedRow.healtheffects_9  },
-    { text: matchedRow.healtheffects_10  },
-    { text: matchedRow.healtheffects_11 }
-  ];
+
+  // Update effectonhealthcontent to use the new dataContext
+  const effectonhealthcontent = dataContext.pollutant.effects.details.map(text => ({ text }));
+
+  // Update casestudiescontent to use the new dataContext
   const casestudiescontent = [
-    { text: matchedRow.CaseStudies_venice_lagoon},
-    { text: matchedRow.CaseStudies_area}
+    { text: dataContext.pollutant.caseStudies.venice },
+    { text: dataContext.pollutant.caseStudies.area }
   ];
-  const phytocontent = [
-    {
-      medium: matchedRow.Phyto_Species1_medium,
-      timePeriod: matchedRow.Phyto_Species1_timePeriod,
-      remediation: matchedRow.Phyto_Species1_remediation
-    },
-    {
-      medium: matchedRow.Phyto_Species2_medium,
-      timePeriod: matchedRow.Phyto_Species2_timePeriod,
-      remediation: matchedRow.Phyto_Species2_remediation
-    },
-    {
-      medium: matchedRow.Phyto_Species3_medium,
-      timePeriod: matchedRow.Phyto_Species3_timePeriod,
-      remediation: matchedRow.Phyto_Species3_remediation
-    },{
-      medium: matchedRow.Phyto_Species4_medium,
-      timePeriod: matchedRow.Phyto_Species4_timePeriod,
-      remediation: matchedRow.Phyto_Species4_remediation
-    },
-    {
-      medium: matchedRow.Phyto_Species5_medium,
-      timePeriod: matchedRow.Phyto_Species5_timePeriod,
-      remediation: matchedRow.Phyto_Species5_remediation
-    },
-    {
-      medium: matchedRow.Phyto_Species6_medium,
-      timePeriod: matchedRow.Phyto_Species6_timePeriod,
-      remediation: matchedRow.Phyto_Species6_remediation
-    }
-  ];
+
+  // Update phytocontent to use the new dataContext
+  const phytocontent = dataContext.pollutant.phytoSpecies;
+
+  // Update aboutplantcontent to use the new dataContext
   const aboutplantcontent = [
     { 
-      plant_name: rightpanelcontent[0].plantNameSplit,
-      description: matchedRow.AboutPlant_description,
-      status: matchedRow.AboutPlant_WetlandStatus
+      plant_name: dataContext.plant.name,
+      description: dataContext.plant.about.description,
+      status: dataContext.plant.about.status
     }
   ];
+
+  // Update commonname to use the new dataContext
   const commonname = [
-    { plantName: rightpanelcontent[0].plantNameSplit },
-    { text: matchedRow.CommonNames_content1 },
-    { text: matchedRow.CommonNames_content2},
-    { text: matchedRow.CommonNames_content3 },
-    { text: matchedRow.CommonNames_content4 },
-    { text: matchedRow.CommonNames_content5 },
-    { text: matchedRow.CommonNames_content6},
-    { text: matchedRow.CommonNames_content7 },
-    { text: matchedRow.CommonNames_content8},
-    { text: matchedRow.CommonNames_content9 },
-    { text: matchedRow.CommonNames_content10 },
-    { text: matchedRow.CommonNames_content11 },
-    { text: matchedRow.CommonNames_content12 },
-    { text: matchedRow.CommonNames_content13 },
-    { text: matchedRow.CommonNames_content14 },
-    { text: matchedRow.CommonNames_content15 },
-    { text: matchedRow.CommonNames_content16 },
-    { text: matchedRow.CommonNames_content17 },
-    { text: matchedRow.CommonNames_content18 },
+    { plantName: dataContext.plant.name },
+    ...dataContext.plant.commonNames.map(text => ({ text }))
   ];
+
+  // Update habitat to use the new dataContext
   const habitat = [
-    { plantName: rightpanelcontent[0].plantNameSplit },
-    {
-      title: matchedRow.PlantHabitat_title1,
-      content: matchedRow.PlantHabitat_content1
-    },
-    {
-      title: matchedRow.PlantHabitat_title2,
-      content: matchedRow.PlantHabitat_content2
-    },
-    {
-      title:matchedRow.PlantHabitat_title3,
-      content:matchedRow.PlantHabitat_content3
-    },
-    {
-      title: matchedRow.PlantHabitat_title4,
-      content: matchedRow.PlantHabitat_content4
-    },
-    {
-      title: matchedRow.PlantHabitat_title5,
-      content: matchedRow.PlantHabitat_content5
-    }
-
+    { plantName: dataContext.plant.name },
+    ...dataContext.plant.habitat.details
   ];
+
+  // Update geographicaldistribution to use the new dataContext
   const geographicaldistribution = [
-      {text: matchedRow.Geographicaldistribution_text}
-  ];
-  const sectionphyto = [
-    { type: 'intro', text: matchedRow.PhytoCapacity_description },
-    { plantName: rightpanelcontent[0].plantNameSplit },
-    { text: matchedRow.PhytoCapacity_contentPara1 },
-    { text: matchedRow.PhytoCapacity_contentPara2 },
-    { text:  matchedRow.PhytoCapacity_contentPara3  },
-    { text:  matchedRow.PhytoCapacity_contentPara4  },
-    { text:  matchedRow.PhytoCapacity_contentPara5  },
-    { text:  matchedRow.PhytoCapacity_contentPara6  },
-    { text:  matchedRow.PhytoCapacity_contentPara7  },
-    { text:  matchedRow.PhytoCapacity_contentPara8  },
-    { text:  matchedRow.PhytoCapacity_contentPara9  },
-    { text:  matchedRow.PhytoCapacity_contentPara10  },
-    { text:  matchedRow.PhytoCapacity_contentPara11  },
+    { text: dataContext.plant.geographicalDistribution }
   ];
 
-  // Optimized data structure for UsesOfPlant component
-  const usesSectionsData = {
-    plantName: rightpanelcontent[0].plantNameSplit, // Define plant name once
+  // Update sectionphyto to use the new dataContext
+  const sectionphyto = [
+    { type: 'intro', text: dataContext.plant.phytoCapacityDetails.description },
+    { plantName: dataContext.plant.name },
+    ...dataContext.plant.phytoCapacityDetails.paragraphs.map(text => ({ text }))
+  ];
+
+  // More efficient structure for plant uses
+  const plantUses = {
+    plantName: dataContext.plant.name,
     sections: [
       {
         id: 'nutritional',
         title: 'NUTRITIONAL',
         flavourtext: matchedRow.Nutritional_flavourtext,
-        items: [
-          {
-            header: matchedRow.Medicinal_flavourtext,
-            text: matchedRow.UsesOfPlant_nutritional_description1
-          },
-          {
-            header: matchedRow.Medicinal_flavourtext,
-            text: matchedRow.UsesOfPlant_nutritional_description2
-          },
-          {
-            header: matchedRow.Medicinal_flavourtext,
-            text: matchedRow.UsesOfPlant_nutritional_description3
-          },
-          {
-            header: matchedRow.Medicinal_flavourtext,
-            text: matchedRow.UsesOfPlant_nutritional_description4
-          },
-          {
-            header: matchedRow.Medicinal_flavourtext,
-            text: matchedRow.UsesOfPlant_nutritional_description5
-          },
-          {
-            header: matchedRow.Medicinal_flavourtext,
-            text: matchedRow.UsesOfPlant_nutritional_description6
-          },
-          {
-            header: matchedRow.Medicinal_flavourtext,
-            text: matchedRow.UsesOfPlant_nutritional_description7
-          },
-          {
-            header: matchedRow.Medicinal_flavourtext,
-            text: matchedRow.UsesOfPlant_nutritional_description8
-          },
-          {
-            header: matchedRow.Medicinal_flavourtext,
-            text: matchedRow.UsesOfPlant_nutritional_description9
-          },
-          {
-            header: matchedRow.Medicinal_flavourtext,
-            text: matchedRow.UsesOfPlant_nutritional_description10
-          }
-        ]
+        items: Array(10).fill(0).map((_, i) => ({
+          header: matchedRow.Medicinal_flavourtext,
+          text: matchedRow[`UsesOfPlant_nutritional_description${i+1}`]
+        })).filter(item => item.text)
       },
       {
         id: 'medicine',
         title: 'MEDICINE',
-        flavourtext: matchedRow.UsesOfPlant_medicinal_flavourtext, // Common flavour text for medicine group
-        items: [
-          {
-            header: matchedRow.UsesOfPlant_title1,
-            text: matchedRow.UsesOfPlant_description1
-          },
-          {
-            header: matchedRow.UsesOfPlant_title2,
-            text: matchedRow.UsesOfPlant_description2
-          },
-          {
-            header: matchedRow.UsesOfPlant_title3,
-            text: matchedRow.UsesOfPlant_description3
-          },
-          {
-            header: matchedRow.UsesOfPlant_title4,
-            text: matchedRow.UsesOfPlant_description4
-          },
-          {
-            header: matchedRow.UsesOfPlant_title5,
-            text: matchedRow.UsesOfPlant_description5
-          },
-          {
-            header: matchedRow.UsesOfPlant_title6,
-            text: matchedRow.UsesOfPlant_description6
-          },
-          {
-            header: matchedRow.UsesOfPlant_title7,
-            text: matchedRow.UsesOfPlant_description7
-          },
-          {
-            header: matchedRow.UsesOfPlant_title8,
-            text: matchedRow.UsesOfPlant_description8
-          },
-          {
-            header: matchedRow.UsesOfPlant_title9,
-            text: matchedRow.UsesOfPlant_description9
-          },
-          {
-            header: matchedRow.UsesOfPlant_title10,
-            text: matchedRow.UsesOfPlant_description10
-          }
-        ]
+        flavourtext: matchedRow.UsesOfPlant_medicinal_flavourtext,
+        items: Array(10).fill(0).map((_, i) => ({
+          header: matchedRow[`UsesOfPlant_title${i+1}`],
+          text: matchedRow[`UsesOfPlant_description${i+1}`]
+        })).filter(item => item.text)
       },
       {
         id: 'additional',
         title: 'ADDITIONAL',
-        items: [
-          {
-            header: matchedRow.Add_UsesOfPlant_title1,
-            text: matchedRow.Add_UsesOfPlant_description1
-          },
-          {
-            header: matchedRow.Add_UsesOfPlant_title2,
-            text: matchedRow.Add_UsesOfPlant_description2
-          },
-          {
-            header: matchedRow.Add_UsesOfPlant_title3,
-            text: matchedRow.Add_UsesOfPlant_description3
-          },
-          {
-            header: matchedRow.Add_UsesOfPlant_title4,
-            text: matchedRow.Add_UsesOfPlant_description4
-          },
-          {
-            header: matchedRow.Add_UsesOfPlant_title5,
-            text: matchedRow.Add_UsesOfPlant_description5
-          },
-          {
-            header: matchedRow.Add_UsesOfPlant_title6,
-            text: matchedRow.Add_UsesOfPlant_description6
-          },
-          {
-            header: matchedRow.Add_UsesOfPlant_title7,
-            text: matchedRow.Add_UsesOfPlant_description7
-          },
-          {
-            header: matchedRow.Add_UsesOfPlant_title8,
-            text: matchedRow.Add_UsesOfPlant_description8
-          },
-          {
-            header: matchedRow.Add_UsesOfPlant_title9,
-            text: matchedRow.Add_UsesOfPlant_description9
-          },
-          {
-            header: matchedRow.Add_UsesOfPlant_title10,
-            text: matchedRow.Add_UsesOfPlant_description10
-          },
-          {
-            header: matchedRow.Add_UsesOfPlant_title11,
-            text: matchedRow.Add_UsesOfPlant_description11
-          }
-        ]
+        items: Array(11).fill(0).map((_, i) => ({
+          header: matchedRow[`Add_UsesOfPlant_title${i+1}`],
+          text: matchedRow[`Add_UsesOfPlant_description${i+1}`]
+        })).filter(item => item.text)
       }
     ]
   };
@@ -1205,7 +1098,7 @@ useEffect(() => {
               <PhytoCapacity sections={sectionphyto}/>
             </div>
             <div className="bottom-section10" id="uses-of-plant">
-              <UsesOfPlant sectionsData={usesSectionsData}/>
+              <UsesOfPlant sectionsData={plantUses}/>
             </div>
           </div>
         </div>
