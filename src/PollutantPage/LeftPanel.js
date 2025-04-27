@@ -27,7 +27,7 @@ const LeftPanel = ({ sections = [], onLoad, onNavigate }) => {
           <div className="mainContent">
             <div className="pollutantInfo">
               <div className="headerWrapper">
-                <img src={atomImage} alt={`${pollutantName} waste type icon`} className="circle" />
+                <img src={atomImage} alt={`${pollutantName} waste type icon (${typeOfWaste})`} className="circle" />
                 <div className="pollutantName">{pollutantName}</div>
               </div>
               <div className="description">

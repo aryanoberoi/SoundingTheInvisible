@@ -52,7 +52,7 @@ const PollutantPage = ({ categorizedData }) => {
   // Pollutant categorization by waste type
   const pollutantCategories = {
     1: ['potassium', 'simazine', 'imidacloprid', 'plantago', 'atrazine', 'glyphosate', 'phosphorus', 'nitrates'],
-    2: ['mercury', 'copper', 'lead', 'chromium', 'cadmium', 'thalium', 'selenium', 'nickel', 'arsenic', 'zinc', 'iron', 'manganese', 'aluminum'],
+    2: ['mercury', 'copper', 'lead', 'chromium', 'cadmium', 'thallium', 'selenium', 'nickel', 'arsenic', 'zinc', 'iron', 'manganese', 'aluminum'],
     3: ['thorium', 'strontium'],
     4: ['benzene', 'crude-oil', 'petrol', 'spiralis', 'diesel', 'sulphide', 'ammonium', 'phenol', 'organic-matter', 'estrogen', 'phthalate', 'fragrance', 'diclofenac', 'bht']
   };
@@ -116,18 +116,31 @@ const PollutantPage = ({ categorizedData }) => {
 
   
 
-  // FIXED VERSION - Uses the actual pollutant name
-  const pollutantName = matchedRow.Pollutantname_split?.toLowerCase();
-  const wasteTypeInfo = pollutantWasteTypeMapping[pollutantName] || 
-                       pollutantWasteTypeMapping['potassium']; // Fallback if not found
+  // Get the pollutant name using id as fallback when Pollutantname_split is empty
+  const pollutantNameRaw = matchedRow.Pollutantname_split || matchedRow.id || '';
+  const pollutantNameNormalized = pollutantNameRaw.toLowerCase().trim();
+
+  // Add debug logging to track the lookup
+  console.log(`Looking up waste type for pollutant: "${pollutantNameNormalized}" (from ${pollutantNameRaw})`);
+
+  // Look up the waste type data with a fallback
+  const wasteTypeData = pollutantWasteTypeMapping[pollutantNameNormalized] || 
+    // Try alternative formats (with/without hyphens)
+    pollutantWasteTypeMapping[pollutantNameNormalized.replace(/\s+/g, '-')] ||
+    pollutantWasteTypeMapping[pollutantNameNormalized.replace(/-/g, ' ')] ||
+    // Default fallback if no match is found
+    { typeOfWaste: 1, atomImage: 'agriculture-waste-icon.svg' };
+
+  // Log the resolved waste type (debugging)
+  console.log(`Resolved waste type for "${pollutantNameNormalized}":`, wasteTypeData);
 
   // Create a single data context object instead of multiple separate arrays
   const dataContext = {
     pollutant: {
       name: matchedRow.Pollutantname_split,
       description: matchedRow.pollutant_description_split,
-      wasteType: wasteTypeInfo.typeOfWaste,
-      atomImage: wasteTypeInfo.atomImage,
+      wasteType: wasteTypeData.typeOfWaste,
+      atomImage: wasteTypeData.atomImage,
       effects: {
         summary: matchedRow.effects_on_human_Health_description_split,
         details: [
@@ -194,12 +207,13 @@ const PollutantPage = ({ categorizedData }) => {
   const leftpanelcontent = [
     { 
       pollutantNumber: 1,
-      pollutantName: dataContext.pollutant.name,
-      typeOfWaste: dataContext.pollutant.wasteType,
-      atomImage: dataContext.pollutant.atomImage,
-      pollutantDescription: dataContext.pollutant.description,
-      effect: dataContext.pollutant.effects.summary,
-      sources: dataContext.pollutant.sources
+      // Use the non-empty name for display
+      pollutantName: matchedRow.Pollutantname_split || matchedRow.id || "Unknown Pollutant",
+      typeOfWaste: wasteTypeData.typeOfWaste,
+      atomImage: wasteTypeData.atomImage,
+      pollutantDescription: matchedRow.pollutant_description_split,
+      effect: matchedRow.effects_on_human_Health_description_split,
+      sources: matchedRow.sources_venice_Description_split
     }
   ];
 
