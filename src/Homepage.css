@@ -349,6 +349,15 @@
   opacity: 1 !important;
 }
 
+.crude-group .hover-path {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.crude-group:hover .hover-path {
+  opacity: 1 !important;
+}
+
 .lead-group .hover-path {
   opacity: 0 !important;
   transition: opacity 0.3s ease;
