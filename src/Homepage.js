@@ -1,5 +1,4 @@
 import React, {useState, useRef, useEffect} from "react";
-// import frame4 from "./frame-4.js";
 import "./Homepage.css";
 import SoundConceptFrame from './frame.js';
 import ConceptFrame from './frame1.js';
