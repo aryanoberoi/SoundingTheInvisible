@@ -1764,7 +1764,7 @@ html body .combined-section .nav-bar-container .nav-bar {
 @media (min-width: 769px) {
   .slider-image-container {
     position: absolute !important;
-    top: 370px !important;
+    top: 375px !important;
     left: -23px !important;
     width: 111%;
     /* Remove centering styles */
