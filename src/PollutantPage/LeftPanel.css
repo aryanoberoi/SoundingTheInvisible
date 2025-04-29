@@ -48,6 +48,11 @@
     width: 40px;
     height: 40px;
   }
+  
+  .animated-down-arrow {
+    left: 20px;
+    bottom: 20px;
+  }
 }
 
 /* Ensure the left-panel takes full height of its container */
@@ -56,6 +61,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  position: relative; /* Needed for absolute positioning of arrow */
 }
 
 .container {
@@ -213,4 +219,23 @@
 .description {
   flex: 1;
   overflow-y: auto;
+}
+
+/* Animated Down Arrow Styles */
+.animated-down-arrow {
+  position: absolute;
+  left: 60px;
+  bottom: 100px;
+  z-index: 10;
+  animation: floatUpDown 2s ease-in-out infinite;
+  cursor: pointer;
+}
+
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
