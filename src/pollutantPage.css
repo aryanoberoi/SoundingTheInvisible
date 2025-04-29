@@ -1761,6 +1761,7 @@ html body .combined-section .nav-bar-container .nav-bar {
 }
 
 /* Desktop only: position the slider-image-container absolutely at 600px from the top of the page */
+/* Desktop only: centered positioning for slider image */
 @media (min-width: 769px) {
   .slider-image-container {
     position: absolute !important;
@@ -1769,6 +1770,15 @@ html body .combined-section .nav-bar-container .nav-bar {
     width: 111%;
     /* Remove centering styles */
     display: block !important;
+  }
+  
+  /* Position-specific adjustments */
+  body.sound-left-region .slider-image-container {
+    left: -18px !important; /* Fine-tune for left edge */
+  }
+  
+  body.sound-right-region .slider-image-container {
+    left: calc(50% - 37px) !important; /* Fine-tune for right edge */
   }
 }
 
