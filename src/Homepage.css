@@ -641,3 +641,21 @@
   width: 100%;
   height: auto;
 }
+
+/* Add these new styles to fix the z-index issue */
+.strontium-group, .diclofenac-group, .crude-group, .lead-group,
+.aluminum-group, .simazine-group, .zinc-group, .benzene-group,
+.glyphosate-group, .imidacloprid-group, .diesel-group, .nickel-group,
+.chromium-group, .mercury-group, .ammonium-group, .selenium-group,
+.arsenic-group, .fragrance-group, .sulphide-group, .copper-group,
+.manganese-group, .phosphorus-group, .bht-group, .nitrates-group,
+.organic-matter-group, .vallisneria-group, .cadmium-group, .phthalate-group,
+.atrazine-group, .thalium-group, .estrogen-pills-group, .potassium-group {
+  isolation: isolate; /* Creates a stacking context for each group */
+}
+
+/* Add z-index to hover elements */
+.hover-path {
+  z-index: 10; /* Ensures hover elements appear on top */
+  pointer-events: none; /* Prevents hover elements from interfering with parent hover */
+}
