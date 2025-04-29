@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import "./Body.css";
 
-export const Box = ({ sections }) => {
-  const [expandedItem, setExpandedItem] = React.useState(null);
+// Helper function moved outside component for better performance
+const parseSection = (text) => {
+  const [title, content] = text.split('_');
+  return { title, content };
+};
 
-  const toggleItem = (item) => {
-    setExpandedItem(expandedItem === item ? null : item);
-  };
+export const Box = React.memo(({ sections }) => {
+  const [expandedItem, setExpandedItem] = useState(null);
 
-  // Helper function to parse title and content
-  const parseSection = (text) => {
-    const [title, content] = text.split('_');
-    return { title, content };
-  };
+  const toggleItem = useCallback((item) => {
+    setExpandedItem(prevItem => prevItem === item ? null : item);
+  }, []);
+
+  // Parse sections just once when they change
+  const parsedSections = useMemo(() => 
+    sections.map(section => parseSection(section.text)),
+    [sections]
+  );
 
   return (
     <div className="box-container">
@@ -45,16 +51,19 @@ export const Box = ({ sections }) => {
         </div>
 
         <div className="content-items-container" style={{ transform: 'translate(-8em, 13em)' }}>
-          {sections.map((section, index) => {
-            const { title, content } = parseSection(section.text);
+          {parsedSections.map((section, index) => {
+            const { title, content } = section;
             if (!title && !content) {
               return null;
             }
+            const itemIndex = index + 1;
+            const isExpanded = expandedItem === itemIndex;
+            
             return (
               <div 
-                className={`content-item content-item-${index + 1} ${expandedItem === index + 1 ? 'expanded' : ''}`} 
+                className={`content-item content-item-${itemIndex} ${isExpanded ? 'expanded' : ''}`} 
                 key={index}
-                onClick={() => toggleItem(index + 1)}
+                onClick={() => toggleItem(itemIndex)}
               >
                 <div className="item-overlap">
                   <div className="item-title">{title}</div>
@@ -62,10 +71,10 @@ export const Box = ({ sections }) => {
                     <img
                       className="item-icon"
                       alt="Expand icon"
-                      src={`https://c.animaapp.com/Vg2l9Q1d/img/vector-148-${(index + 1) % 2 === 0 ? 6 : 4}.svg`}
+                      src={`https://c.animaapp.com/Vg2l9Q1d/img/vector-148-${(itemIndex) % 2 === 0 ? 6 : 4}.svg`}
                     />
                   </div>
-                  {expandedItem === index + 1 && (
+                  {isExpanded && (
                     <div className="item-content">
                       {content}
                     </div>
@@ -78,4 +87,4 @@ export const Box = ({ sections }) => {
       </div>
     </div>
   );
-};
+});

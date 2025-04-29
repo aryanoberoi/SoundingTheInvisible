@@ -4,28 +4,27 @@
     position: relative;
     width: 100%;
     padding: 20px 0;
-    /* margin-left: calc(3%); */
     overflow: hidden;
 }
   
-.box-container .box-content-sections {
+.box-content-sections {
     padding-top: 50px;
     height: auto;
     position: relative;
     width: 100%;
 }
   
-.box-container .box-header-container {
+.box-header-container {
     height: auto;
     position: relative;
     width: 100%;
     max-width: 425px;
     margin: 0;
     transform: none;
-    left: 5%;
+    left: 60px;
 }
   
-.box-container .box-header-overlap {
+.box-header-overlap {
     background-color: #000;
     height: 57px;
     position: relative;
@@ -36,44 +35,44 @@
     left: 3%;
 }
   
-.box-container .box-header-title {
-    background-color: transparent !important; /* Remove original background */
+.box-header-title {
+    background-color: transparent !important;
     color: #181818;
     font: 378 32px 'Nippo-Regular', sans-serif;
     font-weight: 400;
     left: 0;
     letter-spacing: 3%;
     line-height: 100%;
-    position: relative; /* Ensure positioning context */
+    position: relative;
     top: 10px;
     width: fit-content;
     text-align: left;
     white-space: nowrap;
-    z-index: 1; /* Keep text above the new background */
+    z-index: 1;
     padding-block: 12px;
 }
 
-.box-container .box-header-title::before {
+.box-header-title::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 3px; /* Inset from left */
-    right: 2px; /* Inset from right */
+    left: 3px;
+    right: 2px;
     bottom: 0;
     background-color: #fff;
-    z-index: -1; /* Place behind text */
+    z-index: -1;
 }
 
-.box-container .box-header-title::after {
+.box-header-title::after {
     content: '';
     position: absolute;
-    left: 3px; /* Match the left inset of the background */
+    left: 3px;
     bottom: 0;
     width: 133%;
     height: 12px;
     background-color: #ffffff;
     z-index: -1;
-  }
+}
   
 .box-container .human-container {
     height: auto;
@@ -91,28 +90,22 @@
     width: 100%;
 }
   
- .box-container .main-human-image {
+.box-container .main-human-image {
     height: auto;
-    width: 150%;
+    width: 80%;
     left: 0;
     position: absolute;
     top: -13em;
     max-width: 350px;
     background-color: transparent;
     transform: scale(1.1);
-} 
-  
-.box-container .human-graphics-container {
-    height: 687px;
-    left: 62px;
-    position: absolute;
-    top: 0;
-    width: 254px;
 }
   
-.box-container .human-graphics-overlap {
-    height: 687px;
-    position: relative;
+.box-container .human-graphics-container {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 80%;
 }
   
 .box-container .human-vector {
@@ -121,7 +114,7 @@
     left: 5px;
     max-width: 100%; 
     position: absolute;
-    transform: scale(1.1); /* Increase scale by 10% */
+    transform: scale(1.1);
 }
   
 /* Current desktop styles */
@@ -129,12 +122,37 @@
     position: absolute;
     left: 38%;
     right: 20px;
-    margin-left: 10%;
-    width: auto;
+    margin-left: calc(10% + 20px); /* Added 20px gap */
+    width: 60%;
     top: 33px;
 }
 
-/* Add mobile responsiveness */
+/* Smaller desktop screens */
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+    .box-container .human-container {
+        width: 28%; /* Optimize width based on calculations */
+        max-width: 320px; /* Adjusted max-width */
+    }
+    
+    .box-container .content-items-container {
+        left: 40%; /* Adjusted left position */
+        margin-left: calc(3% + 20px); /* Added 20px gap */
+        width: 65%; /* Maintain width */
+        transform: translate(-7em, 13em) !important; /* Adjust transform to prevent overlap */
+    }
+    
+    .box-container .main-human-image,
+    .box-container .human-vector {
+        transform: scale(1); /* Reduce scale for smaller screens */
+    }
+    
+    /* Ensure content items are properly aligned even when adjusted */
+    .box-container .content-item:nth-child(even) {
+        left: 8%; /* Slightly reduce left indent on smaller screens */
+    }
+}
+
+/* Optimized mobile styles */
 @media screen and (max-width: 768px) {
     .box-container .content-items-container {
         position: absolute;
@@ -143,15 +161,43 @@
         margin-left: 35%;
         width: 100%;
         top: 70%;
-        padding: 0px;
+        padding: 0;
         height: auto;
     }
+    
+    .box-container .box-header-container {
+        width: 100%;
+    }
+    
+    .box-container .header-title {
+        font-size: 1.5rem;
+    }
+    
+    .box-container .human-container {
+        width: 100%;
+        max-width: none;
+        margin-top: 40px;
+    }
+    
+    .box-container .content-item:nth-child(even) {
+        left: 0;
+    }
+    
+    .box-container .main-human-image {
+        top: 0;
+    }
+    
+    .box-container .human-vector {
+        width: 100%;
+        left: 0;
+    }
 }
+
 .box-container .content-item {
     width: 100%;
     max-width: 416px;
     position: relative;
-    margin-bottom: 5px; /* Reduced from 10px to 5px */
+    margin-bottom: 5px;
     transition: all 0.3s ease;
     cursor: pointer;
     z-index: 1;
@@ -162,9 +208,10 @@
     width: 90%;
     max-width: 416px;
     right: 0;
-    margin: 1rem 0; /* Reduced from 2rem to 1rem */
+    margin: 1rem 0;
     height: 50px;
 }
+
 .box-container .content-item:nth-child(even) {
     left: 10%;
     margin-right: 10%;
@@ -195,7 +242,7 @@
     left: 20em;
     position: absolute;
     top: 13px;
-    transform: rotate(360.00deg);
+    transform: rotate(360deg);
     width: 16px;
 }
   
@@ -206,7 +253,7 @@
     left: 5px;
     position: absolute;
     top: 6px;
-    transform: rotate(-180.00deg);
+    transform: rotate(-180deg);
 }
   
 .box-container .item-content {
@@ -214,7 +261,7 @@
     padding-top: calc(15%);
     font: 400 14px 'ClashGrotesk-Light', 'san-serif';
     line-height: 1.5;
-    margin-top: 0px;
+    margin-top: 0;
 }
   
 .box-container .expanded .item-overlap {
@@ -231,33 +278,3 @@
     height: auto;
     object-fit: contain;
 }
-  
-@media (max-width: 768px) {
-    .box-container .box-header-container {
-        width: 100%;
-    }
-    
-    .box-container .header-title {
-        font-size: 1.5rem;
-    }
-    
-    .box-container .human-container {
-        width: 100%;
-        max-width: none;
-        margin-top: 40px;
-    }
-    
-    .box-container .content-item:nth-child(even) {
-        left: 0;
-    }
-    
-    .box-container .main-human-image {
-        top: 0;
-    }
-    
-    .box-container .human-vector {
-        width: 100%;
-        left: 0;
-    }
-}
-  
