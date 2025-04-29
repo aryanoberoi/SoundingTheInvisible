@@ -1100,13 +1100,13 @@ useEffect(() => {
               <SoundFrequency sections={sinewavefreq}/>
           </div>
           <div className="effect-on-health-section" id="effect-on-health">
-            <Box sections={effectonhealthcontent}/> {/** sizing */}
+            <Box sections={effectonhealthcontent}/>
           </div>
           <div className="bottom-section3" id="case-study">
-            <CaseStudies sections={casestudiescontent}/> {/** text overlap */}
+            <CaseStudies sections={casestudiescontent}/>
           </div>
           <div className="bottom-section4" id="phytoremediation">
-            <Phyto sections={phytocontent} pollutantName={leftpanelcontent[0].pollutantName}/> {/** time period overlap */}
+            <Phyto sections={phytocontent} pollutantName={leftpanelcontent[0].pollutantName}/>
           </div>
           <div className="white-container">
             <div className="bottom-section5" id="plant-name">

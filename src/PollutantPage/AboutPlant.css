@@ -40,6 +40,7 @@
 }
 
 .image.inverted-text {
+  margin-top: 2px;
   width: 71px;
   height: 71px;
   background: #000;
@@ -66,15 +67,7 @@
 }
 
 .flex-row-a {
-  width: 500px;
-  height: 9.5px;
-  margin: -0.57px 0 30px 28.5px;
-  z-index: 2;
-}
-
-.vector-image.inverted-image {
-  filter: invert(1);
-  margin-left: 10px;
+  width: fit-content;
 }
 
 .lorem-ipsum-dolor.inverted-text {
