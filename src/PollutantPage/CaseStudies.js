@@ -3,15 +3,16 @@ import group121 from "./group-121.svg";
 import "./CaseStudies.css";
 
 export const CaseStudies = ({ sections }) => {
+
   // Helper function to get title and content from text
   const parseSection = (text) => {
-    const [title, content] = text.split('_');
+    const [title, content] = text?.split('_');
     return { title, content };
   };
 
-  const name = parseSection(sections[0].text);
-  const location = parseSection(sections[1].text);
-
+  const name = parseSection(sections[0].text?sections[0].text:"");
+  const location = parseSection(sections[1].text?sections[1].text:"");
+console.log("Sections_LLLKKKK:", sections);
   return (
     <div className="box">
       <div className="group">
@@ -48,7 +49,8 @@ export const CaseStudies = ({ sections }) => {
             <img
               className="rectangle-5"
               alt="Rectangle"
-              src="https://c.animaapp.com/2uQFoxD8/img/rectangle-28-1.svg"
+               src="https://c.animaapp.com/2uQFoxD8/img/rectangle-28.svg"
+              // src="https://c.animaapp.com/2uQFoxD8/img/rectangle-28-1.svg"
             />
           </div>
 

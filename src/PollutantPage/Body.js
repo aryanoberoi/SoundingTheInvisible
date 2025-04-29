@@ -10,7 +10,7 @@ export const Box = ({ sections }) => {
 
   // Helper function to parse title and content
   const parseSection = (text) => {
-    const [title, content] = text.split('_');
+    const [title, content] = text&&text?.split('_');
     return { title, content };
   };
 
@@ -23,7 +23,8 @@ export const Box = ({ sections }) => {
           </div>
         </div>
 
-        <div className="human-container" style={{ height: 'auto', minHeight: '800px' }}>
+        {/* <div className="human-container" style={{ height: 'auto', minHeight: '800px' }}> */}
+        <div className="human-container" style={{ height: 'auto', minHeight: '500px' }}>
           <div className="human-image-wrapper" style={{ height: 'auto', minHeight: '400px' }}>
             <img
               className="main-human-image"
@@ -44,9 +45,9 @@ export const Box = ({ sections }) => {
           </div>
         </div>
 
-        <div className="content-items-container" style={{ transform: 'translate(-8em, 13em)' }}>
-          {sections.map((section, index) => {
-            const { title, content } = parseSection(section.text);
+        <div className="content-items-container" style={{ transform: 'translate(0em, 13em)' }}>
+          {sections?.map((section, index) => {
+            const { title, content } = parseSection(section?.text?section?.text:"");
             if (!title && !content) {
               return null;
             }

@@ -4,9 +4,10 @@ import PeepholeEffect from "./PeepHoleImage";
 
 export const AboutPlant = ({ sections, wasteTypeIcon }) => {
   // Split the description into About Plant and Wetland Status sections
+  console.log("Sections:", sections);
   const plantName = sections[0].plant_name;
-  const aboutPlantText = sections[0].description.split('_')[1];
-  const wetlandStatusText = sections[0].status.split('_')[1];
+  const aboutPlantText = sections[0].description?.split('_')[1];
+  const wetlandStatusText = sections[0].status?.split('_')[1];
   
   // Use the provided wasteTypeIcon or fallback to default
   const iconSrc = wasteTypeIcon || 'agriculture-waste-icon.svg';

@@ -380,3 +380,9 @@
     margin-top: 20px;
     align-self: flex-start;
 }
+
+@media screen and (max-width:768px) {
+    .uses-of-plant-container{
+padding-left: 0px;
+    }
+}

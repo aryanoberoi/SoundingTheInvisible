@@ -15,7 +15,7 @@ export const PhytoCapacity = ({ sections }) => {
   return (
     <div className="phyto-capacity-container">
       <div className="phyto-capacity-header">
-        <div className="phyto-capacity-title">Phytoremediation capacity of {plantName}</div>
+        <div className="phyto-capacity-title">Phytoremediation capacity of <span className="mobile-br"><br /></span>  {plantName}</div>
       </div>
 
       {/* Render the introductory paragraph if it exists */}
