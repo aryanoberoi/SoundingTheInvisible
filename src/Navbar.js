@@ -4,10 +4,14 @@ import { useNavigate } from 'react-router-dom';
 // Import the expanded content components directly
 // Assuming these files export React components
 // If these imports cause errors, check the exact path to your files
+import MobileAgricultureWasteExpanded from './mobileagriculture-waste-expanded';
 import AgricultureWasteExpanded from './agriculture-waste-expanded';
 import HeavyMetalWasteExpanded from './heavy-metal-waste-expanded';
+import MobileHeavyMetalWasteExpanded from './mobile-heavy-metal-waste-expanded';
 import RadioactiveWasteExpanded from './radioactive-waste-expanded';
+import MobileRadioactiveWasteExpanded from './mobile-radioactive-waste-expanded';
 import SewageWasteExpanded from './sewage-waste-expanded';
+import MobileSewageWasteExpanded from './mobilesewage-waste-expanded';
 
 // Enhanced InteractiveSVG component with cursor support
 const InteractiveSVG = ({ src, className }) => {
@@ -66,13 +70,28 @@ const Navbar = () => {
   const navLinksRef = useRef(null);
   const [menuScale, setMenuScale] = useState(1);
   const navigate = useNavigate();
-  
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth);
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // return windowWidth;
+
+console.log("windowWidth",windowWidth>768?"true":"flase")
   // List of navigation items for easy maintenance with their corresponding components
   const navItems = [
-    { id: "agriculture-waste", text: "Agriculture waste", component: AgricultureWasteExpanded },
-    { id: "heavy-metal-waste", text: "Heavy metal waste", component: HeavyMetalWasteExpanded },
-    { id: "radioactive-waste", text: "Radioactive waste", component: RadioactiveWasteExpanded },
-    { id: "sewage-waste", text: "Sewage waste", component: SewageWasteExpanded }
+    { id: "agriculture-waste", text: "Agriculture waste", component:windowWidth>768?
+      AgricultureWasteExpanded
+      : MobileAgricultureWasteExpanded },
+    { id: "heavy-metal-waste", text: "Heavy metal waste", component: windowWidth>768?HeavyMetalWasteExpanded:MobileHeavyMetalWasteExpanded },
+    { id: "radioactive-waste", text: "Radioactive waste", component: windowWidth>768?RadioactiveWasteExpanded:MobileRadioactiveWasteExpanded },
+    { id: "sewage-waste", text: "Sewage waste", component: windowWidth>768?SewageWasteExpanded:MobileSewageWasteExpanded }
   ];
 
   // Add cursor interaction to the navbar
@@ -385,7 +404,9 @@ const Navbar = () => {
                     
                     <div className="underline-container" data-cursor-invert="true">
                       {isExpanded ? (
+                        <>
                         <ExpandedComponent className="nav-underline expanded-underline" />
+                        </>
                       ) : (
                         // Use regular img for non-expanded items
                         <img

@@ -29,7 +29,8 @@ export const Box = React.memo(({ sections }) => {
           </div>
         </div>
 
-        <div className="human-container" style={{ height: 'auto', minHeight: '800px' }}>
+        {/* <div className="human-container" style={{ height: 'auto', minHeight: '800px' }}> */}
+        <div className="human-container" style={{ height: 'auto', minHeight: '500px' }}>
           <div className="human-image-wrapper" style={{ height: 'auto', minHeight: '400px' }}>
             <img
               className="main-human-image"

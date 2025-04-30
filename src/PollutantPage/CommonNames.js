@@ -30,7 +30,7 @@ export const CommonNames = ({ sections }) => {
             return (
               <div
                 // Use index for key and expanded check
-                className={`common-names-item ${expandedItem === index ? 'expanded' : ''}`}
+                className={`common-names-item ${expandedItem === index ? 'expanded --mobel' : ''}`}
                 key={index}
                 onClick={() => toggleItem(index)}
               >
