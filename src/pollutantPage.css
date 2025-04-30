@@ -1571,7 +1571,7 @@ body.white-panel-active .nav-bar .p.active > span {
 
   .content-sections {
     width: 100% !important; /* Ensure full width */
-    padding: 0 1rem;
+    padding: 0 5px;
     flex: none; /* Disable flex sizing */
     min-height: auto; /* Reset min-height */
   }

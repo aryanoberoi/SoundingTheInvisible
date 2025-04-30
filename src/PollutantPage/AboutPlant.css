@@ -178,4 +178,7 @@
   .wetland-status-text{
     font-size: 24px !important;
   }
+  .inverted-graphic-container{
+    width: 100%;
+  }
 }
