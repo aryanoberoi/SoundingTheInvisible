@@ -994,7 +994,7 @@ useEffect(() => {
           }}
           onMouseDown={handleMouseDown}
         >
-          <div className="slider-image-container" style={{ position: 'relative', left: '-4px' }}>
+          <div className="slider-image-container" style={{ position: 'relative' }}>
             <img
               src="slider.png"
               alt="Slider"
