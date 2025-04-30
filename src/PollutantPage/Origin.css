@@ -418,8 +418,8 @@
     }
     .origin-section-container .transparent-border-rectangle {
         /* left: 204px; */
-        left: calc(100% - 210px);
-        width: calc(100% -290px);
+        left: calc(100% - 197px);
+        width: calc(100% - 40px);
         top: 571px;
 
     }
@@ -443,6 +443,6 @@
     height: 207px;
     }
     .origin-section-container .overlay-text{
-        left: 214px;
+        left: 200px;
     }
 }

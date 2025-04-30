@@ -227,3 +227,8 @@
         margin-left: 50px;
     }
 }
+@media screen and (max-width:55px) {
+    .phyto-intro-text{
+        width: 117% !important;
+    }
+}

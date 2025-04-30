@@ -555,11 +555,17 @@ body.right-panel-active .hamburger-line {
 
 @media (max-width: 480px) {
   .nav-item-text {
-    font-size: 24px;
+    font-size: 22px !important;
   }
 
   .nav-icon {
-    height: 24px;
+    height: 41px !important;
+  }
+  .nav-underline {
+ margin-left: 5px !important;
+  }
+  .underline-container {
+left: 17px !important;
   }
 }
 
