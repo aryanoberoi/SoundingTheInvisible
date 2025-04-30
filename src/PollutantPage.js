@@ -787,7 +787,7 @@ useEffect(() => {
     
     // Smooth scroll to section
     section.scrollIntoView({
-      behavior: 'smooth',
+      behavior: 'auto',
       block: 'start'
     });
   };
