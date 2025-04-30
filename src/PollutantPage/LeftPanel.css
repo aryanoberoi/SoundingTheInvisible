@@ -57,7 +57,7 @@
 
 /* Ensure the left-panel takes full height of its container */
 .left-panel {
-  height: auto;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
