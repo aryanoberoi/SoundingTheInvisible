@@ -323,7 +323,7 @@ const PollutantPage = ({ categorizedData }) => {
       },
       {
         id: 'medicine',
-        title: 'MEDICINE',
+        title: 'MEDICINAL',
         flavourtext: matchedRow.UsesOfPlant_medicinal_flavourtext,
         items: Array(10).fill(0).map((_, i) => ({
           header: matchedRow[`UsesOfPlant_title${i+1}`],
