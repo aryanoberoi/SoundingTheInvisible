@@ -23,7 +23,6 @@ const Cloud = ({ top, left, isHovered, distance, direction = "left", scale = 1, 
   const renderCloud = () => {
     switch(variant) {
       case 1:
-        // Original cloud (the one we had before)
         return (
           <svg 
             width="247" 

@@ -340,66 +340,6 @@
 
 /* REMOVE all hover rules for .interactive-svg-concept and group-specific hover-path rules */
 
-.chromium-group .hover-path {
-  opacity: 0 !important;
-  transition: opacity 0.3s ease;
-}
-
-.mercury-group .hover-path {
-  opacity: 0 !important;
-  transition: opacity 0.3s ease;
-}
-
-.ammonium-group .hover-path {
-  opacity: 0 !important;
-  transition: opacity 0.3s ease;
-}
-
-.selenium-group .hover-path {
-  opacity: 0 !important;
-  transition: opacity 0.3s ease;
-}
-
-.arsenic-group .hover-path {
-  opacity: 0 !important;
-  transition: opacity 0.3s ease;
-}
-
-.fragrance-group .hover-path {
-  opacity: 0 !important;
-  transition: opacity 0.3s ease;
-}
-
-.sulphide-group .hover-path {
-  opacity: 0 !important;
-  transition: opacity 0.3s ease;
-}
-
-.copper-group .hover-path {
-  opacity: 0 !important;
-  transition: opacity 0.3s ease;
-}
-
-.manganese-group .hover-path {
-  opacity: 0 !important;
-  transition: opacity 0.3s ease;
-}
-
-.phosphorus-group .hover-path {
-  opacity: 0 !important;
-  transition: opacity 0.3s ease;
-}
-
-.bht-group .hover-path {
-  opacity: 0 !important;
-  transition: opacity 0.3s ease;
-}
-
-.nitrates-group .hover-path {
-  opacity: 0 !important;
-  transition: opacity 0.3s ease;
-}
-
 .read-more-box {
   height: 15px;
   width: fit-content;
