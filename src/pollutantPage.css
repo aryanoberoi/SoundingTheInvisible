@@ -564,6 +564,9 @@ body.right-panel-active .hamburger-line {
   .nav-underline {
  margin-left: 5px !important;
   }
+  .even-item{
+    left:8px !important;
+  }
   .underline-container {
 left: 17px !important;
   }
