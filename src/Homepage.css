@@ -227,8 +227,6 @@
   transition: opacity 0.3s ease;
 }
 
-
-
 /* When hovering a specific element, keep it at full opacity */
 .interactive-svg:hover [fill]:hover {
   opacity: var(--active-opacity) !important;
