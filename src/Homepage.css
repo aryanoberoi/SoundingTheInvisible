@@ -227,10 +227,7 @@
   transition: opacity 0.3s ease;
 }
 
-/* When hovering any element in SVG container, dim all elements */
-.interactive-svg:hover [fill] {
-  opacity: var(--inactive-opacity);
-}
+
 
 /* When hovering a specific element, keep it at full opacity */
 .interactive-svg:hover [fill]:hover {
