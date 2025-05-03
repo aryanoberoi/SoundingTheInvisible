@@ -32,7 +32,7 @@ const RightPanel = ({ sections = [], onLoad, onNavigate }) => {
       description: phytoCapacity.split('_').join('\n')
     },
     {
-      title: "Plant Habitat:",
+      title: `${plantName}'s Habitat:`,
       description: [
         `Temperature: ${temperature}`,
         `Humidity: ${humidity}`,

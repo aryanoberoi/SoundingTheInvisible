@@ -227,8 +227,9 @@
   transition: opacity 0.3s ease;
 }
 
-.interactive-svg:hover [fill] {
-  opacity: var(--inactive-opacity);
+/* When hovering a specific element, keep it at full opacity */
+.interactive-svg:hover [fill]:hover {
+  opacity: var(--active-opacity) !important;
 }
 
 /* Target specific patterns to maintain opacity on hover */
@@ -326,7 +327,9 @@
   --inactive-opacity: 0.5;
 }
 
+/* By default, all elements with fill attribute have full opacity */
 .interactive-svg-concept [fill] {
+<<<<<<< HEAD
   opacity: var(--active-opacity);
   transition: opacity 0.3s ease;
 }
@@ -551,21 +554,13 @@
 
 .bht-group .hover-path {
   opacity: 0 !important;
+=======
+  /* Keep this basic styling */
+>>>>>>> arham
   transition: opacity 0.3s ease;
 }
 
-.bht-group:hover .hover-path {
-  opacity: 1 !important;
-}
-
-.nitrates-group .hover-path {
-  opacity: 0 !important;
-  transition: opacity 0.3s ease;
-}
-
-.nitrates-group:hover .hover-path {
-  opacity: 1 !important;
-}
+/* REMOVE all hover rules for .interactive-svg-concept and group-specific hover-path rules */
 
 .read-more-box {
   height: 15px;
@@ -649,4 +644,31 @@
 .hover-path {
   z-index: 10; /* Ensures hover elements appear on top */
   pointer-events: none; /* Prevents hover elements from interfering with parent hover */
+}
+/* Cloud Animation Styles */
+.concept-section {
+  position: relative; /* Ensure this is set for absolute positioning of clouds */
+  overflow: hidden; /* Prevent clouds from causing scrollbars when they animate */
+}
+
+.animated-cloud {
+  position: absolute;
+  z-index: 5; 
+  /* All other styling is handled inline for flexibility */
+}
+
+/* Additional hover effect refinements with unique timing for each cloud variant */
+.animated-cloud:nth-child(1) {
+  transition-duration: 2.2s; /* Slightly different timing for each cloud */
+  z-index: 6; /* Ensure proper layering */
+}
+
+.animated-cloud:nth-child(2) {
+  transition-duration: 1.8s;
+  z-index: 5;
+}
+
+.animated-cloud:nth-child(3) {
+  transition-duration: 2.5s;
+  z-index: 7;
 }

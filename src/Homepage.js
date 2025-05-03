@@ -5,11 +5,13 @@ import ConceptFrame from './frame1.js';
 import MiddleFrame from './frame2.js';
 import vector187 from "./vector-187.png";
 import group283 from "./group-283.png";
+import Cloud from './Cloud';
 
 export default function Homepage() {
   const [showConceptText, setShowConceptText] = useState(false);
   const [showTrapeziumText, setShowTrapeziumText] = useState(false);
   const [showSoundText, setShowSoundText] = useState(false);
+  const [isFrameHovered, setIsFrameHovered] = useState(false);
   const audioRef = useRef(null);
   
   // Safe audio manipulation with better null checking
@@ -25,6 +27,11 @@ export default function Homepage() {
     // Optional: You could set up audio here if needed
     console.log("Audio ref initialized:", audioRef.current);
   }, []);
+
+  // Handler for ConceptFrame hover
+  const handleFrameHover = (hovering) => {
+    setIsFrameHovered(hovering);
+  };
 
   return (
     <div className="homepage">
@@ -43,6 +50,10 @@ export default function Homepage() {
 
       {/* 🔸 Concept Section */}
       <section className="concept-section">
+        <Cloud top={80} left={45} isHovered={isFrameHovered} distance="short" direction="left" scale={0.9} variant={1} />
+        <Cloud top={180} left={60} isHovered={isFrameHovered} distance="medium" direction="right" variant={2} />
+        <Cloud top={0} left={72} isHovered={isFrameHovered} distance="long" direction="left" scale={1.1} variant={3} />
+
         <div className="concept-text">
           <h2>Sound Concept</h2>
           <p>
@@ -58,11 +69,12 @@ export default function Homepage() {
           </div>
         </div>
         <div className="svg-container">
-          <ConceptFrame 
+          <ConceptFrame
             className="interactive-svg-concept"
             preserveAspectRatio="xMidYMid meet"
-            audioRef={audioRef} // Pass the audio ref to your component
-            handleAudio={handleAudio} // Pass the handler function
+            audioRef={audioRef}
+            handleAudio={handleAudio}
+            onHover={handleFrameHover}
           />
         </div>
 
@@ -116,8 +128,8 @@ export default function Homepage() {
           <SoundConceptFrame 
             className="strategy-image interactive-svg"
             preserveAspectRatio="xMidYMid meet"
-            audioRef={audioRef} // Pass the audio ref to your component
-            handleAudio={handleAudio} // Pass the handler function
+            audioRef={audioRef}
+            handleAudio={handleAudio}
           />
         </div>
       </section>
