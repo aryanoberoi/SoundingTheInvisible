@@ -15,7 +15,7 @@ export const Phyto = ({ sections, pollutantName }) => {
       {/* Header Section */}
       <div className="overlap-group-wrapper">
         <div className="overlap-group-2">
-          <div className="text-wrapper-3">Phytoremediation of {pollutantName}</div>
+          <div className="text-wrapper-3">Phytoremediation of &nbsp;<span className="mobile-br"><br /></span>  {pollutantName}</div>
         </div>
       </div>
 
@@ -34,7 +34,7 @@ export const Phyto = ({ sections, pollutantName }) => {
                 style={{ 
                   top: '60px', 
                   transform: index % 3 === 1 ? 'none' : 'scaleX(-1)', 
-                  left: index % 3 === 1 ? 'calc(64%)' : 'calc(69%)'
+                  left: index % 3 === 1 ? 'calc(64%)' : 'calc(100% - 44%)'
                 }} 
               />
               <div className="soil-label" style={{ fontSize: '26px'}}>
@@ -44,7 +44,7 @@ export const Phyto = ({ sections, pollutantName }) => {
               <div className={`time-period-container ${index % 3 === 1 ? 'time-period-container-group2' : ''}`}>
                 <p className="div">{getTimePeriod(section.timePeriod)}</p>
                 <div className="div-wrapper">
-                  <div className="text-wrapper-2">Time period (days)</div>
+                  <div className="text-wrapper-2 text-wrapper-99 ">Time period (days)</div>
                 </div>
               </div>
 

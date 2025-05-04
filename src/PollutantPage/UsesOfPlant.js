@@ -160,17 +160,24 @@ export const UsesOfPlant = ({ sectionsData }) => {
           className={`uses-container-${section.id}`}
           ref={el => sectionRefs.current[section.id] = el}
         >
-          <div className="circle-inverted" />
+          <div style={{display:"flex",alignItems:"center",gap:10}}>
+          <div className="circle-inverted" >
           <img 
             src={getSectionImage(section.id)} 
             alt={`${section.id} icon`} 
             className="circle-image" 
           />
+          </div>
+          <div>
+
+          <div className={section.id}>{section.title}</div>
+          <div className={`${section.id}-text-text`}>{section.flavourtext}</div>
+          </div>
+            </div>
           
           <div className={`text-vector-group ${expandedSection === section.id ? 'expanded' : ''}`}>
             {/* Section title and flavor text */}
-            <div className={section.id}>{section.title}</div>
-            <div className={`${section.id}-text-text`}>{section.flavourtext}</div>
+         
             
             {/* Content container */}
             <div ref={el => contentRefs.current[section.id] = el} className="items-content-container">

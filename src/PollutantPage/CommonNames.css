@@ -164,7 +164,10 @@
     }
     
     .common-names-container .common-names-title {
-        font-size: 1.5rem;
+        font-size: 20px !important;
+    }
+    .common-names-container{
+        margin-left: 0px !important;
     }
     
     .common-names-container .common-names-main-human-image {
@@ -175,6 +178,12 @@
         width: 100%;
         left: 0;
     }
+    .--mobel{
+        left: 10px !important;
+    }
+    /* .common-names-container .common-names-item:nth-child(3n+2) {
+        left: 10px; 2nd, 5th, 8th items
+    } */
 }
   
 .common-names-container .wetland-status-container {

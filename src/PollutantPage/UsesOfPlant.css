@@ -89,10 +89,14 @@
     width: 57px;
     height: 57px;
     border: 1px solid #000;
-    position: absolute;
+    /* position: absolute; */
     left: 0;
     top: 0;
     z-index: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Added styling for the circle image */
@@ -100,7 +104,7 @@
     width: 37px;
     height: 37px;
     border-radius: 50%;
-    position: absolute;
+    /* position: absolute; */
     left: 10px;
     top: 10px;
     z-index: 2;
@@ -379,4 +383,34 @@
     transition: background-color 0.3s ease;
     margin-top: 20px;
     align-self: flex-start;
+}
+
+@media screen and (max-width:768px) {
+    .uses-of-plant-container{
+padding-left: 0px;
+    }
+    .circle-inverted{
+        width: 79px;
+        height: 40px;
+    
+    }
+    .circle-image{
+        width: 28px;
+        height: 28px;
+    }
+    .nutritional-text-text{
+        width: 100%;
+    }
+    .medicine-text-text{
+        width: 100%;
+    }
+    .additional-text-text{
+        width: 100%;
+    }
+    .text-vector-group {
+        padding-left: 0px;
+    }
+    .nutritional-text-header{
+        width: 98%;
+    }
 }

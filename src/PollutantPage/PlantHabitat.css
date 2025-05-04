@@ -271,9 +271,34 @@
     
     .plant-habitat-container .section-content {
       font-size: 12px;
+      letter-spacing: 2px;
     }
     
     .plant-habitat-container .section-title {
       font-size: 24px;
+    }
+    .plant-habitat-container .sections-container{
+      padding-left: 0px !important;
+    }
+    .plant-habitat-container .plant-svg{
+      height: 1000px !important;
+    }
+    .plant-habitat-container .plant-svg-container {
+    width: 120px !important;
+    }
+    .plant-habitat-container .habitat-title{
+      font-size: 20px;
+      padding: 20px 0px 20px 6px;
+      /* position: absolute;
+      top: 25px; */
+    }
+    .plant-habitat-container{
+      padding-top: 0px;
+    }
+    .plant-habitat-container .content-wrapper{
+      margin-top: 11px !important;
+    }
+    .plant-habitat-container [class^="habitat-section"]{
+      margin-bottom:0px
     }
   }

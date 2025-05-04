@@ -3,7 +3,7 @@ import "./PlantHabitat.css";
 import plantSvg from "./plant.svg";
 
 export const PlantHabitat = ({ sections }) => {
-  const plantName = sections[0]?.plantName || "Unknown Plant";
+  const plantName = sections[0]?.plantName || "Plant";
   
   return (
     <div className="plant-habitat-container">
@@ -13,7 +13,7 @@ export const PlantHabitat = ({ sections }) => {
             {/* Header section with plant name */}
             <div className="header-wrapper">
               <div className="header-content">
-                <div className="habitat-title">{plantName}'s Habitat</div>
+                <div className="habitat-title">{plantName} Habitat</div>
               </div>
             </div>
 

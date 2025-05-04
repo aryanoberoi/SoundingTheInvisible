@@ -153,3 +153,25 @@
   z-index: 1;
   top: 2px;
 }
+@media screen and (max-width:768px) {
+  .image.inverted-text{
+    width: 63px;
+    height: 63px;
+  }
+  .lorem-ipsum-dolor.inverted-text{
+    width: 93% !important;
+    font-size: 14px !important;
+  }
+  .wetland-black-bar {
+ width: 100% !important; 
+  }
+  .common-names-container .common-names-items{
+    margin-left: 0px !important;
+  }
+  .wetland-status-text{
+    font-size: 24px !important;
+  }
+  .inverted-graphic-container{
+    width: 100%;
+  }
+}
