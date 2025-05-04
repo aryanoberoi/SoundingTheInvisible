@@ -85,6 +85,7 @@
   transform: scaleX(1.5);
 }
 
+/* Main trapezium container */
 .trapezium-section {
   position: relative;
   background-color: black;
@@ -96,13 +97,51 @@
   align-items: center;
   gap: 40px;
   z-index: 1;
+  overflow: visible;
 }
 
+/* SVG container with a pseudo-element approach */
 .svg-container-trapezium {
-  flex: 2; /* Takes up 2/3 of the space */
+  position: relative;
+  flex: 2;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: visible;
+}
+
+/* Target the top overflowing rectangle specifically */
+.svg-container-trapezium::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 213.396px; /* Width of the top rect */
+  height: 91.4877px; /* Height of the top rect */
+  background-color: black; /* Inverted color of white */
+  clip-path: polygon(
+    /* Only show where it would overflow the trapezium */
+    100% 0, 100% 100%, 0 100%, 0 0
+  );
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Target the bottom overflowing rectangle specifically */
+.svg-container-trapezium::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 119.907px; /* Width of the bottom rect */
+  height: 207.178px; /* Height of the bottom rect */
+  background-color: black; /* Inverted color of white */
+  clip-path: polygon(
+    /* Only show where it would overflow the trapezium */
+    100% 0, 100% 100%, 0 100%, 0 0
+  );
+  z-index: 3;
+  pointer-events: none;
 }
 
 .trapezium-text {
@@ -397,8 +436,25 @@
 
 /* Update the MiddleFrame SVG to fill its container */
 .middle-svg-concept {
+  position: relative;
   width: 100%;
   height: auto;
+  z-index: 2; /* Higher z-index to sit above our masks */
+  /* Apply a CSS mask that matches the trapezium shape */
+  -webkit-mask-image: linear-gradient(to bottom right,
+    transparent 0%,
+    transparent 0%,
+    black 25%,
+    black 90%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(to bottom right,
+    transparent 0%,
+    transparent 0%,
+    black 25%,
+    black 90%,
+    transparent 100%
+  );
 }
 
 /* Add these new styles to fix the z-index issue */
