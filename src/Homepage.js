@@ -6,6 +6,7 @@ import MiddleFrame from './frame2.js';
 import vector187 from "./vector-187.png";
 import group283 from "./group-283.png";
 import Cloud from './Cloud';
+import Title from './title.js';
 
 export default function Homepage() {
   const [showConceptText, setShowConceptText] = useState(false);
@@ -43,9 +44,12 @@ export default function Homepage() {
       />
 
       {/* 🔸 Header Section */}
-      <section className="header-section">
+      {/* <section className="header-section">
         <h1>Sounding The Invisible: An Elegant Symbiosis</h1>
         <p>Phytoremediation plants from the tropic of the temperate</p>
+      </section> */}
+      <section className="header">
+        <Title/>
       </section>
 
       {/* 🔸 Concept Section */}

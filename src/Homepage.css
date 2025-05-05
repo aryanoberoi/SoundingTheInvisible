@@ -29,6 +29,7 @@
 
 /* 🔸 Concept Section Wrapper */
 .concept-section {
+  margin-top: -28%;
   position: relative;
   padding: 40px 60px;
 }
@@ -36,7 +37,7 @@
 /* 🔸 Concept Text Styling */
 .concept-text {
   position: absolute;
-  top: 20%;  /* Adjust as needed */
+  top: 60%;  /* Adjust as needed */
   left: 5%;  /* Ensures text stays on the far left */
   width: 360px;
   z-index: 10;
@@ -85,11 +86,15 @@
   transform: scaleX(1.5);
 }
 
+.header{
+  margin-left: 5%;
+}
+
 /* Main trapezium container */
 .trapezium-section {
   position: relative;
   background-color: black;
-  clip-path: polygon(0 0, 100% 10%, 100% 90%, 0% 100%);
+  clip-path: polygon(0 0, 100% 20%, 100% 80%, 0% 100%);
   padding: 50px;
   color: white;
   display: flex;
