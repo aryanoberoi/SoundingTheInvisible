@@ -25,7 +25,7 @@ const Cloud = ({ top, left, isHovered, distance, direction = "left", variant = 1
     transform: isHovered 
       ? `translateX(${getTranslateValue().x}px) translateY(${getTranslateValue().y}px)` 
       : `translateX(0) translateY(0)`,
-    transition: "transform 3s ease",
+    transition: "transform 20s ease",
     zIndex: 5,
   };
 
