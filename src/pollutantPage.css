@@ -906,18 +906,25 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
 
 .timeline-container {
   position: relative;
-  width: 100%;
-  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  /* width: 100%; */
+  /* max-width: 800px; */
   margin: 0 auto;
-  padding: 20px 0;
+  /* padding: 20px; */
+  padding-right: 36px;
+  padding-top: 30px;
 }
 
 .timeline-line {
   position: absolute;
-  left: 50%;
+  left: 66.5%;
   width: 2px;
-  background-color: white;
-  height: 100%;
+  background-color: #000;
+  height: 80%;
+  top: 75px;
 }
 
 .timeline-item {
@@ -2012,4 +2019,220 @@ html body .combined-section .nav-bar-container .nav-bar {
     letter-spacing: 3%;
     line-height: 100%;
  
+}
+/* .toggleDrawerArrow{
+  background-color: white;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 10px 8px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 6px;
+} */
+.toggleDrawerArrowwhite {
+  background-color: white;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  width: 40px;
+  height: 80px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2000;
+}
+.toggleDrawerArrowwhite::before,
+.toggleDrawerArrowwhite::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 40px;
+  height: 20px;
+  background-color: white;
+  z-index: -1;
+}
+
+/* Top curve with clip-path */
+.toggleDrawerArrowwhite::before {
+  top: -19px;
+  clip-path: polygon(94% 77%, 100% 63%, 100% 100%, 100% 100%, 100% 100%, 82% 100%, 65% 100%, 78% 92%, 86% 85%);
+}
+
+/* Bottom curve with flipped clip-path */
+.toggleDrawerArrowwhite::after {
+  bottom: -19px ;
+  clip-path: polygon(94% 23%, 100% 37%, 100% 0%, 100% 0%, 100% 0%, 82% 0%, 65% 0%, 78% 8%, 86% 15%);
+  /* This is a flipped version of the top path to simulate symmetry */
+}
+.mobile-nav-container {
+  font-family: 'Orbitron', sans-serif;
+  background-color: white;
+  color: black;
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.menu-icon,
+.sound-icon {
+  font-size: 24px;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 40px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+}
+
+.nav-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  text-align: left;
+}
+
+.radio-btn {
+  font-size: 18px;
+}
+
+.close-btn {
+  text-align: right;
+  font-size: 14px;
+}
+@media (min-width: 1025px) {
+  .mobile-tab-only {
+    display: none;
+  }
+}
+.close-button{
+  font-size: 22px;
+  font-weight: 300;
+  text-align: end;
+  padding-right: 20px;
+}
+.timeline-drawer{
+  padding: 20px;
+}
+body.white-panel-active .close-button{
+color: #fff;
+}
+.--blackviews{
+  background: #fff;
+  z-index: 99;
+}
+body.white-panel-active .timeline-line{
+  position: absolute;
+  left: 45%;
+  width: 2px;
+  background-color: #ffffff !important;
+  height: 79%;
+  top: 87px;
+  /* background-color:#ffffff !important;
+  /* transform:translateX(190) 
+  left: 50% !important;
+  position: absolute;
+  height: 82% !important; */
+}
+body.white-panel-active .--VIEWSSS{
+z-index: 999;
+background: #000;
+color: #000;
+}
+body.white-panel-active .toggleDrawerArrowblack{
+  background-color: rgb(0, 0, 0);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  width: 40px;
+  height: 80px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 6px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2000;
+  
+}
+body.white-panel-active .arrowwhite{
+  display: block !important;
+}
+.timelinewhite-drawer{
+  display: none;
+}
+.customDrawer{
+  width: 100vw;
+  /* backgroundColor: "", */
+  position: relative
+}
+body.white-panel-active .--blackmodel{
+  background-color: #000;
+}
+body.white-panel-active .timelinewhite-drawer{
+  display: block !important;
+  background-color: #000;
+  /* height: 100%; */
+  padding-top: 50px;
+}
+body.white-panel-active .timeline-container span{
+  color: #fff;
+}
+body.white-panel-active .timeline-drawer{
+  display: none;
+}
+.arrowblack{
+  display: block;
+}
+body.white-panel-active .arrowblack{
+  display: none;
+}
+.arrowwhite{
+  display: none;
+}
+body.white-panel-active .timeline-container{
+  align-items: center !important;
+}
+body.white-panel-active .toggleDrawerArrowblack::before,
+body.white-panel-active .toggleDrawerArrowblack::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 40px;
+  height: 20px;
+  background-color: rgb(0, 0, 0);
+  z-index: -1;
+}
+
+/* Top curve with clip-path */
+.toggleDrawerArrowblack::before {
+  top: -19px;
+  clip-path: polygon(94% 77%, 100% 63%, 100% 100%, 100% 100%, 100% 100%, 82% 100%, 65% 100%, 78% 92%, 86% 85%);
+}
+
+/* Bottom curve with flipped clip-path */
+.toggleDrawerArrowblack::after {
+  bottom: -19px ;
+  clip-path: polygon(94% 23%, 100% 37%, 100% 0%, 100% 0%, 100% 0%, 82% 0%, 65% 0%, 78% 8%, 86% 15%);
+  /* This is a flipped version of the top path to simulate symmetry */
 }
