@@ -51,7 +51,7 @@ export default function Homepage() {
       {/* 🔸 Concept Section */}
       <section className="concept-section">
         <Cloud top={80} left={45} isHovered={isFrameHovered} distance="short" direction="left" scale={0.9} variant={1} />
-        <Cloud top={180} left={60} isHovered={isFrameHovered} distance="medium" direction="right" variant={2} />
+        <Cloud top={180} left={60} isHovered={isFrameHovered} distance="medium" direction="left" variant={2} />
         <Cloud top={0} left={72} isHovered={isFrameHovered} distance="long" direction="left" scale={1.1} variant={3} />
 
         <div className="concept-text">
