@@ -72,7 +72,7 @@ export default function Homepage() {
             {showSoundText ? "READ LESS" : "READ MORE"}
           </div>
         </div>
-        <div className="svg-container">
+        <div className="svg-container-concept">
           <ConceptFrame
             className="interactive-svg-concept"
             preserveAspectRatio="xMidYMid meet"

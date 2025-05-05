@@ -32,15 +32,18 @@
   margin-top: -28%;
   position: relative;
   padding: 40px 60px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  overflow: hidden;
 }
 
 /* 🔸 Concept Text Styling */
 .concept-text {
-  position: absolute;
-  top: 60%;  /* Adjust as needed */
-  left: 5%;  /* Ensures text stays on the far left */
-  width: 360px;
+  position: relative;
+  flex: 0 0 clamp(300px, 30%, 360px);
   z-index: 10;
+  margin-top: 25%;
 }
 
 .concept-text h2 {
@@ -63,10 +66,12 @@
 .frame {
   display: flex;
   justify-content: flex-end;
+  width: 100%;
 }
 
 .frame-2 {
-  width: 65%;   /* Adjust for more spacing */
+  width: 100%;
+  max-width: none;
   height: auto;
   object-fit: contain;
 }
@@ -74,8 +79,9 @@
 /* Container for the small arrow */
 .arrow-box {
   position: absolute;
-  right: 10px;      /* Adjusts horizontal alignment */
-  top: 150px;       /* Adjusts vertical positioning */
+  right: 10px;
+  bottom: 50px;
+  z-index: 11;
 }
 
 /* Styling the arrow image */
@@ -171,37 +177,9 @@
   flex: 1;
   max-width: 360px;
   padding-left: 5%;
-}
-
-.svg-container {
-  flex-basis: 66.666%;
-  position: relative;
   display: flex;
-  justify-content: flex-end;
-  padding-right: 5%;
-}
-
-.svg-container-scs {
-  flex: 2;
-  display: flex;
-  justify-content: flex-end;
-  max-width: 66.66%;
-}
-
-/* 🔸 Sound Strategy Section */
-.strategy-section {
-  padding: 60px 20px;
-  display: flex;
-  gap: 40px;
-  justify-content: center;
-  align-items: center;
-  max-width: 100%;
-  margin: 0 auto;
-}
-
-.strategy-text {
-  flex-basis: 20%;
-  text-align: left;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .sound-text h2 {
@@ -678,7 +656,9 @@
 
 .animated-cloud {
   position: absolute;
-  z-index: 5; 
+  z-index: 5;
+  transform-origin: center; /* Ensure scaling originates from the center */
+  scale: clamp(0.6, 0.8vw, 1); /* Scale based on viewport width */
   /* All other styling is handled inline for flexibility */
 }
 
@@ -696,4 +676,13 @@
 .animated-cloud:nth-child(3) {
   transition-duration: 2.5s;
   z-index: 7;
+}
+
+/* Add a container for the SVG/frame in the concept section */
+.svg-container-concept {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
 }
