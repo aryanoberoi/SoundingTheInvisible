@@ -1321,6 +1321,12 @@ const PollutantPage = ({ categorizedData }) => {
                 isMobile && menuOpen ? "mobile-active" : ""
               }`}
             >
+              <div 
+                className="text-wrapper-combined"
+                onClick={() => handleNavClick("overview")}
+              >
+                <span>{leftpanelcontent[0].pollutantName} + {rightpanelcontent[0].plantNameSplit}</span>
+              </div>
               <div
                 className={`text-wrapper`}
                 onClick={() => handleNavClick("about-pollutant")}
@@ -1386,7 +1392,7 @@ const PollutantPage = ({ categorizedData }) => {
                 className={`text-wrapper-7`}
                 onClick={() => handleNavClick("references")}
               >
-                <span>Bibliography</span>
+                <span>References</span>
               </div>
 
               <div
@@ -1413,6 +1419,7 @@ const PollutantPage = ({ categorizedData }) => {
               </p>
             </div>
             <div className="overlap-group">
+            <div className={`ellipse-0 ${activeSection === "overview" ? "active" : ""}`} />
               <div
                 className={`ellipse ${
                   activeSection === "about-pollutant" ? "active" : ""
