@@ -29,17 +29,21 @@
 
 /* 🔸 Concept Section Wrapper */
 .concept-section {
+  margin-top: -28%;
   position: relative;
   padding: 40px 60px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  overflow: hidden;
 }
 
 /* 🔸 Concept Text Styling */
 .concept-text {
-  position: absolute;
-  top: 20%;  /* Adjust as needed */
-  left: 5%;  /* Ensures text stays on the far left */
-  width: 360px;
+  position: relative;
+  flex: 0 0 clamp(300px, 30%, 360px);
   z-index: 10;
+  margin-top: 25%;
 }
 
 .concept-text h2 {
@@ -62,10 +66,12 @@
 .frame {
   display: flex;
   justify-content: flex-end;
+  width: 100%;
 }
 
 .frame-2 {
-  width: 65%;   /* Adjust for more spacing */
+  width: 100%;
+  max-width: none;
   height: auto;
   object-fit: contain;
 }
@@ -73,8 +79,9 @@
 /* Container for the small arrow */
 .arrow-box {
   position: absolute;
-  right: 10px;      /* Adjusts horizontal alignment */
-  top: 150px;       /* Adjusts vertical positioning */
+  right: 10px;
+  bottom: 50px;
+  z-index: 11;
 }
 
 /* Styling the arrow image */
@@ -85,11 +92,15 @@
   transform: scaleX(1.5);
 }
 
+.header{
+  margin-left: 5%;
+}
+
 /* Main trapezium container */
 .trapezium-section {
   position: relative;
   background-color: black;
-  clip-path: polygon(0 0, 100% 10%, 100% 90%, 0% 100%);
+  clip-path: polygon(0 0, 100% 20%, 100% 80%, 0% 100%);
   padding: 50px;
   color: white;
   display: flex;
@@ -166,37 +177,9 @@
   flex: 1;
   max-width: 360px;
   padding-left: 5%;
-}
-
-.svg-container {
-  flex-basis: 66.666%;
-  position: relative;
   display: flex;
-  justify-content: flex-end;
-  padding-right: 5%;
-}
-
-.svg-container-scs {
-  flex: 2;
-  display: flex;
-  justify-content: flex-end;
-  max-width: 66.66%;
-}
-
-/* 🔸 Sound Strategy Section */
-.strategy-section {
-  padding: 60px 20px;
-  display: flex;
-  gap: 40px;
-  justify-content: center;
-  align-items: center;
-  max-width: 100%;
-  margin: 0 auto;
-}
-
-.strategy-text {
-  flex-basis: 20%;
-  text-align: left;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .sound-text h2 {
@@ -360,27 +343,6 @@
   opacity: 1 !important;
 }
 
-/* Hover interaction styles */
-.interactive-svg-concept {
-  --active-opacity: 1;
-  --inactive-opacity: 0.5;
-}
-
-/* By default, all elements with fill attribute have full opacity */
-.interactive-svg-concept [fill] {
-  opacity: var(--active-opacity);
-  transition: opacity 0.3s ease;
-}
-
-.interactive-svg-concept:hover [fill] {
-  opacity: var(--inactive-opacity);
-}
-
-/* Target elements with ID attributes to maintain opacity on hover */
-.interactive-svg-concept [id]:hover{
-  opacity: var(--active-opacity) !important;
-}
-
 .diclofenac-group .hover-path {
   opacity: 0 !important;
   transition: opacity 0.3s ease;
@@ -478,21 +440,6 @@
 
 .nickel-group:hover .hover-path {
   opacity: 1 !important;
-}
-
-/* Hover interaction styles */
-.middle-svg-concept {
-  --active-opacity: 1;
-  --inactive-opacity: 0.5;
-}
-
-.middle-svg-concept [fill] {
-  opacity: var(--active-opacity);
-  transition: opacity 0.3s ease;
-}
-
-.middle-svg-concept:hover [fill] {
-  opacity: var(--inactive-opacity);
 }
 
 /* Target elements with ID attributes to maintain opacity on hover */
@@ -593,6 +540,10 @@
 .bht-group .hover-path {
   opacity: 0 !important;
   transition: opacity 0.3s ease;
+}
+
+.bht-group:hover .hover-path {
+  opacity: 1 !important;
 }
 
 /* REMOVE all hover rules for .interactive-svg-concept and group-specific hover-path rules */
@@ -705,7 +656,9 @@
 
 .animated-cloud {
   position: absolute;
-  z-index: 5; 
+  z-index: 5;
+  transform-origin: center; /* Ensure scaling originates from the center */
+  scale: clamp(0.6, 0.8vw, 1); /* Scale based on viewport width */
   /* All other styling is handled inline for flexibility */
 }
 
@@ -723,4 +676,13 @@
 .animated-cloud:nth-child(3) {
   transition-duration: 2.5s;
   z-index: 7;
+}
+
+/* Add a container for the SVG/frame in the concept section */
+.svg-container-concept {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
 }

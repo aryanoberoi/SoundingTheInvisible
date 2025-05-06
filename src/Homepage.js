@@ -6,6 +6,7 @@ import MiddleFrame from './frame2.js';
 import vector187 from "./vector-187.png";
 import group283 from "./group-283.png";
 import Cloud from './Cloud';
+import Title from './title.js';
 
 export default function Homepage() {
   const [showConceptText, setShowConceptText] = useState(false);
@@ -43,15 +44,18 @@ export default function Homepage() {
       />
 
       {/* 🔸 Header Section */}
-      <section className="header-section">
+      {/* <section className="header-section">
         <h1>Sounding The Invisible: An Elegant Symbiosis</h1>
         <p>Phytoremediation plants from the tropic of the temperate</p>
+      </section> */}
+      <section className="header">
+        <Title/>
       </section>
 
       {/* 🔸 Concept Section */}
       <section className="concept-section">
         <Cloud top={80} left={45} isHovered={isFrameHovered} distance="short" direction="left" scale={0.9} variant={1} />
-        <Cloud top={180} left={60} isHovered={isFrameHovered} distance="medium" direction="right" variant={2} />
+        <Cloud top={180} left={60} isHovered={isFrameHovered} distance="medium" direction="left" variant={2} />
         <Cloud top={0} left={72} isHovered={isFrameHovered} distance="long" direction="left" scale={1.1} variant={3} />
 
         <div className="concept-text">
@@ -68,7 +72,7 @@ export default function Homepage() {
             {showSoundText ? "READ LESS" : "READ MORE"}
           </div>
         </div>
-        <div className="svg-container">
+        <div className="svg-container-concept">
           <ConceptFrame
             className="interactive-svg-concept"
             preserveAspectRatio="xMidYMid meet"

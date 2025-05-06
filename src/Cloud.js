@@ -1,10 +1,20 @@
 import React from "react";
 
-const Cloud = ({ top, left, isHovered, distance, direction = "left", scale = 1, variant = 1 }) => {
+const Cloud = ({ top, left, isHovered, distance, direction = "left", variant = 1 }) => {
   // Calculate translation distance based on cloud type
   const getTranslateValue = () => {
-    const distanceValue = distance === "short" ? 30 : distance === "medium" ? 50 : 70;
-    return direction === "left" ? -distanceValue : distanceValue;
+    const distanceValue = distance === "short" ? 1500 : distance === "medium" ? 1500 : 1500;
+    const xTranslate = direction === "left" ? -distanceValue : distanceValue;
+    
+    // Determine vertical movement based on variant
+    let yTranslate = 0;
+    if (variant === 1) {
+      yTranslate = -50; // slightly up
+    } else if (variant === 3) {
+      yTranslate = 100; // slightly down
+    }
+    
+    return { x: xTranslate, y: yTranslate };
   };
 
   // Style object with positioning and transition
@@ -13,9 +23,9 @@ const Cloud = ({ top, left, isHovered, distance, direction = "left", scale = 1, 
     top: `${top}px`,
     left: `${left}%`,
     transform: isHovered 
-      ? `translateX(${getTranslateValue()}px) scale(${scale})` 
-      : `translateX(0) scale(${scale})`,
-    transition: "transform 1.8s ease",
+      ? `translateX(${getTranslateValue().x}px) translateY(${getTranslateValue().y}px)` 
+      : `translateX(0) translateY(0)`,
+    transition: "transform 20s ease",
     zIndex: 5,
   };
 
@@ -32,7 +42,7 @@ const Cloud = ({ top, left, isHovered, distance, direction = "left", scale = 1, 
             xmlns="http://www.w3.org/2000/svg" 
             xmlnsXlink="http://www.w3.org/1999/xlink"
           >
-            <g style={{mixBlendMode: "difference"}} filter="url(#filter0_d_2872_666)">
+            <g filter="url(#filter0_d_2872_666) url(#invertFilter)">
               <rect 
                 x="0.652344" 
                 width="237.929" 
@@ -42,6 +52,9 @@ const Cloud = ({ top, left, isHovered, distance, direction = "left", scale = 1, 
               />
             </g>
             <defs>
+              <filter id="invertFilter">
+                <feColorMatrix in="SourceGraphic" type="matrix" values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0"/>
+              </filter>
               <filter 
                 id="filter0_d_2872_666" 
                 x="0.652344" 
@@ -62,7 +75,8 @@ const Cloud = ({ top, left, isHovered, distance, direction = "left", scale = 1, 
                 <feGaussianBlur stdDeviation="2"/>
                 <feComposite in2="hardAlpha" operator="out"/>
                 <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2872_666"/>
+                <feComposite in2="color" operator="in"/>
+                <feComposite in2="BackgroundImageFix" operator="over" result="effect1_dropShadow_2872_666"/>
                 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2872_666" result="shape"/>
               </filter>
               <pattern id="pattern0_cloud1" patternContentUnits="objectBoundingBox" width="1" height="1">
@@ -72,27 +86,28 @@ const Cloud = ({ top, left, isHovered, distance, direction = "left", scale = 1, 
             </defs>
           </svg>
         );
-      
-      case 2:
-        // Second cloud structure
-        return (
-          <svg 
-            width="186" 
-            height="78" 
-            viewBox="0 0 186 78" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg" 
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-          >
-            <g style={{mixBlendMode: "difference"}} filter="url(#filter0_d_2872_666)">
-              <rect 
-                y="0.098877" 
-                width="185.379" 
-                height="77.7427" 
-                fill="url(#pattern0_cloud2)"
-              />
-            </g>
-            <defs>
+        case 2:
+          return (
+            <svg 
+              width="186" 
+              height="78" 
+              viewBox="0 0 186 78" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg" 
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+            >
+              <g filter="url(#filter0_d_2872_666) url(#invertFilter)">
+                <rect 
+                  y="0.098877" 
+                  width="185.379" 
+                  height="77.7427" 
+                  fill="url(#pattern0_cloud2)"
+                />
+              </g>
+              <defs>
+                <filter id="invertFilter">
+                  <feColorMatrix in="SourceGraphic" type="matrix" values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0"/>
+                </filter>
             <filter 
                 id="filter0_d_2872_666" 
                 x="0.652344" 
@@ -113,7 +128,8 @@ const Cloud = ({ top, left, isHovered, distance, direction = "left", scale = 1, 
                 <feGaussianBlur stdDeviation="2"/>
                 <feComposite in2="hardAlpha" operator="out"/>
                 <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2872_666"/>
+                <feComposite in2="color" operator="in"/>
+                <feComposite in2="BackgroundImageFix" operator="over" result="effect1_dropShadow_2872_666"/>
                 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2872_666" result="shape"/>
               </filter>
               <pattern id="pattern0_cloud2" patternContentUnits="objectBoundingBox" width="1" height="1">
@@ -135,7 +151,7 @@ const Cloud = ({ top, left, isHovered, distance, direction = "left", scale = 1, 
             xmlns="http://www.w3.org/2000/svg" 
             xmlnsXlink="http://www.w3.org/1999/xlink"
           >
-            <g style={{mixBlendMode: "difference"}} filter="url(#filter0_d_2872_666)">
+            <g filter="url(#filter0_d_2872_666) url(#invertFilter)">
               <rect 
                 x="0.4375" 
                 y="0.802002" 
@@ -145,6 +161,9 @@ const Cloud = ({ top, left, isHovered, distance, direction = "left", scale = 1, 
               />
             </g>
             <defs>
+              <filter id="invertFilter">
+                <feColorMatrix in="SourceGraphic" type="matrix" values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0"/>
+              </filter>
             <filter 
                 id="filter0_d_2872_666" 
                 x="0.652344" 
@@ -165,7 +184,8 @@ const Cloud = ({ top, left, isHovered, distance, direction = "left", scale = 1, 
                 <feGaussianBlur stdDeviation="2"/>
                 <feComposite in2="hardAlpha" operator="out"/>
                 <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2872_666"/>
+                <feComposite in2="color" operator="in"/>
+                <feComposite in2="BackgroundImageFix" operator="over" result="effect1_dropShadow_2872_666"/>
                 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2872_666" result="shape"/>
               </filter>
               <pattern id="pattern0_cloud3" patternContentUnits="objectBoundingBox" width="1" height="1">
