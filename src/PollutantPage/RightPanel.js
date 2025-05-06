@@ -7,7 +7,7 @@ import humidityIcon from './humidity.png';
 import soilIcon from './soil.png';
 import areaIcon from './area.png';
 
-const RightPanel = ({ sections = [], onLoad, onNavigate }) => {
+const RightPanel = ({ sections = [], pollutantName = "", onLoad, onNavigate }) => {
   const {
     wetlandDescription = "",
     phytoCapacity = "",
@@ -106,7 +106,11 @@ const RightPanel = ({ sections = [], onLoad, onNavigate }) => {
                 className="plantImageRightPanel"
               />
               <div className="plantDescription">
-                <h1 className="plantName">{plantName}</h1>
+                <div className="nameContainer">
+                  <div className="plantLabel">Plant</div>
+                  <h1 className="plantName">{plantName}</h1>
+                  <div className="remediationLine">Remediation of {pollutantName}</div>
+                </div>
                 <p className="plantDetails">
                   {plantDetails}
                 </p>

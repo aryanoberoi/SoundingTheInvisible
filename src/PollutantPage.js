@@ -1281,6 +1281,7 @@ const PollutantPage = ({ categorizedData }) => {
         <div ref={rightPanelRef}>
           <RightPanel
             sections={rightpanelcontent}
+            pollutantName={leftpanelcontent[0].pollutantName}
             onLoad={() => setRightPanelLoaded(true)}
             onNavigate={handleNavClick}
           />
