@@ -1848,6 +1848,28 @@ img {
   justify-content: center;
 }
 
+/* Home Button */
+.home-btn {
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 5px;
+  z-index: 1002;
+  transition: transform 0.2s;
+  font-family: "Nippo-Light", sans-serif;
+}
+
+.home-btn:hover,
+.home-btn:focus {
+  transform: scale(1.1);
+  outline: none;
+}
+
 /* Add extra specificity to make sure these rules are applied */
 html body .nav-bar {
   position: sticky !important;
