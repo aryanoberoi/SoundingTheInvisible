@@ -55,6 +55,19 @@
   }
 }
 
+.nameContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.pollutantLabel {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-bottom: 0px;
+  opacity: 0.8;
+}
+
 /* Ensure the left-panel takes full height of its container */
 .left-panel {
   height: 100%;

@@ -26,10 +26,13 @@ const LeftPanel = ({ sections = [], onLoad, onNavigate }) => {
         <div className="contentWrapper">
           <div className="mainContent">
             <div className="pollutantInfo">
-              <div className="headerWrapper">
-                <img src={atomImage} alt={`${pollutantName} waste type icon (${typeOfWaste})`} className="circle" />
+            <div className="headerWrapper">
+              <img src={atomImage} alt={`${pollutantName} waste type icon (${typeOfWaste})`} className="circle" />
+              <div className="nameContainer">
+                <div className="pollutantLabel">Pollutant</div>
                 <div className="pollutantName">{pollutantName}</div>
               </div>
+            </div>
               <div className="description">
                 {pollutantDescription}
               </div>
