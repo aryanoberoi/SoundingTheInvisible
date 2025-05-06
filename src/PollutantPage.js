@@ -15,6 +15,7 @@ import { AboutPollutantSection } from "./PollutantPage/AboutPollutant";
 import { SoundFrequency } from "./PollutantPage/SoundFrequency";
 import SoundToggle from "./SoundToggle"; // Sound button
 import { useParams } from "react-router-dom";
+import { Drawer, styled } from "@mui/material";
 const PollutantPage = ({ categorizedData }) => {
   //this was hell to make
   const { customName } = useParams();
@@ -36,6 +37,7 @@ const PollutantPage = ({ categorizedData }) => {
   const [containerHeight, setContainerHeight] = useState("100vh");
   const [leftPanelLoaded, setLeftPanelLoaded] = useState(false); // Track left panel load
   const [rightPanelLoaded, setRightPanelLoaded] = useState(false); // Track right panel load
+  const [state, setState] = useState(false);
 
   // Add a resize observer ref
   const resizeObserverRef = useRef(null);
@@ -511,7 +513,6 @@ const PollutantPage = ({ categorizedData }) => {
   //     content:
   //       "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe",
   //   },
-
   // ];
   // const geographicaldistribution = [
   //   {
@@ -620,6 +621,15 @@ const PollutantPage = ({ categorizedData }) => {
   // Add state to track dragging
   const [isDragging, setIsDragging] = useState(false);
 
+  const toggleDrawer = (open) => (event) => {
+    // if (
+    //   event.type === 'keydown' &&
+    //   (event.key === 'Tab' || event.key === 'Shift')
+    // ) {
+    //   return;
+    // }
+    setState(open);
+  };
   // Central function to update slider position and related effects
   const updateSliderPosition = (newPosition) => {
     const clampedPosition = Math.max(0, Math.min(100, newPosition));
@@ -1061,15 +1071,16 @@ const PollutantPage = ({ categorizedData }) => {
   }, []);
 
   const handleNavClick = (sectionId) => {
+    console.log("DDSADSDADS");
     const section = document.getElementById(sectionId);
     if (!section) return;
-
+    setState(false);
     // Mobile-specific behavior
-    if (isMobile) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" }); // Changed to smooth
-      setMenuOpen(false);
-      return;
-    }
+    // if (isMobile) {
+    //   section.scrollIntoView({ behavior: "smooth", block: "start" }); // Changed to smooth
+    //   setMenuOpen(false);
+    //   return;
+    // }
 
     // Determine which panel the section belongs to
     const isInRightPanel = section.closest(".white-container") !== null;
@@ -1086,6 +1097,7 @@ const PollutantPage = ({ categorizedData }) => {
     lastPositionRef.current = targetSliderPos;
 
     // Smooth scroll to section
+
     section.scrollIntoView({
       behavior: "auto",
       block: "start",
@@ -1256,6 +1268,38 @@ const PollutantPage = ({ categorizedData }) => {
       window.removeEventListener("resize", checkStickySupport);
     };
   }, [isMobile]);
+  const options = [
+    { id: "about-pollutant", label: "Pollutant name" },
+    { id: "sound-frequency", label: "Sound frequency" },
+    { id: "effect-on-health", label: "Effect on health" },
+    { id: "case-study", label: "Case study" },
+    {
+      id: "phytoremediation",
+      label: "Phytoremediation of the Representative Pollutant",
+    },
+  ];
+  const option = [
+    { id: "plant-name", label: `Plant Common ` },
+    {
+      id: "common-names",
+      label: `Common names of ${rightpanelcontent[0].plantNameSplit}`,
+    },
+    {
+      id: "plant-habitat",
+      label: `${rightpanelcontent[0].plantNameSplit} s Habitat`,
+    },
+    { id: "origin", label: "Origin and Geographical Distribution" },
+    {
+      id: "phyto-capacity",
+      label: ` Phytoremediation capacity of
+                  ${rightpanelcontent[0].plantNameSplit}`,
+    },
+    {
+      id: "uses-of-plant",
+      label: `Uses of ${rightpanelcontent[0].plantNameSplit}`,
+    },
+
+  ];
 
   return (
     <>
@@ -1486,6 +1530,29 @@ const PollutantPage = ({ categorizedData }) => {
         </div>
 
         <div className="content-sections">
+          <div>
+            {!state && (
+              <div
+                className="mobile-tab-only"
+                style={{
+                  position: "fixed",
+                  top: "50%",
+                  right: 0,
+                  transform: "translateY(-50%)",
+                  zIndex: 1300,
+                }}
+              >
+                <div
+                  className="toggleDrawerArrowwhite toggleDrawerArrowblack"
+                  onClick={toggleDrawer("right", true)}
+                >
+                  <img src="./leftarrow.png" className="arrowblack" />
+                  <img src="./leftarrowblack.png" className="arrowwhite" />
+                </div>
+              </div>
+            )}
+          </div>
+
           <div className="bottom-section1" id="about-pollutant">
             <AboutPollutantSection
               sections={aboutpollutantcontent}
@@ -1521,21 +1588,21 @@ const PollutantPage = ({ categorizedData }) => {
             >
               <div className="down_arrowstart">
                 {/* <img src={'../public/down-arrow.svg'}/> */}
-              <div
-                style={{
-                  background: "#fff",
-                  display: "flex",
-                  justifyContent: "center",
-                  padding: "0px 10px",
-                }}
-                onClick={() => {
-                  handleNavClick("plant-habitat");
-                }}
-              >
-                <p className="bibliograhy" style={{ color: "#000" }}>
-                  BIBLIOGRAHY
-                </p>
-              </div>
+                <div
+                  style={{
+                    background: "#fff",
+                    display: "flex",
+                    justifyContent: "center",
+                    padding: "0px 10px",
+                  }}
+                  onClick={() => {
+                    handleNavClick("plant-habitat");
+                  }}
+                >
+                  <p className="bibliograhy" style={{ color: "#000" }}>
+                    BIBLIOGRAHY
+                  </p>
+                </div>
               </div>
             </div>
             {/* * time period overlap */}
@@ -1567,6 +1634,217 @@ const PollutantPage = ({ categorizedData }) => {
           </div>
         </div>
       </div>
+      <Drawer
+        anchor="right"
+        open={state}
+        onClose={toggleDrawer(false)}
+        PaperProps={{
+          className: "customDrawer --blackmodel",
+        }}
+      >
+        <div className="timeline-drawer">
+          <div className="timeline-container">
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "20px",
+                paddingRight: "55px",
+                marginBottom: "20px",
+              }}
+            >
+              <span className={`flex-1 `} style={{ fontSize: "14px" }}>
+                &#10100;Split Page&#125;
+              </span>
+              <span
+                className="ml-4 bg-white"
+                style={{ background: "#fff", zIndex: 99 }}
+              >
+                ◯
+              </span>
+            </div>
+            <ul
+              style={{
+                listStyleType: "none",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                padding: 0,
+                gap: "90px",
+                paddingRight: "85px",
+              }}
+            >
+              {options.map((item, idx) => {
+                const isFirst = idx === 0;
+                const isLast = idx === options.length - 1;
+                return (
+                  <li
+                    key={idx}
+                    onClick={() => handleNavClick(item?.id)}
+                    className="flex items-center justify-between w-full max-w-xs"
+                    style={{
+                      width: "100%",
+                      alignItems: "baseline",
+                      gap: idx !== 0 ? "70px" : "10px",
+                      display: "flex",
+                    }}
+                  >
+                    <span
+                      className={`flex-1 `}
+                      style={{
+                        fontSize: idx == 0 ? "24px" : "14px",
+                        width: idx !== 0 ? "104px" : "",
+                        textAlign: "end",
+                        transform:
+                          idx !== 0 && !isLast
+                            ? "translateX(62px)"
+                            : isLast
+                            ? "translateX(49px)"
+                            : "none",
+                      }}
+                    >
+                      {item.label}
+                    </span>
+                    <span className="ml-4  --blackviews">◯</span>
+                  </li>
+                );
+              })}
+            </ul>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                paddingLeft: "9px",
+                gap: "20px",
+                marginBottom: "20px",
+                paddingRight: "55px",
+              }}
+            >
+              <span className="ml-4">◯</span>
+
+              <span className={`flex-1 `} style={{ fontSize: "14px" }}>
+                Bibliography
+              </span>
+            </div>
+
+            {/* Vertical line */}
+            <div className="timeline-line" />
+          </div>
+
+          <div className="close-button" onClick={toggleDrawer(false)}>
+            <p>Close</p>
+          </div>
+        </div>
+        <div className="timelinewhite-drawer">
+          <div className="timeline-container">
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "20px",
+                // paddingRight: "55px",
+                marginBottom: "20px",
+                paddingRight: "4px",
+              }}
+            >
+              <span className={`flex-1 `} style={{ fontSize: "14px" }}>
+                &#10100;Split Page&#125;
+              </span>
+              <span className="ml-4 --VIEWSSS">◯</span>
+            </div>
+            <ul
+              style={{
+                listStyleType: "none",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                padding: 0,
+                gap: "90px",
+                padding: "0px",
+                transform: "translateX(85px)",
+                background: "#fff0",
+                color: "#fff",
+                zIndex: 9,
+                // opacity:0.7
+                // paddingRight: "85px",
+                // transform:"translateX(10)"
+              }}
+            >
+              {option.map((item, idx) => {
+                const isFirst = idx === 0;
+                const isLast = idx === option.length - 1;
+                return (
+                  <li
+                    key={idx}
+                    onClick={() => handleNavClick(item?.id)}
+                    className="flex items-center justify-between w-full max-w-xs"
+                    style={{
+                      width: "100%",
+                      alignItems: "baseline",
+                      gap: idx !== 0 ? "9px" : "10px",
+                      display: "flex",
+                      background: "#000",
+                      color: "#fff",
+                      zIndex: 99,
+                    }}
+                  >
+                    <p
+                      className="ml-4"
+                      style={{ background: "#000", zIndex: 99 }}
+                    >
+                      ◯
+                    </p>
+
+                    <span
+                      className={`flex-1 `}
+                      style={{
+                        fontSize: idx == 0 ? "24px" : "14px",
+                        width: idx !== 0 ? "104px" : "",
+                        // textAlign: "end",
+                      }}
+                    >
+                      {item.label}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                paddingLeft: "9px",
+                gap: "20px",
+                paddingRight: "14px",
+                marginBottom: "20px",
+              }}
+            >
+              <span className="ml-4">◯</span>
+
+              <span className={`flex-1 `} style={{ fontSize: "14px" }}>
+                Bibliography
+              </span>
+            </div>
+
+            {/* Vertical line */}
+            <div className="timeline-line" />
+          </div>
+
+          <div className="close-button" onClick={toggleDrawer(false)}>
+            <p>Close</p>
+          </div>
+        </div>
+      </Drawer>
     </>
   );
 };

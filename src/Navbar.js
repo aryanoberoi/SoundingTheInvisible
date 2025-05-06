@@ -360,11 +360,13 @@ console.log("windowWidth",windowWidth>768?"true":"flase")
             role="menu"
             data-cursor-invert="true"
           >
-            {navItems.map((item) => {
+            {navItems.map((item,index) => {
               const isExpanded = expandedItem === item.text;
               const iconPath = `${item.id}-icon.svg`;
               const { component: ExpandedComponent } = item;
+              const isEven = index % 2 !== 0;
               
+              console.log("index",index)
               return (
                 <li 
                   key={item.id} 
@@ -415,7 +417,7 @@ console.log("windowWidth",windowWidth>768?"true":"flase")
                       </button>
                     </div>
                     
-                    <div className="underline-container" data-cursor-invert="true">
+                    <div className={`${isEven ? 'even-item' :'underline-container'}`} data-cursor-invert="true">
                       {isExpanded ? (
                         <>
                         <ExpandedComponent className="nav-underline expanded-underline" />
