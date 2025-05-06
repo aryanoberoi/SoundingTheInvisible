@@ -56,7 +56,7 @@ const LeftPanel = ({ sections = [], onLoad, onNavigate }) => {
               </div>
               <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={() => onNavigate('effect-on-health')}/>
               <div className="sectionTitleLeftPanel" style={{paddingBottom: '10px'}}>
-                Enthalpy and sound <br /> Frequency of {pollutantName}
+                Sound Frequency<br /> of {pollutantName}
                 <br />
               </div>
               <div style={{ border: '1px solid black', width: '260px', height: '50px', overflow: 'hidden' }}>
