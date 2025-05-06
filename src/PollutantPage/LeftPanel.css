@@ -224,7 +224,7 @@
 /* Animated Down Arrow Styles */
 .animated-down-arrow {
   position: absolute;
-  left: 60px;
+  left: 20px;
   bottom: 100px;
   z-index: 10;
   animation: floatUpDown 2s ease-in-out infinite;
