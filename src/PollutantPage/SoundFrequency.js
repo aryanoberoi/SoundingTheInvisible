@@ -9,7 +9,7 @@ export const SoundFrequency = ({ sections }) => {
         <div className="content-container">
             <div className="content-container-background" />
             <div className="content-container-underline" />
-            <div id = "enthalpy-section" className="content-container-title">Enthalpy and Sound Frequency of <span className="mobile-br"><br /></span>  {pollutantName}</div>
+            <div id = "enthalpy-section" className="content-container-title">Sound Frequency of <span className="mobile-br"><br /></span>  {pollutantName}</div>
         </div>
 
       <div className="wave-container">

@@ -2,7 +2,7 @@ import React from "react";
 import group121 from "./group-121.svg";
 import "./CaseStudies.css";
 
-export const CaseStudies = ({ sections }) => {
+export const CaseStudies = ({ sections, pollutantName }) => {
 
   // Helper function to get title and content from text
   const parseSection = (text) => {
@@ -63,7 +63,9 @@ console.log("Sections_LLLKKKK:", sections);
 
         <div className="overlap-group-wrapper">
           <div className="overlap-group-2">
-            <div id = "sources-section" className="text-wrapper-3">Case studies</div>
+            <div id = "sources-section" className="text-wrapper-3">
+              {pollutantName ? `Case studies of ${pollutantName} pollution` : 'Case studies'}
+            </div>
           </div>
         </div>
 

@@ -15,8 +15,7 @@ export const Phyto = ({ sections, pollutantName }) => {
       {/* Header Section */}
       <div className="overlap-group-wrapper">
         <div className="overlap-group-2">
-          <div className="text-wrapper-3">Phytoremediation of &nbsp;<span className="mobile-br"><br /></span>  {pollutantName}</div>
-        </div>
+        <div className="text-wrapper-3">Plants remediating &nbsp;<span className="mobile-br"><br /></span> {pollutantName} contamination</div>        </div>
       </div>
 
       {/* Map through the sections to create species boxes */}
