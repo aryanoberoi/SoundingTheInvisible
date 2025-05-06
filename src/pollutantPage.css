@@ -1778,10 +1778,19 @@ img {
 @keyframes sliderPulse {
   0%,
   100% {
-    transform: rotate(var(--rotation, 0deg)) scale(1.7);
+    transform: rotate(var(--rotation, 0deg)) scale(1.7); /* Base scale */
   }
-  50% {
-    transform: rotate(var(--rotation, 0deg)) scale(1.87);
+  20% {
+    transform: rotate(var(--rotation, 0deg)) scale(1.9); /* First beat peak */
+  }
+  40% {
+    transform: rotate(var(--rotation, 0deg)) scale(1.7); /* Return to base */
+  }
+  60% {
+    transform: rotate(var(--rotation, 0deg)) scale(1.85); /* Second beat peak (slightly smaller) */
+  }
+  80% {
+    transform: rotate(var(--rotation, 0deg)) scale(1.7); /* Return to base */
   }
 }
 
@@ -1791,7 +1800,7 @@ img {
   transform-origin: center center;
   cursor: ew-resize;
   /* Add the pulse animation on top of the base scale */
-  animation: sliderPulse 1.5s infinite ease-in-out;
+  animation: sliderPulse 2s infinite ease-in-out;
 }
 
 .nav-item-text {
