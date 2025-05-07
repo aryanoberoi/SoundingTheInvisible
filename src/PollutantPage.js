@@ -1325,6 +1325,7 @@ const PollutantPage = ({ categorizedData }) => {
         <div ref={rightPanelRef}>
           <RightPanel
             sections={rightpanelcontent}
+            pollutantName={leftpanelcontent[0].pollutantName}
             onLoad={() => setRightPanelLoaded(true)}
             onNavigate={handleNavClick}
           />
@@ -1365,6 +1366,12 @@ const PollutantPage = ({ categorizedData }) => {
                 isMobile && menuOpen ? "mobile-active" : ""
               }`}
             >
+              <div 
+                className="text-wrapper-combined"
+                onClick={() => handleNavClick("overview")}
+              >
+                <span>{leftpanelcontent[0].pollutantName} + {rightpanelcontent[0].plantNameSplit}</span>
+              </div>
               <div
                 className={`text-wrapper`}
                 onClick={() => handleNavClick("about-pollutant")}
@@ -1430,7 +1437,7 @@ const PollutantPage = ({ categorizedData }) => {
                 className={`text-wrapper-7`}
                 onClick={() => handleNavClick("references")}
               >
-                <span>Bibliography</span>
+                <span>References</span>
               </div>
 
               <div
@@ -1457,6 +1464,7 @@ const PollutantPage = ({ categorizedData }) => {
               </p>
             </div>
             <div className="overlap-group">
+            <div className={`ellipse-0 ${activeSection === "overview" ? "active" : ""}`} />
               <div
                 className={`ellipse ${
                   activeSection === "about-pollutant" ? "active" : ""
@@ -1555,11 +1563,16 @@ const PollutantPage = ({ categorizedData }) => {
             <SoundFrequency sections={sinewavefreq} />
           </div>
           <div className="effect-on-health-section" id="effect-on-health">
-            <Box sections={effectonhealthcontent} />
-            {/* * sizing */}
+            <Box 
+              sections={effectonhealthcontent} 
+              pollutantName={leftpanelcontent[0].pollutantName}
+            />
           </div>
           <div className="bottom-section3" id="case-study">
-            <CaseStudies sections={casestudiescontent} /> {/* * text overlap */}
+            <CaseStudies 
+              sections={casestudiescontent} 
+              pollutantName={leftpanelcontent[0].pollutantName}
+            />
           </div>
           <div className="bottom-section4" id="phytoremediation">
             <Phyto

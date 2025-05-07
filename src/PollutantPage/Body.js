@@ -7,7 +7,7 @@ const parseSection = (text) => {
   return { title, content };
 };
 
-export const Box = React.memo(({ sections }) => {
+export const Box = React.memo(({ sections, pollutantName }) => {
   const [expandedItem, setExpandedItem] = useState(null);
 
   const toggleItem = useCallback((item) => {
@@ -25,7 +25,9 @@ export const Box = React.memo(({ sections }) => {
       <div className="box-content-sections">
         <div className="box-header-container">
           <div className="box-header-overlap">
-            <div id="effects-on-health-section" className="box-header-title">Effects on human health</div>
+            <div id="effects-on-health-section" className="box-header-title">
+              {pollutantName ? `Effects of ${pollutantName} on human health` : 'Effects on human health'}
+            </div>
           </div>
         </div>
 

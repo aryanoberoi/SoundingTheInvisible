@@ -199,10 +199,10 @@ console.log("windowWidth",windowWidth>768?"true":"flase")
     }
   }, [expandedItem, previousExpanded]); // Depend on both states
 
-  // Modified to separate expand and collapse logic
+  // Modified to allow switching between expanded items
   const handleItemClick = (text) => {
-    // If no item is currently expanded, expand the clicked item
-    if (!expandedItem) {
+    // If different item clicked or no item expanded, expand the clicked item
+    if (!expandedItem || expandedItem !== text) {
       setExpandedItem(text);
     }
     // If the clicked item is already expanded, we'll leave it to the X button to collapse
@@ -324,6 +324,19 @@ console.log("windowWidth",windowWidth>768?"true":"flase")
           data-cursor-invert="true"
         >
           ✕
+        </button>
+
+        {/* Home Button (new) */}
+        <button 
+          className="home-btn" 
+          onClick={() => {
+            navigate('/');
+            setIsOpen(false);
+          }}
+          aria-label="Go to homepage"
+          data-cursor-invert="true"
+        >
+          Home
         </button>
 
         {/* Apply dynamic scaling to menu items container with 5% top padding */}

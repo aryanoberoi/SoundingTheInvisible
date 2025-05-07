@@ -26,10 +26,13 @@ const LeftPanel = ({ sections = [], onLoad, onNavigate }) => {
         <div className="contentWrapper">
           <div className="mainContent">
             <div className="pollutantInfo">
-              <div className="headerWrapper">
-                <img src={atomImage} alt={`${pollutantName} waste type icon (${typeOfWaste})`} className="circle" />
+            <div className="headerWrapper">
+              <img src={atomImage} alt={`${pollutantName} waste type icon (${typeOfWaste})`} className="circle" />
+              <div className="nameContainer">
+                <div className="pollutantLabel">Pollutant</div>
                 <div className="pollutantName">{pollutantName}</div>
               </div>
+            </div>
               <div className="description">
                 {pollutantDescription}
               </div>
@@ -56,7 +59,7 @@ const LeftPanel = ({ sections = [], onLoad, onNavigate }) => {
               </div>
               <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={() => onNavigate('effect-on-health')}/>
               <div className="sectionTitleLeftPanel" style={{paddingBottom: '10px'}}>
-                Enthalpy and sound <br /> Frequency of {pollutantName}
+                Sound Frequency<br /> of {pollutantName}
                 <br />
               </div>
               <div style={{ border: '1px solid black', width: '260px', height: '50px', overflow: 'hidden' }}>
@@ -76,8 +79,8 @@ const LeftPanel = ({ sections = [], onLoad, onNavigate }) => {
               {/* Animated Down Arrow */}
       <div className="animated-down-arrow">
         <svg width="42" height="52" viewBox="0 0 42 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M21 3V37" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-          <path d="M16 31L21 40L26 31" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M21 3V37" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M18 31L21 41L24 31" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </div>
     </div>
