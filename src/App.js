@@ -1,6 +1,6 @@
-// App.js - Custom Cursor Implementation Fix
+// App.js - Updated with more robust scroll handling
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Homepage from "./Homepage"; 
 import PollutantPage from "./PollutantPage"; 
@@ -8,6 +8,26 @@ import Navbar from "./Navbar";
 import "./App.css"; // New separate file for cursor styles
 import PlayPads from "./PlayPads";
 import IsolatedCursor from './IsolatedCursor';
+
+// Enhanced ScrollToTop component with useLayoutEffect
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  
+  // useLayoutEffect runs synchronously after DOM mutations but before browser painting
+  useLayoutEffect(() => {
+    // Force scroll to top with a slight delay to ensure it happens after route change
+    const timeoutId = setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'auto' // Use 'auto' instead of 'smooth' for immediate scroll
+      });
+    }, 0);
+    
+    return () => clearTimeout(timeoutId);
+  }, [pathname]);
+  
+  return null;
+};
 
 const AppContent = () => {
   const location = useLocation();
@@ -46,7 +66,10 @@ const AppContent = () => {
       });
   }, []);
 
+  // Also manually handle scrolling when location changes
   useEffect(() => {
+    window.scrollTo(0, 0);
+    
     if (location.pathname === "/") {
       document.body.classList.add("homepage-active");
     } else {
@@ -58,9 +81,9 @@ const AppContent = () => {
     return <div>Loading data, please wait...</div>; // Loading indicator
   }
 
-
   return (
     <div>
+      <ScrollToTop /> {/* Keep the ScrollToTop component */}
       <IsolatedCursor />
       <Navbar />
       <Routes>

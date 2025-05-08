@@ -686,3 +686,7 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.clickable-element {
+  cursor: pointer !important;
+}
