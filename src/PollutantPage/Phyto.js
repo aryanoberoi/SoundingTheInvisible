@@ -5,10 +5,10 @@ import vector164 from "./vector-164.svg";
 import vector165 from "./vector-165.svg";
 
 export const Phyto = ({ sections, pollutantName }) => {
-  const getSpeciesName = (text) => text.split('_')[0];
-  const getMedium = (text) => text.split('_')[1];
-  const getTimePeriod = (text) => text.split('_')[1];
-  const getRemediation = (text) => text.split('_')[1];
+  const getSpeciesName = (text) => text?.split('_')[0];
+  const getMedium = (text) => text?.split('_')[1];
+  const getTimePeriod = (text) => text?.split('_')[1];
+  const getRemediation = (text) => text?.split('_')[1];
 
   return (
     <div className="box" id="phytoremediation">

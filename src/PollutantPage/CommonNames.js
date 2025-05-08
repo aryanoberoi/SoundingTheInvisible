@@ -23,7 +23,7 @@ export const CommonNames = ({ sections }) => {
           {/* Map directly over the nameEntries array */}
           {nameEntries.map((entry, index) => {
             // Split the text into title (language) and content (names)
-            const parts = entry.text ? entry.text.split(';') : ["Unknown", ""];
+            const parts = entry.text ? entry.text?.split(';') : ["Unknown", ""];
             const title = parts[0].trim();
             const content = parts[1] ? parts[1].trim() : "No details available";
 

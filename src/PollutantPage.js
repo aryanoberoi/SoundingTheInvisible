@@ -431,7 +431,7 @@ const PollutantPage = ({ categorizedData }) => {
         items: Array(10)
           .fill(0)
           .map((_, i) => ({
-            header: matchedRow.Medicinal_flavourtext,
+            header: matchedRow.Nutritional_flavourtext,
             text: matchedRow[`UsesOfPlant_nutritional_description${i + 1}`],
           }))
           .filter((item) => item.text),

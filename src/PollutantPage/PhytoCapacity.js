@@ -28,7 +28,7 @@ export const PhytoCapacity = ({ sections }) => {
         // Ensure section.text is defined before splitting
         if (!section.text) return null;
 
-        const [title, text] = section.text.split('_', 2);
+        const [title, text] = section.text?.split('_', 2);
         // Ensure title is not empty after split before rendering
         return (
           title?.trim() && (
