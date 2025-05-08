@@ -78,7 +78,7 @@ export const UsesOfPlant = ({ sectionsData }) => {
                         scrollContainer.getBoundingClientRect().top,
             // Store container reference for later use
             containerId: scrollContainer.id || 
-                         scrollContainer.className.split(' ')[0] || 
+                         scrollContainer.className?.split(' ')[0] || 
                          'unknown-container'
           });
         } catch (err) {

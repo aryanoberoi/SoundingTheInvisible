@@ -3,7 +3,7 @@ import "./Body.css";
 
 // Helper function moved outside component for better performance
 const parseSection = (text) => {
-  const [title, content] = text.split('_');
+  const [title, content] = text&&text?.split('_');
   return { title, content };
 };
 

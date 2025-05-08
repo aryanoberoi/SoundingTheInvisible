@@ -686,3 +686,25 @@
   display: flex;
   justify-content: flex-end;
 }
+@media screen and (max-width:768px) {
+  .sound-concept-section{
+    flex-direction: column-reverse;
+  }
+ 
+  .svg-container-scs {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    overflow-y: hidden;
+    width: 100%;
+    position: relative;
+    white-space: nowrap;
+  }
+  
+  .interactive-svg {
+    transform: scale(1.5);
+  /* transform-origin: top left; Correct and effective */
+  margin-left: 5rem;
+  padding: 5rem;
+  display: inline-block;
+  }
+}

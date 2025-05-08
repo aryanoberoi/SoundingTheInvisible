@@ -139,7 +139,7 @@ export default function Homepage() {
       </section>
       
       {/* 🔸 Footer Section */}
-      <footer className="footer-section">
+      <footer className="footer-section mt-5">
         <p>Credits</p>
         <div className="box">
           <img className="vector" alt="Vector" src={vector187} />

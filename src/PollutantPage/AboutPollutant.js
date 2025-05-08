@@ -8,7 +8,7 @@ export const AboutPollutantSection = ({ sections, wasteTypeIcon }) => {
   const contentText = sections[0].text || '';
   
   // Split text at first underscore
-  const [titlePart, descriptionPart] = contentText.split(/_/, 2);
+  const [titlePart, descriptionPart] = contentText?.split(/_/, 2);
 
   // Use wasteTypeIcon passed from parent component
   const pollutantIcon = wasteTypeIcon || 'agriculture-waste-icon.svg';
@@ -27,7 +27,7 @@ export const AboutPollutantSection = ({ sections, wasteTypeIcon }) => {
           />
           <div id="about-pollutant-section" className="about-pollutant">
             {/* Split title into two parts at first space */}
-            <span className="about">{titlePart ? titlePart.split(' ', 1)[0] : 'About'} </span>
+            <span className="about">{titlePart ? titlePart?.split(' ', 1)[0] : 'About'} </span>
             <span className="pollutant">
               {titlePart ? titlePart.slice(titlePart.indexOf(' ') + 1) : 'Pollutant'}
             </span>

@@ -6,7 +6,7 @@ export const CaseStudies = ({ sections, pollutantName }) => {
 
   // Helper function to get title and content from text
   const parseSection = (text) => {
-    const [title, content] = text?.split('_');
+    const [title, content] = text&&text?.split('_');
     return { title, content };
   };
 
