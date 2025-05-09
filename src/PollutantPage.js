@@ -1269,6 +1269,9 @@ const PollutantPage = ({ categorizedData }) => {
     };
   }, [isMobile]);
   const options = [
+
+    
+    // { id: "about-pollutant", label: "{Split Page}" },
     { id: "about-pollutant", label: "Pollutant name" },
     { id: "sound-frequency", label: "Sound frequency" },
     { id: "effect-on-health", label: "Effect on health" },
@@ -1653,7 +1656,7 @@ const PollutantPage = ({ categorizedData }) => {
                 gap: "20px",
                 paddingRight: "55px",
                 marginBottom: "20px",
-              }}
+              }} onClick={()=>handleNavClick("slider-container")}
             >
               <span className={`flex-1 `} style={{ fontSize: "14px" }}>
                 &#10100;Split Page&#125;
@@ -1723,7 +1726,7 @@ const PollutantPage = ({ categorizedData }) => {
                 gap: "20px",
                 marginBottom: "20px",
                 paddingRight: "55px",
-              }}
+              }} onClick={()=>handleNavClick("phytoremediation")}
             >
               <span className="ml-4">◯</span>
 
@@ -1742,7 +1745,7 @@ const PollutantPage = ({ categorizedData }) => {
         </div>
         <div className="timelinewhite-drawer">
           <div className="timeline-container">
-            <div
+            <div onClick={()=>{setRightPanelLoaded(true);handleNavClick("slider-container");setLeftPanelLoaded(false)}}
               style={{
                 display: "flex",
                 flexDirection: "column",
@@ -1817,7 +1820,7 @@ const PollutantPage = ({ categorizedData }) => {
                 );
               })}
             </ul>
-            <div
+            <div onClick={()=>handleNavClick("uses-of-plant")}
               style={{
                 display: "flex",
                 flexDirection: "column",

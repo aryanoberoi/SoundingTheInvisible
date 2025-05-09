@@ -91,8 +91,16 @@
 }
   
 .box-container .main-human-image {
-    height: auto;
+    /* height: auto;
     width: 80%;
+    left: 0;
+    position: absolute;
+    top: -13em;
+    max-width: 350px;
+    background-color: transparent;
+    transform: scale(1.1); */
+    height: auto;
+    width: 150%;
     left: 0;
     position: absolute;
     top: -13em;
@@ -105,7 +113,13 @@
     left: 0;
     position: absolute;
     top: 0;
-    width: 80%;
+    /* width: 80%; */
+    height: 687px;
+    left: 62px;
+    position: absolute;
+    top: 0;
+    width: 254px;
+
 }
   
 .box-container .human-vector {
@@ -318,7 +332,7 @@ margin: 6rem 0px;
     top: 1px !important;
     }
     .box-container .box-header-title::after{
-        width: 109%;
+        width: 103%;
     }
 }
   

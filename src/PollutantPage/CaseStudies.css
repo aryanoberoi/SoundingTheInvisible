@@ -59,7 +59,7 @@
     mix-blend-mode: difference;
     position: absolute;
     text-align: right;
-    top: 63%;
+    top: 59%;
     width: calc(100% - 238px);
   }
   
@@ -151,7 +151,7 @@
     line-height: 165%;
     mix-blend-mode: difference;
     position: absolute;
-    top: 570px;
+    top: 543px;
     white-space: nowrap;
     width: 400px;
     text-align: right;
@@ -266,12 +266,12 @@
       top: 144px;
     }
     .bottom-section3 .box .div {
-      width: calc(100% - 457px);
+      width:calc(100% - 401px);
       line-height: 170%;
       mix-blend-mode: normal;
-      top: -46px;
+      top: -70px;
       /* padding: 40px; */
-      left: 186px;
+      left: 216px;
  /* right: 900px; */
     }
     .bottom-section3 .box .rectangle {

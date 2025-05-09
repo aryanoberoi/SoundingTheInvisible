@@ -982,7 +982,7 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
 
 .timeline-line {
   position: absolute;
-  left: 66.5%;
+  left: calc(100% - 130px);
   width: 2px;
   background-color: #000;
   height: 80%;
@@ -2075,7 +2075,10 @@ html body .combined-section .nav-bar-container .nav-bar {
     z-index: -1;
   }
   .sound-frequency-section .wave-container{
-    width: calc(100%)  !important;
+    width: calc(96%)  !important;
+  }
+  .frequency-details{
+    margin-top: 0px !important;
   }
   .box-container .box-header-title{
     font-size: 20px !important;
@@ -2087,7 +2090,7 @@ html body .combined-section .nav-bar-container .nav-bar {
     width: 58% !important;
   }
   .box-container .box-header-overlap {
-    left: -10% !important;
+    left: -21% !important;
   }
   .main-human-image{
     height: 90% !important
