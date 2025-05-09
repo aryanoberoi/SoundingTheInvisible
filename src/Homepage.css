@@ -708,3 +708,24 @@
   display: inline-block;
   }
 }
+
+@media screen and (max-width:768px){
+  .concept-section{
+    flex-direction: column-reverse;
+  }
+  .svg-container-concept {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    overflow-y: hidden;
+    width: 225%;
+    position: relative;
+    white-space: nowrap;
+  }
+  
+  .interactive-svg-concept {
+    transform: scale(1.5);
+  margin-left: 5rem;
+  padding: 5rem;
+  display: inline-block;
+  }
+}
