@@ -74,12 +74,23 @@ const SoundToggle = ({ sliderPosition = 50, padNumber }) => {
 
   // If padNumber changes while playing, fetch and play new audio
   useEffect(() => {
-    if (!isPlaying) return;
-    // If already playing, and padNumber changes, fetch new audio
-    handleFetchAndPlay();
-    // eslint-disable-next-line
-  }, [padNumber]);
-
+    // Only add the listener if not already playing
+    if (!isPlaying) {
+      const handleFirstClick = async () => {
+        setIsPlaying(true);
+        await handleFetchAndPlay();
+        // Remove the event listener after first click
+        document.removeEventListener('click', handleFirstClick);
+      };
+      document.addEventListener('click', handleFirstClick);
+  
+      // Cleanup in case component unmounts before first click
+      return () => {
+        document.removeEventListener('click', handleFirstClick);
+      };
+    }
+    // No cleanup needed if already playing
+  }, [isPlaying]);
   const handleFetchAndPlay = async () => {
     // Clean up previous audio
     if (audioRef.current) {
@@ -130,7 +141,10 @@ const SoundToggle = ({ sliderPosition = 50, padNumber }) => {
   return (
     <button
       className="sound-button"
-      onClick={handleToggle}
+      onClick={(e) => {
+        e.stopPropagation(); // Prevents the document click handler from firing
+        handleToggle();
+      }}
       style={{
         position: 'fixed',
         top: '20px',

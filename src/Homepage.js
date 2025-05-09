@@ -7,6 +7,7 @@ import vector187 from "./vector-187.png";
 import group283 from "./group-283.png";
 import Cloud from './Cloud';
 import Title from './title.js';
+import SoundToggle from "./SoundToggle";
 
 export default function Homepage() {
   const [showConceptText, setShowConceptText] = useState(false);
@@ -36,6 +37,11 @@ export default function Homepage() {
 
   return (
     <div className="homepage">
+            {/* <SoundToggle
+        padNumber={leftpanelcontent[0].pollutantNumber}
+        sliderPosition={sliderPosition}
+        panelMode={sliderPosition < 50 ? "white" : "black"}
+      /> */}
       {/* Add the actual audio element */}
       <audio 
         ref={audioRef} 
