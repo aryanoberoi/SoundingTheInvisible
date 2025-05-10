@@ -8,7 +8,7 @@ const SoundToggle = ({ sliderPosition = 50, padNumber }) => {
   const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
   const audioRef = useRef(null);
   const audioUrlRef = useRef(null);
-
+  const hasStartedRef = useRef(false);
   // Set up detection for both scroll position and nav menu state
   useEffect(() => {
     const handleScroll = () => {
@@ -72,25 +72,6 @@ const SoundToggle = ({ sliderPosition = 50, padNumber }) => {
     };
   }, []);
 
-  // If padNumber changes while playing, fetch and play new audio
-  useEffect(() => {
-    // Only add the listener if not already playing
-    if (!isPlaying) {
-      const handleFirstClick = async () => {
-        setIsPlaying(true);
-        await handleFetchAndPlay();
-        // Remove the event listener after first click
-        document.removeEventListener('click', handleFirstClick);
-      };
-      document.addEventListener('click', handleFirstClick);
-  
-      // Cleanup in case component unmounts before first click
-      return () => {
-        document.removeEventListener('click', handleFirstClick);
-      };
-    }
-    // No cleanup needed if already playing
-  }, [isPlaying]);
   const handleFetchAndPlay = async () => {
     // Clean up previous audio
     if (audioRef.current) {
@@ -119,6 +100,25 @@ const SoundToggle = ({ sliderPosition = 50, padNumber }) => {
       console.error("Audio fetch/play error:", err);
     }
   };
+
+
+  // If padNumber changes while playing, fetch and play new audio
+  useEffect(() => {
+    if (!isPlaying && !hasStartedRef.current) {
+      const handleFirstClick = async () => {
+        setIsPlaying(true);
+        await handleFetchAndPlay();
+        hasStartedRef.current = true;
+        document.removeEventListener('click', handleFirstClick);
+      };
+      document.addEventListener('click', handleFirstClick);
+
+      // Cleanup in case component unmounts before first click
+      return () => {
+        document.removeEventListener('click', handleFirstClick);
+      };
+    }
+  }, [isPlaying, handleFetchAndPlay]);
 
   const handleToggle = async () => {
     if (isPlaying) {
