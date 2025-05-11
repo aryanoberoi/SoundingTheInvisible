@@ -183,6 +183,7 @@ const PollutantPage = ({ categorizedData }) => {
   const dataContext = {
     pollutant: {
       name: matchedRow.Pollutantname_split,
+      image: matchedRow.image_split_pollutant,
       description: matchedRow.pollutant_description_split,
       wasteType: wasteTypeData.typeOfWaste,
       atomImage: wasteTypeData.atomImage,
