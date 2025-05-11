@@ -8,6 +8,7 @@ import Navbar from "./Navbar";
 import "./App.css"; // New separate file for cursor styles
 import PlayPads from "./PlayPads";
 import IsolatedCursor from './IsolatedCursor';
+import { useAudioHover } from './useAudioHover';
 
 // Enhanced ScrollToTop component with useLayoutEffect
 const ScrollToTop = () => {
@@ -33,6 +34,7 @@ const AppContent = () => {
   const location = useLocation();
   const [categorizedData, setCategorizedData] = React.useState({});
   const [isLoading, setIsLoading] = React.useState(true); // Loading state
+  const audioControls = useAudioHover(categorizedData);
 
   useEffect(() => {
     const sheetId = "1az7_Vg0GPH2FF393w0sjCmGUxHKEYnIsSDyAJIq8fxs";
@@ -52,11 +54,13 @@ const AppContent = () => {
         });
 
         const categorizedData = rows.reduce((acc, row) => {
-          const key = row['unique_id'];
+          const key = row.id || row.unique_id || row.Number;
           if (!acc[key]) acc[key] = [];
           acc[key].push(row);
           return acc;
         }, {});
+        
+        console.log("Available element IDs:", Object.keys(categorizedData));
         setCategorizedData(categorizedData);
         setIsLoading(false);  // Data fetching complete
       })
@@ -87,8 +91,8 @@ const AppContent = () => {
       <IsolatedCursor />
       <Navbar />
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/:customName" element={<PollutantPage categorizedData={categorizedData} />} />
+        <Route path="/" element={<Homepage audioControls={audioControls} />} />
+        <Route path="/:customName" element={<PollutantPage categorizedData={categorizedData} audioControls={audioControls} />} />
         <Route path="/playtest" element={<PlayPads />} />
       </Routes>
     </div>

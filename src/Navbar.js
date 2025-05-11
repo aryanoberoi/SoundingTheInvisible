@@ -83,7 +83,7 @@ const Navbar = () => {
 
   // return windowWidth;
 
-console.log("windowWidth",windowWidth>768?"true":"flase")
+// console.log("windowWidth",windowWidth>768?"true":"flase")
   // List of navigation items for easy maintenance with their corresponding components
   const navItems = [
     { id: "agriculture-waste", text: "Agriculture waste", component:windowWidth>768?
@@ -366,7 +366,7 @@ console.log("windowWidth",windowWidth>768?"true":"flase")
               const { component: ExpandedComponent } = item;
               const isEven = index % 2 !== 0;
               
-              console.log("index",index)
+              // console.log("index",index)
               return (
                 <li 
                   key={item.id} 
