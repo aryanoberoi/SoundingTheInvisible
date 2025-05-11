@@ -53,7 +53,7 @@ const SVGComponent = (props) => (
       fill="white"
     />
     <a
-      href="/pollutants"
+      href="/vallisneria"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -72,7 +72,7 @@ const SVGComponent = (props) => (
       </g>
     </a>
     <a
-      href="/pollutants"
+      href="/ammonium"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -91,7 +91,7 @@ const SVGComponent = (props) => (
       </g>
     </a>
     <a
-      href="/pollutants"
+      href="/benzene"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -110,7 +110,7 @@ const SVGComponent = (props) => (
       </g>
     </a>
     <a
-      href="/pollutants"
+      href="/crude"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -129,7 +129,7 @@ const SVGComponent = (props) => (
       </g>
     </a>
     <a
-      href="/pollutants"
+      href="/petrol"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -148,7 +148,7 @@ const SVGComponent = (props) => (
       </g>
     </a>
     <a
-      href="/pollutants"
+      href="/sulphide"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -167,7 +167,7 @@ const SVGComponent = (props) => (
       </g>
     </a>
     <a
-      href="/pollutants"
+      href="/diesel"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -186,7 +186,7 @@ const SVGComponent = (props) => (
       </g>
     </a>
     <a
-      href="/pollutants"
+      href="/phthalate"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -205,7 +205,7 @@ const SVGComponent = (props) => (
       </g>
     </a>
     <a
-      href="/pollutants"
+      href="/phenol"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -224,7 +224,7 @@ const SVGComponent = (props) => (
       </g>
     </a>
     <a
-      href="/pollutants"
+      href="/organic"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -243,7 +243,7 @@ const SVGComponent = (props) => (
       </g>
     </a>
     <a
-      href="/pollutants"
+      href="/estrogen"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -262,7 +262,7 @@ const SVGComponent = (props) => (
       </g>
     </a>
     <a
-      href="/pollutants"
+      href="/fragrance"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -281,7 +281,7 @@ const SVGComponent = (props) => (
       </g>
     </a>
     <a
-      href="/pollutants"
+      href="/diclofenac"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -300,7 +300,7 @@ const SVGComponent = (props) => (
       </g>
     </a>
     <a
-      href="/pollutants"
+      href="/bht"
       style={{
         pointerEvents: "bounding-box",
       }}

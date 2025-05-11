@@ -17,12 +17,10 @@ const SVGComponent = (props) => (
       fill="white"
     />
     <a
-      href="/pollutants"
+      href="/thorium"
       style={{
         pointerEvents: "bounding-box",
       }}
-      target="_blank"
-      rel="noopener noreferrer"
       id="thorium"
       className="thorium-link"
     >
@@ -36,12 +34,10 @@ const SVGComponent = (props) => (
       </g>
     </a>
     <a
-      href="/pollutants"
+      href="/strontium"
       style={{
         pointerEvents: "bounding-box",
       }}
-      target="_blank"
-      rel="noopener noreferrer"
       id="strontium"
       className="strontium-link"
     >
