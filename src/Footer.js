@@ -33,8 +33,8 @@ export const Footer = () => {
           </div>
 
           <div className={styles.subGroup}>
-            <span className={styles.role}>Website Developer:</span>
-            <span className={styles.name}>Aryan Oberoi</span>
+            <span className={styles.role}>Web Developer:</span>
+            <span className={styles.name}>Aryan Oberoi | Arham </span>
           </div>
 
           <div className={styles.subGroup}>
@@ -85,6 +85,35 @@ export const Footer = () => {
           Leonardo Imagination Fellowship, UNESCO FUTURE Literacy, The Awesome Foundation.
         </p>
       </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <center>
+      <div className={styles.section}>
+        <div className={styles.imageContainer}>
+          <a href="facebook.png" target="_blank" rel="noopener noreferrer" style={{ marginRight: '10px' }}>
+            <img src="instagram.png" alt="Supporter 1" className={styles.supporterImage} />
+          </a>
+          <a href="path/to/image2.png" target="_blank" rel="noopener noreferrer" style={{ marginRight: '10px' }}>
+            <img src="facebook.png" alt="Supporter 2" className={styles.supporterImage} />
+          </a>
+          <a href="path/to/image3.png" target="_blank" rel="noopener noreferrer" style={{ marginRight: '10px' }}>
+            <img src="twitter.png" alt="Supporter 3" className={styles.supporterImage} />
+          </a>
+          <a href="path/to/image3.png" target="_blank" rel="noopener noreferrer">
+            <img src="share.png" alt="Supporter 3" className={styles.supporterImage} />
+          </a>
+        </div>
+        <p className={styles.description}>
+        <a href="path/to/image3.png" target="_blank" rel="noopener noreferrer" style={{ marginRight: '10px' }}>
+            <img src="copyright.png" alt="Supporter 3" className={styles.supporterImage} />
+          </a>
+NANDITA KUMAR 2025
+        </p>
+      </div>
+      </center>
     </div>
+    
   );
 };
