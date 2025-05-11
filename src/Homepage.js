@@ -8,6 +8,7 @@ import group283 from "./group-283.png";
 import Cloud from './Cloud';
 import Title from './title.js';
 import SoundToggle from "./SoundToggle";
+import { Footer } from "./Footer";
 
 export default function Homepage() {
   const [showConceptText, setShowConceptText] = useState(false);
@@ -150,6 +151,7 @@ export default function Homepage() {
         <div className="box">
           <img className="vector" alt="Vector" src={vector187} />
         </div>
+        <Footer />
       </footer>
     </div>
   );
