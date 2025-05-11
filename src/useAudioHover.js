@@ -10,6 +10,9 @@ export function useAudioHover(categorizedData) {
     'diclofenac': 'Diclofenac',
     'aluminum': 'Aluminium',  // Note the spelling difference
     'nickel': 'Nickel',
+    'organic-matter': "organicmatter",
+    'crude': "Crudeoil",
+    'thalium': "Thallium",
     // Add mappings for all your elements
   };
   
