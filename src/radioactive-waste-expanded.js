@@ -17,7 +17,7 @@ const SVGComponent = (props) => (
       fill="white"
     />
     <a
-      href="/pollutants"
+      href="/thorium"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -36,7 +36,7 @@ const SVGComponent = (props) => (
       </g>
     </a>
     <a
-      href="/pollutants"
+      href="/strontium"
       style={{
         pointerEvents: "bounding-box",
       }}
