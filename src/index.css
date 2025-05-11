@@ -1,6 +1,11 @@
 @import './clash-grotesk.css';
 @import './nippo.css';
 
+
+div {
+  white-space: pre-line;
+}
+
 body {
   margin: 0;
   font-family: 'Nippo-Variable', 'Nippo-Extralight', 'Nippo-Light', 'Nippo-Regular', 

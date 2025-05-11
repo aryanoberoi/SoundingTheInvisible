@@ -201,8 +201,8 @@ const PollutantPage = ({ categorizedData }) => {
       sources: matchedRow.sources_venice_Description_split,
       soundFrequency: {
         enthalpy: matchedRow.Enthalpy_,
-        frequency: matchedRow.SineWaveVisualizer_frequency_audiblefrequency,
-        wave: matchedRow.Sound_frequency,
+        frequency: matchedRow.Sound_Frequency,
+        wave: matchedRow.SineWaveVisualizer_frequency_audiblefrequency,
       },
       caseStudies: {
         venice: matchedRow.CaseStudies_venice_lagoon,
@@ -431,7 +431,7 @@ const PollutantPage = ({ categorizedData }) => {
         items: Array(10)
           .fill(0)
           .map((_, i) => ({
-            header: matchedRow.Nutritional_flavourtext,
+            header: matchedRow[`UsesOfPlant_nutritional_title${i + 1}`],
             text: matchedRow[`UsesOfPlant_nutritional_description${i + 1}`],
           }))
           .filter((item) => item.text),
