@@ -14,12 +14,12 @@ export const Footer = () => {
 
           <div className={styles.subGroup}>
             <span className={styles.role}>Sound Design:</span>
-            <span className={styles.nameUnderline}>Kari Rae Seekins</span>
+            <a href="https://www.kariraeseekins.com/" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Kari Rae Seekins</a>
           </div>
 
           <div className={styles.subGroup}>
             <span className={styles.role}>Creative Coder for Sound Engagement:</span>
-            <span className={styles.nameUnderline}>Abhinay Khoparzi</span>
+            <a href="https://www.linkedin.com/in/khoparzi/?originalSubdomain=in" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Abhinay Khoparzi</a>
           </div>
 
           <div className={styles.subGroup}>
@@ -29,12 +29,14 @@ export const Footer = () => {
 
           <div className={styles.subGroup}>
             <span className={styles.role}>UI/UX Design:</span>
-            <span className={styles.name}>Sanjana Kadam | Karan Kanojia</span>
+            <a href="https://readymag.website/u3450179796/sanjanakadamportfolio/" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Sanjana Kadam</a> | 
+            <a href="https://bento.me/jimmykano" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Karan Kanojia</a>
           </div>
 
           <div className={styles.subGroup}>
             <span className={styles.role}>Web Developer:</span>
-            <span className={styles.name}>Aryan Oberoi | Arham </span>
+            <a href="https://www.linkedin.com/in/aryan-oberoi-1b4358195/" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Aryan Oberoi</a> | 
+            <a href="https://example.com/arham" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Arham</a>
           </div>
 
           <div className={styles.subGroup}>
@@ -44,7 +46,7 @@ export const Footer = () => {
 
           <div className={styles.subGroup}>
             <span className={styles.role}>Labels / Poster Design:</span>
-            <span className={styles.nameUnderline}>Aviral Saxena</span>
+            <a href="https://www.kultureshop.in/collections/aviral-saxena" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Aviral Saxena</a>
           </div>
 
           <div className={styles.subGroup}>
@@ -54,7 +56,7 @@ export const Footer = () => {
 
           <div className={styles.subGroup}>
             <span className={styles.role}>Pollutant Illustrations:</span>
-            <span className={styles.nameUnderline}>Priyanka Bagade</span>
+            <a href="https://www.behance.net/priyankabagade" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Priyanka Bagade</a>
           </div>
 
           <div className={styles.subGroup}>
@@ -64,13 +66,16 @@ export const Footer = () => {
 
           <div className={styles.subGroup}>
             <span className={styles.role}>Introduction Text:</span>
-            <span className={styles.nameUnderline}>Adwait Singh</span>
+            <a href="https://www.adwaitsingh.com/" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Adwait Singh</a>
           </div>
 
           <div className={styles.subGroup}>
             <span className={styles.role}>Researcher:</span>
             <span className={styles.nameUnderline}>
-              Tamoghno Paul | Mithun Lakshmanan | Prajakta Bodkhe | Nezlyn D'Souza
+              <a href="https://www.linkedin.com/in/tamoghno-paul" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Tamoghno Paul</a> | 
+              <a href="https://www.linkedin.com/in/mithun-lakshmanan-8695a3199/?originalSubdomain=in" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Mithun Lakshmanan</a> | 
+              Prajakta Bodkhe | 
+              <a href="https://carmelcollegegoa.org/team-members/ms-nezlyn-cressida-dsouza/" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Nezlyn D'Souza</a>
             </span>
           </div>
         </div>
@@ -80,9 +85,7 @@ export const Footer = () => {
         <span className={styles.title}>Project Supported by:</span>
         <p className={styles.description}>
           This work was commissioned within the framework of the S+T+ARTS 4Water II residency program by TBA21–Academy with 
-          the support of Konsortium Deutsche Meeresforschung (KDM) and with the collaboration of Ca' Foscari, CNR-ISMAR, 
-          ETT, and Venice International University and the S+T+ARTS program of the European Union. Initial Support: ASU 
-          Leonardo Imagination Fellowship, UNESCO FUTURE Literacy, The Awesome Foundation.
+          the support of Konsortium Deutsche Meeresforschung (KDM) and with the collaboration of Ca' Foscari, CNR-ISMAR, ETT, and Venice International University and the S+T+ARTS program of the European Union. Initial Support: <a href="https://leonardo.info/imagination-fellowship" target="_blank" rel="noopener noreferrer">ASU Leonardo Imagination Fellowship</a>, <a href="https://www.unesco.org/en/futures-literacy" target="_blank" rel="noopener noreferrer">UNESCO FUTURE Literacy</a>, <a href="https://www.awesomefoundation.org/en/projects/165230-sounding-the-invisible-an-elegant-symbiosis" target="_blank" rel="noopener noreferrer">The Awesome Foundation</a>.
         </p>
       </div>
       <br />
