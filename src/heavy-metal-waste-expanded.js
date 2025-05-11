@@ -60,9 +60,7 @@ const SVGComponent = (props) => (
       href="/mercury"
       style={{
         pointerEvents: "bounding-box",
-      }}
-      target="_blank"
-      rel="noopener noreferrer"
+      }} 
       id="mercury"
       className="mercury-link"
     >
@@ -87,9 +85,7 @@ const SVGComponent = (props) => (
       href="/cadmium"
       style={{
         pointerEvents: "bounding-box",
-      }}
-      target="_blank"
-      rel="noopener noreferrer"
+      }} 
       id="cadmium"
       className="cadmium-link"
     >
@@ -115,9 +111,7 @@ const SVGComponent = (props) => (
       href="/lead"
       style={{
         pointerEvents: "bounding-box",
-      }}
-      target="_blank"
-      rel="noopener noreferrer"
+      }} 
       id="lead"
       className="lead-link"
     >
@@ -142,9 +136,7 @@ const SVGComponent = (props) => (
       href="/chromium"
       style={{
         pointerEvents: "bounding-box",
-      }}
-      target="_blank"
-      rel="noopener noreferrer"
+      }} 
       id="chromium"
       className="chromium-link"
     >
@@ -169,9 +161,7 @@ const SVGComponent = (props) => (
       href="/copper"
       style={{
         pointerEvents: "bounding-box",
-      }}
-      target="_blank"
-      rel="noopener noreferrer"
+      }} 
       id="copper"
       className="copper-link"
     >
@@ -196,9 +186,7 @@ const SVGComponent = (props) => (
       href="/arsenic"
       style={{
         pointerEvents: "bounding-box",
-      }}
-      target="_blank"
-      rel="noopener noreferrer"
+      }} 
       id="arsenic"
       className="arsenic-link"
     >
@@ -223,9 +211,7 @@ const SVGComponent = (props) => (
       href="/thallium"
       style={{
         pointerEvents: "bounding-box",
-      }}
-      target="_blank"
-      rel="noopener noreferrer"
+      }} 
       id="thallium"
       className="thallium-link"
     >
@@ -250,9 +236,7 @@ const SVGComponent = (props) => (
       href="/selenium"
       style={{
         pointerEvents: "bounding-box",
-      }}
-      target="_blank"
-      rel="noopener noreferrer"
+      }} 
       id="selenium"
       className="selenium-link"
     >
@@ -277,9 +261,7 @@ const SVGComponent = (props) => (
       href="/nickel"
       style={{
         pointerEvents: "bounding-box",
-      }}
-      target="_blank"
-      rel="noopener noreferrer"
+      }} 
       id="nickel"
       className="nickel-link"
     >
@@ -304,9 +286,7 @@ const SVGComponent = (props) => (
       href="/zinc"
       style={{
         pointerEvents: "bounding-box",
-      }}
-      target="_blank"
-      rel="noopener noreferrer"
+      }} 
       id="zinc"
       className="zinc-link"
     >
@@ -331,9 +311,7 @@ const SVGComponent = (props) => (
       href="/iron"
       style={{
         pointerEvents: "bounding-box",
-      }}
-      target="_blank"
-      rel="noopener noreferrer"
+      }} 
       id="iron"
       className="iron-link"
     >
@@ -358,9 +336,7 @@ const SVGComponent = (props) => (
       href="/aluminium"
       style={{
         pointerEvents: "bounding-box",
-      }}
-      target="_blank"
-      rel="noopener noreferrer"
+      }} 
       id="aluminium"
       className="aluminium-link"
     >
@@ -385,9 +361,7 @@ const SVGComponent = (props) => (
       href="/manganese"
       style={{
         pointerEvents: "bounding-box",
-      }}
-      target="_blank"
-      rel="noopener noreferrer"
+      }} 
       id="manganese"
       className="manganese-link"
     >

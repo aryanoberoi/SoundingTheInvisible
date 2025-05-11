@@ -21,8 +21,6 @@ const SVGComponent = (props) => (
       style={{
         pointerEvents: "bounding-box",
       }}
-      target="_blank"
-      rel="noopener noreferrer"
       id="thorium"
       className="thorium-link"
     >
@@ -40,8 +38,6 @@ const SVGComponent = (props) => (
       style={{
         pointerEvents: "bounding-box",
       }}
-      target="_blank"
-      rel="noopener noreferrer"
       id="strontium"
       className="strontium-link"
     >

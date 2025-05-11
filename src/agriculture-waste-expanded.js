@@ -41,9 +41,7 @@ const SVGComponent = (props) => (
       href="/potassium"
       style={{
         pointerEvents: "bounding-box",
-      }}
-      target="_blank"
-      rel="noopener noreferrer"
+      }} 
       id="potassium"
       className="potassium-link"
     >
@@ -60,9 +58,7 @@ const SVGComponent = (props) => (
       href="/simazine"
       style={{
         pointerEvents: "bounding-box",
-      }}
-      target="_blank"
-      rel="noopener noreferrer"
+      }} 
       id="simazine"
       className="simazine-link"
     >
@@ -79,9 +75,7 @@ const SVGComponent = (props) => (
       href="/imidacloprid"
       style={{
         pointerEvents: "bounding-box",
-      }}
-      target="_blank"
-      rel="noopener noreferrer"
+      }} 
       id="imidacloprid"
       className="imidacloprid-link"
     >
@@ -98,9 +92,7 @@ const SVGComponent = (props) => (
       href="/atrazine"
       style={{
         pointerEvents: "bounding-box",
-      }}
-      target="_blank"
-      rel="noopener noreferrer"
+      }} 
       id="atrazine"
       className="atrazine-link"
     >
@@ -117,9 +109,7 @@ const SVGComponent = (props) => (
       href="/glyphosate"
       style={{
         pointerEvents: "bounding-box",
-      }}
-      target="_blank"
-      rel="noopener noreferrer"
+      }} 
       id="glyphosate"
       className="glyphosate-link"
     >
@@ -136,9 +126,7 @@ const SVGComponent = (props) => (
       href="/phosphorus"
       style={{
         pointerEvents: "bounding-box",
-      }}
-      target="_blank"
-      rel="noopener noreferrer"
+      }} 
       id="phosphorus"
       className="phosphorus-link"
     >
@@ -155,9 +143,7 @@ const SVGComponent = (props) => (
       href="/nitrates"
       style={{
         pointerEvents: "bounding-box",
-      }}
-      target="_blank"
-      rel="noopener noreferrer"
+      }} 
       id="nitrates"
       className="nitrates-link"
     >
