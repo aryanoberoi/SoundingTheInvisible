@@ -1,34 +1,71 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const Cloud = ({ top, left, isHovered, distance, direction = "left", variant = 1 }) => {
+const Cloud = ({ top, left, distance, direction = "left", variant = 1 }) => {
+  // Simple boolean state for movement
+  const [isMovedAway, setIsMovedAway] = useState(false);
+  
+  // Setup continuous animation cycle with clear intervals
+  useEffect(() => {
+    console.log(`Cloud ${variant} mounted - starting animation`);
+    
+    // Stagger initial delay based on variant
+    const initialDelay = variant * 200; // Different start time for each cloud
+    
+    // Start animation loop after initial delay
+    const startTimer = setTimeout(() => {
+      // Begin animation cycle
+      const animationCycle = () => {
+        // Move clouds away
+        console.log(`Cloud ${variant} moving away`);
+        setIsMovedAway(true);
+        
+        // Schedule return after outward movement (20s duration + buffer)
+        setTimeout(() => {
+          console.log(`Cloud ${variant} returning`);
+          setIsMovedAway(false);
+          
+          // Schedule next outward movement after returning (20s duration + pause)
+          setTimeout(animationCycle, 21000); // 20s movement + 1s pause
+        }, 20500); // 20s movement + 0.5s buffer
+      };
+      
+      // Start first cycle
+      animationCycle();
+    }, initialDelay);
+    
+    // Cleanup all timers on unmount
+    return () => {
+      clearTimeout(startTimer);
+    };
+  }, []); // Empty dependency array - only run once on mount
+  
   // Calculate translation distance based on cloud type
   const getTranslateValue = () => {
     const distanceValue = distance === "short" ? 1500 : distance === "medium" ? 1500 : 1500;
     const xTranslate = direction === "left" ? -distanceValue : distanceValue;
     
-    // Determine vertical movement based on variant
     let yTranslate = 0;
     if (variant === 1) {
-      yTranslate = -50; // slightly up
+      yTranslate = -50;
     } else if (variant === 3) {
-      yTranslate = 100; // slightly down
+      yTranslate = 100;
     }
     
     return { x: xTranslate, y: yTranslate };
   };
 
-  // Style object with positioning and transition
+  // Style with movement based on isMovedAway state
   const cloudStyle = {
     position: "absolute",
     top: `${top}px`,
     left: `${left}%`,
-    transform: isHovered 
+    transform: isMovedAway
       ? `translateX(${getTranslateValue().x}px) translateY(${getTranslateValue().y}px)` 
       : `translateX(0) translateY(0)`,
     transition: "transform 20s ease",
     zIndex: 5,
   };
-
+  
   // Render the appropriate cloud based on the variant
   const renderCloud = () => {
     switch(variant) {

@@ -659,7 +659,14 @@
   z-index: 5;
   transform-origin: center; /* Ensure scaling originates from the center */
   scale: clamp(0.6, 0.8vw, 1); /* Scale based on viewport width */
-  /* All other styling is handled inline for flexibility */
+  will-change: transform; /* Optimize for animation performance */
+}
+
+/* Optional - add these for smoother animation */
+@media (prefers-reduced-motion: no-preference) {
+  .animated-cloud {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 
 /* Additional hover effect refinements with unique timing for each cloud variant */

@@ -114,6 +114,36 @@ export default function Homepage({ audioControls }) {
   const [isFrameHovered, setIsFrameHovered] = useState(false);
   const [isInTrapezium, setIsInTrapezium] = useState(false);
   const audioRef = useRef(null);
+  const [cloudAnimationActive, setCloudAnimationActive] = useState(true);
+  
+  // Add this useEffect for automatic cloud animation
+  useEffect(() => {
+    let animationTimer;
+    let restartTimer;
+
+    const animateClouds = () => {
+      setCloudAnimationActive(true);
+
+      // Reset animation after reaching extreme position
+      animationTimer = setTimeout(() => {
+        setCloudAnimationActive(false);
+
+        // Short delay before restarting animation cycle
+        restartTimer = setTimeout(() => {
+          animateClouds();
+        }, 500);
+      }, 3000); // Animation duration
+    };
+
+    // Start the animation cycle
+    animateClouds();
+
+    // Clean up timers on unmount
+    return () => {
+      clearTimeout(animationTimer);
+      clearTimeout(restartTimer);
+    };
+  }, []);
   
   // Default pad number for the homepage
   const DEFAULT_PAD_NUMBER = "1"; // Choose an appropriate default pad number
@@ -183,9 +213,9 @@ export default function Homepage({ audioControls }) {
 
       {/* 🔸 Concept Section */}
       <section className="concept-section">
-        <Cloud top={80} left={45} isHovered={isFrameHovered} distance="short" direction="left" scale={0.9} variant={1} />
-        <Cloud top={180} left={60} isHovered={isFrameHovered} distance="medium" direction="left" variant={2} />
-        <Cloud top={0} left={72} isHovered={isFrameHovered} distance="long" direction="left" scale={1.1} variant={3} />
+      <Cloud top={80} left={45} distance="short" direction="left" variant={1} />
+      <Cloud top={180} left={60} distance="medium" direction="left" variant={2} />
+      <Cloud top={0} left={72} distance="long" direction="left" variant={3} />
 
         <div className="concept-text">
           <h2>Sound Concept</h2>
