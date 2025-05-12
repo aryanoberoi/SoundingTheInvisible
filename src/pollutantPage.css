@@ -2248,9 +2248,9 @@ color: #fff;
 body.white-panel-active .timeline-line{
   position: absolute;
   left: 45%;
-  width: 2px;
+  width: 3px;
   background-color: #ffffff !important;
-  height: 79%;
+  height: 85%;
   top: 87px;
   /* background-color:#ffffff !important;
   /* transform:translateX(190) 
