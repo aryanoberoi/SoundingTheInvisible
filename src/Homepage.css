@@ -729,3 +729,61 @@
   display: inline-block;
   }
 }
+/* Sound Button Styles */
+.sound-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 100000;
+}
+
+.sound-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.sound-icon span {
+  display: block;
+  width: 4px;
+  height: 15px;
+  background: black; /* Default black color */
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Trapezium section specific styles */
+.trapezium-section .sound-icon span {
+  background: white !important; /* Force white color in trapezium section */
+}
+
+/* Animation when sound is ON */
+.playing span:nth-child(1) {
+  height: 5px;
+}
+.playing span:nth-child(2) {
+  height: 10px;
+}
+.playing span:nth-child(3) {
+  height: 15px;
+}
+.playing span:nth-child(4) {
+  height: 10px;
+}
+
+/* Muted (small bars) */
+.muted span {
+  height: 5px !important;
+  opacity: 0.5;
+}
+
+/* Keep white color when nav menu is open */
+.nav-menu.open ~ .sound-button .sound-icon span {
+  background: white !important;
+  z-index: 100;
+}

@@ -112,7 +112,31 @@ export default function Homepage({ audioControls }) {
   const [showTrapeziumText, setShowTrapeziumText] = useState(false);
   const [showSoundText, setShowSoundText] = useState(false);
   const [isFrameHovered, setIsFrameHovered] = useState(false);
+  const [isInTrapezium, setIsInTrapezium] = useState(false);
   const audioRef = useRef(null);
+  
+  // Default pad number for the homepage
+  const DEFAULT_PAD_NUMBER = "1"; // Choose an appropriate default pad number
+  
+  // Detect if we're in the trapezium section
+  useEffect(() => {
+    const trapeziumObserver = new IntersectionObserver(
+      (entries) => {
+        // Update state when trapezium visibility changes
+        if (entries[0]) {
+          setIsInTrapezium(entries[0].isIntersecting);
+        }
+      },
+      { threshold: 0.3 } // Trigger when 30% of the element is visible
+    );
+    
+    const trapezium = document.querySelector('.trapezium-section');
+    if (trapezium) {
+      trapeziumObserver.observe(trapezium);
+    }
+    
+    return () => trapeziumObserver.disconnect();
+  }, []);
   
   // Safe audio manipulation with better null checking
   const handleAudio = () => {
@@ -135,11 +159,12 @@ export default function Homepage({ audioControls }) {
 
   return (
     <div className="homepage">
-            {/* <SoundToggle
-        padNumber={leftpanelcontent[0].pollutantNumber}
-        sliderPosition={sliderPosition}
-        panelMode={sliderPosition < 50 ? "white" : "black"}
-      /> */}
+            <SoundToggle
+        padNumber={DEFAULT_PAD_NUMBER}
+        isInTrapezium={isInTrapezium}
+        panelMode={isInTrapezium ? "black" : "white"}
+        defaultActive={true}
+      />
       {/* Add the actual audio element */}
       <audio 
         ref={audioRef} 

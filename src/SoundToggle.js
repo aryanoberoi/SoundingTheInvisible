@@ -2,13 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:6000";
 
-const SoundToggle = ({ sliderPosition = 50, padNumber }) => {
-  const [isPlaying, setIsPlaying] = useState(false); // Start as false: no autoplay
+const SoundToggle = ({ padNumber = "1", isInTrapezium = false, panelMode = "white", defaultActive = false }) => {
+  const [isPlaying, setIsPlaying] = useState(defaultActive); // Start as true if defaultActive is true
   const [isInCombinedSection, setIsInCombinedSection] = useState(false);
   const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
   const audioRef = useRef(null);
   const audioUrlRef = useRef(null);
-  const hasStartedRef = useRef(false);
+  const hasStartedRef = useRef(defaultActive);
+
   // Set up detection for both scroll position and nav menu state
   useEffect(() => {
     const handleScroll = () => {
@@ -53,10 +54,11 @@ const SoundToggle = ({ sliderPosition = 50, padNumber }) => {
     };
   }, []);
   
-  // Determine button color based on nav menu state first, then other conditions
+  // Determine button color based on section and menu state
   const buttonColor = isNavMenuOpen ? "white" : 
-                     (isInCombinedSection ? "white" : 
-                     (sliderPosition <= 50 ? "black" : "white"));
+                     (isInCombinedSection ? 
+                      (panelMode === "white" ? "black" : "white") :
+                      (isInTrapezium ? "white" : "black"));
 
   // Clean up audio on unmount
   useEffect(() => {
@@ -101,10 +103,14 @@ const SoundToggle = ({ sliderPosition = 50, padNumber }) => {
     }
   };
 
-
-  // If padNumber changes while playing, fetch and play new audio
+  // Auto-play when component mounts if defaultActive is true
   useEffect(() => {
-    if (!isPlaying && !hasStartedRef.current) {
+    if (defaultActive && !hasStartedRef.current) {
+      setIsPlaying(true);
+      handleFetchAndPlay();
+      hasStartedRef.current = true;
+    } else if (!defaultActive && !hasStartedRef.current) {
+      // Add click handler for manual start if not auto-playing
       const handleFirstClick = async () => {
         setIsPlaying(true);
         await handleFetchAndPlay();
@@ -113,12 +119,18 @@ const SoundToggle = ({ sliderPosition = 50, padNumber }) => {
       };
       document.addEventListener('click', handleFirstClick);
 
-      // Cleanup in case component unmounts before first click
       return () => {
         document.removeEventListener('click', handleFirstClick);
       };
     }
-  }, [isPlaying, handleFetchAndPlay]);
+  }, [defaultActive, padNumber]);
+
+  // If padNumber changes while playing, fetch and play new audio
+  useEffect(() => {
+    if (isPlaying && hasStartedRef.current) {
+      handleFetchAndPlay();
+    }
+  }, [padNumber]);
 
   const handleToggle = async () => {
     if (isPlaying) {
