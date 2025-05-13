@@ -1072,7 +1072,7 @@ const PollutantPage = ({ categorizedData }) => {
   }, []);
 
   const handleNavClick = (sectionId) => {
-    console.log("DDSADSDADS");
+    console.log("DDSADSDADS",sectionId);
     const section = document.getElementById(sectionId);
     if (!section) return;
     setState(false);
@@ -1754,7 +1754,7 @@ const PollutantPage = ({ categorizedData }) => {
                 justifyContent: "center",
                 gap: "20px",
                 // paddingRight: "55px",
-                marginBottom: "20px",
+                marginBottom: "59px",
                 paddingRight: "4px",
               }}
             >
@@ -1777,6 +1777,7 @@ const PollutantPage = ({ categorizedData }) => {
                 background: "#fff0",
                 color: "#fff",
                 zIndex: 9,
+                paddingBottom:"50px"
                 // opacity:0.7
                 // paddingRight: "85px",
                 // transform:"translateX(10)"
@@ -1795,7 +1796,7 @@ const PollutantPage = ({ categorizedData }) => {
                       alignItems: "baseline",
                       gap: idx !== 0 ? "9px" : "10px",
                       display: "flex",
-                      background: "#000",
+                      // background: "#000",
                       color: "#fff",
                       zIndex: 99,
                     }}
@@ -1811,7 +1812,7 @@ const PollutantPage = ({ categorizedData }) => {
                       className={`flex-1 `}
                       style={{
                         fontSize: idx == 0 ? "24px" : "14px",
-                        width: idx !== 0 ? "104px" : "",
+                        width: idx !== 0 ? "150px" : "",
                         // textAlign: "end",
                       }}
                     >
