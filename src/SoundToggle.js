@@ -1,16 +1,20 @@
+// src/components/SoundToggle.js
 import React, { useState, useEffect, useRef } from "react";
+import audioService from "./AudioService";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:6000";
-
-const SoundToggle = ({ padNumber = "1", isInTrapezium = false, panelMode = "white", defaultActive = false }) => {
-  const [isPlaying, setIsPlaying] = useState(defaultActive); // Start as true if defaultActive is true
+const SoundToggle = ({ 
+  padNumber = "1", 
+  isInTrapezium = false, 
+  panelMode = "white", 
+  defaultActive = false 
+}) => {
+  const [isPlaying, setIsPlaying] = useState(defaultActive);
   const [isInCombinedSection, setIsInCombinedSection] = useState(false);
   const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
-  const audioRef = useRef(null);
-  const audioUrlRef = useRef(null);
   const hasStartedRef = useRef(defaultActive);
+  const currentPadRef = useRef(padNumber);
 
-  // Set up detection for both scroll position and nav menu state
+  // Set up detection for scroll position and nav menu state
   useEffect(() => {
     const handleScroll = () => {
       const sliderContainer = document.querySelector('.slider-container');
@@ -30,7 +34,7 @@ const SoundToggle = ({ padNumber = "1", isInTrapezium = false, panelMode = "whit
     handleScroll();
     checkNavMenu();
     
-    // Set up mutation observer to detect nav menu changes
+    // Set up observers and event listeners
     const observer = new MutationObserver(mutations => {
       mutations.forEach(mutation => {
         if (mutation.target.classList.contains('nav-menu')) {
@@ -39,13 +43,11 @@ const SoundToggle = ({ padNumber = "1", isInTrapezium = false, panelMode = "whit
       });
     });
     
-    // Start observing nav menu for class changes
     const navMenu = document.querySelector('.nav-menu');
     if (navMenu) {
       observer.observe(navMenu, { attributes: true, attributeFilter: ['class'] });
     }
     
-    // Add scroll listener
     window.addEventListener('scroll', handleScroll);
     
     return () => {
@@ -60,93 +62,45 @@ const SoundToggle = ({ padNumber = "1", isInTrapezium = false, panelMode = "whit
                       (panelMode === "white" ? "black" : "white") :
                       (isInTrapezium ? "white" : "black"));
 
-  // Clean up audio on unmount
-  useEffect(() => {
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-      if (audioUrlRef.current) {
-        URL.revokeObjectURL(audioUrlRef.current);
-        audioUrlRef.current = null;
-      }
-    };
-  }, []);
-
-  const handleFetchAndPlay = async () => {
-    // Clean up previous audio
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current = null;
-    }
-    if (audioUrlRef.current) {
-      URL.revokeObjectURL(audioUrlRef.current);
-      audioUrlRef.current = null;
-    }
-
-    if (!padNumber) return;
-
-    try {
-      const response = await fetch(`${API_URL}/play_pad?pad=${padNumber}`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch mp3");
-      }
-      const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
-      audioUrlRef.current = url;
-      audioRef.current = new Audio(url);
-      audioRef.current.loop = true;
-      await audioRef.current.play();
-    } catch (err) {
-      console.error("Audio fetch/play error:", err);
-    }
-  };
-
-  // Auto-play when component mounts if defaultActive is true
+  // Play sound on component mount if defaultActive is true
   useEffect(() => {
     if (defaultActive && !hasStartedRef.current) {
       setIsPlaying(true);
-      handleFetchAndPlay();
+      audioService.playPadSound(padNumber, { loop: true });
       hasStartedRef.current = true;
-    } else if (!defaultActive && !hasStartedRef.current) {
-      // Add click handler for manual start if not auto-playing
-      const handleFirstClick = async () => {
-        setIsPlaying(true);
-        await handleFetchAndPlay();
-        hasStartedRef.current = true;
-        document.removeEventListener('click', handleFirstClick);
-      };
-      document.addEventListener('click', handleFirstClick);
-
-      return () => {
-        document.removeEventListener('click', handleFirstClick);
-      };
     }
+    
+    // Clean up on unmount
+    return () => {
+      // If this instance is playing sound, stop it
+      if (isPlaying && currentPadRef.current) {
+        audioService.stopPadSound(currentPadRef.current);
+      }
+    };
   }, [defaultActive, padNumber]);
 
-  // If padNumber changes while playing, fetch and play new audio
+  // Handle pad number changes while playing
   useEffect(() => {
+    currentPadRef.current = padNumber;
+    
+    // If currently playing and pad number changes, update the sound
     if (isPlaying && hasStartedRef.current) {
-      handleFetchAndPlay();
+      audioService.stopAllSounds(); // Stop any previous sounds
+      audioService.playPadSound(padNumber, { loop: true });
     }
-  }, [padNumber]);
+  }, [padNumber, isPlaying]);
 
-  const handleToggle = async () => {
+  // Toggle sound on/off
+  const handleToggle = () => {
     if (isPlaying) {
-      // Pause and clean up
+      // Stop sound
+      audioService.stopPadSound(currentPadRef.current);
       setIsPlaying(false);
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-      if (audioUrlRef.current) {
-        URL.revokeObjectURL(audioUrlRef.current);
-        audioUrlRef.current = null;
-      }
     } else {
+      // Start sound
+      audioService.playPadSound(currentPadRef.current, { loop: true });
       setIsPlaying(true);
-      await handleFetchAndPlay();
+      hasStartedRef.current = true;
     }
   };
 
@@ -154,7 +108,7 @@ const SoundToggle = ({ padNumber = "1", isInTrapezium = false, panelMode = "whit
     <button
       className="sound-button"
       onClick={(e) => {
-        e.stopPropagation(); // Prevents the document click handler from firing
+        e.stopPropagation();
         handleToggle();
       }}
       style={{

@@ -8,7 +8,7 @@ import Navbar from "./Navbar";
 import "./App.css"; // New separate file for cursor styles
 import PlayPads from "./PlayPads";
 import IsolatedCursor from './IsolatedCursor';
-import { useAudioHover } from './useAudioHover';
+import audioService from './AudioService';
 
 // Enhanced ScrollToTop component with useLayoutEffect
 const ScrollToTop = () => {
@@ -34,7 +34,6 @@ const AppContent = () => {
   const location = useLocation();
   const [categorizedData, setCategorizedData] = React.useState({});
   const [isLoading, setIsLoading] = React.useState(true); // Loading state
-  const audioControls = useAudioHover(categorizedData);
 
   useEffect(() => {
     const sheetId = "1az7_Vg0GPH2FF393w0sjCmGUxHKEYnIsSDyAJIq8fxs";
@@ -62,6 +61,11 @@ const AppContent = () => {
         
         console.log("Available element IDs:", Object.keys(categorizedData));
         setCategorizedData(categorizedData);
+        
+        // Initialize AudioService with the loaded data
+        audioService.init(rows);
+        console.log("AudioService initialized with data");
+        
         setIsLoading(false);  // Data fetching complete
       })
       .catch(err => {
@@ -81,6 +85,13 @@ const AppContent = () => {
     }
   }, [location.pathname]);
 
+  // Clean up audio resources on unmount
+  useEffect(() => {
+    return () => {
+      audioService.dispose();
+    };
+  }, []);
+
   if (isLoading) {
     return <div>Loading data, please wait...</div>; // Loading indicator
   }
@@ -91,8 +102,8 @@ const AppContent = () => {
       <IsolatedCursor />
       <Navbar />
       <Routes>
-        <Route path="/" element={<Homepage audioControls={audioControls} />} />
-        <Route path="/:customName" element={<PollutantPage categorizedData={categorizedData} audioControls={audioControls} />} />
+        <Route path="/" element={<Homepage categorizedData={categorizedData} />} />
+        <Route path="/:customName" element={<PollutantPage categorizedData={categorizedData} />} />
         <Route path="/playtest" element={<PlayPads />} />
       </Routes>
     </div>
