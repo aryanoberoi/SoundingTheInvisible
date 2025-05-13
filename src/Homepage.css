@@ -720,6 +720,33 @@
   .concept-section{
     flex-direction: column-reverse;
   }
+  .trapezium-section{
+    flex-direction: column;
+      clip-path: polygon(0 9%, 100% 0, 100% 100%, 0 93%)
+      /* clip-path: polygon(0 0, 100% 20%, 100% 90%, 0% 100%); */
+  }
+  .trapezium-text{
+    text-align: center;
+  }
+.svg-container-trapezium::before,
+.svg-container-trapezium::after {
+  content: '';
+  display: none;
+}
+.svg-container-trapezium{
+     overflow-x: auto;
+    scroll-behavior: smooth;
+    overflow-y: hidden;
+    width: 175%;
+    position: relative;
+    white-space: nowrap;
+}
+.middle-svg-concept{
+      transform: scale(1.5);
+  margin-left: 5rem;
+  padding: 5rem;
+  display: inline-block;
+}
   .svg-container-concept {
     overflow-x: auto;
     scroll-behavior: smooth;
@@ -736,7 +763,8 @@
   display: inline-block;
   }
 }
-/* Sound Button Styles */
+
+/* Sound Button Styles comment */
 .sound-button {
   position: fixed;
   top: 20px;
