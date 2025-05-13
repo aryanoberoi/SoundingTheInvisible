@@ -18,34 +18,128 @@ class AudioService {
 
   // Create mapping from element IDs to pad numbers
   buildElementToPadMapping(categorizedData) {
-    if (!categorizedData) return;
-    
-    // Flatten the categorized data and extract id -> Number mapping
-    const allPollutants = Object.values(categorizedData).flat();
-    
-    allPollutants.forEach(row => {
+    if (!categorizedData || !Array.isArray(categorizedData)) {
+      console.warn("Invalid data format for building element mapping");
+      return;
+    }
+
+    // Add known spelling variations map
+    const spellingVariants = {
+      'aluminum': 'aluminium',  // US vs UK spelling
+      'thalium': 'thallium',    // Common misspelling
+      'estrogen-pills': 'estrogen', // Specific compound form
+      'organic-matter': 'organicmatter', // Hyphenated vs spaced
+      'crude': 'crudeoil'
+    };
+
+    // Create mappings from the data
+    categorizedData.forEach(row => {
       if (row.id && row.Number) {
-        // Store lowercase for case-insensitive matching
-        this.elementToPadMapping[row.id.trim().toLowerCase()] = String(row.Number);
+        const id = row.id.trim();
+        const padNumber = String(row.Number);
+
+        // Store multiple variations of the ID to improve matching
+        // 1. Original ID (lowercase)
+        this.elementToPadMapping[id.toLowerCase()] = padNumber;
+
+        // 2. ID with hyphens removed
+        this.elementToPadMapping[id.toLowerCase().replace(/-/g, '')] = padNumber;
+
+        // 3. ID with hyphens replaced by spaces
+        this.elementToPadMapping[id.toLowerCase().replace(/-/g, ' ')] = padNumber;
+
+        // 4. ID with spaces removed
+        this.elementToPadMapping[id.toLowerCase().replace(/\s+/g, '')] = padNumber;
+
+        // 5. Pollutant name variations if available
+        if (row.Pollutantname_split) {
+          const pollutantName = row.Pollutantname_split.trim().toLowerCase();
+          this.elementToPadMapping[pollutantName] = padNumber;
+          this.elementToPadMapping[pollutantName.replace(/\s+/g, '-')] = padNumber;
+          this.elementToPadMapping[pollutantName.replace(/\s+/g, '')] = padNumber;
+        }
       }
     });
-    
-    console.log("Element to pad mapping loaded:", Object.keys(this.elementToPadMapping).length, "items");
+
+    // Handle plant names separately
+    categorizedData.forEach(row => {
+      if (row.plantName_Split && row.Number) {
+        const plantName = row.plantName_Split.trim().toLowerCase();
+        this.elementToPadMapping[plantName] = String(row.Number);
+        this.elementToPadMapping[plantName.replace(/\s+/g, '-')] = String(row.Number);
+        this.elementToPadMapping[plantName.replace(/\s+/g, '')] = String(row.Number);
+      }
+    });
+
+    // Add the known spelling variants to our mapping, connecting them to existing entries
+    Object.entries(spellingVariants).forEach(([variant, standard]) => {
+      // If we have a mapping for the standard spelling, add the variant
+      if (this.elementToPadMapping[standard]) {
+        this.elementToPadMapping[variant] = this.elementToPadMapping[standard];
+        console.log(`Added spelling variant mapping: ${variant} → ${standard} (Pad ${this.elementToPadMapping[standard]})`);
+      }
+    });
+
+    console.log("Element to pad mapping built with entries:", Object.keys(this.elementToPadMapping).length);
+    console.log("Sample mappings:", Object.fromEntries(
+      Object.entries(this.elementToPadMapping).slice(0, 10)
+    ));
   }
 
   // Play sound by element ID (for SVG hover)
   playElementSound(elementId, options = {}) {
     if (!elementId) return;
-    
+
+    // Known spelling variations map - adding here too for redundancy
+    const spellingVariants = {
+      'aluminum': 'aluminium',
+      'thalium': 'thallium',
+      'estrogen-pills': 'estrogen',
+      'organic-matter': 'organicmatter',
+      'vallisneria': 'vallisneria spiralis',
+      'crude': 'crudeoil'
+    };
+
     // Convert to lowercase for consistent lookup
-    const lookupId = elementId.toLowerCase();
-    const padNumber = this.elementToPadMapping[lookupId];
-    
+    let lookupId = elementId.toLowerCase();
+
+    // Check if this is a known variant and replace with standard spelling
+    if (spellingVariants[lookupId]) {
+      const standardSpelling = spellingVariants[lookupId];
+      console.log(`Converting ${lookupId} to standard spelling: ${standardSpelling}`);
+      lookupId = standardSpelling;
+    }
+
+    // Try direct lookup first
+    let padNumber = this.elementToPadMapping[lookupId];
+
+    if (!padNumber) {
+      // Try variations
+      const withoutHyphens = lookupId.replace(/-/g, '');
+      padNumber = this.elementToPadMapping[withoutHyphens];
+
+      if (!padNumber) {
+        const withSpaces = lookupId.replace(/-/g, ' ');
+        padNumber = this.elementToPadMapping[withSpaces];
+
+        if (!padNumber) {
+          // For elements like "aluminum" that should be "aluminium"
+          Object.entries(spellingVariants).forEach(([variant, standard]) => {
+            if (lookupId === variant && this.elementToPadMapping[standard]) {
+              padNumber = this.elementToPadMapping[standard];
+              console.log(`Using standard spelling mapping: ${standard} (Pad ${padNumber})`);
+            }
+          });
+        }
+      }
+    }
+
     if (!padNumber) {
       console.warn(`No pad mapping found for element: ${elementId}`);
+      console.log("Available elements:", Object.keys(this.elementToPadMapping).slice(0, 20));
       return;
     }
-    
+
     console.log(`Playing sound for element: ${elementId} (Pad ${padNumber})`);
     return this.playPadSound(padNumber, options);
   }

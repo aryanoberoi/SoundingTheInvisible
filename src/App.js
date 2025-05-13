@@ -59,18 +59,20 @@ const AppContent = () => {
           return acc;
         }, {});
         
-        console.log("Available element IDs:", Object.keys(categorizedData));
+        console.log("Available pollutant IDs:", rows.map(row => row.id).filter(Boolean));
+        console.log("Available plant names:", rows.map(row => row.plantName_Split).filter(Boolean));
+        
         setCategorizedData(categorizedData);
         
-        // Initialize AudioService with the loaded data
+        // Initialize AudioService with the ROWS (flat array), not the categorized data
         audioService.init(rows);
         console.log("AudioService initialized with data");
         
-        setIsLoading(false);  // Data fetching complete
+        setIsLoading(false);
       })
       .catch(err => {
         console.error("Error fetching sheet:", err);
-        setIsLoading(false);  // Even on error, end loading to avoid infinite loading state
+        setIsLoading(false);
       });
   }, []);
 
