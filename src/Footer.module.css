@@ -70,4 +70,15 @@
     letter-spacing: 0.54px;
     color: black;
   }
+  .footerContainer a {
+    color: #000 !important;   /* Makes all links black */
+    text-decoration: none;    /* Removes underline, optional */
+  }
+  
+  .footerContainer a:hover,
+  .footerContainer a:active,
+  .footerContainer a:visited,
+  .footerContainer a:focus {
+    color: #000 !important;   /* Ensures links stay black in all states */
+  }
   
