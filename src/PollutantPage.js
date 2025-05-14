@@ -30,6 +30,7 @@ const PollutantPage = ({ categorizedData }) => {
   console.log("Matched Row:", matchedRow); // Verify match clearly again
   console.log("Pollutant Name:", matchedRow["Pollutantname_split"]);
   const [sliderPosition, setSliderPosition] = useState(50);
+  const [sliderPositions, setSliderPositions] = useState(50);
   const [rotation, setRotation] = useState(180);
   const [activeSection, setActiveSection] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -634,10 +635,10 @@ const PollutantPage = ({ categorizedData }) => {
   // Central function to update slider position and related effects
   const updateSliderPosition = (newPosition) => {
     const clampedPosition = Math.max(0, Math.min(100, newPosition));
-
+console.log("clampedPosition",clampedPosition,newPosition)
     document.documentElement.style.setProperty(
       "--slider-position",
-      `${clampedPosition}%`
+      `${window.innerHeight>=739?"8":clampedPosition}%`
     );
     setSliderPosition(clampedPosition);
 
@@ -717,10 +718,10 @@ const PollutantPage = ({ categorizedData }) => {
     const thresholdLeft = 25; // Midway between 2 and 50
     const thresholdRight = 75; // Midway between 50 and 98
     const snapLeft = 0;
-    const snapCenter = 50;
+    const snapCenter = window.innerHeight>=739?15:50;
     const snapRight = 100; // Keep the original 99% snap point
     let snapTarget;
-
+console.log("currentPosition",currentPosition,"thresholdLeft",thresholdLeft,currentPosition<=thresholdLeft)
     if (currentPosition <= thresholdLeft) {
       snapTarget = snapLeft;
     } else if (currentPosition > thresholdRight) {
@@ -1304,7 +1305,7 @@ const PollutantPage = ({ categorizedData }) => {
     },
 
   ];
-
+console.log("sliderPosition",sliderPosition)
   return (
     <>
       <SoundToggle
@@ -1337,14 +1338,26 @@ const PollutantPage = ({ categorizedData }) => {
         <div
           ref={sliderBarRef}
           className="slider-bar"
-          style={{
+          style={
+            window.innerHeight>=739?
+            {
+                  left: `50%`, // Use state directly for slider position
+            top: `${sliderPosition == "0"?"-390px":'290px'}`,
+            minHeight: "100%",
+            position: "absolute",
+            }
+            
+            :
+            
+            {
             left: `${sliderPosition}%`, // Use state directly for slider position
             height: containerHeight,
             minHeight: "100%",
             position: "absolute",
-            top: 0,
+            // top: 0,
           }}
           onMouseDown={handleMouseDown}
+          onClick={handleMouseDown}
         >
           <div
             className="slider-image-container"
