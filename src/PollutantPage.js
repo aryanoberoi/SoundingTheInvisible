@@ -30,7 +30,6 @@ const PollutantPage = ({ categorizedData }) => {
   console.log("Matched Row:", matchedRow); // Verify match clearly again
   console.log("Pollutant Name:", matchedRow["Pollutantname_split"]);
   const [sliderPosition, setSliderPosition] = useState(50);
-  const [sliderPositions, setSliderPositions] = useState(50);
   const [rotation, setRotation] = useState(180);
   const [activeSection, setActiveSection] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -39,6 +38,7 @@ const PollutantPage = ({ categorizedData }) => {
   const [leftPanelLoaded, setLeftPanelLoaded] = useState(false); // Track left panel load
   const [rightPanelLoaded, setRightPanelLoaded] = useState(false); // Track right panel load
   const [state, setState] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768);
 
   // Add a resize observer ref
   const resizeObserverRef = useRef(null);
@@ -309,8 +309,7 @@ const PollutantPage = ({ categorizedData }) => {
   const aboutpollutantcontent = [
     {
       text:
-        dataContext.pollutant.about.description ||
-        `About ${pollutantNameRaw}`,
+        dataContext.pollutant.about.description || `About ${pollutantNameRaw}`,
       image: dataContext.pollutant.about.image, // Use image directly from context
     },
   ];
@@ -331,61 +330,19 @@ const PollutantPage = ({ categorizedData }) => {
   ];
 
   // Update effectonhealthcontent to use the new dataContext
-  const effectonhealthcontent = dataContext.pollutant.effects.details.map(text => ({ text }));
-  // const effectonhealthcontent = [
-  //   {
-  //     text: "Cardiac Effects_Potassium imbalances disrupt the heart's electrical activity. Hyperkalemia(elevated potassium levels) causes erratic signals, irregular beats, and potential heart failure. Hypokalemia (low potassium levels) also disrupts rhythm, increasing arrhythmia risk. Maintaining potassium balance is essential for preventing cardiac arrhythmias and heart failure.",
-  //   },
-  //   {
-  //     text: "Musculoskeletal Effects_Potassium is crucial for muscle function. Hypokalemia and hyperkaemia causes weakness, cramps, and may even lead to paralysis. The balance of potassium is vital for preventing muscle weakness and other harmful effects.",
-  //   },
-  //   {
-  //     text: "Neurological Effects_Potassium aids nerve signal transmission. Imbalances disrupt this process, affecting nerve function. Though not always noticeable, these disruptions contribute to weakness and fatigue. Maintaining proper potassium levels is important for preventing nerve signal transmission disruption.",
-  //   },
-  //   {
-  //     text: "Gastrointestinal Effects_Hyperkalemia induces nausea and vomiting. High potassium impacts the gastrointestinal system's nerves and muscles, possibly affecting the brain's chemoreceptor trigger zone. This helps to prevent nausea and vomiting related to hyperkalemia.",
-  //   },
-  //   {
-  //     text: "Respiratory Effects_Severe hyperkalemia causes breathing difficulties. High potassium affects respiratory muscles, leading to shallow or labored respiration. Maintaining proper potassium levels is essential for preventing respiratory distress due to muscle weakness.",
-  //   },
-  //   {
-  //     text: "General Systemic Effects_Hyperkalemia leads to fatigue and chest pain. Potassium chlorate poisoning causes organ damage and death. Untreated, severe hyperkalemia can be fatal due to cardiac arrest or respiratory failure. Proper potassium management is crucial for preventing fatal outcomes.",
-  //   },
-  // ];
+  const effectonhealthcontent = dataContext.pollutant.effects.details.map(
+    (text) => ({ text })
+  );
 
   // Update casestudiescontent to use the new dataContext
   const casestudiescontent = [
     { text: dataContext.pollutant.caseStudies.venice },
     { text: dataContext.pollutant.caseStudies.area },
   ];
-  // const casestudiescontent = [
-  //   {
-  //     text: "Venice lagoon_Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula, sed maximus magna tincidunt. Sed condimentum sollicitudin nibh, nec mattis quam. Ut eu volutpat nisi, quis varius risus. Integer rutrum eros ac turpis euismod, in tincidunt risus dapibus. Etiam eget turpis massa. Fusce rutrum sit amet magna sit amet aliquam. Donec sit amet cursus erat, sit amet sagittis nunc. Nullam mattis risus nisi, non interdum elit congue in. Donec vitae ligula elit. Morbi nec luctus elit, eu feugiat turpis. Sed porttitor luctus ornare. Suspendisse condimentum fermentum convallis.",
-  //   },
-  //   {
-  //     text: "Rest of the world_Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus. Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula, sed maximus magna tincidunt. Sed condimentum sollicitudin nibh, nec mattis quam. Ut eu volutpat nisi, quis varius risus. Integer rutrum eros ac turpis euismod, in tincidunt risus dapibus. Etiam eget turpis massa. Fusce rutrum sit amet magna sit amet aliquam. Donec sit amet cursus erat, sit amet sagittis nunc. Nullam mattis risus nisi, non interdum elit congue in. Donec vitae ligula elit. Morbi nec luctus elit, eu feugiat turpis. Sed porttitor luctus ornare. Suspendisse condimentum fermentum convallis.",
-  //   },
-  // ];
 
   // Update phytocontent to use the new dataContext
   const phytocontent = dataContext.pollutant.phytoSpecies;
-  // const phytocontent = [
-  //   {
-  //     medium: "Chenopodium quinoa_soil",
-  //     timePeriod: "Chenopodium quinoa_70 days",
-  //     remediation: "Chenopodium quinoa_66",
-  //   },
-  //   {
-  //     medium: "Cucurbita pepo_soil",
-  //     timePeriod: "Cucurbita pepo_15/30/45",
-  //     remediation: "Cucurbita pepo_60/70/80",
-  //   },
-  //   {
-  //     medium: "Artemisia annua_soil",
-  //     timePeriod: "Artemisia annua_15/30/45",
-  //     remediation: "Artemisia annua_30/40/47.36",
-  //   },
-  // ];
+
   // Update aboutplantcontent to use the new dataContext
   const aboutplantcontent = [
     {
@@ -463,165 +420,8 @@ const PollutantPage = ({ categorizedData }) => {
       },
     ],
   };
-
-  // const aboutplantcontent = [
-  //   {
-  //     plant_name: rightpanelcontent[0].plantNameSplit,
-  //     description:
-  //       "About Salvinia molesta_Salvinia molesta, a perennial aquatic fern, exhibits a characteristic structure  that is adapted for its free-floating lifestyle. Its aerial fronds (a large leaf), arranged in triplets, transition from flat, youthful forms to increasingly folded, mature structures, reaching sizes up to 2.2 cm. These fronds possess a specialized upper surface, featuring papillae with intricate, hair-like cages that trap air, enhancing buoyancy and repelling water. The lower surface, covered in dense brown hairs, further contributes to flotation.Beneath the surface, highly divided, feathery fronds act as pseudo-roots, anchoring the plant and facilitating nutrient absorption. These submerged fronds extend significantly, ranging from 2 to 50 cm. At the bottom, rhizomes, which are horizontal stems beneath the water surface , propagate vegetatively through fragmentation, allowing the fern to rapidly colonize aquatic environments and form dense mats. \nMature plants produce sporocarps, small, egg-shaped structures containing infertile microspores and megaspores. These sporocarps, covered in soft hairs, are clustered along the submerged leaves. Lacking sexual reproduction, Salvinia molesta relies entirely on asexual propagation through fragmentation. This strategy enables rapid dispersal and the formation of extensive, floating mats, which can significantly impact aquatic ecosystems.",
-  //     status:
-  //       "Wetland Status_ OBL (Obligate Wetland Plant) - Almost always occurs in wetlands a perennial aquatic fern, exhibits a characteristic structure  that is adapted for its free-floating lifestyle. Its aerial fronds (a large leaf), arranged in triplets, transition from flat, youthful forms to increasingly folded, mature structures, reaching sizes up to 2.2 cm. These fronds possess a specialized upper surface, featuring papillae with intricate, hair-like cages that trap air, enhancing buoyancy and repelling water. The lower surface, covered in dense brown hairs, further contributes to flotation.Beneath the surface, highly divided, feathery fronds act as pseudo-roots, anchoring the plant and facilitating nutrient absorption. These submerged fronds extend significantly, ranging from 2 to 50 cm. At the bottom, rhizomes, which are horizontal stems beneath the water surface , propagate vegetatively through fragmentation, allowing the fern to rapidly colonize aquatic environments and form dense mats. \nMature plants produce sporocarps, small, egg-shaped structures containing infertile microspores and megaspores. These sporocarps, covered in soft hairs, are clustered along the submerged leaves. Lacking sexual reproduction, Salvinia molesta relies entirely on asexual propagation through fragmentation. This strategy enables rapid dispersal and the formation of extensive, floating mats, which can significantly impact aquatic ecosystems.",
-  //   },
-  // ];
-  // const commonname = [
-  //   { plantName: rightpanelcontent[0].plantNameSplit },
-  //   { text: "Chinese; rén yàn huái cài pín, rén yàn huái yè píng" },
-  //   { text: "Dutch; Grote vlotvaren" },
-  //   {
-  //     text: "English; African payal, African pyle, Aquarium water moss, Azolla, Giant azolla, Giant salvinia, Kariba weed, Salvinia, Salvinia moss, Water fern, Water spangles, Australian azolla, butterfly fern, cats tongue, koi kandy, velvet weed, watermoss",
-  //   },
-  //   { text: "Finland; rikkakellussaniainen" },
-  //   {
-  //     text: "Germany; Lästiger büschelfarn; Schwimmfarn, Bueschelfarn, Leastiger Schwimmfarn",
-  //   },
-  //   {
-  //     text: "Italy; Salvinia molesta (The genus name Salvinia honors the Italian scholar Antonio Maria Salvini (1633–1729), a professor of the Greek language at the University of Florence)",
-  //   },
-  //   { text: "Netherlands; drijfplantje" },
-  //   { text: "Portuguese; mururé carrapatinho" },
-  //   { text: "South Africa; Water varing" },
-  //   { text: "Swedish; öronsimbräken" },
-  //   { text: "Thailand; Chawk hunu" },
-  // ];
-  // const habitat = [
-  //   { plantName: rightpanelcontent[0].plantNameSplit },
-  //   {
-  //     title: "Diverse Habitats",
-  //     content:
-  //       "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe.",
-  //   },
-  //   {
-  //     title: "Moisture preference",
-  //     content:
-  //       "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe",
-  //   },
-  //   {
-  //     title: "Flood and Drought adaptability",
-  //     content:
-  //       "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe",
-  //   },
-  //   {
-  //     title: "Temperature and humidity tolerance",
-  //     content:
-  //       "Festuca arundinacea originates from Europe where it primarily occurs in grasslands, woodland margins, and coastal marshes, with its native range extending from the Mediterranean to northern Europe",
-  //   },
-  // ];
-  // const geographicaldistribution = [
-  //   {
-  //     text: "Originating from southeastern Brazil, in the subtropical zone between latitudes 24°050 S and 32°050 S at elevations up to 900 m, Salvinia molesta has become a globally disruptive invasive aquatic fern, spreading rapidly since the mid-20th century. Initially introduced as an ornamental plant and for water treatment, it has since colonized diverse aquatic ecosystems worldwide, causing significant ecological disruption. Its spread accelerated from the 1950s, reaching numerous African countries. By the 1970s and 1980s, it had invaded Cameroon, the Democratic Republic of the Congo, Nigeria, and South Africa, and later spread to Ghana and Kenya, among others. In the Indian subcontinent and Southeast Asia, it is prevalent in India, and is considered an invasive species in Indonesia, Malaysia, and Israel, and has also been observed in Japan. In Europe, it is found in Denmark, France, Germany, and Spain. It is an invasive species in Austria, Belgium, and Italy, notably in Tuscany and near Rome, where it displaces native species and alters ecosystems. ",
-  //   },
-  // ];
-  // const sectionphyto = [
-  //   {
-  //     type: "intro",
-  //     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque.",
-  //   },
-  //   { plantName: rightpanelcontent[0].plantNameSplit },
-  //   {
-  //     text: "Potassium_Salvinia molesta effectively concentrates potassium in its roots and fronds, enabling phytoremediation of polluted waters. Studies from the Cochin University of Science and Technology show dried plants contain 2.8 g/kg potassium, with removal rates of 50-90% within 15-30 days, dependent on initial potassium levels, growth period, environment, and biomass.",
-  //   },
-  //   {
-  //     text: "Lead _Salvinia molesta demonstrates significant lead (Pb) removal capabilities in polluted water. Studies in Patna,India, reported 85% Pb accumulation, and a Tamil Nadu study documented a 35.3% reduction in Pb from industrial effluent (2.974 ppm to 1.924 ppm). A study from the Department of Biological Sciences, Faculty of Science, Ahmadu Bello University, Zaria, Nigeria, observed increasing Pb uptake over 18 days, reaching 0.087% of dry weight without visible plant damage, suggesting a unique stress response. These findings highlight Salvinia molesta's potential for Pb phytoremediation, even at varying initial concentrations.",
-  //   },
-  //   {
-  //     text: "Mercury_A study conducted by the Ganga Devi Mahila College (Magadh University), Kankarbagh in Patna, India, further explored Salvinia molesta's phytoremediation potential by assessing its ability to remove mercury (Hg) from polluted water. The research indicated that when exposed to a 100% concentration of Hg in the experimental solution, Salvinia molesta accumulated up to 74% of the mercury in 15 days within its plant tissues.",
-  //   },
-  //   {
-  //     text: "Copper_Salvinia molesta effectively removes copper (Cu) from polluted environments. Studies show it accumulates Cu without visible damage, even at high concentrations. A University of Vellore, India, study revealed an 86.4% increase of Cu within plant tissues over 15 days, while a study from University of Kelaniya, Srilanka, demonstrated a 32.6% Cu reduction in sewage sludge over 28 days. These findings confirm Salvinia molesta's capacity for both Cu bioaccumulation and removal, making it a promising phytoremediation agent.",
-  //   },
-  //   {
-  //     text: "Cadmium_Salvinia molesta demonstrates cadmium (Cd) removal capabilities, though its tolerance varies with concentration. Pondicherry University research found survival at 1 ppm Cd for 16 days, but limited growth at higher concentrations (10 ppm for a week, 100 ppm for 5 days). A Vellore Institute of Technology study showed a 92.83% Cd reduction from industrial effluent, decreasing from 0.251 ppm to 0.018 ppm. This indicates effective Cd absorption, particularly at lower concentrations, but also highlights Salvinia molesta's sensitivity to elevated Cd levels.",
-  //   },
-  //   {
-  //     text: "Chromium_Salvinia molesta exhibits varying chromium (Cr) tolerance. Pondicherry University studies showed healthy growth for 45 days at 1 ppm Cr, 25 days at 10 ppm, but immediate decay at 100 ppm. A Vellore Institute of Technology study demonstrated a 47.95% Cr reduction from industrial effluent, decreasing from 2.021 ppm to 1.052 ppm. This indicates effective Cr removal at lower concentrations, but highlights sensitivity to higher Cr levels.",
-  //   },
-  //   {
-  //     text: "Zinc_Salvinia molesta demonstrates a strong capacity for zinc (Zn) accumulation and removal. Experiments show it concentrates Zinc in dry tissues 10,000-fold compared to water, indicating purification potential. Studies in Loyola College, Tamil Nadu confirm significant Zn reduction in wastewater after 10 days. Research done by  Centre for Water Resources Development & Management, Kunnamangalam, Kerala published in Resources and Conservation further highlights its efficiency, with 50% Zn removal in 15 days and 90% in 30 days, showcasing its ability to effectively absorb and cleanse Zn from contaminated water.",
-  //   },
-  //   {
-  //     text: "Other heavy metals_Salvinia molesta demonstrates effective manganese (Mn) and iron (Fe) accumulation. A 2016 VIT University study revealed Salvinia molesta concentrates Mn in dry tissues five-fold compared to water, using Atomic Absorption Spectrophotometry. Additionally, University of Kelaniy, Sri Lanaka, research showed a 26.6% Fe reduction in sewage sludge over 28 days. These findings, combined with its high growth rate and metal tolerance, solidify Salvinia molesta as a potent heavy metal hyperaccumulator, suitable for phytoremediation.",
-  //   },
-  //   {
-  //     text: "Nickel_Salvinia molesta demonstrates effective manganese (Mn) and iron (Fe) accumulation. A 2016 VIT University study revealed Salvinia molesta concentrates Mn in dry tissues five-fold compared to water, using Atomic Absorption Spectrophotometry. Additionally, University of Kelaniy, Sri Lanaka, research showed a 26.6% Fe reduction in sewage sludge over 28 days. These findings, combined with its high growth rate and metal tolerance, solidify Salvinia molesta as a potent heavy metal hyperaccumulator, suitable for phytoremediation.",
-  //   },
-  //   {
-  //     text: "Micronutrients_Salvinia molesta exhibits strong nitrogen (N) and phosphorus (P) phytoremediation capabilities. Studies show N content ranges from 0.6% to 4.0% of dry weight, with uptake rates up to 8 mg per g of dry weight/day, or 6,000 kg of nitrogen per hectare/year. Australian sewage lagoons recorded 1,580 kg per hectare/year removal. While S. molesta phosphorus uptake data is limited, Salvinia minima and Salvinia auriculata studies indicate phosphorus concentration enhances growth and uptake, respectively, suggesting S. molesta's potential to combat eutrophication.",
-  //   },
-  // ];
-  // const plantUses = {
-  //   plantName: rightpanelcontent[0].plantNameSplit, // Define plant name once
-  //   sections: [
-  //     {
-  //       id: "nutritional",
-  //       title: "NUTRITIONAL",
-  //       flavourtext:
-  //         "Salvinia molesta is not suitable for human consumption due to its poor nutritional value and potential toxicity.",
-  //       items: [
-  //         {
-  //           header: "The edibility rating for Salvinia molesta is unavailable.",
-  //           text: "Its nutritional value is poor, lacking significant macronutrients like carbohydrates, proteins, and fats. While containing minerals, it poses toxicity risks due to heavy metal accumulation from its phytoremediation abilities. High lignin and tannin content interfere with nutrient absorption. Furthermore, aquatic environments expose it to microbial contamination. Therefore, Salvinia molesta is deemed unsuitable for human consumption, and its primary applications lie in environmental remediation, animal feed research, and biomass production.",
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       id: 'medicine',
-  //       title: 'MEDICINAL',
-  //       flavourtext: matchedRow.UsesOfPlant_medicinal_flavourtext,
-  //       items: Array(10).fill(0).map((_, i) => ({
-  //         header: matchedRow[`UsesOfPlant_title${i+1}`],
-  //         text: matchedRow[`UsesOfPlant_description${i+1}`]
-  //       })).filter(item => item.text)
-  //     },
-  //     {
-  //       id: "additional",
-  //       title: "ADDITIONAL",
-  //       flavourtext:
-  //         "Salvinia molesta has various other uses beyond medicinal applications.", // Added a generic flavourtext for 'additional'
-  //       items: [
-  //         {
-  //           header: "Paper industry raw material",
-  //           text: "A study from the Bulletin of the National Institute of Ecology, India, suggests S. molesta can be processed into low-grade paper products like kraft, newsprint, and tissue. It can be utilized alone or in conjunction with agricultural byproducts such as rice straw or waste textile cuttings, offering a sustainable alternative to traditional pulp sources.",
-  //         },
-  //         {
-  //           header: "Supplementary animal feed", // Corrected typo
-  //           text: "While not suitable as a sole feed source due to its high crude ash and tannin content, which can hinder digestibility, S. molesta can supplement the diets of various animals, including ducks, pigs, geese, and fish. It provides a source of nutrients and can be particularly useful in regions with limited feed resources.",
-  //         },
-  //         {
-  //           header: "Biofuel Production via Anaerobic Digestion",
-  //           text: "Research from the Indian Institutes of Technology (IIT) and Indian Agricultural Research Institute (IARI) demonstrates the potential for S. molesta to generate biogas through anaerobic digestion, yielding methane, a valuable energy source. Combining it with other aquatic plants like Eichhornia crassipes can further enhance biogas production.",
-  //         },
-  //         {
-  //           header: "Ornamental Horticulture and Invasive Spread", // Removed duplicate entry
-  //           text: "Its aesthetic qualities have made S. molesta popular in botanical gardens and aquariums. However, this widespread use has inadvertently contributed to its classification as an invasive species in many regions",
-  //         },
-  //         {
-  //           header: "Agricultural Fertilizer and Soil Amendment",
-  //           text: "S. molesta can be composted or used as mulch, providing a nutrient-rich soil amendment. Its use as mulch is particularly beneficial in dry regions and for citrus crops, enhancing soil fertility and moisture retention.",
-  //         },
-  //         {
-  //           header: "Aquaculture Enhancement and Fish Feed Supplement",
-  //           text: "In aquaculture, S. molesta can serve as a partial feed source for fish species like Nile tilapia, potentially improving growth performance. It also fosters the growth of invertebrate larvae, a valuable food source for prawns and fish.",
-  //         },
-  //         {
-  //           header: "Ecological Control via Biological Agents",
-  //           text: "The introduction of specific weevil species, natural predators of S. molesta, offers a biological control method to manage its rapid growth and prevent ecological imbalances. This approach helps maintain biodiversity and ecosystem health.",
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // };
   // Add state to track dragging
-  const [isDragging, setIsDragging] = useState(false);
+  //   const [isDragging, setIsDragging] = useState(false);
 
   const toggleDrawer = (open) => (event) => {
     // if (
@@ -632,50 +432,288 @@ const PollutantPage = ({ categorizedData }) => {
     // }
     setState(open);
   };
-  // Central function to update slider position and related effects
+  //   // Central function to update slider position and related effects
+  //   const updateSliderPosition = (newPosition) => {
+  //     const clampedPosition = Math.max(0, Math.min(100, newPosition));
+  // console.log("clampedPosition",clampedPosition,newPosition)
+  //     document.documentElement.style.setProperty(
+  //       "--slider-position",
+  //       `${clampedPosition}%`
+  //     );
+  //     setSliderPosition(clampedPosition);
+
+  //     // First, clear all region classes to avoid conflicts
+  //     document.body.classList.remove(
+  //       "sound-left-region",
+  //       "sound-center-region",
+  //       "sound-right-region"
+  //     );
+
+  //     // Add appropriate region class based on position
+  //     if (clampedPosition < 25) {
+  //       document.body.classList.add("sound-left-region");
+  //     } else if (clampedPosition >= 95) {
+  //       document.body.classList.add("sound-right-region");
+  //     } else {
+  //       document.body.classList.add("sound-center-region");
+  //     }
+
+  //     // Panel active classes control which content is shown
+  //     if (clampedPosition < 50) {
+  //       // White panel is active (right side content)
+  //       document.body.classList.add("white-panel-active");
+  //       document.body.classList.remove("black-panel-active");
+  //     } else {
+  //       // Black panel is active (left side content)
+  //       document.body.classList.add("black-panel-active");
+  //       document.body.classList.remove("white-panel-active");
+  //     }
+
+  //     // These other classes are used for specific positioning
+  //     document.body.classList.toggle("right-panel-active", clampedPosition < 3);
+
+  //     // Remove sound-panel-active class as we'll control sound button color directly
+  //     document.body.classList.remove("sound-panel-active");
+
+  //     // Calculate rotation based on slider position
+  //     const newRotation = (clampedPosition / 100) * 360;
+  //     setRotation(newRotation);
+  //     document.documentElement.style.setProperty(
+  //       "--rotation",
+  //       `${newRotation}deg`
+  //     );
+  //   };
+
+  //   const handleMouseDown = (e) => {
+  //     e.preventDefault();
+  //     setIsDragging(true);
+  //     lastPositionRef.current = sliderPosition; // Ensure ref is synced on initial click
+  //     // Optional: Could temporarily disable transitions during drag if needed for performance
+  //   };
+
+  //   const handleMouseMove = (e) => {
+  //     if (!isDragging) return;
+
+  //     const container = document.getElementById("slider-container");
+  //     if (!container) return; // Safety check
+  //     const rect = container.getBoundingClientRect();
+  //     let newPosition = ((e.clientX - rect.left) / rect.width) * 100;
+  //     // let newPosition = ((e.clientY - rect.top) / rect.height) * 100;
+
+  //     // Ensure position stays within bounds during drag
+  //     newPosition = Math.max(0, Math.min(100, newPosition));
+
+  //     // Update position using the refactored function
+  //     updateSliderPosition(newPosition);
+  //     // Update the ref synchronously with the latest calculated position
+  //     lastPositionRef.current = newPosition;
+  //   };
+
+  //   const handleMouseUp = () => {
+  //     if (!isDragging) return; // Safety check
+  //     setIsDragging(false);
+
+  //     // --- Snap Logic ---
+  //     // Read the latest position from the ref, not state
+  //     const currentPosition = lastPositionRef.current;
+  //     const thresholdLeft = 25; // Midway between 2 and 50
+  //     const thresholdRight = 75; // Midway between 50 and 98
+  //     const snapLeft = 0;
+  //     const snapCenter = 50;
+  //     const snapRight = 100; // Keep the original 99% snap point
+  //     let snapTarget;
+  // console.log("currentPosition",currentPosition,"thresholdLeft",thresholdLeft,currentPosition<=thresholdLeft)
+  //     if (currentPosition <= thresholdLeft) {
+  //       snapTarget = snapLeft;
+  //     } else if (currentPosition > thresholdRight) {
+  //       snapTarget = snapRight;
+  //     } else {
+  //       snapTarget = snapCenter;
+  //     }
+  //     // --- End Snap Logic ---
+
+  //     // Update to the snapped position using the original function
+  //     updateSliderPosition(snapTarget);
+  //   };
+
+  //   // Function to update container height based on panel heights
+  //   const updateContainerHeight = () => {
+  //     console.log("Attempting to update container height...");
+
+  //     // Ensure refs are available
+  //     if (!leftPanelRef.current || !rightPanelRef.current) {
+  //       console.log("Height update skipped: Panel refs not ready");
+  //       return;
+  //     }
+
+  //     // Force layout calculations with getBoundingClientRect()
+  //     const leftRect = leftPanelRef.current.getBoundingClientRect();
+  //     const rightRect = rightPanelRef.current.getBoundingClientRect();
+
+  //     // Use the height from getBoundingClientRect instead of scrollHeight
+  //     const leftPanelHeight = leftRect.height;
+  //     const rightPanelHeight = rightRect.height;
+
+  //     console.log(
+  //       `Left panel height: ${leftPanelHeight}px, Right panel height: ${rightPanelHeight}px`
+  //     );
+
+  //     // Calculate max height with a minimum threshold
+  //     const maxHeight = Math.max(
+  //       leftPanelHeight,
+  //       rightPanelHeight,
+  //       window.innerHeight
+  //     );
+  //     const finalHeight = maxHeight > 100 ? `${maxHeight}px` : "100vh";
+
+  //     console.log(`Setting container height to: ${finalHeight}`);
+  //     setContainerHeight(finalHeight);
+
+  //     // Force slider-container to update as well
+  //     if (sliderContainerRef.current) {
+  //       sliderContainerRef.current.style.height = finalHeight;
+  //     }
+  //     // Directly update slider-bar height using its ref
+  //     if (sliderBarRef.current) {
+  //       sliderBarRef.current.style.height = finalHeight;
+  //       console.log(`Slider bar height set directly to ${finalHeight}`);
+  //     }
+  //   };
+
+  //   // Effect to update height when both panels signal loaded state
+  //   useEffect(() => {
+  //     if (leftPanelLoaded && rightPanelLoaded) {
+  //       console.log("Both panels loaded, updating container height.");
+  //       // Use requestAnimationFrame to wait for the next browser paint after state updates
+  //       requestAnimationFrame(() => {
+  //         // A small delay can still be helpful for complex layouts to fully settle
+  //         setTimeout(updateContainerHeight, 100);
+  //       });
+  //     }
+  //   }, [leftPanelLoaded, rightPanelLoaded]); // Rerun when load states change
+
+  //   useEffect(() => {
+  //     if (isDragging) {
+  //       window.addEventListener("mousemove", handleMouseMove);
+  //       window.addEventListener("mouseup", handleMouseUp);
+  //     } else {
+  //       window.removeEventListener("mousemove", handleMouseMove);
+  //       window.removeEventListener("mouseup", handleMouseUp);
+  //     }
+
+  //     // Clean up on unmount
+  //     return () => {
+  //       window.removeEventListener("mousemove", handleMouseMove);
+  //       window.removeEventListener("mouseup", handleMouseUp);
+  //     };
+  //   }, [isDragging]);
+
+  //   useEffect(() => {
+  //     // Set the initial rotation CSS variable directly on mount
+  //     document.documentElement.style.setProperty("--rotation", `180deg`);
+  //     // Add slider transition variable for dynamic control
+  //     document.documentElement.style.setProperty(
+  //       "--slider-transition",
+  //       "left 0.3s ease-in-out"
+  //     );
+
+  //     // Clean up on unmount
+  //     return () => {};
+  //   }, []); // Initial setup effect, height update logic moved
+
+  //   useEffect(() => {
+  //     const observer = new IntersectionObserver(
+  //       (entries) => {
+  //         // Find the first entry that is currently intersecting
+  //         const intersectingEntry = entries.find((entry) => entry.isIntersecting);
+
+  //         // If an intersecting entry is found, update the active section
+  //         if (intersectingEntry) {
+  //           setActiveSection(intersectingEntry.target.id);
+  //         }
+  //         // Optional: If no entry is intersecting, you might want to clear
+  //         // the active section or keep the last active one, depending on desired UX.
+  //         // Example: else if (entries.some(entry => !entry.isIntersecting)) {
+  //         //   // Logic if elements are leaving viewport but none are entering
+  //         // }
+  //       },
+  //       {
+  //         // Keep the lower threshold
+  //         threshold: 0.1,
+  //         root: null,
+  //       }
+  //     );
+
+  //     // Observe all sections in both panels
+  //     const sections = document.querySelectorAll(`
+  //       [id^="about-"],
+  //       [id^="plant-"],
+  //       [id^="sound-"],
+  //       [id^="common-"],
+  //       [id^="effect-"],
+  //       [id^="case-"],
+  //       [id^="phytoremediation"],
+  //       [id^="phyto-"],
+  //       [id^="uses-"],
+  //       [id^="origin"],
+  //       [id^="references"]
+  //     `);
+
+  //     sections.forEach((section) => {
+  //       observer.observe(section);
+  //     });
+
+  //     return () => observer.disconnect();
+  //   }, []);
+  const [isDragging, setIsDragging] = useState(false);
+  // const [sliderPosition, setSliderPosition] = useState(50);
+  // const [containerHeight, setContainerHeight] = useState('100vh');
+  // const [leftPanelLoaded, setLeftPanelLoaded] = useState(false);
+  // const [rightPanelLoaded, setRightPanelLoaded] = useState(false);
+  // const [activeSection, setActiveSection] = useState(null);
+  // const lastPositionRef = useRef(sliderPosition);
+  // const leftPanelRef = useRef(null);
+  // const rightPanelRef = useRef(null);
+  // const sliderContainerRef = useRef(null);
+  // const sliderBarRef = useRef(null);
+  // const [rotation, setRotation] = useState(180);
+
   const updateSliderPosition = (newPosition) => {
     const clampedPosition = Math.max(0, Math.min(100, newPosition));
-console.log("clampedPosition",clampedPosition,newPosition)
     document.documentElement.style.setProperty(
       "--slider-position",
-      `${window.innerHeight>=739?"8":clampedPosition}%`
+      `${clampedPosition}%`
     );
     setSliderPosition(clampedPosition);
 
-    // First, clear all region classes to avoid conflicts
     document.body.classList.remove(
-      "sound-left-region",
-      "sound-center-region",
-      "sound-right-region"
+      "sound-top-region",
+      "sound-middle-region",
+      "sound-bottom-region"
     );
 
-    // Add appropriate region class based on position
     if (clampedPosition < 25) {
-      document.body.classList.add("sound-left-region");
+      document.body.classList.add("sound-top-region");
     } else if (clampedPosition >= 95) {
-      document.body.classList.add("sound-right-region");
+      document.body.classList.add("sound-bottom-region");
     } else {
-      document.body.classList.add("sound-center-region");
+      document.body.classList.add("sound-middle-region");
     }
 
-    // Panel active classes control which content is shown
     if (clampedPosition < 50) {
-      // White panel is active (right side content)
       document.body.classList.add("white-panel-active");
       document.body.classList.remove("black-panel-active");
     } else {
-      // Black panel is active (left side content)
       document.body.classList.add("black-panel-active");
       document.body.classList.remove("white-panel-active");
     }
 
-    // These other classes are used for specific positioning
-    document.body.classList.toggle("right-panel-active", clampedPosition < 3);
-
-    // Remove sound-panel-active class as we'll control sound button color directly
+    document.body.classList.toggle(
+      "bottom-panel-active",
+      clampedPosition >= 97
+    );
     document.body.classList.remove("sound-panel-active");
 
-    // Calculate rotation based on slider position
     const newRotation = (clampedPosition / 100) * 360;
     setRotation(newRotation);
     document.documentElement.style.setProperty(
@@ -687,77 +725,55 @@ console.log("clampedPosition",clampedPosition,newPosition)
   const handleMouseDown = (e) => {
     e.preventDefault();
     setIsDragging(true);
-    lastPositionRef.current = sliderPosition; // Ensure ref is synced on initial click
-    // Optional: Could temporarily disable transitions during drag if needed for performance
+    lastPositionRef.current = sliderPosition;
   };
 
   const handleMouseMove = (e) => {
     if (!isDragging) return;
 
     const container = document.getElementById("slider-container");
-    if (!container) return; // Safety check
-    const rect = container.getBoundingClientRect();
-    let newPosition = ((e.clientX - rect.left) / rect.width) * 100;
+    if (!container) return;
 
-    // Ensure position stays within bounds during drag
+    const rect = container.getBoundingClientRect();
+    let newPosition = ((e.clientY - rect.top) / rect.height) * 100;
     newPosition = Math.max(0, Math.min(100, newPosition));
 
-    // Update position using the refactored function
     updateSliderPosition(newPosition);
-    // Update the ref synchronously with the latest calculated position
     lastPositionRef.current = newPosition;
   };
 
   const handleMouseUp = () => {
-    if (!isDragging) return; // Safety check
+    if (!isDragging) return;
     setIsDragging(false);
 
-    // --- Snap Logic ---
-    // Read the latest position from the ref, not state
     const currentPosition = lastPositionRef.current;
-    const thresholdLeft = 25; // Midway between 2 and 50
-    const thresholdRight = 75; // Midway between 50 and 98
-    const snapLeft = 0;
-    const snapCenter = window.innerHeight>=739?15:50;
-    const snapRight = 100; // Keep the original 99% snap point
-    let snapTarget;
-console.log("currentPosition",currentPosition,"thresholdLeft",thresholdLeft,currentPosition<=thresholdLeft)
-    if (currentPosition <= thresholdLeft) {
-      snapTarget = snapLeft;
-    } else if (currentPosition > thresholdRight) {
-      snapTarget = snapRight;
-    } else {
-      snapTarget = snapCenter;
-    }
-    // --- End Snap Logic ---
+    const thresholdTop = 25;
+    const thresholdBottom = 75;
+    const snapTop = 0;
+    const snapMiddle = 50;
+    const snapBottom = 100;
 
-    // Update to the snapped position using the original function
+    let snapTarget;
+    if (currentPosition <= thresholdTop) {
+      snapTarget = snapTop;
+    } else if (currentPosition > thresholdBottom) {
+      snapTarget = snapBottom;
+    } else {
+      snapTarget = snapMiddle;
+    }
+
     updateSliderPosition(snapTarget);
   };
 
-  // Function to update container height based on panel heights
   const updateContainerHeight = () => {
-    console.log("Attempting to update container height...");
+    if (!leftPanelRef.current || !rightPanelRef.current) return;
 
-    // Ensure refs are available
-    if (!leftPanelRef.current || !rightPanelRef.current) {
-      console.log("Height update skipped: Panel refs not ready");
-      return;
-    }
-
-    // Force layout calculations with getBoundingClientRect()
     const leftRect = leftPanelRef.current.getBoundingClientRect();
     const rightRect = rightPanelRef.current.getBoundingClientRect();
 
-    // Use the height from getBoundingClientRect instead of scrollHeight
     const leftPanelHeight = leftRect.height;
     const rightPanelHeight = rightRect.height;
 
-    console.log(
-      `Left panel height: ${leftPanelHeight}px, Right panel height: ${rightPanelHeight}px`
-    );
-
-    // Calculate max height with a minimum threshold
     const maxHeight = Math.max(
       leftPanelHeight,
       rightPanelHeight,
@@ -765,106 +781,200 @@ console.log("currentPosition",currentPosition,"thresholdLeft",thresholdLeft,curr
     );
     const finalHeight = maxHeight > 100 ? `${maxHeight}px` : "100vh";
 
-    console.log(`Setting container height to: ${finalHeight}`);
     setContainerHeight(finalHeight);
 
-    // Force slider-container to update as well
     if (sliderContainerRef.current) {
       sliderContainerRef.current.style.height = finalHeight;
     }
-    // Directly update slider-bar height using its ref
+
     if (sliderBarRef.current) {
       sliderBarRef.current.style.height = finalHeight;
-      console.log(`Slider bar height set directly to ${finalHeight}`);
     }
   };
 
-  // Effect to update height when both panels signal loaded state
-  useEffect(() => {
-    if (leftPanelLoaded && rightPanelLoaded) {
-      console.log("Both panels loaded, updating container height.");
-      // Use requestAnimationFrame to wait for the next browser paint after state updates
-      requestAnimationFrame(() => {
-        // A small delay can still be helpful for complex layouts to fully settle
-        setTimeout(updateContainerHeight, 100);
-      });
-    }
-  }, [leftPanelLoaded, rightPanelLoaded]); // Rerun when load states change
+  // useEffect(() => {
+  //   if (leftPanelLoaded && rightPanelLoaded) {
+  //     requestAnimationFrame(() => {
+  //       setTimeout(updateContainerHeight, 100);
+  //     });
+  //   }
+  // }, [leftPanelLoaded, rightPanelLoaded]);
 
-  useEffect(() => {
-    if (isDragging) {
-      window.addEventListener("mousemove", handleMouseMove);
-      window.addEventListener("mouseup", handleMouseUp);
+  // useEffect(() => {
+  //   if (isDragging) {
+  //     window.addEventListener("mousemove", handleMouseMove);
+  //     window.addEventListener("mouseup", handleMouseUp);
+  //   } else {
+  //     window.removeEventListener("mousemove", handleMouseMove);
+  //     window.removeEventListener("mouseup", handleMouseUp);
+  //   }
+
+  //   return () => {
+  //     window.removeEventListener("mousemove", handleMouseMove);
+  //     window.removeEventListener("mouseup", handleMouseUp);
+  //   };
+  // }, [isDragging]);
+
+  // useEffect(() => {
+  //   document.documentElement.style.setProperty("--rotation", `180deg`);
+  //   document.documentElement.style.setProperty(
+  //     "--slider-transition",
+  //     "top 0.3s ease-in-out"
+  //   );
+  // }, []);
+
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       const intersectingEntry = entries.find((entry) => entry.isIntersecting);
+  //       if (intersectingEntry) {
+  //         setActiveSection(intersectingEntry.target.id);
+  //       }
+  //     },
+  //     {
+  //       threshold: 0.1,
+  //       root: null,
+  //     }
+  //   );
+
+  //   const sections = document.querySelectorAll(`
+  //     [id^="about-"],
+  //     [id^="plant-"],
+  //     [id^="sound-"],
+  //     [id^="common-"],
+  //     [id^="effect-"],
+  //     [id^="case-"],
+  //     [id^="phytoremediation"],
+  //     [id^="phyto-"],
+  //     [id^="uses-"],
+  //     [id^="origin"],
+  //     [id^="references"]
+  //   `);
+
+  //   sections.forEach((section) => observer.observe(section));
+
+  //   return () => observer.disconnect();
+  // }, []);
+  // useEffect(() => {
+  //   const move = (e) => {
+  //     if (!isDragging) return;
+  //     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  //     const container = document.getElementById("slider-container");
+  //     if (!container) return;
+  //     const rect = container.getBoundingClientRect();
+  //     let newPosition = ((clientY - rect.top) / rect.height) * 100;
+  //     newPosition = Math.max(0, Math.min(100, newPosition));
+  //     updateSliderPosition(newPosition);
+  //     lastPositionRef.current = newPosition;
+  //   };
+
+  //   const up = () => {
+  //     if (!isDragging) return;
+  //     setIsDragging(false);
+  //     const currentPosition = lastPositionRef.current;
+  //     const thresholdTop = 25;
+  //     const thresholdBottom = 75;
+  //     const snapTop = 0;
+  //     const snapMiddle = 50;
+  //     const snapBottom = 100;
+  //     let snapTarget;
+
+  //     if (currentPosition <= thresholdTop) {
+  //       snapTarget = snapTop;
+  //     } else if (currentPosition > thresholdBottom) {
+  //       snapTarget = snapBottom;
+  //     } else {
+  //       snapTarget = snapMiddle;
+  //     }
+  //     updateSliderPosition(snapTarget);
+  //   };
+
+  //   if (isDragging) {
+  //     window.addEventListener("mousemove", move);
+  //     window.addEventListener("mouseup", up);
+  //     window.addEventListener("touchmove", move);
+  //     window.addEventListener("touchend", up);
+  //   }
+
+  //   return () => {
+  //     window.removeEventListener("mousemove", move);
+  //     window.removeEventListener("mouseup", up);
+  //     window.removeEventListener("touchmove", move);
+  //     window.removeEventListener("touchend", up);
+  //   };
+  // }, [isDragging]);
+  // Mobile VIew
+  const handlePointerMove = (e) => {
+    if (!isDragging) return;
+
+    const container = document.getElementById("slider-container");
+    if (!container) return;
+    const rect = container.getBoundingClientRect();
+
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+    let newPosition;
+    if (isMobileView) {
+      // Vertical dragging
+      newPosition = ((clientY - rect.top) / rect.height) * 100;
     } else {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
+      // Horizontal dragging
+      newPosition = ((clientX - rect.left) / rect.width) * 100;
     }
 
-    // Clean up on unmount
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
+    newPosition = Math.max(0, Math.min(100, newPosition));
+    updateSliderPosition(newPosition);
+    lastPositionRef.current = newPosition;
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth <= 768);
     };
-  }, [isDragging]);
-
-  useEffect(() => {
-    // Set the initial rotation CSS variable directly on mount
-    document.documentElement.style.setProperty("--rotation", `180deg`);
-    // Add slider transition variable for dynamic control
-    document.documentElement.style.setProperty(
-      "--slider-transition",
-      "left 0.3s ease-in-out"
-    );
-
-    // Clean up on unmount
-    return () => {};
-  }, []); // Initial setup effect, height update logic moved
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Find the first entry that is currently intersecting
-        const intersectingEntry = entries.find((entry) => entry.isIntersecting);
-
-        // If an intersecting entry is found, update the active section
-        if (intersectingEntry) {
-          setActiveSection(intersectingEntry.target.id);
-        }
-        // Optional: If no entry is intersecting, you might want to clear
-        // the active section or keep the last active one, depending on desired UX.
-        // Example: else if (entries.some(entry => !entry.isIntersecting)) {
-        //   // Logic if elements are leaving viewport but none are entering
-        // }
-      },
-      {
-        // Keep the lower threshold
-        threshold: 0.1,
-        root: null,
-      }
-    );
-
-    // Observe all sections in both panels
-    const sections = document.querySelectorAll(`
-      [id^="about-"],
-      [id^="plant-"],
-      [id^="sound-"],
-      [id^="common-"],
-      [id^="effect-"],
-      [id^="case-"],
-      [id^="phytoremediation"],
-      [id^="phyto-"],
-      [id^="uses-"],
-      [id^="origin"],
-      [id^="references"]
-    `);
-
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
-
-    return () => observer.disconnect();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+  useEffect(() => {
+    const handlePointerUp = () => {
+      if (!isDragging) return;
+      setIsDragging(false);
+      const currentPosition = lastPositionRef.current;
 
+      const thresholdLow = 25;
+      const thresholdHigh = 75;
+      let snapTarget;
+      if (currentPosition <= thresholdLow) {
+        snapTarget = 0;
+      } else if (currentPosition > thresholdHigh) {
+        snapTarget = 100;
+      } else {
+        snapTarget = 50;
+      }
+      updateSliderPosition(snapTarget);
+    };
+
+    if (isDragging) {
+      window.addEventListener("mousemove", handlePointerMove);
+      window.addEventListener("mouseup", handlePointerUp);
+      window.addEventListener("touchmove", handlePointerMove, {
+        passive: false,
+      });
+      window.addEventListener("touchend", handlePointerUp);
+    }
+
+    return () => {
+      window.removeEventListener("mousemove", handlePointerMove);
+      window.removeEventListener("mouseup", handlePointerUp);
+      window.removeEventListener("touchmove", handlePointerMove);
+      window.removeEventListener("touchend", handlePointerUp);
+    };
+  }, [isDragging, isMobileView]);
+  const handleStartDrag = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+    lastPositionRef.current = sliderPosition;
+  };
   // Replace the current phyto section scroll effect with this updated code for instant transition
   useEffect(() => {
     if (activeSection === "phytoremediation") {
@@ -1073,7 +1183,7 @@ console.log("currentPosition",currentPosition,"thresholdLeft",thresholdLeft,curr
   }, []);
 
   const handleNavClick = (sectionId) => {
-    console.log("DDSADSDADS",sectionId);
+    console.log("DDSADSDADS", sectionId);
     const section = document.getElementById(sectionId);
     if (!section) return;
     setState(false);
@@ -1271,8 +1381,6 @@ console.log("currentPosition",currentPosition,"thresholdLeft",thresholdLeft,curr
     };
   }, [isMobile]);
   const options = [
-
-    
     // { id: "about-pollutant", label: "{Split Page}" },
     { id: "about-pollutant", label: "Pollutant name" },
     { id: "sound-frequency", label: "Sound frequency" },
@@ -1303,9 +1411,8 @@ console.log("currentPosition",currentPosition,"thresholdLeft",thresholdLeft,curr
       id: "uses-of-plant",
       label: `Uses of ${rightpanelcontent[0].plantNameSplit}`,
     },
-
   ];
-console.log("sliderPosition",sliderPosition)
+console.log("isMobileView",isMobileView)
   return (
     <>
       <SoundToggle
@@ -1338,18 +1445,49 @@ console.log("sliderPosition",sliderPosition)
         <div
           ref={sliderBarRef}
           className="slider-bar"
-          style={
-            window.innerHeight>=739?
-            {
-                  left: `50%`, // Use state directly for slider position
-            top: `${sliderPosition == "0"?"-390px":'290px'}`,
-            minHeight: "100%",
+          style={{
+            ...(isMobileView
+              ? { top: `${sliderPosition}%`, transform: "translateY(-50%)",left:"50%" }
+              : { left: `${sliderPosition}%`, transform: "translateX(-50%)" }),
             position: "absolute",
-            }
-            
-            :
-            
-            {
+            transition: isDragging ? "none" : "all 0.3s ease-in-out",
+            height: isMobileView ? "32px" : containerHeight,
+            width: isMobileView ? "10%" : "62px",
+            zIndex: 10,
+            cursor: "grab",
+          }}
+          onMouseDown={handleStartDrag}
+          onTouchStart={handleStartDrag}
+          // ref={sliderBarRef}
+          // className="slider-bar"
+          // style={{
+          //   top: `${sliderPosition}%`,
+          //   height: containerHeight,
+          //   position: "absolute",
+          //   left: "50%",
+          //   right: 0,
+          //   transform: "translateY(-50%)",
+          //   transition: "top 0.3s ease-in-out",
+          //   cursor: "grab",
+          // }}
+          // onMouseDown={handleMouseDown}
+          // onTouchStart={(e) => {
+          //   e.preventDefault(); // prevent scroll
+          //   setIsDragging(true);
+          //   lastPositionRef.current = sliderPosition;
+          // }}
+        >
+          <div
+            className="slider-image-container"
+            style={{ position: "relative", top: "0px" }}
+          >
+            <img src="slider.png" alt="Slider" className="slider-image" />
+          </div>
+        </div>
+        {/* <div
+          ref={sliderBarRef}
+          className="slider-bar"
+          style={{
             left: `${sliderPosition}%`, // Use state directly for slider position
             height: containerHeight,
             minHeight: "100%",
@@ -1357,7 +1495,6 @@ console.log("sliderPosition",sliderPosition)
             // top: 0,
           }}
           onMouseDown={handleMouseDown}
-          onClick={handleMouseDown}
         >
           <div
             className="slider-image-container"
@@ -1365,7 +1502,7 @@ console.log("sliderPosition",sliderPosition)
           >
             <img src="slider.png" alt="Slider" className="slider-image" />
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="combined-section">
         <div className="nav-bar-container">
@@ -1383,11 +1520,14 @@ console.log("sliderPosition",sliderPosition)
                 isMobile && menuOpen ? "mobile-active" : ""
               }`}
             >
-              <div 
+              <div
                 className="text-wrapper-combined"
                 onClick={() => handleNavClick("overview")}
               >
-                <span>{leftpanelcontent[0].pollutantName} + {rightpanelcontent[0].plantNameSplit}</span>
+                <span>
+                  {leftpanelcontent[0].pollutantName} +{" "}
+                  {rightpanelcontent[0].plantNameSplit}
+                </span>
               </div>
               <div
                 className={`text-wrapper`}
@@ -1481,7 +1621,11 @@ console.log("sliderPosition",sliderPosition)
               </p>
             </div>
             <div className="overlap-group">
-            <div className={`ellipse-0 ${activeSection === "overview" ? "active" : ""}`} />
+              <div
+                className={`ellipse-0 ${
+                  activeSection === "overview" ? "active" : ""
+                }`}
+              />
               <div
                 className={`ellipse ${
                   activeSection === "about-pollutant" ? "active" : ""
@@ -1580,14 +1724,14 @@ console.log("sliderPosition",sliderPosition)
             <SoundFrequency sections={sinewavefreq} />
           </div>
           <div className="effect-on-health-section" id="effect-on-health">
-            <Box 
-              sections={effectonhealthcontent} 
+            <Box
+              sections={effectonhealthcontent}
               pollutantName={leftpanelcontent[0].pollutantName}
             />
           </div>
           <div className="bottom-section3" id="case-study">
-            <CaseStudies 
-              sections={casestudiescontent} 
+            <CaseStudies
+              sections={casestudiescontent}
               pollutantName={leftpanelcontent[0].pollutantName}
             />
           </div>
@@ -1670,7 +1814,8 @@ console.log("sliderPosition",sliderPosition)
                 gap: "20px",
                 paddingRight: "55px",
                 marginBottom: "20px",
-              }} onClick={()=>handleNavClick("slider-container")}
+              }}
+              onClick={() => handleNavClick("slider-container")}
             >
               <span className={`flex-1 `} style={{ fontSize: "14px" }}>
                 &#10100;Split Page&#125;
@@ -1740,7 +1885,8 @@ console.log("sliderPosition",sliderPosition)
                 gap: "20px",
                 marginBottom: "20px",
                 paddingRight: "55px",
-              }} onClick={()=>handleNavClick("phytoremediation")}
+              }}
+              onClick={() => handleNavClick("phytoremediation")}
             >
               <span className="ml-4">◯</span>
 
@@ -1759,7 +1905,12 @@ console.log("sliderPosition",sliderPosition)
         </div>
         <div className="timelinewhite-drawer">
           <div className="timeline-container">
-            <div onClick={()=>{setRightPanelLoaded(true);handleNavClick("slider-container");setLeftPanelLoaded(false)}}
+            <div
+              onClick={() => {
+                setRightPanelLoaded(true);
+                handleNavClick("slider-container");
+                setLeftPanelLoaded(false);
+              }}
               style={{
                 display: "flex",
                 flexDirection: "column",
@@ -1790,7 +1941,7 @@ console.log("sliderPosition",sliderPosition)
                 background: "#fff0",
                 color: "#fff",
                 zIndex: 9,
-                paddingBottom:"50px"
+                paddingBottom: "50px",
                 // opacity:0.7
                 // paddingRight: "85px",
                 // transform:"translateX(10)"
@@ -1835,7 +1986,8 @@ console.log("sliderPosition",sliderPosition)
                 );
               })}
             </ul>
-            <div onClick={()=>handleNavClick("uses-of-plant")}
+            <div
+              onClick={() => handleNavClick("uses-of-plant")}
               style={{
                 display: "flex",
                 flexDirection: "column",
