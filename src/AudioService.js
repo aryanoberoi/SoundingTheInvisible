@@ -280,13 +280,13 @@ class AudioService {
 
   // Preload common sounds for better performance
   preloadCommonSounds() {
-    // Preload first 10 pads (most common)
-    const commonPads = Array.from({ length: 10 }, (_, i) => String(i + 1));
+    // Preload all 36 pads
+    const allPads = Array.from({ length: 36 }, (_, i) => String(i + 1));
     
-    console.log("Preloading common sounds:", commonPads);
+    console.log("Preloading all sounds:", allPads);
     
     // Fetch URLs in background without awaiting
-    commonPads.forEach(padNumber => {
+    allPads.forEach(padNumber => {
       this.getAudioUrl(padNumber).catch(() => {
         // Silently fail preloading - will retry when actually needed
       });
