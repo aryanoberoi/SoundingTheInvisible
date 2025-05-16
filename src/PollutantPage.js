@@ -1342,7 +1342,7 @@ console.log("sliderPosition",sliderPosition)
             window.innerHeight>=739?
             {
                   left: `50%`, // Use state directly for slider position
-            top: `${sliderPosition == "0"?"-390px":'290px'}`,
+            top: `${sliderPosition == "0"?"-390px":'5px'}`,
             minHeight: "100%",
             position: "absolute",
             }
@@ -1361,7 +1361,7 @@ console.log("sliderPosition",sliderPosition)
         >
           <div
             className="slider-image-container"
-            style={{ position: "relative", left: "-4px" }}
+            style={{ position: "relative" }}
           >
             <img src="slider.png" alt="Slider" className="slider-image" />
           </div>
