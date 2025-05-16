@@ -839,8 +839,8 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
   top: -2px;
   left: 70px;
   font-size: 14px;
-  width: 200px;
-  text-align: right;
+  width: fit-content;
+  text-align: center;
   color: #ffffff; /* Default white text for black panel */
 }
 
