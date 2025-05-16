@@ -1227,6 +1227,11 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
   text-align: left; /* Changed from right to left for better alignment */
 }
 
+.nav-bar .text-wrapper-10 {
+  left: -20px !important;
+  text-align: right;
+}
+
 .nav-bar .ellipse,
 .nav-bar .ellipse-2,
 .nav-bar .ellipse-3,
