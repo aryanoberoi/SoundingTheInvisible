@@ -181,84 +181,98 @@ const PollutantPage = ({ categorizedData }) => {
   );
 
   // Create a single data context object instead of multiple separate arrays
+  // Helper function to return "Work in Progress" if value is empty, null, or undefined
+  const wip = (val, fallback = "Work in Progress") =>
+    val === undefined || val === null || (typeof val === "string" && val.trim() === "")
+      ? fallback
+      : val;
+
   const dataContext = {
     pollutant: {
-      name: matchedRow.Pollutantname_split,
-      image: matchedRow.image_split_pollutant,
-      description: matchedRow.pollutant_description_split,
-      wasteType: wasteTypeData.typeOfWaste,
-      atomImage: wasteTypeData.atomImage,
+      name: wip(matchedRow.Pollutantname_split),
+      image: wip(matchedRow.image_split_pollutant),
+      description: wip(matchedRow.pollutant_description_split),
+      wasteType: wip(wasteTypeData.typeOfWaste),
+      atomImage: wip(wasteTypeData.atomImage),
       effects: {
-        summary: matchedRow.effects_on_human_Health_description_split,
+        summary: wip(matchedRow.effects_on_human_Health_description_split),
         details: [
-          matchedRow.healtheffects_1,
-          matchedRow.healtheffects_2,
-          // Compact array generation for remaining health effects
+          wip(matchedRow.healtheffects_1),
+          wip(matchedRow.healtheffects_2),
           ...Array(9)
             .fill(0)
-            .map((_, i) => matchedRow[`healtheffects_${i + 3}`])
+            .map((_, i) => wip(matchedRow[`healtheffects_${i + 3}`]))
             .filter(Boolean),
-        ],
+        ].filter((t) => t && t !== "Work in Progress"),
       },
-      sources: matchedRow.sources_venice_Description_split,
+      sources: wip(matchedRow.sources_venice_Description_split),
       soundFrequency: {
-        enthalpy: matchedRow.Enthalpy_,
-        frequency: matchedRow.Sound_Frequency,
-        wave: matchedRow.SineWaveVisualizer_frequency_audiblefrequency,
+        enthalpy: wip(matchedRow.Enthalpy_),
+        frequency: wip(matchedRow.Sound_Frequency),
+        wave: wip(matchedRow.SineWaveVisualizer_frequency_audiblefrequency),
       },
       caseStudies: {
-        venice: matchedRow.CaseStudies_venice_lagoon,
-        area: matchedRow.CaseStudies_area,
+        venice: wip(matchedRow.CaseStudies_venice_lagoon),
+        area: wip(matchedRow.CaseStudies_area),
       },
       phytoSpecies: Array(6)
         .fill(0)
         .map((_, i) => ({
-          medium: matchedRow[`Phyto_Species${i + 1}_medium`],
-          timePeriod: matchedRow[`Phyto_Species${i + 1}_timePeriod`],
-          remediation: matchedRow[`Phyto_Species${i + 1}_remediation`],
+          medium: wip(matchedRow[`Phyto_Species${i + 1}_medium`]),
+          timePeriod: wip(matchedRow[`Phyto_Species${i + 1}_timePeriod`]),
+          remediation: wip(matchedRow[`Phyto_Species${i + 1}_remediation`]),
         }))
-        .filter((item) => item.medium || item.timePeriod || item.remediation),
+        .filter(
+          (item) =>
+            (item.medium && item.medium !== "Work in Progress") ||
+            (item.timePeriod && item.timePeriod !== "Work in Progress") ||
+            (item.remediation && item.remediation !== "Work in Progress")
+        ),
       about: {
-        description: matchedRow.AboutPollutantSection_description,
-        image: matchedRow.AboutPollutantSection_image,
+        description: wip(matchedRow.AboutPollutantSection_description),
+        image: wip(matchedRow.AboutPollutantSection_image),
       },
     },
 
     plant: {
-      name: matchedRow.plantName_Split,
-      latinName: matchedRow.plant_name,
-      image: matchedRow.image_split_plant,
-      details: matchedRow.split_plant_details,
-      wetlandDescription: matchedRow.plantData_WetlandDescription_split,
-      phytoCapacity: matchedRow.phytoremediation_capacity_split,
+      name: wip(matchedRow.plantName_Split),
+      latinName: wip(matchedRow.plant_name),
+      image: wip(matchedRow.image_split_plant),
+      details: wip(matchedRow.split_plant_details),
+      wetlandDescription: wip(matchedRow.plantData_WetlandDescription_split),
+      phytoCapacity: wip(matchedRow.phytoremediation_capacity_split),
       habitat: {
-        temperature: matchedRow.PlantHabitat_temperature,
-        humidity: matchedRow.PlantHabitat_humidity_moisture,
-        soil: matchedRow.PlantHabitat_soil,
-        ph: matchedRow.PlantHabitat_pH,
+        temperature: wip(matchedRow.PlantHabitat_temperature),
+        humidity: wip(matchedRow.PlantHabitat_humidity_moisture),
+        soil: wip(matchedRow.PlantHabitat_soil),
+        ph: wip(matchedRow.PlantHabitat_pH),
         details: Array(5)
           .fill(0)
           .map((_, i) => ({
-            title: matchedRow[`PlantHabitat_title${i + 1}`],
-            content: matchedRow[`PlantHabitat_content${i + 1}`],
+            title: wip(matchedRow[`PlantHabitat_title${i + 1}`]),
+            content: wip(matchedRow[`PlantHabitat_content${i + 1}`]),
           }))
-          .filter((item) => item.title || item.content),
+          .filter(
+            (item) =>
+              (item.title && item.title !== "Work in Progress") ||
+              (item.content && item.content !== "Work in Progress")
+          ),
       },
       about: {
-        description: matchedRow.AboutPlant_description,
-        status: matchedRow.AboutPlant_WetlandStatus,
+        description: wip(matchedRow.AboutPlant_description),
+        status: wip(matchedRow.AboutPlant_WetlandStatus),
       },
       commonNames: Array(19)
         .fill(0)
-        .map((_, i) => matchedRow[`CommonNames_content${i}`])
-        .filter(Boolean),
-      geographicalDistribution: matchedRow.Geographicaldistribution_text,
+        .map((_, i) => wip(matchedRow[`CommonNames_content${i}`]))
+        .filter((val) => val && val !== "Work in Progress"),
+      geographicalDistribution: wip(matchedRow.Geographicaldistribution_text),
       phytoCapacityDetails: {
-        description: matchedRow.PhytoCapacity_description,
+        description: wip(matchedRow.PhytoCapacity_description),
         paragraphs: Array(11)
           .fill(0)
-          .map((_, i) => matchedRow[`PhytoCapacity_contentPara${i + 1}`])
-          .filter(Boolean),
+          .map((_, i) => wip(matchedRow[`PhytoCapacity_contentPara${i + 1}`]))
+          .filter((val) => val && val !== "Work in Progress"),
       },
     },
   };
@@ -266,37 +280,38 @@ const PollutantPage = ({ categorizedData }) => {
   // Update the leftpanelcontent to use the new dataContext
   const leftpanelcontent = [
     {
-      pollutantNumber: matchedRow.Number,
-      // Use the non-empty name for display
+      pollutantNumber: wip(matchedRow.Number),
       pollutantName:
-        matchedRow.Pollutantname_split || matchedRow.id || "Unknown Pollutant",
-      typeOfWaste: wasteTypeData.typeOfWaste,
-      atomImage: wasteTypeData.atomImage,
-      pollutantDescription: matchedRow.pollutant_description_split,
-      effect: matchedRow.effects_on_human_Health_description_split,
-      sources: matchedRow.sources_venice_Description_split,
+        wip(matchedRow.Pollutantname_split) ||
+        wip(matchedRow.id) ||
+        "Work in Progress",
+      typeOfWaste: wip(wasteTypeData.typeOfWaste),
+      atomImage: wip(wasteTypeData.atomImage),
+      pollutantDescription: wip(matchedRow.pollutant_description_split),
+      effect: wip(matchedRow.effects_on_human_Health_description_split),
+      sources: wip(matchedRow.sources_venice_Description_split),
     },
   ];
 
   // Update the rightpanelcontent to use the new dataContext
   const rightpanelcontent = [
     {
-      plantNameSplit: dataContext.plant.name,
-      wetlandDescription: dataContext.plant.wetlandDescription,
-      phytoCapacity: dataContext.plant.phytoCapacity,
-      temperature: dataContext.plant.habitat.temperature,
-      humidity: dataContext.plant.habitat.humidity,
-      soil: dataContext.plant.habitat.soil,
-      ph: dataContext.plant.habitat.ph,
-      imgUrl: dataContext.plant.image,
-      plantName: dataContext.plant.latinName,
-      plantDetails: dataContext.plant.details,
+      plantNameSplit: wip(dataContext.plant.name),
+      wetlandDescription: wip(dataContext.plant.wetlandDescription),
+      phytoCapacity: wip(dataContext.plant.phytoCapacity),
+      temperature: wip(dataContext.plant.habitat.temperature),
+      humidity: wip(dataContext.plant.habitat.humidity),
+      soil: wip(dataContext.plant.habitat.soil),
+      ph: wip(dataContext.plant.habitat.ph),
+      imgUrl: wip(dataContext.plant.image),
+      plantName: wip(dataContext.plant.latinName),
+      plantDetails: wip(dataContext.plant.details),
     },
   ];
 
   // Check if we have an image from the database, otherwise try to determine one based on pollutant type
   const pollutantImage =
-    matchedRow.AboutPollutantSection_image ||
+    wip(matchedRow.AboutPollutantSection_image, null) ||
     (wasteTypeData.typeOfWaste === 2
       ? "heavy-metal-pollutant.jpg"
       : wasteTypeData.typeOfWaste === 3
@@ -309,8 +324,9 @@ const PollutantPage = ({ categorizedData }) => {
   const aboutpollutantcontent = [
     {
       text:
-        dataContext.pollutant.about.description || `About ${pollutantNameRaw}`,
-      image: dataContext.pollutant.about.image, // Use image directly from context
+        wip(dataContext.pollutant.about.description) ||
+        `About ${wip(pollutantNameRaw)}`,
+      image: wip(dataContext.pollutant.about.image),
     },
   ];
 
@@ -322,90 +338,101 @@ const PollutantPage = ({ categorizedData }) => {
   // Update sinewavefreq to use the new dataContext
   const sinewavefreq = [
     {
-      pollutantName: dataContext.pollutant.name,
-      enthalpy: dataContext.pollutant.soundFrequency.enthalpy,
-      soundfrequency: dataContext.pollutant.soundFrequency.wave,
-      wavefrequency: dataContext.pollutant.soundFrequency.frequency,
+      pollutantName: wip(dataContext.pollutant.name),
+      enthalpy: wip(dataContext.pollutant.soundFrequency.enthalpy),
+      soundfrequency: wip(dataContext.pollutant.soundFrequency.wave),
+      wavefrequency: wip(dataContext.pollutant.soundFrequency.frequency),
     },
   ];
 
   // Update effectonhealthcontent to use the new dataContext
-  const effectonhealthcontent = dataContext.pollutant.effects.details.map(
-    (text) => ({ text })
-  );
+  const effectonhealthcontent = dataContext.pollutant.effects.details.length
+    ? dataContext.pollutant.effects.details.map((text) => ({
+        text: wip(text),
+      }))
+    : [{ text: "Work in Progress" }];
 
   // Update casestudiescontent to use the new dataContext
   const casestudiescontent = [
-    { text: dataContext.pollutant.caseStudies.venice },
-    { text: dataContext.pollutant.caseStudies.area },
+    { text: wip(dataContext.pollutant.caseStudies.venice) },
+    { text: wip(dataContext.pollutant.caseStudies.area) },
   ];
 
   // Update phytocontent to use the new dataContext
-  const phytocontent = dataContext.pollutant.phytoSpecies;
+  const phytocontent =
+    dataContext.pollutant.phytoSpecies.length > 0
+      ? dataContext.pollutant.phytoSpecies
+      : [{ medium: "Work in Progress", timePeriod: "", remediation: "" }];
 
   // Update aboutplantcontent to use the new dataContext
   const aboutplantcontent = [
     {
-      plant_name: dataContext.plant.name,
-      description: dataContext.plant.about.description,
-      status: dataContext.plant.about.status,
+      plant_name: wip(dataContext.plant.name),
+      description: wip(dataContext.plant.about.description),
+      status: wip(dataContext.plant.about.status),
     },
   ];
 
   // Update commonname to use the new dataContext
   const commonname = [
-    { plantName: dataContext.plant.name },
-    ...dataContext.plant.commonNames.map((text) => ({ text })),
+    { plantName: wip(dataContext.plant.name) },
+    ...(dataContext.plant.commonNames.length
+      ? dataContext.plant.commonNames.map((text) => ({ text: wip(text) }))
+      : [{ text: "Work in Progress" }]),
   ];
 
   // Update habitat to use the new dataContext
   const habitat = [
-    { plantName: dataContext.plant.name },
-    ...dataContext.plant.habitat.details,
+    { plantName: wip(dataContext.plant.name) },
+    ...(dataContext.plant.habitat.details.length
+      ? dataContext.plant.habitat.details
+      : [{ title: "Work in Progress", content: "" }]),
   ];
 
   // Update geographicaldistribution to use the new dataContext
   const geographicaldistribution = [
-    { text: dataContext.plant.geographicalDistribution },
+    { text: wip(dataContext.plant.geographicalDistribution) },
   ];
 
   // Update sectionphyto to use the new dataContext
   const sectionphyto = [
-    { type: "intro", text: dataContext.plant.phytoCapacityDetails.description },
-    { plantName: dataContext.plant.name },
-    ...dataContext.plant.phytoCapacityDetails.paragraphs.map((text) => ({
-      text,
-    })),
+    { type: "intro", text: wip(dataContext.plant.phytoCapacityDetails.description) },
+    { plantName: wip(dataContext.plant.name) },
+    ...(dataContext.plant.phytoCapacityDetails.paragraphs.length
+      ? dataContext.plant.phytoCapacityDetails.paragraphs.map((text) => ({
+          text: wip(text),
+        }))
+      : [{ text: "Work in Progress" }]),
   ];
 
   // More efficient structure for plant uses
   const plantUses = {
-    plantName: dataContext.plant.name,
-    bibliography: matchedRow.Bibliography,
+    plantName: wip(dataContext.plant.name),
+    bibliography: wip(matchedRow.Bibliography),
     sections: [
       {
         id: "nutritional",
         title: "NUTRITIONAL",
-        flavourtext: matchedRow.Nutritional_flavourtext,
+        flavourtext: wip(matchedRow.Nutritional_flavourtext),
         items: Array(10)
           .fill(0)
           .map((_, i) => ({
-            header: matchedRow[`UsesOfPlant_nutritional_title${i + 1}`],
-            text: matchedRow[`UsesOfPlant_nutritional_description${i + 1}`],
+            header: wip(matchedRow[`UsesOfPlant_nutritional_title${i + 1}`]),
+            text: wip(matchedRow[`UsesOfPlant_nutritional_description${i + 1}`]),
           }))
-          .filter((item) => item.text),
+          .filter((item) => item.text && item.text !== "Work in Progress"),
       },
       {
         id: "medicine",
         title: "MEDICINE",
-        flavourtext: matchedRow.UsesOfPlant_medicinal_flavourtext,
+        flavourtext: wip(matchedRow.UsesOfPlant_medicinal_flavourtext),
         items: Array(10)
           .fill(0)
           .map((_, i) => ({
-            header: matchedRow[`UsesOfPlant_title${i + 1}`],
-            text: matchedRow[`UsesOfPlant_description${i + 1}`],
+            header: wip(matchedRow[`UsesOfPlant_title${i + 1}`]),
+            text: wip(matchedRow[`UsesOfPlant_description${i + 1}`]),
           }))
-          .filter((item) => item.text),
+          .filter((item) => item.text && item.text !== "Work in Progress"),
       },
       {
         id: "additional",
@@ -413,10 +440,10 @@ const PollutantPage = ({ categorizedData }) => {
         items: Array(11)
           .fill(0)
           .map((_, i) => ({
-            header: matchedRow[`Add_UsesOfPlant_title${i + 1}`],
-            text: matchedRow[`Add_UsesOfPlant_description${i + 1}`],
+            header: wip(matchedRow[`Add_UsesOfPlant_title${i + 1}`]),
+            text: wip(matchedRow[`Add_UsesOfPlant_description${i + 1}`]),
           }))
-          .filter((item) => item.text),
+          .filter((item) => item.text && item.text !== "Work in Progress"),
       },
     ],
   };
