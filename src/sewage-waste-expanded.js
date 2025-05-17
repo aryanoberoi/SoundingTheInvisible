@@ -53,12 +53,10 @@ const SVGComponent = (props) => (
       fill="white"
     />
     <a
-      href="/vallisneria"
+      href="/polyaromatichydrocarbon"
       style={{
         pointerEvents: "bounding-box",
       }}
-      target="_blank"
-      rel="noopener noreferrer"
       id="vallisneria"
       className="vallisneria-link"
     >
@@ -76,8 +74,6 @@ const SVGComponent = (props) => (
       style={{
         pointerEvents: "bounding-box",
       }}
-      target="_blank"
-      rel="noopener noreferrer"
       id="ammonium"
       className="ammonium-link"
     >
@@ -95,8 +91,6 @@ const SVGComponent = (props) => (
       style={{
         pointerEvents: "bounding-box",
       }}
-      target="_blank"
-      rel="noopener noreferrer"
       id="benzene"
       className="benzene-link"
     >
@@ -110,12 +104,10 @@ const SVGComponent = (props) => (
       </g>
     </a>
     <a
-      href="/crude"
+      href="/crudeoil"
       style={{
         pointerEvents: "bounding-box",
       }}
-      target="_blank"
-      rel="noopener noreferrer"
       id="crude"
       className="crude-link"
     >
@@ -133,8 +125,6 @@ const SVGComponent = (props) => (
       style={{
         pointerEvents: "bounding-box",
       }}
-      target="_blank"
-      rel="noopener noreferrer"
       id="petrol"
       className="petrol-link"
     >
@@ -152,8 +142,6 @@ const SVGComponent = (props) => (
       style={{
         pointerEvents: "bounding-box",
       }}
-      target="_blank"
-      rel="noopener noreferrer"
       id="sulphide"
       className="sulphide-link"
     >
@@ -171,8 +159,6 @@ const SVGComponent = (props) => (
       style={{
         pointerEvents: "bounding-box",
       }}
-      target="_blank"
-      rel="noopener noreferrer"
       id="diesel"
       className="diesel-link"
     >
@@ -190,8 +176,6 @@ const SVGComponent = (props) => (
       style={{
         pointerEvents: "bounding-box",
       }}
-      target="_blank"
-      rel="noopener noreferrer"
       id="phthalate"
       className="phthalate-link"
     >
@@ -209,8 +193,6 @@ const SVGComponent = (props) => (
       style={{
         pointerEvents: "bounding-box",
       }}
-      target="_blank"
-      rel="noopener noreferrer"
       id="phenol"
       className="phenol-link"
     >
@@ -224,12 +206,10 @@ const SVGComponent = (props) => (
       </g>
     </a>
     <a
-      href="/organic"
+      href="/organicmatter"
       style={{
         pointerEvents: "bounding-box",
       }}
-      target="_blank"
-      rel="noopener noreferrer"
       id="organic"
       className="organic-link"
     >
@@ -243,12 +223,10 @@ const SVGComponent = (props) => (
       </g>
     </a>
     <a
-      href="/estrogen"
+      href="/estradiol"
       style={{
         pointerEvents: "bounding-box",
       }}
-      target="_blank"
-      rel="noopener noreferrer"
       id="estrogen"
       className="estrogen-link"
     >
@@ -266,8 +244,6 @@ const SVGComponent = (props) => (
       style={{
         pointerEvents: "bounding-box",
       }}
-      target="_blank"
-      rel="noopener noreferrer"
       id="fragrance"
       className="fragrance-link"
     >
@@ -285,8 +261,6 @@ const SVGComponent = (props) => (
       style={{
         pointerEvents: "bounding-box",
       }}
-      target="_blank"
-      rel="noopener noreferrer"
       id="diclofenac"
       className="diclofenac-link"
     >
@@ -304,8 +278,6 @@ const SVGComponent = (props) => (
       style={{
         pointerEvents: "bounding-box",
       }}
-      target="_blank"
-      rel="noopener noreferrer"
       id="bht"
       className="bht-link"
     >

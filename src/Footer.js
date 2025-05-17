@@ -90,6 +90,7 @@ export const Footer = () => {
               gap: "255px"
             }}
           >
+            {/* // */}
             <div className={styles.subGroup}>
               <span className={styles.role}>Plant Illustrations:</span>
               <span className={styles.name}>Nandita Kumar</span>
