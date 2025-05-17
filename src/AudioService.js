@@ -86,9 +86,136 @@ class AudioService {
     ));
   }
 
+  setupAutoFadeAtEnd(padNumber, fadeOutDuration = 2500) {
+    console.log(`[AudioService] Setting up auto-fade at end for pad ${padNumber}`);
+    
+    if (!this.audioRefs[padNumber]) {
+      console.warn(`[AudioService] Cannot setup auto-fade: No audio playing for pad ${padNumber}`);
+      return;
+    }
+    
+    const audio = this.audioRefs[padNumber];
+    
+    // First, check if we already have an ended listener and remove it
+    if (audio._endedListener) {
+      audio.removeEventListener('ended', audio._endedListener);
+    }
+    
+    // Calculate time remaining before audio would naturally end
+    const timeRemaining = (audio.duration - audio.currentTime) * 1000; // in ms
+    
+    console.log(`[AudioService] Audio for pad ${padNumber}: ${timeRemaining.toFixed(0)}ms remaining`);
+    
+    // If the audio is near its end already, don't bother setting up the fade
+    if (timeRemaining <= fadeOutDuration) {
+      console.log(`[AudioService] Audio almost complete, letting it finish naturally`);
+      return;
+    }
+    
+    // Calculate when to start the fade-out (timeRemaining - fadeOutDuration)
+    const fadeStartDelay = Math.max(0, timeRemaining - fadeOutDuration);
+    
+    console.log(`[AudioService] Will start fade in ${fadeStartDelay.toFixed(0)}ms, fade duration: ${fadeOutDuration}ms`);
+    
+    // Set a timeout to fade out the audio before it ends
+    if (audio._fadeTimeout) {
+      clearTimeout(audio._fadeTimeout);
+    }
+    
+    audio._fadeTimeout = setTimeout(() => {
+      console.log(`[AudioService] Starting auto-fade for pad ${padNumber}`);
+      this.fadeOutAudio(audio, fadeOutDuration).then(() => {
+        console.log(`[AudioService] Auto-fade complete for pad ${padNumber}`);
+      });
+    }, fadeStartDelay);
+    
+    // Also set up a safety cleanup in case the ended event fires
+    audio._endedListener = () => {
+      console.log(`[AudioService] Audio ended naturally for pad ${padNumber}`);
+      if (audio._fadeTimeout) {
+        clearTimeout(audio._fadeTimeout);
+        audio._fadeTimeout = null;
+      }
+    };
+    
+    audio.addEventListener('ended', audio._endedListener);
+    
+    return {
+      cancel: () => {
+        console.log(`[AudioService] Cancelling auto-fade for pad ${padNumber}`);
+        if (audio._fadeTimeout) {
+          clearTimeout(audio._fadeTimeout);
+          audio._fadeTimeout = null;
+        }
+        if (audio._endedListener) {
+          audio.removeEventListener('ended', audio._endedListener);
+          audio._endedListener = null;
+        }
+      }
+    };
+  }
+
+  fadeInAudio(audio, targetVolume = 1.0, duration = 1000) {
+    return new Promise(resolve => {
+      if (!audio || audio.ended || targetVolume === 0) {
+        resolve();
+        return;
+      }
+      
+      // Start with volume at 0
+      audio.volume = 0;
+      
+      // Play the audio
+      const playPromise = audio.play();
+      
+      // Handle play promise (required for modern browsers)
+      playPromise.then(() => {
+        const fadeSteps = 60;
+        const intervalTime = duration / fadeSteps;
+        const startTime = Date.now();
+        
+        const fadeInterval = setInterval(() => {
+          // Calculate fade progress with exponential curve for natural sound
+          const elapsedTime = Date.now() - startTime;
+          const fadeProgress = Math.min(elapsedTime / duration, 1);
+          
+          // Use quadratic curve for natural fade-in
+          audio.volume = targetVolume * Math.pow(fadeProgress, 2);
+          
+          if (fadeProgress >= 1 || audio.volume >= targetVolume - 0.01) {
+            audio.volume = targetVolume;
+            clearInterval(fadeInterval);
+            resolve();
+          }
+        }, intervalTime);
+      }).catch(err => {
+        console.error("Error starting audio playback:", err);
+        resolve();
+      });
+    });
+  }
+
   // Play sound by element ID (for SVG hover)
   playElementSound(elementId, options = {}) {
-    if (!elementId) return;
+    console.log(`[AudioService] playElementSound called for: ${elementId} with options:`, options);
+    
+    if (!elementId) {
+      console.warn("[AudioService] No elementId provided to playElementSound");
+      return;
+    }
+
+    // Default fade options
+    const defaultOptions = {
+      loop: false,
+      volume: 1.0,
+      stopOnMouseLeave: false,
+      fadeIn: true,
+      fadeInDuration: 1000,
+      fadeOutDuration: 2500  // Longer fade-out duration
+    };
+    
+    const settings = { ...defaultOptions, ...options };
+    console.log(`[AudioService] Final settings for ${elementId}:`, settings);
 
     // Known spelling variations map - adding here too for redundancy
     const spellingVariants = {
@@ -106,7 +233,7 @@ class AudioService {
     // Check if this is a known variant and replace with standard spelling
     if (spellingVariants[lookupId]) {
       const standardSpelling = spellingVariants[lookupId];
-      console.log(`Converting ${lookupId} to standard spelling: ${standardSpelling}`);
+      console.log(`[AudioService] Converting ${lookupId} to standard spelling: ${standardSpelling}`);
       lookupId = standardSpelling;
     }
 
@@ -127,7 +254,7 @@ class AudioService {
           Object.entries(spellingVariants).forEach(([variant, standard]) => {
             if (lookupId === variant && this.elementToPadMapping[standard]) {
               padNumber = this.elementToPadMapping[standard];
-              console.log(`Using standard spelling mapping: ${standard} (Pad ${padNumber})`);
+              console.log(`[AudioService] Using standard spelling mapping: ${standard} (Pad ${padNumber})`);
             }
           });
         }
@@ -135,77 +262,222 @@ class AudioService {
     }
 
     if (!padNumber) {
-      console.warn(`No pad mapping found for element: ${elementId}`);
-      console.log("Available elements:", Object.keys(this.elementToPadMapping).slice(0, 20));
+      console.warn(`[AudioService] No pad mapping found for element: ${elementId}`);
+      console.log("[AudioService] Available elements:", Object.keys(this.elementToPadMapping).slice(0, 20));
       return;
     }
 
-    console.log(`Playing sound for element: ${elementId} (Pad ${padNumber})`);
-    return this.playPadSound(padNumber, options);
+    console.log(`[AudioService] Playing sound for element: ${elementId} (Pad ${padNumber})`);
+    return this.playPadSound(padNumber, settings);
   }
 
   // Stop sound for specific element
-  stopElementSound(elementId) {
-    if (!elementId) return;
+  stopElementSound(elementId, fadeOutDuration = 2500) {
+    console.log(`[AudioService] stopElementSound called for: ${elementId} with fadeOutDuration: ${fadeOutDuration}ms`);
+    
+    if (!elementId) {
+      console.warn("[AudioService] No elementId provided to stopElementSound");
+      return;
+    }
     
     const lookupId = elementId.toLowerCase();
     const padNumber = this.elementToPadMapping[lookupId];
     
-    if (!padNumber) return;
+    if (!padNumber) {
+      console.warn(`[AudioService] No pad mapping found for element: ${elementId}`);
+      return;
+    }
     
-    this.stopPadSound(padNumber);
+    console.log(`[AudioService] Stopping sound for element: ${elementId} (Pad ${padNumber}) with fade: ${fadeOutDuration}ms`);
+    return this.stopPadSound(padNumber, fadeOutDuration);
+  }
+
+  // Add this debugging function to the AudioService class
+  async debugAudioFile(padNumber) {
+    try {
+      // Get the audio URL
+      const url = await this.getAudioUrl(padNumber);
+      
+      // Create a temporary audio element for analysis
+      const tempAudio = new Audio(url);
+      
+      // Wait for metadata to load
+      await new Promise(resolve => {
+        tempAudio.addEventListener('loadedmetadata', resolve);
+        tempAudio.addEventListener('error', (e) => {
+          console.error(`Error loading audio metadata: ${e}`);
+          resolve();
+        });
+        // Set a timeout in case metadata never loads
+        setTimeout(resolve, 3000);
+      });
+      
+      // Log audio details
+      console.log(`----- AUDIO DEBUG: Pad ${padNumber} -----`);
+      console.log(`Duration: ${tempAudio.duration} seconds`);
+      console.log(`Default playback rate: ${tempAudio.defaultPlaybackRate}`);
+      console.log(`Can play through: ${tempAudio.preload}`);
+      console.log(`Ready state: ${tempAudio.readyState}`);
+      
+      // Check if audio is too short for our fade duration
+      if (tempAudio.duration < 2.5) {
+        console.warn(`⚠️ ISSUE DETECTED: Audio for pad ${padNumber} is only ${tempAudio.duration.toFixed(2)} seconds long, which is shorter than our fade duration (2.5s)`);
+        return {
+          isTooShort: true,
+          duration: tempAudio.duration,
+          recommendation: "Adjust fade duration to be shorter than audio length"
+        };
+      }
+      
+      return {
+        duration: tempAudio.duration,
+        isTooShort: false
+      };
+    } catch (err) {
+      console.error(`Error debugging audio file for pad ${padNumber}:`, err);
+      return { error: err.message };
+    }
+  }
+
+  // Replace the existing fadeOutAudio function with this enhanced version
+  fadeOutAudio(audio, duration = 2000) {
+    return new Promise(resolve => {
+      if (!audio || audio.paused || audio.volume === 0) {
+        console.log("Fade skipped: Audio already stopped or volume at 0");
+        resolve();
+        return;
+      }
+      
+      // DEBUG: Log initial state
+      console.log(`Starting fade out - Duration: ${audio.duration}s, Current time: ${audio.currentTime.toFixed(2)}s, Remaining: ${(audio.duration - audio.currentTime).toFixed(2)}s`);
+      
+      // Check if audio will end before fade completes
+      const timeRemaining = audio.duration - audio.currentTime;
+      if (timeRemaining < duration/1000) {
+        console.warn(`⚠️ FADE ISSUE: Audio will end naturally in ${timeRemaining.toFixed(2)}s, before ${duration/1000}s fade completes!`);
+        
+        // Adjust fade duration to match remaining time
+        duration = timeRemaining * 1000 * 0.95; // 95% of remaining time
+        console.log(`Adjusted fade duration to ${duration.toFixed(0)}ms`);
+      }
+      
+      const originalVolume = audio.volume;
+      const fadeSteps = 60;
+      const intervalTime = duration / fadeSteps;
+      const startTime = Date.now();
+      let lastLogTime = 0;
+      
+      // Create an onended handler to catch if audio ends during fade
+      const handleEnded = () => {
+        console.log("Audio ended naturally during fade out");
+        clearInterval(fadeInterval);
+        audio.removeEventListener('ended', handleEnded);
+        audio.volume = originalVolume; // Reset volume for future plays
+        resolve();
+      };
+      
+      audio.addEventListener('ended', handleEnded);
+      
+      const fadeInterval = setInterval(() => {
+        const elapsedTime = Date.now() - startTime;
+        const fadeProgress = Math.min(elapsedTime / duration, 1);
+        
+        // Exponential curve for more natural audio fade
+        audio.volume = originalVolume * Math.pow(1 - fadeProgress, 2);
+        
+        // Log progress every 500ms to avoid console spam
+        if (Date.now() - lastLogTime > 500) {
+          console.log(`Fade progress: ${Math.round(fadeProgress * 100)}%, Volume: ${audio.volume.toFixed(2)}, Time: ${audio.currentTime.toFixed(2)}/${audio.duration.toFixed(2)}s`);
+          lastLogTime = Date.now();
+        }
+        
+        if (fadeProgress >= 1 || audio.volume < 0.01) {
+          audio.volume = 0;
+          audio.pause();
+          audio.currentTime = 0;
+          audio.volume = originalVolume;
+          audio.removeEventListener('ended', handleEnded);
+          clearInterval(fadeInterval);
+          console.log("Fade out complete");
+          resolve();
+        }
+      }, intervalTime);
+    });
   }
 
   // Core function to play a pad sound (used by both hover and SoundToggle)
-  async playPadSound(padNumber, options = {}) {
-    if (this.isMuted) return;
+  playPadSound(padNumber, options = {}) {
+    if (this.isMuted) return null;
     
     const defaultOptions = {
       loop: false,
       volume: 1.0,
-      stopOnMouseLeave: false
+      stopOnMouseLeave: false,
+      fadeIn: true,
+      fadeInDuration: 1000,
+      fadeOutDuration: 2500
     };
     
     const settings = { ...defaultOptions, ...options };
     
-    try {
-      // Stop current sound if it's the same pad being replayed
-      if (this.audioRefs[padNumber]) {
-        this.audioRefs[padNumber].pause();
-        this.audioRefs[padNumber].currentTime = 0;
+    // Create a control object immediately that will handle the async operations internally
+    const control = {
+      padNumber,
+      isReady: false,
+      audio: null,
+      stop: (fadeOutDuration = 2500) => {
+        if (this.audioRefs[padNumber]) {
+          return this.stopPadSound(padNumber, fadeOutDuration);
+        }
+        return Promise.resolve();
       }
-      
-      // Get audio URL (cached or fresh)
-      const url = await this.getAudioUrl(padNumber);
-      
-      // Create or update Audio object
-      if (!this.audioRefs[padNumber]) {
-        this.audioRefs[padNumber] = new Audio(url);
-      } else {
-        this.audioRefs[padNumber].src = url;
+    };
+    
+    // Start the async process
+    (async () => {
+      try {
+        // Stop current sound if it's the same pad being replayed
+        if (this.audioRefs[padNumber]) {
+          await this.stopPadSound(padNumber);
+        }
+        
+        // Get audio URL (cached or fresh)
+        const url = await this.getAudioUrl(padNumber);
+        
+        // Create or update Audio object
+        if (!this.audioRefs[padNumber]) {
+          this.audioRefs[padNumber] = new Audio(url);
+        } else {
+          this.audioRefs[padNumber].src = url;
+        }
+        
+        // Configure audio properties
+        this.audioRefs[padNumber].loop = settings.loop;
+        
+        // Play with or without fade
+        if (settings.fadeIn) {
+          await this.fadeInAudio(this.audioRefs[padNumber], settings.volume, settings.fadeInDuration);
+        } else {
+          this.audioRefs[padNumber].volume = settings.volume;
+          await this.audioRefs[padNumber].play();
+        }
+        
+        // Track currently playing looping sound for global control
+        if (settings.loop) {
+          this.currentlyPlaying = padNumber;
+        }
+        
+        // Update the control object with the audio reference
+        control.audio = this.audioRefs[padNumber];
+        control.isReady = true;
+        
+        console.log(`[AudioService] Audio control for pad ${padNumber} is now ready`);
+      } catch (err) {
+        console.error(`Error playing pad ${padNumber}:`, err);
       }
-      
-      // Configure audio properties
-      this.audioRefs[padNumber].loop = settings.loop;
-      this.audioRefs[padNumber].volume = settings.volume;
-      
-      // Play the sound
-      await this.audioRefs[padNumber].play();
-      
-      // Track currently playing looping sound for global control
-      if (settings.loop) {
-        this.currentlyPlaying = padNumber;
-      }
-      
-      // Return control object for external management
-      return {
-        padNumber,
-        stop: () => this.stopPadSound(padNumber),
-        audio: this.audioRefs[padNumber]
-      };
-    } catch (err) {
-      console.error(`Error playing pad ${padNumber}:`, err);
-    }
+    })();
+    
+    return control;
   }
 
   // Get audio URL with caching
@@ -237,12 +509,11 @@ class AudioService {
   }
 
   // Stop a specific pad sound
-  stopPadSound(padNumber) {
+  async stopPadSound(padNumber, fadeOutDuration = 2000) {
     if (!this.audioRefs[padNumber]) return;
     
     try {
-      this.audioRefs[padNumber].pause();
-      this.audioRefs[padNumber].currentTime = 0;
+      await this.fadeOutAudio(this.audioRefs[padNumber], fadeOutDuration);
       
       // Clear currently playing reference if it's this pad
       if (this.currentlyPlaying === padNumber) {
@@ -254,24 +525,28 @@ class AudioService {
   }
 
   // Stop all sounds
-  stopAllSounds() {
-    Object.keys(this.audioRefs).forEach(padNumber => {
-      this.stopPadSound(padNumber);
-    });
+  async stopAllSounds(fadeOutDuration = 2000) {
+    const stopPromises = Object.keys(this.audioRefs).map(padNumber => 
+      this.stopPadSound(padNumber, fadeOutDuration)
+    );
+    
+    await Promise.all(stopPromises);
     this.currentlyPlaying = null;
   }
 
   // Toggle global mute state
-  toggleMute(muted) {
+  async toggleMute(muted, fadeOutDuration = 1500) {
     this.isMuted = muted;
     
     if (muted) {
-      // Pause all currently playing sounds
-      Object.values(this.audioRefs).forEach(audio => {
+      // Fade out all currently playing sounds
+      const fadePromises = Object.values(this.audioRefs).map(audio => {
         if (!audio.paused) {
-          audio.pause();
+          return this.fadeOutAudio(audio, fadeOutDuration);
         }
+        return Promise.resolve();
       });
+      await Promise.all(fadePromises);
     } else if (this.currentlyPlaying) {
       // Resume current looping sound if there is one
       this.playPadSound(this.currentlyPlaying, { loop: true });
