@@ -281,7 +281,7 @@ class AudioService {
   // Preload common sounds for better performance
   preloadCommonSounds() {
     // Preload first 10 pads (most common)
-    const commonPads = Array.from({ length: 10 }, (_, i) => String(i + 1));
+    const commonPads = Array.from({ length: 30 }, (_, i) => String(i + 1));
     
     console.log("Preloading common sounds:", commonPads);
     
