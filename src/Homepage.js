@@ -234,70 +234,93 @@ export default function Homepage({ audioControls }) {
 
         {/* 🔸 Concept Section */}
         <section className="concept-section">
-        <Cloud top={80} left={45} distance="short" direction="left" variant={1} />
-        <Cloud top={180} left={60} distance="medium" direction="left" variant={2} />
-        <Cloud top={0} left={72} distance="long" direction="left" variant={3} />
+      <Cloud top={80} left={45} distance="short" direction="left" variant={1} />
+      <Cloud top={180} left={60} distance="medium" direction="left" variant={2} />
+      <Cloud top={0} left={72} distance="long" direction="left" variant={3} />
 
-          <div className="concept-text">
-            <h2>Sound Concept</h2>
+        <div className="concept-text">
+          <h2>Sound Concept</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus.
+          </p>
+          {showSoundText && (
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus.
+              Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
             </p>
+          )}
+          <div className="read-more-box" onClick={() => setShowSoundText(!showSoundText)}>
+            {showSoundText ? "READ LESS" : "READ MORE"}
+          </div>
+        </div>
+        <div className="svg-container-concept">
+          <ConceptFrame
+            className="interactive-svg-concept"
+            preserveAspectRatio="xMidYMid meet"
+            audioRef={audioRef}
+            handleAudio={handleAudio}
+            onHover={handleFrameHover}
+            audioControls={audioControls} 
+          />
+        </div>
+
+        <div className="arrow-box">
+            <img className="group" alt="Group" src={group283} />
+          </div>
+      </section>
+
+      {/* 🔸 Black Trapezium with Frame 3 and Text */}
+      <section className="trapezium-section">
+        <div className="svg-container-trapezium">
+          <MiddleFrame 
+            className="middle-svg-concept"
+            preserveAspectRatio="xMidYMid meet"
+            audioRef={audioRef}
+            handleAudio={handleAudio}
+            audioControls={audioControls} 
+          />
+        </div>
+        <div className="trapezium-text">
+          <h2>Concept</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus.
+          </p>
+          {showSoundText && (
+            <p>
+              Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
+            </p>
+          )}
+          <div className="read-more-box" onClick={() => setShowSoundText(!showSoundText)}>
+            {showSoundText ? "READ LESS" : "READ MORE"}
+          </div>
+        </div>
+      </section>
+
+      {/* 🔸 Sound Concept Section */}
+      <section className="sound-concept-section">
+        <div className="sound-text">
+          <h2>Sound Concept</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus.
+          </p>
             {showSoundText && (
               <p>
                 Donec fermentum nibh ut gravida imperdiet. Donec diam velit, bibendum in volutpat quis, ullamcorper eu neque. Etiam rhoncus erat non quam vehicula.
               </p>
             )}
-            <div className="read-more-box" onClick={() => setShowSoundText(!showSoundText)}>
-              {showSoundText ? "READ LESS" : "READ MORE"}
-            </div>
+          <div className="read-more-box" onClick={() => setShowSoundText(!showSoundText)}>
+            {showSoundText ? "READ LESS" : "READ MORE"}
           </div>
-          <div className="svg-container-concept">
-            <ConceptFrame
-              className="interactive-svg-concept"
-              preserveAspectRatio="xMidYMid meet"
-              audioRef={audioRef}
-              handleAudio={handleAudio}
-              onHover={handleFrameHover}
-              audioControls={audioEnabled ? audioControls : null} // Only pass controls if enabled
-            />
-          </div>
-
-          <div className="arrow-box">
-            <img className="group" alt="Group" src={group283} />
-          </div>
-        </section>
-
-        {/* Rest of the components remain the same, but update the audioControls prop */}
-        <section className="trapezium-section">
-          <div className="svg-container-trapezium">
-            <MiddleFrame 
-              className="middle-svg-concept"
-              preserveAspectRatio="xMidYMid meet"
-              audioRef={audioRef}
-              handleAudio={handleAudio}
-              audioControls={audioEnabled ? audioControls : null} // Only pass controls if enabled
-            />
-          </div>
-          <div className="trapezium-text">
-            {/* Text content remains the same */}
-          </div>
-        </section>
-
-        <section className="sound-concept-section">
-          <div className="sound-text">
-            {/* Text content remains the same */}
-          </div>
-          <div className="svg-container-scs">
-            <SoundConceptFrame 
-              className="strategy-image interactive-svg"
-              preserveAspectRatio="xMidYMid meet"
-              audioRef={audioRef}
-              handleAudio={handleAudio}
-              audioControls={audioEnabled ? audioControls : null} // Only pass controls if enabled 
-            />
-          </div>
-        </section>
+        </div>
+        <div className="svg-container-scs">
+          <SoundConceptFrame 
+            className="strategy-image interactive-svg"
+            preserveAspectRatio="xMidYMid meet"
+            audioRef={audioRef}
+            handleAudio={handleAudio}
+            audioControls={audioControls} 
+          />
+        </div>
+      </section>
         
         <footer className="footer-section mt-5">
           <div className="box">
