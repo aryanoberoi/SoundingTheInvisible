@@ -10,8 +10,7 @@
   align-items: flex-end;
   z-index: 100001; /* Higher than sound button */
   padding-bottom: 15%; /* Position in bottom third */
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
+  background-color: transparent; /* No background color */
 }
 
 .audio-enable-content {
@@ -67,11 +66,4 @@
 .enable-sound-button:hover {
   background-color: #000000;
   color: #FFFFFF;
-}
-
-/* Add blur to main content when popup is active */
-.homepage-blurred {
-  filter: blur(1px);
-  transition: filter 0.3s ease;
-  pointer-events: none; /* Disable interactions while blurred */
 }

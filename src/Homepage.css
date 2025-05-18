@@ -825,11 +825,11 @@
 
 /* Homepage content wrapper */
 .homepage-content {
-  transition: filter 0.5s ease;
+  transition: opacity 0.5s ease;
 }
 
 /* Style for when popup is active - content blurred and non-interactive */
 .homepage-blurred {
-  filter: blur(1px);
+  opacity: 0.3;
   pointer-events: none;
 }
