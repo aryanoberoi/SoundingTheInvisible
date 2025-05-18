@@ -157,7 +157,7 @@ export default function Homepage({ audioControls }) {
   }, []);
   
   // Default pad number for the homepage
-  const DEFAULT_PAD_NUMBER = "1"; // Choose an appropriate default pad number
+  const DEFAULT_PAD_NUMBER = "999"; // Choose an appropriate default pad number
   
   // Detect if we're in the trapezium section
   useEffect(() => {
@@ -218,12 +218,11 @@ export default function Homepage({ audioControls }) {
           padNumber={DEFAULT_PAD_NUMBER}
           isInTrapezium={isInTrapezium}
           panelMode={isInTrapezium ? "black" : "white"}
-          defaultActive={audioEnabled} // Only activate if enabled
+          defaultActive={audioEnabled}
         />
-        {/* Add the actual audio element */}
         <audio 
           ref={audioRef} 
-          src="/path/to/your/audio-file.mp3" // Make sure to add the correct path
+          src="/path/to/your/audio-file.mp3"
           preload="auto"
         />
 

@@ -8,11 +8,12 @@ export const AudioEnablePopup = ({ visible, onClick }) => {
   return (
     <div className="audio-enable-popup">
       <div className="audio-enable-content">
-        <div className="popup-text-container">
-          <h3>Enable Interactive Sound</h3>
-          <p>Click anywhere to enable sound interaction. After clicking, you can hover over elements to hear their unique sounds.</p>
-          <button onClick={onClick}>Enable Sound</button>
+        <div className="audio-popup-text">
+          This website uses audio for <span className="bold">a better experience</span>
         </div>
+        <button className="enable-sound-button" onClick={onClick}>
+          ENABLE SOUND
+        </button>
       </div>
     </div>
   );

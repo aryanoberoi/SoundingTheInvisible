@@ -823,7 +823,6 @@
   z-index: 100;
 }
 
-
 /* Homepage content wrapper */
 .homepage-content {
   transition: filter 0.5s ease;
@@ -831,6 +830,6 @@
 
 /* Style for when popup is active - content blurred and non-interactive */
 .homepage-blurred {
-  filter: blur(8px);
+  filter: blur(1px);
   pointer-events: none;
 }
