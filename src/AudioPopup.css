@@ -1,0 +1,72 @@
+/* Audio Enable Popup Styles */
+.audio-enable-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100001; /* Higher than sound button */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+  
+  .audio-enable-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 450px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  .popup-text-container {
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .audio-enable-content h3 {
+    font-family: 'Nippo-Light', sans-serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+  
+  .audio-enable-content p {
+    font-family: "ClashGrotesk-Regular", sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 380px;
+  }
+  
+  .audio-enable-content button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-family: "ClashGrotesk-Regular", sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 0;
+    letter-spacing: 0.03em;
+  }
+  
+  .audio-enable-content button:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+  }
+  
+  /* Add blur to main content when popup is active */
+  .homepage-blurred {
+    filter: blur(8px);
+    transition: filter 0.3s ease;
+    pointer-events: none; /* Disable interactions while blurred */
+  }
