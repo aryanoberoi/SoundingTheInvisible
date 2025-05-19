@@ -61,7 +61,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Simazine  | Pontederia cordata */}
     <a
-      href="/pollutants"
+     href="/simazine"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -84,7 +84,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Imidacloprid (Insecicide) | Plantago major */}
     <a
-      href="/pollutants"
+       href="/imidacloprid"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -107,7 +107,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Atrazine (Pesticide) | Iris pseudacorus */}
     <a
-      href="/pollutants"
+      href="/atrazine"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -130,7 +130,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Glyphosate (herbicide) | Vulpia myuros */}
     <a
-      href="/pollutants"
+     href="/glyphosate"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -153,7 +153,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Phosphorus | Lythrum salicaria */}
     <a
-      href="/"
+     href="/phosphorus"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -176,7 +176,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Nitrates | Cyperus rotundus */}
     <a
-      href="/"
+      href="/nitrates"
       style={{
         pointerEvents: "bounding-box",
       }}

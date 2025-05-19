@@ -8,7 +8,7 @@ const SVGComponent = (props) => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <a
-      href="/pollutants"
+      href="/thorium"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -30,7 +30,7 @@ const SVGComponent = (props) => (
       </g>
     </a>
     <a
-      href="/pollutants"
+      href="/strontium"
       style={{
         pointerEvents: "bounding-box",
       }}

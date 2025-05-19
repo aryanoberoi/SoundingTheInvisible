@@ -9,7 +9,7 @@ const SVGComponent = (props) => (
   >
     {/* Mercury | Oxalis corniculata */}
     <a
-      href="/pollutants"
+ href="/mercury"      // href="/pollutants"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -37,8 +37,8 @@ const SVGComponent = (props) => (
       </g>
     </a>
     {/* Cadmium | Alternanthera philoxeroides */}
-    <a
-      href="/pollutants"
+    <a  href="/cadmium"
+      // href="/pollutants"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -66,8 +66,8 @@ const SVGComponent = (props) => (
       </g>
     </a>
     {/* Lead | Pistia stratiotes */}
-    <a
-      href="/pollutants"
+    <a   href="/lead"
+      // href="/pollutants"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -95,8 +95,8 @@ const SVGComponent = (props) => (
       </g>
     </a>
     {/* Chromium | Borassus aethiopum */}
-    <a
-      href="/pollutants"
+    <a   href="/chromium"
+      // href="/pollutants"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -125,7 +125,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Copper | Centella asiatica */}
     <a
-      href="/pollutants"
+      href="/copper"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -154,7 +154,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Arsenic | Ludwigia octovalis */}
     <a
-      href="/pollutants"
+      href="/arsenic"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -183,7 +183,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Thallium | Lemna minor */}
     <a
-      href="/pollutants"
+      href="/thallium"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -212,7 +212,7 @@ const SVGComponent = (props) => (
     </a>
     {/*Selenium | Najas marina  */}
     <a
-      href="/pollutants"
+      href="/selenium"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -241,7 +241,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Nickel | Leersia hexandra */}
     <a
-      href="/pollutants"
+      href="/nickel"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -270,7 +270,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Zinc | Hydrilla vertricillata */}
     <a
-      href="/pollutants"
+      href="/zinc"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -297,8 +297,9 @@ const SVGComponent = (props) => (
         />
       </g>
     </a>
+    {/* IRON */}
     <a
-      href="/pollutants"
+      href="/iron"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -327,7 +328,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Aluminium | Ceratophyllum demersum */}
     <a
-      href="/pollutants"
+      href="/aluminium"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -354,9 +355,9 @@ const SVGComponent = (props) => (
         />
       </g>
     </a>
-    {/*  */}
+    {/* manganese */}
     <a
-      href="/pollutants"
+      href="/manganese"
       style={{
         pointerEvents: "bounding-box",
       }}

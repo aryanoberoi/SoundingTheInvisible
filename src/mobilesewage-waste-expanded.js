@@ -53,7 +53,7 @@ const SVGComponent = (props) => (
     />
     {/* Vallisneria spiralis | polyaromatic hydrocarbon */}
     <a
-      href="/pollutants"
+      href="/polyaromatichydrocarbon"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -82,7 +82,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Crude oil/Grease | Lemna paucicostata */}
     <a
-      href="/pollutants"
+      href="/crudeoil"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -111,7 +111,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Petrol/Grease | Festuca arundinacea */}
     <a
-      href="/pollutants"
+      href="/petrol"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -140,7 +140,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Sulphide | Arabidopsis thaliana */}
     <a
-      href="/pollutants"
+      href="/sulphide"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -169,7 +169,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Benzene | Epipremnum aureum */}
     <a
-      href="/pollutants"
+      href="/benzene"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -198,7 +198,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Diesel | Saggitaria trifolia */}
     <a
-      href="/pollutants"
+      href="/diesel"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -227,7 +227,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Ammonium | Nasturtium officinale */}
     <a
-      href="/pollutants"
+      href="/ammonium"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -256,7 +256,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Phenol | Lemna minuta */}
     <a
-      href="/pollutants"
+      href="/phenol"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -285,7 +285,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Organic matter | Nelumbo nucifera */}
     <a
-      href="/pollutants"
+      href="/organicmatter"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -314,7 +314,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Estrogen pills | Potamogen crispus */}
     <a
-      href="/pollutants"
+      href="/estradiol"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -343,7 +343,7 @@ const SVGComponent = (props) => (
     </a>
     {/*Phthalate | Ipomoea aquatica  */}
     <a
-      href="/pollutants"
+      href="/phthalate"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -372,7 +372,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Fragrance | Phragmites australis */}
     <a
-      href="/pollutants"
+      href="/fragrance"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -402,7 +402,7 @@ const SVGComponent = (props) => (
     {/* Diclofenac (antiinflammatory drug | Cyperus alternifolius */}
 
     <a
-      href="/pollutants"
+      href="/diclofenac"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -431,7 +431,7 @@ const SVGComponent = (props) => (
     </a>
     {/* Butylated Hydroxytoluene (BHT) | Mesembryanthemum crystallinum */}
     <a
-      href="/pollutants"
+      href="/bht"
       style={{
         pointerEvents: "bounding-box",
       }}
