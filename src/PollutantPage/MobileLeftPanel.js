@@ -95,7 +95,7 @@ const MobileLeftPanel = ({ sections = [], onLoad, onNavigate }) => {
           </div>
         </div>
       </div> */}
-      <div className="plantContainerleft" style={{ width: "100%" }}>
+      <div className="plantContainerleft" >
         <div>
           <h2
             style={{
@@ -112,7 +112,7 @@ const MobileLeftPanel = ({ sections = [], onLoad, onNavigate }) => {
             // src={pollutantname}
             src="https://res.cloudinary.com/dky8dsysk/image/upload/v1746707493/01_Potasium_dhitgx.png"
             alt="Pollutant visual"
-            style={{ transform: "translate(39px, 30px)" }}
+            style={{ transform: "translate(178px, 30px)" }}
             // className="pollutantVisualImage"
           />
         </div>
