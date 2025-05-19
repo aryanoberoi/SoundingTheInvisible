@@ -22,113 +22,6 @@ const MobileLeftPanel = ({ sections = [], onLoad, onNavigate }) => {
 
   return (
     <div className="left-panel">
-      {/* <div className="container">
-        <div className="contentWrapper">
-          <div className="mainContent">
-            <div className="pollutantInfo">
-            <div className="headerWrapper">
-              <img src={atomImage} alt={`${pollutantName} waste type icon (${typeOfWaste})`} className="circle" />
-              <div className="nameContainer">
-                <div className="pollutantLabel">Pollutant</div>
-                <div className="pollutantName">{pollutantName}</div>
-              </div>
-            </div>
-              <div className="description">
-                {pollutantDescription}
-              </div>
-              <div className='knowone'>
-                <KnowMoreButtonInverted className="knowMoreButtonInverted" onClick={() => onNavigate('about-pollutant')} />
-              </div>
-              <img
-                src="https://res.cloudinary.com/dj1km5iax/image/upload/v1745676198/xejwbtmg6pic01osjkdn.png"
-                alt="Pollutant visual"
-                className="pollutantVisualImage"
-              />
-            </div>
-          </div>
-          <div className="sideContent">
-            <div className="sideContentWrapper">
-              <div className="sectionTitleLeftPanel">Effects on human health:</div>
-              <div className="titleList">
-                {healthEffectsTitles.map((title, index) => (
-                  <div key={index} className="titleEntry">
-                    <span className="titleTextSC">{title}</span>
-                    <div className="bulletcircle"/>
-                  </div>
-                ))}
-              </div>
-              <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={() => onNavigate('effect-on-health')}/>
-              <div className="sectionTitleLeftPanel" style={{paddingBottom: '10px'}}>
-                Sound Frequency<br /> of {pollutantName}
-                <br />
-              </div>
-              <div style={{ border: '1px solid black', width: '260px', height: '50px', overflow: 'hidden' }}>
-                <SineWaveVisualizer />
-              </div>
-              <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={() => onNavigate('sound-frequency')} />
-            </div>
-            <div className="sourcesTitle">Sources In Venice Lagoon:</div>
-            <div className="sourcesDescription">
-              {sources}
-            </div>
-            <KnowMoreButtonInvertedRA className="knowMoreButtonInvertedRA" onClick={() => onNavigate('case-study')}/>
-          </div>
-        </div>
-      </div> */}
-
-      {/* Animated Down Arrow */}
-      {/* <div className="container">
-        <div className="mainContent">
-          <div className="pollutantInfo">
-            <div className="headerWrapper" style={{flexDirection:"column"}}>
-              <h2
-                style={{ fontSize: "38px", fontWeight: "400", margin: "0px" }}
-              >
-                Pollutant name
-              </h2>
-                 <img
-                src={pollutantname}
-                alt="Pollutant visual"
-                className="pollutantVisualImage --modelImgleft"
-              />
-            </div>
-          </div>
-        </div>
-      </div> */}
-      {/* <div className="plantContainerleft">
-        <h2
-          style={{
-            fontSize: "32px",
-            fontWeight: "400",
-            margin: "0px",
-            // textAlign: "center",
-            color: "#fff",
-            // zIndex:999
-          }}
-        >
-          Pollutant name
-        </h2>
-        hello
-        <div
-          style={{
-            transform: "scale(1.3)",
-            //
-          }}
-        >
-          <img
-            // src={pollutantname}
-            src="https://res.cloudinary.com/dky8dsysk/image/upload/v1746707493/01_Potasium_dhitgx.png"
-            alt="Pollutant visual"
-            style={{
-              transform: "translate(148px)",
-              //
-            }}
-            // className="pollutantVisualImage"
-          />
-        </div>
-      </div> */}
-
-      {/* <div className="container"> */}
       <div className="plantContainerleft">
         <div>
           <h2
@@ -138,24 +31,18 @@ const MobileLeftPanel = ({ sections = [], onLoad, onNavigate }) => {
               margin: "0px",
               // textAlign: "center",
               color: "#fff",
-              transform: "translate(27%, 60px)"
+              transform: "translate(15%, 60px)"
             }}
-          >
-            Plant name
+          >Pollutant Name
           </h2>
-          <div style={{ transform: "scale(1.5)" }}>
+          <div style={{ transform: "scale(1.4)" }}>
             <img
               src="https://res.cloudinary.com/dky8dsysk/image/upload/v1746707493/01_Potasium_dhitgx.png"
               alt="Pollutant visual"
-              style={{ transform: "translate(5%, calc(100% - 220px))" }}
-
-              // style={{ transform: "translateY(calc(100% - 190px))" }}
-              // style={{ width: "50%", height: "50%" }}
-              // className="pollutantVisualImage"
+              style={{ transform: "translate(0%, calc(100% - 220px))" }}
             />
           </div>
         </div>
-        {/* </div> */}
       </div>
 
       <div className="animated-down-arrow">
