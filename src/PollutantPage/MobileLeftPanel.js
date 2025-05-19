@@ -19,7 +19,7 @@ const MobileLeftPanel = ({ sections = [], onLoad, onNavigate }) => {
 
   // Process health effects into titles
   const healthEffectsTitles = effect.split("_");
-
+console.log("sections",sections)
   return (
     <div className="left-panel">
       <div className="plantContainerleft">
@@ -33,7 +33,7 @@ const MobileLeftPanel = ({ sections = [], onLoad, onNavigate }) => {
               color: "#fff",
               transform: "translate(15%, 60px)"
             }}
-          >Pollutant Name
+          >{pollutantName}
           </h2>
           <div style={{ transform: "scale(1.4)" }}>
             <img

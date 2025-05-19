@@ -24,7 +24,7 @@ const MobileRightPanel = ({
     plantName = "",
     plantDetails = "",
   } = sections[0] || {};
-
+console.log("KKKKKDs",sections?.plantName,pollutantName)
   const habitatIcons = [tempIcon, humidityIcon, soilIcon, areaIcon];
 
   const plantData = [
@@ -64,7 +64,7 @@ const MobileRightPanel = ({
               textAlign: "center",
             }}
           >
-            Plant name
+         {sections?.plantName}
           </h2>
         </div>
       </div>

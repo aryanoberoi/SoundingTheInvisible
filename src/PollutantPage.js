@@ -2213,6 +2213,7 @@ const PollutantPage = ({ categorizedData }) => {
             </div>
           </div>
         </div>
+        
 
         <div>
           {!state && (
