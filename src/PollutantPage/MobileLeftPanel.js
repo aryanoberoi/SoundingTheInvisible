@@ -95,28 +95,69 @@ const MobileLeftPanel = ({ sections = [], onLoad, onNavigate }) => {
           </div>
         </div>
       </div> */}
-      <div className="plantContainerleft" >
-        <div>
-          <h2
-            style={{
-              fontSize: "27px",
-              fontWeight: "400",
-              margin: "0px",
-              textAlign: "center",
-              color: "#fff",
-            }}
-          >
-            Pollutant name
-          </h2>
+      {/* <div className="plantContainerleft">
+        <h2
+          style={{
+            fontSize: "32px",
+            fontWeight: "400",
+            margin: "0px",
+            // textAlign: "center",
+            color: "#fff",
+            // zIndex:999
+          }}
+        >
+          Pollutant name
+        </h2>
+        hello
+        <div
+          style={{
+            transform: "scale(1.3)",
+            //
+          }}
+        >
           <img
             // src={pollutantname}
             src="https://res.cloudinary.com/dky8dsysk/image/upload/v1746707493/01_Potasium_dhitgx.png"
             alt="Pollutant visual"
-            style={{ transform: "translate(178px, 30px)" }}
+            style={{
+              transform: "translate(148px)",
+              //
+            }}
             // className="pollutantVisualImage"
           />
         </div>
+      </div> */}
+
+      {/* <div className="container"> */}
+      <div className="plantContainerleft">
+        <div>
+          <h2
+            style={{
+              fontSize: "38px",
+              fontWeight: "400",
+              margin: "0px",
+              // textAlign: "center",
+              color: "#fff",
+              transform: "translate(27%, 60px)"
+            }}
+          >
+            Plant name
+          </h2>
+          <div style={{ transform: "scale(1.5)" }}>
+            <img
+              src="https://res.cloudinary.com/dky8dsysk/image/upload/v1746707493/01_Potasium_dhitgx.png"
+              alt="Pollutant visual"
+              style={{ transform: "translate(5%, calc(100% - 220px))" }}
+
+              // style={{ transform: "translateY(calc(100% - 190px))" }}
+              // style={{ width: "50%", height: "50%" }}
+              // className="pollutantVisualImage"
+            />
+          </div>
+        </div>
+        {/* </div> */}
       </div>
+
       <div className="animated-down-arrow">
         <svg
           width="42"

@@ -63,8 +63,16 @@ body,
     transform: scale(1.13);
   }
   .plantContainerleft {
-    margin-top: calc(53% + -451px);
-    transform: scale(1.5);
+    display: flex;
+    flex-direction: column;
+    /* gap: 140px; */
+    margin-top: 5%;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    gap:90px;
+    /* transform: translateX(1px) */
+    /* transform: scale(1.5); */
   }
   .slider-container {
     min-height: 828px !important;

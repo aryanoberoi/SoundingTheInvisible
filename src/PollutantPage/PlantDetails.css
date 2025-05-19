@@ -6,7 +6,7 @@
 .plantContainerleft {
   /* background: #fff; */
   padding: 5%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .contentWrapper {
@@ -178,7 +178,7 @@
     padding: 0 20px;
   }
   .plantContainerleft {
-    padding: 0 20px;
+    padding: 0 0px;
   }
 
   .contentWrapper {
