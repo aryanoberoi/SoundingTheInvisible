@@ -864,11 +864,11 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
 /* Position the new text element */
 .nav-bar .text-wrapper-combined {
   position: absolute;
-  top: -5px;
+  top: -2px;
   left: 70px;
   font-size: 14px;
-  width: 200px;
-  text-align: right;
+  width: fit-content;
+  text-align: center;
   color: #ffffff; /* Default white text for black panel */
 }
 
@@ -1235,8 +1235,9 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
 }
 
 .nav-bar .div {
-  left: 95px !important;
-  width: 170px;
+  left: 175px !important;
+  width: 150px;
+  text-align: left;
 }
 
 /* Right-side elements */
@@ -1252,6 +1253,11 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
   left: 175px; /* Adjusted to align with circle positions */
   width: 150px;
   text-align: left; /* Changed from right to left for better alignment */
+}
+
+.nav-bar .text-wrapper-10 {
+  left: -20px !important;
+  text-align: right;
 }
 
 .nav-bar .ellipse,

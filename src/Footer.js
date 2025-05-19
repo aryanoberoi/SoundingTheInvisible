@@ -12,14 +12,32 @@ export const Footer = () => {
             <span className={styles.name}>Nandita Kumar</span>
           </div>
 
-          <div className={styles.subGroup}>
-            <span className={styles.role}>Sound Design:</span>
-            <a href="https://www.kariraeseekins.com/" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Kari Rae Seekins</a>
-          </div>
-
-          <div className={styles.subGroup}>
-            <span className={styles.role}>Creative Coder for Sound Engagement:</span>
-            <a href="https://www.linkedin.com/in/khoparzi/?originalSubdomain=in" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Abhinay Khoparzi</a>
+          <div
+            className={styles.subGroup}
+            style={{ display: "flex", flexDirection: "row", gap: "240px" }}
+          >
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <span className={styles.role}>Sound Design:</span>
+              <a
+                href="https://www.kariraeseekins.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.nameUnderline}
+              >
+                Kari Rae Seekins
+              </a>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <span className={styles.role}>Creative Coder for Sound Engagement:</span>
+              <a
+                href="https://www.linkedin.com/in/khoparzi/?originalSubdomain=in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.nameUnderline}
+              >
+                Abhinay Khoparzi
+              </a>
+            </div>
           </div>
 
           <div className={styles.subGroup}>
@@ -27,46 +45,79 @@ export const Footer = () => {
             <span className={styles.name}>Prateek Jha</span>
           </div>
 
-          <div className={styles.subGroup}>
-            <span className={styles.role}>UI/UX Design:</span>
-            <a href="https://readymag.website/u3450179796/sanjanakadamportfolio/" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Sanjana Kadam</a> | 
-            <a href="https://bento.me/jimmykano" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Karan Kanojia</a>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "250px"
+            }}
+          >
+            <div className={styles.subGroup}>
+              <span className={styles.role}>UI/UX Design:</span>
+              <a href="https://readymag.website/u3450179796/sanjanakadamportfolio/" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Sanjana Kadam</a> | 
+              <a href="https://bento.me/jimmykano" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Karan Kanojia</a>
+            </div>
+
+            <div className={styles.subGroup}>
+              <span className={styles.role}>Web Developer:</span>
+              <a href="https://www.linkedin.com/in/aryan-oberoi-1b4358195/" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Aryan Oberoi</a> | 
+              <a href="https://example.com/arham" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Arham</a>
+            </div>
           </div>
 
-          <div className={styles.subGroup}>
-            <span className={styles.role}>Web Developer:</span>
-            <a href="https://www.linkedin.com/in/aryan-oberoi-1b4358195/" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Aryan Oberoi</a> | 
-            <a href="https://example.com/arham" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Arham</a>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "180px"
+            }}
+          >
+            <div className={styles.subGroup}>
+              <span className={styles.role}>Book Design:</span>
+              <span className={styles.name}>Shikha Sinai Usgaonker</span>
+            </div>
+
+            <div className={styles.subGroup}>
+              <span className={styles.role}>Labels / Poster Design:</span>
+              <a href="https://www.kultureshop.in/collections/aviral-saxena" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Aviral Saxena</a>
+            </div>
           </div>
 
-          <div className={styles.subGroup}>
-            <span className={styles.role}>Book Design:</span>
-            <span className={styles.name}>Shikha Sinai Usgaonker</span>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "255px"
+            }}
+          >
+            {/* // */}
+            <div className={styles.subGroup}>
+              <span className={styles.role}>Plant Illustrations:</span>
+              <span className={styles.name}>Nandita Kumar</span>
+            </div>
+
+            <div className={styles.subGroup}>
+              <span className={styles.role}>Pollutant Illustrations:</span>
+              <a href="https://www.behance.net/priyankabagade" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Priyanka Bagade</a>
+            </div>
           </div>
 
-          <div className={styles.subGroup}>
-            <span className={styles.role}>Labels / Poster Design:</span>
-            <a href="https://www.kultureshop.in/collections/aviral-saxena" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Aviral Saxena</a>
-          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "145px"
+            }}
+          >
+            <div className={styles.subGroup}>
+              <span className={styles.role}>Editor:</span>
+              <span className={styles.name}>Anjali Singh Uttamchandani</span>
+            </div>
 
-          <div className={styles.subGroup}>
-            <span className={styles.role}>Plant Illustrations:</span>
-            <span className={styles.name}>Nandita Kumar</span>
-          </div>
-
-          <div className={styles.subGroup}>
-            <span className={styles.role}>Pollutant Illustrations:</span>
-            <a href="https://www.behance.net/priyankabagade" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Priyanka Bagade</a>
-          </div>
-
-          <div className={styles.subGroup}>
-            <span className={styles.role}>Editor:</span>
-            <span className={styles.name}>Anjali Singh Uttamchandani</span>
-          </div>
-
-          <div className={styles.subGroup}>
-            <span className={styles.role}>Introduction Text:</span>
-            <a href="https://www.adwaitsingh.com/" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Adwait Singh</a>
+            <div className={styles.subGroup}>
+              <span className={styles.role}>Introduction Text:</span>
+              <a href="https://www.adwaitsingh.com/" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Adwait Singh</a>
+            </div>
           </div>
 
           <div className={styles.subGroup}>
@@ -95,21 +146,46 @@ export const Footer = () => {
       <center>
       <div className={styles.section}>
         <div className={styles.imageContainer}>
-          <a href="facebook.png" target="_blank" rel="noopener noreferrer" style={{ marginRight: '10px' }}>
+          <a
+            href="facebook.png"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ marginRight: '10px', textDecoration: 'none' }}
+          >
             <img src="instagram.png" alt="Supporter 1" className={styles.supporterImage} />
           </a>
-          <a href="path/to/image2.png" target="_blank" rel="noopener noreferrer" style={{ marginRight: '10px' }}>
+          <a
+            href="path/to/image2.png"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ marginRight: '10px', textDecoration: 'none' }}
+          >
             <img src="facebook.png" alt="Supporter 2" className={styles.supporterImage} />
           </a>
-          <a href="path/to/image3.png" target="_blank" rel="noopener noreferrer" style={{ marginRight: '10px' }}>
+          <a
+            href="path/to/image3.png"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ marginRight: '10px', textDecoration: 'none' }}
+          >
             <img src="twitter.png" alt="Supporter 3" className={styles.supporterImage} />
           </a>
-          <a href="path/to/image3.png" target="_blank" rel="noopener noreferrer">
+          <a
+            href="path/to/image3.png"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: 'none' }}
+          >
             <img src="share.png" alt="Supporter 3" className={styles.supporterImage} />
           </a>
         </div>
         <p className={styles.description}>
-        <a href="path/to/image3.png" target="_blank" rel="noopener noreferrer" style={{ marginRight: '10px' }}>
+          <a
+            href="path/to/image3.png"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ marginRight: '10px', textDecoration: 'none' }}
+          >
             <img src="copyright.png" alt="Supporter 3" className={styles.supporterImage} />
           </a>
 NANDITA KUMAR 2025

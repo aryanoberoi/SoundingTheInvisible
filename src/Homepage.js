@@ -9,10 +9,13 @@ import Cloud from './Cloud';
 import Title from './title.js';
 import SoundToggle from "./SoundToggle";
 import { Footer } from "./Footer";
+import AudioEnablePopup from "./AudioPopup.js"; // Import the new component
+
 
 // In Homepage.js - Create data-driven audio manager
 const usePollutantAudio = () => {
   const [audioData, setAudioData] = useState({});
+  const [enabled, setEnabled] = useState(false); // Add enabled state
   const audioInstancesRef = useRef({});
   const audioContext = useRef(null);
   
@@ -40,7 +43,7 @@ const usePollutantAudio = () => {
   
   // Generate sound based on pollutant properties
   const playPollutantSound = (elementId) => {
-    if (!audioContext.current || !audioData[elementId]) return;
+    if (!audioContext.current || !audioData[elementId] || !enabled) return; // Check if enabled
     
     // Stop any currently playing element sound
     stopActiveSounds();
@@ -104,7 +107,13 @@ const usePollutantAudio = () => {
     Object.keys(audioInstancesRef.current).forEach(stopElementSound);
   };
   
-  return { playPollutantSound, stopElementSound, stopActiveSounds };
+  return { 
+    playPollutantSound, 
+    stopElementSound, 
+    stopActiveSounds,
+    enabled,
+    setEnabled // Export the setEnabled function
+  };
 };
 
 export default function Homepage({ audioControls }) {
@@ -113,6 +122,8 @@ export default function Homepage({ audioControls }) {
   const [showSoundText, setShowSoundText] = useState(false);
   const [isFrameHovered, setIsFrameHovered] = useState(false);
   const [isInTrapezium, setIsInTrapezium] = useState(false);
+  const [showAudioPopup, setShowAudioPopup] = useState(true); // Add state for popup visibility
+  const [audioEnabled, setAudioEnabled] = useState(false); // Add state for audio enabled
   const audioRef = useRef(null);
   const [cloudAnimationActive, setCloudAnimationActive] = useState(true);
   
@@ -146,7 +157,7 @@ export default function Homepage({ audioControls }) {
   }, []);
   
   // Default pad number for the homepage
-  const DEFAULT_PAD_NUMBER = "1"; // Choose an appropriate default pad number
+  const DEFAULT_PAD_NUMBER = "999"; // Choose an appropriate default pad number
   
   // Detect if we're in the trapezium section
   useEffect(() => {
@@ -187,32 +198,41 @@ export default function Homepage({ audioControls }) {
     setIsFrameHovered(hovering);
   };
 
+  // Add handler for enabling audio
+  const handleEnableAudio = () => {
+    setAudioEnabled(true);
+    setShowAudioPopup(false);
+  };
+
   return (
     <div className="homepage">
-            <SoundToggle
-        padNumber={DEFAULT_PAD_NUMBER}
-        isInTrapezium={isInTrapezium}
-        panelMode={isInTrapezium ? "black" : "white"}
-        defaultActive={true}
+      {/* Add the Audio Enable Popup */}
+      <AudioEnablePopup 
+        visible={showAudioPopup} 
+        onClick={handleEnableAudio} 
       />
-      {/* Add the actual audio element */}
-      <audio 
-        ref={audioRef} 
-        src="/path/to/your/audio-file.mp3" // Make sure to add the correct path
-        preload="auto"
-      />
+      
+      {/* Apply blurred class to main content when popup is shown */}
+      <div className={showAudioPopup ? "homepage-content homepage-blurred" : "homepage-content"}>
+        <SoundToggle
+          padNumber={DEFAULT_PAD_NUMBER}
+          isInTrapezium={isInTrapezium}
+          panelMode={isInTrapezium ? "black" : "white"}
+          defaultActive={audioEnabled}
+        />
+        <audio 
+          ref={audioRef} 
+          src="/path/to/your/audio-file.mp3"
+          preload="auto"
+        />
 
-      {/* 🔸 Header Section */}
-      {/* <section className="header-section">
-        <h1>Sounding The Invisible: An Elegant Symbiosis</h1>
-        <p>Phytoremediation plants from the tropic of the temperate</p>
-      </section> */}
-      <section className="header">
-        <Title/>
-      </section>
+        {/* 🔸 Header Section */}
+        <section className="header">
+          <Title/>
+        </section>
 
-      {/* 🔸 Concept Section */}
-      <section className="concept-section">
+        {/* 🔸 Concept Section */}
+        <section className="concept-section">
       <Cloud top={80} left={45} distance="short" direction="left" variant={1} />
       <Cloud top={180} left={60} distance="medium" direction="left" variant={2} />
       <Cloud top={0} left={72} distance="long" direction="left" variant={3} />
@@ -259,6 +279,7 @@ export default function Homepage({ audioControls }) {
           />
         </div>
         <div className="trapezium-text">
+          <h2>Concept</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse congue mollis mauris eget faucibus.
           </p>
@@ -299,14 +320,14 @@ export default function Homepage({ audioControls }) {
           />
         </div>
       </section>
-      
-      {/* 🔸 Footer Section */}
-      <footer className="footer-section mt-5">
-        <div className="box">
-          <img className="vector" alt="Vector" src={vector187} />
-        </div>
-        <Footer />
-      </footer>
+        
+        <footer className="footer-section mt-5">
+          <div className="box">
+            <img className="vector" alt="Vector" src={vector187} />
+          </div>
+          <Footer />
+        </footer>
+      </div>
     </div>
   );
 }
