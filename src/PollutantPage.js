@@ -293,7 +293,7 @@ const PollutantPage = ({ categorizedData }) => {
     },
   ];
 
-  // Update the rightpanelcontent to use the new dataContext
+  // Update the rightpanelcontent to use the new dataContext ok
   const rightpanelcontent = [
     {
       plantNameSplit: wip(dataContext.plant.name),
