@@ -10,6 +10,7 @@ import Title from './title.js';
 import SoundToggle from "./SoundToggle";
 import { Footer } from "./Footer";
 import AudioEnablePopup from "./AudioPopup.js"; // Import the new component
+import audioService from "./AudioService";
 
 
 // In Homepage.js - Create data-driven audio manager
@@ -126,7 +127,10 @@ export default function Homepage({ audioControls }) {
     // Get stored preference, default to true (show popup) if not found
     return localStorage.getItem('audioPopupSeen') !== 'true';
   });
-  const [audioEnabled, setAudioEnabled] = useState(false); // Add state for audio enabled
+  const [audioEnabled, setAudioEnabled] = useState(() => {
+    // Check for stored sound preference, default to TRUE if not found
+    return localStorage.getItem('audioEnabled') !== 'false';
+  });
   const audioRef = useRef(null);
   const [cloudAnimationActive, setCloudAnimationActive] = useState(true);
   
@@ -196,6 +200,19 @@ export default function Homepage({ audioControls }) {
     console.log("Audio ref initialized:", audioRef.current);
   }, []);
 
+  // Update the useEffect that handles audio state synchronization
+  useEffect(() => {
+    // First, directly update AudioService's mute state
+    console.log(`[Homepage] Setting global audio mute state: ${!audioEnabled}`);
+    audioService.isMuted = !audioEnabled;
+    audioService.toggleMute(!audioEnabled);
+    
+    // Then update usePollutantAudio if it exists
+    if (audioControls && typeof audioControls.setEnabled === 'function') {
+      audioControls.setEnabled(audioEnabled);
+    }
+  }, [audioEnabled, audioControls]);
+
   // Handler for ConceptFrame hover
   const handleFrameHover = (hovering) => {
     setIsFrameHovered(hovering);
@@ -205,8 +222,9 @@ export default function Homepage({ audioControls }) {
   const handleEnableAudio = () => {
     setAudioEnabled(true);
     setShowAudioPopup(false);
-    // Store that user has seen the popup
+    // Store both preferences
     localStorage.setItem('audioPopupSeen', 'true');
+    localStorage.setItem('audioEnabled', 'true');
   };
 
   return (
@@ -224,6 +242,14 @@ export default function Homepage({ audioControls }) {
           isInTrapezium={isInTrapezium}
           panelMode={isInTrapezium ? "black" : "white"}
           defaultActive={audioEnabled}
+          onToggle={(isActive) => {
+            // First update our state
+            setAudioEnabled(isActive);
+            // Then directly update AudioService for immediate effect
+            audioService.isMuted = !isActive;
+            // Store preference
+            localStorage.setItem('audioEnabled', isActive.toString());
+          }}
         />
         <audio 
           ref={audioRef} 
