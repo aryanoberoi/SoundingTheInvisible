@@ -122,7 +122,10 @@ export default function Homepage({ audioControls }) {
   const [showPartneringText, setShowPartneringText] = useState(false);
   const [isFrameHovered, setIsFrameHovered] = useState(false);
   const [isInTrapezium, setIsInTrapezium] = useState(false);
-  const [showAudioPopup, setShowAudioPopup] = useState(true); // Add state for popup visibility
+  const [showAudioPopup, setShowAudioPopup] = useState(() => {
+    // Get stored preference, default to true (show popup) if not found
+    return localStorage.getItem('audioPopupSeen') !== 'true';
+  });
   const [audioEnabled, setAudioEnabled] = useState(false); // Add state for audio enabled
   const audioRef = useRef(null);
   const [cloudAnimationActive, setCloudAnimationActive] = useState(true);
@@ -202,6 +205,8 @@ export default function Homepage({ audioControls }) {
   const handleEnableAudio = () => {
     setAudioEnabled(true);
     setShowAudioPopup(false);
+    // Store that user has seen the popup
+    localStorage.setItem('audioPopupSeen', 'true');
   };
 
   return (
