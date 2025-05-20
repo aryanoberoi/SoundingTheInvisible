@@ -590,7 +590,7 @@
 {
   transition: max-height 0.3s ease-in-out;
   overflow: hidden;
-  max-height: 60px; /* Show only a few lines */
+  /* max-height: 60px; Show only a few lines */
 }
 
 .sound-text {
