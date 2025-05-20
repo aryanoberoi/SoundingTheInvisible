@@ -14,6 +14,7 @@ import { PhytoCapacity } from "./PollutantPage/PhytoCapacity";
 import { AboutPollutantSection } from "./PollutantPage/AboutPollutant";
 import { SoundFrequency } from "./PollutantPage/SoundFrequency";
 import SoundToggle from "./SoundToggle"; // Sound button
+import Pollutantburger from "./Pollutantburger.png"; // Sound button
 import { useParams } from "react-router-dom";
 import { Drawer, styled } from "@mui/material";
 import MobileRightPanel from "./PollutantPage/MobileRightPanel";
@@ -1627,6 +1628,7 @@ const PollutantPage = ({ categorizedData }) => {
                 <div className="container">
                   <div className="row">
                     <div className="col-lg-12">
+                      <img src={Pollutantburger} alt="pollutant"/>
                       <h2
                         style={{
                           color: "#fff",
