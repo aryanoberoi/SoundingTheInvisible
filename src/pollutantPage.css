@@ -254,8 +254,8 @@ body.sound-panel-active .sound-icon span {
 
 .hamburger-line {
   display: block;
-  width: 30px;
-  height: 3px;
+  width: 40px;
+  height: 2px;
   background: #adadad;
   transition: background 0.3s, transform 0.3s;
 }
