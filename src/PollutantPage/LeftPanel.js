@@ -9,6 +9,7 @@ const LeftPanel = ({ sections = [], onLoad, onNavigate }) => {
   if (sections.length === 0) return null;
   
   const { 
+    pollutantimagedesktop = "",
     pollutantName = "Pollutant Name",
     pollutantDescription = "",
     effect = "",
@@ -40,7 +41,7 @@ const LeftPanel = ({ sections = [], onLoad, onNavigate }) => {
                 <KnowMoreButtonInverted className="knowMoreButtonInverted" onClick={() => onNavigate('about-pollutant')} />
               </div>
               <img
-                src="https://res.cloudinary.com/dj1km5iax/image/upload/v1745676198/xejwbtmg6pic01osjkdn.png"
+                src={pollutantimagedesktop}
                 alt="Pollutant visual"
                 className="pollutantVisualImage"
               />

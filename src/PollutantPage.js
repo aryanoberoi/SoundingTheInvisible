@@ -306,6 +306,8 @@ const PollutantPage = ({ categorizedData }) => {
   // Update the leftpanelcontent to use the new dataContext
   const leftpanelcontent = [
     {
+      pollutantimagedesktop: matchedRow.desktop_pollutant_image,
+      pollutantimagemobile: matchedRow.mobile_pollutant_image,
       pollutantNumber: wip(matchedRow.Number),
       pollutantName:
         wip(matchedRow.Pollutantname_split) ||
@@ -322,6 +324,8 @@ const PollutantPage = ({ categorizedData }) => {
   // Update the rightpanelcontent to use the new dataContext ok
   const rightpanelcontent = [
     {
+      plantimagemobile: matchedRow.mobile_plant_image,
+      plantimagedesktop: matchedRow.desktop_plant_image,
       plantNameSplit: wip(dataContext.plant.name),
       wetlandDescription: wip(dataContext.plant.wetlandDescription),
       phytoCapacity: wip(dataContext.plant.phytoCapacity),

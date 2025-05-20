@@ -9,6 +9,7 @@ import areaIcon from './area.png';
 
 const RightPanel = ({ sections = [], pollutantName = "", onLoad, onNavigate }) => {
   const {
+    plantimagedesktop = "",
     wetlandDescription = "",
     phytoCapacity = "",
     temperature = "",
@@ -101,7 +102,7 @@ const RightPanel = ({ sections = [], pollutantName = "", onLoad, onNavigate }) =
           <main className="mainContent">
             <div className="imageSection">
               <img
-                src='plantimg.png'
+                src={plantimagedesktop}
                alt="Detailed view of the plant"
                 className="plantImageRightPanel"
               />

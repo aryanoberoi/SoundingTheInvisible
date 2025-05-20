@@ -14,6 +14,7 @@ const MobileRightPanel = ({
   onNavigate,
 }) => {
   const {
+    plantimagemobile = "",
     wetlandDescription = "",
     phytoCapacity = "",
     temperature = "",
@@ -52,7 +53,7 @@ console.log("KKKKKDs",sections?.plantName,pollutantName)
       <div className="plantContainer">
         <div className="contentWrapper">
           <img
-            src={plantimg}
+            src={plantimagemobile}
             alt="Pollutant visual"
             // className="pollutantVisualImage"
           />

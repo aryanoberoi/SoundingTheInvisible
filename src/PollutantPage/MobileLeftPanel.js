@@ -9,6 +9,8 @@ const MobileLeftPanel = ({ sections = [], onLoad, onNavigate }) => {
   if (sections.length === 0) return null;
 
   const {
+    pollutantimagedesktop="",
+    pollutantimagemobile="",
     pollutantName = "Pollutant Name",
     pollutantDescription = "",
     effect = "",
@@ -37,7 +39,7 @@ console.log("sections",sections)
           </h2>
           <div style={{ transform: "scale(1.4)" }}>
             <img
-              src="https://res.cloudinary.com/dky8dsysk/image/upload/v1746707493/01_Potasium_dhitgx.png"
+              src={pollutantimagemobile}
               alt="Pollutant visual"
               style={{ transform: "translate(0%, calc(100% - 220px))" }}
             />
