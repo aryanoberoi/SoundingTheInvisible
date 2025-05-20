@@ -1476,7 +1476,7 @@ console.log("sliderPosition",sliderPosition)
                 onClick={() => handleNavClick("phytoremediation")}
               >
                 <span>
-                  Phytoremediation of {leftpanelcontent[0].pollutantName}
+                  Plants Remediating {leftpanelcontent[0].pollutantName}
                 </span>
               </p>
             </div>
