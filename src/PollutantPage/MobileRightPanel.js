@@ -51,7 +51,7 @@ console.log("KKKKKDs",sections?.plantName,pollutantName)
   return (
     <div className="right-panel">
       <div className="plantContainer">
-        <div className="contentWrapper">
+        <div className="contentWrapper " style={{transform:"translate(54px, 26px)"}}>
           <img
             src={plantimagemobile}
             alt="Pollutant visual"

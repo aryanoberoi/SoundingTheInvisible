@@ -2034,10 +2034,10 @@ const PollutantPage = ({ categorizedData }) => {
         <></>
       )}
 
-      <div className="combined-section">
+      <div className="combined-section" style={{padding:"0px 10px"}}>
         <div className="nav-bar-container">
           <div className="nav-bar" ref={navBarRef}>
-            {isMobile && (
+            {isMobile && ( 
               <div
                 className="mobile-menu-toggle"
                 onClick={() => setMenuOpen(!menuOpen)}

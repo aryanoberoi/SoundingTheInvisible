@@ -59,8 +59,8 @@ body,
 }
 @media screen and (max-width: 768px) {
   .plantContainer {
-    margin-top: calc(100% + -200px);
-    transform: scale(1.13);
+    margin-top: calc(100% + -119px);
+    transform: scale(1.53)
   }
   .plantContainerleft {
     display: flex;

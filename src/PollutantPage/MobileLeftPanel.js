@@ -37,11 +37,11 @@ console.log("sections",sections)
             }}
           >{pollutantName}
           </h2>
-          <div style={{ transform: "scale(1.4)" }}>
+          <div style={{ transform: "scale(1.32)" }}>
             <img
               src={pollutantimagemobile}
               alt="Pollutant visual"
-              style={{ transform: "translate(0%, calc(100% - 220px))" }}
+              style={{ transform: "translate(0%, calc(100% - 187px))" }}
             />
           </div>
         </div>
