@@ -1407,7 +1407,7 @@ console.log("sliderPosition",sliderPosition)
                 className={`text-wrapper-2`}
                 onClick={() => handleNavClick("sound-frequency")}
               >
-                <span>Sound frequency</span>
+                <span>Sound Frequency of {leftpanelcontent[0].pollutantName}</span>
               </div>
 
               <div
@@ -1461,14 +1461,14 @@ console.log("sliderPosition",sliderPosition)
                 className={`text-wrapper-8`}
                 onClick={() => handleNavClick("effect-on-health")}
               >
-                <span>Effect on health</span>
+                <span>Effects of {leftpanelcontent[0].pollutantName} on Health</span>
               </div>
 
               <div
                 className={`text-wrapper-9`}
                 onClick={() => handleNavClick("case-study")}
               >
-                <span>Case study</span>
+                <span>Case Study of {leftpanelcontent[0].pollutantName}'s Pollution</span>
               </div>
 
               <p

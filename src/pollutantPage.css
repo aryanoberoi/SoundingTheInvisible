@@ -770,20 +770,23 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
 }
 .nav-bar .text-wrapper-2 {
   top: 180px;
-  left: 25px !important;
+  left: 0px !important;
+  text-align: right !important;
 }
 .nav-bar .text-wrapper-8 {
   top: 235px;
-  left: 30px !important;
+  left: 0px !important;
+  text-align: right !important;
 }
 .nav-bar .text-wrapper-9 {
   top: 280px;
-  left: 55px !important;
+  left: 0px !important;
+  text-align: right !important;
 }
 .nav-bar .text-wrapper-10 {
   top: 310px;
   left: 0px !important;
-  width: 141px;
+  text-align: right !important;
 }
 .nav-bar .div {
   top: 350px;
@@ -1235,13 +1238,8 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
 .nav-bar .text-wrapper-10,
 .nav-bar .p {
   left: 175px; /* Adjusted to align with circle positions */
-  width: 150px;
+  width: 140px;
   text-align: left; /* Changed from right to left for better alignment */
-}
-
-.nav-bar .text-wrapper-10 {
-  left: -20px !important;
-  text-align: right;
 }
 
 .nav-bar .ellipse,
