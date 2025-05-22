@@ -17,7 +17,8 @@ body,
   position: relative;
   width: 100%;
   height: 100vh; /* Default height for 100% zoom or below */
-  overflow: hidden;
+  overflow-y: auto; /* enable vertical scroll */
+  overflow-x: hidden; /* hide horizontal overflow */
   display: flex;
 }
 
@@ -290,15 +291,15 @@ body.sound-panel-active .sound-icon span {
 
 .hamburger-line {
   display: block;
-  width: 30px;
-  height: 3px;
-  background: #adadad;
+  width: 40px;
+  height: 1px;
+  background: #fff;
   transition: background 0.3s, transform 0.3s;
 }
 
 /* Adjust hamburger color based on background */
 body.right-panel-active .hamburger-line {
-  background-color: black;
+  background: black;
 }
 
 /* Fullscreen Menu */
@@ -799,29 +800,32 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
 
 /* ✅ Adjusting Positions Based on Your CSS */
 .nav-bar .text-wrapper {
-  top: 60px;
+  top: 80px;
   left: 174px;
   font-size: 24px;
 }
 .nav-bar .text-wrapper-2 {
-  top: 130px;
-  left: 25px !important;
+  top: 180px;
+  left: 0px !important;
+  text-align: right !important;
 }
 .nav-bar .text-wrapper-8 {
-  top: 190px;
-  left: 30px !important;
+  top: 235px;
+  left: 0px !important;
+  text-align: right !important;
 }
 .nav-bar .text-wrapper-9 {
-  top: 250px;
-  left: 55px !important;
-}
-.nav-bar .text-wrapper-10 {
   top: 280px;
   left: 0px !important;
-  width: 141px;
+  text-align: right !important;
+}
+.nav-bar .text-wrapper-10 {
+  top: 310px;
+  left: 0px !important;
+  text-align: right !important;
 }
 .nav-bar .div {
-  top: 340px;
+  top: 350px;
   left: 174px;
   font-size: 24px;
 }
@@ -882,14 +886,25 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
 
 /* Position the new ellipse */
 .nav-bar .ellipse-0 {
-  background-color: black;
-  border: 1px solid white;
-  border-radius: 5px;
-  height: 10px;
-  width: 10px;
   position: absolute;
-  left: 0;
+  left: -10px;
   top: 0;
+  width: 30px;    /* give it a visible width */
+  height: 30px;   /* give it a visible height */
+  cursor: pointer; /* move cursor styling here */
+  /* remove background-color if not needed */
+  background-color: transparent;
+  /* optional: to avoid interfering with other content */
+  z-index: 10;
+}
+
+.ellipse-0 svg {
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  transform: scale(1.5);
+  display: block; /* avoid inline spacing issues */
+  margin: 0 auto; /* center svg if needed */
 }
 
 /* Color switching for white panel */
@@ -974,22 +989,22 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
 
 /* ✅ Adjusting Circle Positions */
 .nav-bar .ellipse {
-  top: 50px;
+  top: 70px;
 } /* Matches text-wrapper position */
 .nav-bar .ellipse-2 {
-  top: 110px;
+  top: 160px;
 } /* Matches text-wrapper-2 position */
 .nav-bar .ellipse-3 {
-  top: 170px;
+  top: 215px;
 } /* Matches text-wrapper-8 position */
 .nav-bar .ellipse-4 {
-  top: 230px;
+  top: 260px;
 } /* Matches text-wrapper-9 position */
 .nav-bar .ellipse-5 {
-  top: 283px;
+  top: 313px;
 } /* Matches text-wrapper-10 position */
 .nav-bar .ellipse-6 {
-  top: 350px;
+  top: 360px;
 } /* Matches div position */
 .nav-bar .ellipse-7 {
   top: 430px;
@@ -1259,13 +1274,8 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
 .nav-bar .text-wrapper-10,
 .nav-bar .p {
   left: 175px; /* Adjusted to align with circle positions */
-  width: 150px;
+  width: 140px;
   text-align: left; /* Changed from right to left for better alignment */
-}
-
-.nav-bar .text-wrapper-10 {
-  left: -20px !important;
-  text-align: right;
 }
 
 .nav-bar .ellipse,
@@ -2475,4 +2485,47 @@ body.white-panel-active .toggleDrawerArrowblack::after {
     86% 15%
   );
   /* This is a flipped version of the top path to simulate symmetry */
+}
+
+body.white-panel-active .nav-bar .ellipse-0 svg {
+  filter: invert(1);
+  transition: filter 0.3s ease;
+  margin-top: 15px;
+}
+
+/* Make all ellipses clickable with hover effects */
+.nav-bar .ellipse,
+.nav-bar .ellipse-0,
+.nav-bar [class^="ellipse-"] {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Hover effect for all ellipses */
+.nav-bar .ellipse:hover,
+.nav-bar .ellipse-0:hover,
+.nav-bar [class^="ellipse-"]:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+/* White panel hover effects */
+body.white-panel-active .nav-bar .ellipse:hover,
+body.white-panel-active .nav-bar .ellipse-0:hover,
+body.white-panel-active .nav-bar [class^="ellipse-"]:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Active state enhancements */
+.nav-bar .ellipse.active,
+.nav-bar .ellipse-0.active,
+.nav-bar [class^="ellipse-"].active {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+body.white-panel-active .nav-bar .ellipse.active,
+body.white-panel-active .nav-bar .ellipse-0.active,
+body.white-panel-active .nav-bar [class^="ellipse-"].active {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
