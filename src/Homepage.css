@@ -743,7 +743,6 @@ svg.strategy-image {
 /* Scale SVG to fill container while maintaining aspect ratio */
 .interactive-svg,
 .strategy-image {
-  width: 100% !important;
   height: auto !important;
   max-width: 100% !important;
 }
