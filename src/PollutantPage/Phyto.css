@@ -379,6 +379,7 @@ left: 0;
 }
 .bottom-section4 .box .overlap-group .medium-label{
     right: 23px;
+    top: 20px;
 }
 /* .bottom-section4 .box .img{
     left: 57%;
@@ -390,9 +391,11 @@ left: 0;
 }
 .bottom-section4 .box .overlap-group .soil-label{
     right: -22px;
+    top: 40px !important;
 }
 .bottom-section4 .box .element{
     font-size: 18px;
+    top: 36px;
     /* left: 0; */
 }
 .bottom-section4 .box.right-aligned .text-wrapper{

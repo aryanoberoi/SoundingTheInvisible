@@ -5,12 +5,12 @@ import { KnowMoreButtonInvertedRA } from "./Knowmorebutton";
 import { KnowMoreButtonInverted } from "./Knowmorebutton";
 import SineWaveVisualizer from "./sinwave";
 import pollutantname from "./pollutantname.png";
-const MobileLeftPanel = ({ sections = [], onLoad, onNavigate }) => {
+const MobileLeftPanel = ({ sections = [], onLoad, onNavigate,sliderPosition=50 }) => {
   if (sections.length === 0) return null;
 
   const {
-    pollutantimagedesktop="",
-    pollutantimagemobile="",
+    pollutantimagedesktop = "",
+    pollutantimagemobile = "",
     pollutantName = "Pollutant Name",
     pollutantDescription = "",
     effect = "",
@@ -21,33 +21,50 @@ const MobileLeftPanel = ({ sections = [], onLoad, onNavigate }) => {
 
   // Process health effects into titles
   const healthEffectsTitles = effect.split("_");
-console.log("sections",sections)
+  console.log("sections", sections);
   return (
     <div className="left-panel">
       <div className="plantContainerleft">
         <div>
+          {sliderPosition==20?
+          <p  style={{
+              fontSize: "18px",
+              fontWeight: "400",
+              margin: "0px",
+              textAlign: "center",
+              color: "#fff",
+              transform: "translate(0px, -10px)"
+            }}>pollutantName</p>
+          :<></>}
           <h2
             style={{
               fontSize: "38px",
               fontWeight: "400",
               margin: "0px",
-              // textAlign: "center",
+              textAlign: "center",
               color: "#fff",
-              transform: "translate(15%, 60px)"
+              transform: "translate(0px, 60px)"
             }}
-          >{pollutantName}
+          >
+            {pollutantName}
           </h2>
-          <div style={{ transform: "scale(1.32)" }}>
+          <div style={{ transform: "scale(1.15)" }}>
             <img
               src={pollutantimagemobile}
               alt="Pollutant visual"
-              style={{ transform: "translate(0%, calc(100% - 187px))" }}
+              style={{
+                width: "100%",
+                height: "100%",
+                transform: "translate(0%, calc(100% - 217px))",
+              }}
+              // style={{
+              //  }}
             />
           </div>
         </div>
       </div>
 
-      <div className="animated-down-arrow">
+      {/* <div className="animated-down-arrow">
         <svg
           width="42"
           height="52"
@@ -69,7 +86,7 @@ console.log("sections",sections)
             strokeLinejoin="round"
           />
         </svg>
-      </div>
+      </div> */}
     </div>
   );
 };

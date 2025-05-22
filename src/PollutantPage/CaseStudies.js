@@ -3,24 +3,21 @@ import group121 from "./group-121.svg";
 import "./CaseStudies.css";
 
 export const CaseStudies = ({ sections, pollutantName }) => {
-
   // Helper function to get title and content from text
   const parseSection = (text) => {
-    const [title, content] = text&&text?.split('_');
+    const [title, content] = text && text?.split("_");
     return { title, content };
   };
 
-  const name = parseSection(sections[0].text?sections[0].text:"");
-  const location = parseSection(sections[1].text?sections[1].text:"");
-console.log("Sections_LLLKKKK:", sections);
+  const name = parseSection(sections[0].text ? sections[0].text : "");
+  const location = parseSection(sections[1].text ? sections[1].text : "");
+  console.log("Sections_LLLKKKK:", sections);
   return (
     <div className="box">
       <div className="group">
         <div className="overlap">
           <div className="overlap-group">
-            <p className="text-wrapper">
-              {location.content}
-            </p>
+            <p className="text-wrapper">{location.content}</p>
 
             <img
               className="rectangle"
@@ -28,19 +25,13 @@ console.log("Sections_LLLKKKK:", sections);
               src="https://c.animaapp.com/2uQFoxD8/img/rectangle-28.svg"
             />
 
-            <p className="div">
-              {name.content}
-            </p>
+            <p className="div">{name.content}</p>
 
             <div className="overlap-wrapper">
               <div className="overlap-2">
                 <div className="overlap-3">
-                  <img
-                    className="group-121"
-                    alt="Group"
-                    src={group121}
-                  />
-                </div>  
+                  <img className="group-121" alt="Group" src={group121} />
+                </div>
               </div>
             </div>
 
@@ -49,7 +40,7 @@ console.log("Sections_LLLKKKK:", sections);
             <img
               className="rectangle-5"
               alt="Rectangle"
-               src="https://c.animaapp.com/2uQFoxD8/img/rectangle-28.svg"
+              src="https://c.animaapp.com/2uQFoxD8/img/rectangle-28.svg"
               // src="https://c.animaapp.com/2uQFoxD8/img/rectangle-28-1.svg"
             />
           </div>
@@ -63,8 +54,14 @@ console.log("Sections_LLLKKKK:", sections);
 
         <div className="overlap-group-wrapper">
           <div className="overlap-group-2">
-            <div id = "sources-section" className="text-wrapper-3">
-              {pollutantName ? `Case studies of ${pollutantName} pollution` : 'Case studies'}
+            <div id="sources-section" className="text-wrapper-3">
+              {window.innerWidth <= 768 && pollutantName
+                ? <div>
+                  Case studies of <br/>{pollutantName} pollution &nbsp;
+                  </div>
+                : pollutantName
+                ? `Case studies of ${pollutantName} pollution`
+                : "Case studies"}
             </div>
           </div>
         </div>
@@ -74,4 +71,3 @@ console.log("Sections_LLLKKKK:", sections);
     </div>
   );
 };
-  
