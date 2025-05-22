@@ -2424,3 +2424,40 @@ body.white-panel-active .nav-bar .ellipse-0 svg {
   transition: filter 0.3s ease;
   margin-top: 15px;
 }
+
+/* Make all ellipses clickable with hover effects */
+.nav-bar .ellipse,
+.nav-bar .ellipse-0,
+.nav-bar [class^="ellipse-"] {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Hover effect for all ellipses */
+.nav-bar .ellipse:hover,
+.nav-bar .ellipse-0:hover,
+.nav-bar [class^="ellipse-"]:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+/* White panel hover effects */
+body.white-panel-active .nav-bar .ellipse:hover,
+body.white-panel-active .nav-bar .ellipse-0:hover,
+body.white-panel-active .nav-bar [class^="ellipse-"]:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Active state enhancements */
+.nav-bar .ellipse.active,
+.nav-bar .ellipse-0.active,
+.nav-bar [class^="ellipse-"].active {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+body.white-panel-active .nav-bar .ellipse.active,
+body.white-panel-active .nav-bar .ellipse-0.active,
+body.white-panel-active .nav-bar [class^="ellipse-"].active {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}

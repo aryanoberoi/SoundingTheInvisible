@@ -1516,64 +1516,64 @@ console.log("sliderPosition",sliderPosition)
                 </svg>
               </div>
               <div
-                className={`ellipse ${
-                  activeSection === "about-pollutant" ? "active" : ""
-                }`}
+                className={`ellipse ${activeSection === "about-pollutant" ? "active" : ""}`}
+                onClick={() => handleNavClick("about-pollutant")}
+                style={{ cursor: "pointer" }}
               />
               <div
-                className={`ellipse-2 ${
-                  activeSection === "sound-frequency" ? "active" : ""
-                }`}
+                className={`ellipse-2 ${activeSection === "sound-frequency" ? "active" : ""}`}
+                onClick={() => handleNavClick("sound-frequency")}
+                style={{ cursor: "pointer" }}
               />
               <div
-                className={`ellipse-3 ${
-                  activeSection === "effect-on-health" ? "active" : ""
-                }`}
+                className={`ellipse-3 ${activeSection === "effect-on-health" ? "active" : ""}`}
+                onClick={() => handleNavClick("effect-on-health")}
+                style={{ cursor: "pointer" }}
               />
               <div
-                className={`ellipse-4 ${
-                  activeSection === "case-study" ? "active" : ""
-                }`}
+                className={`ellipse-4 ${activeSection === "case-study" ? "active" : ""}`}
+                onClick={() => handleNavClick("case-study")}
+                style={{ cursor: "pointer" }}
               />
               <div
-                className={`ellipse-5 ${
-                  activeSection === "phytoremediation" ? "active" : ""
-                }`}
+                className={`ellipse-5 ${activeSection === "phytoremediation" ? "active" : ""}`}
+                onClick={() => handleNavClick("phytoremediation")}
+                style={{ cursor: "pointer" }}
               />
               <div
-                className={`ellipse-6 ${
-                  activeSection === "plant-name" ? "active" : ""
-                }`}
+                className={`ellipse-6 ${activeSection === "plant-name" ? "active" : ""}`}
+                onClick={() => handleNavClick("plant-name")}
+                style={{ cursor: "pointer" }}
               />
               <div
-                className={`ellipse-7 ${
-                  activeSection === "common-names" ? "active" : ""
-                }`}
+                className={`ellipse-7 ${activeSection === "common-names" ? "active" : ""}`}
+                onClick={() => handleNavClick("common-names")}
+                style={{ cursor: "pointer" }}
               />
               <div
-                className={`ellipse-8 ${
-                  activeSection === "plant-habitat" ? "active" : ""
-                }`}
+                className={`ellipse-8 ${activeSection === "plant-habitat" ? "active" : ""}`}
+                onClick={() => handleNavClick("plant-habitat")}
+                style={{ cursor: "pointer" }}
               />
               <div
-                className={`ellipse-9 ${
-                  activeSection === "origin" ? "active" : ""
-                }`}
+                className={`ellipse-9 ${activeSection === "origin" ? "active" : ""}`}
+                onClick={() => handleNavClick("origin")}
+                style={{ cursor: "pointer" }}            
               />
               <div
-                className={`ellipse-10 ${
-                  activeSection === "phyto-capacity" ? "active" : ""
-                }`}
+                className={`ellipse-10 ${activeSection === "phyto-capacity" ? "active" : ""}`}
+                onClick={() => handleNavClick("phyto-capacity")}
+                style={{ cursor: "pointer" }}
               />
               <div
-                className={`ellipse-11 ${
-                  activeSection === "uses-of-plant" ? "active" : ""
-                }`}
+                className={`ellipse-11 ${activeSection === "uses-of-plant" ? "active" : ""}`}
+                onClick={() => handleNavClick("uses-of-plant")}
+                style={{ cursor: "pointer" }}
               />
               <div
-                className={`ellipse-12 ${
-                  activeSection === "references" ? "active" : ""
-                }`}
+                className={`ellipse-12 ${activeSection === "references" ? "active" : ""}`}
+                onClick={() => handleNavClick("references")}
+                style={{ cursor: "pointer" }}
               />
             </div>
           </div>
