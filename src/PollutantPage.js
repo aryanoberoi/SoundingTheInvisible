@@ -1383,12 +1383,12 @@ console.log("sliderPosition",sliderPosition)
                 isMobile && menuOpen ? "mobile-active" : ""
               }`}
             >
-              <div 
+              {/* <div 
                 className="text-wrapper-combined"
                 onClick={() => handleNavClick("overview")}
               >
                 <span>{leftpanelcontent[0].pollutantName} + {rightpanelcontent[0].plantNameSplit}</span>
-              </div>
+              </div> */}
               <div
                 className={`text-wrapper`}
                 onClick={() => handleNavClick("about-pollutant")}
@@ -1481,7 +1481,40 @@ console.log("sliderPosition",sliderPosition)
               </p>
             </div>
             <div className="overlap-group">
-            <div className={`ellipse-0 ${activeSection === "overview" ? "active" : ""}`} />
+              <div className={`ellipse-0 ${activeSection === "overview" ? "active" : ""}`}
+                    onClick={() => {
+                      console.log("Clicked ellipse - returning to top");
+                      
+                      // Use your existing navigation pattern
+                      const topElement = document.getElementById("slider-container");
+                      if (topElement) {
+                        topElement.scrollIntoView({ behavior: "smooth", block: "start" });
+                      } else {
+                        // Fallback
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }
+                    }}
+                    style={{ cursor: "pointer" }}>
+                <svg
+                  width="19"
+                  height="19"
+                  viewBox="0 0 19 19"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <mask id="path-1-inside-1_3499_236" fill="white">
+                    <path d="M10 0.59155C7.61305 0.591551 5.32387 1.53976 3.63604 3.22759C1.94821 4.91542 1 7.2046 1 9.59155C1 11.9785 1.94821 14.2677 3.63604 15.9555C5.32386 17.6433 7.61305 18.5916 10 18.5916L10 9.59155L10 0.59155Z"/>
+                  </mask>
+                  <path
+                    d="M10 0.59155C7.61305 0.591551 5.32387 1.53976 3.63604 3.22759C1.94821 4.91542 1 7.2046 1 9.59155C1 11.9785 1.94821 14.2677 3.63604 15.9555C5.32386 17.6433 7.61305 18.5916 10 18.5916L10 9.59155L10 0.59155Z"
+                    fill="black"
+                    stroke="white"
+                    strokeWidth="2"
+                    mask="url(#path-1-inside-1_3499_236)"
+                  />
+                  <path d="M10 18.5916C12.387 18.5916 14.6761 17.6433 16.364 15.9555C18.0518 14.2677 19 11.9785 19 9.59155C19 7.20461 18.0518 4.91542 16.364 3.22759C14.6761 1.53977 12.387 0.591554 10 0.591553L10 9.59155L10 18.5916Z"  fill="white" />
+                </svg>
+              </div>
               <div
                 className={`ellipse ${
                   activeSection === "about-pollutant" ? "active" : ""
