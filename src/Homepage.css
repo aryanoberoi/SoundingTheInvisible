@@ -740,6 +740,13 @@ svg.strategy-image {
   padding-bottom: 20%;
 }
 
+.trapezium-text h2{
+  font-family: "Nippo-Light", Helvetica;
+  font-size: 24px;
+  font-weight: 378;
+  line-height: 205%;  
+}
+
 /* Scale SVG to fill container while maintaining aspect ratio */
 .interactive-svg,
 .strategy-image {
