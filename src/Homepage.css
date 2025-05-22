@@ -619,7 +619,6 @@
 
 /* Update the MiddleFrame SVG to fill its container */
 .middle-svg-concept {
-  width: 100% !important;
   height: auto !important;
   position: relative;
   z-index: 2;
@@ -716,7 +715,6 @@
 .middle-svg-concept,
 .interactive-svg,
 .strategy-image {
-  width: 100% !important;
   height: auto !important;
   max-width: 100% !important;
   display: block;
@@ -727,7 +725,6 @@ svg.interactive-svg-concept,
 svg.middle-svg-concept, 
 svg.interactive-svg,
 svg.strategy-image {
-  width: 100% !important;
   height: auto !important;
   max-width: 100% !important;
 }
@@ -872,7 +869,6 @@ svg.strategy-image {
 .interactive-svg-concept,
 .middle-svg-concept,
 .interactive-svg {
-  width: 100% !important;
   height: auto !important;
   transform: scale(1.5);
   transform-origin: center center;
