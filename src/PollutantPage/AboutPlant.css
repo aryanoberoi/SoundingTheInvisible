@@ -154,6 +154,9 @@
   top: 2px;
 }
 @media screen and (max-width:768px) {
+  .about-pollutant{
+    font-size: 24px !important;
+  }
   .image.inverted-text{
     width: 63px;
     height: 63px;

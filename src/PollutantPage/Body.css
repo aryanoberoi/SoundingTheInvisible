@@ -301,8 +301,12 @@
     .box-container .box-header-container {
         width: 100%;
     }
+    .box-container .item-title {
+        position: unset;
+    }
     .box-container .item-overlap {
 margin: 6rem 0px;
+gap: 10px;
     }
     .box-container .header-title {
         font-size: 1.5rem;
@@ -332,7 +336,7 @@ margin: 6rem 0px;
     top: 1px !important;
     }
     .box-container .box-header-title::after{
-        width: 103%;
+        width: 122%;
     }
 }
   
