@@ -670,63 +670,64 @@ const PollutantPage = ({ categorizedData }) => {
   //     };
   //   }, [isDragging]);
 
-  //   useEffect(() => {
-  //     // Set the initial rotation CSS variable directly on mount
-  //     document.documentElement.style.setProperty("--rotation", `180deg`);
-  //     // Add slider transition variable for dynamic control
-  //     document.documentElement.style.setProperty(
-  //       "--slider-transition",
-  //       "left 0.3s ease-in-out"
-  //     );
+    useEffect(() => {
+      // Set the initial rotation CSS variable directly on mount
+      document.documentElement.style.setProperty("--rotation", `180deg`);
+      // Add slider transition variable for dynamic control
+      document.documentElement.style.setProperty(
+        "--slider-transition",
+        "left 0.3s ease-in-out"
+      );
 
-  //     // Clean up on unmount
-  //     return () => {};
-  //   }, []); // Initial setup effect, height update logic moved
+      // Clean up on unmount
+      return () => {};
+    }, [isMobileView]); // Initial setup effect, height update logic moved
 
-  //   useEffect(() => {
-  //     const observer = new IntersectionObserver(
-  //       (entries) => {
-  //         // Find the first entry that is currently intersecting
-  //         const intersectingEntry = entries.find((entry) => entry.isIntersecting);
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          // Find the first entry that is currently intersecting
+          const intersectingEntry = entries.find((entry) => entry.isIntersecting);
 
-  //         // If an intersecting entry is found, update the active section
-  //         if (intersectingEntry) {
-  //           setActiveSection(intersectingEntry.target.id);
-  //         }
-  //         // Optional: If no entry is intersecting, you might want to clear
-  //         // the active section or keep the last active one, depending on desired UX.
-  //         // Example: else if (entries.some(entry => !entry.isIntersecting)) {
-  //         //   // Logic if elements are leaving viewport but none are entering
-  //         // }
-  //       },
-  //       {
-  //         // Keep the lower threshold
-  //         threshold: 0.1,
-  //         root: null,
-  //       }
-  //     );
+          // If an intersecting entry is found, update the active section
+          if (intersectingEntry) {
+            setActiveSection(intersectingEntry.target.id);
+          }
+          // Optional: If no entry is intersecting, you might want to clear
+          // the active section or keep the last active one, depending on desired UX.
+          // Example: else if (entries.some(entry => !entry.isIntersecting)) {
+          //   // Logic if elements are leaving viewport but none are entering
+          // }
+        },
+        {
+          // Keep the lower threshold
+          threshold: 0.1,
+          root: null,
+        }
+      );
 
-  //     // Observe all sections in both panels
-  //     const sections = document.querySelectorAll(`
-  //       [id^="about-"],
-  //       [id^="plant-"],
-  //       [id^="sound-"],
-  //       [id^="common-"],
-  //       [id^="effect-"],
-  //       [id^="case-"],
-  //       [id^="phytoremediation"],
-  //       [id^="phyto-"],
-  //       [id^="uses-"],
-  //       [id^="origin"],
-  //       [id^="references"]
-  //     `);
+      // Observe all sections in both panels
+      const sections = document.querySelectorAll(`
+        [id^="about-"],
+        [id^="plant-"],
+        [id^="sound-"],
+        [id^="common-"],
+        [id^="effect-"],
+        [id^="case-"],
+        [id^="phytoremediation"],
+        [id^="phyto-"],
+        [id^="uses-"],
+        [id^="origin"],
+        [id^="references"]
+      `);
 
-  //     sections.forEach((section) => {
-  //       observer.observe(section);
-  //     });
+      sections.forEach((section) => {
+        observer.observe(section);
+      });
 
-  //     return () => observer.disconnect();
-  //   }, []);
+      return () => observer.disconnect();
+    }, []);
+
   const [isDragging, setIsDragging] = useState(false);
   // const [sliderPosition, setSliderPosition] = useState(50);
   // const [containerHeight, setContainerHeight] = useState('100vh');
@@ -854,13 +855,13 @@ const PollutantPage = ({ categorizedData }) => {
     }
   };
 
-  // useEffect(() => {
-  //   if (leftPanelLoaded && rightPanelLoaded) {
-  //     requestAnimationFrame(() => {
-  //       setTimeout(updateContainerHeight, 100);
-  //     });
-  //   }
-  // }, [leftPanelLoaded, rightPanelLoaded]);
+  useEffect(() => {
+    if (leftPanelLoaded && rightPanelLoaded) {
+      requestAnimationFrame(() => {
+        setTimeout(updateContainerHeight, 100);
+      });
+    }
+  }, [leftPanelLoaded, rightPanelLoaded]);
 
   // useEffect(() => {
   //   if (isDragging) {
@@ -1246,39 +1247,39 @@ const PollutantPage = ({ categorizedData }) => {
 
   const handleNavClick = (sectionId) => {
     console.log("DDSADSDADS");
-    setIsSplit(sectionId == "slider-container" ? true : false);
+    
+    // Only affect isSplit on mobile
+    if (isMobileView) {
+      setIsSplit(sectionId == "slider-container" ? true : false);
+    }
+    
     const section = document.getElementById(sectionId);
     if (!section) return;
     setState(false);
-    // Mobile-specific behavior
-    // if (isMobile) {
-    //   section.scrollIntoView({ behavior: "smooth", block: "start" }); // Changed to smooth
-    //   setMenuOpen(false);
-    //   return;
-    // }
-
-    // Determine which panel the section belongs to
+    
+    // Skip slider positioning for mobile or if we're going back to slider-container
+    if (isMobileView || sectionId === "slider-container") {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+  
+    // Desktop behavior - determine panel and snap slider
     const isInRightPanel = section.closest(".white-container") !== null;
     const targetSliderPos = isInRightPanel ? 0 : 100;
-
-    // Set smooth transition for slider
+  
     document.documentElement.style.setProperty(
       "--slider-transition",
       "left 0.5s ease-in-out"
     );
-
-    // Update slider position with smooth transition
+  
     updateSliderPosition(targetSliderPos);
     lastPositionRef.current = targetSliderPos;
-
-    // Smooth scroll to section
-
+  
     section.scrollIntoView({
       behavior: "auto",
       block: "start",
     });
     setState(false);
-    //  setState(open);
   };
 
   // Replace the scroll-based combined section detection with Intersection Observer
@@ -1535,7 +1536,7 @@ const PollutantPage = ({ categorizedData }) => {
         sliderPosition={sliderPosition}
         panelMode={sliderPosition < 50 ? "white" : "black"}
       />
-      {isSplit ? (
+      {(!isMobileView || isSplit) ? (
         <>
           <div
             id="slider-container"
@@ -2152,12 +2153,14 @@ const PollutantPage = ({ categorizedData }) => {
                     onClick={() => {
                       console.log("Clicked ellipse - returning to top");
                       
-                      // Use your existing navigation pattern
+                      if (isMobileView) {
+                        setIsSplit(true);
+                      }
+                      
                       const topElement = document.getElementById("slider-container");
                       if (topElement) {
                         topElement.scrollIntoView({ behavior: "smooth", block: "start" });
                       } else {
-                        // Fallback
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       }
                     }}
@@ -2269,98 +2272,11 @@ const PollutantPage = ({ categorizedData }) => {
             </div>
           )}
         </div>
-        {window.innerWidth <= 768 ? (
-          <>
-            {!isSplit ? (
-              <div className="content-sections">
-                <div style={{padding:'0px 20px'}} onClick={()=>setIsSplit(true)}> 
-                 <img src={back} />
-                </div>
-                <div className="bottom-section1" id="about-pollutant">
-                  <AboutPollutantSection
-                    sections={aboutpollutantcontent}
-                    wasteTypeIcon={wasteTypeData.atomImage}
-                  />
-                </div>
-                <div className="sound-frequency-section" id="sound-frequency">
-                  <SoundFrequency sections={sinewavefreq} />
-                </div>
-                <div className="effect-on-health-section" id="effect-on-health">
-                  <Box
-                    sections={effectonhealthcontent}
-                    pollutantName={leftpanelcontent[0].pollutantName}
-                  />
-                </div>
-                <div className="bottom-section3" id="case-study">
-                  <CaseStudies
-                    sections={casestudiescontent}
-                    pollutantName={leftpanelcontent[0].pollutantName}
-                  />
-                </div>
-                <div className="bottom-section4" id="phytoremediation">
-                  <Phyto
-                    sections={phytocontent}
-                    pollutantName={leftpanelcontent[0].pollutantName}
-                  />{" "}
-                  <div
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <div className="down_arrowstart">
-                      <div
-                        style={{
-                          background: "#fff",
-                          display: "flex",
-                          justifyContent: "center",
-                          padding: "0px 10px",
-                        }}
-                        onClick={() => {
-                          handleNavClick("plant-habitat");
-                        }}
-                      >
-                        <p className="bibliograhy" style={{ color: "#000" }}>
-                          BIBLIOGRAHY
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  {/* * time period overlap */}
-                </div>
-                <div className="white-container">
-                  <div className="bottom-section5" id="plant-name">
-                    <div className="content-container">
-                      <AboutPlant
-                        sections={aboutplantcontent}
-                        wasteTypeIcon={wasteTypeData.atomImage}
-                      />
-                    </div>
-                  </div>
-                  <div className="bottom-section6" id="common-names">
-                    <CommonNames sections={commonname} />
-                  </div>
-                  <div className="bottom-section7" id="plant-habitat">
-                    <PlantHabitat sections={habitat} />
-                  </div>
-                  <div className="bottom-section8" id="origin">
-                    <Origin sections={geographicaldistribution} />
-                  </div>
-                  <div className="bottom-section9" id="phyto-capacity">
-                    <PhytoCapacity sections={sectionphyto} />
-                  </div>
-                  <div className="bottom-section10" id="uses-of-plant">
-                    <UsesOfPlant sectionsData={plantUses} />
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <></>
-            )}
-          </>
-        ) : (
+        {isMobileView && !isSplit ? (
           <div className="content-sections">
+            <div style={{padding:'0px 20px'}} onClick={()=>setIsSplit(true)}> 
+              <img src={back} />
+            </div>
             <div className="bottom-section1" id="about-pollutant">
               <AboutPollutantSection
                 sections={aboutpollutantcontent}
@@ -2386,7 +2302,7 @@ const PollutantPage = ({ categorizedData }) => {
               <Phyto
                 sections={phytocontent}
                 pollutantName={leftpanelcontent[0].pollutantName}
-              />{" "}
+              />
               <div
                 style={{
                   width: "100%",
@@ -2412,7 +2328,6 @@ const PollutantPage = ({ categorizedData }) => {
                   </div>
                 </div>
               </div>
-              {/* * time period overlap */}
             </div>
             <div className="white-container">
               <div className="bottom-section5" id="plant-name">
@@ -2440,6 +2355,88 @@ const PollutantPage = ({ categorizedData }) => {
               </div>
             </div>
           </div>
+        ) : (
+          !isMobileView && (
+            <div className="content-sections">
+              <div className="bottom-section1" id="about-pollutant">
+                <AboutPollutantSection
+                  sections={aboutpollutantcontent}
+                  wasteTypeIcon={wasteTypeData.atomImage}
+                />
+              </div>
+              <div className="sound-frequency-section" id="sound-frequency">
+                <SoundFrequency sections={sinewavefreq} />
+              </div>
+              <div className="effect-on-health-section" id="effect-on-health">
+                <Box
+                  sections={effectonhealthcontent}
+                  pollutantName={leftpanelcontent[0].pollutantName}
+                />
+              </div>
+              <div className="bottom-section3" id="case-study">
+                <CaseStudies
+                  sections={casestudiescontent}
+                  pollutantName={leftpanelcontent[0].pollutantName}
+                />
+              </div>
+              <div className="bottom-section4" id="phytoremediation">
+                <Phyto
+                  sections={phytocontent}
+                  pollutantName={leftpanelcontent[0].pollutantName}
+                />
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <div className="down_arrowstart">
+                    <div
+                      style={{
+                        background: "#fff",
+                        display: "flex",
+                        justifyContent: "center",
+                        padding: "0px 10px",
+                      }}
+                      onClick={() => {
+                        handleNavClick("plant-habitat");
+                      }}
+                    >
+                      <p className="bibliograhy" style={{ color: "#000" }}>
+                        BIBLIOGRAHY
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="white-container">
+                <div className="bottom-section5" id="plant-name">
+                  <div className="content-container">
+                    <AboutPlant
+                      sections={aboutplantcontent}
+                      wasteTypeIcon={wasteTypeData.atomImage}
+                    />
+                  </div>
+                </div>
+                <div className="bottom-section6" id="common-names">
+                  <CommonNames sections={commonname} />
+                </div>
+                <div className="bottom-section7" id="plant-habitat">
+                  <PlantHabitat sections={habitat} />
+                </div>
+                <div className="bottom-section8" id="origin">
+                  <Origin sections={geographicaldistribution} />
+                </div>
+                <div className="bottom-section9" id="phyto-capacity">
+                  <PhytoCapacity sections={sectionphyto} />
+                </div>
+                <div className="bottom-section10" id="uses-of-plant">
+                  <UsesOfPlant sectionsData={plantUses} />
+                </div>
+              </div>
+            </div>
+          )
         )}
       </div>
       <Drawer
