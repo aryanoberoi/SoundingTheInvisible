@@ -1,5 +1,5 @@
 // src/services/AudioService.js
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:6000";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:";
 
 class AudioService {
   constructor() {

@@ -6,7 +6,8 @@ const SoundToggle = ({
   padNumber = "1", 
   isInTrapezium = false, 
   panelMode = "white", 
-  defaultActive = false 
+  defaultActive = false,
+  onToggle = () => {}
 }) => {
   const [isPlaying, setIsPlaying] = useState(defaultActive);
   const [isInCombinedSection, setIsInCombinedSection] = useState(false);
@@ -92,16 +93,24 @@ const SoundToggle = ({
 
   // Toggle sound on/off
   const handleToggle = () => {
-    if (isPlaying) {
-      // Stop sound
-      audioService.stopPadSound(currentPadRef.current);
-      setIsPlaying(false);
-    } else {
-      // Start sound
+    const newState = !isPlaying;
+    console.log(`[SoundToggle] Toggle to ${newState ? 'ON' : 'OFF'}`);
+    
+    if (newState) {
+      // Start sound and ensure mute is off
+      audioService.isMuted = false;
       audioService.playPadSound(currentPadRef.current, { loop: true });
       setIsPlaying(true);
       hasStartedRef.current = true;
+    } else {
+      // Stop sound and ensure mute is on
+      audioService.isMuted = true;
+      audioService.stopPadSound(currentPadRef.current);
+      setIsPlaying(false);
     }
+    
+    // Call the onToggle callback with the new state
+    onToggle(newState);
   };
 
   return (
