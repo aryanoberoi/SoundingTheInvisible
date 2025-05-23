@@ -251,11 +251,11 @@ export default function Homepage({ audioControls }) {
             localStorage.setItem('audioEnabled', isActive.toString());
           }}
         />
-        <audio 
+        {/* <audio 
           ref={audioRef} 
           src="/path/to/your/audio-file.mp3"
           preload="auto"
-        />
+        /> */}
 
         {/* 🔸 Header Section */}
         <section className="header">
@@ -263,7 +263,7 @@ export default function Homepage({ audioControls }) {
         </section>
 
         {/* 🔸 Concept Section */}
-        <section className="concept-section">
+        <section className="concept-section" style={{overflow: 'visible'}}> 
       <Cloud top={80} left={45} distance="short" direction="left" variant={1} />
       <Cloud top={180} left={60} distance="medium" direction="left" variant={2} />
       <Cloud top={0} left={72} distance="long" direction="left" variant={3} />
@@ -299,7 +299,8 @@ export default function Homepage({ audioControls }) {
       </section>
 
       {/* 🔸 Black Trapezium with Frame 3 and Text */}
-      <section className="trapezium-section">
+      {/* <div style={{marginTop: '400px'}}> */}
+      <section className="trapezium-section" style={{overflow: 'visible'}}>
         <div className="svg-container-trapezium">
           <MiddleFrame 
             className="middle-svg-concept"
@@ -324,9 +325,10 @@ export default function Homepage({ audioControls }) {
           </div>
         </div>
       </section>
+      {/* </div> */}
 
       {/* 🔸 Sound Concept Section */}
-      <section className="sound-concept-section">
+      <section className="sound-concept-section"  style={{overflow: 'visible'}}>
         <div className="sound-text">
           <h2>Partnering with Plants</h2>
           <p>
