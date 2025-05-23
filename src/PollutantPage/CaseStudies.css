@@ -227,7 +227,7 @@
     position: absolute;
     left: 3px; /* Match the left inset of the background */
     bottom: 0;
-    width: 140%;
+    width: 111%;
     height: 12px;
     background-color: #ffffff;
     z-index: -1;

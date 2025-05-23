@@ -58,7 +58,7 @@
     position: absolute;
     left: 3px; /* Match the left inset of the background */
     bottom: 0;
-    width: 111%;
+    width: 120%;
     height: 12px;
     background-color: #000;
     z-index: -1;
