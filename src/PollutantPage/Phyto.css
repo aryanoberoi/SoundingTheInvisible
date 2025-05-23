@@ -303,7 +303,7 @@ left: 0;
   position: absolute;
   top: 0;
   left: 3px; /* Inset from left */
-  right: 2px; /* Inset from right */
+  right: 3px; /* Inset from right */
   bottom: 0;
   background-color: #fff;
   z-index: -1; /* Place behind text */
