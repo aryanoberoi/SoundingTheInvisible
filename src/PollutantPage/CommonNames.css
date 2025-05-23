@@ -47,7 +47,7 @@
     position: absolute;
     top: 0;
     left: 3px !important; /* Inset from left */
-    right: 3px !important; /* Inset from right */
+    right: -7px !important; /* Inset from right */
     bottom: 0;
     background-color: #000;
     z-index: -1; /* Place behind text */
