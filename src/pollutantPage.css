@@ -991,7 +991,7 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
 
 /* ✅ Adjusting Circle Positions */
 .nav-bar .ellipse {
-  top: 70px;
+  top: 85px;
 } /* Matches text-wrapper position */
 .nav-bar .ellipse-2 {
   top: 160px;
