@@ -53,7 +53,7 @@ export const Box = React.memo(({ sections, pollutantName }) => {
           </div>
         </div>
 
-        <div className="content-items-container" style={{ transform: 'translate(0em, 13em)' }}>
+        <div className="content-items-container" >
           {parsedSections.map((section, index) => {
             const { title, content } = section;
             if (!title && !content) {

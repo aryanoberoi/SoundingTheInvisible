@@ -4,7 +4,7 @@
     position: relative;
     width: 100%;
     padding: 20px 0;
-    overflow: hidden;
+    overflow: visible;
 }
   
 .box-content-sections {
@@ -76,11 +76,11 @@
   
 .box-container .human-container {
     height: auto;
-    position: relative;
-    top: 0;
+    position: absolute;
+    top: 250px;
+    left: 0;
     width: 40%;
     max-width: 438px;
-    margin-top: 4em;
 }
   
 .box-container .human-image-wrapper {
@@ -133,12 +133,11 @@
   
 /* Current desktop styles */
 .box-container .content-items-container {
-    position: absolute;
-    left: 38%;
-    right: 20px;
-    margin-left: calc(10% + 20px); /* Added 20px gap */
+    position: relative;
+    margin-left: 38%;
+    margin-top: 100px;
     width: 60%;
-    top: 33px;
+    padding-bottom: 50px;
 }
 
 /* Smaller desktop screens */
