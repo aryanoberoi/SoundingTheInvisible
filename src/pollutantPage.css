@@ -887,22 +887,24 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
 /* Position the new ellipse */
 .nav-bar .ellipse-0 {
   position: absolute;
-  left: -10px;
+  left: -4px;
   top: 0;
-  width: 30px;    /* give it a visible width */
-  height: 30px;   /* give it a visible height */
+  width: 19px;    /* give it a visible width */
+  height: 19px;   /* give it a visible height */
   cursor: pointer; /* move cursor styling here */
   /* remove background-color if not needed */
   background-color: transparent;
+  border-radius: 50%;
   /* optional: to avoid interfering with other content */
   z-index: 10;
 }
 
 .ellipse-0 svg {
+  margin-top: 0px !important;
   width: 19px;
   height: 19px;
   border-radius: 50%;
-  transform: scale(1.5);
+  transform: scale(1.2);
   display: block; /* avoid inline spacing issues */
   margin: 0 auto; /* center svg if needed */
 }
