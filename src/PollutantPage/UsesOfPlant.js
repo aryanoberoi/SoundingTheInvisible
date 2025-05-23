@@ -259,7 +259,7 @@ export const UsesOfPlant = ({ sectionsData }) => {
         />
         <div id="references" className="button-container-bibliography">
           <a href={sectionsData.bibliography} className="bibliography-button" target="_blank" rel="noopener noreferrer">
-            BIBLIOGRAPHY
+            REFERENCES
           </a>
         </div>
       </div>
