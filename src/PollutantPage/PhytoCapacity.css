@@ -49,7 +49,7 @@
     position: absolute;
     top: 0;
     left: 3px !important; /* Inset from left */
-    right: 2px !important; /* Inset from right */
+    right: -7px !important; /* Inset from right */
     bottom: 0;
     background-color: #000;
     z-index: -1; /* Place behind text */
@@ -60,7 +60,7 @@
     position: absolute;
     left: 3px; /* Match the left inset of the background */
     bottom: 0;
-    width: 111%;
+    width: 118%;
     height: 12px;
     background-color: #000;
     z-index: -1;

@@ -106,7 +106,7 @@
     position: absolute;
     top: 0;
     left: 3px !important;
-    right: 2px !important;
+    right: -7px !important;
     bottom: 0;
     background-color: #000;
     z-index: -1;
@@ -117,7 +117,7 @@
     position: absolute;
     left: 3px;
     bottom: 0;
-    width: 111%;
+    width: 120%;
     height: 12px;
     background-color: #000;
     z-index: -1;

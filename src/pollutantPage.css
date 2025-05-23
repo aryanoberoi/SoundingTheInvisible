@@ -660,7 +660,7 @@ body.right-panel-active .hamburger-line {
 .sound-frequency-section {
   background-color: black;
   color: white;
-  padding: 0px 69px; /* Match left panel padding */
+  padding: 0px 50px !important; /* Match left panel padding */
   height: 666px; /* Ensure height adjusts to content */
   box-sizing: border-box;
   overflow: hidden;
@@ -887,22 +887,24 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
 /* Position the new ellipse */
 .nav-bar .ellipse-0 {
   position: absolute;
-  left: -10px;
+  left: -4px;
   top: 0;
-  width: 30px;    /* give it a visible width */
-  height: 30px;   /* give it a visible height */
+  width: 19px;    /* give it a visible width */
+  height: 19px;   /* give it a visible height */
   cursor: pointer; /* move cursor styling here */
   /* remove background-color if not needed */
   background-color: transparent;
+  border-radius: 50%;
   /* optional: to avoid interfering with other content */
   z-index: 10;
 }
 
 .ellipse-0 svg {
+  margin-top: 0px !important;
   width: 19px;
   height: 19px;
   border-radius: 50%;
-  transform: scale(1.5);
+  transform: scale(1.2);
   display: block; /* avoid inline spacing issues */
   margin: 0 auto; /* center svg if needed */
 }
@@ -989,7 +991,7 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
 
 /* ✅ Adjusting Circle Positions */
 .nav-bar .ellipse {
-  top: 70px;
+  top: 85px;
 } /* Matches text-wrapper position */
 .nav-bar .ellipse-2 {
   top: 160px;
@@ -1467,7 +1469,7 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
   background-color: white;
   color: black;
   min-height: 100vh;
-  padding: 30px 69px 155px 69px;
+  padding: 30px 40px 155px 100px;
 }
 
 .bottom-section8 {
@@ -1869,7 +1871,7 @@ img {
   position: absolute;
   top: 0;
   left: 3px; /* Inset from left */
-  right: 2px; /* Inset from right */
+  right: -7px; /* Inset from right */
   bottom: 0;
   background-color: #fff;
   z-index: -1; /* Place behind text */
