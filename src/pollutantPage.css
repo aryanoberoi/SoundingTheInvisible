@@ -2529,3 +2529,19 @@ body.white-panel-active .nav-bar .ellipse-0.active,
 body.white-panel-active .nav-bar [class^="ellipse-"].active {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
+
+/* Add vertical sound regions for mobile */
+body.sound-top-region .sound-icon span {
+  background-color: black !important;
+}
+body.sound-middle-region .sound-icon span {
+  background-color: black !important;
+}
+body.sound-bottom-region .sound-icon span {
+  background-color: white !important;
+}
+
+/* Override for combined section viewing */
+body.viewing-combined-section.sound-middle-region .sound-icon span {
+  background-color: white !important;
+}
