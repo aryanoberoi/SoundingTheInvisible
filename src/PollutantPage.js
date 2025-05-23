@@ -39,7 +39,7 @@ import twblack from "./x-twitter-brandsblack.png";
 import sh from "./share-from-square-regular.png";
 import shblack from "./share-from-square-regularblack.png";
 import back from "./back.png";
-import whitess from "./whitess.png";
+import backwhite from "./backwhite.png";
 import split_img from "./split_img.png";
 const PollutantPage = ({ categorizedData }) => {
   //this was hell to make
@@ -2552,12 +2552,12 @@ const PollutantPage = ({ categorizedData }) => {
                 {!isSplit ? (
                   <div className="content-sections">
                     <div className="bottom-section1" id="about-pollutant">
-                      <div
+                      {/* <div
                         style={{ padding: "35px 0px 0px 7px" }}
                         onClick={() => setIsSplit(true)}
                       >
-                        <img src={back} />
-                      </div>
+                        <img src={backwhite} />
+                      </div> */}
                       <AboutPollutantSection
                         sections={aboutpollutantcontent}
                         wasteTypeIcon={wasteTypeData.atomImage}
@@ -2620,12 +2620,12 @@ const PollutantPage = ({ categorizedData }) => {
                       {/* * time period overlap */}
                     </div>
                     <div className="white-container">
-                      <div
+                      {/* <div
                         style={{ padding: "35px 0px 0px 7px" }}
                         onClick={() => setIsSplit(true)}
                       >
                         <img src={whitess} />
-                      </div>
+                      </div> */}
                       <div className="bottom-section5" id="plant-name">
                         <div className="content-container">
                           <AboutPlant
@@ -2711,12 +2711,12 @@ const PollutantPage = ({ categorizedData }) => {
                   {/* * time period overlap */}
                 </div>
                 <div className="white-container">
-                  <div
+                  {/* <div
                     style={{ padding: "35px 0px 0px 7px" }}
                     onClick={() => setIsSplit(true)}
                   >
-                    <img src={whitess} />
-                  </div>
+                    <img src={backwhite} />
+                  </div> */}
                   <div className="bottom-section5" id="plant-name">
                     <div className="content-container">
                       <AboutPlant
@@ -2986,14 +2986,23 @@ const PollutantPage = ({ categorizedData }) => {
             </div>
             {window.innerWidth <= 768 ? (
               <>
-                {!isSplit ? (
+                {!isSplit ? 
+                
+       
+                  (
                   <div className="content-sections">
+                        <div
+                        style={{ padding: "35px 0px 0px 7px" }}
+                        onClick={() => setIsSplit(true)}
+                      >
+                        <img src={sliderPosition == 20 ? backwhite : back} />
+                      </div>
                     <div className="bottom-section1" id="about-pollutant">
                       {/* <div
                         style={{ padding: "35px 0px 0px 7px" }}
                         onClick={() => setIsSplit(true)}
                       >
-                        <img src={back} />
+                        <img src={backwhite} />
                       </div> */}
                       <AboutPollutantSection
                         sections={aboutpollutantcontent}
@@ -3057,12 +3066,7 @@ const PollutantPage = ({ categorizedData }) => {
                       {/* * time period overlap */}
                     </div>
                     <div className="white-container">
-                      <div
-                        style={{ padding: "35px 0px 0px 7px" }}
-                        onClick={() => setIsSplit(true)}
-                      >
-                        <img src={whitess} />
-                      </div>
+                  
                       <div className="bottom-section5" id="plant-name">
                         <div className="content-container">
                           <AboutPlant
@@ -3148,12 +3152,12 @@ const PollutantPage = ({ categorizedData }) => {
                   {/* * time period overlap */}
                 </div>
                 <div className="white-container">
-                  <div
+                  {/* <div
                     style={{ padding: "35px 0px 0px 7px" }}
                     onClick={() => setIsSplit(true)}
                   >
-                    <img src={whitess} />
-                  </div>
+                    <img src={backwhite} />
+                  </div> */}
                   <div className="bottom-section5" id="plant-name">
                     <div className="content-container">
                       <AboutPlant

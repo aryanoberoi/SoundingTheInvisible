@@ -325,6 +325,10 @@ left: 0;
 }
 
 @media (max-width: 768px) {
+  .button-container {
+  padding:19px !important;
+  
+  }
 .bottom-section4 .box {
 
     margin-left: 0% !important;

@@ -250,12 +250,12 @@ export const UsesOfPlant = ({ sectionsData }) => {
         </div>
       ))}
 
-      <div className="uses-of-plant-container" style={{ marginLeft: '100px' }}>
+      <div className="uses-of-plant-containerkk" style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}} >
         <img
           alt="down arrow"
           src={longDownArrow}
           className="down-arrow-icon"
-          style={{ marginTop: '120px', marginBottom: '160px', marginLeft: '40px' }}
+          style={{ marginTop: '120px', marginBottom: '160px', }}
         />
         <div id="references" className="button-container-bibliography">
           <a href={sectionsData.bibliography} className="bibliography-button" target="_blank" rel="noopener noreferrer">

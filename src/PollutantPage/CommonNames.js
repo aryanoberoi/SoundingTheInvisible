@@ -16,7 +16,11 @@ export const CommonNames = ({ sections }) => {
   return (
     <div className="common-names-container">
         <div className="common-names-header">
+          {window.innerWidth <= 768 ?
+            <div className="common-names-title">Common names of &nbsp;<br/>{plant_names}</div>
+          :
             <div className="common-names-title">Common names of {plant_names}</div>
+          }
         </div>
 
         <div className="common-names-items">

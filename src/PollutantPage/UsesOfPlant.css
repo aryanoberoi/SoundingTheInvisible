@@ -367,7 +367,7 @@
 .button-container-bibliography {
     margin-top: 20px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     width: 100%;
 
 }
@@ -412,5 +412,8 @@ padding-left: 0px;
     }
     .nutritional-text-header{
         width: 98%;
+    }
+    .uses-of-plant-container .uses-of-plant-title{
+        font-size: 24px !important;
     }
 }
