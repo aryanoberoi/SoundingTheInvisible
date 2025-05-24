@@ -93,7 +93,9 @@
 }
 
 .header{
-  margin-left: 5%;
+  margin-left: 10%;
+  margin-top: 5%;
+  transform: scale(1.2);
 }
 
 /* Main trapezium container */
