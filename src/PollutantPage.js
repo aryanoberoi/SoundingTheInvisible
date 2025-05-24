@@ -754,10 +754,16 @@ const PollutantPage = ({ categorizedData }) => {
       "--slider-position",
       `${clampedPosition}%`
     );
-    const newRotations = newPosition == 0 ? 18 : 90; // Or calculated value
-    document
-      .querySelector(".slider-image-container")
-      ?.style.setProperty("transform", `rotate(${newRotations}deg)`);
+    if (isMobileView) {
+      const newRotations = newPosition == 0 ? 18 : 90; // Or a calculated value
+      document
+        .querySelector(".slider-image-container")
+        ?.style.setProperty("transform", `rotate(${newRotations}deg)`);
+    }
+    // const newRotations = newPosition == 0 ? 18 : 90; // Or calculated value
+    // document
+    //   .querySelector(".slider-image-container")
+    //   ?.style.setProperty("transform", `rotate(${newRotations}deg)`);
     setSliderPosition(clampedPosition);
 
     document.body.classList.remove(
@@ -2986,17 +2992,14 @@ const PollutantPage = ({ categorizedData }) => {
             </div>
             {window.innerWidth <= 768 ? (
               <>
-                {!isSplit ? 
-                
-       
-                  (
+                {!isSplit ? (
                   <div className="content-sections">
-                        <div
-                        style={{ padding: "35px 0px 0px 7px" }}
-                        onClick={() => setIsSplit(true)}
-                      >
-                        <img src={sliderPosition == 20 ? backwhite : back} />
-                      </div>
+                    <div
+                      style={{ padding: "35px 0px 0px 7px" }}
+                      onClick={() => setIsSplit(true)}
+                    >
+                      <img src={sliderPosition == 20 ? backwhite : back} />
+                    </div>
                     <div className="bottom-section1" id="about-pollutant">
                       {/* <div
                         style={{ padding: "35px 0px 0px 7px" }}
@@ -3066,7 +3069,6 @@ const PollutantPage = ({ categorizedData }) => {
                       {/* * time period overlap */}
                     </div>
                     <div className="white-container">
-                  
                       <div className="bottom-section5" id="plant-name">
                         <div className="content-container">
                           <AboutPlant
