@@ -482,31 +482,17 @@ class AudioService {
 
   // Get audio URL with caching
   async getAudioUrl(padNumber) {
-    // Return cached URL if available
-    if (this.cachedUrls[padNumber]) {
-      return this.cachedUrls[padNumber];
-    }
-    
-    // Fetch new audio from API
     try {
       const response = await fetch(`${API_URL}/play_pad?pad=${padNumber}`);
-      
-      if (!response.ok) {
-        throw new Error(`Failed to fetch sound for pad ${padNumber}`);
-      }
-      
+      if (!response.ok) throw new Error(`Failed to fetch sound for pad ${padNumber}`);
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);
-      
-      // Cache the URL for future use
-      this.cachedUrls[padNumber] = url;
-      
-      return url;
+      return url;  // Return fresh URL every time without caching
     } catch (err) {
       console.error(`Error fetching pad ${padNumber}:`, err);
       throw err;
     }
-  }
+  }  
 
   // Stop a specific pad sound
   async stopPadSound(padNumber, fadeOutDuration = 2000) {
