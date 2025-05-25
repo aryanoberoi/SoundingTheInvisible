@@ -1,100 +1,40 @@
-// Updated App.js with comprehensive scroll fixing
+// App.js - Updated with more robust scroll handling
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Homepage from "./Homepage"; 
 import PollutantPage from "./PollutantPage"; 
 import Navbar from "./Navbar"; 
-import "./App.css";
+import "./App.css"; // New separate file for cursor styles
 import PlayPads from "./PlayPads";
 import IsolatedCursor from './IsolatedCursor';
 import audioService from './AudioService';
-import { ScrollToTop, inspectScrollableElements } from './ScrollFix';
+
+// Enhanced ScrollToTop component with useLayoutEffect
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  
+  // useLayoutEffect runs synchronously after DOM mutations but before browser painting
+  useLayoutEffect(() => {
+    // Force scroll to top with a slight delay to ensure it happens after route change
+    const timeoutId = setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'auto' // Use 'auto' instead of 'smooth' for immediate scroll
+      });
+    }, 0);
+    
+    return () => clearTimeout(timeoutId);
+  }, [pathname]);
+  
+  return null;
+};
 
 const AppContent = () => {
   const location = useLocation();
-  const [categorizedData, setCategorizedData] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const isInitialMount = useRef(true);
-  const prevPathRef = useRef('');
+  const [categorizedData, setCategorizedData] = React.useState({});
+  const [isLoading, setIsLoading] = React.useState(true); // Loading state
 
-  // Debug scrollable elements on mount
-  useEffect(() => {
-    // Inspect DOM for problematic elements
-    inspectScrollableElements();
-    
-    // Add global navigation event listener
-    const handleBeforeNavigate = () => {
-      console.log('[App] Navigation started - locking scroll');
-      document.body.classList.add('lock-scroll');
-    };
-    
-    window.addEventListener('beforeunload', handleBeforeNavigate);
-    return () => window.removeEventListener('beforeunload', handleBeforeNavigate);
-  }, []);
-
-  // Handle route changes
-  useEffect(() => {
-    console.log('[App] Route changed from', prevPathRef.current, 'to', location.pathname);
-    
-    // Skip initial mount
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-      prevPathRef.current = location.pathname;
-      return;
-    }
-    
-    // Lock scroll during transition
-    document.body.classList.add('lock-scroll');
-    
-    // Force scroll top before rendering new route
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'auto'
-    });
-    
-    // Only after a slight delay, unlock scroll
-    const timerId = setTimeout(() => {
-      document.body.classList.remove('lock-scroll');
-      console.log('[App] Unlocked scroll after route change');
-      
-      // Ensure scroll is at top after render
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'auto'
-      });
-      
-      // Update homepage-specific classes
-      if (location.pathname === "/") {
-        document.body.classList.add("homepage-active");
-      } else {
-        document.body.classList.remove("homepage-active");
-      }
-      
-      // Repeatedly try to scroll to top
-      let attempts = 0;
-      const attemptScroll = () => {
-        window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-        attempts++;
-        
-        if (window.pageYOffset > 0 && attempts < 5) {
-          setTimeout(attemptScroll, 100);
-        }
-      };
-      
-      attemptScroll();
-      
-    }, 50); // Short delay to ensure DOM has updated
-    
-    prevPathRef.current = location.pathname;
-    return () => clearTimeout(timerId);
-  }, [location.pathname]);
-
-  // Data fetching effect
   useEffect(() => {
     const sheetId = "1az7_Vg0GPH2FF393w0sjCmGUxHKEYnIsSDyAJIq8fxs";
     const sheetName = "Sheet1";
@@ -119,8 +59,15 @@ const AppContent = () => {
           return acc;
         }, {});
         
+        console.log("Available pollutant IDs:", rows.map(row => row.id).filter(Boolean));
+        console.log("Available plant names:", rows.map(row => row.plantName_Split).filter(Boolean));
+        
         setCategorizedData(categorizedData);
+        
+        // Initialize AudioService with the ROWS (flat array), not the categorized data
         audioService.init(rows);
+        console.log("AudioService initialized with data");
+        
         setIsLoading(false);
       })
       .catch(err => {
@@ -128,6 +75,17 @@ const AppContent = () => {
         setIsLoading(false);
       });
   }, []);
+
+  // Also manually handle scrolling when location changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    
+    if (location.pathname === "/") {
+      document.body.classList.add("homepage-active");
+    } else {
+      document.body.classList.remove("homepage-active");
+    }
+  }, [location.pathname]);
 
   // Clean up audio resources on unmount
   useEffect(() => {
@@ -137,28 +95,19 @@ const AppContent = () => {
   }, []);
 
   if (isLoading) {
-    return <div className="loading-container">Loading data, please wait...</div>;
+    return <div>Loading data, please wait...</div>; // Loading indicator
   }
 
   return (
-    <div className="app-container">
-      <ScrollToTop />
+    <div>
+      <ScrollToTop /> {/* Keep the ScrollToTop component */}
       <IsolatedCursor />
       <Navbar />
-      
-      {/* Wrap routes in a container with position: relative */}
-      <div className="page-container">
-        <Routes>
-          <Route path="/" element={<Homepage categorizedData={categorizedData} />} />
-          <Route path="/:customName" element={
-            <PollutantPage 
-              categorizedData={categorizedData} 
-              key={location.pathname} // Force remount on route change
-            />
-          } />
-          <Route path="/playtest" element={<PlayPads />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<Homepage categorizedData={categorizedData} />} />
+        <Route path="/:customName" element={<PollutantPage categorizedData={categorizedData} />} />
+        <Route path="/playtest" element={<PlayPads />} />
+      </Routes>
     </div>
   );
 };
