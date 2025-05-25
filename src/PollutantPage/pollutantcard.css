@@ -242,15 +242,3 @@
     left: 265px;
     transform: rotate(90deg);
   }
-
-  .pollutantVisualImage {
-    background: transparent;
-    aspect-ratio: 1;
-    width: 500px;
-    object-fit: contain;
-    z-index: 20;
-    position: absolute;
-    top: 205px;
-    left: 50%;
-    transform: translateX(-80px);
-  }
