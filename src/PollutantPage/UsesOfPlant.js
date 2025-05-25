@@ -250,7 +250,7 @@ export const UsesOfPlant = ({ sectionsData }) => {
         </div>
       ))}
 
-      <div className="uses-of-plant-container" style={{ marginLeft: '100px' }}>
+      <div className="uses-of-plant-container" style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}} >
         <img
           alt="down arrow"
           src={longDownArrow}

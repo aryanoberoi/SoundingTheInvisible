@@ -5,7 +5,12 @@ export const Origin = ({ sections }) => {
   return (
     <div className="origin-section-container">
         <div className="origin-section-header">
+            {window.innerWidth <= 768 ?
+            <div className="origin-section-title">Origin and Geographical &nbsp;<br/>Distribution</div>
+            :
+
             <div className="origin-section-title">Origin and Geographical Distribution</div>
+            }
         </div>
         
         <div className="origin-section-columns">

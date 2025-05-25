@@ -38,7 +38,9 @@ import tw from "./x-twitter-brands.png";
 import twblack from "./x-twitter-brandsblack.png";
 import sh from "./share-from-square-regular.png";
 import shblack from "./share-from-square-regularblack.png";
-import back from "./back.png"
+import back from "./back.png";
+import backwhite from "./backwhite.png";
+import split_img from "./split_img.png";
 const PollutantPage = ({ categorizedData }) => {
   //this was hell to make
   const { customName } = useParams();
@@ -63,6 +65,7 @@ const PollutantPage = ({ categorizedData }) => {
   const [state, setState] = useState(false);
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768);
   const [isSplit, setIsSplit] = useState(true);
+  const [isSplits, setIsSplits] = useState("slider-container");
 
   // Add a resize observer ref
   const resizeObserverRef = useRef(null);
@@ -742,11 +745,26 @@ const PollutantPage = ({ categorizedData }) => {
   // const [rotation, setRotation] = useState(180);
 
   const updateSliderPosition = (newPosition) => {
-    const clampedPosition = Math.max(0, Math.min(100, newPosition));
+    // const clampedPosition = Math.max(0, Math.min(100, newPosition));
+    const clampedPosition = Math.max(
+      isMobileView ? 20 : 0,
+      Math.min(100, newPosition)
+    );
+    console.log("clampedPosition", clampedPosition, newPosition);
     document.documentElement.style.setProperty(
       "--slider-position",
       `${clampedPosition}%`
     );
+    if (isMobileView) {
+      const newRotations = newPosition == 0 ? 18 : 90; // Or a calculated value
+      document
+        .querySelector(".slider-image-container")
+        ?.style.setProperty("transform", `rotate(${newRotations}deg)`);
+    }
+    // const newRotations = newPosition == 0 ? 18 : 90; // Or calculated value
+    // document
+    //   .querySelector(".slider-image-container")
+    //   ?.style.setProperty("transform", `rotate(${newRotations}deg)`);
     setSliderPosition(clampedPosition);
 
     document.body.classList.remove(
@@ -978,14 +996,20 @@ const PollutantPage = ({ categorizedData }) => {
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
     let newPosition;
+    console.log("clientY", clientY, "rect.top", rect.top);
     if (isMobileView) {
       // Vertical dragging
-      newPosition = ((clientY - rect.top) / rect.height) * 100;
+      // const adjustedTop = rect.top === 0 ? 15 : rect.top;
+      // newPosition = ((clientY - adjustedTop) / rect.height) * 100;
+      const adjustedTop = rect.top <= 0 ? 15 : rect.top;
+      const diffY = clientY - adjustedTop;
+      const safeDiffY = Math.max(0, diffY); // Prevent negative drag
+      newPosition = (safeDiffY / rect.height) * 100;
     } else {
       // Horizontal dragging
       newPosition = ((clientX - rect.left) / rect.width) * 100;
     }
-
+    console.log("newPosition", newPosition);
     newPosition = Math.max(0, Math.min(100, newPosition));
     updateSliderPosition(newPosition);
     lastPositionRef.current = newPosition;
@@ -1266,20 +1290,25 @@ const PollutantPage = ({ categorizedData }) => {
     // Desktop behavior - determine panel and snap slider
     const isInRightPanel = section.closest(".white-container") !== null;
     const targetSliderPos = isInRightPanel ? 0 : 100;
-  
+
+    // Set smooth transition for slider
     document.documentElement.style.setProperty(
       "--slider-transition",
       "left 0.5s ease-in-out"
     );
-  
+
+    // Update slider position with smooth transition
     updateSliderPosition(targetSliderPos);
     lastPositionRef.current = targetSliderPos;
-  
+
+    // Smooth scroll to section
+
     section.scrollIntoView({
       behavior: "auto",
       block: "start",
     });
     setState(false);
+    //  setState(open);
   };
 
   // Replace the scroll-based combined section detection with Intersection Observer
@@ -1536,493 +1565,392 @@ const PollutantPage = ({ categorizedData }) => {
         sliderPosition={sliderPosition}
         panelMode={sliderPosition < 50 ? "white" : "black"}
       />
-      {(!isMobileView || isSplit) ? (
-        <>
-          <div
-            id="slider-container"
-            className="slider-container"
-            ref={sliderContainerRef}
-            style={{ height: containerHeight }}
-          >
-            <div ref={leftPanelRef}>
-              {window.innerWidth <= 768 ? (
-                <MobileLeftPanel
-                  sections={leftpanelcontent}
-                  onLoad={() => setLeftPanelLoaded(true)}
-                  onNavigate={handleNavClick}
-                />
-              ) : (
-                <LeftPanel
-                  sections={leftpanelcontent}
-                  onLoad={() => setLeftPanelLoaded(true)}
-                  onNavigate={handleNavClick}
-                />
-              )}
-            </div>
-            <div ref={rightPanelRef}>
-              {window.innerWidth <= 768 ? (
-                <MobileRightPanel
-                  sections={rightpanelcontent}
-                  pollutantName={leftpanelcontent[0].pollutantName}
-                  onLoad={() => setRightPanelLoaded(true)}
-                  onNavigate={handleNavClick}
-                />
-              ) : (
-                <RightPanel
-                  sections={rightpanelcontent}
-                  pollutantName={leftpanelcontent[0].pollutantName}
-                  onLoad={() => setRightPanelLoaded(true)}
-                  onNavigate={handleNavClick}
-                />
-              )}
-            </div>
 
-            <div
-              ref={sliderBarRef}
-              className="slider-bar"
-              style={{
-                ...(isMobileView
-                  ? {
-                      top: `${sliderPosition}%`,
-                      transform: "translateY(-50%)",
-                      left: "46%",
-                    }
-                  : {
-                      left: `${sliderPosition}%`,
-                      transform: "translateX(0%)",
-                    }),
-                position: "absolute",
-                transition: isDragging ? "none" : "all 0.3s ease-in-out",
-                height: isMobileView ? "32px" : containerHeight,
-                width: isMobileView ? "10%" : "42px",
-                zIndex: 10,
-                cursor: "grab",
-              }}
-              onMouseDown={handleStartDrag}
-              onTouchStart={handleStartDrag}
-              // ref={sliderBarRef}
-              // className="slider-bar"
-              // style={{
-              //   top: `${sliderPosition}%`,
-              //   height: containerHeight,
-              //   position: "absolute",
-              //   left: "50%",
-              //   right: 0,
-              //   transform: "translateY(-50%)",
-              //   transition: "top 0.3s ease-in-out",
-              //   cursor: "grab",
-              // }}
-              // onMouseDown={handleMouseDown}
-              // onTouchStart={(e) => {
-              //   e.preventDefault(); // prevent scroll
-              //   setIsDragging(true);
-              //   lastPositionRef.current = sliderPosition;
-              // }}
-            >
-              <div
-                className="slider-image-container"
-                style={{ position: "relative", top: "0px" }}
-              >
-                <img src="slider.png" alt="Slider" className="slider-image" />
-              </div>
-            </div>
-          </div>
-          {isMobileView ? (
+      {isMobileView ? (
+        <>
+          {isSplit ? (
             <>
-              {sliderPosition == 100 ? (
-                <div className="container">
-                  <div className="row">
-                    <div className="col-lg-12">
-                      <img src={Pollutantburger} alt="pollutant"/>
-                      <h2
-                        style={{
-                          color: "#fff",
-                          fontSize: "18px",
-                          fontWeight: "300",
-                          margin: 0,
-                        }}
-                      >
-                        Pollutant
-                      </h2>
-                      <h1
-                        style={{
-                          color: "#fff",
-                          fontSize: "32px",
-                          fontWeight: "300",
-                          margin: 0,
-                        }}
-                      >
-                        {pollutantName}
-                      </h1>
-                      <div className="description" style={{ width: "100%" }}>
-                        {pollutantDescription}
-                      </div>
-                      <div
-                        className="sectionTitleLeftPanel"
-                        style={{ color: "#fff", textAlign: "left" }}
-                      >
-                        Effects on human health:
-                      </div>
-                      <div
-                        className="titleList"
-                        style={{ color: "#fff", textAlign: "left" }}
-                      >
-                        {healthEffectsTitles.map((title, index) => (
+              <div
+                id="slider-container"
+                className="slider-container"
+                ref={sliderContainerRef}
+                style={{ height: containerHeight }}
+              >
+                <div ref={leftPanelRef}>
+                  {window.innerWidth <= 768 ? (
+                    <MobileLeftPanel
+                      sections={leftpanelcontent}
+                      onLoad={() => setLeftPanelLoaded(true)}
+                      onNavigate={handleNavClick}
+                      sliderPosition={sliderPosition}
+                    />
+                  ) : (
+                    <LeftPanel
+                      sections={leftpanelcontent}
+                      onLoad={() => setLeftPanelLoaded(true)}
+                      onNavigate={handleNavClick}
+                    />
+                  )}
+                </div>
+                <div ref={rightPanelRef}>
+                  {window.innerWidth <= 768 ? (
+                    <MobileRightPanel
+                      sections={rightpanelcontent}
+                      pollutantName={leftpanelcontent[0].pollutantName}
+                      onLoad={() => setRightPanelLoaded(true)}
+                      onNavigate={handleNavClick}
+                    />
+                  ) : (
+                    <RightPanel
+                      sections={rightpanelcontent}
+                      pollutantName={leftpanelcontent[0].pollutantName}
+                      onLoad={() => setRightPanelLoaded(true)}
+                      onNavigate={handleNavClick}
+                    />
+                  )}
+                </div>
+
+                <div
+                  ref={sliderBarRef}
+                  className="slider-bar"
+                  style={{
+                    ...(isMobileView
+                      ? {
+                          top: `${sliderPosition}%`,
+                          transform: "translateY(-50%)",
+                          left: "46%",
+                        }
+                      : {
+                          left: `${sliderPosition}%`,
+                          transform: "translateX(0%)",
+                        }),
+                    position: "absolute",
+                    transition: isDragging ? "none" : "all 0.3s ease-in-out",
+                    height: isMobileView ? "32px" : containerHeight,
+                    width: isMobileView ? "10%" : "42px",
+                    zIndex: 10,
+                    cursor: "grab",
+                  }}
+                  onMouseDown={handleStartDrag}
+                  onTouchStart={handleStartDrag}
+                >
+                  <div
+                    className="slider-image-container"
+                    style={{ position: "relative", top: "0px" }}
+                  >
+                    <img
+                      src="slider.png"
+                      alt="Slider"
+                      className="slider-image"
+                    />
+                  </div>
+                </div>
+              </div>
+              {isMobileView ? (
+                <>
+                  {sliderPosition == 100 ? (
+                    <div className="container">
+                      <div className="row">
+                        <div className="col-lg-12">
+                          <img src={Pollutantburger} alt="pollutant" />
+                          <h2
+                            style={{
+                              color: "#fff",
+                              fontSize: "18px",
+                              fontWeight: "300",
+                              margin: 0,
+                            }}
+                          >
+                            Pollutant
+                          </h2>
+                          <h1
+                            style={{
+                              color: "#fff",
+                              fontSize: "32px",
+                              fontWeight: "300",
+                              margin: 0,
+                            }}
+                          >
+                            {pollutantName}
+                          </h1>
                           <div
-                            key={index}
-                            className="titleEntry"
+                            className="description"
+                            style={{ width: "100%" }}
+                          >
+                            {pollutantDescription}
+                          </div>
+                          <div
+                            className="sectionTitleLeftPanel"
                             style={{ color: "#fff", textAlign: "left" }}
                           >
-                            <div className="bulletcircle" />
-                            <span
-                              className="titleTextSC"
-                              style={{ color: "#fff", textAlign: "left" }}
-                            >
-                              {title}
-                            </span>
+                            Effects on human health:
                           </div>
-                        ))}
-                      </div>
-                      <div
-                        className="sectionTitleLeftPanel"
-                        style={{
-                          paddingBottom: "10px",
-                          color: "#fff",
-                          textAlign: "left",
-                        }}
-                      >
-                        Sound Frequency of {pollutantName}
-                        <br />
-                      </div>
-                      <div
-                        style={{
-                          border: "1px solid black",
-                          width: "260px",
-                          height: "50px",
-                          overflow: "hidden",
-                        }}
-                      >
-                        <SineWaveVisualizer />
-                      </div>
-                      <div
-                        className="sourcesTitle"
-                        style={{
-                          color: "#fff",
-                          textAlign: "left",
-                          margin: 0,
-                          marginTop: "3rem",
-                        }}
-                      >
-                        Sources In Venice Lagoon:
-                      </div>
-                      <div
-                        className="sourcesDescription"
-                        style={{
-                          color: "#fff",
-                          textAlign: "left",
-                          margin: 0,
-                          width: "100%",
-                        }}
-                      >
-                        {sources}
-                      </div>
-                    </div>
-                    <div
-                      className="col-lg-12 pb-5 mb-5"
-                      style={{ marginBottom: "9rem" }}
-                    >
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          justifyContent: "center",
-                          gap: 10,
-                          marginTop: 30,
-                        }}
-                      >
-                        <img
-                          src={fb}
-                          alt="Pollutant visual"
-                          style={{ width: "15px", height: "24px" }}
-                          // className="pollutantVisualImage"
-                        />
-                        <img
-                          src={In}
-                          alt="Pollutant visual"
-                          style={{ width: "21px", height: "24px" }}
-                          // className="pollutantVisualImage"
-                        />
-                        <img
-                          src={tw}
-                          alt="Pollutant visual"
-                          style={{ width: "24px", height: "24px" }}
-                          // className="pollutantVisualImage"
-                        />
-                        <img
-                          src={sh}
-                          alt="Pollutant visual"
-                          style={{ width: "27px", height: "24px" }}
-                          // className="pollutantVisualImage"
-                        />
-
-                        {/* <img
-                    // src="https://res.cloudinary.com/dj1km5iax/image/upload/v1745676198/xejwbtmg6pic01osjkdn.png"
-                    alt="Pollutant visual"
-                    // className="pollutantVisualImage"
-                  /> */}
-                      </div>
-                      <p
-                        style={{
-                          color: "#fff",
-                          fontSize: "14px",
-                          fontWeight: "200",
-                          textAlign: "center",
-                        }}
-                      >
-                        &#169;{" "}
-                        <b style={{ fontWeight: "300" }}>NANDITA KUMAR</b> 2025
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ) : sliderPosition == 0 ? (
-                <div
-                  className=""
-                  style={{
-                    background: "#fff",
-                    padding: "5%",
-                    marginTop: "-20px",
-                  }}
-                >
-                  <div className="row">
-                    {/* <div className="col-lg-12">
-                  <h2
-                    style={{
-                      color: "#000",
-                      fontSize: "18px",
-                      fontWeight: "300",
-                      margin: 0,
-                    }}
-                  >
-                    Plant
-                  </h2>
-                  <h1
-                    style={{
-                      color: "#000",
-                      fontSize: "32px",
-                      fontWeight: "300",
-                      margin: 0,
-                    }}
-                  >
-                    Wetland status
-                  </h1>
-                  <div className="description" style={{ width: "100%" }}>
-                    {rightpanelcontent[0]?.plantDetails}
-                  </div>
-                  <div
-                    className="sectionTitleLeftPanel"
-                    style={{ color: "#000", textAlign: "left" }}
-                  >
-                    Effects on human health:
-                  </div>
-                  <div
-                    className="titleList"
-                    style={{ color: "#000", textAlign: "left" }}
-                  >
-                    {healthEffectsTitles.map((title, index) => (
-                      <div
-                        key={index}
-                        className="titleEntry"
-                        style={{ color: "#000", textAlign: "left" }}
-                      >
-                        <div className="bulletcircle" />
-                        <span
-                          className="titleTextSC"
-                          style={{ color: "#000", textAlign: "left" }}
-                        >
-                          {title}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                  <div
-                    className="sectionTitleLeftPanel"
-                    style={{
-                      paddingBottom: "10px",
-                      color: "#000",
-                      textAlign: "left",
-                    }}
-                  >
-                    Sound Frequency of {pollutantName}
-                    <br />
-                  </div>
-                  <div
-                    style={{
-                      border: "1px solid black",
-                      width: "260px",
-                      height: "50px",
-                      overflow: "hidden",
-                    }}
-                  >
-                    <SineWaveVisualizer />
-                  </div>
-                  <div
-                    className="sourcesTitle"
-                    style={{
-                      color: "#000",
-                      textAlign: "left",
-                      margin: 0,
-                      marginTop: "3rem",
-                    }}
-                  >
-                    Sources In Venice Lagoon:
-                  </div>
-                  <div
-                    className="sourcesDescription"
-                    style={{
-                      color: "#000",
-                      textAlign: "left",
-                      margin: 0,
-                      width: "100%",
-                    }}
-                  >
-                    {sources}
-                  </div>
-                </div> */}
-                    <div className="col-lg-12">
-                      <aside className="sidebar">
-                        {plantData.map((section, index) => {
-                          if (index >= 1) {
-                            let targetId = "";
-                            if (index === 1) {
-                              targetId = "phyto-capacity";
-                            } else if (index === 2) {
-                              targetId = "plant-habitat";
-                            }
-
-                            return (
-                              <div key={index}>
-                                <div className="sectionTitle">
-                                  {section.title}
-                                </div>
-                                <div className="titleListRightPanel">
-                                  {index === 1 ? (
-                                    <ul>
-                                      {section.description
-                                        .split("\n")
-                                        .map((line, lineIndex) => (
-                                          <li
-                                            key={lineIndex}
-                                            className="titleListRightPanel"
-                                          >
-                                            {line}
-                                          </li>
-                                        ))}
-                                    </ul>
-                                  ) : (
-                                    section.description
-                                      .split("\n")
-                                      .map((line, lineIndex) => (
-                                        <div
-                                          key={lineIndex}
-                                          className="titleEntry"
-                                        >
-                                          <div className="rightPanel-bullet">
-                                            <img
-                                              src={habitatIcons[lineIndex]}
-                                              alt={`icon-${lineIndex}`}
-                                              style={{
-                                                width: "100%",
-                                                height: "100%",
-                                                objectFit: "contain",
-                                              }}
-                                            />
-                                          </div>
-                                          <span className="titleTextRightPanel">
-                                            {line}
-                                          </span>
-                                        </div>
-                                      ))
-                                  )}
-                                </div>
-                                {targetId && (
-                                  <KnowMoreButton
-                                    className="knowMoreButtonRightPanel"
-                                    onClick={() => handleNavClick(targetId)}
-                                  />
-                                )}
+                          <div
+                            className="titleList"
+                            style={{ color: "#fff", textAlign: "left" }}
+                          >
+                            {healthEffectsTitles.map((title, index) => (
+                              <div
+                                key={index}
+                                className="titleEntry"
+                                style={{ color: "#fff", textAlign: "left" }}
+                              >
+                                <div className="bulletcircle" />
+                                <span
+                                  className="titleTextSC"
+                                  style={{ color: "#fff", textAlign: "left" }}
+                                >
+                                  {title}
+                                </span>
                               </div>
-                            );
-                          }
-                          return (
-                            <PlantInfoSection
-                              key={index}
-                              title={section.title}
-                              description={section.description}
-                              showKnowMore={false}
+                            ))}
+                          </div>
+                          <div
+                            className="sectionTitleLeftPanel"
+                            style={{
+                              paddingBottom: "10px",
+                              color: "#fff",
+                              textAlign: "left",
+                            }}
+                          >
+                            Sound Frequency of {pollutantName}
+                            <br />
+                          </div>
+                          <div
+                            style={{
+                              border: "1px solid black",
+                              width: "260px",
+                              height: "50px",
+                              overflow: "hidden",
+                            }}
+                          >
+                            <SineWaveVisualizer />
+                          </div>
+                          <div
+                            className="sourcesTitle"
+                            style={{
+                              color: "#fff",
+                              textAlign: "left",
+                              margin: 0,
+                              marginTop: "3rem",
+                            }}
+                          >
+                            Sources In Venice Lagoon:
+                          </div>
+                          <div
+                            className="sourcesDescription"
+                            style={{
+                              color: "#fff",
+                              textAlign: "left",
+                              margin: 0,
+                              width: "100%",
+                            }}
+                          >
+                            {sources}
+                          </div>
+                        </div>
+                        <div
+                          className="col-lg-12 pb-5 mb-5"
+                          style={{ marginBottom: "9rem" }}
+                        >
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "row",
+                              justifyContent: "center",
+                              gap: 10,
+                              marginTop: 30,
+                            }}
+                          >
+                            <img
+                              src={fb}
+                              alt="Pollutant visual"
+                              style={{ width: "15px", height: "24px" }}
+                              // className="pollutantVisualImage"
                             />
-                          );
-                        })}
-                      </aside>
+                            <img
+                              src={In}
+                              alt="Pollutant visual"
+                              style={{ width: "21px", height: "24px" }}
+                              // className="pollutantVisualImage"
+                            />
+                            <img
+                              src={tw}
+                              alt="Pollutant visual"
+                              style={{ width: "24px", height: "24px" }}
+                              // className="pollutantVisualImage"
+                            />
+                            <img
+                              src={sh}
+                              alt="Pollutant visual"
+                              style={{ width: "27px", height: "24px" }}
+                              // className="pollutantVisualImage"
+                            />
+                          </div>
+                          <p
+                            style={{
+                              color: "#fff",
+                              fontSize: "14px",
+                              fontWeight: "200",
+                              textAlign: "center",
+                            }}
+                          >
+                            &#169;{" "}
+                            <b style={{ fontWeight: "300" }}>NANDITA KUMAR</b>{" "}
+                            2025
+                          </p>
+                        </div>
+                      </div>
                     </div>
+                  ) : sliderPosition == 20 ? (
                     <div
-                      className="col-lg-12 pb-5 mb-5"
-                      style={{ marginBottom: "9rem" }}
+                      className=""
+                      style={{
+                        background: "#fff",
+                        padding: "5%",
+                        marginTop: "-20px",
+                      }}
                     >
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          justifyContent: "center",
-                          gap: 10,
-                          marginTop: 30,
-                        }}
-                      >
-                        <img
-                          src={fbblack}
-                          alt="Pollutant visual"
-                          style={{ width: "15px", height: "24px" }}
-                          // className="pollutantVisualImage"
-                        />
-                        <img
-                          src={Inblack}
-                          alt="Pollutant visual"
-                          style={{ width: "21px", height: "24px" }}
-                          // className="pollutantVisualImage"
-                        />
-                        <img
-                          src={twblack}
-                          alt="Pollutant visual"
-                          style={{ width: "24px", height: "24px" }}
-                          // className="pollutantVisualImage"
-                        />
-                        <img
-                          src={shblack}
-                          alt="Pollutant visual"
-                          style={{ width: "27px", height: "24px" }}
-                          // className="pollutantVisualImage"
-                        />
+                      <div className="row">
+                        <div className="col-lg-12">
+                          <aside className="sidebar">
+                            {plantData.map((section, index) => {
+                              if (index >= 1) {
+                                let targetId = "";
+                                if (index === 1) {
+                                  targetId = "phyto-capacity";
+                                } else if (index === 2) {
+                                  targetId = "plant-habitat";
+                                }
 
-                        {/* <img
+                                return (
+                                  <div key={index}>
+                                    <div className="sectionTitle">
+                                      {section.title}
+                                    </div>
+                                    <div className="titleListRightPanel">
+                                      {index === 1 ? (
+                                        <ul>
+                                          {section.description
+                                            .split("\n")
+                                            .map((line, lineIndex) => (
+                                              <li
+                                                key={lineIndex}
+                                                className="titleListRightPanel"
+                                              >
+                                                {line}
+                                              </li>
+                                            ))}
+                                        </ul>
+                                      ) : (
+                                        section.description
+                                          .split("\n")
+                                          .map((line, lineIndex) => (
+                                            <div
+                                              key={lineIndex}
+                                              className="titleEntry"
+                                            >
+                                              <div className="rightPanel-bullet">
+                                                <img
+                                                  src={habitatIcons[lineIndex]}
+                                                  alt={`icon-${lineIndex}`}
+                                                  style={{
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    objectFit: "contain",
+                                                  }}
+                                                />
+                                              </div>
+                                              <span className="titleTextRightPanel">
+                                                {line}
+                                              </span>
+                                            </div>
+                                          ))
+                                      )}
+                                    </div>
+                                    {targetId && (
+                                      <KnowMoreButton
+                                        className="knowMoreButtonRightPanel"
+                                        onClick={() => handleNavClick(targetId)}
+                                      />
+                                    )}
+                                  </div>
+                                );
+                              }
+                              return (
+                                <PlantInfoSection
+                                  key={index}
+                                  title={section.title}
+                                  description={section.description}
+                                  showKnowMore={false}
+                                />
+                              );
+                            })}
+                          </aside>
+                        </div>
+                        <div
+                          className="col-lg-12 pb-5 mb-5"
+                          style={{ marginBottom: "9rem" }}
+                        >
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "row",
+                              justifyContent: "center",
+                              gap: 10,
+                              marginTop: 30,
+                            }}
+                          >
+                            <img
+                              src={fbblack}
+                              alt="Pollutant visual"
+                              style={{ width: "15px", height: "24px" }}
+                              // className="pollutantVisualImage"
+                            />
+                            <img
+                              src={Inblack}
+                              alt="Pollutant visual"
+                              style={{ width: "21px", height: "24px" }}
+                              // className="pollutantVisualImage"
+                            />
+                            <img
+                              src={twblack}
+                              alt="Pollutant visual"
+                              style={{ width: "24px", height: "24px" }}
+                              // className="pollutantVisualImage"
+                            />
+                            <img
+                              src={shblack}
+                              alt="Pollutant visual"
+                              style={{ width: "27px", height: "24px" }}
+                              // className="pollutantVisualImage"
+                            />
+
+                            {/* <img
                     // src="https://res.cloudinary.com/dj1km5iax/image/upload/v1745676198/xejwbtmg6pic01osjkdn.png"
                     alt="Pollutant visual"
                     // className="pollutantVisualImage"
                   /> */}
+                          </div>
+                          <p
+                            style={{
+                              color: "#000",
+                              fontSize: "14px",
+                              fontWeight: "200",
+                              textAlign: "center",
+                            }}
+                          >
+                            &#169;{" "}
+                            <b style={{ fontWeight: "300" }}>NANDITA KUMAR</b>{" "}
+                            2025
+                          </p>
+                        </div>
                       </div>
-                      <p
-                        style={{
-                          color: "#000",
-                          fontSize: "14px",
-                          fontWeight: "200",
-                          textAlign: "center",
-                        }}
-                      >
-                        &#169;{" "}
-                        <b style={{ fontWeight: "300" }}>NANDITA KUMAR</b> 2025
-                      </p>
                     </div>
-                  </div>
-                </div>
+                  ) : (
+                    <></>
+                  )}
+                </>
               ) : (
                 <></>
               )}
@@ -2032,413 +1960,1242 @@ const PollutantPage = ({ categorizedData }) => {
           )}
         </>
       ) : (
-        <></>
-      )}
-
-      <div className="combined-section">
-        <div className="nav-bar-container">
-          <div className="nav-bar" ref={navBarRef}>
-            {isMobile && (
+        <>
+          {isSplit ? (
+            <>
               <div
-                className="mobile-menu-toggle"
-                onClick={() => setMenuOpen(!menuOpen)}
+                id="slider-container"
+                className="slider-container"
+                ref={sliderContainerRef}
+                style={{ height: containerHeight }}
               >
-                ☰
-              </div>
-            )}
-            <div
-              className={`nav-items-container ${isMobile ? "mobile" : ""} ${
-                isMobile && menuOpen ? "mobile-active" : ""
-              }`}
-            >
-              {/* <div 
-                className="text-wrapper-combined"
-                onClick={() => handleNavClick("overview")}
-              >
-                <span>{leftpanelcontent[0].pollutantName} + {rightpanelcontent[0].plantNameSplit}</span>
-              </div> */}
-              <div
-                className={`text-wrapper`}
-                onClick={() => handleNavClick("about-pollutant")}
-              >
-                <span>{leftpanelcontent[0].pollutantName}</span>
-              </div>
-
-              <div
-                className={`div`}
-                onClick={() => handleNavClick("plant-name")}
-              >
-                <span>{rightpanelcontent[0].plantNameSplit}</span>
-              </div>
-
-              <div
-                className={`text-wrapper-2`}
-                onClick={() => handleNavClick("sound-frequency")}
-              >
-                <span>Sound Frequency of {leftpanelcontent[0].pollutantName}</span>
-              </div>
-
-              <div
-                className={`text-wrapper-3`}
-                onClick={() => handleNavClick("common-names")}
-              >
-                <span>
-                  Common names of {rightpanelcontent[0].plantNameSplit}
-                </span>
-              </div>
-
-              <div
-                className={`text-wrapper-4`}
-                onClick={() => handleNavClick("plant-habitat")}
-              >
-                <span>{rightpanelcontent[0].plantNameSplit}'s Habitat</span>
-              </div>
-
-              <div
-                className={`text-wrapper-5`}
-                onClick={() => handleNavClick("origin")}
-              >
-                <span>Origin and Geographical Distribution</span>
-              </div>
-
-              <p
-                className={`p`}
-                onClick={() => handleNavClick("phyto-capacity")}
-              >
-                <span>
-                  Phytoremediation capacity of{" "}
-                  {rightpanelcontent[0].plantNameSplit}
-                </span>
-              </p>
-
-              <div
-                className={`text-wrapper-6`}
-                onClick={() => handleNavClick("uses-of-plant")}
-              >
-                <span>Uses of {rightpanelcontent[0].plantNameSplit}</span>
-              </div>
-
-              <div
-                className={`text-wrapper-7`}
-                onClick={() => handleNavClick("references")}
-              >
-                <span>References</span>
-              </div>
-
-              <div
-                className={`text-wrapper-8`}
-                onClick={() => handleNavClick("effect-on-health")}
-              >
-                <span>Effects of {leftpanelcontent[0].pollutantName} on Health</span>
-              </div>
-
-              <div
-                className={`text-wrapper-9`}
-                onClick={() => handleNavClick("case-study")}
-              >
-                <span>Case Study of {leftpanelcontent[0].pollutantName}'s Pollution</span>
-              </div>
-
-              <p
-                className={`text-wrapper-10`}
-                onClick={() => handleNavClick("phytoremediation")}
-              >
-                <span>
-                  Plants Remediating {leftpanelcontent[0].pollutantName}
-                </span>
-              </p>
-            </div>
-            <div className="overlap-group">
-              <div className={`ellipse-0 ${activeSection === "overview" ? "active" : ""}`}
-                    onClick={() => {
-                      console.log("Clicked ellipse - returning to top");
-                      
-                      if (isMobileView) {
-                        setIsSplit(true);
-                      }
-                      
-                      const topElement = document.getElementById("slider-container");
-                      if (topElement) {
-                        topElement.scrollIntoView({ behavior: "smooth", block: "start" });
-                      } else {
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                      }
-                    }}
-                    style={{ cursor: "pointer" }}>
-                <svg
-                  width="19"
-                  height="19"
-                  viewBox="0 0 19 19"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <mask id="path-1-inside-1_3499_236" fill="white">
-                    <path d="M10 0.59155C7.61305 0.591551 5.32387 1.53976 3.63604 3.22759C1.94821 4.91542 1 7.2046 1 9.59155C1 11.9785 1.94821 14.2677 3.63604 15.9555C5.32386 17.6433 7.61305 18.5916 10 18.5916L10 9.59155L10 0.59155Z"/>
-                  </mask>
-                  <path
-                    d="M10 0.59155C7.61305 0.591551 5.32387 1.53976 3.63604 3.22759C1.94821 4.91542 1 7.2046 1 9.59155C1 11.9785 1.94821 14.2677 3.63604 15.9555C5.32386 17.6433 7.61305 18.5916 10 18.5916L10 9.59155L10 0.59155Z"
-                    fill="black"
-                    stroke="white"
-                    strokeWidth="2"
-                    mask="url(#path-1-inside-1_3499_236)"
-                  />
-                  <path d="M10 18.5916C12.387 18.5916 14.6761 17.6433 16.364 15.9555C18.0518 14.2677 19 11.9785 19 9.59155C19 7.20461 18.0518 4.91542 16.364 3.22759C14.6761 1.53977 12.387 0.591554 10 0.591553L10 9.59155L10 18.5916Z"  fill="white" />
-                </svg>
-              </div>
-              <div
-                className={`ellipse ${activeSection === "about-pollutant" ? "active" : ""}`}
-                onClick={() => handleNavClick("about-pollutant")}
-                style={{ cursor: "pointer" }}
-              />
-              <div
-                className={`ellipse-2 ${activeSection === "sound-frequency" ? "active" : ""}`}
-                onClick={() => handleNavClick("sound-frequency")}
-                style={{ cursor: "pointer" }}
-              />
-              <div
-                className={`ellipse-3 ${activeSection === "effect-on-health" ? "active" : ""}`}
-                onClick={() => handleNavClick("effect-on-health")}
-                style={{ cursor: "pointer" }}
-              />
-              <div
-                className={`ellipse-4 ${activeSection === "case-study" ? "active" : ""}`}
-                onClick={() => handleNavClick("case-study")}
-                style={{ cursor: "pointer" }}
-              />
-              <div
-                className={`ellipse-5 ${activeSection === "phytoremediation" ? "active" : ""}`}
-                onClick={() => handleNavClick("phytoremediation")}
-                style={{ cursor: "pointer" }}
-              />
-              <div
-                className={`ellipse-6 ${activeSection === "plant-name" ? "active" : ""}`}
-                onClick={() => handleNavClick("plant-name")}
-                style={{ cursor: "pointer" }}
-              />
-              <div
-                className={`ellipse-7 ${activeSection === "common-names" ? "active" : ""}`}
-                onClick={() => handleNavClick("common-names")}
-                style={{ cursor: "pointer" }}
-              />
-              <div
-                className={`ellipse-8 ${activeSection === "plant-habitat" ? "active" : ""}`}
-                onClick={() => handleNavClick("plant-habitat")}
-                style={{ cursor: "pointer" }}
-              />
-              <div
-                className={`ellipse-9 ${activeSection === "origin" ? "active" : ""}`}
-                onClick={() => handleNavClick("origin")}
-                style={{ cursor: "pointer" }}            
-              />
-              <div
-                className={`ellipse-10 ${activeSection === "phyto-capacity" ? "active" : ""}`}
-                onClick={() => handleNavClick("phyto-capacity")}
-                style={{ cursor: "pointer" }}
-              />
-              <div
-                className={`ellipse-11 ${activeSection === "uses-of-plant" ? "active" : ""}`}
-                onClick={() => handleNavClick("uses-of-plant")}
-                style={{ cursor: "pointer" }}
-              />
-              <div
-                className={`ellipse-12 ${activeSection === "references" ? "active" : ""}`}
-                onClick={() => handleNavClick("references")}
-                style={{ cursor: "pointer" }}
-              />
-            </div>
-          </div>
-        </div>
-        
-
-        <div>
-          {!state && (
-            <div
-              className="mobile-tab-only"
-              style={{
-                position: "fixed",
-                top: "50%",
-                right: 0,
-                transform: "translateY(-50%)",
-                zIndex: 1300,
-              }}
-            >
-              <div
-                className="toggleDrawerArrowwhite toggleDrawerArrowblack"
-                onClick={toggleDrawer("right", true)}
-              >
-                <img src="./leftarrow.png" className="arrowblack" />
-                <img src="./leftarrowblack.png" className="arrowwhite" />
-              </div>
-            </div>
-          )}
-        </div>
-        {isMobileView && !isSplit ? (
-          <div className="content-sections">
-            <div style={{padding:'0px 20px'}} onClick={()=>setIsSplit(true)}> 
-              <img src={back} />
-            </div>
-            <div className="bottom-section1" id="about-pollutant">
-              <AboutPollutantSection
-                sections={aboutpollutantcontent}
-                wasteTypeIcon={wasteTypeData.atomImage}
-              />
-            </div>
-            <div className="sound-frequency-section" id="sound-frequency">
-              <SoundFrequency sections={sinewavefreq} />
-            </div>
-            <div className="effect-on-health-section" id="effect-on-health">
-              <Box
-                sections={effectonhealthcontent}
-                pollutantName={leftpanelcontent[0].pollutantName}
-              />
-            </div>
-            <div className="bottom-section3" id="case-study">
-              <CaseStudies
-                sections={casestudiescontent}
-                pollutantName={leftpanelcontent[0].pollutantName}
-              />
-            </div>
-            <div className="bottom-section4" id="phytoremediation">
-              <Phyto
-                sections={phytocontent}
-                pollutantName={leftpanelcontent[0].pollutantName}
-              />
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <div className="down_arrowstart">
-                  <div
-                    style={{
-                      background: "#fff",
-                      display: "flex",
-                      justifyContent: "center",
-                      padding: "0px 10px",
-                    }}
-                    onClick={() => {
-                      handleNavClick("plant-habitat");
-                    }}
-                  >
-                    <p className="bibliograhy" style={{ color: "#000" }}>
-                      BIBLIOGRAHY
-                    </p>
-                  </div>
+                <div ref={leftPanelRef}>
+                  {window.innerWidth <= 768 ? (
+                    <MobileLeftPanel
+                      sections={leftpanelcontent}
+                      onLoad={() => setLeftPanelLoaded(true)}
+                      onNavigate={handleNavClick}
+                    />
+                  ) : (
+                    <LeftPanel
+                      sections={leftpanelcontent}
+                      onLoad={() => setLeftPanelLoaded(true)}
+                      onNavigate={handleNavClick}
+                    />
+                  )}
                 </div>
-              </div>
-            </div>
-            <div className="white-container">
-              <div className="bottom-section5" id="plant-name">
-                <div className="content-container">
-                  <AboutPlant
-                    sections={aboutplantcontent}
-                    wasteTypeIcon={wasteTypeData.atomImage}
-                  />
+                <div ref={rightPanelRef}>
+                  {window.innerWidth <= 768 ? (
+                    <MobileRightPanel
+                      sections={rightpanelcontent}
+                      pollutantName={leftpanelcontent[0].pollutantName}
+                      onLoad={() => setRightPanelLoaded(true)}
+                      onNavigate={handleNavClick}
+                    />
+                  ) : (
+                    <RightPanel
+                      sections={rightpanelcontent}
+                      pollutantName={leftpanelcontent[0].pollutantName}
+                      onLoad={() => setRightPanelLoaded(true)}
+                      onNavigate={handleNavClick}
+                    />
+                  )}
                 </div>
-              </div>
-              <div className="bottom-section6" id="common-names">
-                <CommonNames sections={commonname} />
-              </div>
-              <div className="bottom-section7" id="plant-habitat">
-                <PlantHabitat sections={habitat} />
-              </div>
-              <div className="bottom-section8" id="origin">
-                <Origin sections={geographicaldistribution} />
-              </div>
-              <div className="bottom-section9" id="phyto-capacity">
-                <PhytoCapacity sections={sectionphyto} />
-              </div>
-              <div className="bottom-section10" id="uses-of-plant">
-                <UsesOfPlant sectionsData={plantUses} />
-              </div>
-            </div>
-          </div>
-        ) : (
-          !isMobileView && (
-            <div className="content-sections">
-              <div className="bottom-section1" id="about-pollutant">
-                <AboutPollutantSection
-                  sections={aboutpollutantcontent}
-                  wasteTypeIcon={wasteTypeData.atomImage}
-                />
-              </div>
-              <div className="sound-frequency-section" id="sound-frequency">
-                <SoundFrequency sections={sinewavefreq} />
-              </div>
-              <div className="effect-on-health-section" id="effect-on-health">
-                <Box
-                  sections={effectonhealthcontent}
-                  pollutantName={leftpanelcontent[0].pollutantName}
-                />
-              </div>
-              <div className="bottom-section3" id="case-study">
-                <CaseStudies
-                  sections={casestudiescontent}
-                  pollutantName={leftpanelcontent[0].pollutantName}
-                />
-              </div>
-              <div className="bottom-section4" id="phytoremediation">
-                <Phyto
-                  sections={phytocontent}
-                  pollutantName={leftpanelcontent[0].pollutantName}
-                />
+
                 <div
+                  ref={sliderBarRef}
+                  className="slider-bar"
                   style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
+                    ...(isMobileView
+                      ? {
+                          top: `${sliderPosition}%`,
+                          transform: "translateY(-50%)",
+                          left: "46%",
+                        }
+                      : {
+                          left: `${sliderPosition}%`,
+                          transform: "translateX(0%)",
+                        }),
+                    position: "absolute",
+                    transition: isDragging ? "none" : "all 0.3s ease-in-out",
+                    height: isMobileView ? "32px" : containerHeight,
+                    width: isMobileView ? "10%" : "42px",
+                    zIndex: 10,
+                    cursor: "grab",
                   }}
+                  onMouseDown={handleStartDrag}
+                  onTouchStart={handleStartDrag}
                 >
-                  <div className="down_arrowstart">
-                    <div
-                      style={{
-                        background: "#fff",
-                        display: "flex",
-                        justifyContent: "center",
-                        padding: "0px 10px",
-                      }}
-                      onClick={() => {
-                        handleNavClick("plant-habitat");
-                      }}
-                    >
-                      <p className="bibliograhy" style={{ color: "#000" }}>
-                        BIBLIOGRAHY
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="white-container">
-                <div className="bottom-section5" id="plant-name">
-                  <div className="content-container">
-                    <AboutPlant
-                      sections={aboutplantcontent}
-                      wasteTypeIcon={wasteTypeData.atomImage}
+                  <div
+                    className="slider-image-container"
+                    style={{ position: "relative", top: "0px" }}
+                  >
+                    <img
+                      src="slider.png"
+                      alt="Slider"
+                      className="slider-image"
                     />
                   </div>
                 </div>
-                <div className="bottom-section6" id="common-names">
-                  <CommonNames sections={commonname} />
+              </div>
+              {isMobileView ? (
+                <>
+                  {sliderPosition == 100 ? (
+                    <div className="container">
+                      <div className="row">
+                        <div className="col-lg-12">
+                          <img src={Pollutantburger} alt="pollutant" />
+                          <h2
+                            style={{
+                              color: "#fff",
+                              fontSize: "18px",
+                              fontWeight: "300",
+                              margin: 0,
+                            }}
+                          >
+                            Pollutant
+                          </h2>
+                          <h1
+                            style={{
+                              color: "#fff",
+                              fontSize: "32px",
+                              fontWeight: "300",
+                              margin: 0,
+                            }}
+                          >
+                            {pollutantName}
+                          </h1>
+                          <div
+                            className="description"
+                            style={{ width: "100%" }}
+                          >
+                            {pollutantDescription}
+                          </div>
+                          <div
+                            className="sectionTitleLeftPanel"
+                            style={{ color: "#fff", textAlign: "left" }}
+                          >
+                            Effects on human health:
+                          </div>
+                          <div
+                            className="titleList"
+                            style={{ color: "#fff", textAlign: "left" }}
+                          >
+                            {healthEffectsTitles.map((title, index) => (
+                              <div
+                                key={index}
+                                className="titleEntry"
+                                style={{ color: "#fff", textAlign: "left" }}
+                              >
+                                <div className="bulletcircle" />
+                                <span
+                                  className="titleTextSC"
+                                  style={{ color: "#fff", textAlign: "left" }}
+                                >
+                                  {title}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                          <div
+                            className="sectionTitleLeftPanel"
+                            style={{
+                              paddingBottom: "10px",
+                              color: "#fff",
+                              textAlign: "left",
+                            }}
+                          >
+                            Sound Frequency of {pollutantName}
+                            <br />
+                          </div>
+                          <div
+                            style={{
+                              border: "1px solid black",
+                              width: "260px",
+                              height: "50px",
+                              overflow: "hidden",
+                            }}
+                          >
+                            <SineWaveVisualizer />
+                          </div>
+                          <div
+                            className="sourcesTitle"
+                            style={{
+                              color: "#fff",
+                              textAlign: "left",
+                              margin: 0,
+                              marginTop: "3rem",
+                            }}
+                          >
+                            Sources In Venice Lagoon:
+                          </div>
+                          <div
+                            className="sourcesDescription"
+                            style={{
+                              color: "#fff",
+                              textAlign: "left",
+                              margin: 0,
+                              width: "100%",
+                            }}
+                          >
+                            {sources}
+                          </div>
+                        </div>
+                        <div
+                          className="col-lg-12 pb-5 mb-5"
+                          style={{ marginBottom: "9rem" }}
+                        >
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "row",
+                              justifyContent: "center",
+                              gap: 10,
+                              marginTop: 30,
+                            }}
+                          >
+                            <img
+                              src={fb}
+                              alt="Pollutant visual"
+                              style={{ width: "15px", height: "24px" }}
+                              // className="pollutantVisualImage"
+                            />
+                            <img
+                              src={In}
+                              alt="Pollutant visual"
+                              style={{ width: "21px", height: "24px" }}
+                              // className="pollutantVisualImage"
+                            />
+                            <img
+                              src={tw}
+                              alt="Pollutant visual"
+                              style={{ width: "24px", height: "24px" }}
+                              // className="pollutantVisualImage"
+                            />
+                            <img
+                              src={sh}
+                              alt="Pollutant visual"
+                              style={{ width: "27px", height: "24px" }}
+                              // className="pollutantVisualImage"
+                            />
+                          </div>
+                          <p
+                            style={{
+                              color: "#fff",
+                              fontSize: "14px",
+                              fontWeight: "200",
+                              textAlign: "center",
+                            }}
+                          >
+                            &#169;{" "}
+                            <b style={{ fontWeight: "300" }}>NANDITA KUMAR</b>{" "}
+                            2025
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ) : sliderPosition == 15 ? (
+                    <div
+                      className=""
+                      style={{
+                        background: "#fff",
+                        padding: "5%",
+                        marginTop: "-20px",
+                      }}
+                    >
+                      <div className="row">
+                        <div className="col-lg-12">
+                          <aside className="sidebar">
+                            {plantData.map((section, index) => {
+                              if (index >= 1) {
+                                let targetId = "";
+                                if (index === 1) {
+                                  targetId = "phyto-capacity";
+                                } else if (index === 2) {
+                                  targetId = "plant-habitat";
+                                }
+
+                                return (
+                                  <div key={index}>
+                                    <div className="sectionTitle">
+                                      {section.title}
+                                    </div>
+                                    <div className="titleListRightPanel">
+                                      {index === 1 ? (
+                                        <ul>
+                                          {section.description
+                                            .split("\n")
+                                            .map((line, lineIndex) => (
+                                              <li
+                                                key={lineIndex}
+                                                className="titleListRightPanel"
+                                              >
+                                                {line}
+                                              </li>
+                                            ))}
+                                        </ul>
+                                      ) : (
+                                        section.description
+                                          .split("\n")
+                                          .map((line, lineIndex) => (
+                                            <div
+                                              key={lineIndex}
+                                              className="titleEntry"
+                                            >
+                                              <div className="rightPanel-bullet">
+                                                <img
+                                                  src={habitatIcons[lineIndex]}
+                                                  alt={`icon-${lineIndex}`}
+                                                  style={{
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    objectFit: "contain",
+                                                  }}
+                                                />
+                                              </div>
+                                              <span className="titleTextRightPanel">
+                                                {line}
+                                              </span>
+                                            </div>
+                                          ))
+                                      )}
+                                    </div>
+                                    {targetId && (
+                                      <KnowMoreButton
+                                        className="knowMoreButtonRightPanel"
+                                        onClick={() => handleNavClick(targetId)}
+                                      />
+                                    )}
+                                  </div>
+                                );
+                              }
+                              return (
+                                <PlantInfoSection
+                                  key={index}
+                                  title={section.title}
+                                  description={section.description}
+                                  showKnowMore={false}
+                                />
+                              );
+                            })}
+                          </aside>
+                        </div>
+                        <div
+                          className="col-lg-12 pb-5 mb-5"
+                          style={{ marginBottom: "9rem" }}
+                        >
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "row",
+                              justifyContent: "center",
+                              gap: 10,
+                              marginTop: 30,
+                            }}
+                          >
+                            <img
+                              src={fbblack}
+                              alt="Pollutant visual"
+                              style={{ width: "15px", height: "24px" }}
+                              // className="pollutantVisualImage"
+                            />
+                            <img
+                              src={Inblack}
+                              alt="Pollutant visual"
+                              style={{ width: "21px", height: "24px" }}
+                              // className="pollutantVisualImage"
+                            />
+                            <img
+                              src={twblack}
+                              alt="Pollutant visual"
+                              style={{ width: "24px", height: "24px" }}
+                              // className="pollutantVisualImage"
+                            />
+                            <img
+                              src={shblack}
+                              alt="Pollutant visual"
+                              style={{ width: "27px", height: "24px" }}
+                              // className="pollutantVisualImage"
+                            />
+
+                            {/* <img
+                    // src="https://res.cloudinary.com/dj1km5iax/image/upload/v1745676198/xejwbtmg6pic01osjkdn.png"
+                    alt="Pollutant visual"
+                    // className="pollutantVisualImage"
+                  /> */}
+                          </div>
+                          <p
+                            style={{
+                              color: "#000",
+                              fontSize: "14px",
+                              fontWeight: "200",
+                              textAlign: "center",
+                            }}
+                          >
+                            &#169;{" "}
+                            <b style={{ fontWeight: "300" }}>NANDITA KUMAR</b>{" "}
+                            2025
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                </>
+              ) : (
+                <></>
+              )}
+            </>
+          ) : (
+            <></>
+          )}
+          <div className="combined-section" style={{ padding: "0px 10px" }}>
+            <div className="nav-bar-container">
+              <div className="nav-bar" ref={navBarRef}>
+                {isMobile && (
+                  <div
+                    className="mobile-menu-toggle"
+                    onClick={() => setMenuOpen(!menuOpen)}
+                  >
+                    ☰
+                  </div>
+                )}
+                <div
+                  className={`nav-items-container ${isMobile ? "mobile" : ""} ${
+                    isMobile && menuOpen ? "mobile-active" : ""
+                  }`}
+                >
+                  <div
+                    className="text-wrapper-combined"
+                    onClick={() => handleNavClick("overview")}
+                  >
+                    <span>
+                      {leftpanelcontent[0].pollutantName} +{" "}
+                      {rightpanelcontent[0].plantNameSplit}
+                    </span>
+                  </div>
+                  <div
+                    className={`text-wrapper`}
+                    onClick={() => handleNavClick("about-pollutant")}
+                  >
+                    <span>{leftpanelcontent[0].pollutantName}</span>
+                  </div>
+
+                  <div
+                    className={`div`}
+                    onClick={() => handleNavClick("plant-name")}
+                  >
+                    <span>{rightpanelcontent[0].plantNameSplit}</span>
+                  </div>
+
+                  <div
+                    className={`text-wrapper-2`}
+                    onClick={() => handleNavClick("sound-frequency")}
+                  >
+                    <span>Sound frequency</span>
+                  </div>
+
+                  <div
+                    className={`text-wrapper-3`}
+                    onClick={() => handleNavClick("common-names")}
+                  >
+                    <span>
+                      Common names of {rightpanelcontent[0].plantNameSplit}
+                    </span>
+                  </div>
+
+                  <div
+                    className={`text-wrapper-4`}
+                    onClick={() => handleNavClick("plant-habitat")}
+                  >
+                    <span>{rightpanelcontent[0].plantNameSplit}'s Habitat</span>
+                  </div>
+
+                  <div
+                    className={`text-wrapper-5`}
+                    onClick={() => handleNavClick("origin")}
+                  >
+                    <span>Origin and Geographical Distribution</span>
+                  </div>
+
+                  <p
+                    className={`p`}
+                    onClick={() => handleNavClick("phyto-capacity")}
+                  >
+                    <span>
+                      Phytoremediation capacity of{" "}
+                      {rightpanelcontent[0].plantNameSplit}
+                    </span>
+                  </p>
+
+                  <div
+                    className={`text-wrapper-6`}
+                    onClick={() => handleNavClick("uses-of-plant")}
+                  >
+                    <span>Uses of {rightpanelcontent[0].plantNameSplit}</span>
+                  </div>
+
+                  <div
+                    className={`text-wrapper-7`}
+                    onClick={() => handleNavClick("references")}
+                  >
+                    <span>References</span>
+                  </div>
+
+                  <div
+                    className={`text-wrapper-8`}
+                    onClick={() => handleNavClick("effect-on-health")}
+                  >
+                    <span>Effect on health</span>
+                  </div>
+
+                  <div
+                    className={`text-wrapper-9`}
+                    onClick={() => handleNavClick("case-study")}
+                  >
+                    <span>Case study</span>
+                  </div>
+
+                  <p
+                    className={`text-wrapper-10`}
+                    onClick={() => handleNavClick("phytoremediation")}
+                  >
+                    <span>
+                      Phytoremediation of {leftpanelcontent[0].pollutantName}
+                    </span>
+                  </p>
                 </div>
-                <div className="bottom-section7" id="plant-habitat">
-                  <PlantHabitat sections={habitat} />
-                </div>
-                <div className="bottom-section8" id="origin">
-                  <Origin sections={geographicaldistribution} />
-                </div>
-                <div className="bottom-section9" id="phyto-capacity">
-                  <PhytoCapacity sections={sectionphyto} />
-                </div>
-                <div className="bottom-section10" id="uses-of-plant">
-                  <UsesOfPlant sectionsData={plantUses} />
+                <div className="overlap-group">
+                  <div
+                    className={`ellipse-0 ${
+                      activeSection === "overview" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse ${
+                      activeSection === "about-pollutant" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-2 ${
+                      activeSection === "sound-frequency" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-3 ${
+                      activeSection === "effect-on-health" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-4 ${
+                      activeSection === "case-study" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-5 ${
+                      activeSection === "phytoremediation" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-6 ${
+                      activeSection === "plant-name" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-7 ${
+                      activeSection === "common-names" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-8 ${
+                      activeSection === "plant-habitat" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-9 ${
+                      activeSection === "origin" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-10 ${
+                      activeSection === "phyto-capacity" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-11 ${
+                      activeSection === "uses-of-plant" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-12 ${
+                      activeSection === "references" ? "active" : ""
+                    }`}
+                  />
                 </div>
               </div>
             </div>
-          )
-        )}
-      </div>
+
+            <div>
+              {!state && (
+                <div
+                  className="mobile-tab-only"
+                  style={{
+                    position: "fixed",
+                    top: "50%",
+                    right: 0,
+                    transform: "translateY(-50%)",
+                    zIndex: 1300,
+                  }}
+                >
+                  <div
+                    className="toggleDrawerArrowwhite toggleDrawerArrowblack"
+                    onClick={toggleDrawer("right", true)}
+                  >
+                    <img src="./leftarrow.png" className="arrowblack" />
+                    <img src="./leftarrowblack.png" className="arrowwhite" />
+                  </div>
+                </div>
+              )}
+            </div>
+            {window.innerWidth <= 768 ? (
+              <>
+                {!isSplit ? (
+                  <div className="content-sections">
+                    <div className="bottom-section1" id="about-pollutant">
+                      {/* <div
+                        style={{ padding: "35px 0px 0px 7px" }}
+                        onClick={() => setIsSplit(true)}
+                      >
+                        <img src={backwhite} />
+                      </div> */}
+                      <AboutPollutantSection
+                        sections={aboutpollutantcontent}
+                        wasteTypeIcon={wasteTypeData.atomImage}
+                      />
+                    </div>
+                    <div
+                      className="sound-frequency-section"
+                      id="sound-frequency"
+                    >
+                      <SoundFrequency sections={sinewavefreq} />
+                    </div>
+                    <div
+                      className="effect-on-health-section"
+                      id="effect-on-health"
+                    >
+                      <Box
+                        sections={effectonhealthcontent}
+                        pollutantName={leftpanelcontent[0].pollutantName}
+                      />
+                    </div>
+                    <div className="bottom-section3" id="case-study">
+                      <CaseStudies
+                        sections={casestudiescontent}
+                        pollutantName={leftpanelcontent[0].pollutantName}
+                      />
+                    </div>
+                    <div className="bottom-section4" id="phytoremediation">
+                      <Phyto
+                        sections={phytocontent}
+                        pollutantName={leftpanelcontent[0].pollutantName}
+                      />{" "}
+                      <div
+                        style={{
+                          width: "100%",
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <div className="down_arrowstart">
+                          <div
+                            style={{
+                              background: "#fff",
+                              display: "flex",
+                              justifyContent: "center",
+                              padding: "0px 10px",
+                            }}
+                            onClick={() => {
+                              handleNavClick("plant-habitat");
+                            }}
+                          >
+                            <p
+                              className="bibliograhy"
+                              style={{ color: "#000" }}
+                            >
+                              BIBLIOGRAHY
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      {/* * time period overlap */}
+                    </div>
+                    <div className="white-container">
+                      {/* <div
+                        style={{ padding: "35px 0px 0px 7px" }}
+                        onClick={() => setIsSplit(true)}
+                      >
+                        <img src={whitess} />
+                      </div> */}
+                      <div className="bottom-section5" id="plant-name">
+                        <div className="content-container">
+                          <AboutPlant
+                            sections={aboutplantcontent}
+                            wasteTypeIcon={wasteTypeData.atomImage}
+                          />
+                        </div>
+                      </div>
+                      <div className="bottom-section6" id="common-names">
+                        <CommonNames sections={commonname} />
+                      </div>
+                      <div className="bottom-section7" id="plant-habitat">
+                        <PlantHabitat sections={habitat} />
+                      </div>
+                      <div className="bottom-section8" id="origin">
+                        <Origin sections={geographicaldistribution} />
+                      </div>
+                      <div className="bottom-section9" id="phyto-capacity">
+                        <PhytoCapacity sections={sectionphyto} />
+                      </div>
+                      <div className="bottom-section10" id="uses-of-plant">
+                        <UsesOfPlant sectionsData={plantUses} />
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </>
+            ) : (
+              <div className="content-sections">
+                <div className="bottom-section1" id="about-pollutant">
+                  <AboutPollutantSection
+                    sections={aboutpollutantcontent}
+                    wasteTypeIcon={wasteTypeData.atomImage}
+                  />
+                </div>
+                <div className="sound-frequency-section" id="sound-frequency">
+                  <SoundFrequency sections={sinewavefreq} />
+                </div>
+                <div className="effect-on-health-section" id="effect-on-health">
+                  <Box
+                    sections={effectonhealthcontent}
+                    pollutantName={leftpanelcontent[0].pollutantName}
+                  />
+                </div>
+                <div className="bottom-section3" id="case-study">
+                  <CaseStudies
+                    sections={casestudiescontent}
+                    pollutantName={leftpanelcontent[0].pollutantName}
+                  />
+                </div>
+                <div className="bottom-section4" id="phytoremediation">
+                  <Phyto
+                    sections={phytocontent}
+                    pollutantName={leftpanelcontent[0].pollutantName}
+                  />{" "}
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <div className="down_arrowstart">
+                      <div
+                        style={{
+                          background: "#fff",
+                          display: "flex",
+                          justifyContent: "center",
+                          padding: "0px 10px",
+                        }}
+                        onClick={() => {
+                          handleNavClick("plant-habitat");
+                        }}
+                      >
+                        <p className="bibliograhy" style={{ color: "#000" }}>
+                          BIBLIOGRAHY
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  {/* * time period overlap */}
+                </div>
+                <div className="white-container">
+                  {/* <div
+                    style={{ padding: "35px 0px 0px 7px" }}
+                    onClick={() => setIsSplit(true)}
+                  >
+                    <img src={backwhite} />
+                  </div> */}
+                  <div className="bottom-section5" id="plant-name">
+                    <div className="content-container">
+                      <AboutPlant
+                        sections={aboutplantcontent}
+                        wasteTypeIcon={wasteTypeData.atomImage}
+                      />
+                    </div>
+                  </div>
+                  <div className="bottom-section6" id="common-names">
+                    <CommonNames sections={commonname} />
+                  </div>
+                  <div className="bottom-section7" id="plant-habitat">
+                    <PlantHabitat sections={habitat} />
+                  </div>
+                  <div className="bottom-section8" id="origin">
+                    <Origin sections={geographicaldistribution} />
+                  </div>
+                  <div className="bottom-section9" id="phyto-capacity">
+                    <PhytoCapacity sections={sectionphyto} />
+                  </div>
+                  <div className="bottom-section10" id="uses-of-plant">
+                    <UsesOfPlant sectionsData={plantUses} />
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </>
+      )}
+      {isMobile && isSplits == "slider-container" ? (
+        <>
+          <div>
+            {!state && (
+              <div
+                className="mobile-tab-only"
+                style={{
+                  position: "fixed",
+                  top: "50%",
+                  right: 0,
+                  transform: "translateY(-50%)",
+                  zIndex: 1300,
+                }}
+              >
+                <div
+                  className="toggleDrawerArrowwhite toggleDrawerArrowblack"
+                  onClick={toggleDrawer("right", true)}
+                >
+                  <img src="./leftarrow.png" className="arrowblack" />
+                  <img src="./leftarrowblack.png" className="arrowwhite" />
+                </div>
+              </div>
+            )}
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
+      {isSplits !== "slider-container" ? (
+        <>
+          <div className="combined-section" style={{ padding: "0px 10px" }}>
+            <div className="nav-bar-container">
+              <div className="nav-bar" ref={navBarRef}>
+                {isMobile && (
+                  <div
+                    className="mobile-menu-toggle"
+                    onClick={() => setMenuOpen(!menuOpen)}
+                  >
+                    ☰
+                  </div>
+                )}
+                <div
+                  className={`nav-items-container ${isMobile ? "mobile" : ""} ${
+                    isMobile && menuOpen ? "mobile-active" : ""
+                  }`}
+                >
+                  <div
+                    className="text-wrapper-combined"
+                    onClick={() => handleNavClick("overview")}
+                  >
+                    <span>
+                      {leftpanelcontent[0].pollutantName} +{" "}
+                      {rightpanelcontent[0].plantNameSplit}
+                    </span>
+                  </div>
+                  <div
+                    className={`text-wrapper`}
+                    onClick={() => handleNavClick("about-pollutant")}
+                  >
+                    <span>{leftpanelcontent[0].pollutantName}</span>
+                  </div>
+
+                  <div
+                    className={`div`}
+                    onClick={() => handleNavClick("plant-name")}
+                  >
+                    <span>{rightpanelcontent[0].plantNameSplit}</span>
+                  </div>
+
+                  <div
+                    className={`text-wrapper-2`}
+                    onClick={() => handleNavClick("sound-frequency")}
+                  >
+                    <span>Sound frequency</span>
+                  </div>
+
+                  <div
+                    className={`text-wrapper-3`}
+                    onClick={() => handleNavClick("common-names")}
+                  >
+                    <span>
+                      Common names of {rightpanelcontent[0].plantNameSplit}
+                    </span>
+                  </div>
+
+                  <div
+                    className={`text-wrapper-4`}
+                    onClick={() => handleNavClick("plant-habitat")}
+                  >
+                    <span>{rightpanelcontent[0].plantNameSplit}'s Habitat</span>
+                  </div>
+
+                  <div
+                    className={`text-wrapper-5`}
+                    onClick={() => handleNavClick("origin")}
+                  >
+                    <span>Origin and Geographical Distribution</span>
+                  </div>
+
+                  <p
+                    className={`p`}
+                    onClick={() => handleNavClick("phyto-capacity")}
+                  >
+                    <span>
+                      Phytoremediation capacity of{" "}
+                      {rightpanelcontent[0].plantNameSplit}
+                    </span>
+                  </p>
+
+                  <div
+                    className={`text-wrapper-6`}
+                    onClick={() => handleNavClick("uses-of-plant")}
+                  >
+                    <span>Uses of {rightpanelcontent[0].plantNameSplit}</span>
+                  </div>
+
+                  <div
+                    className={`text-wrapper-7`}
+                    onClick={() => handleNavClick("references")}
+                  >
+                    <span>References</span>
+                  </div>
+
+                  <div
+                    className={`text-wrapper-8`}
+                    onClick={() => handleNavClick("effect-on-health")}
+                  >
+                    <span>Effect on health</span>
+                  </div>
+
+                  <div
+                    className={`text-wrapper-9`}
+                    onClick={() => handleNavClick("case-study")}
+                  >
+                    <span>Case study</span>
+                  </div>
+
+                  <p
+                    className={`text-wrapper-10`}
+                    onClick={() => handleNavClick("phytoremediation")}
+                  >
+                    <span>
+                      Phytoremediation of {leftpanelcontent[0].pollutantName}
+                    </span>
+                  </p>
+                </div>
+                <div className="overlap-group">
+                  <div
+                    className={`ellipse-0 ${
+                      activeSection === "overview" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse ${
+                      activeSection === "about-pollutant" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-2 ${
+                      activeSection === "sound-frequency" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-3 ${
+                      activeSection === "effect-on-health" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-4 ${
+                      activeSection === "case-study" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-5 ${
+                      activeSection === "phytoremediation" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-6 ${
+                      activeSection === "plant-name" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-7 ${
+                      activeSection === "common-names" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-8 ${
+                      activeSection === "plant-habitat" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-9 ${
+                      activeSection === "origin" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-10 ${
+                      activeSection === "phyto-capacity" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-11 ${
+                      activeSection === "uses-of-plant" ? "active" : ""
+                    }`}
+                  />
+                  <div
+                    className={`ellipse-12 ${
+                      activeSection === "references" ? "active" : ""
+                    }`}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              {!state && (
+                <div
+                  className="mobile-tab-only"
+                  style={{
+                    position: "fixed",
+                    top: "88%",
+                    right: 0,
+                    transform: "translateY(-50%)",
+                    zIndex: 1300,
+                  }}
+                >
+                  <div
+                    className="toggleDrawerArrowwhite toggleDrawerArrowblack"
+                    onClick={toggleDrawer("right", true)}
+                  >
+                    <img src="./leftarrow.png" className="arrowblack" />
+                    <img src="./leftarrowblack.png" className="arrowwhite" />
+                  </div>
+                </div>
+              )}
+            </div>
+            {window.innerWidth <= 768 ? (
+              <>
+                {!isSplit ? (
+                  <div className="content-sections">
+                    <div
+                      style={{ padding: "35px 0px 0px 7px" }}
+                      onClick={() => setIsSplit(true)}
+                    >
+                      <img src={sliderPosition == 20 ? backwhite : back} />
+                    </div>
+                    <div className="bottom-section1" id="about-pollutant">
+                      {/* <div
+                        style={{ padding: "35px 0px 0px 7px" }}
+                        onClick={() => setIsSplit(true)}
+                      >
+                        <img src={backwhite} />
+                      </div> */}
+                      <AboutPollutantSection
+                        sections={aboutpollutantcontent}
+                        wasteTypeIcon={wasteTypeData.atomImage}
+                      />
+                    </div>
+                    <div
+                      className="sound-frequency-section"
+                      id="sound-frequency"
+                    >
+                      <SoundFrequency sections={sinewavefreq} />
+                    </div>
+                    <div
+                      className="effect-on-health-section"
+                      id="effect-on-health"
+                    >
+                      <Box
+                        sections={effectonhealthcontent}
+                        pollutantName={leftpanelcontent[0].pollutantName}
+                      />
+                    </div>
+                    <div className="bottom-section3" id="case-study">
+                      <CaseStudies
+                        sections={casestudiescontent}
+                        pollutantName={leftpanelcontent[0].pollutantName}
+                      />
+                    </div>
+                    <div className="bottom-section4" id="phytoremediation">
+                      <Phyto
+                        sections={phytocontent}
+                        pollutantName={leftpanelcontent[0].pollutantName}
+                      />{" "}
+                      <div
+                        style={{
+                          width: "100%",
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <div className="down_arrowstart">
+                          <div
+                            style={{
+                              background: "#fff",
+                              display: "flex",
+                              justifyContent: "center",
+                              padding: "0px 10px",
+                            }}
+                            onClick={() => {
+                              handleNavClick("plant-habitat");
+                            }}
+                          >
+                            <p
+                              className="bibliograhy"
+                              style={{ color: "#000" }}
+                            >
+                              BIBLIOGRAHY
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      {/* * time period overlap */}
+                    </div>
+                    <div className="white-container">
+                      <div className="bottom-section5" id="plant-name">
+                        <div className="content-container">
+                          <AboutPlant
+                            sections={aboutplantcontent}
+                            wasteTypeIcon={wasteTypeData.atomImage}
+                          />
+                        </div>
+                      </div>
+                      <div className="bottom-section6" id="common-names">
+                        <CommonNames sections={commonname} />
+                      </div>
+                      <div className="bottom-section7" id="plant-habitat">
+                        <PlantHabitat sections={habitat} />
+                      </div>
+                      <div className="bottom-section8" id="origin">
+                        <Origin sections={geographicaldistribution} />
+                      </div>
+                      <div className="bottom-section9" id="phyto-capacity">
+                        <PhytoCapacity sections={sectionphyto} />
+                      </div>
+                      <div className="bottom-section10" id="uses-of-plant">
+                        <UsesOfPlant sectionsData={plantUses} />
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </>
+            ) : (
+              <div className="content-sections">
+                <div className="bottom-section1" id="about-pollutant">
+                  <AboutPollutantSection
+                    sections={aboutpollutantcontent}
+                    wasteTypeIcon={wasteTypeData.atomImage}
+                  />
+                </div>
+                <div className="sound-frequency-section" id="sound-frequency">
+                  <SoundFrequency sections={sinewavefreq} />
+                </div>
+                <div className="effect-on-health-section" id="effect-on-health">
+                  <Box
+                    sections={effectonhealthcontent}
+                    pollutantName={leftpanelcontent[0].pollutantName}
+                  />
+                </div>
+                <div className="bottom-section3" id="case-study">
+                  <CaseStudies
+                    sections={casestudiescontent}
+                    pollutantName={leftpanelcontent[0].pollutantName}
+                  />
+                </div>
+                <div className="bottom-section4" id="phytoremediation">
+                  <Phyto
+                    sections={phytocontent}
+                    pollutantName={leftpanelcontent[0].pollutantName}
+                  />{" "}
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <div className="down_arrowstart">
+                      <div
+                        style={{
+                          background: "#fff",
+                          display: "flex",
+                          justifyContent: "center",
+                          padding: "0px 10px",
+                        }}
+                        onClick={() => {
+                          handleNavClick("plant-habitat");
+                        }}
+                      >
+                        <p className="bibliograhy" style={{ color: "#000" }}>
+                          BIBLIOGRAHY
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  {/* * time period overlap */}
+                </div>
+                <div className="white-container">
+                  {/* <div
+                    style={{ padding: "35px 0px 0px 7px" }}
+                    onClick={() => setIsSplit(true)}
+                  >
+                    <img src={backwhite} />
+                  </div> */}
+                  <div className="bottom-section5" id="plant-name">
+                    <div className="content-container">
+                      <AboutPlant
+                        sections={aboutplantcontent}
+                        wasteTypeIcon={wasteTypeData.atomImage}
+                      />
+                    </div>
+                  </div>
+                  <div className="bottom-section6" id="common-names">
+                    <CommonNames sections={commonname} />
+                  </div>
+                  <div className="bottom-section7" id="plant-habitat">
+                    <PlantHabitat sections={habitat} />
+                  </div>
+                  <div className="bottom-section8" id="origin">
+                    <Origin sections={geographicaldistribution} />
+                  </div>
+                  <div className="bottom-section9" id="phyto-capacity">
+                    <PhytoCapacity sections={sectionphyto} />
+                  </div>
+                  <div className="bottom-section10" id="uses-of-plant">
+                    <UsesOfPlant sectionsData={plantUses} />
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
       <Drawer
         anchor="right"
         open={state}
@@ -2447,7 +3204,7 @@ const PollutantPage = ({ categorizedData }) => {
           className: "customDrawer --blackmodel",
         }}
       >
-        <div className="timeline-drawer">
+        <div className="timeline-drawer pt-5">
           <div className="timeline-container">
             <div
               style={{
@@ -2456,20 +3213,20 @@ const PollutantPage = ({ categorizedData }) => {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "20px",
-                paddingRight: "55px",
+                paddingRight: "83px",
                 marginBottom: "20px",
               }}
               onClick={() => handleNavClick("slider-container")}
             >
-              <span className={`flex-1 `} style={{ fontSize: "14px" }}>
-                &#10100;Split Page&#125;
-              </span>
-              <span
-                className="ml-4 bg-white"
-                style={{ background: "#fff", zIndex: 99 }}
-              >
-                ◯
-              </span>
+              <img
+                src={split_img}
+                style={{
+                  border: "1px solid #000",
+                  borderRadius: "50%",
+                  transform: "rotate(180deg)",
+                  zIndex: 9999,
+                }}
+              />
             </div>
             <ul
               style={{
@@ -2566,10 +3323,15 @@ const PollutantPage = ({ categorizedData }) => {
                 paddingRight: "4px",
               }}
             >
-              <span className={`flex-1 `} style={{ fontSize: "14px" }}>
-                &#10100;Split Page&#125;
-              </span>
-              <span className="ml-4 --VIEWSSS">◯</span>
+              <img
+                src={split_img}
+                style={{
+                  border: "1px solid #000",
+                  borderRadius: "50%",
+                  transform: "rotate(180deg)",
+                  zIndex: 9999,
+                }}
+              />
             </div>
             <ul
               style={{
