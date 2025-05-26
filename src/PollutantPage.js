@@ -1475,6 +1475,7 @@ const PollutantPage = ({ categorizedData }) => {
       window.removeEventListener("resize", checkStickySupport);
     };
   }, [isMobile]);
+
   const options = [
     // { id: "about-pollutant", label: "{Split Page}" },
     { id: "about-pollutant", label: "Pollutant name" },
@@ -2013,13 +2014,13 @@ const PollutantPage = ({ categorizedData }) => {
                           left: "46%",
                         }
                       : {
-                          left: `${sliderPosition}%`,
+                          left: `${sliderPosition - 1.4}%`,
                           transform: "translateX(0%)",
                         }),
                     position: "absolute",
                     transition: isDragging ? "none" : "all 0.3s ease-in-out",
                     height: isMobileView ? "32px" : containerHeight,
-                    width: isMobileView ? "10%" : "42px",
+                    width: isMobileView ? "10%" : "45px",
                     zIndex: 10,
                     cursor: "grab",
                   }}
