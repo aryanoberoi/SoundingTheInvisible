@@ -800,22 +800,22 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
 
 /* ✅ Adjusting Positions Based on Your CSS */
 .nav-bar .text-wrapper {
-  top: 80px;
+  top: 70px;
   left: 174px;
   font-size: 24px;
 }
 .nav-bar .text-wrapper-2 {
-  top: 180px;
+  top: 160px;
   left: 0px !important;
   text-align: right !important;
 }
 .nav-bar .text-wrapper-8 {
-  top: 235px;
+  top: 220px;
   left: 0px !important;
   text-align: right !important;
 }
 .nav-bar .text-wrapper-9 {
-  top: 280px;
+  top: 270px;
   left: 0px !important;
   text-align: right !important;
 }
@@ -830,23 +830,23 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
   font-size: 24px;
 }
 .nav-bar .text-wrapper-3 {
-  top: 440px;
+  top: 430px;
   left: 155px;
 }
 .nav-bar .text-wrapper-4 {
-  top: 510px;
+  top: 500px;
   left: 155px;
 }
 .nav-bar .text-wrapper-5 {
-  top: 570px;
+  top: 565px;
   left: 155px;
 }
 .nav-bar .p {
-  top: 610px;
+  top: 615px;
   left: 155px;
 }
 .nav-bar .text-wrapper-6 {
-  top: 705px;
+  top: 710px;
   left: 155px;
 }
 .nav-bar .text-wrapper-7 {
@@ -991,13 +991,13 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
 
 /* ✅ Adjusting Circle Positions */
 .nav-bar .ellipse {
-  top: 85px;
+  top: 75px;
 } /* Matches text-wrapper position */
 .nav-bar .ellipse-2 {
-  top: 160px;
+  top: 150px;
 } /* Matches text-wrapper-2 position */
 .nav-bar .ellipse-3 {
-  top: 215px;
+  top: 210px;
 } /* Matches text-wrapper-8 position */
 .nav-bar .ellipse-4 {
   top: 260px;
