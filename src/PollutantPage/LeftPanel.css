@@ -257,9 +257,10 @@
 /* Center the big desktop visual in the middle of the whole panel */
 .left-panel .pollutantVisualImage {
   position: absolute;          /* anchor to the nearest positioned parent (.left-panel) */
-  left: 40%;
+  left: 33%;
   height: auto;
   pointer-events: none;        /* stops the image blocking clicks on UI elements  */
   z-index: 1;                  /* sits above background, below arrow (arrow is z-10) */
   top: 265px;
+  transform: scale(1.2);
 }

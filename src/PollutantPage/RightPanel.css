@@ -116,9 +116,10 @@
   width: auto;
   object-fit: contain;
   position: absolute;
-  top: 20px;
-  left: 40%;
+  top: 60px;
+  left: 48%;
   z-index: 20;
+  transform: scale(1.2);
 }
 
 .nameContainer {
