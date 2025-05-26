@@ -246,11 +246,128 @@
   top: 112px;
   white-space: nowrap;
 }
+
 @media (max-width: 768px) {
   .bottom-section3 {
     margin: 0px 0px 0px 0px !important;
     /* padding-top: 20px;    */
     width: 100%;
+    color: #ffffff;
+    font-family: "ClashGrotesk-Light", Helvetica;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 215%;
+    mix-blend-mode: difference;
+    position: absolute;
+    text-align: right;
+    top: 65%;
+    width: calc(100% - 110px);
+    left: 60px;
+  }
+  
+  .bottom-section3 .box .rectangle {
+    height: 417px;
+    left: 20px;
+    position: absolute;
+    top: 0;
+    width: 291px;
+  }
+  
+  .bottom-section3 .box .div {
+    color: #ffffff;
+    font-family: "ClashGrotesk-Light", Helvetica;
+    font-size: 14px; /* Reduce font size slightly */
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 200%;
+    mix-blend-mode: difference;
+    position: absolute;
+    width: 100%; /* Reduce width slightly */
+    left: 61%; /* Center it within the box */
+    top: 4%;
+    transform: translateX(-50%); /* Align to center */
+  
+    white-space: normal; /* Ensure proper wrapping */
+    word-wrap: break-word; /* Ensure long words break instead of overflowing */
+    padding: 10px; /* Prevent text from touching the edges */
+  }
+  
+  .bottom-section3 .box .overlap-wrapper {
+    height: 331px;
+    left: 400px;
+    position: absolute;
+    top: 315px;
+    transform: rotate(-90deg);
+    width: 71px;
+  }
+  
+  .bottom-section3 .box .overlap-2 {
+    height: 331px;
+    position: absolute;
+    width: 72px;
+  }
+  
+  .bottom-section3 .box .group-121 {
+    width: 100px;
+    left: 0;
+    position: absolute;
+    top: 100px;
+    transform: rotate(90deg) scale(3);
+    transform-origin: center center;
+  }
+  
+  .bottom-section3 .box .rectangle-2 {
+    background-color: #ffffff;
+    height: 7px;
+    left: 0;
+    position: absolute;
+    top: 324px;
+    width: 8px;
+  }
+  
+  .bottom-section3 .box .rectangle-3 {
+    background-color: #ffffff;
+    height: 7px;
+    left: 38px;
+    position: absolute;
+    top: 293px;
+    width: 8px;
+  }
+  
+  .bottom-section3 .box .rectangle-4 {
+    background-color: #ffffff;
+    height: 7px;
+    left: 63px;
+    position: absolute;
+    top: 324px;
+    width: 8px;
+  }
+  
+  .bottom-section3 .box .text-wrapper-2 {
+    color: #ffffff;
+    font-family: "Nippo-Light", Helvetica;
+    font-size: 28px;
+    font-weight: 378;
+    left: 240px;
+    letter-spacing: 0%;
+    line-height: 165%;
+    mix-blend-mode: difference;
+    position: absolute;
+    top: 560px;
+    white-space: nowrap;
+    width: 400px;
+    text-align: right;
+  }
+  
+  .bottom-section3 .box .rectangle-5 {
+    height: 518px;
+    left: 100px;
+    position: absolute;
+    top: 536px;
+    width: 100%;
+    transform: scaleX(1.7) rotate(180deg) !important;
+    /* transform-origin: left; */
   }
   .bottom-section3 .box {
     margin: 0 0px;
@@ -262,17 +379,27 @@
     font-size: 20px;
     padding: 20px 0px !important;
   }
-  .bottom-section3 .box .overlap{
-    top: 144px;
+  
+  .bottom-section3 .box .text-wrapper-3::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 3px; /* Inset from left */
+    right: -7px; /* Inset from right */
+    bottom: 0;
+    background-color: #fff;
+    z-index: -1; /* Place behind text */
   }
-  .bottom-section3 .box .div {
-    width:calc(100% - 401px);
-    line-height: 170%;
-    mix-blend-mode: normal;
-    top: -70px;
-    /* padding: 40px; */
-    left: 216px;
-/* right: 900px; */
+  
+  .bottom-section3 .box .text-wrapper-3::after {
+    content: "";
+    position: absolute;
+    left: 3px; /* Match the left inset of the background */
+    bottom: 0;
+    width: 111%;
+    height: 12px;
+    background-color: #ffffff;
+    z-index: -1;
   }
   .bottom-section3 .box .rectangle {
     height: 529px;
@@ -281,12 +408,11 @@
     top: -125px;
     width: 41%;
 
-
     /* height: 529px;
-    left: 0px;
-    position: absolute;
-    top: -111px;
-    width: 41%; */
+      left: 0px;
+      position: absolute;
+      top: -111px;
+      width: 41%; */
   }
   .bottom-section3 .box .vector-3 {
     left: 11px;
@@ -294,31 +420,30 @@
     top: 447px;
     width: 1px;
     transform: scale(2);
-}
-.bottom-section3 .box .overlap-wrapper {
+  }
+  .bottom-section3 .box .overlap-wrapper {
     height: 333px;
     left: 100px;
     position: absolute;
     top: 236px;
     transform: rotate(-90deg);
     width: 158px;
-}
-.bottom-section3 .box .text-wrapper {
+  }
+  .bottom-section3 .box .text-wrapper {
     width: calc(100% - 480px);
     /* line-height: normal; */
     mix-blend-mode: normal;
     top: 50%;
     padding: 40px 40px 40px 0px;
     left: 0px;
-
-}
-.bottom-section3 .box .rectangle-5{
-    position: absolute;
-    top: 612px;
-    left: -24px !important;
-    height: 553px;
-}
-.bottom-section3 .box .text-wrapper-2{
+  }
+  .bottom-section3 .box .rectangle-5{
+      position: absolute;
+      top: 612px;
+      left: -24px !important;
+      height: 553px;
+  }
+  .bottom-section3 .box .text-wrapper-2 {
     height: 484px;
     /* right: 194px; */
     position: absolute;
@@ -326,33 +451,33 @@
     /* width: 80%; */
     left: -74px !important;
     /* top: 56%; */
-}
-.bottom-section3 .box .text-wrapper-4{
-    top: 8%;
-    left:4%
-}
-.bottom-section3 .box .overlap-group{
-    top: 46px;
-}
-.bottom-section3 .box .overlap-2 {
-  height: 331px;
-  position: absolute;
-  width: 110px;
-  top: 53px;
-}
-.bottom-section3 .box .group-121 {
-width: 112px;
-}
-}
-@media (min-width:769px) and (max-width:1067px) {
-  .bottom-section3 .box .rectangle-5{
-    left:-6%
   }
-  .bottom-section3 .box .text-wrapper-2{
+  .bottom-section3 .box .text-wrapper-4 {
+    top: 8%;
+    left: 4%;
+  }
+  .bottom-section3 .box .overlap-group {
+    top: 46px;
+  }
+  .bottom-section3 .box .overlap-2 {
+    height: 331px;
+    position: absolute;
+    width: 110px;
+    top: 53px;
+  }
+  .bottom-section3 .box .group-121 {
+    width: 112px;
+  }
+}
+@media (min-width: 769px) and (max-width: 1067px) {
+  .bottom-section3 .box .rectangle-5 {
+    left: -6%;
+  }
+  .bottom-section3 .box .text-wrapper-2 {
     left: 15%;
   }
-  .bottom-section3 .box .text-wrapper{
-    left:7%;
-    width: calc(100% - 338px);;
+  .bottom-section3 .box .text-wrapper {
+    left: 7%;
+    width: calc(100% - 338px);
   }
 }
