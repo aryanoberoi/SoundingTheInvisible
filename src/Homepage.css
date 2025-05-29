@@ -103,7 +103,7 @@
   position: relative;
   background-color: black;
   clip-path: polygon(0 0, 100% 20%, 100% 80%, 0% 100%);
-  padding: 50px;
+  padding-block: 190px;
   color: white;
   display: flex;
   flex-direction: row;
@@ -123,7 +123,7 @@
   align-items: flex-start;
   overflow: visible;
   min-height: calc(100% * 1.5);
-  padding-bottom: 10%;
+  padding-block: 10%;
 }
 
 /* Target the top overflowing rectangle specifically */
@@ -886,4 +886,8 @@ svg.strategy-image {
   transform: scale(1.5);
   transform-origin: center center;
   display: block;
+}
+
+.middle-svg-concept{
+  transform: scale(1.8);
 }

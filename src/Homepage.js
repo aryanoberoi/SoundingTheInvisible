@@ -329,8 +329,8 @@ export default function Homepage({ audioControls }) {
 
       {/* 🔸 Sound Concept Section */}
       <section className="sound-concept-section"  style={{overflow: 'visible'}}>
-      <Cloud top={3060} left={65} distance="short" direction="left" variant={1} />
-      <Cloud top={3300} left={45} distance="medium" direction="left" variant={2} />
+      <Cloud top={3350} left={65} distance="short" direction="left" variant={1} />
+      <Cloud top={3490} left={45} distance="medium" direction="left" variant={2} />
         <div className="sound-text">
           <h2>Partnering with Plants</h2>
           <p>
