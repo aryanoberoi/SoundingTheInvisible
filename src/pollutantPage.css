@@ -293,8 +293,9 @@ body.sound-panel-active .sound-icon span {
   display: block;
   width: 40px;
   height: 1px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0) !important; /* semi-transparent white */ 
   transition: background 0.3s, transform 0.3s;
+  backdrop-filter: invert(1) !important;
 }
 
 /* Adjust hamburger color based on background */
@@ -2547,16 +2548,5 @@ body.sound-bottom-region .sound-icon span {
 body.viewing-combined-section.sound-middle-region .sound-icon span {
   background-color: white !important;
 }
-
-/* Default: nav-button and hamburger lines are white (for black backgrounds) */
-.nav-button .hamburger-line {
-  background: white;
-}
-
-/* When white panel is active (white background), nav-button lines become black */
-body.white-panel-active .nav-button .hamburger-line {
-  background: black;
-}
-
 
 /* FIN */
