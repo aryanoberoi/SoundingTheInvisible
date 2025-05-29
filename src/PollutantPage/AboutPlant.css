@@ -122,7 +122,7 @@
 .rectangle-inv {
   background-color: #000;
   position: absolute;
-  width: 196px;
+  width: 210px;
   height: 60%;
   left: 0;
   top: 0;
@@ -130,7 +130,7 @@
 
 .wetland-black-bar {
   position: absolute;
-  width: 70%;
+  width: 55%;
   height: 15%;
   background-color: #000;
   top: 27px;

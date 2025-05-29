@@ -33,7 +33,7 @@ export const Phyto = ({ sections, pollutantName }) => {
                 style={{ 
                   top: '60px', 
                   transform: index % 3 === 1 ? 'none' : 'scaleX(-1)', 
-                  left: index % 3 === 1 ? 'calc(64%)' : 'calc(100% - 44%)'
+                  left: index % 3 === 1 ? 'calc(64%)' : 'calc(100% - 31%)'
                 }} 
               />
               <div className="soil-label" style={{ fontSize: '26px'}}>

@@ -17,7 +17,8 @@ body,
   position: relative;
   width: 100%;
   height: 100vh; /* Default height for 100% zoom or below */
-  overflow: hidden;
+  overflow-y: auto; /* enable vertical scroll */
+  overflow-x: hidden; /* hide horizontal overflow */
   display: flex;
 }
 
@@ -291,15 +292,15 @@ body.sound-panel-active .sound-icon span {
 
 .hamburger-line {
   display: block;
-  width: 30px;
-  height: 3px;
-  background: #adadad;
+  width: 40px;
+  height: 1px;
+  background: #fff;
   transition: background 0.3s, transform 0.3s;
 }
 
 /* Adjust hamburger color based on background */
 body.right-panel-active .hamburger-line {
-  background-color: black;
+  background: black;
 }
 
 /* Fullscreen Menu */
@@ -660,7 +661,7 @@ body.right-panel-active .hamburger-line {
 .sound-frequency-section {
   background-color: black;
   color: white;
-  padding: 0px 69px; /* Match left panel padding */
+  padding: 0px 50px !important; /* Match left panel padding */
   height: 666px; /* Ensure height adjusts to content */
   box-sizing: border-box;
   overflow: hidden;
@@ -800,50 +801,53 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
 
 /* ✅ Adjusting Positions Based on Your CSS */
 .nav-bar .text-wrapper {
-  top: 60px;
+  top: 70px;
   left: 174px;
   font-size: 24px;
 }
 .nav-bar .text-wrapper-2 {
-  top: 130px;
-  left: 25px !important;
+  top: 160px;
+  left: 0px !important;
+  text-align: right !important;
 }
 .nav-bar .text-wrapper-8 {
-  top: 190px;
-  left: 30px !important;
+  top: 220px;
+  left: 0px !important;
+  text-align: right !important;
 }
 .nav-bar .text-wrapper-9 {
-  top: 250px;
-  left: 55px !important;
+  top: 270px;
+  left: 0px !important;
+  text-align: right !important;
 }
 .nav-bar .text-wrapper-10 {
-  top: 280px;
+  top: 310px;
   left: 0px !important;
-  width: 141px;
+  text-align: right !important;
 }
 .nav-bar .div {
-  top: 340px;
+  top: 350px;
   left: 174px;
   font-size: 24px;
 }
 .nav-bar .text-wrapper-3 {
-  top: 440px;
+  top: 430px;
   left: 155px;
 }
 .nav-bar .text-wrapper-4 {
-  top: 510px;
+  top: 500px;
   left: 155px;
 }
 .nav-bar .text-wrapper-5 {
-  top: 570px;
+  top: 565px;
   left: 155px;
 }
 .nav-bar .p {
-  top: 610px;
+  top: 615px;
   left: 155px;
 }
 .nav-bar .text-wrapper-6 {
-  top: 705px;
+  top: 710px;
   left: 155px;
 }
 .nav-bar .text-wrapper-7 {
@@ -883,14 +887,27 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
 
 /* Position the new ellipse */
 .nav-bar .ellipse-0 {
-  background-color: black;
-  border: 1px solid white;
-  border-radius: 5px;
-  height: 10px;
-  width: 10px;
   position: absolute;
-  left: 0;
+  left: -4px;
   top: 0;
+  width: 19px;    /* give it a visible width */
+  height: 19px;   /* give it a visible height */
+  cursor: pointer; /* move cursor styling here */
+  /* remove background-color if not needed */
+  background-color: transparent;
+  border-radius: 50%;
+  /* optional: to avoid interfering with other content */
+  z-index: 10;
+}
+
+.ellipse-0 svg {
+  margin-top: 0px !important;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  transform: scale(1.2);
+  display: block; /* avoid inline spacing issues */
+  margin: 0 auto; /* center svg if needed */
 }
 
 /* Color switching for white panel */
@@ -975,22 +992,22 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
 
 /* ✅ Adjusting Circle Positions */
 .nav-bar .ellipse {
-  top: 50px;
+  top: 75px;
 } /* Matches text-wrapper position */
 .nav-bar .ellipse-2 {
-  top: 110px;
+  top: 150px;
 } /* Matches text-wrapper-2 position */
 .nav-bar .ellipse-3 {
-  top: 170px;
+  top: 210px;
 } /* Matches text-wrapper-8 position */
 .nav-bar .ellipse-4 {
-  top: 230px;
+  top: 260px;
 } /* Matches text-wrapper-9 position */
 .nav-bar .ellipse-5 {
-  top: 283px;
+  top: 313px;
 } /* Matches text-wrapper-10 position */
 .nav-bar .ellipse-6 {
-  top: 350px;
+  top: 360px;
 } /* Matches div position */
 .nav-bar .ellipse-7 {
   top: 430px;
@@ -1260,13 +1277,8 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
 .nav-bar .text-wrapper-10,
 .nav-bar .p {
   left: 175px; /* Adjusted to align with circle positions */
-  width: 150px;
+  width: 140px;
   text-align: left; /* Changed from right to left for better alignment */
-}
-
-.nav-bar .text-wrapper-10 {
-  left: -20px !important;
-  text-align: right;
 }
 
 .nav-bar .ellipse,
@@ -1458,7 +1470,7 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
   background-color: white;
   color: black;
   min-height: 100vh;
-  padding: 30px 69px 155px 69px;
+  padding: 30px 40px 155px 100px;
 }
 
 .bottom-section8 {
@@ -1860,7 +1872,7 @@ img {
   position: absolute;
   top: 0;
   left: 3px; /* Inset from left */
-  right: 2px; /* Inset from right */
+  right: -7px; /* Inset from right */
   bottom: 0;
   background-color: #fff;
   z-index: -1; /* Place behind text */
@@ -1901,25 +1913,25 @@ img {
 @keyframes sliderPulse {
   0%,
   100% {
-    transform: rotate(var(--rotation, 0deg)) scale(1.7); /* Base scale */
+    transform: rotate(var(--rotation, 0deg)) scale(2.3); /* Base scale */
   }
   20% {
-    transform: rotate(var(--rotation, 0deg)) scale(1.9); /* First beat peak */
+    transform: rotate(var(--rotation, 0deg)) scale(2.5); /* First beat peak */
   }
   40% {
-    transform: rotate(var(--rotation, 0deg)) scale(1.7); /* Return to base */
+    transform: rotate(var(--rotation, 0deg)) scale(2.3); /* Return to base */
   }
   60% {
-    transform: rotate(var(--rotation, 0deg)) scale(1.85); /* Second beat peak (slightly smaller) */
+    transform: rotate(var(--rotation, 0deg)) scale(2.35); /* Second beat peak (slightly smaller) */
   }
   80% {
-    transform: rotate(var(--rotation, 0deg)) scale(1.7); /* Return to base */
+    transform: rotate(var(--rotation, 0deg)) scale(2.3); /* Return to base */
   }
 }
 
 .slider-image {
   /* Set base scale consistently */
-  transform: rotate(var(--rotation, 0deg)) scale(1.7);
+  transform: rotate(var(--rotation, 0deg)) scale(2);
   transform-origin: center center;
   cursor: ew-resize;
   /* Add the pulse animation on top of the base scale */
@@ -2020,8 +2032,8 @@ html body .combined-section .nav-bar-container .nav-bar {
 @media (min-width: 769px) {
   .slider-image-container {
     position: absolute !important;
-    top: 370px !important;
-    left: -23px !important;
+    top: 365px !important;
+    left: -7px !important;
     width: 111%;
     /* Remove centering styles */
     display: block !important;
@@ -2477,3 +2489,75 @@ body.white-panel-active .toggleDrawerArrowblack::after {
   );
   /* This is a flipped version of the top path to simulate symmetry */
 }
+
+body.white-panel-active .nav-bar .ellipse-0 svg {
+  filter: invert(1);
+  transition: filter 0.3s ease;
+  margin-top: 15px;
+}
+
+/* Make all ellipses clickable with hover effects */
+.nav-bar .ellipse,
+.nav-bar .ellipse-0,
+.nav-bar [class^="ellipse-"] {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Hover effect for all ellipses */
+.nav-bar .ellipse:hover,
+.nav-bar .ellipse-0:hover,
+.nav-bar [class^="ellipse-"]:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+/* White panel hover effects */
+body.white-panel-active .nav-bar .ellipse:hover,
+body.white-panel-active .nav-bar .ellipse-0:hover,
+body.white-panel-active .nav-bar [class^="ellipse-"]:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Active state enhancements */
+.nav-bar .ellipse.active,
+.nav-bar .ellipse-0.active,
+.nav-bar [class^="ellipse-"].active {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+body.white-panel-active .nav-bar .ellipse.active,
+body.white-panel-active .nav-bar .ellipse-0.active,
+body.white-panel-active .nav-bar [class^="ellipse-"].active {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+/* Add vertical sound regions for mobile */
+body.sound-top-region .sound-icon span {
+  background-color: black !important;
+}
+body.sound-middle-region .sound-icon span {
+  background-color: black !important;
+}
+body.sound-bottom-region .sound-icon span {
+  background-color: white !important;
+}
+
+/* Override for combined section viewing */
+body.viewing-combined-section.sound-middle-region .sound-icon span {
+  background-color: white !important;
+}
+
+/* Default: nav-button and hamburger lines are white (for black backgrounds) */
+.nav-button .hamburger-line {
+  background: white;
+}
+
+/* When white panel is active (white background), nav-button lines become black */
+body.white-panel-active .nav-button .hamburger-line {
+  background: black;
+}
+
+
+/* FIN */

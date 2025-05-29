@@ -1,216 +1,215 @@
 .phyto-capacity-container {
-  width: 80%;
-  height: auto;
-  position: relative;
-  padding-top: 60px;
-  padding-left: 2%;
+    width: 80%;
+    height: auto;
+    position: relative;
+    padding-top: 60px;
+    padding-left: 2%;
 }
 
 .phyto-capacity-container .phyto-capacity-header {
-  background-color: #fff;
-  height: 57px;
-  position: relative;
-  width: fit-content;
-  display: inline-block;
-  white-space: nowrap;
-  overflow: visible;
+    background-color: #fff;
+    height: 57px;
+    position: relative;
+    width: fit-content;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: visible;
 }
 
 .phyto-capacity-container .phyto-capacity-header-wrapper {
-  height: 43px;
-  width: 745px;
+    height: 43px;
+    width: 745px;
 }
 
 .phyto-capacity-container .phyto-capacity-header-content {
-  height: 43px;
-  position: relative;
-  width: 743px;
+    height: 43px;
+    position: relative;
+    width: 743px;
 }
 
 .phyto-capacity-container .phyto-capacity-title {
-  background-color: transparent !important; /* Remove original background */
-  color: #fff;
-  font: 378 32px "Nippo-Regular", sans-serif;
-  font-weight: 400;
-  left: 0;
-  letter-spacing: 3%;
-  line-height: 100%;
-  position: relative; /* Ensure positioning context */
-  top: 10px;
-  width: fit-content;
-  text-align: left;
-  white-space: nowrap;
-  z-index: 1; /* Keep text above the new background */
-  padding-block: 12px;
+    background-color: transparent !important; /* Remove original background */
+    color: #fff;
+    font: 378 32px 'Nippo-Regular', sans-serif;
+    font-weight: 400;
+    left: 0;
+    letter-spacing: 3%;
+    line-height: 100%;
+    position: relative; /* Ensure positioning context */
+    top: 10px;
+    width: fit-content;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 1; /* Keep text above the new background */
+    padding-block: 12px;
 }
 
 .phyto-capacity-container .phyto-capacity-title::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 3px !important; /* Inset from left */
-  right: 2px !important; /* Inset from right */
-  bottom: 0;
-  background-color: #000;
-  z-index: -1; /* Place behind text */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 3px !important; /* Inset from left */
+    right: -7px !important; /* Inset from right */
+    bottom: 0;
+    background-color: #000;
+    z-index: -1; /* Place behind text */
 }
 
 .phyto-capacity-container .phyto-capacity-title::after {
-  content: "";
-  position: absolute;
-  left: 3px; /* Match the left inset of the background */
-  bottom: 0;
-  width: 111%;
-  height: 12px;
-  background-color: #000;
-  z-index: -1;
+    content: '';
+    position: absolute;
+    left: 3px; /* Match the left inset of the background */
+    bottom: 0;
+    width: 118%;
+    height: 12px;
+    background-color: #000;
+    z-index: -1;
 }
 
 .phyto-capacity-container .phyto-capacity-content {
-  font-family: ClashGrotesk-Regular;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 28.7px;
-  letter-spacing: 0%;
-  width: 100%;
-  max-width: 600px;
-  padding-top: 100px;
+    font-family: ClashGrotesk-Regular;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 28.7px;
+    letter-spacing: 0%;
+    width: 100%;
+    max-width: 600px;
+    padding-top: 100px;
 }
 
 .phyto-svg-container {
-  position: relative;
-  height: 284px;
-  flex: 0 0 auto;
+    position: relative;
+    height: 284px;
+    flex: 0 0 auto;
 }
 
 .phyto-svg-container img {
-  width: auto;
-  height: 100%;
-  object-fit: contain;
+    width: auto;
+    height: 100%;
+    object-fit: contain;
 }
 
-.phyto-content-wrapper,
-.phyto-content-wrapper-reversed {
-  display: flex;
-  width: 100%;
-  margin-top: 2rem;
+.phyto-content-wrapper, .phyto-content-wrapper-reversed {
+    display: flex;
+    width: 100%;
+    margin-top: 2rem;
 }
 
 .phyto-content-wrapper-reversed {
-  flex-direction: row-reverse;
-  margin-top: 0rem;
+    flex-direction: row-reverse;
+    margin-top: 0rem;
 }
 
 .phyto-content-wrapper-reversed .phyto-info-section {
-  margin-left: 2rem;
-  margin-right: 0;
-  width: 120%;
+    margin-left: 2rem;
+    margin-right: 0;
+    width: 120%;
 }
 
 .phyto-info-section {
-  flex: 1;
-  font-family: ClashGrotesk-Regular;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 28.7px;
-  margin-top: 50px;
-  max-width: 70%;
-  position: relative;
+    flex: 1;
+    font-family: ClashGrotesk-Regular;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 28.7px;
+    margin-top: 50px;
+    max-width: 70%;
+    position: relative;
 }
 
 .phyto-info-section h3 {
-  font-size: 18px;
-  margin-bottom: 1rem;
+    font-size: 18px;
+    margin-bottom: 1rem;
 }
 
 .section-divider {
-  border-bottom: 1px solid black;
-  margin: 0.5rem 0;
+    border-bottom: 1px solid black;
+    margin: 0.5rem 0;
 }
 
-.phyto-content-wrapper-reversed .section-divider {
-  margin-left: 150px;
+.phyto-content-wrapper-reversed .section-divider{
+    margin-left: 150px;
 }
 
 .phyto-benefits-heading {
-  font-family: Nippo-Regular;
-  font-weight: 378;
-  font-size: 28px;
-  line-height: 37.8px;
-  letter-spacing: 0.03em;
-  margin-left: 35px;
+    font-family: Nippo-Regular;
+    font-weight: 378;
+    font-size: 28px;
+    line-height: 37.8px;
+    letter-spacing: 0.03em;
+    margin-left: 35px;
 }
 
-.phyto-intro-text {
-  font-family: ClashGrotesk-Regular;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 205%;
-  letter-spacing: 0%;
-  margin-top: 2rem;
-  margin-right: 5%;
+.phyto-intro-text{
+    font-family: ClashGrotesk-Regular;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 205%;
+    letter-spacing: 0%;
+    margin-top: 2rem;
+    margin-right: 5%;
 }
 
 .phyto-benefits-text {
-  font-family: ClashGrotesk-Regular;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 205%;
-  letter-spacing: 0%;
-  margin-top: 1rem;
-  margin-left: 35px;
-  padding-right: 20px;
+    font-family: ClashGrotesk-Regular;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 205%;
+    letter-spacing: 0%;
+    margin-top: 1rem;
+    margin-left: 35px;
+    padding-right: 20px;
 }
 
 .vertical-divider-right {
-  position: absolute;
-  right: 0;
-  top: 46px;
-  bottom: -97px;
-  border-right: 1px solid black;
-  transform: translateX(50%);
+    position: absolute;
+    right: 0;
+    top: 46px;
+    bottom: -97px;
+    border-right: 1px solid black;
+    transform: translateX(50%);
 }
 
 .vertical-divider-left {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: -50px;
-  border-left: 1px solid black;
-  transform: translateX(-50%);
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: -50px;
+    border-left: 1px solid black;
+    transform: translateX(-50%);
 }
 
 .phyto-content-wrapper-reversed .phyto-benefits-heading,
 .phyto-content-wrapper-reversed .phyto-benefits-text {
-  margin-left: 0;
-  padding-right: 10px;
-  margin-right: 10px;
-  padding-right: inherit;
+    margin-left: 0;
+    padding-right: 10px;
+    margin-right: 10px;
+    padding-right: inherit;
 }
 
 .phyto-content-wrapper-reversed .phyto-benefits-heading {
-  margin-left: 150px;
+    margin-left: 150px;
 }
 
 .phyto-content-wrapper-reversed .phyto-benefits-text {
-  text-align: right;
-  margin-right: 35px;
+    text-align: right;
+    margin-right: 35px;
 }
 
 .phyto-content-wrapper-reversed .phyto-svg-container img {
-  transform: rotate(180deg);
-  transform-origin: center center;
+    transform: rotate(180deg);
+    transform-origin: center center;
 }
 
 .phyto-content-wrapper {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .phyto-content-wrapper-reversed {
-  width: 100%;
-  margin-left: -100px;
+    width: 100%;
+    margin-left: -100px;
 }
 @media screen and (max-width: 768px) {
   .phyto-capacity-container .phyto-capacity-title {

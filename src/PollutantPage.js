@@ -673,63 +673,64 @@ const PollutantPage = ({ categorizedData }) => {
   //     };
   //   }, [isDragging]);
 
-  //   useEffect(() => {
-  //     // Set the initial rotation CSS variable directly on mount
-  //     document.documentElement.style.setProperty("--rotation", `180deg`);
-  //     // Add slider transition variable for dynamic control
-  //     document.documentElement.style.setProperty(
-  //       "--slider-transition",
-  //       "left 0.3s ease-in-out"
-  //     );
+    useEffect(() => {
+      // Set the initial rotation CSS variable directly on mount
+      document.documentElement.style.setProperty("--rotation", `180deg`);
+      // Add slider transition variable for dynamic control
+      document.documentElement.style.setProperty(
+        "--slider-transition",
+        "left 0.3s ease-in-out"
+      );
 
-  //     // Clean up on unmount
-  //     return () => {};
-  //   }, []); // Initial setup effect, height update logic moved
+      // Clean up on unmount
+      return () => {};
+    }, [isMobileView]); // Initial setup effect, height update logic moved
 
-  //   useEffect(() => {
-  //     const observer = new IntersectionObserver(
-  //       (entries) => {
-  //         // Find the first entry that is currently intersecting
-  //         const intersectingEntry = entries.find((entry) => entry.isIntersecting);
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          // Find the first entry that is currently intersecting
+          const intersectingEntry = entries.find((entry) => entry.isIntersecting);
 
-  //         // If an intersecting entry is found, update the active section
-  //         if (intersectingEntry) {
-  //           setActiveSection(intersectingEntry.target.id);
-  //         }
-  //         // Optional: If no entry is intersecting, you might want to clear
-  //         // the active section or keep the last active one, depending on desired UX.
-  //         // Example: else if (entries.some(entry => !entry.isIntersecting)) {
-  //         //   // Logic if elements are leaving viewport but none are entering
-  //         // }
-  //       },
-  //       {
-  //         // Keep the lower threshold
-  //         threshold: 0.1,
-  //         root: null,
-  //       }
-  //     );
+          // If an intersecting entry is found, update the active section
+          if (intersectingEntry) {
+            setActiveSection(intersectingEntry.target.id);
+          }
+          // Optional: If no entry is intersecting, you might want to clear
+          // the active section or keep the last active one, depending on desired UX.
+          // Example: else if (entries.some(entry => !entry.isIntersecting)) {
+          //   // Logic if elements are leaving viewport but none are entering
+          // }
+        },
+        {
+          // Keep the lower threshold
+          threshold: 0.1,
+          root: null,
+        }
+      );
 
-  //     // Observe all sections in both panels
-  //     const sections = document.querySelectorAll(`
-  //       [id^="about-"],
-  //       [id^="plant-"],
-  //       [id^="sound-"],
-  //       [id^="common-"],
-  //       [id^="effect-"],
-  //       [id^="case-"],
-  //       [id^="phytoremediation"],
-  //       [id^="phyto-"],
-  //       [id^="uses-"],
-  //       [id^="origin"],
-  //       [id^="references"]
-  //     `);
+      // Observe all sections in both panels
+      const sections = document.querySelectorAll(`
+        [id^="about-"],
+        [id^="plant-"],
+        [id^="sound-"],
+        [id^="common-"],
+        [id^="effect-"],
+        [id^="case-"],
+        [id^="phytoremediation"],
+        [id^="phyto-"],
+        [id^="uses-"],
+        [id^="origin"],
+        [id^="references"]
+      `);
 
-  //     sections.forEach((section) => {
-  //       observer.observe(section);
-  //     });
+      sections.forEach((section) => {
+        observer.observe(section);
+      });
 
-  //     return () => observer.disconnect();
-  //   }, []);
+      return () => observer.disconnect();
+    }, []);
+
   const [isDragging, setIsDragging] = useState(false);
   // const [sliderPosition, setSliderPosition] = useState(50);
   // const [containerHeight, setContainerHeight] = useState('100vh');
@@ -801,7 +802,7 @@ const PollutantPage = ({ categorizedData }) => {
       `${newRotation}deg`
     );
   };
-  console.log("sliderPosition", sliderPosition);
+
   const handleMouseDown = (e) => {
     e.preventDefault();
     setIsDragging(true);
@@ -872,13 +873,13 @@ const PollutantPage = ({ categorizedData }) => {
     }
   };
 
-  // useEffect(() => {
-  //   if (leftPanelLoaded && rightPanelLoaded) {
-  //     requestAnimationFrame(() => {
-  //       setTimeout(updateContainerHeight, 100);
-  //     });
-  //   }
-  // }, [leftPanelLoaded, rightPanelLoaded]);
+  useEffect(() => {
+    if (leftPanelLoaded && rightPanelLoaded) {
+      requestAnimationFrame(() => {
+        setTimeout(updateContainerHeight, 100);
+      });
+    }
+  }, [leftPanelLoaded, rightPanelLoaded]);
 
   // useEffect(() => {
   //   if (isDragging) {
@@ -1226,17 +1227,17 @@ const PollutantPage = ({ categorizedData }) => {
   useEffect(() => {
     // Add style tag to override any conflicting CSS
     const styleElement = document.createElement("style");
-    // styleElement.textContent = `
-    //   .slider-container {
-    //     min-height: ${containerHeight} !important;
-    //     height: ${containerHeight} !important;
-    //     overflow: visible !important;
-    //   }
+    styleElement.textContent = `
+      .slider-container {
+        min-height: ${containerHeight} !important;
+        height: ${containerHeight} !important;
+        overflow: visible !important;
+      }
 
-    //   .slider-bar {
-    //     height: ${containerHeight} !important;
-    //   }
-    // `;
+      .slider-bar {
+        height: ${containerHeight} !important;
+      }
+    `;
     document.head.appendChild(styleElement);
 
     return () => {
@@ -1269,20 +1270,24 @@ const PollutantPage = ({ categorizedData }) => {
   }, []);
 
   const handleNavClick = (sectionId) => {
-    console.log("DDSADSDADS", sectionId);
-    setIsSplit(sectionId == "slider-container" ? true : false);
-    setIsSplits(sectionId);
+    console.log("DDSADSDADS",sectionId);
+    
+    // Only affect isSplit on mobile
+    if (isMobileView) {
+      setIsSplit(sectionId == "slider-container" ? true : false);
+    }
+    
     const section = document.getElementById(sectionId);
     if (!section) return;
     setState(false);
-    // Mobile-specific behavior
-    // if (isMobile) {
-    //   section.scrollIntoView({ behavior: "smooth", block: "start" }); // Changed to smooth
-    //   setMenuOpen(false);
-    //   return;
-    // }
-
-    // Determine which panel the section belongs to
+    
+    // Skip slider positioning for mobile or if we're going back to slider-container
+    if (isMobileView || sectionId === "slider-container") {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+  
+    // Desktop behavior - determine panel and snap slider
     const isInRightPanel = section.closest(".white-container") !== null;
     const targetSliderPos = isInRightPanel ? 0 : 100;
 
@@ -2013,13 +2018,13 @@ const PollutantPage = ({ categorizedData }) => {
                           left: "46%",
                         }
                       : {
-                          left: `${sliderPosition}%`,
+                          left: `${sliderPosition - 1.4}%`,
                           transform: "translateX(0%)",
                         }),
                     position: "absolute",
                     transition: isDragging ? "none" : "all 0.3s ease-in-out",
                     height: isMobileView ? "32px" : containerHeight,
-                    width: isMobileView ? "10%" : "42px",
+                    width: isMobileView ? "10%" : "45px",
                     zIndex: 10,
                     cursor: "grab",
                   }}
@@ -2351,7 +2356,7 @@ const PollutantPage = ({ categorizedData }) => {
             <></>
           )}
           <div className="combined-section" style={{ padding: "0px 10px" }}>
-            <div className="nav-bar-container">
+              <div className="nav-bar-container">
               <div className="nav-bar" ref={navBarRef}>
                 {isMobile && (
                   <div
@@ -2366,15 +2371,12 @@ const PollutantPage = ({ categorizedData }) => {
                     isMobile && menuOpen ? "mobile-active" : ""
                   }`}
                 >
-                  <div
+                  {/* <div 
                     className="text-wrapper-combined"
                     onClick={() => handleNavClick("overview")}
                   >
-                    <span>
-                      {leftpanelcontent[0].pollutantName} +{" "}
-                      {rightpanelcontent[0].plantNameSplit}
-                    </span>
-                  </div>
+                    <span>{leftpanelcontent[0].pollutantName} + {rightpanelcontent[0].plantNameSplit}</span>
+                  </div> */}
                   <div
                     className={`text-wrapper`}
                     onClick={() => handleNavClick("about-pollutant")}
@@ -2393,7 +2395,7 @@ const PollutantPage = ({ categorizedData }) => {
                     className={`text-wrapper-2`}
                     onClick={() => handleNavClick("sound-frequency")}
                   >
-                    <span>Sound frequency</span>
+                    <span>Sound Frequency of {leftpanelcontent[0].pollutantName}</span>
                   </div>
 
                   <div
@@ -2447,14 +2449,14 @@ const PollutantPage = ({ categorizedData }) => {
                     className={`text-wrapper-8`}
                     onClick={() => handleNavClick("effect-on-health")}
                   >
-                    <span>Effect on health</span>
+                    <span>Effects of {leftpanelcontent[0].pollutantName} on Health</span>
                   </div>
 
                   <div
                     className={`text-wrapper-9`}
                     onClick={() => handleNavClick("case-study")}
                   >
-                    <span>Case study</span>
+                    <span>Case Study of {leftpanelcontent[0].pollutantName}'s Pollution</span>
                   </div>
 
                   <p
@@ -2462,80 +2464,110 @@ const PollutantPage = ({ categorizedData }) => {
                     onClick={() => handleNavClick("phytoremediation")}
                   >
                     <span>
-                      Phytoremediation of {leftpanelcontent[0].pollutantName}
+                      Plants Remediating {leftpanelcontent[0].pollutantName}
                     </span>
                   </p>
                 </div>
                 <div className="overlap-group">
+                  <div className={`ellipse-0 ${activeSection === "overview" ? "active" : ""}`}
+                        onClick={() => {
+                          console.log("Clicked ellipse - returning to top");
+                          
+                          if (isMobileView) {
+                            setIsSplit(true);
+                          }
+                          
+                          const topElement = document.getElementById("slider-container");
+                          if (topElement) {
+                            topElement.scrollIntoView({ behavior: "smooth", block: "start" });
+                          } else {
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                          }
+                        }}
+                        style={{ cursor: "pointer" }}>
+                    <svg
+                      width="19"
+                      height="19"
+                      viewBox="0 0 19 19"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <mask id="path-1-inside-1_3499_236" fill="white">
+                        <path d="M10 0.59155C7.61305 0.591551 5.32387 1.53976 3.63604 3.22759C1.94821 4.91542 1 7.2046 1 9.59155C1 11.9785 1.94821 14.2677 3.63604 15.9555C5.32386 17.6433 7.61305 18.5916 10 18.5916L10 9.59155L10 0.59155Z"/>
+                      </mask>
+                      <path
+                        d="M10 0.59155C7.61305 0.591551 5.32387 1.53976 3.63604 3.22759C1.94821 4.91542 1 7.2046 1 9.59155C1 11.9785 1.94821 14.2677 3.63604 15.9555C5.32386 17.6433 7.61305 18.5916 10 18.5916L10 9.59155L10 0.59155Z"
+                        fill="black"
+                        stroke="white"
+                        strokeWidth="2"
+                        mask="url(#path-1-inside-1_3499_236)"
+                      />
+                      <path d="M10 18.5916C12.387 18.5916 14.6761 17.6433 16.364 15.9555C18.0518 14.2677 19 11.9785 19 9.59155C19 7.20461 18.0518 4.91542 16.364 3.22759C14.6761 1.53977 12.387 0.591554 10 0.591553L10 9.59155L10 18.5916Z"  fill="white" />
+                    </svg>
+                  </div>
                   <div
-                    className={`ellipse-0 ${
-                      activeSection === "overview" ? "active" : ""
-                    }`}
+                    className={`ellipse ${activeSection === "about-pollutant" ? "active" : ""}`}
+                    onClick={() => handleNavClick("about-pollutant")}
+                    style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse ${
-                      activeSection === "about-pollutant" ? "active" : ""
-                    }`}
+                    className={`ellipse-2 ${activeSection === "sound-frequency" ? "active" : ""}`}
+                    onClick={() => handleNavClick("sound-frequency")}
+                    style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-2 ${
-                      activeSection === "sound-frequency" ? "active" : ""
-                    }`}
+                    className={`ellipse-3 ${activeSection === "effect-on-health" ? "active" : ""}`}
+                    onClick={() => handleNavClick("effect-on-health")}
+                    style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-3 ${
-                      activeSection === "effect-on-health" ? "active" : ""
-                    }`}
+                    className={`ellipse-4 ${activeSection === "case-study" ? "active" : ""}`}
+                    onClick={() => handleNavClick("case-study")}
+                    style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-4 ${
-                      activeSection === "case-study" ? "active" : ""
-                    }`}
+                    className={`ellipse-5 ${activeSection === "phytoremediation" ? "active" : ""}`}
+                    onClick={() => handleNavClick("phytoremediation")}
+                    style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-5 ${
-                      activeSection === "phytoremediation" ? "active" : ""
-                    }`}
+                    className={`ellipse-6 ${activeSection === "plant-name" ? "active" : ""}`}
+                    onClick={() => handleNavClick("plant-name")}
+                    style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-6 ${
-                      activeSection === "plant-name" ? "active" : ""
-                    }`}
+                    className={`ellipse-7 ${activeSection === "common-names" ? "active" : ""}`}
+                    onClick={() => handleNavClick("common-names")}
+                    style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-7 ${
-                      activeSection === "common-names" ? "active" : ""
-                    }`}
+                    className={`ellipse-8 ${activeSection === "plant-habitat" ? "active" : ""}`}
+                    onClick={() => handleNavClick("plant-habitat")}
+                    style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-8 ${
-                      activeSection === "plant-habitat" ? "active" : ""
-                    }`}
+                    className={`ellipse-9 ${activeSection === "origin" ? "active" : ""}`}
+                    onClick={() => handleNavClick("origin")}
+                    style={{ cursor: "pointer" }}            
                   />
                   <div
-                    className={`ellipse-9 ${
-                      activeSection === "origin" ? "active" : ""
-                    }`}
+                    className={`ellipse-10 ${activeSection === "phyto-capacity" ? "active" : ""}`}
+                    onClick={() => handleNavClick("phyto-capacity")}
+                    style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-10 ${
-                      activeSection === "phyto-capacity" ? "active" : ""
-                    }`}
+                    className={`ellipse-11 ${activeSection === "uses-of-plant" ? "active" : ""}`}
+                    onClick={() => handleNavClick("uses-of-plant")}
+                    style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-11 ${
-                      activeSection === "uses-of-plant" ? "active" : ""
-                    }`}
-                  />
-                  <div
-                    className={`ellipse-12 ${
-                      activeSection === "references" ? "active" : ""
-                    }`}
+                    className={`ellipse-12 ${activeSection === "references" ? "active" : ""}`}
+                    onClick={() => handleNavClick("references")}
+                    style={{ cursor: "pointer" }}
                   />
                 </div>
               </div>
             </div>
-
             <div>
               {!state && (
                 <div
