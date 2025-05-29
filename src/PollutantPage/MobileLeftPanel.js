@@ -24,7 +24,7 @@ const MobileLeftPanel = ({ sections = [], onLoad, onNavigate,sliderPosition=50 }
   console.log("sections", sections);
   return (
     <div className="left-panel">
-      <div className="plantContainerleft">
+      <div className="plantContainerleft"  style={{width:"33%"}}>
         <div>
           {sliderPosition==20?
           <p  style={{
@@ -34,7 +34,7 @@ const MobileLeftPanel = ({ sections = [], onLoad, onNavigate,sliderPosition=50 }
               textAlign: "center",
               color: "#fff",
               transform: "translate(0px, -10px)"
-            }}>pollutantName</p>
+            }}>{pollutantName}</p>
           :<></>}
           <h2
             style={{
@@ -43,7 +43,7 @@ const MobileLeftPanel = ({ sections = [], onLoad, onNavigate,sliderPosition=50 }
               margin: "0px",
               textAlign: "center",
               color: "#fff",
-              transform: "translate(0px, 60px)"
+              transform: "translate(0px, 90px)"
             }}
           >
             {pollutantName}

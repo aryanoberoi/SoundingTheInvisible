@@ -1470,19 +1470,9 @@ const PollutantPage = ({ categorizedData }) => {
       window.removeEventListener("resize", checkStickySupport);
     };
   }, [isMobile]);
-  const options = [
-    // { id: "about-pollutant", label: "{Split Page}" },
-    { id: "about-pollutant", label: "Pollutant name" },
-    { id: "sound-frequency", label: "Sound frequency" },
-    { id: "effect-on-health", label: "Effect on health" },
-    { id: "case-study", label: "Case study" },
-    {
-      id: "phytoremediation",
-      label: "Phytoremediation of the Representative Pollutant",
-    },
-  ];
+
   const option = [
-    { id: "plant-name", label: `Plant Common ` },
+    { id: "plant-name", label: rightpanelcontent[0].plantNameSplit },
     {
       id: "common-names",
       label: `Common names of ${rightpanelcontent[0].plantNameSplit}`,
@@ -1552,7 +1542,20 @@ const PollutantPage = ({ categorizedData }) => {
       ].join("\n"),
     },
   ];
-
+  const options = [
+    // { id: "about-pollutant", label: "{Split Page}" },
+    {
+      id: "about-pollutant",
+      label: leftpanelcontent[0].pollutantName,
+    },
+    { id: "sound-frequency", label: "Sound frequency" },
+    { id: "effect-on-health", label: "Effect on health" },
+    { id: "case-study", label: "Case study" },
+    {
+      id: "phytoremediation",
+      label: "Phytoremediation of the Representative Pollutant",
+    },
+  ];
   return (
     <>
       <SoundToggle
@@ -1647,7 +1650,9 @@ const PollutantPage = ({ categorizedData }) => {
                     <div className="container">
                       <div className="row">
                         <div className="col-lg-12">
-                          <img src={Pollutantburger} alt="pollutant" />
+                          <div style={{width:"40px",height:"40px"}}>
+                          <img src={Pollutantburger} alt="pollutant" style={{width:"100%",height:"100%",objectFit:"contain"}} />
+                          </div>
                           <h2
                             style={{
                               color: "#fff",
@@ -1843,7 +1848,7 @@ const PollutantPage = ({ categorizedData }) => {
                                           .map((line, lineIndex) => (
                                             <div
                                               key={lineIndex}
-                                              className="titleEntry"
+                                              className="titleEntry --bullet-points"
                                             >
                                               <div className="rightPanel-bullet">
                                                 <img
@@ -3246,22 +3251,23 @@ const PollutantPage = ({ categorizedData }) => {
                     style={{
                       width: "100%",
                       alignItems: "baseline",
-                      gap: idx !== 0 ? "70px" : "10px",
+                      gap: "10px",
                       display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
                     }}
                   >
                     <span
                       className={`flex-1 `}
                       style={{
                         fontSize: idx == 0 ? "24px" : "14px",
-                        width: idx !== 0 ? "104px" : "",
-                        textAlign: "end",
-                        transform:
-                          idx !== 0 && !isLast
-                            ? "translateX(62px)"
-                            : isLast
-                            ? "translateX(49px)"
-                            : "none",
+                        width: "134px",
+                        // textAlign: "end",
+                        // transform:
+                        //  "translateX(60px)"
+                        //     // : isLast
+                        //     // ? "translateX(49px)"
+                        //     // : "none",
                       }}
                     >
                       {item.label}
@@ -3279,8 +3285,9 @@ const PollutantPage = ({ categorizedData }) => {
                 justifyContent: "center",
                 paddingLeft: "9px",
                 gap: "20px",
-                marginBottom: "20px",
-                paddingRight: "55px",
+                marginBottom: "1px",
+                paddingRight: "53px",
+                paddingTop: "17px",
               }}
               onClick={() => handleNavClick("phytoremediation")}
             >
@@ -3377,7 +3384,8 @@ const PollutantPage = ({ categorizedData }) => {
                       className={`flex-1 `}
                       style={{
                         fontSize: idx == 0 ? "24px" : "14px",
-                        width: idx !== 0 ? "150px" : "",
+                        // width: idx !== 0 ? "150px" : "",
+                        width: "165px",
                         // textAlign: "end",
                       }}
                     >
