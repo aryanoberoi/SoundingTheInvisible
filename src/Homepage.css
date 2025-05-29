@@ -672,6 +672,11 @@
   will-change: transform; /* Optimize for animation performance */
 }
 
+.sound-concept-section .animated-cloud {
+  scale: 1.3 !important; /* or a scale you prefer */
+  z-index: 6;
+}
+
 /* Optional - add these for smoother animation */
 @media (prefers-reduced-motion: no-preference) {
   .animated-cloud {
