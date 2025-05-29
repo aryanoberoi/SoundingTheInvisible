@@ -1270,24 +1270,14 @@ const PollutantPage = ({ categorizedData }) => {
   }, []);
 
   const handleNavClick = (sectionId) => {
-    console.log("DDSADSDADS");
-    
-    // Only affect isSplit on mobile
-    if (isMobileView) {
-      setIsSplit(sectionId == "slider-container" ? true : false);
-    }
-    
+    console.log("DDSADSDADS", sectionId);
+    setIsSplit(sectionId == "slider-container" ? true : false);
+    setIsSplits(sectionId);
     const section = document.getElementById(sectionId);
     if (!section) return;
     setState(false);
-    
-    // Skip slider positioning for mobile or if we're going back to slider-container
-    if (isMobileView || sectionId === "slider-container") {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
-      return;
-    }
-  
-    // Desktop behavior - determine panel and snap slider
+
+    // Determine which panel the section belongs to
     const isInRightPanel = section.closest(".white-container") !== null;
     const targetSliderPos = isInRightPanel ? 0 : 100;
 
@@ -1301,14 +1291,11 @@ const PollutantPage = ({ categorizedData }) => {
     updateSliderPosition(targetSliderPos);
     lastPositionRef.current = targetSliderPos;
 
-    // Smooth scroll to section
-
+    // Scroll to section
     section.scrollIntoView({
       behavior: "auto",
       block: "start",
     });
-    setState(false);
-    //  setState(open);
   };
 
   // Replace the scroll-based combined section detection with Intersection Observer
