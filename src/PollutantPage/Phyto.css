@@ -210,9 +210,9 @@ text-align: right;   /* Add internal padding */
 }
 
 .bottom-section4 .box .time-period-container-group2 .div {
-  left: 90px;  /* Match parent element positioning */
-  width: calc(100%);
-  text-align: right;
+  left: 260px;  /* Match parent element positioning */
+  /* width: calc(100%); */
+  text-align: left;
 }
 
 .bottom-section4 .box .time-period-container-group2 .div-wrapper {
