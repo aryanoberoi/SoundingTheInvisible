@@ -6,7 +6,7 @@ const SoundToggle = ({
   padNumber = "1", 
   isInTrapezium = false, 
   panelMode = "white", 
-  defaultActive = false,
+  defaultActive = true,
   onToggle = () => {},
   sendPostRequest = false
 }) => {
