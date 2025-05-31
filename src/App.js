@@ -10,7 +10,7 @@ import PlayPads from "./PlayPads";
 import IsolatedCursor from './IsolatedCursor';
 import audioService from './AudioService';
 import { ScrollToTop, inspectScrollableElements } from './ScrollFix';
-
+import Loader from "./Loader";
 const AppContent = () => {
   const location = useLocation();
   const [categorizedData, setCategorizedData] = useState({});
@@ -129,6 +129,22 @@ const AppContent = () => {
       });
   }, []);
 
+
+  useEffect(() => {
+    const handlePageLoad = () => {
+      setIsLoading(false);
+    };
+
+    // Check if the page has already loaded
+    if (document.readyState === 'complete') {
+      handlePageLoad();
+    } else {
+      window.addEventListener('load', handlePageLoad);
+      // Cleanup the event listener
+      return () => window.removeEventListener('load', handlePageLoad);
+    }
+  }, []);
+
   // Clean up audio resources on unmount
   useEffect(() => {
     return () => {
@@ -137,16 +153,18 @@ const AppContent = () => {
   }, []);
 
   if (isLoading) {
-    return <div className="loading-container">Loading data, please wait...</div>;
+      <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+      </div>
   }
+
 
   return (
     <div className="app-container">
+      {isLoading && <Loader />}
       <ScrollToTop />
       <IsolatedCursor />
       <Navbar />
-      
-      {/* Wrap routes in a container with position: relative */}
       <div className="page-container">
         <Routes>
           <Route path="/" element={<Homepage categorizedData={categorizedData} />} />

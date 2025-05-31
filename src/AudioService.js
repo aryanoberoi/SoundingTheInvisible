@@ -541,17 +541,28 @@ class AudioService {
 
   // Preload common sounds for better performance
   preloadCommonSounds() {
-    // Preload all 36 pads
+    // Preload all 36 pads, one at a time, waiting for each to finish before starting the next
     const allPads = Array.from({ length: 36 }, (_, i) => String(i + 1));
-    
-    console.log("Preloading all sounds:", allPads);
-    
-    // Fetch URLs in background without awaiting
-    allPads.forEach(padNumber => {
-      this.getAudioUrl(padNumber).catch(() => {
+    console.log("Preloading all sounds sequentially:", allPads);
+
+    const loadNext = async (index) => {
+      if (index >= allPads.length) {
+        console.log("Finished preloading all sounds.");
+        return;
+      }
+      const padNumber = allPads[index];
+      try {
+        await this.getAudioUrl(padNumber);
+        console.log(`[AudioService] Preloaded pad ${padNumber}`);
+      } catch (e) {
         // Silently fail preloading - will retry when actually needed
-      });
-    });
+        console.warn(`[AudioService] Failed to preload pad ${padNumber}`);
+      }
+      // Wait 1 second before loading the next pad
+      setTimeout(() => loadNext(index + 1), 1000);
+    };
+
+    loadNext(0);
   }
 
   // Clean up resources
