@@ -223,7 +223,6 @@ export default function Homepage({ audioControls }) {
     setAudioEnabled(true);
     setShowAudioPopup(false);
     // Store both preferences
-    localStorage.setItem('audioPopupSeen', 'true');
     localStorage.setItem('audioEnabled', 'true');
   };
 
