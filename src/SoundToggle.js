@@ -7,7 +7,8 @@ const SoundToggle = ({
   isInTrapezium = false, 
   panelMode = "white", 
   defaultActive = false,
-  onToggle = () => {}
+  onToggle = () => {},
+  sendPostRequest = false
 }) => {
   const [isPlaying, setIsPlaying] = useState(defaultActive);
   const [isInCombinedSection, setIsInCombinedSection] = useState(false);
@@ -87,7 +88,7 @@ const SoundToggle = ({
     // If currently playing and pad number changes, update the sound
     if (isPlaying && hasStartedRef.current) {
       audioService.stopAllSounds(); // Stop any previous sounds
-      audioService.playPadSound(padNumber, { loop: true });
+      audioService.playPadSound(padNumber, { loop: true }, sendPostRequest );
     }
   }, [padNumber, isPlaying]);
 

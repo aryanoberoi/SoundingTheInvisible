@@ -406,7 +406,7 @@ class AudioService {
   }
 
   // Core function to play a pad sound (used by both hover and SoundToggle)
-  playPadSound(padNumber, options = {}) {
+  playPadSound(padNumber, options = {}, sendPostRequest = false) {
     if (this.isMuted) return null;
     
     const defaultOptions = {
@@ -442,7 +442,7 @@ class AudioService {
         }
         
         // Get audio URL (cached or fresh)
-        const url = await this.getAudioUrl(padNumber);
+        const url = await this.getAudioUrl(padNumber, sendPostRequest);
         
         // Create or update Audio object
         if (!this.audioRefs[padNumber]) {
@@ -481,8 +481,25 @@ class AudioService {
   }
 
   // Get audio URL with caching
-  async getAudioUrl(padNumber) {
+  async getAudioUrl(padNumber, sendPostRequest = false) {
     try {
+      if (sendPostRequest) {
+        // Send a POST request
+        const postResponse = await fetch(`${API_URL}/post_pad`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ pad: padNumber }),
+        });
+  
+        if (!postResponse.ok) {
+          throw new Error(`Failed to send POST request for pad ${padNumber}`);
+        }
+        console.log(`POST request sent for pad ${padNumber}`);
+      }
+  
+      // Send a GET request
       const response = await fetch(`${API_URL}/play_pad?pad=${padNumber}`);
       if (!response.ok) throw new Error(`Failed to fetch sound for pad ${padNumber}`);
       const blob = await response.blob();
@@ -492,7 +509,7 @@ class AudioService {
       console.error(`Error fetching pad ${padNumber}:`, err);
       throw err;
     }
-  }  
+  }
 
   // Stop a specific pad sound
   async stopPadSound(padNumber, fadeOutDuration = 2000) {

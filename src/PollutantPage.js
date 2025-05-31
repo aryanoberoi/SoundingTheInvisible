@@ -1555,6 +1555,7 @@ const PollutantPage = ({ categorizedData }) => {
         padNumber={leftpanelcontent[0].pollutantNumber}
         sliderPosition={sliderPosition}
         panelMode={sliderPosition < 50 ? "white" : "black"}
+        sendPostRequest = {true}
       />
 
       {!isMobileView ? (
