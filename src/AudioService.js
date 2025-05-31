@@ -483,24 +483,25 @@ class AudioService {
   // Get audio URL with caching
   async getAudioUrl(padNumber, sendPostRequest = false) {
     try {
+      const endpoint = `${API_URL}/play_pad?pad=${padNumber}`;
       if (sendPostRequest) {
-        // Send a POST request
-        const postResponse = await fetch(`${API_URL}/post_pad`, {
+        // Send a POST request to the same endpoint and include pad number in query
+        const postResponse = await fetch(endpoint, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ pad: padNumber }),
         });
-  
+
         if (!postResponse.ok) {
           throw new Error(`Failed to send POST request for pad ${padNumber}`);
         }
         console.log(`POST request sent for pad ${padNumber}`);
       }
-  
-      // Send a GET request
-      const response = await fetch(`${API_URL}/play_pad?pad=${padNumber}`);
+
+      // Send a GET request to the same endpoint and include pad number in query
+      const response = await fetch(endpoint);
       if (!response.ok) throw new Error(`Failed to fetch sound for pad ${padNumber}`);
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);
