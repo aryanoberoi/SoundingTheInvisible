@@ -811,17 +811,17 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
   text-align: right !important;
 }
 .nav-bar .text-wrapper-8 {
-  top: 210px;
+  top: 205px;
   left: 0px !important;
   text-align: right !important;
 }
 .nav-bar .text-wrapper-9 {
-  top: 260px;
+  top: 265px;
   left: 0px !important;
   text-align: right !important;
 }
 .nav-bar .text-wrapper-10 {
-  top: 310px;
+  top: 320px;
   left: 0px !important;
   text-align: right !important;
 }
@@ -1004,7 +1004,7 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
   top: 260px;
 } /* Matches text-wrapper-9 position */
 .nav-bar .ellipse-5 {
-  top: 313px;
+  top: 315px;
 } /* Matches text-wrapper-10 position */
 .nav-bar .ellipse-6 {
   top: 360px;
