@@ -801,22 +801,22 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
 
 /* ✅ Adjusting Positions Based on Your CSS */
 .nav-bar .text-wrapper {
-  top: 70px;
+  top: 50px;
   left: 174px;
   font-size: 24px;
 }
 .nav-bar .text-wrapper-2 {
-  top: 160px;
+  top: 140px;
   left: 0px !important;
   text-align: right !important;
 }
 .nav-bar .text-wrapper-8 {
-  top: 220px;
+  top: 210px;
   left: 0px !important;
   text-align: right !important;
 }
 .nav-bar .text-wrapper-9 {
-  top: 270px;
+  top: 260px;
   left: 0px !important;
   text-align: right !important;
 }
@@ -992,13 +992,13 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
 
 /* ✅ Adjusting Circle Positions */
 .nav-bar .ellipse {
-  top: 75px;
+  top: 55px;
 } /* Matches text-wrapper position */
 .nav-bar .ellipse-2 {
-  top: 150px;
+  top: 130px;
 } /* Matches text-wrapper-2 position */
 .nav-bar .ellipse-3 {
-  top: 210px;
+  top: 190px;
 } /* Matches text-wrapper-8 position */
 .nav-bar .ellipse-4 {
   top: 260px;

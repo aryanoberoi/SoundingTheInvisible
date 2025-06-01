@@ -42,6 +42,7 @@ import back from "./back.png";
 import backwhite from "./backwhite.png";
 import split_img from "./split_img.png";
 const PollutantPage = ({ categorizedData }) => {
+
   //this was hell to make
   const { customName } = useParams();
   const allRows = Object.values(categorizedData).flat();
@@ -1548,6 +1549,16 @@ const PollutantPage = ({ categorizedData }) => {
       ].join("\n"),
     },
   ];
+  
+  const getNavPollutantName = (name) => {
+    console.log("original name for navbar", name);
+    if (name === "Butylated Hydroxytoluene (BHT)") return "BHT";
+    if (name.toLowerCase === "activated sludge (wastewater)") return "Waste Water";
+    return name;
+  };
+
+  // Add computed variable here
+  const navPollutantName = getNavPollutantName(leftpanelcontent[0]?.pollutantName || "");
 
   return (
     <>
@@ -1636,7 +1647,7 @@ const PollutantPage = ({ categorizedData }) => {
                     className={`text-wrapper`}
                     onClick={() => handleNavClick("about-pollutant")}
                   >
-                    <span>{leftpanelcontent[0].pollutantName}</span>
+                    <span>{navPollutantName}</span>
                   </div>
 
                   <div
@@ -1650,7 +1661,7 @@ const PollutantPage = ({ categorizedData }) => {
                     className={`text-wrapper-2`}
                     onClick={() => handleNavClick("sound-frequency")}
                   >
-                    <span>Sound Frequency of {leftpanelcontent[0].pollutantName}</span>
+                    <span>Sound Frequency of {navPollutantName}</span>
                   </div>
 
                   <div
@@ -1704,14 +1715,14 @@ const PollutantPage = ({ categorizedData }) => {
                     className={`text-wrapper-8`}
                     onClick={() => handleNavClick("effect-on-health")}
                   >
-                    <span>Effects of {leftpanelcontent[0].pollutantName} on Health</span>
+                    <span>Effects of {navPollutantName} on Health</span>
                   </div>
 
                   <div
                     className={`text-wrapper-9`}
                     onClick={() => handleNavClick("case-study")}
                   >
-                    <span>Case Study of {leftpanelcontent[0].pollutantName}'s Pollution</span>
+                    <span>Case Study of {navPollutantName}'s Pollution</span>
                   </div>
 
                   <p
@@ -1719,7 +1730,7 @@ const PollutantPage = ({ categorizedData }) => {
                     onClick={() => handleNavClick("phytoremediation")}
                   >
                     <span>
-                      Plants Remediating {leftpanelcontent[0].pollutantName}
+                      Plants Remediating {navPollutantName}
                     </span>
                   </p>
                 </div>
@@ -2461,7 +2472,7 @@ const PollutantPage = ({ categorizedData }) => {
                     className={`text-wrapper`}
                     onClick={() => handleNavClick("about-pollutant")}
                   >
-                    <span>{leftpanelcontent[0].pollutantName}</span>
+                    <span>{navPollutantName}</span>
                   </div>
 
                   <div
@@ -2475,7 +2486,7 @@ const PollutantPage = ({ categorizedData }) => {
                     className={`text-wrapper-2`}
                     onClick={() => handleNavClick("sound-frequency")}
                   >
-                    <span>Sound Frequency of {leftpanelcontent[0].pollutantName}</span>
+                    <span>Sound Frequency of {navPollutantName}</span>
                   </div>
 
                   <div
@@ -2529,14 +2540,14 @@ const PollutantPage = ({ categorizedData }) => {
                     className={`text-wrapper-8`}
                     onClick={() => handleNavClick("effect-on-health")}
                   >
-                    <span>Effects of {leftpanelcontent[0].pollutantName} on Health</span>
+                    <span>Effects of {navPollutantName} on Health</span>
                   </div>
 
                   <div
                     className={`text-wrapper-9`}
                     onClick={() => handleNavClick("case-study")}
                   >
-                    <span>Case Study of {leftpanelcontent[0].pollutantName}'s Pollution</span>
+                    <span>Case Study of {navPollutantName}'s Pollution</span>
                   </div>
 
                   <p
@@ -2544,7 +2555,7 @@ const PollutantPage = ({ categorizedData }) => {
                     onClick={() => handleNavClick("phytoremediation")}
                   >
                     <span>
-                      Plants Remediating {leftpanelcontent[0].pollutantName}
+                      Plants Remediating {navPollutantName}
                     </span>
                   </p>
                 </div>
@@ -2928,7 +2939,7 @@ const PollutantPage = ({ categorizedData }) => {
                     className={`text-wrapper`}
                     onClick={() => handleNavClick("about-pollutant")}
                   >
-                    <span>{leftpanelcontent[0].pollutantName}</span>
+                    <span>{navPollutantName}</span>
                   </div>
 
                   <div
