@@ -1913,6 +1913,8 @@ const PollutantPage = ({ categorizedData }) => {
                         sections={aboutpollutantcontent}
                         wasteTypeIcon={wasteTypeData.atomImage}
                       />
+                      {/* common names */}
+                      <CommonNames sections={commonname} />
                     </div>
                     <div
                       className="sound-frequency-section"
