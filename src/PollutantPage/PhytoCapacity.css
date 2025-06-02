@@ -220,13 +220,36 @@
     padding-left: 0px;
   }
   .phyto-content-wrapper-reversed {
-    width: 113% !important;
+    width: 98% !important;
     margin-left: 0px !important;
   }
   .phyto-content-wrapper-reversed .phyto-benefits-heading {
     display: flex;
     justify-content: end;
     padding-right: 9px;
+  }
+  .phyto-capacity-container {
+    width: 100%;
+  }
+  .titleTextRightPanel {
+    font: 300 14px "Chivo Mono";
+  }
+  .titleListRightPanel li {
+    font: 300 14px "Chivo Mono";
+  }
+  .plantDetails {
+    font: 300 14px "Chivo Mono";
+  }
+  .description {
+    font: 300 14px "Chivo Mono";
+    line-height: 165%;
+  }
+  .--bullet-points {
+    margin: 17px 0px;
+  }
+  .sourcesDescription{
+    font: 400 14px "Chivo Mono";
+    line-height: 165%;
   }
 }
 @media screen and (max-width: 55px) {

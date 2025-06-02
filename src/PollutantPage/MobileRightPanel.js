@@ -25,7 +25,7 @@ const MobileRightPanel = ({
     plantName = "",
     plantDetails = "",
   } = sections[0] || {};
-console.log("KKKKKDs",sections?.plantName,pollutantName)
+  console.log("KKKKKDs", sections?.plantName, pollutantName);
   const habitatIcons = [tempIcon, humidityIcon, soilIcon, areaIcon];
 
   const plantData = [
@@ -51,14 +51,19 @@ console.log("KKKKKDs",sections?.plantName,pollutantName)
   return (
     <div className="right-panel">
       <div className="plantContainer">
-        <div className="contentWrapper "
-        style={{transform:"scale(1.35) "}}
-        //  style={{transform:"translate(54px, 26px)"}}
-         >
+        <div
+          className="contentWrapper "
+          // style={{transform:" "}}
+          //  style={{transform:"translate(54px, 326px)"}}
+        >
           <img
             src={plantimagemobile}
             alt="Pollutant visual"
-            style={{width: "100%", height: "100%"}}
+            style={{
+              width: "100%",
+              height: "100%",
+              transform: "scale(1.35) translateX(17px)",
+            }}
             // className="pollutantVisualImage"
           />
           <h2
@@ -67,9 +72,10 @@ console.log("KKKKKDs",sections?.plantName,pollutantName)
               fontWeight: "400",
               margin: "0px",
               textAlign: "center",
+              transform: "translate(0px, 9px)",
             }}
           >
-         {sections?.plantName}
+            {plantName}
           </h2>
         </div>
       </div>

@@ -42,7 +42,6 @@ import back from "./back.png";
 import backwhite from "./backwhite.png";
 import split_img from "./split_img.png";
 const PollutantPage = ({ categorizedData }) => {
-
   //this was hell to make
   const { customName } = useParams();
   const allRows = Object.values(categorizedData).flat();
@@ -674,44 +673,44 @@ const PollutantPage = ({ categorizedData }) => {
   //     };
   //   }, [isDragging]);
 
-    useEffect(() => {
-      // Set the initial rotation CSS variable directly on mount
-      document.documentElement.style.setProperty("--rotation", `180deg`);
-      // Add slider transition variable for dynamic control
-      document.documentElement.style.setProperty(
-        "--slider-transition",
-        "left 0.3s ease-in-out"
-      );
+  useEffect(() => {
+    // Set the initial rotation CSS variable directly on mount
+    document.documentElement.style.setProperty("--rotation", `180deg`);
+    // Add slider transition variable for dynamic control
+    document.documentElement.style.setProperty(
+      "--slider-transition",
+      "left 0.3s ease-in-out"
+    );
 
-      // Clean up on unmount
-      return () => {};
-    }, [isMobileView]); // Initial setup effect, height update logic moved
+    // Clean up on unmount
+    return () => {};
+  }, [isMobileView]); // Initial setup effect, height update logic moved
 
-    useEffect(() => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          // Find the first entry that is currently intersecting
-          const intersectingEntry = entries.find((entry) => entry.isIntersecting);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Find the first entry that is currently intersecting
+        const intersectingEntry = entries.find((entry) => entry.isIntersecting);
 
-          // If an intersecting entry is found, update the active section
-          if (intersectingEntry) {
-            setActiveSection(intersectingEntry.target.id);
-          }
-          // Optional: If no entry is intersecting, you might want to clear
-          // the active section or keep the last active one, depending on desired UX.
-          // Example: else if (entries.some(entry => !entry.isIntersecting)) {
-          //   // Logic if elements are leaving viewport but none are entering
-          // }
-        },
-        {
-          // Keep the lower threshold
-          threshold: 0.1,
-          root: null,
+        // If an intersecting entry is found, update the active section
+        if (intersectingEntry) {
+          setActiveSection(intersectingEntry.target.id);
         }
-      );
+        // Optional: If no entry is intersecting, you might want to clear
+        // the active section or keep the last active one, depending on desired UX.
+        // Example: else if (entries.some(entry => !entry.isIntersecting)) {
+        //   // Logic if elements are leaving viewport but none are entering
+        // }
+      },
+      {
+        // Keep the lower threshold
+        threshold: 0.1,
+        root: null,
+      }
+    );
 
-      // Observe all sections in both panels
-      const sections = document.querySelectorAll(`
+    // Observe all sections in both panels
+    const sections = document.querySelectorAll(`
         [id^="about-"],
         [id^="plant-"],
         [id^="sound-"],
@@ -725,12 +724,12 @@ const PollutantPage = ({ categorizedData }) => {
         [id^="references"]
       `);
 
-      sections.forEach((section) => {
-        observer.observe(section);
-      });
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
 
-      return () => observer.disconnect();
-    }, []);
+    return () => observer.disconnect();
+  }, []);
 
   const [isDragging, setIsDragging] = useState(false);
   // const [sliderPosition, setSliderPosition] = useState(50);
@@ -1272,9 +1271,10 @@ const PollutantPage = ({ categorizedData }) => {
 
   const handleNavClick = (sectionId) => {
     console.log("DDSADSDADS", sectionId);
-    // Only toggle isSplit on mobile
-                          if (isMobileView) {
-      setIsSplit(sectionId === "slider-container");
+
+    // Only affect isSplit on mobile
+    if (isMobileView) {
+      setIsSplit(sectionId == "slider-container" ? true : false);
     }
     setIsSplits(sectionId);
     const section = document.getElementById(sectionId);
@@ -1467,19 +1467,8 @@ const PollutantPage = ({ categorizedData }) => {
     };
   }, [isMobile]);
 
-  const options = [
-    // { id: "about-pollutant", label: "{Split Page}" },
-    { id: "about-pollutant", label: "Pollutant name" },
-    { id: "sound-frequency", label: "Sound frequency" },
-    { id: "effect-on-health", label: "Effect on health" },
-    { id: "case-study", label: "Case study" },
-    {
-      id: "phytoremediation",
-      label: "Phytoremediation of the Representative Pollutant",
-    },
-  ];
   const option = [
-    { id: "plant-name", label: `Plant Common ` },
+    { id: "plant-name", label: rightpanelcontent[0].plantNameSplit },
     {
       id: "common-names",
       label: `Common names of ${rightpanelcontent[0].plantNameSplit}`,
@@ -1549,24 +1538,41 @@ const PollutantPage = ({ categorizedData }) => {
       ].join("\n"),
     },
   ];
-  
+
   const getNavPollutantName = (name) => {
     console.log("original name for navbar", name);
     if (name === "Butylated Hydroxytoluene (BHT)") return "BHT";
-    if (name.toLowerCase === "activated sludge (wastewater)") return "Waste Water";
+    if (name.toLowerCase === "activated sludge (wastewater)")
+      return "Waste Water";
     return name;
   };
 
   // Add computed variable here
-  const navPollutantName = getNavPollutantName(leftpanelcontent[0]?.pollutantName || "");
+  const navPollutantName = getNavPollutantName(
+    leftpanelcontent[0]?.pollutantName || ""
+  );
 
+  const options = [
+    // { id: "about-pollutant", label: "{Split Page}" },
+    {
+      id: "about-pollutant",
+      label: leftpanelcontent[0].pollutantName,
+    },
+    { id: "sound-frequency", label: "Sound frequency" },
+    { id: "effect-on-health", label: "Effect on health" },
+    { id: "case-study", label: "Case study" },
+    {
+      id: "phytoremediation",
+      label: "Phytoremediation of the Representative Pollutant",
+    },
+  ];
   return (
     <>
       <SoundToggle
         padNumber={leftpanelcontent[0].pollutantNumber}
         sliderPosition={sliderPosition}
         panelMode={sliderPosition < 50 ? "white" : "black"}
-        sendPostRequest = {true}
+        sendPostRequest={true}
       />
 
       {!isMobileView ? (
@@ -1613,11 +1619,7 @@ const PollutantPage = ({ categorizedData }) => {
                 className="slider-image-container"
                 style={{ position: "relative", top: "0px" }}
               >
-                <img
-                  src="slider.png"
-                  alt="Slider"
-                  className="slider-image"
-                />
+                <img src="slider.png" alt="Slider" className="slider-image" />
               </div>
             </div>
           </div>
@@ -1637,7 +1639,7 @@ const PollutantPage = ({ categorizedData }) => {
                     isMobile && menuOpen ? "mobile-active" : ""
                   }`}
                 >
-                   {/* <div 
+                  {/* <div 
                     className="text-wrapper-combined"
                     onClick={() => handleNavClick("overview")}
                   >
@@ -1729,28 +1731,34 @@ const PollutantPage = ({ categorizedData }) => {
                     className={`text-wrapper-10`}
                     onClick={() => handleNavClick("phytoremediation")}
                   >
-                    <span>
-                      Plants Remediating {navPollutantName}
-                    </span>
+                    <span>Plants Remediating {navPollutantName}</span>
                   </p>
                 </div>
                 <div className="overlap-group">
-                  <div className={`ellipse-0 ${activeSection === "overview" ? "active" : ""}`}
-                        onClick={() => {
-                          console.log("Clicked ellipse - returning to top");
-                          
-                          if (isMobileView) {
-                            setIsSplit(true);
-                          }
-                          
-                          const topElement = document.getElementById("slider-container");
-                          if (topElement) {
-                            topElement.scrollIntoView({ behavior: "smooth", block: "start" });
-                          } else {
-                            window.scrollTo({ top: 0, behavior: "smooth" });
-                          }
-                        }}
-                        style={{ cursor: "pointer" }}>
+                  <div
+                    className={`ellipse-0 ${
+                      activeSection === "overview" ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      console.log("Clicked ellipse - returning to top");
+
+                      if (isMobileView) {
+                        setIsSplit(true);
+                      }
+
+                      const topElement =
+                        document.getElementById("slider-container");
+                      if (topElement) {
+                        topElement.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start",
+                        });
+                      } else {
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }
+                    }}
+                    style={{ cursor: "pointer" }}
+                  >
                     <svg
                       width="19"
                       height="19"
@@ -1759,7 +1767,7 @@ const PollutantPage = ({ categorizedData }) => {
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <mask id="path-1-inside-1_3499_236" fill="white">
-                        <path d="M10 0.59155C7.61305 0.591551 5.32387 1.53976 3.63604 3.22759C1.94821 4.91542 1 7.2046 1 9.59155C1 11.9785 1.94821 14.2677 3.63604 15.9555C5.32386 17.6433 7.61305 18.5916 10 18.5916L10 9.59155L10 0.59155Z"/>
+                        <path d="M10 0.59155C7.61305 0.591551 5.32387 1.53976 3.63604 3.22759C1.94821 4.91542 1 7.2046 1 9.59155C1 11.9785 1.94821 14.2677 3.63604 15.9555C5.32386 17.6433 7.61305 18.5916 10 18.5916L10 9.59155L10 0.59155Z" />
                       </mask>
                       <path
                         d="M10 0.59155C7.61305 0.591551 5.32387 1.53976 3.63604 3.22759C1.94821 4.91542 1 7.2046 1 9.59155C1 11.9785 1.94821 14.2677 3.63604 15.9555C5.32386 17.6433 7.61305 18.5916 10 18.5916L10 9.59155L10 0.59155Z"
@@ -1768,66 +1776,93 @@ const PollutantPage = ({ categorizedData }) => {
                         strokeWidth="2"
                         mask="url(#path-1-inside-1_3499_236)"
                       />
-                      <path d="M10 18.5916C12.387 18.5916 14.6761 17.6433 16.364 15.9555C18.0518 14.2677 19 11.9785 19 9.59155C19 7.20461 18.0518 4.91542 16.364 3.22759C14.6761 1.53977 12.387 0.591554 10 0.591553L10 9.59155L10 18.5916Z"  fill="white" />
+                      <path
+                        d="M10 18.5916C12.387 18.5916 14.6761 17.6433 16.364 15.9555C18.0518 14.2677 19 11.9785 19 9.59155C19 7.20461 18.0518 4.91542 16.364 3.22759C14.6761 1.53977 12.387 0.591554 10 0.591553L10 9.59155L10 18.5916Z"
+                        fill="white"
+                      />
                     </svg>
                   </div>
                   <div
-                    className={`ellipse ${activeSection === "about-pollutant" ? "active" : ""}`}
+                    className={`ellipse ${
+                      activeSection === "about-pollutant" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("about-pollutant")}
                     style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-2 ${activeSection === "sound-frequency" ? "active" : ""}`}
+                    className={`ellipse-2 ${
+                      activeSection === "sound-frequency" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("sound-frequency")}
                     style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-3 ${activeSection === "effect-on-health" ? "active" : ""}`}
+                    className={`ellipse-3 ${
+                      activeSection === "effect-on-health" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("effect-on-health")}
                     style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-4 ${activeSection === "case-study" ? "active" : ""}`}
+                    className={`ellipse-4 ${
+                      activeSection === "case-study" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("case-study")}
                     style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-5 ${activeSection === "phytoremediation" ? "active" : ""}`}
+                    className={`ellipse-5 ${
+                      activeSection === "phytoremediation" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("phytoremediation")}
                     style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-6 ${activeSection === "plant-name" ? "active" : ""}`}
+                    className={`ellipse-6 ${
+                      activeSection === "plant-name" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("plant-name")}
                     style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-7 ${activeSection === "common-names" ? "active" : ""}`}
+                    className={`ellipse-7 ${
+                      activeSection === "common-names" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("common-names")}
                     style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-8 ${activeSection === "plant-habitat" ? "active" : ""}`}
+                    className={`ellipse-8 ${
+                      activeSection === "plant-habitat" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("plant-habitat")}
                     style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-9 ${activeSection === "origin" ? "active" : ""}`}
+                    className={`ellipse-9 ${
+                      activeSection === "origin" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("origin")}
-                    style={{ cursor: "pointer" }}            
+                    style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-10 ${activeSection === "phyto-capacity" ? "active" : ""}`}
+                    className={`ellipse-10 ${
+                      activeSection === "phyto-capacity" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("phyto-capacity")}
                     style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-11 ${activeSection === "uses-of-plant" ? "active" : ""}`}
+                    className={`ellipse-11 ${
+                      activeSection === "uses-of-plant" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("uses-of-plant")}
                     style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-12 ${activeSection === "references" ? "active" : ""}`}
+                    className={`ellipse-12 ${
+                      activeSection === "references" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("references")}
                     style={{ cursor: "pointer" }}
                   />
@@ -2140,7 +2175,17 @@ const PollutantPage = ({ categorizedData }) => {
                     <div className="container">
                       <div className="row">
                         <div className="col-lg-12">
-                          <img src={Pollutantburger} alt="pollutant" />
+                          <div style={{ width: "40px", height: "40px" }}>
+                            <img
+                              src={Pollutantburger}
+                              alt="pollutant"
+                              style={{
+                                width: "100%",
+                                height: "100%",
+                                objectFit: "contain",
+                              }}
+                            />
+                          </div>
                           <h2
                             style={{
                               color: "#fff",
@@ -2336,7 +2381,7 @@ const PollutantPage = ({ categorizedData }) => {
                                           .map((line, lineIndex) => (
                                             <div
                                               key={lineIndex}
-                                              className="titleEntry"
+                                              className="titleEntry --bullet-points"
                                             >
                                               <div className="rightPanel-bullet">
                                                 <img
@@ -2447,7 +2492,7 @@ const PollutantPage = ({ categorizedData }) => {
             <></>
           )}
           <div className="combined-section" style={{ padding: "0px 10px" }}>
-              <div className="nav-bar-container">
+            <div className="nav-bar-container">
               <div className="nav-bar" ref={navBarRef}>
                 {isMobile && (
                   <div
@@ -2554,28 +2599,34 @@ const PollutantPage = ({ categorizedData }) => {
                     className={`text-wrapper-10`}
                     onClick={() => handleNavClick("phytoremediation")}
                   >
-                    <span>
-                      Plants Remediating {navPollutantName}
-                    </span>
+                    <span>Plants Remediating {navPollutantName}</span>
                   </p>
                 </div>
                 <div className="overlap-group">
-                  <div className={`ellipse-0 ${activeSection === "overview" ? "active" : ""}`}
-                        onClick={() => {
-                          console.log("Clicked ellipse - returning to top");
-                          
-                          if (isMobileView) {
-                            setIsSplit(true);
-                          }
-                          
-                          const topElement = document.getElementById("slider-container");
-                          if (topElement) {
-                            topElement.scrollIntoView({ behavior: "smooth", block: "start" });
-                          } else {
-                            window.scrollTo({ top: 0, behavior: "smooth" });
-                          }
-                        }}
-                        style={{ cursor: "pointer" }}>
+                  <div
+                    className={`ellipse-0 ${
+                      activeSection === "overview" ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      console.log("Clicked ellipse - returning to top");
+
+                      if (isMobileView) {
+                        setIsSplit(true);
+                      }
+
+                      const topElement =
+                        document.getElementById("slider-container");
+                      if (topElement) {
+                        topElement.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start",
+                        });
+                      } else {
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }
+                    }}
+                    style={{ cursor: "pointer" }}
+                  >
                     <svg
                       width="19"
                       height="19"
@@ -2584,7 +2635,7 @@ const PollutantPage = ({ categorizedData }) => {
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <mask id="path-1-inside-1_3499_236" fill="white">
-                        <path d="M10 0.59155C7.61305 0.591551 5.32387 1.53976 3.63604 3.22759C1.94821 4.91542 1 7.2046 1 9.59155C1 11.9785 1.94821 14.2677 3.63604 15.9555C5.32386 17.6433 7.61305 18.5916 10 18.5916L10 9.59155L10 0.59155Z"/>
+                        <path d="M10 0.59155C7.61305 0.591551 5.32387 1.53976 3.63604 3.22759C1.94821 4.91542 1 7.2046 1 9.59155C1 11.9785 1.94821 14.2677 3.63604 15.9555C5.32386 17.6433 7.61305 18.5916 10 18.5916L10 9.59155L10 0.59155Z" />
                       </mask>
                       <path
                         d="M10 0.59155C7.61305 0.591551 5.32387 1.53976 3.63604 3.22759C1.94821 4.91542 1 7.2046 1 9.59155C1 11.9785 1.94821 14.2677 3.63604 15.9555C5.32386 17.6433 7.61305 18.5916 10 18.5916L10 9.59155L10 0.59155Z"
@@ -2593,66 +2644,93 @@ const PollutantPage = ({ categorizedData }) => {
                         strokeWidth="2"
                         mask="url(#path-1-inside-1_3499_236)"
                       />
-                      <path d="M10 18.5916C12.387 18.5916 14.6761 17.6433 16.364 15.9555C18.0518 14.2677 19 11.9785 19 9.59155C19 7.20461 18.0518 4.91542 16.364 3.22759C14.6761 1.53977 12.387 0.591554 10 0.591553L10 9.59155L10 18.5916Z"  fill="white" />
+                      <path
+                        d="M10 18.5916C12.387 18.5916 14.6761 17.6433 16.364 15.9555C18.0518 14.2677 19 11.9785 19 9.59155C19 7.20461 18.0518 4.91542 16.364 3.22759C14.6761 1.53977 12.387 0.591554 10 0.591553L10 9.59155L10 18.5916Z"
+                        fill="white"
+                      />
                     </svg>
                   </div>
                   <div
-                    className={`ellipse ${activeSection === "about-pollutant" ? "active" : ""}`}
+                    className={`ellipse ${
+                      activeSection === "about-pollutant" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("about-pollutant")}
                     style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-2 ${activeSection === "sound-frequency" ? "active" : ""}`}
+                    className={`ellipse-2 ${
+                      activeSection === "sound-frequency" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("sound-frequency")}
                     style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-3 ${activeSection === "effect-on-health" ? "active" : ""}`}
+                    className={`ellipse-3 ${
+                      activeSection === "effect-on-health" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("effect-on-health")}
                     style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-4 ${activeSection === "case-study" ? "active" : ""}`}
+                    className={`ellipse-4 ${
+                      activeSection === "case-study" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("case-study")}
                     style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-5 ${activeSection === "phytoremediation" ? "active" : ""}`}
+                    className={`ellipse-5 ${
+                      activeSection === "phytoremediation" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("phytoremediation")}
                     style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-6 ${activeSection === "plant-name" ? "active" : ""}`}
+                    className={`ellipse-6 ${
+                      activeSection === "plant-name" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("plant-name")}
                     style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-7 ${activeSection === "common-names" ? "active" : ""}`}
+                    className={`ellipse-7 ${
+                      activeSection === "common-names" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("common-names")}
                     style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-8 ${activeSection === "plant-habitat" ? "active" : ""}`}
+                    className={`ellipse-8 ${
+                      activeSection === "plant-habitat" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("plant-habitat")}
                     style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-9 ${activeSection === "origin" ? "active" : ""}`}
+                    className={`ellipse-9 ${
+                      activeSection === "origin" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("origin")}
-                    style={{ cursor: "pointer" }}            
+                    style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-10 ${activeSection === "phyto-capacity" ? "active" : ""}`}
+                    className={`ellipse-10 ${
+                      activeSection === "phyto-capacity" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("phyto-capacity")}
                     style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-11 ${activeSection === "uses-of-plant" ? "active" : ""}`}
+                    className={`ellipse-11 ${
+                      activeSection === "uses-of-plant" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("uses-of-plant")}
                     style={{ cursor: "pointer" }}
                   />
                   <div
-                    className={`ellipse-12 ${activeSection === "references" ? "active" : ""}`}
+                    className={`ellipse-12 ${
+                      activeSection === "references" ? "active" : ""
+                    }`}
                     onClick={() => handleNavClick("references")}
                     style={{ cursor: "pointer" }}
                   />
@@ -3374,22 +3452,23 @@ const PollutantPage = ({ categorizedData }) => {
                     style={{
                       width: "100%",
                       alignItems: "baseline",
-                      gap: idx !== 0 ? "70px" : "10px",
+                      gap: "10px",
                       display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
                     }}
                   >
                     <span
                       className={`flex-1 `}
                       style={{
                         fontSize: idx == 0 ? "24px" : "14px",
-                        width: idx !== 0 ? "104px" : "",
-                        textAlign: "end",
-                        transform:
-                          idx !== 0 && !isLast
-                            ? "translateX(62px)"
-                            : isLast
-                            ? "translateX(49px)"
-                            : "none",
+                        width: "134px",
+                        // textAlign: "end",
+                        // transform:
+                        //  "translateX(60px)"
+                        //     // : isLast
+                        //     // ? "translateX(49px)"
+                        //     // : "none",
                       }}
                     >
                       {item.label}
@@ -3407,8 +3486,9 @@ const PollutantPage = ({ categorizedData }) => {
                 justifyContent: "center",
                 paddingLeft: "9px",
                 gap: "20px",
-                marginBottom: "20px",
-                paddingRight: "55px",
+                marginBottom: "1px",
+                paddingRight: "53px",
+                paddingTop: "17px",
               }}
               onClick={() => handleNavClick("phytoremediation")}
             >
@@ -3505,7 +3585,8 @@ const PollutantPage = ({ categorizedData }) => {
                       className={`flex-1 `}
                       style={{
                         fontSize: idx == 0 ? "24px" : "14px",
-                        width: idx !== 0 ? "150px" : "",
+                        // width: idx !== 0 ? "150px" : "",
+                        width: "165px",
                         // textAlign: "end",
                       }}
                     >

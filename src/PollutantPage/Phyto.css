@@ -355,6 +355,11 @@ left: 0;
 .bottom-section4 .box .div-wrapper{
     font-family: 12px;
     left: -0px;
+    text-align: center;
+}
+.bottom-section4 .box .time-period-container-group2 .div-wrapper {
+left: 88% ;
+
 }
 .bottom-section4 .box .img {
     height: 5px;
