@@ -12,10 +12,7 @@ export const Footer = () => {
             <span className={styles.name}>Nandita Kumar</span>
           </div>
 
-          <div
-            className={styles.subGroup}
-            style={{ display: "flex", flexDirection: "row", gap: "240px" }}
-          >
+          <div className={styles.subGroup} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
             <div style={{ display: "flex", flexDirection: "column" }}>
               <span className={styles.role}>Sound Design:</span>
               <a
@@ -45,13 +42,7 @@ export const Footer = () => {
             <span className={styles.name}>Prateek Jha</span>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: "250px"
-            }}
-          >
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
             <div className={styles.subGroup}>
               <span className={styles.role}>UI/UX Design:</span>
               <a href="https://readymag.website/u3450179796/sanjanakadamportfolio/" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Sanjana Kadam</a> | 
@@ -65,13 +56,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: "180px"
-            }}
-          >
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
             <div className={styles.subGroup}>
               <span className={styles.role}>Book Design:</span>
               <span className={styles.name}>Shikha Sinai Usgaonker</span>
@@ -83,14 +68,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: "255px"
-            }}
-          >
-            {/* // */}
+          <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "30%" }}>
             <div className={styles.subGroup}>
               <span className={styles.role}>Plant Illustrations:</span>
               <span className={styles.name}>Nandita Kumar</span>
@@ -102,13 +80,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: "145px"
-            }}
-          >
+          <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "30%" }}>
             <div className={styles.subGroup}>
               <span className={styles.role}>Editor:</span>
               <span className={styles.name}>Anjali Singh Uttamchandani</span>
@@ -135,8 +107,8 @@ export const Footer = () => {
       <div className={styles.section}>
         <span className={styles.title}>Project Supported by:</span>
         <p className={styles.description}>
-          This work was commissioned within the framework of the S+T+ARTS 4Water II residency program by TBA21–Academy with 
-          the support of Konsortium Deutsche Meeresforschung (KDM) and with the collaboration of Ca' Foscari, CNR-ISMAR, ETT, and Venice International University and the S+T+ARTS program of the European Union. Initial Support: <a href="https://leonardo.info/imagination-fellowship" target="_blank" rel="noopener noreferrer">ASU Leonardo Imagination Fellowship</a>, <a href="https://www.unesco.org/en/futures-literacy" target="_blank" rel="noopener noreferrer">UNESCO FUTURE Literacy</a>, <a href="https://www.awesomefoundation.org/en/projects/165230-sounding-the-invisible-an-elegant-symbiosis" target="_blank" rel="noopener noreferrer">The Awesome Foundation</a>.
+          This work was commissioned within the framework of the S+T+ARTS 4Water II residency program by TBA21–Academy with the support of Konsortium Deutsche Meeresforschung (KDM) within the Prep4Blue project as a contribution to the EU Restore our Ocean and Waters by 2030, and with the collaboration of Ca' Foscari, CNR-ISMAR, ETT, and Venice International University. 
+          <br /><br />Initial Support: <a href="https://leonardo.info/imagination-fellowship" target="_blank" rel="noopener noreferrer">ASU Leonardo Imagination Fellowship</a>, <a href="https://www.unesco.org/en/futures-literacy" target="_blank" rel="noopener noreferrer">UNESCO FUTURE Literacy</a>, <a href="https://www.awesomefoundation.org/en/projects/165230-sounding-the-invisible-an-elegant-symbiosis" target="_blank" rel="noopener noreferrer">The Awesome Foundation</a>.
         </p>
       </div>
       <br />
@@ -193,6 +165,5 @@ NANDITA KUMAR 2025
       </div>
       </center>
     </div>
-    
   );
 };

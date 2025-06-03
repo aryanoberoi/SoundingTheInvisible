@@ -53,12 +53,9 @@ const MobileLeftPanel = ({ sections = [], onLoad, onNavigate,sliderPosition=50 }
               src={pollutantimagemobile}
               alt="Pollutant visual"
               style={{
-                width: "100%",
-                height: "100%",
-                transform: "translate(0%, calc(100% - 217px))",
+                width: "90vw",
+                height: "auto",
               }}
-              // style={{
-              //  }}
             />
           </div>
         </div>

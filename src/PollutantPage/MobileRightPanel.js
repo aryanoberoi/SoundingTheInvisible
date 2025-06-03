@@ -56,16 +56,16 @@ const MobileRightPanel = ({
           // style={{transform:" "}}
           //  style={{transform:"translate(54px, 326px)"}}
         >
-          <img
-            src={plantimagemobile}
-            alt="Pollutant visual"
-            style={{
-              width: "100%",
-              height: "100%",
-              transform: "scale(1.35) translateX(17px)",
-            }}
-            // className="pollutantVisualImage"
-          />
+          <div style={{ transform: "scale(1)" }}>
+            <img
+              src={plantimagemobile}
+              alt="Pollutant visual"
+              style={{
+                width: "90vw",
+                height: "auto",
+              }}
+            />
+          </div>
           <h2
             style={{
               fontSize: "38px",

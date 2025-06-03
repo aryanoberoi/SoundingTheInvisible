@@ -59,7 +59,7 @@ const PollutantPage = ({ categorizedData }) => {
   const [activeSection, setActiveSection] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [containerHeight, setContainerHeight] = useState("100vh");
+  const [containerHeight, setContainerHeight] = useState("0vh");
   const [leftPanelLoaded, setLeftPanelLoaded] = useState(false); // Track left panel load
   const [rightPanelLoaded, setRightPanelLoaded] = useState(false); // Track right panel load
   const [state, setState] = useState(false);
