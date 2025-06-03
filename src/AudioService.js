@@ -165,11 +165,16 @@ class AudioService {
       // Start with volume at 0
       audio.volume = 0;
       
-      // Play the audio
+      // Play the audio with error handling for blocked playback
       const playPromise = audio.play();
       
       // Handle play promise (required for modern browsers)
       playPromise.then(() => {
+        // Check if audio was silently blocked (iOS/Safari)
+        if (audio.paused) {
+          window.dispatchEvent(new CustomEvent('audio-blocked'));
+        }
+
         const fadeSteps = 60;
         const intervalTime = duration / fadeSteps;
         const startTime = Date.now();
@@ -189,6 +194,10 @@ class AudioService {
           }
         }, intervalTime);
       }).catch(err => {
+        // Handle explicit playback blocking (Chrome/Edge/Firefox)
+        if (err.name === 'NotAllowedError' || err.name === 'AbortError') {
+          window.dispatchEvent(new CustomEvent('audio-blocked'));
+        }
         console.error("Error starting audio playback:", err);
         resolve();
       });

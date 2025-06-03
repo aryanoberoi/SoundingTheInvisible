@@ -213,6 +213,13 @@ export default function Homepage({ audioControls }) {
     }
   }, [audioEnabled, audioControls]);
 
+  // Add the new useEffect for handling audio blocking
+  useEffect(() => {
+    const handleBlocked = () => setShowAudioPopup(true);
+    window.addEventListener('audio-blocked', handleBlocked);
+    return () => window.removeEventListener('audio-blocked', handleBlocked);
+  }, []);
+
   // Handler for ConceptFrame hover
   const handleFrameHover = (hovering) => {
     setIsFrameHovered(hovering);
