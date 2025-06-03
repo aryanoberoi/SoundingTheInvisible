@@ -113,13 +113,13 @@
 }
 
 .plantImageRightPanel {
-  width: auto;
+  width: 680px;
   object-fit: contain;
   position: absolute;
-  top: 60px;
-  left: 48%;
+  top: -40px;
+  left: 43%;
   z-index: 20;
-  transform: scale(1.2);
+  /* transform: scale(1.2); */
 }
 
 .nameContainer {

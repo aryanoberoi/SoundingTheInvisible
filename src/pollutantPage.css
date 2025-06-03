@@ -711,7 +711,7 @@ body.right-panel-active .hamburger-line {
   width: 100%;
   height: calc(100vh); /* Fixed height instead of max-height */
   margin: 0;
-  padding: 20px 10px 20px 0;
+  padding: 0px 10px 20px 0;
   overflow-y: auto !important; /* Scrolling within the nav itself */
   overflow-x: hidden;
   box-sizing: border-box;
@@ -802,27 +802,27 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
 
 /* ✅ Adjusting Positions Based on Your CSS */
 .nav-bar .text-wrapper {
-  top: 50px;
+  top: 75px;
   left: 174px;
   font-size: 24px;
 }
 .nav-bar .text-wrapper-2 {
-  top: 140px;
+  top: 150px;
   left: 0px !important;
   text-align: right !important;
 }
 .nav-bar .text-wrapper-8 {
-  top: 205px;
+  top: 200px;
   left: 0px !important;
   text-align: right !important;
 }
 .nav-bar .text-wrapper-9 {
-  top: 265px;
+  top: 250px;
   left: 0px !important;
   text-align: right !important;
 }
 .nav-bar .text-wrapper-10 {
-  top: 320px;
+  top: 290px;
   left: 0px !important;
   text-align: right !important;
 }
@@ -840,7 +840,7 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
   left: 155px;
 }
 .nav-bar .text-wrapper-5 {
-  top: 565px;
+  top: 553px;
   left: 155px;
 }
 .nav-bar .p {
@@ -852,8 +852,8 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
   left: 155px;
 }
 .nav-bar .text-wrapper-7 {
-  top: 780px;
-  left: 80px !important;
+  top: 770px;
+  left: 20px !important;
 }
 
 /* Ensure text alignment is correct for spans within left/right positioned items */
@@ -902,11 +902,11 @@ body.white-panel-active .nav-bar::-webkit-scrollbar-thumb {
 }
 
 .ellipse-0 svg {
-  margin-top: 0px !important;
+  margin-top: -1px !important;
   width: 19px;
   height: 19px;
   border-radius: 50%;
-  transform: scale(1.2);
+  /* transform: scale(1.2); */
   display: block; /* avoid inline spacing issues */
   margin: 0 auto; /* center svg if needed */
 }
@@ -952,7 +952,7 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
 
 /* ✅ Timeline Vertical Line & Circles */
 .nav-bar .overlap-group {
-  height: calc(735px); /* Explicit calculation from first to last bullet */
+  height: calc(750px); /* Explicit calculation from first to last bullet */
   left: 155px;
   position: absolute;
   top: 25px; /* Matches first bullet's top position */
@@ -993,40 +993,40 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
 
 /* ✅ Adjusting Circle Positions */
 .nav-bar .ellipse {
-  top: 55px;
+  top: 65px;
 } /* Matches text-wrapper position */
 .nav-bar .ellipse-2 {
-  top: 130px;
+  top: 140px;
 } /* Matches text-wrapper-2 position */
 .nav-bar .ellipse-3 {
   top: 190px;
 } /* Matches text-wrapper-8 position */
 .nav-bar .ellipse-4 {
-  top: 260px;
+  top: 240px;
 } /* Matches text-wrapper-9 position */
 .nav-bar .ellipse-5 {
-  top: 315px;
+  top: 290px;
 } /* Matches text-wrapper-10 position */
 .nav-bar .ellipse-6 {
   top: 360px;
 } /* Matches div position */
 .nav-bar .ellipse-7 {
-  top: 430px;
+  top: 420px;
 } /* Matches text-wrapper-3 position */
 .nav-bar .ellipse-8 {
-  top: 500px;
+  top: 490px;
 } /* Matches text-wrapper-4 position */
 .nav-bar .ellipse-9 {
-  top: 560px;
+  top: 552px;
 } /* Matches text-wrapper-5 position */
 .nav-bar .ellipse-10 {
   top: 625px;
 } /* Matches p position */
 .nav-bar .ellipse-11 {
-  top: 690px;
+  top: 700px;
 } /* Matches text-wrapper-6 position */
 .nav-bar .ellipse-12 {
-  top: 730px;
+  top: 750px;
 } /* Matches text-wrapper-7 position */
 
 .timeline-container {
@@ -2033,7 +2033,7 @@ html body .combined-section .nav-bar-container .nav-bar {
 @media (min-width: 769px) {
   .slider-image-container {
     position: absolute !important;
-    top: 365px !important;
+    top: 435px !important;
     left: -7px !important;
     width: 111%;
     /* Remove centering styles */
