@@ -290,6 +290,7 @@ const PollutantPage = ({ categorizedData }) => {
       about: {
         description: wip(matchedRow.AboutPlant_description),
         status: wip(matchedRow.AboutPlant_WetlandStatus),
+        image: wip(matchedRow.Image_About_atom_compound),
       },
       commonNames: Array(19)
         .fill(0)
@@ -403,6 +404,7 @@ const PollutantPage = ({ categorizedData }) => {
       plant_name: wip(dataContext.plant.name),
       description: wip(dataContext.plant.about.description),
       status: wip(dataContext.plant.about.status),
+      peephole: wip(dataContext.plant.about.image),
     },
   ];
 

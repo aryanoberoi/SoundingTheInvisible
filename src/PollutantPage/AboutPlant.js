@@ -8,6 +8,8 @@ export const AboutPlant = ({ sections, wasteTypeIcon }) => {
   const plantName = sections[0].plant_name;
   const aboutPlantText = sections[0].description?.split('_')[1];
   const wetlandStatusText = sections[0].status?.split('_')[1];
+  const peepholeImage = sections[0].peephole;
+  console.log("Peephole Url:", peepholeImage)
   
   // Use the provided wasteTypeIcon or fallback to default
   const iconSrc = wasteTypeIcon || 'agriculture-waste-icon.svg';
@@ -47,7 +49,7 @@ export const AboutPlant = ({ sections, wasteTypeIcon }) => {
         </span>
         <div className="inverted-graphic-container" style={{ height: "auto" }}>
           <PeepholeEffect 
-            imageUrl="n19.svg" 
+            imageUrl={peepholeImage} 
             width="100%" 
             height="auto" 
           />
