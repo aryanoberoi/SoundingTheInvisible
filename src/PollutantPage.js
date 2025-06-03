@@ -1628,14 +1628,6 @@ const PollutantPage = ({ categorizedData }) => {
           <div className="combined-section" style={{ padding: "0px 10px" }}>
             <div className="nav-bar-container">
               <div className="nav-bar" ref={navBarRef}>
-                {isMobile && (
-                  <div
-                    className="mobile-menu-toggle"
-                    onClick={() => setMenuOpen(!menuOpen)}
-                  >
-                    ☰
-                  </div>
-                )}
                 <div
                   className={`nav-items-container ${isMobile ? "mobile" : ""} ${
                     isMobile && menuOpen ? "mobile-active" : ""
@@ -2498,14 +2490,6 @@ const PollutantPage = ({ categorizedData }) => {
           <div className="combined-section" style={{ padding: "0px 10px" }}>
             <div className="nav-bar-container">
               <div className="nav-bar" ref={navBarRef}>
-                {isMobile && (
-                  <div
-                    className="mobile-menu-toggle"
-                    onClick={() => setMenuOpen(!menuOpen)}
-                  >
-                    ☰
-                  </div>
-                )}
                 <div
                   className={`nav-items-container ${isMobile ? "mobile" : ""} ${
                     isMobile && menuOpen ? "mobile-active" : ""
@@ -2995,14 +2979,6 @@ const PollutantPage = ({ categorizedData }) => {
           <div className="combined-section" style={{ padding: "0px 10px" }}>
             <div className="nav-bar-container">
               <div className="nav-bar" ref={navBarRef}>
-                {isMobile && (
-                  <div
-                    className="mobile-menu-toggle"
-                    onClick={() => setMenuOpen(!menuOpen)}
-                  >
-                    ☰
-                  </div>
-                )}
                 <div
                   className={`nav-items-container ${isMobile ? "mobile" : ""} ${
                     isMobile && menuOpen ? "mobile-active" : ""
