@@ -60,7 +60,7 @@ body,
 }
 @media screen and (max-width: 768px) {
   .plantContainer {
-    margin-top: calc(100% + -159px);
+    margin-top: calc(100% + -401px);
     /* margin-top: 140px; */
     /* transform: translateY(calc(100%  - 620px)) */
   }
@@ -88,6 +88,7 @@ body,
       100% var(--slider-position, 50%),
       0% var(--slider-position, 50%)
     );
+    overflow: hidden !important;
     /* clip-path: polygon(0% 0, 100% 0%, 100% var(--slider-position, 90%), 0% var(--slider-position,90%)); */
   }
   .right-panel {
@@ -97,6 +98,11 @@ body,
       100% 100%,
       0% 100%
     );
+    overflow: hidden !important;
+  }
+  body {
+    overscroll-behavior: contain;
+    touch-action: none; /* If you don't need scroll inside */
   }
 }
 .slider-bar {

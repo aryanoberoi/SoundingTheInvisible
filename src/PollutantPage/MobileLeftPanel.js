@@ -5,7 +5,13 @@ import { KnowMoreButtonInvertedRA } from "./Knowmorebutton";
 import { KnowMoreButtonInverted } from "./Knowmorebutton";
 import SineWaveVisualizer from "./sinwave";
 import pollutantname from "./pollutantname.png";
-const MobileLeftPanel = ({ sections = [], onLoad, onNavigate,sliderPosition=50 }) => {
+const MobileLeftPanel = ({
+  sections = [],
+  onLoad,
+  onNavigate,
+  sliderPosition = 50,
+  view,
+}) => {
   if (sections.length === 0) return null;
 
   const {
@@ -21,39 +27,55 @@ const MobileLeftPanel = ({ sections = [], onLoad, onNavigate,sliderPosition=50 }
 
   // Process health effects into titles
   const healthEffectsTitles = effect.split("_");
-  console.log("sections", sections);
+  console.log("sections", sliderPosition);
   return (
     <div className="left-panel">
-      <div className="plantContainerleft"  style={{width:"33%"}}>
-        <div>
-          {sliderPosition==20?
-          <p  style={{
-              fontSize: "18px",
-              fontWeight: "400",
-              margin: "0px",
-              textAlign: "center",
-              color: "#fff",
-              transform: "translate(0px, -10px)"
-            }}>{pollutantName}</p>
-          :<></>}
-          <h2
+      <div className="plantContainerleft" style={{ width: "33%" }}>
+        <div style={{ width: "86%" }}>
+          {view ? (
+            <p
+              style={{
+                fontSize: "18px",
+                fontWeight: "400",
+                margin: "0px",
+                textAlign: "center",
+                color: "#fff",
+                transform: "translate(-15px, -10px)",
+                // transform: "translate(0px, -10px)",
+              }}
+            >
+              {pollutantName}
+            </p>
+          ) : (
+            <></>
+          )}
+          {!view ? (
+            <h2
+              style={{
+                fontSize: "38px",
+                fontWeight: "400",
+                margin: "0px",
+                textAlign: "center",
+                color: "#fff",
+                transform: "translate(-15px, 0px)",
+              }}
+            >
+              {pollutantName}
+            </h2>
+          ) : (
+            <></>
+          )}
+          {/* <div style={{ transform: "scale(1.15) translate(0px, calc(100% - 949px))" }}> */}
+          <div
             style={{
-              fontSize: "38px",
-              fontWeight: "400",
-              margin: "0px",
-              textAlign: "center",
-              color: "#fff",
-              transform: "translate(0px, 90px)"
+              transform: "scale(1.15) translate(0px, calc(100% - 109.99%))",
             }}
           >
-            {pollutantName}
-          </h2>
-          <div style={{ transform: "scale(1.15)" }}>
             <img
               src={pollutantimagemobile}
               alt="Pollutant visual"
               style={{
-                width: "90vw",
+                width: "85vw",
                 height: "auto",
               }}
             />

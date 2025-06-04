@@ -12,6 +12,7 @@ const MobileRightPanel = ({
   pollutantName = "",
   onLoad,
   onNavigate,
+  view,
 }) => {
   const {
     plantimagemobile = "",
@@ -49,22 +50,29 @@ const MobileRightPanel = ({
   ];
 
   return (
-    <div className="right-panel">
-      <div className="plantContainer">
+    <div className="right-panel" style={{height:view?"100vh":"auto"}}>
+      <div
+        className="plantContainer"
+        style={{
+          marginTop: view ? "calc(100% - 70%)" : "calc(100% - 101%)",
+        }}
+      >
         <div
           className="contentWrapper "
           // style={{transform:" "}}
           //  style={{transform:"translate(54px, 326px)"}}
         >
-          <div style={{ transform: "scale(1)" }}>
-            <img
-              src={plantimagemobile}
-              alt="Pollutant visual"
-              style={{
-                width: "90vw",
-                height: "auto",
-              }}
-            />
+          <div style={{ transform: "scale(1.1)" }}>
+            <div style={{ height: "7%", overflow: "hidden" }}>
+              <img
+                src={plantimagemobile}
+                alt="Pollutant visual"
+                style={{
+                  width: "90vw",
+                  height: "auto",
+                }}
+              />
+            </div>
           </div>
           <h2
             style={{
@@ -72,7 +80,9 @@ const MobileRightPanel = ({
               fontWeight: "400",
               margin: "0px",
               textAlign: "center",
-              transform: "translate(0px, 9px)",
+              // transform: "translate(0px, 9px)",
+              // position: "absolute",
+              // bottom: "calc(100% - 106%)",
             }}
           >
             {plantName}

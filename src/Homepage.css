@@ -936,5 +936,7 @@ svg.strategy-image {
     white-space: nowrap;
     padding: 20px;
     margin: 2px;
+    height: 79vh;
+    flex: none;
   }
 }

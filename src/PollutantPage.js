@@ -2102,6 +2102,7 @@ const PollutantPage = ({ categorizedData }) => {
                       sections={leftpanelcontent}
                       onLoad={() => setLeftPanelLoaded(true)}
                       onNavigate={handleNavClick}
+                      view={sliderPosition == 20}
                     />
                   ) : (
                     <LeftPanel
@@ -2118,6 +2119,7 @@ const PollutantPage = ({ categorizedData }) => {
                       pollutantName={leftpanelcontent[0].pollutantName}
                       onLoad={() => setRightPanelLoaded(true)}
                       onNavigate={handleNavClick}
+                      view={sliderPosition == 20}
                     />
                   ) : (
                     <RightPanel
@@ -2487,463 +2489,472 @@ const PollutantPage = ({ categorizedData }) => {
           ) : (
             <></>
           )}
-          <div className="combined-section" style={{ padding: "0px 10px" }}>
-            <div className="nav-bar-container">
-              <div className="nav-bar" ref={navBarRef}>
-                <div
-                  className={`nav-items-container ${isMobile ? "mobile" : ""} ${
-                    isMobile && menuOpen ? "mobile-active" : ""
-                  }`}
-                >
-                  {/* <div 
+          {isMobile ? (
+            <></>
+          ) : (
+            <div className="combined-section" style={{ padding: "0px 10px" }}>
+              <div className="nav-bar-container">
+                <div className="nav-bar" ref={navBarRef}>
+                  <div
+                    className={`nav-items-container ${
+                      isMobile ? "mobile" : ""
+                    } ${isMobile && menuOpen ? "mobile-active" : ""}`}
+                  >
+                    {/* <div 
                     className="text-wrapper-combined"
                     onClick={() => handleNavClick("overview")}
                   >
                     <span>{leftpanelcontent[0].pollutantName} + {rightpanelcontent[0].plantNameSplit}</span>
                   </div> */}
-                  <div
-                    className={`text-wrapper`}
-                    onClick={() => handleNavClick("about-pollutant")}
-                  >
-                    <span>{navPollutantName}</span>
-                  </div>
-
-                  <div
-                    className={`div`}
-                    onClick={() => handleNavClick("plant-name")}
-                  >
-                    <span>{rightpanelcontent[0].plantNameSplit}</span>
-                  </div>
-
-                  <div
-                    className={`text-wrapper-2`}
-                    onClick={() => handleNavClick("sound-frequency")}
-                  >
-                    <span>Sound Frequency of {navPollutantName}</span>
-                  </div>
-
-                  <div
-                    className={`text-wrapper-3`}
-                    onClick={() => handleNavClick("common-names")}
-                  >
-                    <span>
-                      Common names of {rightpanelcontent[0].plantNameSplit}
-                    </span>
-                  </div>
-
-                  <div
-                    className={`text-wrapper-4`}
-                    onClick={() => handleNavClick("plant-habitat")}
-                  >
-                    <span>{rightpanelcontent[0].plantNameSplit}'s Habitat</span>
-                  </div>
-
-                  <div
-                    className={`text-wrapper-5`}
-                    onClick={() => handleNavClick("origin")}
-                  >
-                    <span>Origin and Geographical Distribution</span>
-                  </div>
-
-                  <p
-                    className={`p`}
-                    onClick={() => handleNavClick("phyto-capacity")}
-                  >
-                    <span>
-                      Phytoremediation capacity of{" "}
-                      {rightpanelcontent[0].plantNameSplit}
-                    </span>
-                  </p>
-
-                  <div
-                    className={`text-wrapper-6`}
-                    onClick={() => handleNavClick("uses-of-plant")}
-                  >
-                    <span>Uses of {rightpanelcontent[0].plantNameSplit}</span>
-                  </div>
-
-                  <div
-                    className={`text-wrapper-7`}
-                    onClick={() => handleNavClick("references")}
-                  >
-                    <span>References</span>
-                  </div>
-
-                  <div
-                    className={`text-wrapper-8`}
-                    onClick={() => handleNavClick("effect-on-health")}
-                  >
-                    <span>Effects of {navPollutantName} on Health</span>
-                  </div>
-
-                  <div
-                    className={`text-wrapper-9`}
-                    onClick={() => handleNavClick("case-study")}
-                  >
-                    <span>Case Study of {navPollutantName}'s Pollution</span>
-                  </div>
-
-                  <p
-                    className={`text-wrapper-10`}
-                    onClick={() => handleNavClick("phytoremediation")}
-                  >
-                    <span>Plants Remediating {navPollutantName}</span>
-                  </p>
-                </div>
-                <div className="overlap-group">
-                  <div
-                    className={`ellipse-0 ${
-                      activeSection === "overview" ? "active" : ""
-                    }`}
-                    onClick={() => {
-                      console.log("Clicked ellipse - returning to top");
-
-                      if (isMobileView) {
-                        setIsSplit(true);
-                      }
-
-                      const topElement =
-                        document.getElementById("slider-container");
-                      if (topElement) {
-                        topElement.scrollIntoView({
-                          behavior: "smooth",
-                          block: "start",
-                        });
-                      } else {
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                      }
-                    }}
-                    style={{ cursor: "pointer" }}
-                  >
-                    <svg
-                      width="19"
-                      height="19"
-                      viewBox="0 0 19 19"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <div
+                      className={`text-wrapper`}
+                      onClick={() => handleNavClick("about-pollutant")}
                     >
-                      <mask id="path-1-inside-1_3499_236" fill="white">
-                        <path d="M10 0.59155C7.61305 0.591551 5.32387 1.53976 3.63604 3.22759C1.94821 4.91542 1 7.2046 1 9.59155C1 11.9785 1.94821 14.2677 3.63604 15.9555C5.32386 17.6433 7.61305 18.5916 10 18.5916L10 9.59155L10 0.59155Z" />
-                      </mask>
-                      <path
-                        d="M10 0.59155C7.61305 0.591551 5.32387 1.53976 3.63604 3.22759C1.94821 4.91542 1 7.2046 1 9.59155C1 11.9785 1.94821 14.2677 3.63604 15.9555C5.32386 17.6433 7.61305 18.5916 10 18.5916L10 9.59155L10 0.59155Z"
-                        fill="black"
-                        stroke="white"
-                        strokeWidth="2"
-                        mask="url(#path-1-inside-1_3499_236)"
-                      />
-                      <path
-                        d="M10 18.5916C12.387 18.5916 14.6761 17.6433 16.364 15.9555C18.0518 14.2677 19 11.9785 19 9.59155C19 7.20461 18.0518 4.91542 16.364 3.22759C14.6761 1.53977 12.387 0.591554 10 0.591553L10 9.59155L10 18.5916Z"
-                        fill="white"
-                      />
-                    </svg>
+                      <span>{navPollutantName}</span>
+                    </div>
+
+                    <div
+                      className={`div`}
+                      onClick={() => handleNavClick("plant-name")}
+                    >
+                      <span>{rightpanelcontent[0].plantNameSplit}</span>
+                    </div>
+
+                    <div
+                      className={`text-wrapper-2`}
+                      onClick={() => handleNavClick("sound-frequency")}
+                    >
+                      <span>Sound Frequency of {navPollutantName}</span>
+                    </div>
+
+                    <div
+                      className={`text-wrapper-3`}
+                      onClick={() => handleNavClick("common-names")}
+                    >
+                      <span>
+                        Common names of {rightpanelcontent[0].plantNameSplit}
+                      </span>
+                    </div>
+
+                    <div
+                      className={`text-wrapper-4`}
+                      onClick={() => handleNavClick("plant-habitat")}
+                    >
+                      <span>
+                        {rightpanelcontent[0].plantNameSplit}'s Habitat
+                      </span>
+                    </div>
+
+                    <div
+                      className={`text-wrapper-5`}
+                      onClick={() => handleNavClick("origin")}
+                    >
+                      <span>Origin and Geographical Distribution</span>
+                    </div>
+
+                    <p
+                      className={`p`}
+                      onClick={() => handleNavClick("phyto-capacity")}
+                    >
+                      <span>
+                        Phytoremediation capacity of{" "}
+                        {rightpanelcontent[0].plantNameSplit}
+                      </span>
+                    </p>
+
+                    <div
+                      className={`text-wrapper-6`}
+                      onClick={() => handleNavClick("uses-of-plant")}
+                    >
+                      <span>Uses of {rightpanelcontent[0].plantNameSplit}</span>
+                    </div>
+
+                    <div
+                      className={`text-wrapper-7`}
+                      onClick={() => handleNavClick("references")}
+                    >
+                      <span>References</span>
+                    </div>
+
+                    <div
+                      className={`text-wrapper-8`}
+                      onClick={() => handleNavClick("effect-on-health")}
+                    >
+                      <span>Effects of {navPollutantName} on Health</span>
+                    </div>
+
+                    <div
+                      className={`text-wrapper-9`}
+                      onClick={() => handleNavClick("case-study")}
+                    >
+                      <span>Case Study of {navPollutantName}'s Pollution</span>
+                    </div>
+
+                    <p
+                      className={`text-wrapper-10`}
+                      onClick={() => handleNavClick("phytoremediation")}
+                    >
+                      <span>Plants Remediating {navPollutantName}</span>
+                    </p>
                   </div>
-                  <div
-                    className={`ellipse ${
-                      activeSection === "about-pollutant" ? "active" : ""
-                    }`}
-                    onClick={() => handleNavClick("about-pollutant")}
-                    style={{ cursor: "pointer" }}
-                  />
-                  <div
-                    className={`ellipse-2 ${
-                      activeSection === "sound-frequency" ? "active" : ""
-                    }`}
-                    onClick={() => handleNavClick("sound-frequency")}
-                    style={{ cursor: "pointer" }}
-                  />
-                  <div
-                    className={`ellipse-3 ${
-                      activeSection === "effect-on-health" ? "active" : ""
-                    }`}
-                    onClick={() => handleNavClick("effect-on-health")}
-                    style={{ cursor: "pointer" }}
-                  />
-                  <div
-                    className={`ellipse-4 ${
-                      activeSection === "case-study" ? "active" : ""
-                    }`}
-                    onClick={() => handleNavClick("case-study")}
-                    style={{ cursor: "pointer" }}
-                  />
-                  <div
-                    className={`ellipse-5 ${
-                      activeSection === "phytoremediation" ? "active" : ""
-                    }`}
-                    onClick={() => handleNavClick("phytoremediation")}
-                    style={{ cursor: "pointer" }}
-                  />
-                  <div
-                    className={`ellipse-6 ${
-                      activeSection === "plant-name" ? "active" : ""
-                    }`}
-                    onClick={() => handleNavClick("plant-name")}
-                    style={{ cursor: "pointer" }}
-                  />
-                  <div
-                    className={`ellipse-7 ${
-                      activeSection === "common-names" ? "active" : ""
-                    }`}
-                    onClick={() => handleNavClick("common-names")}
-                    style={{ cursor: "pointer" }}
-                  />
-                  <div
-                    className={`ellipse-8 ${
-                      activeSection === "plant-habitat" ? "active" : ""
-                    }`}
-                    onClick={() => handleNavClick("plant-habitat")}
-                    style={{ cursor: "pointer" }}
-                  />
-                  <div
-                    className={`ellipse-9 ${
-                      activeSection === "origin" ? "active" : ""
-                    }`}
-                    onClick={() => handleNavClick("origin")}
-                    style={{ cursor: "pointer" }}
-                  />
-                  <div
-                    className={`ellipse-10 ${
-                      activeSection === "phyto-capacity" ? "active" : ""
-                    }`}
-                    onClick={() => handleNavClick("phyto-capacity")}
-                    style={{ cursor: "pointer" }}
-                  />
-                  <div
-                    className={`ellipse-11 ${
-                      activeSection === "uses-of-plant" ? "active" : ""
-                    }`}
-                    onClick={() => handleNavClick("uses-of-plant")}
-                    style={{ cursor: "pointer" }}
-                  />
-                  <div
-                    className={`ellipse-12 ${
-                      activeSection === "references" ? "active" : ""
-                    }`}
-                    onClick={() => handleNavClick("references")}
-                    style={{ cursor: "pointer" }}
-                  />
+                  <div className="overlap-group">
+                    <div
+                      className={`ellipse-0 ${
+                        activeSection === "overview" ? "active" : ""
+                      }`}
+                      onClick={() => {
+                        console.log("Clicked ellipse - returning to top");
+
+                        if (isMobileView) {
+                          setIsSplit(true);
+                        }
+
+                        const topElement =
+                          document.getElementById("slider-container");
+                        if (topElement) {
+                          topElement.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                          });
+                        } else {
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }
+                      }}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <svg
+                        width="19"
+                        height="19"
+                        viewBox="0 0 19 19"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <mask id="path-1-inside-1_3499_236" fill="white">
+                          <path d="M10 0.59155C7.61305 0.591551 5.32387 1.53976 3.63604 3.22759C1.94821 4.91542 1 7.2046 1 9.59155C1 11.9785 1.94821 14.2677 3.63604 15.9555C5.32386 17.6433 7.61305 18.5916 10 18.5916L10 9.59155L10 0.59155Z" />
+                        </mask>
+                        <path
+                          d="M10 0.59155C7.61305 0.591551 5.32387 1.53976 3.63604 3.22759C1.94821 4.91542 1 7.2046 1 9.59155C1 11.9785 1.94821 14.2677 3.63604 15.9555C5.32386 17.6433 7.61305 18.5916 10 18.5916L10 9.59155L10 0.59155Z"
+                          fill="black"
+                          stroke="white"
+                          strokeWidth="2"
+                          mask="url(#path-1-inside-1_3499_236)"
+                        />
+                        <path
+                          d="M10 18.5916C12.387 18.5916 14.6761 17.6433 16.364 15.9555C18.0518 14.2677 19 11.9785 19 9.59155C19 7.20461 18.0518 4.91542 16.364 3.22759C14.6761 1.53977 12.387 0.591554 10 0.591553L10 9.59155L10 18.5916Z"
+                          fill="white"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      className={`ellipse ${
+                        activeSection === "about-pollutant" ? "active" : ""
+                      }`}
+                      onClick={() => handleNavClick("about-pollutant")}
+                      style={{ cursor: "pointer" }}
+                    />
+                    <div
+                      className={`ellipse-2 ${
+                        activeSection === "sound-frequency" ? "active" : ""
+                      }`}
+                      onClick={() => handleNavClick("sound-frequency")}
+                      style={{ cursor: "pointer" }}
+                    />
+                    <div
+                      className={`ellipse-3 ${
+                        activeSection === "effect-on-health" ? "active" : ""
+                      }`}
+                      onClick={() => handleNavClick("effect-on-health")}
+                      style={{ cursor: "pointer" }}
+                    />
+                    <div
+                      className={`ellipse-4 ${
+                        activeSection === "case-study" ? "active" : ""
+                      }`}
+                      onClick={() => handleNavClick("case-study")}
+                      style={{ cursor: "pointer" }}
+                    />
+                    <div
+                      className={`ellipse-5 ${
+                        activeSection === "phytoremediation" ? "active" : ""
+                      }`}
+                      onClick={() => handleNavClick("phytoremediation")}
+                      style={{ cursor: "pointer" }}
+                    />
+                    <div
+                      className={`ellipse-6 ${
+                        activeSection === "plant-name" ? "active" : ""
+                      }`}
+                      onClick={() => handleNavClick("plant-name")}
+                      style={{ cursor: "pointer" }}
+                    />
+                    <div
+                      className={`ellipse-7 ${
+                        activeSection === "common-names" ? "active" : ""
+                      }`}
+                      onClick={() => handleNavClick("common-names")}
+                      style={{ cursor: "pointer" }}
+                    />
+                    <div
+                      className={`ellipse-8 ${
+                        activeSection === "plant-habitat" ? "active" : ""
+                      }`}
+                      onClick={() => handleNavClick("plant-habitat")}
+                      style={{ cursor: "pointer" }}
+                    />
+                    <div
+                      className={`ellipse-9 ${
+                        activeSection === "origin" ? "active" : ""
+                      }`}
+                      onClick={() => handleNavClick("origin")}
+                      style={{ cursor: "pointer" }}
+                    />
+                    <div
+                      className={`ellipse-10 ${
+                        activeSection === "phyto-capacity" ? "active" : ""
+                      }`}
+                      onClick={() => handleNavClick("phyto-capacity")}
+                      style={{ cursor: "pointer" }}
+                    />
+                    <div
+                      className={`ellipse-11 ${
+                        activeSection === "uses-of-plant" ? "active" : ""
+                      }`}
+                      onClick={() => handleNavClick("uses-of-plant")}
+                      style={{ cursor: "pointer" }}
+                    />
+                    <div
+                      className={`ellipse-12 ${
+                        activeSection === "references" ? "active" : ""
+                      }`}
+                      onClick={() => handleNavClick("references")}
+                      style={{ cursor: "pointer" }}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div>
-              {!state && (
-                <div
-                  className="mobile-tab-only"
-                  style={{
-                    position: "fixed",
-                    top: "50%",
-                    right: 0,
-                    transform: "translateY(-50%)",
-                    zIndex: 1300,
-                  }}
-                >
+              <div>
+                {!state && (
                   <div
-                    className="toggleDrawerArrowwhite toggleDrawerArrowblack"
-                    onClick={toggleDrawer("right", true)}
+                    className="mobile-tab-only"
+                    style={{
+                      position: "fixed",
+                      top: "50%",
+                      right: 0,
+                      transform: "translateY(-50%)",
+                      zIndex: 1300,
+                    }}
                   >
-                    <img src="./leftarrow.png" className="arrowblack" />
-                    <img src="./leftarrowblack.png" className="arrowwhite" />
+                    <div
+                      className="toggleDrawerArrowwhite toggleDrawerArrowblack"
+                      onClick={toggleDrawer("right", true)}
+                    >
+                      <img src="./leftarrow.png" className="arrowblack" />
+                      <img src="./leftarrowblack.png" className="arrowwhite" />
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
-            {window.innerWidth <= 768 ? (
-              <>
-                {!isSplit ? (
-                  <div className="content-sections">
-                    <div className="bottom-section1" id="about-pollutant">
-                      {/* <div
+                )}
+              </div>
+              {window.innerWidth <= 768 ? (
+                <>
+                  {!isSplit ? (
+                    <div className="content-sections">
+                      <div className="bottom-section1" id="about-pollutant">
+                        {/* <div
                         style={{ padding: "35px 0px 0px 7px" }}
                         onClick={() => setIsSplit(true)}
                       >
                         <img src={backwhite} />
                       </div> */}
-                      <AboutPollutantSection
-                        sections={aboutpollutantcontent}
-                        wasteTypeIcon={wasteTypeData.atomImage}
-                      />
-                    </div>
-                    <div
-                      className="sound-frequency-section"
-                      id="sound-frequency"
-                    >
-                      <SoundFrequency sections={sinewavefreq} />
-                    </div>
-                    <div
-                      className="effect-on-health-section"
-                      id="effect-on-health"
-                    >
-                      <Box
-                        sections={effectonhealthcontent}
-                        pollutantName={leftpanelcontent[0].pollutantName}
-                      />
-                    </div>
-                    <div className="bottom-section3" id="case-study">
-                      <CaseStudies
-                        sections={casestudiescontent}
-                        pollutantName={leftpanelcontent[0].pollutantName}
-                      />
-                    </div>
-                    <div className="bottom-section4" id="phytoremediation">
-                      <Phyto
-                        sections={phytocontent}
-                        pollutantName={leftpanelcontent[0].pollutantName}
-                      />{" "}
+                        <AboutPollutantSection
+                          sections={aboutpollutantcontent}
+                          wasteTypeIcon={wasteTypeData.atomImage}
+                        />
+                      </div>
                       <div
-                        style={{
-                          width: "100%",
-                          display: "flex",
-                          justifyContent: "center",
-                        }}
+                        className="sound-frequency-section"
+                        id="sound-frequency"
                       >
-                        <div className="down_arrowstart">
-                          <div
-                            style={{
-                              background: "#fff",
-                              display: "flex",
-                              justifyContent: "center",
-                              padding: "0px 10px",
-                            }}
-                            onClick={() => {
-                              handleNavClick("plant-habitat");
-                            }}
-                          >
-                            <p
-                              className="bibliograhy"
-                              style={{ color: "#000" }}
+                        <SoundFrequency sections={sinewavefreq} />
+                      </div>
+                      <div
+                        className="effect-on-health-section"
+                        id="effect-on-health"
+                      >
+                        <Box
+                          sections={effectonhealthcontent}
+                          pollutantName={leftpanelcontent[0].pollutantName}
+                        />
+                      </div>
+                      <div className="bottom-section3" id="case-study">
+                        <CaseStudies
+                          sections={casestudiescontent}
+                          pollutantName={leftpanelcontent[0].pollutantName}
+                        />
+                      </div>
+                      <div className="bottom-section4" id="phytoremediation">
+                        <Phyto
+                          sections={phytocontent}
+                          pollutantName={leftpanelcontent[0].pollutantName}
+                        />{" "}
+                        <div
+                          style={{
+                            width: "100%",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <div className="down_arrowstart">
+                            <div
+                              style={{
+                                background: "#fff",
+                                display: "flex",
+                                justifyContent: "center",
+                                padding: "0px 10px",
+                              }}
+                              onClick={() => {
+                                handleNavClick("plant-habitat");
+                              }}
                             >
-                              BIBLIOGRAHY
-                            </p>
+                              <p
+                                className="bibliograhy"
+                                style={{ color: "#000" }}
+                              >
+                                BIBLIOGRAHY
+                              </p>
+                            </div>
                           </div>
                         </div>
+                        {/* * time period overlap */}
                       </div>
-                      {/* * time period overlap */}
-                    </div>
-                    <div className="white-container">
-                      {/* <div
+                      <div className="white-container">
+                        {/* <div
                         style={{ padding: "35px 0px 0px 7px" }}
                         onClick={() => setIsSplit(true)}
                       >
                         <img src={whitess} />
                       </div> */}
-                      <div className="bottom-section5" id="plant-name">
-                        <div className="content-container">
-                          <AboutPlant
-                            sections={aboutplantcontent}
-                            wasteTypeIcon={wasteTypeData.atomImage}
-                          />
+                        <div className="bottom-section5" id="plant-name">
+                          <div className="content-container">
+                            <AboutPlant
+                              sections={aboutplantcontent}
+                              wasteTypeIcon={wasteTypeData.atomImage}
+                            />
+                          </div>
+                        </div>
+                        <div className="bottom-section6" id="common-names">
+                          <CommonNames sections={commonname} />
+                        </div>
+                        <div className="bottom-section7" id="plant-habitat">
+                          <PlantHabitat sections={habitat} />
+                        </div>
+                        <div className="bottom-section8" id="origin">
+                          <Origin sections={geographicaldistribution} />
+                        </div>
+                        <div className="bottom-section9" id="phyto-capacity">
+                          <PhytoCapacity sections={sectionphyto} />
+                        </div>
+                        <div className="bottom-section10" id="uses-of-plant">
+                          <UsesOfPlant sectionsData={plantUses} />
                         </div>
                       </div>
-                      <div className="bottom-section6" id="common-names">
-                        <CommonNames sections={commonname} />
-                      </div>
-                      <div className="bottom-section7" id="plant-habitat">
-                        <PlantHabitat sections={habitat} />
-                      </div>
-                      <div className="bottom-section8" id="origin">
-                        <Origin sections={geographicaldistribution} />
-                      </div>
-                      <div className="bottom-section9" id="phyto-capacity">
-                        <PhytoCapacity sections={sectionphyto} />
-                      </div>
-                      <div className="bottom-section10" id="uses-of-plant">
-                        <UsesOfPlant sectionsData={plantUses} />
-                      </div>
                     </div>
+                  ) : (
+                    <></>
+                  )}
+                </>
+              ) : (
+                <div className="content-sections">
+                  <div className="bottom-section1" id="about-pollutant">
+                    <AboutPollutantSection
+                      sections={aboutpollutantcontent}
+                      wasteTypeIcon={wasteTypeData.atomImage}
+                    />
                   </div>
-                ) : (
-                  <></>
-                )}
-              </>
-            ) : (
-              <div className="content-sections">
-                <div className="bottom-section1" id="about-pollutant">
-                  <AboutPollutantSection
-                    sections={aboutpollutantcontent}
-                    wasteTypeIcon={wasteTypeData.atomImage}
-                  />
-                </div>
-                <div className="sound-frequency-section" id="sound-frequency">
-                  <SoundFrequency sections={sinewavefreq} />
-                </div>
-                <div className="effect-on-health-section" id="effect-on-health">
-                  <Box
-                    sections={effectonhealthcontent}
-                    pollutantName={leftpanelcontent[0].pollutantName}
-                  />
-                </div>
-                <div className="bottom-section3" id="case-study">
-                  <CaseStudies
-                    sections={casestudiescontent}
-                    pollutantName={leftpanelcontent[0].pollutantName}
-                  />
-                </div>
-                <div className="bottom-section4" id="phytoremediation">
-                  <Phyto
-                    sections={phytocontent}
-                    pollutantName={leftpanelcontent[0].pollutantName}
-                  />{" "}
+                  <div className="sound-frequency-section" id="sound-frequency">
+                    <SoundFrequency sections={sinewavefreq} />
+                  </div>
                   <div
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
+                    className="effect-on-health-section"
+                    id="effect-on-health"
                   >
-                    <div className="down_arrowstart">
-                      <div
-                        style={{
-                          background: "#fff",
-                          display: "flex",
-                          justifyContent: "center",
-                          padding: "0px 10px",
-                        }}
-                        onClick={() => {
-                          handleNavClick("plant-habitat");
-                        }}
-                      >
-                        <p className="bibliograhy" style={{ color: "#000" }}>
-                          BIBLIOGRAHY
-                        </p>
+                    <Box
+                      sections={effectonhealthcontent}
+                      pollutantName={leftpanelcontent[0].pollutantName}
+                    />
+                  </div>
+                  <div className="bottom-section3" id="case-study">
+                    <CaseStudies
+                      sections={casestudiescontent}
+                      pollutantName={leftpanelcontent[0].pollutantName}
+                    />
+                  </div>
+                  <div className="bottom-section4" id="phytoremediation">
+                    <Phyto
+                      sections={phytocontent}
+                      pollutantName={leftpanelcontent[0].pollutantName}
+                    />{" "}
+                    <div
+                      style={{
+                        width: "100%",
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <div className="down_arrowstart">
+                        <div
+                          style={{
+                            background: "#fff",
+                            display: "flex",
+                            justifyContent: "center",
+                            padding: "0px 10px",
+                          }}
+                          onClick={() => {
+                            handleNavClick("plant-habitat");
+                          }}
+                        >
+                          <p className="bibliograhy" style={{ color: "#000" }}>
+                            BIBLIOGRAHY
+                          </p>
+                        </div>
                       </div>
                     </div>
+                    {/* * time period overlap */}
                   </div>
-                  {/* * time period overlap */}
-                </div>
-                <div className="white-container">
-                  {/* <div
+                  <div className="white-container">
+                    {/* <div
                     style={{ padding: "35px 0px 0px 7px" }}
                     onClick={() => setIsSplit(true)}
                   >
                     <img src={backwhite} />
                   </div> */}
-                  <div className="bottom-section5" id="plant-name">
-                    <div className="content-container">
-                      <AboutPlant
-                        sections={aboutplantcontent}
-                        wasteTypeIcon={wasteTypeData.atomImage}
-                      />
+                    <div className="bottom-section5" id="plant-name">
+                      <div className="content-container">
+                        <AboutPlant
+                          sections={aboutplantcontent}
+                          wasteTypeIcon={wasteTypeData.atomImage}
+                        />
+                      </div>
+                    </div>
+                    <div className="bottom-section6" id="common-names">
+                      <CommonNames sections={commonname} />
+                    </div>
+                    <div className="bottom-section7" id="plant-habitat">
+                      <PlantHabitat sections={habitat} />
+                    </div>
+                    <div className="bottom-section8" id="origin">
+                      <Origin sections={geographicaldistribution} />
+                    </div>
+                    <div className="bottom-section9" id="phyto-capacity">
+                      <PhytoCapacity sections={sectionphyto} />
+                    </div>
+                    <div className="bottom-section10" id="uses-of-plant">
+                      <UsesOfPlant sectionsData={plantUses} />
                     </div>
                   </div>
-                  <div className="bottom-section6" id="common-names">
-                    <CommonNames sections={commonname} />
-                  </div>
-                  <div className="bottom-section7" id="plant-habitat">
-                    <PlantHabitat sections={habitat} />
-                  </div>
-                  <div className="bottom-section8" id="origin">
-                    <Origin sections={geographicaldistribution} />
-                  </div>
-                  <div className="bottom-section9" id="phyto-capacity">
-                    <PhytoCapacity sections={sectionphyto} />
-                  </div>
-                  <div className="bottom-section10" id="uses-of-plant">
-                    <UsesOfPlant sectionsData={plantUses} />
-                  </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          )}
         </>
       )}
       {isMobile && isSplits == "slider-container" ? (
@@ -3597,7 +3608,7 @@ const PollutantPage = ({ categorizedData }) => {
                   width: "10px",
                   border: "1px solid rgb(255, 255, 255)",
                   marginTop: "15px",
-                  marginLeft: "1.66px"
+                  marginLeft: "1.66px",
                 }}
               ></span>
 
