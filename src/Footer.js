@@ -1,6 +1,34 @@
 import React from "react";
 import styles from "./Footer.module.css";
 
+const shareToFacebook = () => {
+  const url = encodeURIComponent(window.location.href);
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
+};
+
+const shareToTwitter = () => {
+  const url = encodeURIComponent(window.location.href);
+  const text = encodeURIComponent(document.title);
+  window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, "_blank");
+};
+
+const shareLink = async () => {
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: document.title,
+        text: 'Check this out!',
+        url: window.location.href,
+      });
+      console.log('Link shared successfully');
+    } catch (err) {
+      console.error('Error sharing:', err);
+    }
+  } else {
+    alert('Sharing not supported on this browser. Please copy the link manually.');
+  }
+};
+
 export const Footer = () => {
   return (
     <div className={styles.footerContainer}>
@@ -13,36 +41,37 @@ export const Footer = () => {
           </div>
 
           <div className={styles.subGroup} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <span className={styles.role}>Sound Design:</span>
-              <a
-                href="https://www.kariraeseekins.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.nameUnderline}
-              >
-                Kari Rae Seekins
-              </a>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <span className={styles.role}>Creative Coder for Sound Engagement:</span>
-              <a
-                href="https://www.linkedin.com/in/khoparzi/?originalSubdomain=in"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.nameUnderline}
-              >
-                Abhinay Khoparzi
-              </a>
+            <div style={{ display: "flex", flexDirection: "row", gap: "13.6em" }}>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <span className={styles.role}>Sound Design:</span>
+                <a
+                  href="https://www.kariraeseekins.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.nameUnderline}
+                >
+                  Kari Rae Seekins
+                </a>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <span className={styles.role}>Creative Coder for Sound Engagement:</span>
+                <a
+                  href="https://www.linkedin.com/in/khoparzi/?originalSubdomain=in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.nameUnderline}
+                >
+                  Abhinay Khoparzi
+                </a>
+              </div>
             </div>
           </div>
-
           <div className={styles.subGroup}>
             <span className={styles.role}>Circuit Board Design:</span>
             <span className={styles.name}>Prateek Jha</span>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+          <div style={{ display: "flex", flexDirection: "row", gap: "14.4em" }}>
             <div className={styles.subGroup}>
               <span className={styles.role}>UI/UX Design:</span>
               <a href="https://readymag.website/u3450179796/sanjanakadamportfolio/" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Sanjana Kadam</a> | 
@@ -56,7 +85,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+          <div style={{ display: "flex", flexDirection: "row", gap: "10em" }}>
             <div className={styles.subGroup}>
               <span className={styles.role}>Book Design:</span>
               <span className={styles.name}>Shikha Sinai Usgaonker</span>
@@ -68,7 +97,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "30%" }}>
+          <div style={{ display: "flex", flexDirection: "row", gap: "14.8em" }}>
             <div className={styles.subGroup}>
               <span className={styles.role}>Plant Illustrations:</span>
               <span className={styles.name}>Nandita Kumar</span>
@@ -80,7 +109,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "30%" }}>
+          <div style={{ display: "flex", flexDirection: "row", gap: "8em" }}>
             <div className={styles.subGroup}>
               <span className={styles.role}>Editor:</span>
               <span className={styles.name}>Anjali Singh Uttamchandani</span>
@@ -116,53 +145,26 @@ export const Footer = () => {
       <br />
       <br />
       <center>
-      <div className={styles.section}>
-        <div className={styles.imageContainer}>
-          <a
-            href="facebook.png"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ marginRight: '10px', textDecoration: 'none' }}
-          >
-            <img src="instagram.png" alt="Supporter 1" className={styles.supporterImage} />
-          </a>
-          <a
-            href="path/to/image2.png"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ marginRight: '10px', textDecoration: 'none' }}
-          >
-            <img src="facebook.png" alt="Supporter 2" className={styles.supporterImage} />
-          </a>
-          <a
-            href="path/to/image3.png"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ marginRight: '10px', textDecoration: 'none' }}
-          >
-            <img src="twitter.png" alt="Supporter 3" className={styles.supporterImage} />
-          </a>
-          <a
-            href="path/to/image3.png"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: 'none' }}
-          >
-            <img src="share.png" alt="Supporter 3" className={styles.supporterImage} />
-          </a>
-        </div>
-        <p className={styles.description}>
-          <a
-            href="path/to/image3.png"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ marginRight: '10px', textDecoration: 'none' }}
-          >
-            <img src="copyright.png" alt="Supporter 3" className={styles.supporterImage} />
-          </a>
-NANDITA KUMAR 2025
-        </p>
+    <div className={styles.section}>
+      <div className={styles.imageContainer}>
+        <button onClick={shareLink} style={{ marginRight: '10px', background: "none", border: "none", padding: 0 }}>
+          <img src="instagram.png" alt="Instagram" className={styles.supporterImage} />
+        </button>
+        <button onClick={shareToFacebook} style={{ marginRight: '10px', background: "none", border: "none", padding: 0 }}>
+          <img src="facebook.png" alt="Facebook" className={styles.supporterImage} />
+        </button>
+        <button onClick={shareToTwitter} style={{ marginRight: '10px', background: "none", border: "none", padding: 0 }}>
+          <img src="twitter.png" alt="Twitter" className={styles.supporterImage} />
+        </button>
+        <button onClick={shareLink} style={{ background: "none", border: "none", padding: 0 }}>
+          <img src="share.png" alt="Share Link" className={styles.supporterImage} />
+        </button>
       </div>
+      <p className={styles.description}>
+        <img src="copyright.png" alt="Copyright" className={styles.supporterImage} style={{ marginRight: '10px' }} />
+        NANDITA KUMAR 2025
+      </p>
+    </div>
       </center>
     </div>
   );

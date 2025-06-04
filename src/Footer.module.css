@@ -82,3 +82,17 @@
     color: #000 !important;   /* Ensures links stay black in all states */
   }
   
+  .namesGrid {
+  display: grid;
+  grid-template-columns: 180px 180px 180px 180px; /* adjust count and width as needed */
+  gap: 0; /* Only columns spacing, no gap between */
+  margin-bottom: 2px;
+}
+
+@media (max-width: 700px) {
+  .namesGrid {
+    grid-template-columns: 1fr 1fr; /* stacks into 2 columns on mobile */
+    row-gap: 6px;
+    column-gap: 16px;
+  }
+}
