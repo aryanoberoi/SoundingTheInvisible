@@ -3418,7 +3418,8 @@ const PollutantPage = ({ categorizedData }) => {
                 display: "flex",
                 padding: 0,
                 gap: "90px",
-                paddingRight: "85px",
+                paddingRight: "86.9px",
+                paddingTop: "20px",
               }}
             >
               {options.map((item, idx) => {
@@ -3443,7 +3444,7 @@ const PollutantPage = ({ categorizedData }) => {
                       style={{
                         fontSize: idx == 0 ? "24px" : "14px",
                         width: "134px",
-                        // textAlign: "end",
+                        textAlign: "right",
                         // transform:
                         //  "translateX(60px)"
                         //     // : isLast
@@ -3453,7 +3454,7 @@ const PollutantPage = ({ categorizedData }) => {
                     >
                       {item.label}
                     </span>
-                    <span className="ml-4  --blackviews">◯</span>
+                    <span className="ml-4  --blackviews"></span>
                   </li>
                 );
               })}
@@ -3467,19 +3468,18 @@ const PollutantPage = ({ categorizedData }) => {
                 paddingLeft: "9px",
                 gap: "20px",
                 marginBottom: "1px",
-                paddingRight: "53px",
-                paddingTop: "17px",
+                paddingRight: "52px",
+                paddingTop: "20px",
               }}
               onClick={() => handleNavClick("phytoremediation")}
             >
-              <span className="ml-4">◯</span>
+              <span className="ml-4 --blackviews"></span>
 
               <span className={`flex-1 `} style={{ fontSize: "14px" }}>
                 Bibliography
               </span>
             </div>
 
-            {/* Vertical line */}
             <div className="timeline-line" />
           </div>
 
@@ -3487,6 +3487,7 @@ const PollutantPage = ({ categorizedData }) => {
             <p>Close</p>
           </div>
         </div>
+        {/* dddddddddddddddddddddddddddddddddd */}
         <div className="timelinewhite-drawer">
           <div className="timeline-container">
             <div
@@ -3503,7 +3504,7 @@ const PollutantPage = ({ categorizedData }) => {
                 gap: "20px",
                 // paddingRight: "55px",
                 marginBottom: "59px",
-                paddingRight: "4px",
+                paddingRight: "3px",
               }}
             >
               <img
@@ -3554,12 +3555,10 @@ const PollutantPage = ({ categorizedData }) => {
                       zIndex: 99,
                     }}
                   >
-                    <p
-                      className="ml-4"
+                    <div
+                      className="ml-4 nav_plant_white"
                       style={{ background: "#000", zIndex: 99 }}
-                    >
-                      ◯
-                    </p>
+                    ></div>
 
                     <span
                       className={`flex-1 `}
@@ -3589,7 +3588,18 @@ const PollutantPage = ({ categorizedData }) => {
                 marginBottom: "20px",
               }}
             >
-              <span className="ml-4">◯</span>
+              <span
+                className="ml-4"
+                style={{
+                  padding: "2px",
+                  borderRadius: "12px",
+                  height: "10px",
+                  width: "10px",
+                  border: "1px solid rgb(255, 255, 255)",
+                  marginTop: "15px",
+                  marginLeft: "1.66px"
+                }}
+              ></span>
 
               <span className={`flex-1 `} style={{ fontSize: "14px" }}>
                 Bibliography
@@ -3600,7 +3610,7 @@ const PollutantPage = ({ categorizedData }) => {
             <div className="timeline-line" />
           </div>
 
-          <div className="close-button" onClick={toggleDrawer(false)}>
+          <div className="close-buttons" onClick={toggleDrawer(false)}>
             <p>Close</p>
           </div>
         </div>

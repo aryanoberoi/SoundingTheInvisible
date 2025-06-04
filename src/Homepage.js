@@ -351,6 +351,7 @@ export default function Homepage({ audioControls }) {
             {showPartneringText ? "READ LESS" : "READ MORE"}
           </div>
         </div>
+
         <div className="svg-container-scs">
           <SoundConceptFrame 
             className="strategy-image interactive-svg"
