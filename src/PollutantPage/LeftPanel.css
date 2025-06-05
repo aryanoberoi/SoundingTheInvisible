@@ -263,6 +263,6 @@
   pointer-events: none;        /* stops the image blocking clicks on UI elements  */
   z-index: 1;                  /* sits above background, below arrow (arrow is z-10) */
   top: 200px;
-  overflow-y: visible !important;
+  overflow: visible !important;
   /* transform: scale(1.2); */
 }
