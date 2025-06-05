@@ -1,39 +1,40 @@
 .bottom-section4 {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    margin: 60px 0;
-    height: 3900px;
-    background-color: #000 !important;
-    /* padding-bottom: 699px; */
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin: 60px 0;
+  height: 3900px;
+  background-color: #000 !important;
+  /* padding-bottom: 699px; */
 }
 
 .bottom-section4 .box {
-  height: auto;  /* Changed from fixed height */
+  height: auto; /* Changed from fixed height */
   width: 80%;
   display: flex;
-  flex-direction: column;  /* Add column layout */
-  align-items: left;     /* Center items horizontally */
-  gap: 0;                  /* Remove flex gap */
+  flex-direction: column; /* Add column layout */
+  align-items: left; /* Center items horizontally */
+  gap: 0; /* Remove flex gap */
   margin-left: 10%;
   /* padding-top: 50px; */
 }
 
-.bottom-section4 .box > .box {  /* Target species boxes */
+.bottom-section4 .box > .box {
+  /* Target species boxes */
   height: 358px;
   width: 511px;
   position: relative;
-  margin: 20px 0;          /* Maintain vertical margins */
+  margin: 20px 0; /* Maintain vertical margins */
 }
 
 .bottom-section4 .box > .right-aligned {
   margin-left: auto;
-  margin-right: 20px;  /* Optional: Add spacing from right edge */
+  margin-right: 20px; /* Optional: Add spacing from right edge */
 }
 
 .bottom-section4 .box .group {
   height: 358px;
-  position: relative;  /* Changed from absolute */
+  position: relative; /* Changed from absolute */
   width: 100%;
 }
 
@@ -50,9 +51,9 @@
 }
 
 .bottom-section4 .box.right-aligned .text-wrapper {
-left: auto;
-right: 170px;
-text-align: right;
+  left: auto;
+  right: 170px;
+  text-align: right;
 }
 
 .bottom-section4 .box .overlap-group {
@@ -188,47 +189,47 @@ text-align: right;
 }
 
 .bottom-section4 .box .time-period-container {
-position: relative;
-width: 100%;
-height: 150px;
+  position: relative;
+  width: 100%;
+  height: 150px;
 }
 
 .bottom-section4 .box .div {
-/* left: 29px; */
-top: 110px;
-width: 130px;
-text-align: right;
+  /* left: 29px; */
+  top: 110px;
+  width: 130px;
+  text-align: right;
 }
 
 .bottom-section4 .box .div-wrapper {
-left: 0;
-top: 95px;
+  left: 0;
+  top: 95px;
 }
 
 .bottom-section4 .box .time-period-container-group2 {
-text-align: right;   /* Add internal padding */
+  text-align: right; /* Add internal padding */
 }
 
 .bottom-section4 .box .time-period-container-group2 .div {
-  left: 260px;  /* Match parent element positioning */
+  left: 260px; /* Match parent element positioning */
   /* width: calc(100%); */
   text-align: left;
 }
 
 .bottom-section4 .box .time-period-container-group2 .div-wrapper {
-  left: calc(95%);  /* Match parent element positioning */
+  left: calc(95%); /* Match parent element positioning */
   text-align: right;
 }
 
 /* Add new styles for medium and soil labels */
-.bottom-section4 .box .overlap-group .medium-label{
-color: #ffffff;
-font-family: "Nippo-Light", Helvetica;
-font-size: 15px;
-font-weight: 400;
-letter-spacing: 0.45px;
-position: absolute;
-left: 0;
+.bottom-section4 .box .overlap-group .medium-label {
+  color: #ffffff;
+  font-family: "Nippo-Light", Helvetica;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.45px;
+  position: absolute;
+  left: 0;
 }
 .bottom-section4 .box .overlap-group .soil-label {
   color: #ffffff;
@@ -243,7 +244,7 @@ left: 0;
 .bottom-section4 .box .overlap-group .medium-label {
   top: 30px;
   left: auto;
-  right: -15px; 
+  right: -15px;
   text-align: left;
 }
 
@@ -283,7 +284,7 @@ left: 0;
 .bottom-section4 .box .text-wrapper-3 {
   background-color: transparent !important; /* Remove original background */
   color: #181818;
-  font: 378 32px 'Nippo-Regular', sans-serif;
+  font: 378 32px "Nippo-Regular", sans-serif;
   font-weight: 400;
   left: 0;
   letter-spacing: 3%;
@@ -299,7 +300,7 @@ left: 0;
 
 /* Add new ::before pseudo-element for the inset background */
 .bottom-section4 .box .text-wrapper-3::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 3px; /* Inset from left */
@@ -310,7 +311,7 @@ left: 0;
 }
 
 .bottom-section4 .box .text-wrapper-3::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 3px; /* Match the left inset of the background */
   bottom: 0;
@@ -321,97 +322,116 @@ left: 0;
 }
 
 .bottom-section4 .box.right-aligned .overlap-group {
-  position: absolute;  /* Ensure positioning context */
+  position: absolute; /* Ensure positioning context */
 }
 
 @media (max-width: 768px) {
   .button-container {
-  padding:19px !important;
-  
+    padding: 19px !important;
   }
-.bottom-section4 .box {
-
+  .bottom-section4 .box {
     margin-left: 0% !important;
     /* padding-top: 50px; */
-}
-.bottom-section4 .box .text-wrapper-3 {
+  }
+  .bottom-section4 .box .text-wrapper-3 {
     font-size: 20px;
-    padding: 17px 0px
-}
-.bottom-section4 .box .text-wrapper{
+    padding: 17px 0px;
+  }
+  .bottom-section4 .box .text-wrapper {
     left: 10px;
-}
-.bottom-section4 .box .vector {
-    left: 15px;
+  }
+  .bottom-section4 .box .vector {
+    left: -6px;
     /* top: 0px; */
-}
-.bottom-section4 .box .ellipse{
-    left: 120px;
-}
-.bottom-section4 .box .div{
+  }
+  .bottom-section4 .box .ellipse {
+    left: 138px;
+    width: 40px;
+    height: 40px;
+    top: 230px;
+  }
+  .bottom-section4 .box .div {
     font-size: 18px;
     left: -12px;
-}
-.bottom-section4 .box .div-wrapper{
+  }
+  .bottom-section4 .box .div-wrapper {
     font-family: 12px;
     left: -0px;
     text-align: center;
-}
-.bottom-section4 .box .time-period-container-group2 .div-wrapper {
-left: 88% ;
-
-}
-.bottom-section4 .box .img {
+  }
+  .bottom-section4 .box .time-period-container-group2 .div-wrapper {
+    left: 88%;
+  }
+  .bottom-section4 .box .img {
     height: 5px;
-    left: 119px;
+    left: 130px;
     object-fit: cover;
     position: absolute;
     top: 139px;
     width: 31px;
-}
-.bottom-section4 .box .overlap {
+  }
+  .bottom-section4 .box .time-period-container-group2 .div {
+  }
+  .--blockview {
+    left: calc(59%) !important;
+  }
+  .bottom-section4 .box .right-aligned-group {
+    left: -133px !important;
+  }
+  .bottom-section4 .box .group-2 {
+    left: -38px;
+  }
+  .bottom-section4 .box .overlap {
     height: 109px;
     left: 239px;
     position: absolute;
     top: 249px;
-}
-.bottom-section4 .box .overlap-group-right {
+  }
+  .bottom-section4 .box .overlap-group-right {
     height: auto;
     position: absolute;
     top: 255px;
     left: 105px;
-}
-.text-wrapper-99{
+  }
+  .text-wrapper-99 {
     width: 100% !important;
     top: 9px !important;
-
-}
-.bottom-section4 .box .overlap-group .medium-label{
+  }
+  .bottom-section4 .box .overlap-group .medium-label {
     right: 23px;
     top: 20px;
-}
-/* .bottom-section4 .box .img{
+  }
+  /* .bottom-section4 .box .img{
     left: 57%;
 } */
-.bottom-section4 .box .text-wrapper-2{
+  .bottom-section4 .box .text-wrapper-2 {
     font-size: 12px;
-    width: 112px;
-    top: -10px;
-}
-.bottom-section4 .box .overlap-group .soil-label{
+    /* width: 112px; */
+    top: 15px;
+  }
+  .bottom-section4 .box.right-aligned .overlap-group .medium-label,
+  .bottom-section4 .box.right-aligned .overlap-group .soil-label {
+    right: 109px;
+  }
+  .bottom-section4 .box .overlap-group .soil-label {
     right: -22px;
     top: 40px !important;
-}
-.bottom-section4 .box .element{
+  }
+  .bottom-section4 .box .element {
     font-size: 18px;
     top: 36px;
     /* left: 0; */
-}
-.bottom-section4 .box.right-aligned .text-wrapper{
+  }
+  .bottom-section4 .box.right-aligned .text-wrapper {
     right: 185px;
     font-size: 24px;
-}
-.bottom-section4 .box .time-period-container-group2 {
-    right: 35px;
-}
+  }
+  .bottom-section4 .box .time-period-container-group2 {
+    right: 31px !important;
+    left: initial;
+  }
+
+  .time-period-container {
+    left: 8px;
+  }
 }

@@ -50,7 +50,7 @@ const MobileRightPanel = ({
   ];
 
   return (
-    <div className="right-panel" style={{height:view?"100vh":"auto"}}>
+    <div className="right-panel" style={{ height: view ? "100vh" : "auto" }}>
       <div
         className="plantContainer"
         style={{
@@ -80,7 +80,9 @@ const MobileRightPanel = ({
               fontWeight: "400",
               margin: "0px",
               textAlign: "center",
-              // transform: "translate(0px, 9px)",
+              transform: "translateY(-99px)",
+              marginBottom:"5em"
+              // transform: "translateY(calc(100% - 210%))",
               // position: "absolute",
               // bottom: "calc(100% - 106%)",
             }}
