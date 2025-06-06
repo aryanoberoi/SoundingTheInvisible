@@ -11,10 +11,11 @@ import IsolatedCursor from './IsolatedCursor';
 import audioService from './AudioService';
 import { ScrollToTop, inspectScrollableElements } from './ScrollFix';
 import Loader from "./Loader";
+// Okay 
 const AppContent = () => {
   const location = useLocation();
   const [categorizedData, setCategorizedData] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  const [isPageLoaded, setIsPageLoaded] = useState(false);
   const isInitialMount = useRef(true);
   const prevPathRef = useRef('');
 
@@ -121,27 +122,24 @@ const AppContent = () => {
         
         setCategorizedData(categorizedData);
         audioService.init(rows);
-        setIsLoading(false);
+        setIsPageLoaded(true);
       })
       .catch(err => {
         console.error("Error fetching sheet:", err);
-        setIsLoading(false);
+        setIsPageLoaded(true);
       });
   }, []);
 
-
   useEffect(() => {
-    const handlePageLoad = () => {
-      setIsLoading(false);
+    const handleLoad = () => {
+      setIsPageLoaded(true);
     };
 
-    // Check if the page has already loaded
-    if (document.readyState === 'complete') {
-      handlePageLoad();
+    if (document.readyState === "complete") {
+      handleLoad();
     } else {
-      window.addEventListener('load', handlePageLoad);
-      // Cleanup the event listener
-      return () => window.removeEventListener('load', handlePageLoad);
+      window.addEventListener("load", handleLoad);
+      return () => window.removeEventListener("load", handleLoad);
     }
   }, []);
 
@@ -152,16 +150,12 @@ const AppContent = () => {
     };
   }, []);
 
-  if (isLoading) {
-      <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
-      </div>
+  if (!isPageLoaded) {
+    return <div>Loading full page...</div>; // splash screen
   }
-
 
   return (
     <div className="app-container">
-      {isLoading && <Loader />}
       <ScrollToTop />
       <IsolatedCursor />
       <Navbar />
