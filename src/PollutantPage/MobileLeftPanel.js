@@ -68,7 +68,7 @@ const MobileLeftPanel = ({
           {/* <div style={{ transform: "scale(1.15) translate(0px, calc(100% - 949px))" }}> */}
           <div
             style={{
-              transform: "scale(1.15) translate(0px, calc(100% - 109.99%))",
+              transform: "scale(1.15) translate(0px, calc(100% - 112.99%))",
             }}
           >
             <img
