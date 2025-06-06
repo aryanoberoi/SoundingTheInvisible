@@ -30,7 +30,7 @@ const MobileLeftPanel = ({
   console.log("sections", sliderPosition);
   return (
     <div className="left-panel">
-      <div className="plantContainerleft" style={{ width: "33%" }}>
+      <div className="plantContainerleft" style={{ width: "34.2%" }}>
         <div style={{ width: "86%" }}>
           {view ? (
             <p
@@ -68,15 +68,16 @@ const MobileLeftPanel = ({
           {/* <div style={{ transform: "scale(1.15) translate(0px, calc(100% - 949px))" }}> */}
           <div
             style={{
-              transform: "scale(1.15) translate(0px, calc(100% - 112.99%))",
+              transform: "scale(1.15) translate(0px, calc(100% - 107.99%))",
             }}
           >
             <img
               src={pollutantimagemobile}
               alt="Pollutant visual"
               style={{
-                width: "85vw",
+                width: "100vw",
                 height: "auto",
+                transform: "translateX(-3.5px)",
               }}
             />
           </div>
