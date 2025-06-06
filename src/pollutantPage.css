@@ -30,6 +30,10 @@ body,
   width: 100%;
 }
 
+.left-panel, .container {
+  overflow: visible !important;  /* Allow content to overflow */
+}
+
 .left-panel {
   left: 0;
   background-color: #000;
