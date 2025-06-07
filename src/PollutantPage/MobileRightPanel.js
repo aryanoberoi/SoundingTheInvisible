@@ -60,7 +60,7 @@ const MobileRightPanel = ({
         <div
           className="contentWrapper "
         >
-          <div style={{ transform: "scale(1.107)", marginTop: "20px", marginLeft:"0.15px" }}>
+          <div style={{ transform: "scale(1.107)", marginTop: "2vh", marginLeft: "0.15vw" }}>
             <div style={{ height: "7%", overflow: "hidden" }}>
               <img
                 src={plantimagemobile}

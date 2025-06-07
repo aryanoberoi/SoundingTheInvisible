@@ -30,7 +30,7 @@ const MobileLeftPanel = ({
   console.log("sections", sliderPosition);
   return (
     <div className="left-panel">
-      <div className="plantContainerleft" style={{ width: "34.2%" }}>
+      <div className="plantContainerleft" style={{ width: "100vw" }}>
         <div style={{ width: "86%" }}>
           {view ? (
             <p
@@ -77,7 +77,6 @@ const MobileLeftPanel = ({
               style={{
                 width: "100vw",
                 height: "auto",
-                transform: "translateX(-3.5px)",
               }}
             />
           </div>
