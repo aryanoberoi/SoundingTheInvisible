@@ -97,13 +97,14 @@ const AppContent = () => {
 
   // Data fetching effect
   useEffect(() => {
-    const sheetId = "1az7_Vg0GPH2FF393w0sjCmGUxHKEYnIsSDyAJIq8fxs";
-    const sheetName = "Sheet1";
-    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
+    const fetchData = async () => {
+      const sheetId = "1az7_Vg0GPH2FF393w0sjCmGUxHKEYnIsSDyAJIq8fxs";
+      const sheetName = "Sheet1";
+      const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
 
-    fetch(url)
-      .then(res => res.text())
-      .then(text => {
+      try {
+        const res = await fetch(url);
+        const text = await res.text();
         const json = JSON.parse(text.substr(47).slice(0, -2));
         const rows = json.table.rows.map(row => {
           const obj = {};
@@ -123,11 +124,13 @@ const AppContent = () => {
         setCategorizedData(categorizedData);
         audioService.init(rows);
         setIsPageLoaded(true);
-      })
-      .catch(err => {
+      } catch (err) {
         console.error("Error fetching sheet:", err);
         setIsPageLoaded(true);
-      });
+      }
+    };
+
+    fetchData();
   }, []);
 
   useEffect(() => {

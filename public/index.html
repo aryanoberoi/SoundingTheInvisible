@@ -26,6 +26,14 @@
     -->
     <title>Sounding The Invisible</title>
     <style>
+      body { visibility: hidden; }
+    </style>
+    <script>
+      window.addEventListener("load", () => {
+        document.body.style.visibility = "visible";
+      });
+    </script>
+    <style>
       html, body, #root { scroll-behavior: auto !important; }
       body.lock-scroll { overflow: hidden !important; }
       .page-container { min-height: 100vh; position: relative; }
