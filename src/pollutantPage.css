@@ -2467,7 +2467,6 @@ body.white-panel-active .arrowwhite {
 }
 .customDrawer {
   width: 100vw;
-  /* backgroundColor: "", */
   position: relative;
 }
 body.white-panel-active .--blackmodel {

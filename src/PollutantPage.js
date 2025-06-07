@@ -3498,7 +3498,6 @@ const PollutantPage = ({ categorizedData }) => {
             <p>Close</p>
           </div>
         </div>
-        {/* dddddddddddddddddddddddddddddddddd */}
         <div className="timelinewhite-drawer">
           <div className="timeline-container">
             <div
