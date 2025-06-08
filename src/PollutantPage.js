@@ -41,6 +41,8 @@ import shblack from "./share-from-square-regularblack.png";
 import back from "./back.png";
 import backwhite from "./backwhite.png";
 import split_img from "./split_img.png";
+import PreventPullToRefresh from "./PreventPullToRefresh";
+
 const PollutantPage = ({ categorizedData }) => {
   //this was hell to make
   const { customName } = useParams();
