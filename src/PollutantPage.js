@@ -1024,6 +1024,7 @@ const PollutantPage = ({ categorizedData }) => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+  
   useEffect(() => {
     const handlePointerUp = () => {
       if (!isDragging) return;

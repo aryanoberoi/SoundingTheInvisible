@@ -9,6 +9,7 @@ import IsolatedCursor from './IsolatedCursor';
 import audioService from './AudioService';
 import { ScrollToTop, inspectScrollableElements } from './ScrollFix';
 import Loader from "./Loader";
+import PreventPullToRefresh from './PreventPullToRefresh';
 
 const AppContent = () => {
   const location = useLocation();
@@ -145,6 +146,8 @@ const AppContent = () => {
 
   return (
     <div className="app-container">
+        <PreventPullToRefresh>
+
       <ScrollToTop />
       <IsolatedCursor />
       <Navbar />
@@ -167,6 +170,7 @@ const AppContent = () => {
           <Route path="/playtest" element={<PlayPads />} />
         </Routes>
       </div>
+      </PreventPullToRefresh>
     </div>
   );
 };
