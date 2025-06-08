@@ -1582,14 +1582,15 @@ const PollutantPage = ({ categorizedData }) => {
 
       {!isMobileView ? (
         <>
+        <div>
+        <PreventPullToRefresh>
+
           <div
             id="slider-container"
             className="slider-container"
             ref={sliderContainerRef}
             style={{ height: containerHeight }}
           >
-            <PreventPullToRefresh>
-
             <div ref={leftPanelRef}>
               <LeftPanel
                 sections={leftpanelcontent}
@@ -1629,7 +1630,8 @@ const PollutantPage = ({ categorizedData }) => {
                 <img src="slider.png" alt="Slider" className="slider-image" />
               </div>
             </div>
-            </PreventPullToRefresh>
+          </div>
+          </PreventPullToRefresh>
           </div>
           <div className="combined-section" style={{ padding: "0px 10px" }}>
             <div className="nav-bar-container">
@@ -2096,6 +2098,8 @@ const PollutantPage = ({ categorizedData }) => {
         <>
           {isSplit ? (
             <>
+            <div>
+              <PreventPullToRefresh>
               <div
                 id="slider-container"
                 className="slider-container"
@@ -2172,6 +2176,8 @@ const PollutantPage = ({ categorizedData }) => {
                     />
                   </div>
                 </div>
+              </div>
+              </PreventPullToRefresh>
               </div>
               {isMobileView ? (
                 <>
