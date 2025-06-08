@@ -1024,7 +1024,7 @@ const PollutantPage = ({ categorizedData }) => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  
+
   useEffect(() => {
     const handlePointerUp = () => {
       if (!isDragging) return;
@@ -1586,6 +1586,8 @@ const PollutantPage = ({ categorizedData }) => {
             ref={sliderContainerRef}
             style={{ height: containerHeight }}
           >
+            <PreventPullToRefresh>
+
             <div ref={leftPanelRef}>
               <LeftPanel
                 sections={leftpanelcontent}
@@ -1625,6 +1627,7 @@ const PollutantPage = ({ categorizedData }) => {
                 <img src="slider.png" alt="Slider" className="slider-image" />
               </div>
             </div>
+            </PreventPullToRefresh>
           </div>
           <div className="combined-section" style={{ padding: "0px 10px" }}>
             <div className="nav-bar-container">
