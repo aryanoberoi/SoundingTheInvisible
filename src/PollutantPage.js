@@ -20,9 +20,7 @@ import { Drawer, styled } from "@mui/material";
 import MobileRightPanel from "./PollutantPage/MobileRightPanel";
 import MobileLeftPanel from "./PollutantPage/MobileLeftPanel";
 import {
-  KnowMoreButton,
-  KnowMoreButtonInverted,
-  KnowMoreButtonInvertedRA,
+  KnowMoreButton
 } from "./PollutantPage/Knowmorebutton";
 import SineWaveVisualizer from "./PollutantPage/sinwave";
 import { PlantInfoSection } from "./PollutantPage/PlantInfoSection";
@@ -80,59 +78,6 @@ const PollutantPage = ({ categorizedData }) => {
   const lastPositionRef = useRef(sliderPosition); // Add ref to track latest position
   const navBarRef = useRef(null); // New ref for implementing fallback sticky behavior
 
-  // Pollutant categorization by waste type
-  const pollutantCategories = {
-    1: [
-      "potassium",
-      "simazine",
-      "imidacloprid",
-      "plantago",
-      "atrazine",
-      "glyphosate",
-      "phosphorus",
-      "nitrates",
-    ],
-    2: [
-      "mercury",
-      "copper",
-      "lead",
-      "chromium",
-      "cadmium",
-      "thallium",
-      "selenium",
-      "nickel",
-      "arsenic",
-      "zinc",
-      "iron",
-      "manganese",
-      "aluminum",
-    ],
-    3: ["thorium", "strontium"],
-    4: [
-      "benzene",
-      "crude-oil",
-      "petrol",
-      "spiralis",
-      "diesel",
-      "sulphide",
-      "ammonium",
-      "phenol",
-      "organic-matter",
-      "estrogen",
-      "phthalate",
-      "fragrance",
-      "diclofenac",
-      "bht",
-    ],
-  };
-
-  // Mapping of waste types to corresponding SVG icons
-  const wasteTypeToIcon = {
-    1: "agriculture-waste-icon.svg",
-    2: "heavy-metal-waste-icon.svg",
-    3: "radioactive-waste-icon.svg",
-    4: "sewage-waste-icon.svg",
-  };
 
   const ConditionalWrapper = ({ condition, wrapper, children }) =>
     condition ? wrapper(children) : children;
@@ -492,194 +437,11 @@ const PollutantPage = ({ categorizedData }) => {
       },
     ],
   };
-  // Add state to track dragging
-  //   const [isDragging, setIsDragging] = useState(false);
 
   const toggleDrawer = (open) => (event) => {
-    // if (
-    //   event.type === 'keydown' &&
-    //   (event.key === 'Tab' || event.key === 'Shift')
-    // ) {
-    //   return;
-    // }
     setState(open);
   };
-  //   // Central function to update slider position and related effects
-  //   const updateSliderPosition = (newPosition) => {
-  //     const clampedPosition = Math.max(0, Math.min(100, newPosition));
-  // console.log("clampedPosition",clampedPosition,newPosition)
-  //     document.documentElement.style.setProperty(
-  //       "--slider-position",
-  //       `${clampedPosition}%`
-  //     );
-  //     setSliderPosition(clampedPosition);
-
-  //     // First, clear all region classes to avoid conflicts
-  //     document.body.classList.remove(
-  //       "sound-left-region",
-  //       "sound-center-region",
-  //       "sound-right-region"
-  //     );
-
-  //     // Add appropriate region class based on position
-  //     if (clampedPosition < 25) {
-  //       document.body.classList.add("sound-left-region");
-  //     } else if (clampedPosition >= 95) {
-  //       document.body.classList.add("sound-right-region");
-  //     } else {
-  //       document.body.classList.add("sound-center-region");
-  //     }
-
-  //     // Panel active classes control which content is shown
-  //     if (clampedPosition < 50) {
-  //       // White panel is active (right side content)
-  //       document.body.classList.add("white-panel-active");
-  //       document.body.classList.remove("black-panel-active");
-  //     } else {
-  //       // Black panel is active (left side content)
-  //       document.body.classList.add("black-panel-active");
-  //       document.body.classList.remove("white-panel-active");
-  //     }
-
-  //     // These other classes are used for specific positioning
-  //     document.body.classList.toggle("right-panel-active", clampedPosition < 3);
-
-  //     // Remove sound-panel-active class as we'll control sound button color directly
-  //     document.body.classList.remove("sound-panel-active");
-
-  //     // Calculate rotation based on slider position
-  //     const newRotation = (clampedPosition / 100) * 360;
-  //     setRotation(newRotation);
-  //     document.documentElement.style.setProperty(
-  //       "--rotation",
-  //       `${newRotation}deg`
-  //     );
-  //   };
-
-  //   const handleMouseDown = (e) => {
-  //     e.preventDefault();
-  //     setIsDragging(true);
-  //     lastPositionRef.current = sliderPosition; // Ensure ref is synced on initial click
-  //     // Optional: Could temporarily disable transitions during drag if needed for performance
-  //   };
-
-  //   const handleMouseMove = (e) => {
-  //     if (!isDragging) return;
-
-  //     const container = document.getElementById("slider-container");
-  //     if (!container) return; // Safety check
-  //     const rect = container.getBoundingClientRect();
-  //     let newPosition = ((e.clientX - rect.left) / rect.width) * 100;
-  //     // let newPosition = ((e.clientY - rect.top) / rect.height) * 100;
-
-  //     // Ensure position stays within bounds during drag
-  //     newPosition = Math.max(0, Math.min(100, newPosition));
-
-  //     // Update position using the refactored function
-  //     updateSliderPosition(newPosition);
-  //     // Update the ref synchronously with the latest calculated position
-  //     lastPositionRef.current = newPosition;
-  //   };
-
-  //   const handleMouseUp = () => {
-  //     if (!isDragging) return; // Safety check
-  //     setIsDragging(false);
-
-  //     // --- Snap Logic ---
-  //     // Read the latest position from the ref, not state
-  //     const currentPosition = lastPositionRef.current;
-  //     const thresholdLeft = 25; // Midway between 2 and 50
-  //     const thresholdRight = 75; // Midway between 50 and 98
-  //     const snapLeft = 0;
-  //     const snapCenter = 50;
-  //     const snapRight = 100; // Keep the original 99% snap point
-  //     let snapTarget;
-  // console.log("currentPosition",currentPosition,"thresholdLeft",thresholdLeft,currentPosition<=thresholdLeft)
-  //     if (currentPosition <= thresholdLeft) {
-  //       snapTarget = snapLeft;
-  //     } else if (currentPosition > thresholdRight) {
-  //       snapTarget = snapRight;
-  //     } else {
-  //       snapTarget = snapCenter;
-  //     }
-  //     // --- End Snap Logic ---
-
-  //     // Update to the snapped position using the original function
-  //     updateSliderPosition(snapTarget);
-  //   };
-
-  //   // Function to update container height based on panel heights
-  //   const updateContainerHeight = () => {
-  //     console.log("Attempting to update container height...");
-
-  //     // Ensure refs are available
-  //     if (!leftPanelRef.current || !rightPanelRef.current) {
-  //       console.log("Height update skipped: Panel refs not ready");
-  //       return;
-  //     }
-
-  //     // Force layout calculations with getBoundingClientRect()
-  //     const leftRect = leftPanelRef.current.getBoundingClientRect();
-  //     const rightRect = rightPanelRef.current.getBoundingClientRect();
-
-  //     // Use the height from getBoundingClientRect instead of scrollHeight
-  //     const leftPanelHeight = leftRect.height;
-  //     const rightPanelHeight = rightRect.height;
-
-  //     console.log(
-  //       `Left panel height: ${leftPanelHeight}px, Right panel height: ${rightPanelHeight}px`
-  //     );
-
-  //     // Calculate max height with a minimum threshold
-  //     const maxHeight = Math.max(
-  //       leftPanelHeight,
-  //       rightPanelHeight,
-  //       window.innerHeight
-  //     );
-  //     const finalHeight = maxHeight > 100 ? `${maxHeight}px` : "100vh";
-
-  //     console.log(`Setting container height to: ${finalHeight}`);
-  //     setContainerHeight(finalHeight);
-
-  //     // Force slider-container to update as well
-  //     if (sliderContainerRef.current) {
-  //       sliderContainerRef.current.style.height = finalHeight;
-  //     }
-  //     // Directly update slider-bar height using its ref
-  //     if (sliderBarRef.current) {
-  //       sliderBarRef.current.style.height = finalHeight;
-  //       console.log(`Slider bar height set directly to ${finalHeight}`);
-  //     }
-  //   };
-
-  //   // Effect to update height when both panels signal loaded state
-  //   useEffect(() => {
-  //     if (leftPanelLoaded && rightPanelLoaded) {
-  //       console.log("Both panels loaded, updating container height.");
-  //       // Use requestAnimationFrame to wait for the next browser paint after state updates
-  //       requestAnimationFrame(() => {
-  //         // A small delay can still be helpful for complex layouts to fully settle
-  //         setTimeout(updateContainerHeight, 100);
-  //       });
-  //     }
-  //   }, [leftPanelLoaded, rightPanelLoaded]); // Rerun when load states change
-
-  //   useEffect(() => {
-  //     if (isDragging) {
-  //       window.addEventListener("mousemove", handleMouseMove);
-  //       window.addEventListener("mouseup", handleMouseUp);
-  //     } else {
-  //       window.removeEventListener("mousemove", handleMouseMove);
-  //       window.removeEventListener("mouseup", handleMouseUp);
-  //     }
-
-  //     // Clean up on unmount
-  //     return () => {
-  //       window.removeEventListener("mousemove", handleMouseMove);
-  //       window.removeEventListener("mouseup", handleMouseUp);
-  //     };
-  //   }, [isDragging]);
-
+ 
   useEffect(() => {
     // Set the initial rotation CSS variable directly on mount
     document.documentElement.style.setProperty("--rotation", `180deg`);
@@ -739,17 +501,7 @@ const PollutantPage = ({ categorizedData }) => {
   }, []);
 
   const [isDragging, setIsDragging] = useState(false);
-  // const [sliderPosition, setSliderPosition] = useState(50);
-  // const [containerHeight, setContainerHeight] = useState('100vh');
-  // const [leftPanelLoaded, setLeftPanelLoaded] = useState(false);
-  // const [rightPanelLoaded, setRightPanelLoaded] = useState(false);
-  // const [activeSection, setActiveSection] = useState(null);
-  // const lastPositionRef = useRef(sliderPosition);
-  // const leftPanelRef = useRef(null);
-  // const rightPanelRef = useRef(null);
-  // const sliderContainerRef = useRef(null);
-  // const sliderBarRef = useRef(null);
-  // const [rotation, setRotation] = useState(180);
+
 
   const updateSliderPosition = (newPosition) => {
     // const clampedPosition = Math.max(0, Math.min(100, newPosition));
@@ -768,10 +520,6 @@ const PollutantPage = ({ categorizedData }) => {
         .querySelector(".slider-image-container")
         ?.style.setProperty("transform", `rotate(${newRotations}deg)`);
     }
-    // const newRotations = newPosition == 0 ? 18 : 90; // Or calculated value
-    // document
-    //   .querySelector(".slider-image-container")
-    //   ?.style.setProperty("transform", `rotate(${newRotations}deg)`);
     setSliderPosition(clampedPosition);
 
     document.body.classList.remove(
@@ -1517,7 +1265,7 @@ const PollutantPage = ({ categorizedData }) => {
                 transition: isDragging ? "none" : "all 0.3s ease-in-out",
                 height: containerHeight,
                 width: "45px",
-                zIndex: 10,
+                zIndex: 9999,
                 cursor: "grab",
               }}
               onMouseDown={handleStartDrag}
@@ -1993,10 +1741,12 @@ const PollutantPage = ({ categorizedData }) => {
           {isSplit ? (
             <>
             <div>
-            <ConditionalWrapper
-  condition={sliderPosition !== 20 && sliderPosition !== 100}
+            {/* <ConditionalWrapper
+  condition={lastPositionRef !== 20 || lastPositionRef !== 100}
   wrapper={children => <PreventPullToRefresh>{children}</PreventPullToRefresh>}
->              <div
+>          */}
+<PreventPullToRefresh>
+                 <div
                 id="slider-container"
                 className="slider-container"
                 ref={sliderContainerRef}
@@ -2063,22 +1813,24 @@ const PollutantPage = ({ categorizedData }) => {
                 >
                   <div
                     className="slider-image-container"
-                    style={{ position: "relative", top: "0px" }}
+                    style={{ position: "relative", top: "0px", zIndex: 9999 }}
                   >
                     <img
                       src="slider.png"
                       alt="Slider"
                       className="slider-image"
+                      style={{ zIndex: 999 }}
                     />
                   </div>
                 </div>
               </div>
-              </ConditionalWrapper>
+              </PreventPullToRefresh>
+              {/* </ConditionalWrapper> */}
               </div>
               {isMobileView ? (
                 <>
                   {sliderPosition == 100 ? (
-                    <div className="container">
+                    <div className="container" style={{ zIndex: -9999 }}>
                       <div className="row">
                         <div className="col-lg-12">
                           <div style={{ width: "40px", height: "40px" }}>

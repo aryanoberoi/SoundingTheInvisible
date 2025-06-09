@@ -20,6 +20,8 @@ body,
   overflow-y: auto; /* enable vertical scroll */
   overflow-x: hidden; /* hide horizontal overflow */
   display: flex;
+  outline: 2px solid white; /* Add white outline */
+  z-index: 9999; /* Ensure z-index is always on top */
 }
 
 .left-panel,
@@ -28,6 +30,7 @@ body,
   top: 0;
   bottom: 0;
   width: 100%;
+  z-index: -9999;
 }
 
 .left-panel, .container {
@@ -82,14 +85,13 @@ text-align: center;
   .plantContainerleft {
     display: flex;
     flex-direction: column;
-    /* gap: 140px; */
+    z-index: 9999;
     margin-top: 5%;
     justify-content: center;
     align-items: center;
     width: 30%;
     gap: 100px;
-    /* transform: translateX(1px) */
-    /* transform: scale(1.5); */
+
   }
   /* .slider-container {
     min-height: 828px !important;
@@ -1953,11 +1955,13 @@ img {
 
 .slider-image {
   /* Set base scale consistently */
+  position: relative;
   transform: rotate(var(--rotation, 0deg)) scale(2);
   transform-origin: center center;
   cursor: ew-resize;
   /* Add the pulse animation on top of the base scale */
   animation: sliderPulse 2s infinite ease-in-out;
+  z-index: 9999;
 }
 
 .nav-item-text {
@@ -2059,11 +2063,13 @@ html body .combined-section .nav-bar-container .nav-bar {
     width: 111%;
     /* Remove centering styles */
     display: block !important;
+    z-index: 9999;
   }
 
   /* Position-specific adjustments */
   body.sound-left-region .slider-image-container {
-    left: -18px !important; /* Fine-tune for left edge */
+    left: -18px !important;
+    z-index: 9999; /* Fine-tune for left edge */
   }
 
   body.sound-right-region .slider-image-container {
@@ -2122,6 +2128,7 @@ display: none !important;
     align-items: center;
     justify-content: center;
     top: 290px;
+    z-index: 9999;
     /* transform: rotate(90deg) !important; */
   }
   .slider-image-container {
@@ -2130,6 +2137,7 @@ display: none !important;
     width: auto;
     display: block !important;
     transform: rotate(90deg);
+    z-index: 9999;
   }
 }
 

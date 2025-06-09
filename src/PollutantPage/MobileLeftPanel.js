@@ -69,6 +69,7 @@ const MobileLeftPanel = ({
           <div
             style={{
               transform: "scale(1.15) translate(0px, calc(100% - 107.99%))",
+              zIndex: 9999, // Very high z-index to display on other components
             }}
           >
             <img
