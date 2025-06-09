@@ -134,6 +134,9 @@ const PollutantPage = ({ categorizedData }) => {
     4: "sewage-waste-icon.svg",
   };
 
+  const ConditionalWrapper = ({ condition, wrapper, children }) =>
+    condition ? wrapper(children) : children;
+
   const pollutantWasteTypeMapping = {
     // Type 1: Agricultural/Inorganic Pollutants
     potassium: { typeOfWaste: 1, atomImage: "agriculture-waste-icon.svg" },
@@ -885,109 +888,6 @@ const PollutantPage = ({ categorizedData }) => {
     }
   }, [leftPanelLoaded, rightPanelLoaded]);
 
-  // useEffect(() => {
-  //   if (isDragging) {
-  //     window.addEventListener("mousemove", handleMouseMove);
-  //     window.addEventListener("mouseup", handleMouseUp);
-  //   } else {
-  //     window.removeEventListener("mousemove", handleMouseMove);
-  //     window.removeEventListener("mouseup", handleMouseUp);
-  //   }
-
-  //   return () => {
-  //     window.removeEventListener("mousemove", handleMouseMove);
-  //     window.removeEventListener("mouseup", handleMouseUp);
-  //   };
-  // }, [isDragging]);
-
-  // useEffect(() => {
-  //   document.documentElement.style.setProperty("--rotation", `180deg`);
-  //   document.documentElement.style.setProperty(
-  //     "--slider-transition",
-  //     "top 0.3s ease-in-out"
-  //   );
-  // }, []);
-
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver(
-  //     (entries) => {
-  //       const intersectingEntry = entries.find((entry) => entry.isIntersecting);
-  //       if (intersectingEntry) {
-  //         setActiveSection(intersectingEntry.target.id);
-  //       }
-  //     },
-  //     {
-  //       threshold: 0.1,
-  //       root: null,
-  //     }
-  //   );
-
-  //   const sections = document.querySelectorAll(`
-  //     [id^="about-"],
-  //     [id^="plant-"],
-  //     [id^="sound-"],
-  //     [id^="common-"],
-  //     [id^="effect-"],
-  //     [id^="case-"],
-  //     [id^="phytoremediation"],
-  //     [id^="phyto-"],
-  //     [id^="uses-"],
-  //     [id^="origin"],
-  //     [id^="references"]
-  //   `);
-
-  //   sections.forEach((section) => observer.observe(section));
-
-  //   return () => observer.disconnect();
-  // }, []);
-  // useEffect(() => {
-  //   const move = (e) => {
-  //     if (!isDragging) return;
-  //     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-  //     const container = document.getElementById("slider-container");
-  //     if (!container) return;
-  //     const rect = container.getBoundingClientRect();
-  //     let newPosition = ((clientY - rect.top) / rect.height) * 100;
-  //     newPosition = Math.max(0, Math.min(100, newPosition));
-  //     updateSliderPosition(newPosition);
-  //     lastPositionRef.current = newPosition;
-  //   };
-
-  //   const up = () => {
-  //     if (!isDragging) return;
-  //     setIsDragging(false);
-  //     const currentPosition = lastPositionRef.current;
-  //     const thresholdTop = 25;
-  //     const thresholdBottom = 75;
-  //     const snapTop = 0;
-  //     const snapMiddle = 50;
-  //     const snapBottom = 100;
-  //     let snapTarget;
-
-  //     if (currentPosition <= thresholdTop) {
-  //       snapTarget = snapTop;
-  //     } else if (currentPosition > thresholdBottom) {
-  //       snapTarget = snapBottom;
-  //     } else {
-  //       snapTarget = snapMiddle;
-  //     }
-  //     updateSliderPosition(snapTarget);
-  //   };
-
-  //   if (isDragging) {
-  //     window.addEventListener("mousemove", move);
-  //     window.addEventListener("mouseup", up);
-  //     window.addEventListener("touchmove", move);
-  //     window.addEventListener("touchend", up);
-  //   }
-
-  //   return () => {
-  //     window.removeEventListener("mousemove", move);
-  //     window.removeEventListener("mouseup", up);
-  //     window.removeEventListener("touchmove", move);
-  //     window.removeEventListener("touchend", up);
-  //   };
-  // }, [isDragging]);
   // Mobile VIew
   const handlePointerMove = (e) => {
     if (!isDragging) return;
@@ -1641,12 +1541,6 @@ const PollutantPage = ({ categorizedData }) => {
                     isMobile && menuOpen ? "mobile-active" : ""
                   }`}
                 >
-                  {/* <div 
-                    className="text-wrapper-combined"
-                    onClick={() => handleNavClick("overview")}
-                  >
-                    <span>{leftpanelcontent[0].pollutantName} + {rightpanelcontent[0].plantNameSplit}</span>
-                  </div> */}
                   <div
                     className={`text-wrapper`}
                     onClick={() => handleNavClick("about-pollutant")}
@@ -2099,8 +1993,10 @@ const PollutantPage = ({ categorizedData }) => {
           {isSplit ? (
             <>
             <div>
-              <PreventPullToRefresh>
-              <div
+            <ConditionalWrapper
+  condition={sliderPosition !== 20 && sliderPosition !== 100}
+  wrapper={children => <PreventPullToRefresh>{children}</PreventPullToRefresh>}
+>              <div
                 id="slider-container"
                 className="slider-container"
                 ref={sliderContainerRef}
@@ -2177,7 +2073,7 @@ const PollutantPage = ({ categorizedData }) => {
                   </div>
                 </div>
               </div>
-              </PreventPullToRefresh>
+              </ConditionalWrapper>
               </div>
               {isMobileView ? (
                 <>
@@ -2468,12 +2364,6 @@ const PollutantPage = ({ categorizedData }) => {
                               style={{ width: "27px", height: "24px" }}
                               // className="pollutantVisualImage"
                             />
-
-                            {/* <img
-                    // src="https://res.cloudinary.com/dj1km5iax/image/upload/v1745676198/xejwbtmg6pic01osjkdn.png"
-                    alt="Pollutant visual"
-                    // className="pollutantVisualImage"
-                  /> */}
                           </div>
                           <p
                             style={{
@@ -3210,12 +3100,6 @@ const PollutantPage = ({ categorizedData }) => {
                       <img src={sliderPosition == 20 ? backwhite : back} />
                     </div>
                     <div className="bottom-section1" id="about-pollutant">
-                      {/* <div
-                        style={{ padding: "35px 0px 0px 7px" }}
-                        onClick={() => setIsSplit(true)}
-                      >
-                        <img src={backwhite} />
-                      </div> */}
                       <AboutPollutantSection
                         sections={aboutpollutantcontent}
                         wasteTypeIcon={wasteTypeData.atomImage}
