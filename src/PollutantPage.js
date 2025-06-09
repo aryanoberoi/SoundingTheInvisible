@@ -1745,7 +1745,7 @@ const PollutantPage = ({ categorizedData }) => {
   condition={lastPositionRef !== 20 || lastPositionRef !== 100}
   wrapper={children => <PreventPullToRefresh>{children}</PreventPullToRefresh>}
 >          */}
-              {sliderPosition !== 20 || sliderPosition !== 100 ? (
+              {sliderPosition !== 20 && sliderPosition !== 100 ? (
                 <PreventPullToRefresh>
                   <div
                     id="slider-container"
