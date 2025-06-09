@@ -1,12 +1,6 @@
 import React from "react";
-import { KnowMoreButton } from "./Knowmorebutton";
 import "./RightPanel.css";
-import { PlantInfoSection } from "./PlantInfoSection";
-import tempIcon from "./temp.png";
-import humidityIcon from "./humidity.png";
-import soilIcon from "./soil.png";
-import areaIcon from "./area.png";
-import plantimg from "./plantname.png";
+
 const MobileRightPanel = ({
   sections = [],
   pollutantName = "",
@@ -16,38 +10,8 @@ const MobileRightPanel = ({
 }) => {
   const {
     plantimagemobile = "",
-    wetlandDescription = "",
-    phytoCapacity = "",
-    temperature = "",
-    humidity = "",
-    soil = "",
-    ph = "",
-    imgUrl = "",
     plantName = "",
-    plantDetails = "",
   } = sections[0] || {};
-  console.log("KKKKKDs", sections?.plantName, pollutantName);
-  const habitatIcons = [tempIcon, humidityIcon, soilIcon, areaIcon];
-
-  const plantData = [
-    {
-      title: "Wetland status:",
-      description: wetlandDescription,
-    },
-    {
-      title: `Phytoremediation capacity of ${plantName}:`,
-      description: phytoCapacity.split("_").join("\n"),
-    },
-    {
-      title: `${plantName}'s Habitat:`,
-      description: [
-        `Temperature: ${temperature}`,
-        `Humidity: ${humidity}`,
-        `Soil: ${soil}`,
-        `PH Value: ${ph}`,
-      ].join("\n"),
-    },
-  ];
 
   return (
     <div className="right-panel" style={{ height: view ? "100vh" : "auto" }}>
@@ -57,9 +21,7 @@ const MobileRightPanel = ({
           marginTop: view ? "calc(100% - 70%)" : "calc(100% - 101%)",
         }}
       >
-        <div
-          className="contentWrapper "
-        >
+        <div className="contentWrapper">
           <div style={{ transform: "scale(1.107)", marginTop: "2vh", marginLeft: "0.15vw" }}>
             <div style={{ height: "7%", overflow: "hidden" }}>
               <img
@@ -78,11 +40,9 @@ const MobileRightPanel = ({
               fontWeight: "400",
               margin: "0px",
               textAlign: "center",
-              transform: "translateY(-99px)",
-              marginBottom:"5em"
-              // transform: "translateY(calc(100% - 210%))",
-              // position: "absolute",
-              // bottom: "calc(100% - 106%)",
+              marginBottom: "5em",
+              position: "relative",
+              top: "-15vh", // Adjusted to ensure it stays within the screen
             }}
           >
             {plantName}

@@ -1745,86 +1745,167 @@ const PollutantPage = ({ categorizedData }) => {
   condition={lastPositionRef !== 20 || lastPositionRef !== 100}
   wrapper={children => <PreventPullToRefresh>{children}</PreventPullToRefresh>}
 >          */}
-<PreventPullToRefresh>
-                 <div
-                id="slider-container"
-                className="slider-container"
-                ref={sliderContainerRef}
-                style={{ height: containerHeight }}
-              >
-                <div ref={leftPanelRef}>
-                  {window.innerWidth <= 768 ? (
-                    <MobileLeftPanel
-                      sections={leftpanelcontent}
-                      onLoad={() => setLeftPanelLoaded(true)}
-                      onNavigate={handleNavClick}
-                      view={sliderPosition == 20}
-                    />
-                  ) : (
-                    <LeftPanel
-                      sections={leftpanelcontent}
-                      onLoad={() => setLeftPanelLoaded(true)}
-                      onNavigate={handleNavClick}
-                    />
-                  )}
-                </div>
-                <div ref={rightPanelRef}>
-                  {window.innerWidth <= 768 ? (
-                    <MobileRightPanel
-                      sections={rightpanelcontent}
-                      pollutantName={leftpanelcontent[0].pollutantName}
-                      onLoad={() => setRightPanelLoaded(true)}
-                      onNavigate={handleNavClick}
-                      view={sliderPosition == 20}
-                    />
-                  ) : (
-                    <RightPanel
-                      sections={rightpanelcontent}
-                      pollutantName={leftpanelcontent[0].pollutantName}
-                      onLoad={() => setRightPanelLoaded(true)}
-                      onNavigate={handleNavClick}
-                    />
-                  )}
-                </div>
-
-                <div
-                  ref={sliderBarRef}
-                  className="slider-bar"
-                  style={{
-                    ...(isMobileView
-                      ? {
-                          top: `${sliderPosition}%`,
-                          transform: "translateY(-50%)",
-                          left: "46%",
-                        }
-                      : {
-                          left: `${sliderPosition}%`,
-                          transform: "translateX(0%)",
-                        }),
-                    position: "absolute",
-                    transition: isDragging ? "none" : "all 0.3s ease-in-out",
-                    height: isMobileView ? "32px" : containerHeight,
-                    width: isMobileView ? "10%" : "42px",
-                    zIndex: 10,
-                    cursor: "grab",
-                  }}
-                  onMouseDown={handleStartDrag}
-                  onTouchStart={handleStartDrag}
-                >
+              {sliderPosition !== 20 || sliderPosition !== 100 ? (
+                <PreventPullToRefresh>
                   <div
-                    className="slider-image-container"
-                    style={{ position: "relative", top: "0px", zIndex: 9999 }}
+                    id="slider-container"
+                    className="slider-container"
+                    ref={sliderContainerRef}
+                    style={{ height: containerHeight }}
                   >
-                    <img
-                      src="slider.png"
-                      alt="Slider"
-                      className="slider-image"
-                      style={{ zIndex: 999 }}
-                    />
+                    <div ref={leftPanelRef}>
+                      {window.innerWidth <= 768 ? (
+                        <MobileLeftPanel
+                          sections={leftpanelcontent}
+                          onLoad={() => setLeftPanelLoaded(true)}
+                          onNavigate={handleNavClick}
+                          view={sliderPosition == 20}
+                        />
+                      ) : (
+                        <LeftPanel
+                          sections={leftpanelcontent}
+                          onLoad={() => setLeftPanelLoaded(true)}
+                          onNavigate={handleNavClick}
+                        />
+                      )}
+                    </div>
+                    <div ref={rightPanelRef}>
+                      {window.innerWidth <= 768 ? (
+                        <MobileRightPanel
+                          sections={rightpanelcontent}
+                          pollutantName={leftpanelcontent[0].pollutantName}
+                          onLoad={() => setRightPanelLoaded(true)}
+                          onNavigate={handleNavClick}
+                          view={sliderPosition == 20}
+                        />
+                      ) : (
+                        <RightPanel
+                          sections={rightpanelcontent}
+                          pollutantName={leftpanelcontent[0].pollutantName}
+                          onLoad={() => setRightPanelLoaded(true)}
+                          onNavigate={handleNavClick}
+                        />
+                      )}
+                    </div>
+
+                    <div
+                      ref={sliderBarRef}
+                      className="slider-bar"
+                      style={{
+                        ...(isMobileView
+                          ? {
+                              top: `${sliderPosition}%`,
+                              transform: "translateY(-50%)",
+                              left: "46%",
+                            }
+                          : {
+                              left: `${sliderPosition}%`,
+                              transform: "translateX(0%)",
+                            }),
+                        position: "absolute",
+                        transition: isDragging ? "none" : "all 0.3s ease-in-out",
+                        height: isMobileView ? "32px" : containerHeight,
+                        width: isMobileView ? "10%" : "42px",
+                        zIndex: 10,
+                        cursor: "grab",
+                      }}
+                      onMouseDown={handleStartDrag}
+                      onTouchStart={handleStartDrag}
+                    >
+                      <div
+                        className="slider-image-container"
+                        style={{ position: "relative", top: "0px", zIndex: 9999 }}
+                      >
+                        <img
+                          src="slider.png"
+                          alt="Slider"
+                          className="slider-image"
+                          style={{ zIndex: 999 }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </PreventPullToRefresh>
+              ) : (
+                <div
+                  id="slider-container"
+                  className="slider-container"
+                  ref={sliderContainerRef}
+                  style={{ height: containerHeight }}
+                >
+                  <div ref={leftPanelRef}>
+                    {window.innerWidth <= 768 ? (
+                      <MobileLeftPanel
+                        sections={leftpanelcontent}
+                        onLoad={() => setLeftPanelLoaded(true)}
+                        onNavigate={handleNavClick}
+                        view={sliderPosition == 20}
+                      />
+                    ) : (
+                      <LeftPanel
+                        sections={leftpanelcontent}
+                        onLoad={() => setLeftPanelLoaded(true)}
+                        onNavigate={handleNavClick}
+                      />
+                    )}
+                  </div>
+                  <div ref={rightPanelRef}>
+                    {window.innerWidth <= 768 ? (
+                      <MobileRightPanel
+                        sections={rightpanelcontent}
+                        pollutantName={leftpanelcontent[0].pollutantName}
+                        onLoad={() => setRightPanelLoaded(true)}
+                        onNavigate={handleNavClick}
+                        view={sliderPosition == 20}
+                      />
+                    ) : (
+                      <RightPanel
+                        sections={rightpanelcontent}
+                        pollutantName={leftpanelcontent[0].pollutantName}
+                        onLoad={() => setRightPanelLoaded(true)}
+                        onNavigate={handleNavClick}
+                      />
+                    )}
+                  </div>
+
+                  <div
+                    ref={sliderBarRef}
+                    className="slider-bar"
+                    style={{
+                      ...(isMobileView
+                        ? {
+                            top: `${sliderPosition}%`,
+                            transform: "translateY(-50%)",
+                            left: "46%",
+                          }
+                        : {
+                            left: `${sliderPosition}%`,
+                            transform: "translateX(0%)",
+                          }),
+                      position: "absolute",
+                      transition: isDragging ? "none" : "all 0.3s ease-in-out",
+                      height: isMobileView ? "32px" : containerHeight,
+                      width: isMobileView ? "10%" : "42px",
+                      zIndex: 10,
+                      cursor: "grab",
+                    }}
+                    onMouseDown={handleStartDrag}
+                    onTouchStart={handleStartDrag}
+                  >
+                    <div
+                      className="slider-image-container"
+                      style={{ position: "relative", top: "0px", zIndex: 9999 }}
+                    >
+                      <img
+                        src="slider.png"
+                        alt="Slider"
+                        className="slider-image"
+                        style={{ zIndex: 999 }}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-              </PreventPullToRefresh>
+              )}
               {/* </ConditionalWrapper> */}
               </div>
               {isMobileView ? (
