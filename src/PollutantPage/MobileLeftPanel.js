@@ -40,7 +40,7 @@ const MobileLeftPanel = ({
                 margin: "0px",
                 textAlign: "center",
                 color: "#fff",
-                transform: "translate(-15px, -10px)",
+                // transform: "translate(-15px, -10px)",
                 // transform: "translate(0px, -10px)",
               }}
             >
@@ -68,7 +68,7 @@ const MobileLeftPanel = ({
           {/* <div style={{ transform: "scale(1.15) translate(0px, calc(100% - 949px))" }}> */}
           <div
             style={{
-              transform: "scale(1.15) translate(0px, calc(100% - 107.99%))",
+              transform: "scale(1.15) translate(0px, calc(101.36% - 112.05%))",
               zIndex: 9999, // Very high z-index to display on other components
             }}
           >

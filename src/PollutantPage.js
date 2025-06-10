@@ -19,9 +19,7 @@ import { useParams } from "react-router-dom";
 import { Drawer, styled } from "@mui/material";
 import MobileRightPanel from "./PollutantPage/MobileRightPanel";
 import MobileLeftPanel from "./PollutantPage/MobileLeftPanel";
-import {
-  KnowMoreButton
-} from "./PollutantPage/Knowmorebutton";
+import { KnowMoreButton } from "./PollutantPage/Knowmorebutton";
 import SineWaveVisualizer from "./PollutantPage/sinwave";
 import { PlantInfoSection } from "./PollutantPage/PlantInfoSection";
 import tempIcon from "./PollutantPage/temp.png";
@@ -77,7 +75,6 @@ const PollutantPage = ({ categorizedData }) => {
   const sliderBarRef = useRef(null); // Add this new ref
   const lastPositionRef = useRef(sliderPosition); // Add ref to track latest position
   const navBarRef = useRef(null); // New ref for implementing fallback sticky behavior
-
 
   const ConditionalWrapper = ({ condition, wrapper, children }) =>
     condition ? wrapper(children) : children;
@@ -441,7 +438,7 @@ const PollutantPage = ({ categorizedData }) => {
   const toggleDrawer = (open) => (event) => {
     setState(open);
   };
- 
+
   useEffect(() => {
     // Set the initial rotation CSS variable directly on mount
     document.documentElement.style.setProperty("--rotation", `180deg`);
@@ -501,7 +498,6 @@ const PollutantPage = ({ categorizedData }) => {
   }, []);
 
   const [isDragging, setIsDragging] = useState(false);
-
 
   const updateSliderPosition = (newPosition) => {
     // const clampedPosition = Math.max(0, Math.min(100, newPosition));
@@ -1230,56 +1226,59 @@ const PollutantPage = ({ categorizedData }) => {
 
       {!isMobileView ? (
         <>
-        <div>
-        <PreventPullToRefresh>
-
-          <div
-            id="slider-container"
-            className="slider-container"
-            ref={sliderContainerRef}
-            style={{ height: containerHeight }}
-          >
-            <div ref={leftPanelRef}>
-              <LeftPanel
-                sections={leftpanelcontent}
-                onLoad={() => setLeftPanelLoaded(true)}
-                onNavigate={handleNavClick}
-              />
-            </div>
-            <div ref={rightPanelRef}>
-              <RightPanel
-                sections={rightpanelcontent}
-                pollutantName={leftpanelcontent[0].pollutantName}
-                onLoad={() => setRightPanelLoaded(true)}
-                onNavigate={handleNavClick}
-              />
-            </div>
-
-            <div
-              ref={sliderBarRef}
-              className="slider-bar"
-              style={{
-                left: `${sliderPosition - 1.4}%`,
-                transform: "translateX(0%)",
-                position: "absolute",
-                transition: isDragging ? "none" : "all 0.3s ease-in-out",
-                height: containerHeight,
-                width: "45px",
-                zIndex: 9999,
-                cursor: "grab",
-              }}
-              onMouseDown={handleStartDrag}
-              onTouchStart={handleStartDrag}
-            >
+          <div>
+            <PreventPullToRefresh>
               <div
-                className="slider-image-container"
-                style={{ position: "relative", top: "0px" }}
+                id="slider-container"
+                className="slider-container"
+                ref={sliderContainerRef}
+                style={{ height: containerHeight }}
               >
-                <img src="slider.png" alt="Slider" className="slider-image" />
+                <div ref={leftPanelRef}>
+                  <LeftPanel
+                    sections={leftpanelcontent}
+                    onLoad={() => setLeftPanelLoaded(true)}
+                    onNavigate={handleNavClick}
+                  />
+                </div>
+                <div ref={rightPanelRef}>
+                  <RightPanel
+                    sections={rightpanelcontent}
+                    pollutantName={leftpanelcontent[0].pollutantName}
+                    onLoad={() => setRightPanelLoaded(true)}
+                    onNavigate={handleNavClick}
+                  />
+                </div>
+
+                <div
+                  ref={sliderBarRef}
+                  className="slider-bar"
+                  style={{
+                    left: `${sliderPosition - 1.4}%`,
+                    transform: "translateX(0%)",
+                    position: "absolute",
+                    transition: isDragging ? "none" : "all 0.3s ease-in-out",
+                    height: containerHeight,
+                    width: "45px",
+                    zIndex: 9999,
+                    cursor: "grab",
+                  }}
+                  onMouseDown={handleStartDrag}
+                  onTouchStart={handleStartDrag}
+                >
+                  <div
+                    className="slider-image-container"
+                    style={{ position: "relative", top: "0px" }}
+                  >
+                    <img
+                      src="slider.png"
+                      alt="Slider"
+                      className="slider-image"
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          </PreventPullToRefresh>
+            </PreventPullToRefresh>
           </div>
           <div className="combined-section" style={{ padding: "0px 10px" }}>
             <div className="nav-bar-container">
@@ -1740,13 +1739,99 @@ const PollutantPage = ({ categorizedData }) => {
         <>
           {isSplit ? (
             <>
-            <div>
-            {/* <ConditionalWrapper
+              <div>
+                {/* <ConditionalWrapper
   condition={lastPositionRef !== 20 || lastPositionRef !== 100}
   wrapper={children => <PreventPullToRefresh>{children}</PreventPullToRefresh>}
 >          */}
-              {sliderPosition !== 20 && sliderPosition !== 100 ? (
-                <PreventPullToRefresh>
+                {sliderPosition !== 20 && sliderPosition !== 100 ? (
+                  <PreventPullToRefresh>
+                    <div
+                      id="slider-container"
+                      className="slider-container"
+                      ref={sliderContainerRef}
+                      style={{ height: containerHeight }}
+                    >
+                      <div ref={leftPanelRef}>
+                        {window.innerWidth <= 768 ? (
+                          <MobileLeftPanel
+                            sections={leftpanelcontent}
+                            onLoad={() => setLeftPanelLoaded(true)}
+                            onNavigate={handleNavClick}
+                            view={sliderPosition == 20}
+                          />
+                        ) : (
+                          <LeftPanel
+                            sections={leftpanelcontent}
+                            onLoad={() => setLeftPanelLoaded(true)}
+                            onNavigate={handleNavClick}
+                          />
+                        )}
+                      </div>
+                      <div ref={rightPanelRef}>
+                        {window.innerWidth <= 768 ? (
+                          <MobileRightPanel
+                            sections={rightpanelcontent}
+                            pollutantName={leftpanelcontent[0].pollutantName}
+                            onLoad={() => setRightPanelLoaded(true)}
+                            onNavigate={handleNavClick}
+                            view={sliderPosition == 20}
+                          />
+                        ) : (
+                          <RightPanel
+                            sections={rightpanelcontent}
+                            pollutantName={leftpanelcontent[0].pollutantName}
+                            onLoad={() => setRightPanelLoaded(true)}
+                            onNavigate={handleNavClick}
+                          />
+                        )}
+                      </div>
+
+                      <div
+                        ref={sliderBarRef}
+                        className="slider-bar"
+                        style={{
+                          ...(isMobileView
+                            ? {
+                                top: `${sliderPosition}%`,
+                                transform: "translateY(-50%)",
+                                left: "46%",
+                              }
+                            : {
+                                left: `${sliderPosition}%`,
+                                transform: "translateX(0%)",
+                              }),
+                          position: "absolute",
+                          transition: isDragging
+                            ? "none"
+                            : "all 0.3s ease-in-out",
+                          height: isMobileView ? "32px" : containerHeight,
+                          width: isMobileView ? "10%" : "42px",
+                          zIndex: 10,
+                          cursor: "grab",
+                        }}
+                        onMouseDown={handleStartDrag}
+                        onTouchStart={handleStartDrag}
+                      >
+                        <div
+                          className="slider-image-container"
+                          style={{
+                            position: "relative",
+                            top: "0px",
+                            zIndex: 9999,
+                          }}
+                        >
+                          <img
+                            src="slider.png"
+                            alt="Slider"
+                            className="slider-image"
+                            style={{ zIndex: 999 }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </PreventPullToRefresh>
+                ) : (
                   <div
                     id="slider-container"
                     className="slider-container"
@@ -1803,7 +1888,9 @@ const PollutantPage = ({ categorizedData }) => {
                               transform: "translateX(0%)",
                             }),
                         position: "absolute",
-                        transition: isDragging ? "none" : "all 0.3s ease-in-out",
+                        transition: isDragging
+                          ? "none"
+                          : "all 0.3s ease-in-out",
                         height: isMobileView ? "32px" : containerHeight,
                         width: isMobileView ? "10%" : "42px",
                         zIndex: 10,
@@ -1814,7 +1901,11 @@ const PollutantPage = ({ categorizedData }) => {
                     >
                       <div
                         className="slider-image-container"
-                        style={{ position: "relative", top: "0px", zIndex: 9999 }}
+                        style={{
+                          position: "relative",
+                          top: "0px",
+                          zIndex: 9999,
+                        }}
                       >
                         <img
                           src="slider.png"
@@ -1825,88 +1916,8 @@ const PollutantPage = ({ categorizedData }) => {
                       </div>
                     </div>
                   </div>
-                </PreventPullToRefresh>
-              ) : (
-                <div
-                  id="slider-container"
-                  className="slider-container"
-                  ref={sliderContainerRef}
-                  style={{ height: containerHeight }}
-                >
-                  <div ref={leftPanelRef}>
-                    {window.innerWidth <= 768 ? (
-                      <MobileLeftPanel
-                        sections={leftpanelcontent}
-                        onLoad={() => setLeftPanelLoaded(true)}
-                        onNavigate={handleNavClick}
-                        view={sliderPosition == 20}
-                      />
-                    ) : (
-                      <LeftPanel
-                        sections={leftpanelcontent}
-                        onLoad={() => setLeftPanelLoaded(true)}
-                        onNavigate={handleNavClick}
-                      />
-                    )}
-                  </div>
-                  <div ref={rightPanelRef}>
-                    {window.innerWidth <= 768 ? (
-                      <MobileRightPanel
-                        sections={rightpanelcontent}
-                        pollutantName={leftpanelcontent[0].pollutantName}
-                        onLoad={() => setRightPanelLoaded(true)}
-                        onNavigate={handleNavClick}
-                        view={sliderPosition == 20}
-                      />
-                    ) : (
-                      <RightPanel
-                        sections={rightpanelcontent}
-                        pollutantName={leftpanelcontent[0].pollutantName}
-                        onLoad={() => setRightPanelLoaded(true)}
-                        onNavigate={handleNavClick}
-                      />
-                    )}
-                  </div>
-
-                  <div
-                    ref={sliderBarRef}
-                    className="slider-bar"
-                    style={{
-                      ...(isMobileView
-                        ? {
-                            top: `${sliderPosition}%`,
-                            transform: "translateY(-50%)",
-                            left: "46%",
-                          }
-                        : {
-                            left: `${sliderPosition}%`,
-                            transform: "translateX(0%)",
-                          }),
-                      position: "absolute",
-                      transition: isDragging ? "none" : "all 0.3s ease-in-out",
-                      height: isMobileView ? "32px" : containerHeight,
-                      width: isMobileView ? "10%" : "42px",
-                      zIndex: 10,
-                      cursor: "grab",
-                    }}
-                    onMouseDown={handleStartDrag}
-                    onTouchStart={handleStartDrag}
-                  >
-                    <div
-                      className="slider-image-container"
-                      style={{ position: "relative", top: "0px", zIndex: 9999 }}
-                    >
-                      <img
-                        src="slider.png"
-                        alt="Slider"
-                        className="slider-image"
-                        style={{ zIndex: 999 }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              )}
-              {/* </ConditionalWrapper> */}
+                )}
+                {/* </ConditionalWrapper> */}
               </div>
               {isMobileView ? (
                 <>
@@ -2084,6 +2095,37 @@ const PollutantPage = ({ categorizedData }) => {
                       }}
                     >
                       <div className="row">
+                        <div className="col-lg-12">
+                          <p style={{ marginBottom: 0 }}>Plant</p>
+                          <h3
+                            style={{
+                              color: "#000",
+                              fontFamily: "Nippo",
+                              fontSize: "32px",
+                              fontStyle: "normal",
+                              fontWeight: "300",
+                              // lineHeight: "normal",
+                              letterSpacing: "0.96px",
+                              margin: 0,
+                              padding: 0,
+                            }}
+                          >
+                            {rightpanelcontent[0].plantName}
+                          </h3>
+                          <p>Remediation of {rightpanelcontent[0].plantName}</p>
+                          <p
+                            style={{
+                              color: "#000",
+                              fontFamily: "Chivo Mono",
+                              fontSize: "14px",
+                              fontStyle: "normal",
+                              fontWeight: "400",
+                              lineHeight: "165.091%",
+                            }}
+                          >
+                            {rightpanelcontent[0].plantDetails}
+                          </p>
+                        </div>
                         <div className="col-lg-12">
                           <aside className="sidebar">
                             {plantData.map((section, index) => {
@@ -3126,7 +3168,11 @@ const PollutantPage = ({ categorizedData }) => {
         }}
       >
         <div className="timeline-drawer pt-5">
-          <div className="timeline-container">
+          {/* {window.innerHeight},{window.innerWidth} */}
+          <div className="timeline-containers">
+            <p style={{ margin: 0,color:"#fff" }}>
+              HELLO {window.innerHeight},{window.innerWidth}
+            </p>
             <div
               style={{
                 display: "flex",
@@ -3134,8 +3180,9 @@ const PollutantPage = ({ categorizedData }) => {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "20px",
-                paddingRight: "83px",
+                // paddingRight: "83px",
                 marginBottom: "20px",
+                paddingLeft: "calc(100% - 292px)",
               }}
               onClick={() => handleNavClick("slider-container")}
             >
@@ -3156,10 +3203,17 @@ const PollutantPage = ({ categorizedData }) => {
                 alignItems: "center",
                 justifyContent: "center",
                 display: "flex",
-                padding: 0,
-                gap: "90px",
-                paddingRight: "86.9px",
-                paddingTop: "20px",
+                // padding: 0,
+                gap: "55px",
+                // paddingRight: "86.9px",
+                // paddingLeft: "calc(100% - 303px)",
+                padding: "19px 0px 0px 0",
+                width: "200px",
+                transform: `translateX(${window.innerWidth - 307}px)`,
+                // transform: `translateX(${window.innerWidth - 10} px)`,
+                // transform: translateX`390px`,
+                // overflow: "hidden",
+                // transform: translateX(${window.innerWidth - 490}px);
               }}
             >
               {options.map((item, idx) => {
@@ -3171,12 +3225,15 @@ const PollutantPage = ({ categorizedData }) => {
                     onClick={() => handleNavClick(item?.id)}
                     className="flex items-center justify-between w-full max-w-xs"
                     style={{
-                      width: "100%",
+                      // width: "100%",
                       alignItems: "baseline",
                       gap: "10px",
                       display: "flex",
                       flexDirection: "row",
-                      justifyContent: "space-between",
+                      // justifyContent: "space-between",
+                      width: "260px",
+                      // background:"#fff",
+                      zIndex:99
                     }}
                   >
                     <span
@@ -3194,7 +3251,19 @@ const PollutantPage = ({ categorizedData }) => {
                     >
                       {item.label}
                     </span>
-                    <span className="ml-4  --blackviews"></span>
+                    <span
+                      className="  --blackviews"
+                      // style={{
+                      //   borderRadius: "12px",
+                      //   height: "10px",
+                      //   width: "10px",
+                      //   border: "1px solid rgb(0, 0, 0)",
+                      //   marginTop: "15px",
+                      //   marginLeft: "1.66px",
+                      //   backgroundColor: "#fff",
+                      //   zIndex:99
+                      // }}
+                    ></span>
                   </li>
                 );
               })}
@@ -3205,10 +3274,11 @@ const PollutantPage = ({ categorizedData }) => {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                paddingLeft: "9px",
+                // paddingLeft: "60px",
+                paddingLeft: "calc(100% - 292px)",
                 gap: "20px",
                 marginBottom: "1px",
-                paddingRight: "52px",
+                // paddingRight: "52px",
                 paddingTop: "20px",
               }}
               onClick={() => handleNavClick("phytoremediation")}
@@ -3219,10 +3289,8 @@ const PollutantPage = ({ categorizedData }) => {
                 Bibliography
               </span>
             </div>
-
-            <div className="timeline-line" />
+            <div className="timeline-lines" />
           </div>
-
           <div className="close-button" onClick={toggleDrawer(false)}>
             <p>Close</p>
           </div>
@@ -3242,8 +3310,8 @@ const PollutantPage = ({ categorizedData }) => {
                 justifyContent: "center",
                 gap: "20px",
                 // paddingRight: "55px",
-                marginBottom: "59px",
-                paddingRight: "3px",
+                marginBottom: "25px",
+                paddingRight: "39.3px",
               }}
             >
               <img
@@ -3264,13 +3332,13 @@ const PollutantPage = ({ categorizedData }) => {
                 justifyContent: "center",
                 display: "flex",
                 padding: 0,
-                gap: "90px",
+                gap: "20px",
                 padding: "0px",
-                transform: "translateX(85px)",
+                transform: "translateX(68.72px)",
                 background: "#fff0",
                 color: "#fff",
                 zIndex: 9,
-                paddingBottom: "50px",
+                paddingBottom: "25px",
                 // opacity:0.7
                 // paddingRight: "85px",
                 // transform:"translateX(10)"
@@ -3323,24 +3391,37 @@ const PollutantPage = ({ categorizedData }) => {
                 justifyContent: "center",
                 paddingLeft: "9px",
                 gap: "20px",
-                paddingRight: "14px",
+                paddingRight: "50px",
                 marginBottom: "20px",
+                zIndex: 99,
               }}
             >
               <span
                 className="ml-4"
                 style={{
-                  padding: "2px",
+                  // padding: "2px",
                   borderRadius: "12px",
                   height: "10px",
                   width: "10px",
                   border: "1px solid rgb(255, 255, 255)",
                   marginTop: "15px",
                   marginLeft: "1.66px",
+                  background: "#000",
                 }}
               ></span>
 
-              <span className={`flex-1 `} style={{ fontSize: "14px" }}>
+              <span
+                className={`flex-1 `}
+                style={{
+                  background: "#000",
+                  color: "#FFF",
+                  fontSize: "14px",
+                  fontStyle: "normal",
+                  fontWeight: "378",
+                  lineHeight: "normal",
+                  letterSpacing: "0.42px",
+                }}
+              >
                 Bibliography
               </span>
             </div>

@@ -42,7 +42,7 @@ const MobileRightPanel = ({
               textAlign: "center",
               marginBottom: "5em",
               position: "relative",
-              top: "-15vh", // Adjusted to ensure it stays within the screen
+              top: "-10vh", // Adjusted to ensure it stays within the screen
             }}
           >
             {plantName}

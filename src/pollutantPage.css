@@ -1053,26 +1053,53 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
 } /* Matches text-wrapper-7 position */
 
 .timeline-container {
-  position: relative;
+  /* position: relative; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
   /* width: 100%; */
   /* max-width: 800px; */
-  margin: 0 auto;
+  /* margin: 0 auto; */
   /* padding: 20px; */
-  padding-right: 36px;
-  padding-top: 40px;
+  /* padding-right: 36px;
+  padding-top: 40px; */
+
+}
+.timeline-containers {
+  /* position: relative; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: flex-end; */
+  /* width: 100%; */
+  /* max-width: 800px; */
+  /* margin: 0 auto; */
+  /* padding: 20px; */
+  /* padding-right: 36px;
+  padding-top: 40px; */
+
 }
 
 .timeline-line {
   position: absolute;
-  left: calc(100% - 130px);
+  left: calc(100% - 168px);
+  /* left: calc(100% - 130px); */
   width: 2px;
   background-color: #000;
-  height: 85.5%;
+  height: 459.5px;
   top: 50px;
+  /* z-index: -10; */
+}
+.timeline-lines {
+  position: absolute;
+  left: calc(100% - 168px);
+  /* left: calc(100% - 130px); */
+  width: 2px;
+  background-color: #000;
+  height: 459.5px;
+  top: 50px;
+  z-index: -10;
 }
 
 .timeline-item {
@@ -2410,10 +2437,13 @@ body.white-panel-active .close-button {
 }
 body.white-panel-active .close-buttons {
   color: #fff;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
 }
 .--blackviews {
   background: #fff;
-  z-index: 99;
+  z-index: 9999;
   padding-right: 1px;
   padding-right: 1.5px;
   border-radius: 12px;
@@ -2422,7 +2452,7 @@ body.white-panel-active .close-buttons {
   border: 1px solid;
 }
 .nav_plant_white {
-  padding: 2px;
+  /* padding: 2px; */
   border-radius: 12px;
   height: 10px;
   width: 10px;
@@ -2437,7 +2467,7 @@ body.white-panel-active .timeline-line {
   margin: 0px 44.5%;
   width: 3.5px;
   background-color: #ffffff !important;
-  height: 87.5%;
+  height: 550px;
   top: 61px;
   /* background-color:#ffffff !important;
   /* transform:translateX(190) 
@@ -2485,6 +2515,13 @@ body.white-panel-active .timelinewhite-drawer {
   background-color: #000;
   /* height: 100%; */
   padding-top: 50px;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  flex-direction: row;
 }
 body.white-panel-active .timeline-container span {
   color: #fff;
@@ -2503,6 +2540,7 @@ body.white-panel-active .arrowblack {
 }
 body.white-panel-active .timeline-container {
   align-items: center !important;
+  width: 100% !important;
 }
 body.white-panel-active .toggleDrawerArrowblack::before,
 body.white-panel-active .toggleDrawerArrowblack::after {
