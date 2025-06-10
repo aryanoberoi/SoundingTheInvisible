@@ -1743,7 +1743,7 @@ const PollutantPage = ({ categorizedData }) => {
                 {/* <ConditionalWrapper
   condition={lastPositionRef !== 20 || lastPositionRef !== 100}
   wrapper={children => <PreventPullToRefresh>{children}</PreventPullToRefresh>}
->          */}
+>       ok   */}
                 {sliderPosition !== 20 && sliderPosition !== 100 ? (
                   <PreventPullToRefresh>
                     <div
