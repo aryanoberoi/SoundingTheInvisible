@@ -40,7 +40,7 @@ const MobileLeftPanel = ({
                 margin: "0px",
                 textAlign: "center",
                 color: "#fff",
-                // transform: "translate(-15px, -10px)",
+                transform: "translate(0px, 30px)",
                 // transform: "translate(0px, -10px)",
               }}
             >

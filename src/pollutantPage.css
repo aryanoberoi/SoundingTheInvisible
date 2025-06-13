@@ -20,7 +20,7 @@ body,
   overflow-y: auto; /* enable vertical scroll */
   overflow-x: hidden; /* hide horizontal overflow */
   display: flex;
-  outline: 2px solid white; /* Add white outline */
+  outline: 1px solid white; /* Add white outline */
   z-index: 9999; /* Ensure z-index is always on top */
 }
 
@@ -120,6 +120,28 @@ text-align: center;
   body {
     overscroll-behavior: contain;
     touch-action: none; /* If you don't need scroll inside */
+  }
+}
+@media screen and (max-width: 380px) {
+  .plantContainerleft{
+    margin-top: -1% !important;
+  }
+  .plantContainerleft div div{
+    transform: scale(1.05) translate(0px, calc(-10.69%)) !important;
+  }
+  .contentWrapper div{
+    transform: scale(1.006) !important;
+    margin-top: 0vh !important;
+    margin-left: 0px !important;
+  }
+  .plantContainerleft div h2{
+    transform: translateY(60px) !important;
+  }
+  .plantContainer{
+    margin-top: calc(-18%) !important;
+  }
+  .contentWrapper h2{
+    transform: translateY(-90px) !important;
   }
 }
 .slider-bar {
@@ -2462,13 +2484,29 @@ body.white-panel-active .close-buttons {
 }
 body.white-panel-active .timeline-line {
   position: absolute;
+  left: calc(100% - 229px);
+  /* left: calc(100% - 130px); */
+  width: 2px;
+  background-color: #fff !important;
+  height: 452.5px;
+  top: calc(100% - 96%);
+
+  z-index: 0;
+  /* position: absolute;
+  left: calc(100% - 198px);
+  width: 2px;
+  background-color: #fff !important;
+  height: 459.5px;
+  top: 80px; */
+  /* 
+  /* position: absolute;
   left: 0%;
   right: 0px;
   margin: 0px 44.5%;
   width: 3.5px;
   background-color: #ffffff !important;
-  height: 550px;
-  top: 61px;
+  height: 579px;
+  top: 61px; */
   /* background-color:#ffffff !important;
   /* transform:translateX(190) 
   left: 50% !important;
@@ -2514,7 +2552,7 @@ body.white-panel-active .timelinewhite-drawer {
   display: block !important;
   background-color: #000;
   /* height: 100%; */
-  padding-top: 50px;
+  padding-top: 5px;
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -2539,8 +2577,9 @@ body.white-panel-active .arrowblack {
   display: none;
 }
 body.white-panel-active .timeline-container {
-  align-items: center !important;
+  align-items: normal !important;
   width: 100% !important;
+  height: 100vh !important;
 }
 body.white-panel-active .toggleDrawerArrowblack::before,
 body.white-panel-active .toggleDrawerArrowblack::after {

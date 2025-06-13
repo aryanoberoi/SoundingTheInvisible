@@ -506,12 +506,13 @@ const PollutantPage = ({ categorizedData }) => {
       isMobileView ? 20 : 0,
       Math.min(100, newPosition)
     );
-    console.log("clampedPosition", clampedPosition, newPosition);
+    console.log("clampedPosition", clampedPosition, newPosition,newPosition !== null);
     document.documentElement.style.setProperty(
       "--slider-position",
       `${clampedPosition}%`
     );
-    if (isMobileView) {
+    if (isMobileView && newPosition == 0) {
+      console.log("newPosition");
       const newRotations = newPosition == 0 ? 18 : 90; // Or a calculated value
       document
         .querySelector(".slider-image-container")
@@ -1882,7 +1883,7 @@ const PollutantPage = ({ categorizedData }) => {
                         ...(isMobileView
                           ? {
                               top: `${sliderPosition}%`,
-                              transform: "translateY(-50%)",
+                              transform: "translateY(-50.7%)",
                               left: "46%",
                             }
                           : {
@@ -3166,13 +3167,14 @@ const PollutantPage = ({ categorizedData }) => {
         open={state}
         onClose={toggleDrawer(false)}
         PaperProps={{
-          className: "customDrawer --blackmodel",
+          className: "customDrawer ",
+          // className: "customDrawer --blackmodel",
         }}
       >
         <div className="timeline-drawer pt-5">
           {/* {window.innerHeight},{window.innerWidth} */}
           <div className="timeline-containers">
-            <p style={{ margin: 0,color:"#fff" }}>
+            <p style={{ margin: 0, color: "#fff" }}>
               HELLO {window.innerHeight},{window.innerWidth}
             </p>
             <div
@@ -3184,6 +3186,8 @@ const PollutantPage = ({ categorizedData }) => {
                 gap: "20px",
                 // paddingRight: "83px",
                 marginBottom: "20px",
+                zIndex: 999,
+                background: "#fff",
                 paddingLeft: "calc(100% - 292px)",
               }}
               onClick={() => handleNavClick("slider-container")}
@@ -3235,7 +3239,7 @@ const PollutantPage = ({ categorizedData }) => {
                       // justifyContent: "space-between",
                       width: "260px",
                       // background:"#fff",
-                      zIndex:99
+                      zIndex: 99,
                     }}
                   >
                     <span
@@ -3256,14 +3260,14 @@ const PollutantPage = ({ categorizedData }) => {
                     <span
                       className="  --blackviews"
                       // style={{
+                      //   background: "#000",
+                      //   zIndex: 9999,
+                      //   // paddingRight: "1px";
+                      //   paddingRight: "1.5px",
                       //   borderRadius: "12px",
                       //   height: "10px",
-                      //   width: "10px",
-                      //   border: "1px solid rgb(0, 0, 0)",
-                      //   marginTop: "15px",
-                      //   marginLeft: "1.66px",
-                      //   backgroundColor: "#fff",
-                      //   zIndex:99
+                      //   width: "9px",
+                      //   border: "1px solid #fff"
                       // }}
                     ></span>
                   </li>
@@ -3297,7 +3301,164 @@ const PollutantPage = ({ categorizedData }) => {
             <p>Close</p>
           </div>
         </div>
-        <div className="timelinewhite-drawer">
+        <div className="timelinewhite-drawer pt-5">
+          {/* {window.innerHeight},{window.innerWidth} */}
+          <div
+            className="timeline-containers"
+            style={{ paddingTop: window.innerHeight > 667 ? "8em" : "auto" }}
+          >
+            <p style={{ margin: 0, color: "#000" }}>
+              HELLO {window.innerHeight},{window.innerWidth}
+            </p>
+            <div
+              style={{
+                // display: "flex",
+                // flexDirection: "column",
+                // alignItems: "center",
+                // justifyContent: "center",
+                gap: "20px",
+                // paddingRight: "83px",
+                // marginBottom: "20px",
+                paddingLeft: "calc(100% - 238px)",
+              }}
+              onClick={() => handleNavClick("slider-container")}
+            >
+              <img
+                src={split_img}
+                style={{
+                  border: "1px solid #000",
+                  borderRadius: "50%",
+                  transform: "rotate(180deg)",
+                  zIndex: 9999,
+                }}
+              />
+            </div>
+            <ul
+              style={{
+                listStyleType: "none",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                // padding: 0,
+                gap: "55px",
+                // paddingRight: "86.9px",
+                // paddingLeft: "calc(100% - 303px)",
+                padding: "19px 0px 0px 0",
+                width: "200px",
+                transform: `translateX(${window.innerWidth - 307}px)`,
+                // transform: `translateX(${window.innerWidth - 10} px)`,
+                // transform: translateX`390px`,
+                // overflow: "hidden",
+                // transform: translateX(${window.innerWidth - 490}px);
+              }}
+            >
+              {options.map((item, idx) => {
+                const isFirst = idx === 0;
+                const isLast = idx === options.length - 1;
+                return (
+                  <li
+                    key={idx}
+                    onClick={() => handleNavClick(item?.id)}
+                    className="flex items-center justify-between w-full max-w-xs"
+                    style={{
+                      // width: "100%",
+                      alignItems: "baseline",
+                      gap: "10px",
+                      display: "flex",
+                      flexDirection: "row-reverse",
+                      // justifyContent: "space-between",
+                      width: "260px",
+                      // background:"#fff",
+                      zIndex: 999,
+                    }}
+                  >
+                    <span
+                      className={`flex-1 `}
+                      style={{
+                        fontSize: idx == 0 ? "24px" : "14px",
+                        width: "134px",
+                        textAlign: "left",
+                        color: "#fff",
+                        // transform:
+                        //  "translateX(60px)"
+                        //     // : isLast
+                        //     // ? "translateX(49px)"
+                        //     // : "none",
+                      }}
+                    >
+                      {item.label}
+                    </span>
+                    <span
+                      // className="  --blackviews"
+                      style={{
+                        background: "#fff",
+                        zIndex: 9999,
+                        // paddingRight: "1px";
+                        paddingRight: "1.5px",
+                        borderRadius: "12px",
+                        height: "10px",
+                        width: "9px",
+                        border: "1px solid #fff",
+                      }}
+                    ></span>
+                  </li>
+                );
+              })}
+            </ul>
+            <div style={{ paddingLeft: "calc(100% - 265.55px)" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "75px",
+                  // paddingLeft: "60px",
+                  // paddingRight: "calc(100% - 90%)",
+                  gap: "20px",
+                  // paddingLeft: "calc(100% - 218px)",
+                  // marginBottom: "1px",
+                  // paddingRight: "calc(100% - 297px)",
+
+                  paddingTop: "20px",
+                }}
+                onClick={() => handleNavClick("phytoremediation")}
+              >
+                <span
+                  className="ml-4 "
+                  style={{
+                    background: "#000",
+                    zIndex: 9999,
+                    // paddingRight: "1px";
+                    paddingRight: "1.5px",
+                    borderRadius: "12px",
+                    height: "10px",
+                    width: "9px",
+                    border: "1px solid #fff",
+                  }}
+                ></span>
+
+                <span
+                  className={`flex-1 `}
+                  style={{ fontSize: "14px", color: "#fff" }}
+                >
+                  Bibliography
+                </span>
+              </div>
+            </div>
+            <div
+              className="timeline-line"
+              style={{
+                top: window.innerHeight > 667 ? "calc(100% - 86%)" : "",
+              }}
+            />
+          </div>
+          <div className="close-button" onClick={toggleDrawer(false)}>
+            <p>Close</p>
+          </div>
+        </div>
+        {/* <div className="timelinewhite-drawer">
           <div className="timeline-container">
             <div
               onClick={() => {
@@ -3313,7 +3474,7 @@ const PollutantPage = ({ categorizedData }) => {
                 gap: "20px",
                 // paddingRight: "55px",
                 marginBottom: "25px",
-                paddingRight: "39.3px",
+                paddingRight: "calc(100% - 385px)",
               }}
             >
               <img
@@ -3334,13 +3495,14 @@ const PollutantPage = ({ categorizedData }) => {
                 justifyContent: "center",
                 display: "flex",
                 padding: 0,
-                gap: "20px",
+                gap: "15px",
                 padding: "0px",
-                transform: "translateX(68.72px)",
+                transform: `translateX(${window.innerWidth - 295}px)`,
+                // transform: "translateX(68.72px)",
                 background: "#fff0",
                 color: "#fff",
                 zIndex: 9,
-                paddingBottom: "25px",
+                // paddingBottom: "25px",
                 // opacity:0.7
                 // paddingRight: "85px",
                 // transform:"translateX(10)"
@@ -3393,7 +3555,7 @@ const PollutantPage = ({ categorizedData }) => {
                 justifyContent: "center",
                 paddingLeft: "9px",
                 gap: "20px",
-                paddingRight: "50px",
+                paddingRight: "calc(100% - 375px)",
                 marginBottom: "20px",
                 zIndex: 99,
               }}
@@ -3427,15 +3589,12 @@ const PollutantPage = ({ categorizedData }) => {
                 Bibliography
               </span>
             </div>
-
-            {/* Vertical line */}
             <div className="timeline-line" />
           </div>
-
           <div className="close-buttons" onClick={toggleDrawer(false)}>
             <p>Close</p>
           </div>
-        </div>
+        </div> */}
       </Drawer>
     </>
   );
