@@ -18,11 +18,17 @@ const MobileRightPanel = ({
       <div
         className="plantContainer"
         style={{
-          marginTop: view ? "calc(100% - 70%)" : "calc(100% - 101%)",
+          marginTop: "calc(100% - 101%)",
         }}
       >
         <div className="contentWrapper">
-          <div style={{ transform: "scale(1.107)", marginTop: "2vh", marginLeft: "0.15vw" }}>
+          <div
+            style={{
+              transform: view ? "scale(none)" : "scale(1.107)",
+              marginTop: view ?"4vh":"2vh",
+              marginLeft: "0.15vw",
+            }}
+          >
             <div style={{ height: "7%", overflow: "hidden" }}>
               <img
                 src={plantimagemobile}
@@ -42,7 +48,7 @@ const MobileRightPanel = ({
               textAlign: "center",
               marginBottom: "5em",
               position: "relative",
-              top: "-10vh", // Adjusted to ensure it stays within the screen
+              top: "-14vh", // Adjusted to ensure it stays within the screen
             }}
           >
             {plantName}
