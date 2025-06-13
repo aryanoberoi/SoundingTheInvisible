@@ -4,6 +4,7 @@ import audioService from "./AudioService";
 
 const SoundToggle = ({ 
   padNumber = "1", 
+  tankNumber = "1",
   isInTrapezium = false, 
   panelMode = "white", 
   defaultActive = true,
@@ -68,7 +69,7 @@ const SoundToggle = ({
   useEffect(() => {
     if (defaultActive && !hasStartedRef.current) {
       setIsPlaying(true);
-      audioService.playPadSound(padNumber, { loop: true });
+      audioService.playPadSound(padNumber, { loop: true, tankNumber: tankNumber }, sendPostRequest);
       hasStartedRef.current = true;
     }
     
@@ -88,7 +89,7 @@ const SoundToggle = ({
     // If currently playing and pad number changes, update the sound
     if (isPlaying && hasStartedRef.current) {
       audioService.stopAllSounds(); // Stop any previous sounds
-      audioService.playPadSound(padNumber, { loop: true }, sendPostRequest );
+      audioService.playPadSound(padNumber, { loop: true, tankNumber: tankNumber }, sendPostRequest );
     }
   }, [padNumber, isPlaying]);
 
@@ -100,7 +101,7 @@ const SoundToggle = ({
     if (newState) {
       // Start sound and ensure mute is off
       audioService.isMuted = false;
-      audioService.playPadSound(currentPadRef.current, { loop: true });
+      audioService.playPadSound(currentPadRef.current, { loop: true, tankNumber: tankNumber }, sendPostRequest);
       setIsPlaying(true);
       hasStartedRef.current = true;
     } else {

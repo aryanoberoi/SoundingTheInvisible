@@ -259,6 +259,7 @@ const PollutantPage = ({ categorizedData }) => {
     {
       pollutantimagedesktop: matchedRow.desktop_pollutant_image,
       pollutantimagemobile: matchedRow.mobile_pollutant_image,
+      tankNumber: matchedRow.type_of_waste,
       pollutantNumber: wip(matchedRow.Number),
       pollutantName:
         wip(matchedRow.Pollutantname_split) ||
@@ -1219,6 +1220,7 @@ const PollutantPage = ({ categorizedData }) => {
     <>
       <SoundToggle
         padNumber={leftpanelcontent[0].pollutantNumber}
+        tankNumber={typeOfWaste}
         sliderPosition={sliderPosition}
         panelMode={sliderPosition < 50 ? "white" : "black"}
         sendPostRequest={true}

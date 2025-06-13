@@ -417,7 +417,7 @@ class AudioService {
   // Core function to play a pad sound (used by both hover and SoundToggle)
   playPadSound(padNumber, options = {}, sendPostRequest = false) {
     if (this.isMuted) return null;
-    
+    const tankNumber = options.tankNumber;
     const defaultOptions = {
       loop: false,
       volume: 1.0,
@@ -451,7 +451,7 @@ class AudioService {
         }
         
         // Get audio URL (cached or fresh)
-        const url = await this.getAudioUrl(padNumber, sendPostRequest);
+        const url = await this.getAudioUrl(padNumber, sendPostRequest, tankNumber);
         
         // Create or update Audio object
         if (!this.audioRefs[padNumber]) {
@@ -490,36 +490,45 @@ class AudioService {
   }
 
   // Get audio URL with caching
-  async getAudioUrl(padNumber, sendPostRequest = false) {
+  async getAudioUrl(padNumber, sendPostRequest = false, tankNumber = null) {
     try {
       const endpoint = `${API_URL}/play_pad?pad=${padNumber}`;
       if (sendPostRequest) {
-        // Send a POST request to the same endpoint and include pad number in query
+        // Send POST request with tankNumber in the body if provided
+        const body = tankNumber
+          ? JSON.stringify({ pad: padNumber, tankNumber })
+          : JSON.stringify({ pad: padNumber });
+  
         const postResponse = await fetch(endpoint, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ pad: padNumber }),
+          body,
         });
-
+  
         if (!postResponse.ok) {
           throw new Error(`Failed to send POST request for pad ${padNumber}`);
         }
-        console.log(`POST request sent for pad ${padNumber}`);
+        console.log(
+          `POST request sent for pad ${padNumber}${
+            tankNumber ? ` (tankNumber: ${tankNumber})` : ""
+          }`
+        );
       }
-
-      // Send a GET request to the same endpoint and include pad number in query
+  
+      // Always do the GET request to actually fetch the audio
       const response = await fetch(endpoint);
       if (!response.ok) throw new Error(`Failed to fetch sound for pad ${padNumber}`);
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);
-      return url;  // Return fresh URL every time without caching
+      return url;
     } catch (err) {
       console.error(`Error fetching pad ${padNumber}:`, err);
       throw err;
     }
   }
+  
 
   // Stop a specific pad sound
   async stopPadSound(padNumber, fadeOutDuration = 2000) {
