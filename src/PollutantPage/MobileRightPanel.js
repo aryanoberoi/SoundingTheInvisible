@@ -11,6 +11,7 @@ const MobileRightPanel = ({
   const {
     plantimagemobile = "",
     plantName = "",
+    maskedimagemobile = "",
   } = sections[0] || {};
 
   return (

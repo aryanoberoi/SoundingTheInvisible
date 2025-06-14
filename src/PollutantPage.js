@@ -259,6 +259,7 @@ const PollutantPage = ({ categorizedData }) => {
     {
       pollutantimagedesktop: matchedRow.desktop_pollutant_image,
       pollutantimagemobile: matchedRow.mobile_pollutant_image,
+      maskedimagemobile: matchedRow.Pollutants_mobile_masked,
       tankNumber: matchedRow.type_of_waste,
       pollutantNumber: wip(matchedRow.Number),
       pollutantName:
@@ -278,6 +279,7 @@ const PollutantPage = ({ categorizedData }) => {
     {
       plantimagemobile: matchedRow.mobile_plant_image,
       plantimagedesktop: matchedRow.desktop_plant_image,
+      maskedimagemobile: matchedRow.Plants_mobile_masked,
       plantNameSplit: wip(dataContext.plant.name),
       wetlandDescription: wip(dataContext.plant.wetlandDescription),
       phytoCapacity: wip(dataContext.plant.phytoCapacity),
