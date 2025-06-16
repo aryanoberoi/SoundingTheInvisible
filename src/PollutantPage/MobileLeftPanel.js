@@ -19,6 +19,7 @@ const MobileLeftPanel = ({
     pollutantimagemobile = "",
     pollutantName = "Pollutant Name",
     pollutantDescription = "",
+    maskedimagemobile="",
     effect = "",
     sources = "",
     atomImage = "",
@@ -30,7 +31,10 @@ const MobileLeftPanel = ({
   console.log("sections", sliderPosition);
   return (
     <div className="left-panel">
-      <div className="plantContainerleft" style={{ width: "100vw" }}>
+      <div
+        className={`plantContainerleft ${!view ? "" : "--plantContainerleft"}`}
+        style={{ width: "100vw" }}
+      >
         <div style={{ width: "86%" }}>
           {view ? (
             <p
@@ -57,7 +61,7 @@ const MobileLeftPanel = ({
                 margin: "0px",
                 textAlign: "center",
                 color: "#fff",
-                transform: "translate(-15px, 0px)",
+                transform: "translate(-7px, -90px)",
               }}
             >
               {pollutantName}
@@ -73,7 +77,7 @@ const MobileLeftPanel = ({
             }}
           >
             <img
-              src={pollutantimagemobile}
+              src={view ? pollutantimagemobile : maskedimagemobile}
               alt="Pollutant visual"
               style={{
                 width: "100vw",

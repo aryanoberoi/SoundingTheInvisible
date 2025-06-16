@@ -1219,6 +1219,7 @@ const PollutantPage = ({ categorizedData }) => {
       label: "Phytoremediation of the Representative Pollutant",
     },
   ];
+  
   return (
     <>
       <SoundToggle

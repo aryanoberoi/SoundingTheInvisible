@@ -65,7 +65,20 @@ body,
     var(--slider-position, 50%) 100%
   );
 }
+.downarrow{
+  display: none;
+}
 @media screen and (max-width: 768px) {
+  .downarrow{
+    display: block;
+    margin-top: 5em;
+  }
+  .trapezium-text{
+    padding: 0px 20px;
+  }
+  .concept-text{
+    padding: 0px 20px;
+  }
   .box-header-container{
     position: unset !important;
   }
@@ -86,12 +99,33 @@ text-align: center;
     display: flex;
     flex-direction: column;
     z-index: 9999;
-    margin-top: 5%;
+    /* margin-top: calc(100% - 55%); */
+    /* transform: translateY(calc(100% - 40%)); */
     justify-content: center;
     align-items: center;
+    height: 100%;
     width: 30%;
     gap: 100px;
 
+  }
+  .--plantContainerleft{
+    transform:translateY(calc(100% - 96%)) !important
+  }
+  .contentWrapper{
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100%;
+  }
+  .plantContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    /* margin-top: calc(100% - 50.15%) !important; */
+    /* width: 89.65%; */
   }
   /* .slider-container {
     min-height: 828px !important;
@@ -123,26 +157,31 @@ text-align: center;
   }
 }
 @media screen and (max-width: 380px) {
-  .plantContainerleft{
+  /* .plantContainerleft{
     margin-top: -1% !important;
-  }
+  } */
+   .timeline-line{
+    top: calc(17%) !important;
+   }
+   .tables_right{
+     margin-top: calc(100% - 4%) !important
+   }
   .plantContainerleft div div{
     transform: scale(1.05) translate(0px, calc(-10.69%)) !important;
   }
   .contentWrapper div{
-    transform: scale(1.006) !important;
-    margin-top: 0vh !important;
+    transform: scale(1.04) !important;
+    /* transform: scale(1.006) !important; */
+    margin-top: 30% !important;
     margin-left: 0px !important;
   }
-  .plantContainerleft div h2{
+  /* .plantContainerleft div h2{
     transform: translateY(60px) !important;
-  }
-  .plantContainer{
-    margin-top: calc(-18%) !important;
-  }
-  .contentWrapper h2{
+  } */
+ 
+  /* .contentWrapper h2{
     transform: translateY(-90px) !important;
-  }
+  } */
 }
 .slider-bar {
   position: absolute;
@@ -2303,6 +2342,7 @@ display: none !important;
   .down_arrowstart {
     display: inline;
   }
+
 }
 .bibliograhy {
   color: #000;

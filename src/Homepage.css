@@ -800,7 +800,8 @@ svg.strategy-image {
     /* clip-path: polygon(0 0, 100% 20%, 100% 90%, 0% 100%); */
   }
   .trapezium-text {
-    text-align: center;
+    /* text-align: center; */
+    padding: 0px 20px;
   }
   .svg-container-trapezium::before,
   .svg-container-trapezium::after {
@@ -925,7 +926,7 @@ svg.strategy-image {
     flex-direction: column-reverse;
   }
   .sound-text {
-    padding: 20px;
+    padding: 0px 20px;
   }
   .svg-container-scs {
     overflow-x: auto;
@@ -938,5 +939,8 @@ svg.strategy-image {
     margin: 2px;
     height: 79vh;
     flex: none;
+  }
+  .concept-section{
+    padding: 40px 10px !important;
   }
 }

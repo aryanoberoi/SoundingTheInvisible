@@ -6,6 +6,7 @@ const MobileRightPanel = ({
   pollutantName = "",
   onLoad,
   onNavigate,
+
   view,
 }) => {
   const {
@@ -18,29 +19,38 @@ const MobileRightPanel = ({
   return (
     <div className="right-panel" style={{ height: view ? "100vh" : "auto" }}>
       <div
-        className="plantContainer"
-        style={{
-          marginTop: "calc(100% - 101%)",
-        }}
+        className={view ? "plantContainer-mobile" : "plantContainer"}
+        style={
+          {
+            // marginTop: "calc(100% - 101%)",
+          }
+        }
       >
         <div className="contentWrapper">
-          <div
+          <div className="tables_right"
             style={{
-              transform: view ? "scale(none)" : "scale(1.107)",
-              marginTop: view ?"4vh":"2vh",
+              transform: view ? "translate(10px, 74px)" : "scale(1.127)",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              // marginTop: view ? "4vh" : "2vh",
               marginLeft: "0.15vw",
+              marginTop: "calc(100% - 73%)",
+              padding: "0px 5px"
+          
+          
             }}
           >
-            <div style={{ height: "7%", overflow: "hidden" }}>
-              <img
-                src={plantimagemobile}
-                alt="Pollutant visual"
-                style={{
-                  width: "92.5vw",
-                  height: "auto",
-                }}
-              />
-            </div>
+            {/* <div style={{ height: "7%", overflow: "hidden" }}> */}
+            <img
+              src={view ? plantimagemobile : maskedimagemobile}
+              alt="Pollutant visual"
+              style={{
+                width: "92.5vw",
+                height: "auto",
+              }}
+            />
+            {/* </div> */}
           </div>
           <h2
             style={{
@@ -48,9 +58,10 @@ const MobileRightPanel = ({
               fontWeight: "400",
               margin: "0px",
               textAlign: "center",
-              marginBottom: "5em",
-              position: "relative",
-              top: "-14vh", // Adjusted to ensure it stays within the screen
+              // marginBottom: "5em",
+              marginTop: "52px",
+              // position: "relative",
+              // top: "-14vh", // Adjusted to ensure it stays within the screen
             }}
           >
             {plantName}
