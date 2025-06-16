@@ -14,6 +14,7 @@ const MobileRightPanel = ({
     maskedimagemobile = "",
   } = sections[0] || {};
 
+  //comment
   return (
     <div className="right-panel" style={{ height: view ? "100vh" : "auto" }}>
       <div
