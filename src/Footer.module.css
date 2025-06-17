@@ -1,98 +1,185 @@
 @font-face {
-    font-family: 'Nippo';
-    src: url('../fonts/Nippo-Regular.woff2') format('woff2'); /* Update path as needed */
-  }
-  
-  @font-face {
-    font-family: 'Clash Grotesk';
-    src: url('../fonts/ClashGrotesk-Regular.woff2') format('woff2');
-  }
-  
-  .footerContainer {
-    padding-left: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-  }
-  
-  .section {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  
-  .group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  
-  .subGroup {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .title {
-    font-family: 'Nippo';
-    font-size: 24px;
-    line-height: 49.2px;
-    color: black;
-  }
-  
-  .role {
-    font-family: 'Clash Grotesk';
-    font-size: 16px;
-    line-height: 30.72px;
-    letter-spacing: 0.48px;
-    color: black;
-    text-transform: capitalize;
-  }
-  
-  .name {
-    font-family: 'Nippo';
-    font-size: 18px;
-    line-height: 34.56px;
-    letter-spacing: 0.54px;
-    color: black;
-    text-transform: capitalize;
-  }
-  
-  .nameUnderline {
-    composes: name;
-    text-decoration: underline;
-  }
-  
-  .description {
-    font-family: 'Nippo';
-    font-size: 18px;
-    font-weight: 300;
-    line-height: 27px;
-    letter-spacing: 0.54px;
-    color: black;
-  }
-  .footerContainer a {
-    color: #000 !important;   /* Makes all links black */
-    text-decoration: none;    /* Removes underline, optional */
-  }
-  
-  .footerContainer a:hover,
-  .footerContainer a:active,
-  .footerContainer a:visited,
-  .footerContainer a:focus {
-    color: #000 !important;   /* Ensures links stay black in all states */
-  }
-  
-  .namesGrid {
+  font-family: 'Nippo';
+  src: url('../fonts/Nippo-Regular.woff2') format('woff2'); /* Update path as needed */
+}
+
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('../fonts/ClashGrotesk-Regular.woff2') format('woff2');
+}
+
+.footerContainer {
+  padding-left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.subGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-family: 'Nippo';
+  font-size: 24px;
+  line-height: 49.2px;
+  color: black;
+}
+
+.role {
+  font-family: 'Clash Grotesk';
+  font-size: 16px;
+  line-height: 30.72px;
+  letter-spacing: 0.48px;
+  color: black;
+  text-transform: capitalize;
+}
+
+.name {
+  font-family: 'Nippo';
+  font-size: 18px;
+  line-height: 34.56px;
+  letter-spacing: 0.54px;
+  color: black;
+  text-transform: capitalize;
+}
+
+.nameUnderline {
+  composes: name;
+  text-decoration: underline !important;
+}
+
+.description {
+  font-family: 'Nippo';
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 27px;
+  letter-spacing: 0.54px;
+  color: black;
+}
+.footerContainer a {
+  color: #000 !important; /* Makes all links black */
+  text-decoration: none; /* Removes underline, optional */
+}
+
+.footerContainer a:hover,
+.footerContainer a:active,
+.footerContainer a:visited,
+.footerContainer a:focus {
+  color: #000 !important; /* Ensures links stay black in all states */
+}
+
+.namesGrid {
   display: grid;
   grid-template-columns: 180px 180px 180px 180px; /* adjust count and width as needed */
   gap: 0; /* Only columns spacing, no gap between */
   margin-bottom: 2px;
 }
 
+.imageContainer {
+  display: flex;
+  justify-content: center; /* Center the social media icons */
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.supporterImage {
+  width: 24px; /* Adjust size as needed */
+  height: 24px;
+}
+
+/* New styles for researcher list */
+.researcherList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align names to the left */
+  gap: 0; /* No gap between items for the line to connect */
+}
+
+.researcherLine {
+  width: 1px; /* Width of the line */
+  height: 10px; /* Height of the line between names */
+  background-color: black;
+  margin-left: 8px; /* Adjust to align with the center of the text or as desired */
+}
+
+/* MOBILE VIEW (applies below 700px) */
 @media (max-width: 700px) {
+  .footerContainer {
+    padding-left: 16px; /* Adjust padding for mobile */
+    padding-right: 16px;
+    gap: 30px; /* Adjust gap for mobile */
+  }
+
+  .title {
+    font-size: 20px; /* Smaller title for mobile */
+    line-height: 1.2;
+  }
+
+  .role {
+    font-size: 14px; /* Smaller role text for mobile */
+    line-height: 1.4;
+    letter-spacing: 0.3px;
+  }
+
+  .name {
+    font-size: 16px; /* Smaller name text for mobile */
+    line-height: 1.4;
+    letter-spacing: 0.3px;
+  }
+
+  .description {
+    font-size: 12px; /* Smaller description for mobile */
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+  }
+
+  /* Make all direct children of .group stack vertically */
+  .group > div {
+    flex-direction: column !important; /* Force column layout for all direct div children */
+    gap: 10px !important; /* Adjust gap for stacked items */
+    width: 100%; /* Ensure they take full width */
+  }
+
+  /* Adjustments for nested flex containers if they exist and need to stack */
+  .group > div > div {
+    flex-direction: column !important; /* Ensure nested flex children also stack */
+    gap: 5px !important;
+  }
+
+  /* Ensure researcher names remain stacked in a column on mobile */
+  .researcherList {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0; /* Important for the lines */
+  }
+
   .namesGrid {
-    grid-template-columns: 1fr 1fr; /* stacks into 2 columns on mobile */
+    grid-template-columns: 1fr; /* Stack names into a single column on mobile */
     row-gap: 6px;
-    column-gap: 16px;
+    column-gap: 0;
+  }
+
+  .imageContainer {
+    flex-wrap: wrap; /* Allow icons to wrap to the next line */
+    gap: 15px; /* Adjust gap between icons for mobile */
+  }
+
+  .supporterImage {
+    width: 20px; /* Slightly smaller icons for mobile */
+    height: 20px;
   }
 }
