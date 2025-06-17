@@ -260,7 +260,7 @@ const PollutantPage = ({ categorizedData }) => {
       pollutantimagedesktop: matchedRow.desktop_pollutant_image,
       pollutantimagemobile: matchedRow.mobile_pollutant_image,
       maskedimagemobile: matchedRow.Pollutants_mobile_masked,
-      tankNumber: matchedRow.type_of_waste,
+      tankNumber: matchedRow.tank_number,
       pollutantNumber: wip(matchedRow.Number),
       pollutantName:
         wip(matchedRow.Pollutantname_split) ||
