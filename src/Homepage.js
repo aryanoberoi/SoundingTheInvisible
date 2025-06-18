@@ -250,11 +250,16 @@ export default function Homepage({ audioControls }) {
     localStorage.setItem("audioEnabled", "true");
   };
   const containerRef = useRef(null);
+  const interactive = useRef(null);
 
   useEffect(() => {
     // After the component mounts, scroll to the end
     if (containerRef.current) {
       containerRef.current.scrollLeft = containerRef.current.scrollWidth;
+    }
+    if(interactive.current){
+      interactive.current.scrollLeft = interactive.current.scrollWidth;
+
     }
   }, []);
   return (
@@ -367,7 +372,7 @@ export default function Homepage({ audioControls }) {
               </div>
             </div>
           </div>
-          <div className="svg-container-concept">
+          <div className="svg-container-concept" ref={interactive}>
             <ConceptFrame
               className="interactive-svg-concept"
               preserveAspectRatio="xMidYMid meet"
@@ -398,35 +403,35 @@ export default function Homepage({ audioControls }) {
           <div className="trapezium-text">
             <h2>Sounding the Invisible</h2>
             <div>
-
-            <p>
-              The enveloping soundscape symbolising the Venetian waters is
-              composed of frequencies denoting the energetic aspects of water in
-              different states. These frequencies have been overlaid with field
-              recordings from various locations in Venice such as Porto Marghera
-              and San Servolo, as well as its girdling wetlands.
-            </p>
-            {showTrapeziumText && (
               <p>
-                The rippling soundscore interwoven with urban sounds represents
-                water not as a chemical compound but as a living and enlivening
-                matrix. Similarly, the contaminants that invisibly affect these
-                waters and the life they support are 'sounded' through unique
-                pollutant frequencies triggered during user interaction. These
-                sonic signatures have been compiled using the enthalpy of
-                formation (a measure of energy lost or gained during chemical
-                bonding) of the contaminant under question, rendered into a
-                frequency that falls within the audible range. Moreover, the
-                molecular and chemical properties of the pollutant have been
-                used to modulate this frequency. As users interact with the
-                installation, these sonic signatures get layered on top of the
-                ambient track, signalling the insidious seepage of contaminants
-                into our waterways. In this manner, the chance score generated
-                through audience interaction renders tangible and resonant
-                forces that dodge the eye, sneak into our bodies, and hack our
-                biological systems.
+                The enveloping soundscape symbolising the Venetian waters is
+                composed of frequencies denoting the energetic aspects of water
+                in different states. These frequencies have been overlaid with
+                field recordings from various locations in Venice such as Porto
+                Marghera and San Servolo, as well as its girdling wetlands.
               </p>
-            )}
+              {showTrapeziumText && (
+                <p>
+                  The rippling soundscore interwoven with urban sounds
+                  represents water not as a chemical compound but as a living
+                  and enlivening matrix. Similarly, the contaminants that
+                  invisibly affect these waters and the life they support are
+                  'sounded' through unique pollutant frequencies triggered
+                  during user interaction. These sonic signatures have been
+                  compiled using the enthalpy of formation (a measure of energy
+                  lost or gained during chemical bonding) of the contaminant
+                  under question, rendered into a frequency that falls within
+                  the audible range. Moreover, the molecular and chemical
+                  properties of the pollutant have been used to modulate this
+                  frequency. As users interact with the installation, these
+                  sonic signatures get layered on top of the ambient track,
+                  signalling the insidious seepage of contaminants into our
+                  waterways. In this manner, the chance score generated through
+                  audience interaction renders tangible and resonant forces that
+                  dodge the eye, sneak into our bodies, and hack our biological
+                  systems.
+                </p>
+              )}
             </div>
             <div style={{ justifyContent: "center", display: "flex" }}>
               <div
