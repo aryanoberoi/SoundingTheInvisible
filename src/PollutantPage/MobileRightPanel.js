@@ -27,18 +27,17 @@ const MobileRightPanel = ({
         }
       >
         <div className="contentWrapper">
-          <div className="tables_right"
+          <div
+            className="tables_right"
             style={{
-              transform: view ? "translate(10px, 74px)" : "scale(1.127)",
+              transform: view ? "translate(1px, 114px)" : "scale(1.127)",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               // marginTop: view ? "4vh" : "2vh",
               marginLeft: "0.15vw",
-              marginTop: "calc(100% - 73%)",
-              padding: "0px 5px"
-          
-          
+              marginTop: view ? "1vh" : "calc(100% - 73%)",
+              padding: "0px 5px",
             }}
           >
             {/* <div style={{ height: "7%", overflow: "hidden" }}> */}
@@ -46,26 +45,30 @@ const MobileRightPanel = ({
               src={view ? plantimagemobile : maskedimagemobile}
               alt="Pollutant visual"
               style={{
-                width: "92.5vw",
+                width: view ? "86vw" : "92.5vw",
                 height: "auto",
               }}
             />
             {/* </div> */}
           </div>
-          <h2
-            style={{
-              fontSize: "38px",
-              fontWeight: "400",
-              margin: "0px",
-              textAlign: "center",
-              // marginBottom: "5em",
-              marginTop: "52px",
-              // position: "relative",
-              // top: "-14vh", // Adjusted to ensure it stays within the screen
-            }}
-          >
-            {plantName}
-          </h2>
+          {view ? (
+            <></>
+          ) : (
+            <h2
+              style={{
+                fontSize: "38px",
+                fontWeight: "400",
+                margin: "0px",
+                textAlign: "center",
+                // marginBottom: "5em",
+                marginTop: "52px",
+                // position: "relative",
+                // top: "-14vh", // Adjusted to ensure it stays within the screen
+              }}
+            >
+              {plantName}
+            </h2>
+          )}
         </div>
       </div>
     </div>

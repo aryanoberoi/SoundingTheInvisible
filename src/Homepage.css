@@ -812,10 +812,18 @@ svg.strategy-image {
     overflow-x: auto;
     scroll-behavior: smooth;
     overflow-y: hidden;
-    width: 175%;
+    width:165%;
     position: relative;
     white-space: nowrap;
+    padding-bottom: 50% !important;
   }
+  .svg-container-trapezium  {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox, Safari 18.2+, Chromium 121+ */
+}
+.svg-container-trapezium::-webkit-scrollbar { 
+    display: none;  /* Older Safari and Chromium */
+}
   .middle-svg-concept {
     transform: scale(1.5);
     margin-left: 5rem;
@@ -829,8 +837,16 @@ svg.strategy-image {
     width: 225%;
     position: relative;
     white-space: nowrap;
+    padding-bottom: 47% !important;
+    padding-top: 40%;
   }
-
+  .svg-container-concept {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox, Safari 18.2+, Chromium 121+ */
+}
+.svg-container-concept::-webkit-scrollbar { 
+    display: none;  /* Older Safari and Chromium */
+}
   .interactive-svg-concept {
     transform: scale(1.5);
     margin-left: 5rem;
@@ -926,7 +942,7 @@ svg.strategy-image {
     flex-direction: column-reverse;
   }
   .sound-text {
-    padding: 0px 20px;
+    padding: 0px 30px;
   }
   .svg-container-scs {
     overflow-x: auto;
@@ -937,10 +953,18 @@ svg.strategy-image {
     white-space: nowrap;
     padding: 20px;
     margin: 2px;
-    height: 79vh;
+    /* height: 79vh; */
+    padding-bottom: 35%;
     flex: none;
   }
+  .svg-container-scs {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox, Safari 18.2+, Chromium 121+ */
+}
+.svg-container-scs::-webkit-scrollbar { 
+    display: none;  /* Older Safari and Chromium */
+}
   .concept-section{
-    padding: 40px 10px !important;
+    padding: 40px 0px !important;
   }
 }

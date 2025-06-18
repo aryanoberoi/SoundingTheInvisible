@@ -3322,7 +3322,8 @@ const PollutantPage = ({ categorizedData }) => {
                 gap: "20px",
                 // paddingRight: "83px",
                 // marginBottom: "20px",
-                paddingLeft: "calc(100% - 238px)",
+                paddingLeft: "calc(100% - 267.3px)",
+                // paddingLeft: "calc(100% - 238px)",
               }}
               onClick={() => handleNavClick("slider-container")}
             >
@@ -3349,16 +3350,16 @@ const PollutantPage = ({ categorizedData }) => {
                 // paddingLeft: "calc(100% - 303px)",
                 padding: "19px 0px 0px 0",
                 width: "200px",
-                transform: `translateX(${window.innerWidth - 307}px)`,
+                transform: `translateX(${window.innerWidth - 253.1}px)`,
                 // transform: `translateX(${window.innerWidth - 10} px)`,
                 // transform: translateX`390px`,
                 // overflow: "hidden",
                 // transform: translateX(${window.innerWidth - 490}px);
               }}
             >
-              {options.map((item, idx) => {
+              {option.map((item, idx) => {
                 const isFirst = idx === 0;
-                const isLast = idx === options.length - 1;
+                const isLast = idx === option.length - 1;
                 return (
                   <li
                     key={idx}
@@ -3380,7 +3381,8 @@ const PollutantPage = ({ categorizedData }) => {
                       className={`flex-1 `}
                       style={{
                         fontSize: idx == 0 ? "24px" : "14px",
-                        width: "134px",
+                        width: "218px",
+                        // width: "134px",
                         textAlign: "left",
                         color: "#fff",
                         // transform:
@@ -3409,14 +3411,22 @@ const PollutantPage = ({ categorizedData }) => {
                 );
               })}
             </ul>
-            <div style={{ paddingLeft: "calc(100% - 265.55px)" }}>
+            <div
+              style={{
+                // paddingLeft: "calc(100% - 266px)",
+               zIndex:9,
+                transform: `translate(${window.innerWidth - 296.1}px,40px)`,
+              }}
+            >
               <div
                 style={{
                   display: "flex",
+                  background:"#000",
                   flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
                   width: "75px",
+                  zIndex:999,
                   // paddingLeft: "60px",
                   // paddingRight: "calc(100% - 90%)",
                   gap: "20px",
@@ -3424,7 +3434,7 @@ const PollutantPage = ({ categorizedData }) => {
                   // marginBottom: "1px",
                   // paddingRight: "calc(100% - 297px)",
 
-                  paddingTop: "20px",
+                  // paddingTop: "20px",
                 }}
                 onClick={() => handleNavClick("phytoremediation")}
               >
