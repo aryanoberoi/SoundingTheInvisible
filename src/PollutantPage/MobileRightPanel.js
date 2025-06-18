@@ -17,7 +17,7 @@ const MobileRightPanel = ({
 
   return (
     <div className="right-panel" style={{ height: view ? "100vh" : "auto" }}>
-      <div
+      {/* <div
         className={view ? "plantContainer-mobile" : "plantContainer"}
         style={
           {
@@ -39,16 +39,14 @@ const MobileRightPanel = ({
               padding: "0px 5px",
             }}
           >
-            {/* <div style={{ height: "7%", overflow: "hidden" }}> */}
-            <img
+           <img
               src={view ? plantimagemobile : maskedimagemobile}
               alt="Pollutant visual"
               style={{
-                width: view ? "86vw" : "92.5vw",
+                width: view ? "86vw" : "100vw",
                 height: "auto",
               }}
             />
-            {/* </div> */}
           </div>
           {view ? (
             <></>
@@ -68,6 +66,61 @@ const MobileRightPanel = ({
               {plantName}
             </h2>
           )}
+        </div>
+      </div> */}
+      <div
+        className={`plantContainer ${!view ? "" : "--plantContainerleft"}`}
+        style={{ width: "100vw" }}
+      >
+        <div style={{ width: "86%" }}>
+        
+          {!view ? (
+            <h2
+              style={{
+                fontSize: "38px",
+                fontWeight: "400",
+                margin: "0px",
+                textAlign: "center",
+                color: "#000",
+                // transform: "translate(-7px, -90px)",
+              }}
+            ></h2>
+          ) : (
+            <></>
+          )}
+          {/* <div style={{ transform: "scale(1.15) translate(0px, calc(100% - 949px))" }}> */}
+          <div
+            className="tables_right"
+            style={{
+              paddingBottom:view?"40%":"",
+              paddingTop:view?"10%":"",
+              transform: view
+                ? "translate(0px, calc(100.36% - 84.05%))"
+                : "scale(1.15) translate(0px, calc(100.36% - 94.05%))",
+              zIndex: 9999, // Very high z-index to display on other components
+            }}
+          >
+            <img
+              src={view ? plantimagemobile : maskedimagemobile}
+              alt="Pollutant visual"
+              style={{
+                width: view ? "75vw" : "100vw",
+                height: "auto",
+              }}
+            />
+          </div>
+          <h2
+            style={{
+              fontSize: "38px",
+              fontWeight: "400",
+              margin: "0px",
+              textAlign: "center",
+              color: "#000",
+              transform: "translate(-7px, 48px)",
+            }}
+          >
+            {plantName}
+          </h2>
         </div>
       </div>
     </div>

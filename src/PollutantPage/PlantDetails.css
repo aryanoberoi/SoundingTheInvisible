@@ -8,6 +8,11 @@
   padding: 5%;
   /* overflow: hidden; */
 }
+.plantContainer{
+  /* background: #fff; */
+  padding: 5%;
+  /* overflow: hidden; */
+}
 
 .contentWrapper {
   display: flex;
@@ -178,6 +183,9 @@
     padding: 0 20px;
   }
   .plantContainerleft {
+    padding: 0 0px;
+  }
+  .plantContainer {
     padding: 0 0px;
   }
 
