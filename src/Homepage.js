@@ -275,6 +275,7 @@ export default function Homepage({ audioControls }) {
             : "homepage-content"
         }
       >
+        {/* comment */}
         <SoundToggle
           padNumber={DEFAULT_PAD_NUMBER}
           isInTrapezium={isInTrapezium}
