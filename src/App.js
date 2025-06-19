@@ -157,9 +157,8 @@ const AppContent = () => {
                 key={location.pathname} // Force remount on route change
               />
             ) : (
-              <div className="loader-container">
-                <div className="loader"></div>
-                <p>Loading, please wait...</p>
+              <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+                <p>Loading Data ..</p>
               </div> // Loader during delay
             )
           } />
