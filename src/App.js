@@ -75,7 +75,7 @@ const AppContent = () => {
       setDisplayPollutantPage(false);
       const delayTimer = setTimeout(() => {
         setDisplayPollutantPage(true);
-      }, 5000); // 5-second delay
+      }, 0.05); // 5-second delay
       return () => clearTimeout(delayTimer);
     } else {
       setDisplayPollutantPage(true);
