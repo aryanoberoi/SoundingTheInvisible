@@ -290,15 +290,10 @@ export default function Homepage({ audioControls }) {
             localStorage.setItem("audioEnabled", isActive.toString());
           }}
         />
-        {/* <audio 
-          ref={audioRef} 
-          src="/path/to/your/audio-file.mp3"
-          preload="auto"
-        /> */}
-
+        
         {/* 🔸 Header Section */}
         <section className="header">
-          <div style={{ width: "85%", height: "10%" }}>
+          <div className="header-container" style={{ width: window.innerWidth <= 768 ? "85%" : "auto", height: window.innerWidth <= 768 ? "10%" : "auto" }}>
             <Title />
           </div>
         </section>
