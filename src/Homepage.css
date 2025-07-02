@@ -911,7 +911,7 @@ svg.strategy-image {
 /* Keep white color when nav menu is open */
 .nav-menu.open ~ .sound-button .sound-icon span {
   background: white !important;
-  z-index: 100;
+  z-index: -99;
 }
 
 /* Homepage content wrapper */

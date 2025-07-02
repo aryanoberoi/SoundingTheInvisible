@@ -326,7 +326,7 @@ body,
   border: none;
   cursor: pointer;
   padding: 10px;
-  z-index: 100000;
+  z-index: 0;
 }
 
 .sound-icon {
