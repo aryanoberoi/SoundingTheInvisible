@@ -54,7 +54,7 @@ const MobileRightPanel = ({
           </div>
           <h2
             style={{
-              fontSize: "38px",
+              fontSize: "35px",
               fontWeight: "400",
               margin: "0px",
               textAlign: "center",

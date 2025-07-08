@@ -136,16 +136,16 @@ text-align: center;
     clip-path: polygon(
       0% 0,
       100% 0%,
-      100% var(--slider-position, 50%),
-      0% var(--slider-position, 50%)
+      100% var(--slider-position, 50.5%),
+      0% var(--slider-position, 50.5%)
     );
     overflow: hidden !important;
     /* clip-path: polygon(0% 0, 100% 0%, 100% var(--slider-position, 90%), 0% var(--slider-position,90%)); */
   }
   .right-panel {
     clip-path: polygon(
-      0% var(--slider-position, 50%),
-      100% var(--slider-position, 50%),
+      0% var(--slider-position, 50.5%),
+      100% var(--slider-position, 50.5%),
       100% 100%,
       0% 100%
     );
