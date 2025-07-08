@@ -130,7 +130,7 @@ const SoundToggle = ({
         border: 'none',
         cursor: 'pointer',
         padding: '10px',
-        zIndex: 100000
+        zIndex: 99
       }}
     >
       <div className={`sound-icon ${isPlaying ? "playing" : "muted"}`}>

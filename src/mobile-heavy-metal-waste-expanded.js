@@ -9,7 +9,7 @@ const SVGComponent = (props) => (
   >
     {/* Mercury | Oxalis corniculata */}
     <a
- href="/mercury"      // href="/pollutants"
+ href="/mercury"    
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -38,7 +38,6 @@ const SVGComponent = (props) => (
     </a>
     {/* Cadmium | Alternanthera philoxeroides */}
     <a  href="/cadmium"
-      // href="/pollutants"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -67,7 +66,6 @@ const SVGComponent = (props) => (
     </a>
     {/* Lead | Pistia stratiotes */}
     <a   href="/lead"
-      // href="/pollutants"
       style={{
         pointerEvents: "bounding-box",
       }}
@@ -96,7 +94,6 @@ const SVGComponent = (props) => (
     </a>
     {/* Chromium | Borassus aethiopum */}
     <a   href="/chromium"
-      // href="/pollutants"
       style={{
         pointerEvents: "bounding-box",
       }}

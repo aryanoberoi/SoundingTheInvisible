@@ -19,7 +19,7 @@ const MobileLeftPanel = ({
     pollutantimagemobile = "",
     pollutantName = "Pollutant Name",
     pollutantDescription = "",
-    maskedimagemobile="",
+    maskedimagemobile = "",
     effect = "",
     sources = "",
     atomImage = "",
@@ -33,7 +33,7 @@ const MobileLeftPanel = ({
     <div className="left-panel">
       <div
         className={`plantContainerleft ${!view ? "" : "--plantContainerleft"}`}
-        style={{ width: "100vw" }}
+        style={{ width: "100vw",padding:"0px 10px 0px 0px" }}
       >
         <div style={{ width: "86%" }}>
           {view ? (
@@ -44,7 +44,14 @@ const MobileLeftPanel = ({
                 margin: "0px",
                 textAlign: "center",
                 color: "#fff",
-                transform: "translate(0px, 30px)",
+                // transform: "translate(0px, -10px)",
+                position: "absolute",
+                /* transform: translate(0px, -10px); */
+
+                top: "20px",
+                left: "0px",
+                right: "0px",
+                margin: "0px auto",
                 // transform: "translate(0px, -10px)",
               }}
             >
@@ -70,21 +77,26 @@ const MobileLeftPanel = ({
             <></>
           )}
           {/* <div style={{ transform: "scale(1.15) translate(0px, calc(100% - 949px))" }}> */}
-          <div
-            style={{
-              transform: "scale(1.15) translate(0px, calc(101.36% - 112.05%))",
-              zIndex: 9999, // Very high z-index to display on other components
-            }}
-          >
-            <img
-              src={view ? pollutantimagemobile : maskedimagemobile}
-              alt="Pollutant visual"
+          {view ? (
+            <></>
+          ) : (
+            <div
               style={{
-                width: "100vw",
-                height: "auto",
+                transform:
+                  "scale(1.15) translate(0px, calc(101.36% - 112.05%))",
+                zIndex: 9999, // Very high z-index to display on other components
               }}
-            />
-          </div>
+            >
+              <img
+                src={view ? pollutantimagemobile : maskedimagemobile}
+                alt="Pollutant visual"
+                style={{
+                  width: "100vw",
+                  height: "auto",
+                }}
+              />
+            </div>
+          )}
         </div>
       </div>
 

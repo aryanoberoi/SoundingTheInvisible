@@ -260,7 +260,7 @@ const PollutantPage = ({ categorizedData }) => {
       pollutantimagedesktop: matchedRow.desktop_pollutant_image,
       pollutantimagemobile: matchedRow.mobile_pollutant_image,
       maskedimagemobile: matchedRow.Pollutants_mobile_masked,
-      tankNumber: matchedRow.type_of_waste,
+      tankNumber: matchedRow.tank_number,
       pollutantNumber: wip(matchedRow.Number),
       pollutantName:
         wip(matchedRow.Pollutantname_split) ||
@@ -508,7 +508,12 @@ const PollutantPage = ({ categorizedData }) => {
       isMobileView ? 20 : 0,
       Math.min(100, newPosition)
     );
-    console.log("clampedPosition", clampedPosition, newPosition, newPosition !== null);
+    console.log(
+      "clampedPosition",
+      clampedPosition,
+      newPosition,
+      newPosition !== null
+    );
     document.documentElement.style.setProperty(
       "--slider-position",
       `${clampedPosition}%`
@@ -1506,26 +1511,6 @@ const PollutantPage = ({ categorizedData }) => {
             </div>
 
             <div>
-              {!state && (
-                <div
-                  className="mobile-tab-only"
-                  style={{
-                    position: "fixed",
-                    top: "88%",
-                    right: 0,
-                    transform: "translateY(-50%)",
-                    zIndex: 1300,
-                  }}
-                >
-                  <div
-                    className="toggleDrawerArrowwhite toggleDrawerArrowblack"
-                    onClick={toggleDrawer("right", true)}
-                  >
-                    <img src="./leftarrow.png" className="arrowblack" />
-                    <img src="./leftarrowblack.png" className="arrowwhite" />
-                  </div>
-                </div>
-              )}
             </div>
             {window.innerWidth <= 768 ? (
               <>
@@ -1538,12 +1523,6 @@ const PollutantPage = ({ categorizedData }) => {
                       <img src={sliderPosition == 20 ? backwhite : back} />
                     </div>
                     <div className="bottom-section1" id="about-pollutant">
-                      {/* <div
-                        style={{ padding: "35px 0px 0px 7px" }}
-                        onClick={() => setIsSplit(true)}
-                      >
-                        <img src={backwhite} />
-                      </div> */}
                       <AboutPollutantSection
                         sections={aboutpollutantcontent}
                         wasteTypeIcon={wasteTypeData.atomImage}
@@ -1744,6 +1723,7 @@ const PollutantPage = ({ categorizedData }) => {
                       ref={sliderContainerRef}
                       style={{ height: containerHeight }}
                     >
+                      {/* <h2>{window.innerWidth},{window.innerHeight}</h2> */}
                       <div ref={leftPanelRef}>
                         {window.innerWidth <= 768 ? (
                           <MobileLeftPanel
@@ -1785,10 +1765,10 @@ const PollutantPage = ({ categorizedData }) => {
                         style={{
                           ...(isMobileView
                             ? {
-                              top: `${sliderPosition}%`,
-                              transform: "translateY(-50%)",
-                              left: "46%",
-                            }
+                                top: `${sliderPosition}%`,
+                                transform: "translateY(calc(100% - 150.9%))",
+                                left: "46%",
+                              }
                             : {
                               left: `${sliderPosition}%`,
                               transform: "translateX(0%)",
@@ -1871,10 +1851,10 @@ const PollutantPage = ({ categorizedData }) => {
                       style={{
                         ...(isMobileView
                           ? {
-                            top: `${sliderPosition}%`,
-                            transform: "translateY(-49.1%)",
-                            left: "46%",
-                          }
+                              top: `${sliderPosition}%`,
+                              transform: "translateY(calc(100% - 150.9%))",
+                              left: "46%",
+                            }
                           : {
                             left: `${sliderPosition}%`,
                             transform: "translateX(0%)",
@@ -2488,38 +2468,12 @@ const PollutantPage = ({ categorizedData }) => {
                 </div>
               </div>
               <div>
-                {!state && (
-                  <div
-                    className="mobile-tab-only"
-                    style={{
-                      position: "fixed",
-                      top: "50%",
-                      right: 0,
-                      transform: "translateY(-50%)",
-                      zIndex: 1300,
-                    }}
-                  >
-                    <div
-                      className="toggleDrawerArrowwhite toggleDrawerArrowblack"
-                      onClick={toggleDrawer("right", true)}
-                    >
-                      <img src="./leftarrow.png" className="arrowblack" />
-                      <img src="./leftarrowblack.png" className="arrowwhite" />
-                    </div>
-                  </div>
-                )}
               </div>
               {window.innerWidth <= 768 ? (
                 <>
                   {!isSplit ? (
                     <div className="content-sections">
                       <div className="bottom-section1" id="about-pollutant">
-                        {/* <div
-                        style={{ padding: "35px 0px 0px 7px" }}
-                        onClick={() => setIsSplit(true)}
-                      >
-                        <img src={backwhite} />
-                      </div> */}
                         <AboutPollutantSection
                           sections={aboutpollutantcontent}
                           wasteTypeIcon={wasteTypeData.atomImage}
@@ -2712,34 +2666,34 @@ const PollutantPage = ({ categorizedData }) => {
           )}
         </>
       )}
-      {isMobile && isSplits == "slider-container" ? (
-        <>
-          <div>
-            {!state && (
-              <div
-                className="mobile-tab-only"
-                style={{
-                  position: "fixed",
-                  top: "50%",
-                  right: 0,
-                  transform: "translateY(-50%)",
-                  zIndex: 1300,
-                }}
-              >
-                <div
-                  className="toggleDrawerArrowwhite toggleDrawerArrowblack"
-                  onClick={toggleDrawer("right", true)}
-                >
-                  <img src="./leftarrow.png" className="arrowblack" />
-                  <img src="./leftarrowblack.png" className="arrowwhite" />
-                </div>
-              </div>
-            )}
+      {/* {isMobile && isSplits == "slider-container" ? (
+        <> */}
+      <div>
+        {isMobileView && !state && (
+          <div
+            className="mobile-tab-only"
+            style={{
+              position: "fixed",
+              top: "50%",
+              right: 0,
+              transform: "translateY(-50%)",
+              zIndex: 1300,
+            }}
+          >
+            <div
+              className="toggleDrawerArrowwhite toggleDrawerArrowblack"
+              onClick={toggleDrawer("right", true)}
+            >
+              <img src="./leftarrow.png" className="arrowblack" />
+              <img src="./leftarrowblack.png" className="arrowwhite" />
+            </div>
           </div>
-        </>
+        )}
+      </div>
+      {/* </>
       ) : (
         <></>
-      )}
+      )} */}
       {isMobileView && isSplits !== "slider-container" ? (
         <>
           <div className="combined-section" style={{ padding: "0px 10px" }}>
@@ -2906,28 +2860,6 @@ const PollutantPage = ({ categorizedData }) => {
               </div>
             </div>
 
-            <div>
-              {!state && (
-                <div
-                  className="mobile-tab-only"
-                  style={{
-                    position: "fixed",
-                    top: "88%",
-                    right: 0,
-                    transform: "translateY(-50%)",
-                    zIndex: 1300,
-                  }}
-                >
-                  <div
-                    className="toggleDrawerArrowwhite toggleDrawerArrowblack"
-                    onClick={toggleDrawer("right", true)}
-                  >
-                    <img src="./leftarrow.png" className="arrowblack" />
-                    <img src="./leftarrowblack.png" className="arrowwhite" />
-                  </div>
-                </div>
-              )}
-            </div>
             {window.innerWidth <= 768 ? (
               <>
                 {!isSplit ? (
@@ -3118,6 +3050,28 @@ const PollutantPage = ({ categorizedData }) => {
                 </div>
               </div>
             )}
+            <div>
+              {!state && (
+                <div
+                  className="mobile-tab-only"
+                  style={{
+                    position: "fixed",
+                    top: "88%",
+                    right: 0,
+                    transform: "translateY(-50%)",
+                    zIndex: 1300,
+                  }}
+                >
+                  <div
+                    className="toggleDrawerArrowwhite toggleDrawerArrowblack"
+                    onClick={toggleDrawer("right", true)}
+                  >
+                    <img src="./leftarrow.png" className="arrowblack" />
+                    <img src="./leftarrowblack.png" className="arrowwhite" />
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </>
       ) : (
@@ -3266,7 +3220,10 @@ const PollutantPage = ({ categorizedData }) => {
           {/* {window.innerHeight},{window.innerWidth} */}
           <div
             className="timeline-containers"
-            style={{ paddingTop: window.innerHeight > 667 ? "8em" : "auto" }}
+            style={{
+              paddingTop: window.innerHeight > 667 ? "5em" : "auto",
+              position: "relative",
+            }}
           >
             <p style={{ margin: 0, color: "#000" }}>
               HELLO {window.innerHeight},{window.innerWidth}
@@ -3280,7 +3237,8 @@ const PollutantPage = ({ categorizedData }) => {
                 gap: "20px",
                 // paddingRight: "83px",
                 // marginBottom: "20px",
-                paddingLeft: "calc(100% - 238px)",
+                paddingLeft: "calc(100% - 267.3px)",
+                // paddingLeft: "calc(100% - 238px)",
               }}
               onClick={() => handleNavClick("slider-container")}
             >
@@ -3302,21 +3260,21 @@ const PollutantPage = ({ categorizedData }) => {
                 justifyContent: "center",
                 display: "flex",
                 // padding: 0,
-                gap: "55px",
+                gap: "25px",
                 // paddingRight: "86.9px",
                 // paddingLeft: "calc(100% - 303px)",
                 padding: "19px 0px 0px 0",
                 width: "200px",
-                transform: `translateX(${window.innerWidth - 307}px)`,
+                transform: `translateX(${window.innerWidth - 253.1}px)`,
                 // transform: `translateX(${window.innerWidth - 10} px)`,
                 // transform: translateX`390px`,
                 // overflow: "hidden",
                 // transform: translateX(${window.innerWidth - 490}px);
               }}
             >
-              {options.map((item, idx) => {
+              {option.map((item, idx) => {
                 const isFirst = idx === 0;
-                const isLast = idx === options.length - 1;
+                const isLast = idx === option.length - 1;
                 return (
                   <li
                     key={idx}
@@ -3338,7 +3296,8 @@ const PollutantPage = ({ categorizedData }) => {
                       className={`flex-1 `}
                       style={{
                         fontSize: idx == 0 ? "24px" : "14px",
-                        width: "134px",
+                        width: "218px",
+                        // width: "134px",
                         textAlign: "left",
                         color: "#fff",
                         // transform:
@@ -3367,22 +3326,31 @@ const PollutantPage = ({ categorizedData }) => {
                 );
               })}
             </ul>
-            <div style={{ paddingLeft: "calc(100% - 265.55px)" }}>
+            <div
+              style={{
+                // paddingLeft: "calc(100% - 266px)",
+                zIndex: 9,
+                transform: `translate(${window.innerWidth - 294.1}px,25px)`,
+              }}
+            >
               <div
                 style={{
                   display: "flex",
+                  background: "#000",
                   flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
                   width: "75px",
+                  zIndex: 999,
+
                   // paddingLeft: "60px",
                   // paddingRight: "calc(100% - 90%)",
                   gap: "20px",
                   // paddingLeft: "calc(100% - 218px)",
                   // marginBottom: "1px",
                   // paddingRight: "calc(100% - 297px)",
-
-                  paddingTop: "20px",
+                  paddingBottom: "91px",
+                  // paddingTop: "20px",
                 }}
                 onClick={() => handleNavClick("phytoremediation")}
               >
@@ -3410,152 +3378,15 @@ const PollutantPage = ({ categorizedData }) => {
             </div>
             <div
               className="timeline-line"
-              style={{
-                top: window.innerHeight > 667 ? "calc(100% - 86%)" : "",
-              }}
+              // style={{
+              //   top: window.innerHeight > 667 ? "calc(100% - 86%)" : "",
+              // }}
             />
           </div>
           <div className="close-button" onClick={toggleDrawer(false)}>
             <p>Close</p>
           </div>
         </div>
-        {/* <div className="timelinewhite-drawer">
-          <div className="timeline-container">
-            <div
-              onClick={() => {
-                setRightPanelLoaded(true);
-                handleNavClick("slider-container");
-                setLeftPanelLoaded(false);
-              }}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "20px",
-                // paddingRight: "55px",
-                marginBottom: "25px",
-                paddingRight: "calc(100% - 385px)",
-              }}
-            >
-              <img
-                src={split_img}
-                style={{
-                  border: "1px solid #000",
-                  borderRadius: "50%",
-                  transform: "rotate(180deg)",
-                  zIndex: 9999,
-                }}
-              />
-            </div>
-            <ul
-              style={{
-                listStyleType: "none",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                display: "flex",
-                padding: 0,
-                gap: "15px",
-                padding: "0px",
-                transform: `translateX(${window.innerWidth - 295}px)`,
-                // transform: "translateX(68.72px)",
-                background: "#fff0",
-                color: "#fff",
-                zIndex: 9,
-                // paddingBottom: "25px",
-                // opacity:0.7
-                // paddingRight: "85px",
-                // transform:"translateX(10)"
-              }}
-            >
-              {option.map((item, idx) => {
-                const isFirst = idx === 0;
-                const isLast = idx === option.length - 1;
-                return (
-                  <li
-                    key={idx}
-                    onClick={() => handleNavClick(item?.id)}
-                    className="flex items-center justify-between w-full max-w-xs"
-                    style={{
-                      width: "100%",
-                      alignItems: "baseline",
-                      gap: idx !== 0 ? "9px" : "10px",
-                      display: "flex",
-                      // background: "#000",
-                      color: "#fff",
-                      zIndex: 99,
-                    }}
-                  >
-                    <div
-                      className="ml-4 nav_plant_white"
-                      style={{ background: "#000", zIndex: 99 }}
-                    ></div>
-
-                    <span
-                      className={`flex-1 `}
-                      style={{
-                        fontSize: idx == 0 ? "24px" : "14px",
-                        // width: idx !== 0 ? "150px" : "",
-                        width: "165px",
-                        // textAlign: "end",
-                      }}
-                    >
-                      {item.label}
-                    </span>
-                  </li>
-                );
-              })}
-            </ul>
-            <div
-              onClick={() => handleNavClick("uses-of-plant")}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                paddingLeft: "9px",
-                gap: "20px",
-                paddingRight: "calc(100% - 375px)",
-                marginBottom: "20px",
-                zIndex: 99,
-              }}
-            >
-              <span
-                className="ml-4"
-                style={{
-                  // padding: "2px",
-                  borderRadius: "12px",
-                  height: "10px",
-                  width: "10px",
-                  border: "1px solid rgb(255, 255, 255)",
-                  marginTop: "15px",
-                  marginLeft: "1.66px",
-                  background: "#000",
-                }}
-              ></span>
-
-              <span
-                className={`flex-1 `}
-                style={{
-                  background: "#000",
-                  color: "#FFF",
-                  fontSize: "14px",
-                  fontStyle: "normal",
-                  fontWeight: "378",
-                  lineHeight: "normal",
-                  letterSpacing: "0.42px",
-                }}
-              >
-                Bibliography
-              </span>
-            </div>
-            <div className="timeline-line" />
-          </div>
-          <div className="close-buttons" onClick={toggleDrawer(false)}>
-            <p>Close</p>
-          </div>
-        </div> */}
       </Drawer>
     </>
   );

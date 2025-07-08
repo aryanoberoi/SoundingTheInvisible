@@ -38,7 +38,7 @@ const SVGComponent = (props) => (
     />
     {/* Potassium | Salvinia molesta */}
     <a
-      href="/pollutants"
+      href="/potassium"
       style={{
         pointerEvents: "bounding-box",
       }}
