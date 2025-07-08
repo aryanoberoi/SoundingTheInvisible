@@ -1525,26 +1525,6 @@ const PollutantPage = ({ categorizedData }) => {
             </div>
 
             <div>
-              {/* {!state && (
-                <div
-                  className="mobile-tab-only"
-                  style={{
-                    position: "fixed",
-                    top: "88%",
-                    right: 0,
-                    transform: "translateY(-50%)",
-                    zIndex: 1300,
-                  }}
-                >
-                  <div
-                    className="toggleDrawerArrowwhite toggleDrawerArrowblack"
-                    onClick={toggleDrawer("right", true)}
-                  >
-                    <img src="./leftarrow.png" className="arrowblack" />
-                    <img src="./leftarrowblack.png" className="arrowwhite" />
-                  </div>
-                </div>
-              )} */}
             </div>
             {window.innerWidth <= 768 ? (
               <>
@@ -1557,12 +1537,6 @@ const PollutantPage = ({ categorizedData }) => {
                       <img src={sliderPosition == 20 ? backwhite : back} />
                     </div>
                     <div className="bottom-section1" id="about-pollutant">
-                      {/* <div
-                        style={{ padding: "35px 0px 0px 7px" }}
-                        onClick={() => setIsSplit(true)}
-                      >
-                        <img src={backwhite} />
-                      </div> */}
                       <AboutPollutantSection
                         sections={aboutpollutantcontent}
                         wasteTypeIcon={wasteTypeData.atomImage}
@@ -2522,38 +2496,12 @@ const PollutantPage = ({ categorizedData }) => {
                 </div>
               </div>
               <div>
-                {/* {!state && (
-                  <div
-                    className="mobile-tab-only"
-                    style={{
-                      position: "fixed",
-                      top: "50%",
-                      right: 0,
-                      transform: "translateY(-50%)",
-                      zIndex: 1300,
-                    }}
-                  >
-                    <div
-                      className="toggleDrawerArrowwhite toggleDrawerArrowblack"
-                      onClick={toggleDrawer("right", true)}
-                    >
-                      <img src="./leftarrow.png" className="arrowblack" />
-                      <img src="./leftarrowblack.png" className="arrowwhite" />
-                    </div>
-                  </div>
-                )} */}
               </div>
               {window.innerWidth <= 768 ? (
                 <>
                   {!isSplit ? (
                     <div className="content-sections">
                       <div className="bottom-section1" id="about-pollutant">
-                        {/* <div
-                        style={{ padding: "35px 0px 0px 7px" }}
-                        onClick={() => setIsSplit(true)}
-                      >
-                        <img src={backwhite} />
-                      </div> */}
                         <AboutPollutantSection
                           sections={aboutpollutantcontent}
                           wasteTypeIcon={wasteTypeData.atomImage}
