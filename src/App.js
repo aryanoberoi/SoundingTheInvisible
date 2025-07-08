@@ -8,7 +8,7 @@ import PlayPads from "./PlayPads";
 import IsolatedCursor from './IsolatedCursor';
 import audioService from './AudioService';
 import { ScrollToTop, inspectScrollableElements } from './ScrollFix';
-import Loader from "./Loader";
+
 const AppContent = () => {
   const location = useLocation();
   const [dataByCategory, setDataByCategory] = useState({});

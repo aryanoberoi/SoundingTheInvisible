@@ -135,7 +135,6 @@ const usePollutantAudio = () => {
 };
 
 export default function Homepage({ audioControls }) {
-  const [showConceptText, setShowConceptText] = useState(false);
   const [showTrapeziumText, setShowTrapeziumText] = useState(false);
   const [showPartneringText, setShowPartneringText] = useState(false);
   const [isFrameHovered, setIsFrameHovered] = useState(false);
