@@ -2901,7 +2901,7 @@ const PollutantPage = ({ categorizedData }) => {
                       <Phyto
                         sections={phytocontent}
                         pollutantName={leftpanelcontent[0].pollutantName}
-                      />{" "}
+                      />{" "}</div>
                       <div
                         style={{
                           width: "100%",
@@ -2931,7 +2931,58 @@ const PollutantPage = ({ categorizedData }) => {
                         </div>
                       </div>
                       {/* * time period overlap */}
-                    </div>
+                      <div
+                          className="col-lg-12 pb-5 mb-5"
+                          style={{ marginBottom: "20px" ,marginTop: "155px" }}
+                        >
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "row",
+                              justifyContent: "center",
+                              gap: 10,
+                              marginTop: 30,
+                            }}
+                          >
+                            <img
+                              src={fb}
+                              alt="Pollutant visual"
+                              style={{ width: "15px", height: "24px" }}
+                            // className="pollutantVisualImage"
+                            />
+                            <img
+                              src={In}
+                              alt="Pollutant visual"
+                              style={{ width: "21px", height: "24px" }}
+                            // className="pollutantVisualImage"
+                            />
+                            <img
+                              src={tw}
+                              alt="Pollutant visual"
+                              style={{ width: "24px", height: "24px" }}
+                            // className="pollutantVisualImage"
+                            />
+                            <img
+                              src={sh}
+                              alt="Pollutant visual"
+                              style={{ width: "27px", height: "24px" }}
+                            // className="pollutantVisualImage"
+                            />
+                          </div>
+                          <p
+                            style={{
+                              color: "#fff",
+                              fontSize: "14px",
+                              fontWeight: "200",
+                              textAlign: "center",
+                            }}
+                          >
+                            &#169;{" "}
+                            <b style={{ fontWeight: "300" }}>NANDITA KUMAR</b>{" "}
+                            2025
+                          </p>
+                        </div>
+                        
                     <div className="white-container">
                       <div className="bottom-section5" id="plant-name">
                         <div className="content-container">
