@@ -2970,7 +2970,7 @@ const PollutantPage = ({ categorizedData }) => {
                         sections={phytocontent}
                         pollutantName={leftpanelcontent[0].pollutantName}
                       />{" "}</div>
-                      <div
+                      {/* <div
                         style={{
                           width: "100%",
                           display: "flex",
@@ -2997,9 +2997,9 @@ const PollutantPage = ({ categorizedData }) => {
                             </p>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                       {/* * time period overlap */}
-                    <div
+                    {/* <div
                           className="col-lg-12 pb-5 mb-5"
                           style={{ marginBottom: "20px" ,marginTop: "155px" }}
                         >
@@ -3049,7 +3049,7 @@ const PollutantPage = ({ categorizedData }) => {
                             <b style={{ fontWeight: "300" }}>NANDITA KUMAR</b>{" "}
                             2025
                           </p>
-                        </div>
+                        </div> */}
                     <div className="white-container">
                       <div className="bottom-section5" id="plant-name">
                         <div className="content-container">
@@ -3118,7 +3118,7 @@ const PollutantPage = ({ categorizedData }) => {
                     <div className="down_arrowstart">
                       <div
                         style={{
-                          background: "#fff",
+                          background: "#000",
                           display: "flex",
                           justifyContent: "center",
                           padding: "0px 10px",
@@ -3127,7 +3127,7 @@ const PollutantPage = ({ categorizedData }) => {
                           handleNavClick("plant-habitat");
                         }}
                       >
-                        <p className="bibliograhy" style={{ color: "#000" }}>
+                        <p className="bibliograhy" style={{ color: "#fff" }}>
                           BIBLIOGRAHY
                         </p>
                       </div>
