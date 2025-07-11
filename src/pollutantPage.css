@@ -1184,9 +1184,8 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
   /* left: calc(100% - 130px); */
   width: 2px;
   background-color: #000;
-  height: 459.5px;
+  height: 473.5px;
   top: 50px;
-  z-index: 0;
 }
 
 .timeline-item {
@@ -2553,7 +2552,7 @@ body.white-panel-active .timeline-line {
   /* left: calc(100% - 130px); */
   width: 2px;
   background-color: #fff !important;
-  height: 516.5px;
+  height: 509.5px;
   top: calc(100% - 85%);
   margin-top: 1em;
   z-index: 0;
