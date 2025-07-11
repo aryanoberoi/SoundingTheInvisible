@@ -3339,7 +3339,7 @@ const PollutantPage = ({ categorizedData }) => {
                 style={{
                   border: "1px solid #000",
                   borderRadius: "50%",
-                  transform: "rotate(180deg)",
+                  transform: "rotate(360deg)",
                   zIndex: 9999,
                 }}
               />
@@ -3352,21 +3352,24 @@ const PollutantPage = ({ categorizedData }) => {
                 justifyContent: "center",
                 display: "flex",
                 // padding: 0,
-                gap: "55px",
+                gap: "26px",
                 // paddingRight: "86.9px",
                 // paddingLeft: "calc(100% - 303px)",
                 padding: "19px 0px 0px 0",
                 width: "200px",
-                transform: `translateX(${window.innerWidth - 307}px)`,
+                transform: `translateX(${window.innerWidth - 308}px)`,
+                top: "0em",
+                position:"relative",
+
                 // transform: `translateX(${window.innerWidth - 10} px)`,
                 // transform: translateX`390px`,
                 // overflow: "hidden",
                 // transform: translateX(${window.innerWidth - 490}px);
               }}
             >
-              {options.map((item, idx) => {
+              {option.map((item, idx) => {
                 const isFirst = idx === 0;
-                const isLast = idx === options.length - 1;
+                const isLast = idx === option.length - 1;
                 return (
                   <li
                     key={idx}
@@ -3401,18 +3404,20 @@ const PollutantPage = ({ categorizedData }) => {
                       {item.label}
                     </span>
                     <span
-                      // className="  --blackviews"
-                      style={{
-                        background: "#fff",
-                        zIndex: 9999,
-                        // paddingRight: "1px";
-                        paddingRight: "1.5px",
-                        borderRadius: "12px",
-                        height: "10px",
-                        width: "9px",
-                        border: "1px solid #fff",
-                      }}
-                    ></span>
+                  className="ml-4 "
+                  style={{
+                    background: "#000",
+                    
+                    // paddingRight: "1px";
+                    paddingRight: "1.5px",
+                    borderRadius: "12px",
+                    height: "10px",
+                    width: "9px",
+                    border: "1px solid #fff",
+                    display:"inline-block"
+                  }}
+                ></span>
+                    
                   </li>
                 );
               })}
