@@ -1900,7 +1900,7 @@ const PollutantPage = ({ categorizedData }) => {
                         }}
                       >
                         <img
-                          src="slider.png"
+                          src="slidermobile.png"
                           alt="Slider"
                           className="slider-image"
                           style={{ zIndex: 999 }}
