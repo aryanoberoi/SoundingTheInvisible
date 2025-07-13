@@ -7,6 +7,10 @@ import longDownArrow from "./long-down-arrow.svg";
 import nutritionalImage from "./nutritional.png";
 import medicineImage from "./uses2.png";
 import additionalImage from "./uses3.png";
+import fbblack from "../facebook-f-brandsblack.png";
+import Inblack from "../instagram-brandsblack.png";
+import twblack from "../x-twitter-brandsblack.png";
+import shblack from "../share-from-square-regularblack.png";
 
 // Helper function to find the scrollable parent container
 const getScrollableParent = (element) => {
@@ -262,6 +266,57 @@ export const UsesOfPlant = ({ sectionsData }) => {
             REFERENCES
           </a>
         </div>
+        <div
+                          className="col-lg-12 pb-5 mb-5"
+                          style={{ marginBottom: "20px" ,marginTop: "155px" }}
+                        >
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "row",
+                              justifyContent: "center",
+                              gap: 10,
+                              marginTop: 30,
+                            }}
+                          >
+                            <img
+                              src={fbblack}
+                              alt="Pollutant visual"
+                              style={{ width: "15px", height: "24px" }}
+                            // className="pollutantVisualImage"
+                            />
+                            <img
+                              src={Inblack}
+                              alt="Pollutant visual"
+                              style={{ width: "21px", height: "24px" }}
+                            // className="pollutantVisualImage"
+                            />
+                            <img
+                              src={twblack}
+                              alt="Pollutant visual"
+                              style={{ width: "24px", height: "24px" }}
+                            // className="pollutantVisualImage"
+                            />
+                            <img
+                              src={shblack}
+                              alt="Pollutant visual"
+                              style={{ width: "27px", height: "24px" }}
+                            // className="pollutantVisualImage"
+                            />
+                          </div>
+                          <p
+                            style={{
+                              color: "#000",
+                              fontSize: "14px",
+                              fontWeight: "200",
+                              textAlign: "center",
+                            }}
+                          >
+                            &#169;{" "}
+                            <b style={{ fontWeight: "300" }}>NANDITA KUMAR</b>{" "}
+                            2025
+                          </p>
+                        </div>
       </div>
     </div>
   );

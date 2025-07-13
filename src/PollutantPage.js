@@ -1915,7 +1915,7 @@ const PollutantPage = ({ categorizedData }) => {
                 <>
                   {sliderPosition == 100 ? (
                     <div className="container" style={{ zIndex: -9999 }}>
-                      <div className="row" style={{ marginTop: "3em",marginLeft: "1em" }}>
+                      <div className="row" style={{ marginTop: "3em", marginLeft: "1em" }}>
                         <div className="col-lg-12">
                           <div style={{ width: "40px", height: "40px" }}>
                             <img
@@ -1933,7 +1933,11 @@ const PollutantPage = ({ categorizedData }) => {
                               color: "#fff",
                               fontSize: "13px",
                               fontWeight: "100",
-                              marginTop: "8px",
+                              marginTop: "12px",
+                              fontFamily: "clash grotesk",
+                              lineHeight: "100%",
+                              letterSpacing: "0.2px",
+                              opacity: "0.9",
                             }}
                           >
                             Pollutant
@@ -1956,13 +1960,13 @@ const PollutantPage = ({ categorizedData }) => {
                           </div>
                           <div
                             className="sectionTitleLeftPanel"
-                            style={{ color: "#fff", textAlign: "left" }}
+                            style={{ color: "#fff", textAlign: "left", marginTop: "32px", marginBottom: "12px" }}
                           >
                             Effects of {pollutantName} on human health:
                           </div>
                           <div
                             className="titleList"
-                            style={{ color: "#fff", textAlign: "left" ,fontSize: "18px"}}
+                            style={{ color: "#fff", textAlign: "left", fontSize: "18px" }}
                           >
                             {healthEffectsTitles.map((title, index) => (
                               <div
@@ -2007,7 +2011,8 @@ const PollutantPage = ({ categorizedData }) => {
                               color: "#fff",
                               textAlign: "left",
                               margin: 0,
-                              marginTop: "3rem",
+                              marginTop: "32px",
+                              marginBottom: "12px"
                             }}
                           >
                             Sources of {pollutantName} In Venice Lagoon:
@@ -2017,6 +2022,7 @@ const PollutantPage = ({ categorizedData }) => {
                             style={{
                               color: "#fff",
                               textAlign: "left",
+                              marginTop: "12px",
                               marginBottom: "12px",
                               width: "100%",
                             }}
@@ -2026,15 +2032,16 @@ const PollutantPage = ({ categorizedData }) => {
                         </div>
                         <div
                           className="col-lg-12 pb-5 mb-5"
-                          style={{ marginBottom: "20px" ,marginTop: "155px" }}
+                          style={{ marginBottom: "20px", marginTop: "133px" }}
                         >
                           <div
                             style={{
                               display: "flex",
                               flexDirection: "row",
                               justifyContent: "center",
-                              gap: 10,
-                              marginTop: 30,
+                              gap: "20px",
+                              marginTop: "30px",
+                              marginBottom: "20px"
                             }}
                           >
                             <img
@@ -2066,14 +2073,37 @@ const PollutantPage = ({ categorizedData }) => {
                             style={{
                               color: "#fff",
                               fontSize: "14px",
-                              fontWeight: "200",
+                              fontWeight: "378",
                               textAlign: "center",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              gap: "4px"
                             }}
                           >
-                            &#169;{" "}
-                            <b style={{ fontWeight: "300" }}>NANDITA KUMAR</b>{" "}
-                            2025
+                            <span
+                              style={{
+                                display: "inline-block",
+                                fontSize: "27px",
+                                width: "32px",
+                                textAlign: "center"
+                              }}
+                            >
+                              &#169;
+                            </span>
+
+                            <b style={{ fontWeight: "300" }}>NANDITA KUMAR</b>
+
+                            <span
+                              style={{
+                                fontWeight: "100",
+                                color: "rgba(255, 255, 255, 0.5)" // light gray for soft look
+                              }}
+                            >
+                              2025
+                            </span>
                           </p>
+
                         </div>
                       </div>
                     </div>
@@ -2196,7 +2226,7 @@ const PollutantPage = ({ categorizedData }) => {
                         </div>
                         <div
                           className="col-lg-12 pb-5 mb-5"
-                          style={{ marginBottom: "20px" ,marginTop: "155px" }}
+                          style={{ marginBottom: "20px", marginTop: "155px" }}
                         >
                           <div
                             style={{
@@ -2965,43 +2995,44 @@ const PollutantPage = ({ categorizedData }) => {
                         pollutantName={leftpanelcontent[0].pollutantName}
                       />
                     </div>
-                    <div className="bottom-section4" id="phytoremediation">
+                    <div className="bottom-section4" id="phytoremediation" style={{ height: "2956px" }}>
                       <Phyto
                         sections={phytocontent}
                         pollutantName={leftpanelcontent[0].pollutantName}
-                      />{" "}</div>
-                      {/* <div
-                        style={{
-                          width: "100%",
-                          display: "flex",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <div className="down_arrowstart">
-                          <div
-                            style={{
-                              background: "#fff",
-                              display: "flex",
-                              justifyContent: "center",
-                              padding: "0px 10px",
-                            }}
-                            onClick={() => {
-                              handleNavClick("plant-habitat");
-                            }}
-                          >
-                            <p
-                              className="bibliograhy"
-                              style={{ color: "#000" }}
+                      />{" "}
+                      <div className="wrap" style={{ marginTop: "43em" }}>
+                        <div
+                          style={{
+                            width: "100%",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <div className="down_arrowstart" style={{ background: "#fff", marginTop: "5em" }}>
+                            <div
+                              style={{
+                                background: "#fff",
+                                display: "flex",
+                                justifyContent: "center",
+                                padding: "0px 10px",
+                              }}
+                              onClick={() => {
+                                handleNavClick("plant-habitat");
+                              }}
                             >
-                              BIBLIOGRAHY
-                            </p>
+                              <p
+                                className="bibliograhy"
+                                style={{ color: "#000" }}
+                              >
+                                BIBLIOGRAHY
+                              </p>
+                            </div>
                           </div>
                         </div>
-                      </div> */}
-                      {/* * time period overlap */}
-                    {/* <div
+                        {/* * time period overlap */}
+                        <div
                           className="col-lg-12 pb-5 mb-5"
-                          style={{ marginBottom: "20px" ,marginTop: "155px" }}
+                          style={{ marginBottom: "20px", marginTop: "155px" }}
                         >
                           <div
                             style={{
@@ -3049,7 +3080,10 @@ const PollutantPage = ({ categorizedData }) => {
                             <b style={{ fontWeight: "300" }}>NANDITA KUMAR</b>{" "}
                             2025
                           </p>
-                        </div> */}
+                        </div>
+                      </div>
+                    </div>
+
                     <div className="white-container">
                       <div className="bottom-section5" id="plant-name">
                         <div className="content-container">
@@ -3359,7 +3393,7 @@ const PollutantPage = ({ categorizedData }) => {
                 width: "200px",
                 transform: `translateX(${window.innerWidth - 308}px)`,
                 top: "0em",
-                position:"relative",
+                position: "relative",
 
                 // transform: `translateX(${window.innerWidth - 10} px)`,
                 // transform: translateX`390px`,
@@ -3404,20 +3438,20 @@ const PollutantPage = ({ categorizedData }) => {
                       {item.label}
                     </span>
                     <span
-                  className="ml-4 "
-                  style={{
-                    background: "#000",
-                    
-                    // paddingRight: "1px";
-                    paddingRight: "1.5px",
-                    borderRadius: "12px",
-                    height: "10px",
-                    width: "9px",
-                    border: "1px solid #fff",
-                    display:"inline-block"
-                  }}
-                ></span>
-                    
+                      className="ml-4 "
+                      style={{
+                        background: "#000",
+
+                        // paddingRight: "1px";
+                        paddingRight: "1.5px",
+                        borderRadius: "12px",
+                        height: "10px",
+                        width: "9px",
+                        border: "1px solid #fff",
+                        display: "inline-block"
+                      }}
+                    ></span>
+
                   </li>
                 );
               })}

@@ -65,10 +65,11 @@ const MobileLeftPanel = ({
               style={{
                 fontSize: "38px",
                 fontWeight: "400",
-                margin: "0px",
+                marginTop: "53px",
                 textAlign: "center",
                 color: "#fff",
-                transform: "translate(-7px, -90px)",
+                transform: "translate(-7px, -36px)",
+                fontFamily: "nippo",
               }}
             >
               {pollutantName}
