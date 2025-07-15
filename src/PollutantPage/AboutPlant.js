@@ -1,5 +1,5 @@
 import React from "react";
-import "./AboutPlant.css";
+import "./css/AboutPlant.css";
 import PeepholeEffect from "./PeepHoleImage";
 
 export const AboutPlant = ({ sections, wasteTypeIcon }) => {
