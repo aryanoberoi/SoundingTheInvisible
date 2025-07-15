@@ -465,11 +465,6 @@ const PollutantPage = ({ categorizedData }) => {
         if (intersectingEntry) {
           setActiveSection(intersectingEntry.target.id);
         }
-        // Optional: If no entry is intersecting, you might want to clear
-        // the active section or keep the last active one, depending on desired UX.
-        // Example: else if (entries.some(entry => !entry.isIntersecting)) {
-        //   // Logic if elements are leaving viewport but none are entering
-        // }
       },
       {
         // Keep the lower threshold
@@ -1732,10 +1727,6 @@ const PollutantPage = ({ categorizedData }) => {
           {isSplit ? (
             <>
               <div>
-                {/* <ConditionalWrapper
-  condition={lastPositionRef !== 20 || lastPositionRef !== 100}
-  wrapper={children => <PreventPullToRefresh>{children}</PreventPullToRefresh>}
->       ok   */}
                 {sliderPosition !== 20 && sliderPosition !== 100 ? (
                   <PreventPullToRefresh>
                     <div
@@ -2224,12 +2215,6 @@ const PollutantPage = ({ categorizedData }) => {
                                           ))
                                       )}
                                     </div>
-                                    {/* {targetId && (
-                                      <KnowMoreButton
-                                        className="knowMoreButtonRightPanel"
-                                        onClick={() => handleNavClick(targetId)}
-                                      />
-                                    )} */}
                                   </div>
                                 );
                               }
@@ -3414,11 +3399,6 @@ const PollutantPage = ({ categorizedData }) => {
                 transform: `translateX(${window.innerWidth - 308}px)`,
                 top: "0em",
                 position: "relative",
-
-                // transform: `translateX(${window.innerWidth - 10} px)`,
-                // transform: translateX`390px`,
-                // overflow: "hidden",
-                // transform: translateX(${window.innerWidth - 490}px);
               }}
             >
               {option.map((item, idx) => {
