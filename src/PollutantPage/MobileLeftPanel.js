@@ -35,7 +35,7 @@ const MobileLeftPanel = ({
         className={`plantContainerleft ${!view ? "" : "--plantContainerleft"}`}
         style={{ width: "100vw",padding:"0px 10px 0px 0px" }}
       >
-        <div style={{ width: "86%" }}>
+        <div style={{ width: "95vw" }}>
           {view ? (
             <p
               style={{
@@ -69,7 +69,7 @@ const MobileLeftPanel = ({
                 marginTop: "53px",
                 textAlign: "center",
                 color: "#fff",
-                transform: "translate(-7px, -36px)",
+                transform: "translate(-7px, -55px)",
                 fontFamily: "nippo",
               }}
             >
@@ -93,7 +93,7 @@ const MobileLeftPanel = ({
                 src={view ? pollutantimagemobile : maskedimagemobile}
                 alt="Pollutant visual"
                 style={{
-                  width: "100vw",
+                  width: "93.5vw",
                   height: "auto",
                 }}
               />

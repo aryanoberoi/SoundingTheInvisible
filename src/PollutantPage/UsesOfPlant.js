@@ -7,6 +7,7 @@ import longDownArrow from "./long-down-arrow.svg";
 import nutritionalImage from "./nutritional.png";
 import medicineImage from "./uses2.png";
 import additionalImage from "./uses3.png";
+//Social media links
 import fbblack from "../facebook-f-brandsblack.png";
 import Inblack from "../instagram-brandsblack.png";
 import twblack from "../x-twitter-brandsblack.png";
