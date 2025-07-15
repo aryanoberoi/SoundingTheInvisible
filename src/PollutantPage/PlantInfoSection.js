@@ -4,7 +4,7 @@ import { KnowMoreButton } from './Knowmorebutton';
 
 export const PlantInfoSection = ({ name, title, description, showKnowMore = true }) => {
   return (
-    <div className={styles.infoSection} style={{ marginBottom: !showKnowMore ? '40px' : '0' }}>
+    <div className={styles.infoSection} style={{ marginBottom: !showKnowMore ? '0px' : '0' }}>
       <div className={styles.infoContent}>
         <h1 className="sectionTitle">{name}</h1>
         <h2 className="sectionTitle">{title}</h2>

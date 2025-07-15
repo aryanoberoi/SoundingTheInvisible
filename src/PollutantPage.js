@@ -2118,7 +2118,14 @@ const PollutantPage = ({ categorizedData }) => {
                     >
                       <div className="row">
                         <div className="col-lg-12">
-                          <p style={{ marginBottom: 0 }}>Plant</p>
+                          <p style={{
+                            margin: "60px 0 2px 0",
+                            fontFamily: "Clash Grotesk",
+                            fontSize: "13px",
+                            fontWeight: "400",
+
+                          }}>
+                            Plant</p>
                           <h3
                             style={{
                               color: "#000",
@@ -2128,13 +2135,19 @@ const PollutantPage = ({ categorizedData }) => {
                               fontWeight: "300",
                               // lineHeight: "normal",
                               letterSpacing: "0.96px",
-                              margin: 0,
+                              margin: "0px 0px 2px 0px",
                               padding: 0,
                             }}
                           >
                             {rightpanelcontent[0].plantName}
                           </h3>
-                          <p>Remediation of {rightpanelcontent[0].plantName}</p>
+                          <p style={{
+                            fontSize: "13px",
+                            fontFamily: "Clash Grotesk",
+                            fontWeight: "400",
+                            margin: "0 0 20px 0"
+                          }}>
+                            Remediation of {rightpanelcontent[0].plantName}</p>
                           <p
                             style={{
                               color: "#000",
@@ -2143,6 +2156,7 @@ const PollutantPage = ({ categorizedData }) => {
                               fontStyle: "normal",
                               fontWeight: "400",
                               lineHeight: "165.091%",
+                              marginBottom: "32px"
                             }}
                           >
                             {rightpanelcontent[0].plantDetails}
@@ -2160,8 +2174,14 @@ const PollutantPage = ({ categorizedData }) => {
                                 }
 
                                 return (
-                                  <div key={index}>
-                                    <div className="sectionTitle">
+                                  <div style={{marginBottom:"32px"}} key={index}>
+                                    <div style={{
+                                      marginTop: "0px",
+                                      fontSize: "18px",
+                                      fontFamily: "Nippo-regular",
+                                      marginBottom: "12px"
+                                    }}
+                                      className="sectionTitle">
                                       {section.title}
                                     </div>
                                     <div className="titleListRightPanel">
@@ -2197,19 +2217,19 @@ const PollutantPage = ({ categorizedData }) => {
                                                   }}
                                                 />
                                               </div>
-                                              <span className="titleTextRightPanel">
+                                              <span style={{marginBottom:"8px"}} className="titleTextRightPanel">
                                                 {line}
                                               </span>
                                             </div>
                                           ))
                                       )}
                                     </div>
-                                    {targetId && (
+                                    {/* {targetId && (
                                       <KnowMoreButton
                                         className="knowMoreButtonRightPanel"
                                         onClick={() => handleNavClick(targetId)}
                                       />
-                                    )}
+                                    )} */}
                                   </div>
                                 );
                               }
@@ -2226,15 +2246,15 @@ const PollutantPage = ({ categorizedData }) => {
                         </div>
                         <div
                           className="col-lg-12 pb-5 mb-5"
-                          style={{ marginBottom: "20px", marginTop: "155px" }}
+                          style={{ marginBottom: "25px", marginTop: "72px" }}
                         >
                           <div
                             style={{
                               display: "flex",
                               flexDirection: "row",
                               justifyContent: "center",
-                              gap: 10,
-                              marginTop: 30,
+                              gap: 20,
+                              marginTop: 20,
                             }}
                           >
                             <img
@@ -2266,13 +2286,30 @@ const PollutantPage = ({ categorizedData }) => {
                             style={{
                               color: "#000",
                               fontSize: "14px",
-                              fontWeight: "200",
+                              fontWeight: "378",
                               textAlign: "center",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              gap: "4px"
                             }}
                           >
-                            &#169;{" "}
-                            <b style={{ fontWeight: "300" }}>NANDITA KUMAR</b>{" "}
-                            2025
+                            <span
+                              style={{
+                                display: "inline-block",
+                                fontSize: "24px",
+                                width: "18px",
+                                textAlign: "center"
+                              }}
+                            >
+                              &#169;
+                            </span>
+
+                            <b style={{ fontWeight: "378" }}>NANDITA KUMAR</b>
+
+                            <span style={{ color: "rgba(0,0,0,0.8)", fontWeight: "340" }}>
+                              2025
+                            </span>
                           </p>
                         </div>
                       </div>

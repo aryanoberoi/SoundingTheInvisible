@@ -39,8 +39,8 @@ const MobileLeftPanel = ({
           {view ? (
             <p
               style={{
-                fontSize: "18px",
-                fontWeight: "400",
+                fontSize: "14px",
+                fontWeight: "378",
                 margin: "0px",
                 textAlign: "center",
                 color: "#fff",
@@ -48,10 +48,11 @@ const MobileLeftPanel = ({
                 position: "absolute",
                 /* transform: translate(0px, -10px); */
 
-                top: "20px",
-                left: "0px",
+                top: "30px",
+                left: "-17px",
                 right: "0px",
                 margin: "0px auto",
+                fontFamily:"Nippo-light"
                 // transform: "translate(0px, -10px)",
               }}
             >

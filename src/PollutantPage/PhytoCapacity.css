@@ -237,9 +237,12 @@
   }
   .titleListRightPanel li {
     font: 300 14px "Chivo Mono";
+    margin-bottom: 12px;
   }
   .plantDetails {
     font: 300 14px "Chivo Mono";
+    margin-top: 12px;
+    margin-bottom: 32px;
   }
   .description {
     font: 400 14px "Chivo Mono";
