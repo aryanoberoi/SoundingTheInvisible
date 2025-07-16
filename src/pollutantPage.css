@@ -1367,7 +1367,7 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
   color: #fff;
   font-family: "ClashGrotesk-Light", -apple-system, sans-serif;
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 28.7px;
   margin: 60px 0 30px 4px; /* Increased bottom margin to 30px */
   display: block; /* Ensure block-level behavior */
@@ -1855,15 +1855,15 @@ body.white-panel-active .nav-bar .p.active > span {
   }
 
   .main-container {
-    width: 100% !important;
+    width: 320px !important;
     margin-left: 0;
-    /* padding: 1rem; */
+    padding: 1rem;
   }
 
   .bottom-section1,
   .effect-on-health-section,
   .white-container > div {
-    padding: 2rem 0rem !important;
+    padding: 0rem 0rem 4rem 0rem !important;
     min-height: auto;
   }
 
@@ -1952,18 +1952,18 @@ img {
 }
 
 .label {
-  font-family: "Nippo-Light";
-  font-size: 16px;
-  font-weight: 378;
-  line-height: 205%;
+  font-family: "Chivo Mono";
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 224%;
   letter-spacing: 0%;
   color: white;
-  margin-right: 10px;
+  margin-right: 6px;
 }
 
 .value {
-  font-family: "Nippo-Light";
-  font-size: 16px;
+  font-family: "Chivo Mono";
+  font-size: 14px;
   font-weight: 378;
   line-height: 205%;
   letter-spacing: 0%;
@@ -2290,7 +2290,7 @@ display: none !important;
   }
   .sound-frequency-section {
     padding-block: 0px !important;
-    height: 500px;
+    height: 580px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -2309,8 +2309,8 @@ display: none !important;
 
   .content-container-title {
     font-size: 20px;
-    /* width: 50px; */
-    padding: 4px 0px;
+    width: 176px;
+    padding: 4px 4px;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -2329,11 +2329,11 @@ display: none !important;
     width: calc(96%) !important;
   }
   .frequency-details {
-    margin-top: 0px !important;
+    margin-top: 29px !important;
   }
   .box-container .box-header-title {
-    font-size: 20px !important;
-    padding: 8px 4px 8px 0px !important;
+    font-size: 24px !important;
+    padding: 8px 4px 8px 2px !important;
     margin-right: -20px !important;
     left: 16px !important;
   }

@@ -12,7 +12,7 @@ export const SoundFrequency = ({ sections }) => {
             <div id = "enthalpy-section" className="content-container-title">Sound Frequency of &nbsp;<span className="mobile-br"><br /></span>  {pollutantName}</div>
         </div>
 
-      <div className="wave-container">
+      <div style={{marginTop:"27px", marginBottom:"29px"}} className="wave-container">
         <SineWaveVisualizer frequency={sections[0].soundfrequency} />
         <div className="frequency-details">
           <div className="detail-item">

@@ -38,6 +38,7 @@ import back from "./back.png";
 import backwhite from "./backwhite.png";
 import split_img from "./split_img.png";
 import PreventPullToRefresh from "./PreventPullToRefresh";
+import DownArrow from "./PollutantPage/down-arrow.svg";
 
 const PollutantPage = ({ categorizedData }) => {
   //this was hell to make
@@ -2165,7 +2166,7 @@ const PollutantPage = ({ categorizedData }) => {
                                 }
 
                                 return (
-                                  <div style={{marginBottom:"32px"}} key={index}>
+                                  <div style={{ marginBottom: "32px" }} key={index}>
                                     <div style={{
                                       marginTop: "0px",
                                       fontSize: "18px",
@@ -2208,7 +2209,7 @@ const PollutantPage = ({ categorizedData }) => {
                                                   }}
                                                 />
                                               </div>
-                                              <span style={{marginBottom:"8px"}} className="titleTextRightPanel">
+                                              <span style={{ marginBottom: "8px" }} className="titleTextRightPanel">
                                                 {line}
                                               </span>
                                             </div>
@@ -2988,9 +2989,9 @@ const PollutantPage = ({ categorizedData }) => {
                       style={{ padding: "35px 0px 0px 7px" }}
                       onClick={() => setIsSplit(true)}
                     >
-                      <img src={sliderPosition == 20 ? backwhite : back} />
+                      <img style={{ marginTop: "18px" }} src={sliderPosition == 20 ? backwhite : back} />
                     </div>
-                    <div className="bottom-section1" id="about-pollutant">
+                    <div style={{ marginTop: "50px" }} className="bottom-section1" id="about-pollutant">
                       <AboutPollutantSection
                         sections={aboutpollutantcontent}
                         wasteTypeIcon={wasteTypeData.atomImage}
@@ -3002,7 +3003,7 @@ const PollutantPage = ({ categorizedData }) => {
                     >
                       <SoundFrequency sections={sinewavefreq} />
                     </div>
-                    <div
+                    <div style={{ marginTop: "110px" }}
                       className="effect-on-health-section"
                       id="effect-on-health"
                     >
@@ -3011,100 +3012,140 @@ const PollutantPage = ({ categorizedData }) => {
                         pollutantName={leftpanelcontent[0].pollutantName}
                       />
                     </div>
-                    <div className="bottom-section3" id="case-study">
+                    {/* <div className="bottom-section3" id="case-study">
                       <CaseStudies
                         sections={casestudiescontent}
                         pollutantName={leftpanelcontent[0].pollutantName}
                       />
-                    </div>
-                    <div className="bottom-section4" id="phytoremediation" style={{ height: "2956px" }}>
+                    </div> */}
+                    <div className="bottom-section4" id="phytoremediation" style={{ height: "2025px" }}>
                       <Phyto
                         sections={phytocontent}
                         pollutantName={leftpanelcontent[0].pollutantName}
-                      />{" "}
-                      <div className="wrap" style={{ marginTop: "43em" }}>
+                      />{" "}</div>
+
+                    <img
+                      alt="down arrow"
+                      src={DownArrow}
+                      className="down-arrow-icon"
+                      style={{ marginTop: '209px', marginBottom: '0px', marginLeft: '156px' }}
+                    />
+
+
+                    <div className="wrap" style={{ marginTop: "193px", marginBottom: "140px" }}>
+                      <div
+                        style={{
+                          width: "100%",
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
+                      >
+
+
+
+                        <div className="down_arrowstart" style={{ background: "#fff", marginTop: "5em" }}>
+
+
+                        </div>
+
                         <div
                           style={{
-                            width: "100%",
+                            background: "#fff",
                             display: "flex",
                             justifyContent: "center",
+                            padding: "0px 10px",
+                          }}
+                          onClick={() => {
+                            handleNavClick("plant-habitat");
                           }}
                         >
-                          <div className="down_arrowstart" style={{ background: "#fff", marginTop: "5em" }}>
-                            <div
-                              style={{
-                                background: "#fff",
-                                display: "flex",
-                                justifyContent: "center",
-                                padding: "0px 10px",
-                              }}
-                              onClick={() => {
-                                handleNavClick("plant-habitat");
-                              }}
-                            >
-                              <p
-                                className="bibliograhy"
-                                style={{ color: "#000" }}
-                              >
-                                BIBLIOGRAHY
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        {/* * time period overlap */}
-                        <div
-                          className="col-lg-12 pb-5 mb-5"
-                          style={{ marginBottom: "20px", marginTop: "155px" }}
-                        >
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "row",
-                              justifyContent: "center",
-                              gap: 10,
-                              marginTop: 30,
-                            }}
-                          >
-                            <img
-                              src={fb}
-                              alt="Pollutant visual"
-                              style={{ width: "15px", height: "24px" }}
-                            // className="pollutantVisualImage"
-                            />
-                            <img
-                              src={In}
-                              alt="Pollutant visual"
-                              style={{ width: "21px", height: "24px" }}
-                            // className="pollutantVisualImage"
-                            />
-                            <img
-                              src={tw}
-                              alt="Pollutant visual"
-                              style={{ width: "24px", height: "24px" }}
-                            // className="pollutantVisualImage"
-                            />
-                            <img
-                              src={sh}
-                              alt="Pollutant visual"
-                              style={{ width: "27px", height: "24px" }}
-                            // className="pollutantVisualImage"
-                            />
-                          </div>
                           <p
-                            style={{
-                              color: "#fff",
-                              fontSize: "14px",
-                              fontWeight: "200",
-                              textAlign: "center",
-                            }}
+                            className="bibliograhy"
+                            style={{ color: "#000" }}
                           >
-                            &#169;{" "}
-                            <b style={{ fontWeight: "300" }}>NANDITA KUMAR</b>{" "}
-                            2025
+                            REFERENCES
                           </p>
                         </div>
+
+                      </div>
+                      {/* * time period overlap */}
+                      <div
+                        className="col-lg-12 pb-5 mb-5"
+                        style={{ marginBottom: "20px", marginTop: "133px" }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "center",
+                            gap: "20px",
+                            marginTop: "30px",
+                            marginBottom: "20px"
+                          }}
+                        >
+                          <img
+                            src={fb}
+                            alt="Pollutant visual"
+                            style={{ width: "15px", height: "24px" }}
+                          // className="pollutantVisualImage"
+                          />
+                          <img
+                            src={In}
+                            alt="Pollutant visual"
+                            style={{ width: "21px", height: "24px" }}
+                          // className="pollutantVisualImage"
+                          />
+                          <img
+                            src={tw}
+                            alt="Pollutant visual"
+                            style={{ width: "24px", height: "24px" }}
+                          // className="pollutantVisualImage"
+                          />
+                          <img
+                            src={sh}
+                            alt="Pollutant visual"
+                            style={{ width: "27px", height: "24px" }}
+                          // className="pollutantVisualImage"
+                          />
+                        </div>
+                        <p
+                          style={{
+                            color: "#fff",
+                            fontSize: "14px",
+                            fontWeight: "378",
+                            textAlign: "center",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "4px"
+                          }}
+                        >
+                          <span
+                            style={{
+                              display: "inline-block",
+                              fontSize: "27px",
+                              width: "32px",
+                              textAlign: "center"
+                            }}
+                          >
+                            &#169;
+                          </span>
+
+                          <b style={{ fontWeight: "300" }}>NANDITA KUMAR</b>
+
+                          <span
+                            style={{
+                              fontWeight: "100",
+                              color: "rgba(255, 255, 255, 0.5)" // light gray for soft look
+                            }}
+                          >
+                            2025
+                          </span>
+                        </p>
+
                       </div>
                     </div>
+                    {/* </div> */}
 
                     <div className="white-container">
                       <div className="bottom-section5" id="plant-name">
