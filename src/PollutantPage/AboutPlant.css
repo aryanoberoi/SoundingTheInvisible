@@ -74,12 +74,12 @@
   color: #000 !important;
   mix-blend-mode: difference;
   width: 80%;
-  font-family: 'ClashGrotesk-Light', -apple-system, sans-serif;
+  font-family: 'ClashGrotesk-light', -apple-system, sans-serif;
   font-weight: 400;
   font-size: 14px;
-  line-height: 205%;
+  line-height: 204.999999%;
   letter-spacing: 0%;
-  margin: 0px 5px 30px 4px;
+  margin: 26px 0px 55px 0px;
 }
 
 .inverted-graphic-container {
@@ -155,14 +155,15 @@
 }
 @media screen and (max-width:768px) {
   .about-pollutant{
-    font-size: 24px !important;
+    font-size: 19px !important;
+    font-weight: bold;
   }
   .image.inverted-text{
     width: 63px;
     height: 63px;
   }
   .lorem-ipsum-dolor.inverted-text{
-    width: 93% !important;
+    width: 95% !important;
     font-size: 14px !important;
   }
   .wetland-black-bar {

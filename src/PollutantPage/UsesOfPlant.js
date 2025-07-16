@@ -175,7 +175,7 @@ export const UsesOfPlant = ({ sectionsData }) => {
           </div>
           <div>
 
-          <div className={section.id}>{section.title}</div>
+          <div className={section.id}>{section.title} USES</div>
           <div className={`${section.id}-text-text`}>{section.flavourtext}</div>
           </div>
             </div>
@@ -269,15 +269,15 @@ export const UsesOfPlant = ({ sectionsData }) => {
         </div>
         <div
                           className="col-lg-12 pb-5 mb-5"
-                          style={{ marginBottom: "20px" ,marginTop: "155px" }}
+                          style={{ marginBottom: "25px" ,marginTop: "72px" }}
                         >
                           <div
                             style={{
                               display: "flex",
                               flexDirection: "row",
                               justifyContent: "center",
-                              gap: 10,
-                              marginTop: 30,
+                              gap: 20,
+                              marginTop: 20,
                             }}
                           >
                             <img
@@ -309,13 +309,30 @@ export const UsesOfPlant = ({ sectionsData }) => {
                             style={{
                               color: "#000",
                               fontSize: "14px",
-                              fontWeight: "200",
+                              fontWeight: "378",
                               textAlign: "center",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              gap: "4px"
                             }}
                           >
-                            &#169;{" "}
-                            <b style={{ fontWeight: "300" }}>NANDITA KUMAR</b>{" "}
-                            2025
+                            <span
+                              style={{
+                                display: "inline-block",
+                                fontSize: "24px",
+                                width: "18px",
+                                textAlign: "center"
+                              }}
+                            >
+                              &#169;
+                            </span>
+
+                            <b style={{ fontWeight: "378" }}>NANDITA KUMAR</b>
+
+                            <span style={{ color: "rgba(0,0,0,0.8)", fontWeight: "340" }}>
+                              2025
+                            </span>
                           </p>
                         </div>
       </div>

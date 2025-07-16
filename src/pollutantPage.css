@@ -1857,13 +1857,13 @@ body.white-panel-active .nav-bar .p.active > span {
   .main-container {
     width: 320px !important;
     margin-left: 0;
-    padding: 1rem;
+    padding: 1rem 1rem 0rem 1rem;
   }
 
   .bottom-section1,
   .effect-on-health-section,
   .white-container > div {
-    padding: 0rem 0rem 4rem 0rem !important;
+    padding: 0rem 0rem 0rem 0rem !important;
     min-height: auto;
   }
 
@@ -2257,7 +2257,7 @@ display: none !important;
 @media (max-width: 768px) {
   .main-container {
     margin: 0% !important;
-    padding-bottom: 30px;
+    /* padding-bottom: 30px; */
   }
   .imagePollutant {
     width: 57.5px;
