@@ -51,7 +51,7 @@ export const AboutPlant = ({ sections, wasteTypeIcon }) => {
           <PeepholeEffect 
             imageUrl={peepholeImage} 
             width="100%" 
-            height="auto" 
+            height="692px" 
           />
         </div>
         <div className="wetland-status-container">

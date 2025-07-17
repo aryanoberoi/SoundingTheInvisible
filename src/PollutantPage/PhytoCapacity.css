@@ -164,9 +164,9 @@
 
 .vertical-divider-right {
   position: absolute;
-  right: 0;
-  top: 46px;
-  bottom: -97px;
+  right: 13px;
+  top: 82px;
+  bottom: -133px;
   border-right: 1px solid black;
   transform: translateX(50%);
 }
