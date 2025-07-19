@@ -14,8 +14,8 @@ export const CommonNames = ({ sections }) => {
   const nameEntries = sections.slice(1);
 
   return (
-    <div className="common-names-container">
-        <div className="common-names-header">
+    <div style={{paddingBottom:"0px"}} className="common-names-container">
+        <div style={{paddingBottom:"51px"}} className="common-names-header">
           {window.innerWidth <= 768 ?
             <div className="common-names-title">Common names of &nbsp;<br/>{plant_names}</div>
           :

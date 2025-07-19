@@ -107,7 +107,7 @@ export const Footer = () => {
                   rel="noopener noreferrer"
 
                 >
-                  Aryan Oberoi
+                  Aryan Oberoi | Armaan Nayyar | Arham 
                 </a>
               </div>
             </div>

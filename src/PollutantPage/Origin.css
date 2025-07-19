@@ -34,7 +34,7 @@
 .origin-section-container .origin-section-title {
     background-color: transparent !important; /* Remove original background */
     color: #fff;
-    font: 378 32px 'Nippo-Regular', sans-serif;
+    font: 378 24px 'Nippo-Regular', sans-serif;
     font-weight: 400;
     left: 0;
     letter-spacing: 3%;

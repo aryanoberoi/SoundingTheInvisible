@@ -14,7 +14,7 @@ export const AboutPollutantSection = ({ sections, wasteTypeIcon }) => {
   const pollutantIcon = wasteTypeIcon || 'agriculture-waste-icon.svg';
 
   return (
-      <div className="main-container" id="about-pollutant">
+      <div style={{paddingTop:"0px"}} className="main-container" id="about-pollutant">
         <div className="flex-row-f">
           <img 
             src={pollutantIcon} 

@@ -29,7 +29,7 @@ export const AboutPlant = ({ sections, wasteTypeIcon }) => {
           />
           <div id="about-plant-section" className="about-pollutant">
             <span className="about" style={{color: 'black'}}>About </span>
-            <span style={{color: 'black'}}>{plantName} </span>
+            <span style={{color: 'black' , textDecoration:"underline"}}>{plantName} </span>
           </div>
         </div>
         {/* Rest of component remains unchanged */}
@@ -51,7 +51,7 @@ export const AboutPlant = ({ sections, wasteTypeIcon }) => {
           <PeepholeEffect 
             imageUrl={peepholeImage} 
             width="100%" 
-            height="auto" 
+            height="692px" 
           />
         </div>
         <div className="wetland-status-container">

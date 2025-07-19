@@ -109,11 +109,11 @@
   
 .common-names-container .common-names-item-title {
     color: #000 !important;
-    font-family: "ClashGrotesk-Regular", Helvetica;
+    font-family: "ClashGrotesk", Helvetica;
     font-size: 20px;
     font-weight: 500;
     letter-spacing: 3%;
-    line-height: 166%;
+    line-height: 297%;
     width: fit-content;
     position: relative;
 }
@@ -128,10 +128,11 @@
     transition: transform 0.3s ease;
     margin-left: 10px;
     position: relative;
-    top: 10px;
+    top: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: bold;
 }
   
 .common-names-container .common-names-item-icon {
