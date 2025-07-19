@@ -108,7 +108,7 @@ export const Footer = () => {
                   style={{ fontSize: "18px" }}
 
                 >
-                  Aryan Oberoi
+                  Aryan Oberoi | Armaan Nayyar | Arham 
                 </a>
               </div>
             </div>
