@@ -105,6 +105,7 @@ export const Footer = () => {
                   href="https://www.linkedin.com/in/aryan-oberoi-1b4358195/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  style={{ fontSize: "18px" }}
 
                 >
                   Aryan Oberoi
@@ -196,7 +197,7 @@ export const Footer = () => {
 
       <div className={styles.section}>
         <span className={styles.title}>Project Supported by:</span>
-        <p className={styles.description} style={{ maxWidth: '740px'}}>
+        <p className={styles.description} style={{ maxWidth: '725px' }}>
           This work was commissioned within the framework of the S+T+ARTS 4Water II residency program by <span style={{ textDecoration: 'underline' }}>TBA21–Academy </span>with the support of <span style={{ textDecoration: 'underline' }}>Konsortium Deutsche Meeresforschung (KDM) </span>within the Prep4Blue project as a contribution to the EU Restore our Ocean and Waters by 2030, and with the collaboration of <span style={{ textDecoration: 'underline' }}>Ca' Foscari, CNR-ISMAR, ETT, and Venice International University.</span>
 
           <br /><br />Initial Support: <a href="https://leonardo.info/imagination-fellowship" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline} >ASU Leonardo Imagination Fellowship</a>, <a href="https://www.unesco.org/en/futures-literacy" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>UNESCO FUTURE Literacy</a>, <a href="https://www.awesomefoundation.org/en/projects/165230-sounding-the-invisible-an-elegant-symbiosis" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>The Awesome Foundation</a>.
@@ -209,11 +210,12 @@ export const Footer = () => {
       <center>
         <div className={styles.section}>
           <div className={styles.imageContainer}>
-            <button onClick={shareLink} style={{ marginRight: '10px', background: "none", border: "none", padding: 0 }}>
-              <img src="instagram.png" alt="Instagram" className={styles.supporterImage} />
-            </button>
+           
             <button onClick={shareToFacebook} style={{ marginRight: '10px', background: "none", border: "none", padding: 0 }}>
               <img src="facebook.png" alt="Facebook" className={styles.supporterImage} />
+            </button>
+            <button onClick={shareLink} style={{ marginRight: '10px', background: "none", border: "none", padding: 0 }}>
+              <img src="instagram.png" alt="Instagram" className={styles.supporterImage} />
             </button>
             <button onClick={shareToTwitter} style={{ marginRight: '10px', background: "none", border: "none", padding: 0 }}>
               <img src="twitter.png" alt="Twitter" className={styles.supporterImage} />
@@ -223,8 +225,12 @@ export const Footer = () => {
             </button>
           </div>
           <p className={styles.description}>
-            <img src="copyright.png" alt="Copyright" className={styles.supporterImage} style={{ marginRight: '10px' }} />
-            NANDITA KUMAR 2025
+            {/* <img src="copyright.png" alt="Copyright" className={styles.supporterImage} style={{ marginRight: '8px', padding }} /> */}
+            <span style={{ marginRight: '5px', fontSize: '29px', paddingTop: '0px' }}>&copy;</span>
+            <span style={{ fontFamily: "nippo", fontWeight: 300, letterSpacing: '1px' }}>NANDITA KUMAR</span> <span style={{ fontFamily: "nippo-light", fontWeight: 200, letterSpacing: '1px' }}>
+              2025
+            </span>
+
           </p>
         </div>
       </center>

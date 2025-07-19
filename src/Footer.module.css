@@ -63,8 +63,8 @@
 }
 
 .description {
-  font-family: 'Nippo';
-  font-size: 14px;
+  font-family: 'Nippo-light';
+  font-size: 18px;  
   font-weight: 300;
   line-height: 27px;
   letter-spacing: 0.54px;
@@ -92,28 +92,31 @@
 .imageContainer {
   display: flex;
   justify-content: center; /* Center the social media icons */
-  margin-top: 20px;
-  margin-bottom: 20px;
+  /* margin-top: 20px;
+  margin-bottom: 20px; */
+  gap: 20px;
 }
 
 .supporterImage {
-  width: 24px; /* Adjust size as needed */
-  height: 24px;
+  width: 21px; /* Adjust size as needed */
+  height: 28px;
 }
 
 /* New styles for researcher list */
 .researcherList {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Align names to the left */
-  gap: 0; /* No gap between items for the line to connect */
+  flex-direction: row; /* changed from column to row */
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px; /* spacing between names and separators */
+  flex-shrink: 0;
 }
 
 .researcherLine {
-  width: 1px; /* Width of the line */
-  height: 10px; /* Height of the line between names */
+  width: 2px; /* Width of the line */
+  height: 20px; /* Height of the line between names */
   background-color: black;
-  margin-left: 8px; /* Adjust to align with the center of the text or as desired */
+  /* margin-left: 8px; Adjust to align with the center of the text or as desired */
 }
 
 /* MOBILE VIEW (applies below 700px) */
