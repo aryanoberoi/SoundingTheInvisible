@@ -105,10 +105,9 @@ export const Footer = () => {
                   href="https://www.linkedin.com/in/aryan-oberoi-1b4358195/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ fontSize: "18px" }}
-
+                  className={`${styles.websiteDevNames}`}
                 >
-                  Aryan Oberoi | Armaan Nayyar | Arham 
+                  Aryan Oberoi | Armaan Nayyar | Arham
                 </a>
               </div>
             </div>
@@ -210,7 +209,7 @@ export const Footer = () => {
       <center>
         <div className={styles.section}>
           <div className={styles.imageContainer}>
-           
+
             <button onClick={shareToFacebook} style={{ marginRight: '10px', background: "none", border: "none", padding: 0 }}>
               <img src="facebook.png" alt="Facebook" className={styles.supporterImage} />
             </button>
