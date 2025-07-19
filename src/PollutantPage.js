@@ -1979,7 +1979,7 @@ const PollutantPage = ({ categorizedData }) => {
                           <div
                             className="sectionTitleLeftPanel"
                             style={{
-                              paddingBottom: "10px",
+                              paddingBottom: "20px",
                               color: "#fff",
                               textAlign: "left",
                             }}
