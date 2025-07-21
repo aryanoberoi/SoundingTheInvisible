@@ -3018,7 +3018,7 @@ const PollutantPage = ({ categorizedData }) => {
                         pollutantName={leftpanelcontent[0].pollutantName}
                       />
                     </div> */}
-                    <div className="bottom-section4" id="phytoremediation" style={{ height: "2025px" }}>
+                    <div className="bottom-section4" id="phytoremediation" style={{ height: "3125px" }}>
                       <Phyto
                         sections={phytocontent}
                         pollutantName={leftpanelcontent[0].pollutantName}
