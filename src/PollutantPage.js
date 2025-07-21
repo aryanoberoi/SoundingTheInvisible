@@ -2003,7 +2003,7 @@ const PollutantPage = ({ categorizedData }) => {
                               color: "#fff",
                               textAlign: "left",
                               margin: 0,
-                              marginTop: "32px",
+                              marginTop: "55px",
                               marginBottom: "12px"
                             }}
                           >
@@ -2203,13 +2203,13 @@ const PollutantPage = ({ categorizedData }) => {
                                                   src={habitatIcons[lineIndex]}
                                                   alt={`icon-${lineIndex}`}
                                                   style={{
-                                                    width: "100%",
-                                                    height: "100%",
+                                                    width: "31.4px",
+                                                    height: "21.43px%",
                                                     objectFit: "contain",
                                                   }}
                                                 />
                                               </div>
-                                              <span style={{ marginBottom: "8px" }} className="titleTextRightPanel">
+                                              <span style={{ marginBottom: "8px",paddingTop:"7px" }} className="titleTextRightPanel">
                                                 {line}
                                               </span>
                                             </div>

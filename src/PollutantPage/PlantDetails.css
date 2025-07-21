@@ -227,7 +227,7 @@
 .rightPanel-sidebar > :first-child h3,
 .rightPanel-sidebar > :first-child .title,
 .rightPanel-sidebar > :first-child .sectionTitle {
-  font-size: 24px !important;
+  font-size: 18px !important;
   font-family: 'Nippo-Regular', sans-serif;
   letter-spacing: 3%;
   font-weight: 378;
