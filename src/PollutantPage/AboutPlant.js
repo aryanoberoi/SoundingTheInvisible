@@ -43,7 +43,7 @@ export const AboutPlant = ({ sections, wasteTypeIcon }) => {
         </div>
         <span
           className="lorem-ipsum-dolor inverted-text"
-          style={{ whiteSpace: 'pre-line', width: '100%' }}
+          style={{ whiteSpace: 'pre-line', width: '100%', marginTop:'25px',marginBottom:'39px' }}
         >
           {aboutPlantText}
         </span>
@@ -54,7 +54,7 @@ export const AboutPlant = ({ sections, wasteTypeIcon }) => {
             height="692px" 
           />
         </div>
-        <div className="wetland-status-container">
+        <div style={{marginTop:"0px"}} className="wetland-status-container">
           <div className="rectangle-inv" />
           <div className="wetland-black-bar" />
           <div className="wetland-status-text">Wetland Status</div>

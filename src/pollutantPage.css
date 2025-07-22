@@ -2009,7 +2009,7 @@ img {
   position: absolute;
   top: 0;
   left: 3px; /* Inset from left */
-  right: -7px; /* Inset from right */
+  right: -40px; /* Inset from right */
   bottom: 0;
   background-color: #fff;
   z-index: -1; /* Place behind text */
@@ -2246,7 +2246,7 @@ display: none !important;
   }
   .slider-image-container {
     position: relative !important;
-    top: 0 !important;
+    top: -2 !important;
     width: auto;
     display: block !important;
     transform: rotate(90deg);
@@ -2308,7 +2308,7 @@ display: none !important;
   }
 
   .content-container-title {
-    font-size: 20px;
+    font-size: 24px;
     width: 176px;
     padding: 4px 4px;
     display: flex;
@@ -2320,8 +2320,8 @@ display: none !important;
     position: absolute;
     left: 3px; /* Match the left inset of the background */
     bottom: 0;
-    width: 110% !important;
-    height: 12px;
+    width: 150% !important;
+    height: 8px;
     background-color: #ffffff;
     z-index: -1;
   }

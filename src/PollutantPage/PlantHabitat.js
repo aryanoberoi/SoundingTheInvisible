@@ -18,7 +18,7 @@ export const PlantHabitat = ({ sections }) => {
             </div>
 
             {/* Flex container for plant SVG and sections */}
-            <div className="content-wrapper">
+            <div style={{marginBottom:'150px'}} className="content-wrapper">
               {/* Plant SVG on the left */}
               <div className="plant-svg-container">
                 <img
@@ -35,7 +35,7 @@ export const PlantHabitat = ({ sections }) => {
                     key={index} 
                     className={`habitat-section-${index + 1}`}
                   >
-                    <div className="section-title">{section.title}</div>
+                    <div style={{marginTop:'25px'}} className="section-title">{section.title}</div>
                     <p className="section-content">{section.content}</p>
                   </div>
                 ))}

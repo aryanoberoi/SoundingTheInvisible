@@ -1,6 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 
-const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
+const PeepholeEffect = ({ imageUrl,
+  plantimagemobile,
+  maskedimagemobile,
+  view,
+  width = "100%",
+  height = "100%" }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [radius, setRadius] = useState(180);
   const [showSlider, setShowSlider] = useState(false);
@@ -47,13 +52,13 @@ const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
   const handleMouseMove = (e) => {
     // Only update position if not locked
     if (locked) return;
-    
+
     if (containerRef.current) {
       // Get position relative to the container
       const rect = containerRef.current.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      
+
       // Make sure coordinates are within bounds
       if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
         setPosition({ x, y });
@@ -67,7 +72,7 @@ const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
   };
 
   return (
-    <div 
+    <div
       ref={containerRef}
       style={{
         width: width,
@@ -79,13 +84,13 @@ const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
         justifyContent: "center",
         alignItems: "center",
         cursor: "default", // Use default cursor
-      }} 
+      }}
       onMouseMove={handleMouseMove}
       onClick={toggleLock} // Toggle lock on click
     >
       {/* Hidden SVG image (only visible through peephole) */}
       <img
-        src={imageUrl}
+        src={view ? plantimagemobile : maskedimagemobile}
         alt="Peephole background"
         style={{
           width: "100%",
@@ -93,7 +98,8 @@ const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
           objectFit: "contain",
           position: "relative",
           display: "block",
-          visibility: "hidden" // Hide the original image
+          //visibility: "hidden" 
+          // Hide the original image
         }}
       />
 
@@ -125,7 +131,7 @@ const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
           }}
         >
           {/* White background behind visible SVG parts */}
-          <div 
+          <div
             style={{
               position: "absolute",
               top: 0,
@@ -136,7 +142,7 @@ const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
               zIndex: 1
             }}
           />
-          
+
           {/* SVG image - only visible within the peephole */}
           <img
             src={imageUrl}
@@ -155,7 +161,7 @@ const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
       {/* Lock indicator removed as requested */}
 
       {/* Radius Adjuster with hide/show on hover */}
-      <div 
+      <div
         style={{
           position: "absolute",
           bottom: "10px",
@@ -178,7 +184,7 @@ const PeepholeEffect = ({ imageUrl, width = "100%", height = "100%" }) => {
           max="300"
           value={radius}
           onChange={(e) => setRadius(parseInt(e.target.value))}
-          style={{ 
+          style={{
             width: "150px",
             cursor: "pointer"
           }}

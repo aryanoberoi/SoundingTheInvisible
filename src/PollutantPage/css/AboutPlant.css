@@ -79,7 +79,7 @@
   font-size: 14px;
   line-height: 204.999999%;
   letter-spacing: 0%;
-  margin: 26px 0px 55px 0px;
+  margin: 0px 0px 50px 0px;
 }
 
 .inverted-graphic-container {
@@ -122,7 +122,7 @@
 .rectangle-inv {
   background-color: #000;
   position: absolute;
-  width: 210px;
+  width: 170px;
   height: 60%;
   left: 0;
   top: 0;
@@ -131,7 +131,7 @@
 .wetland-black-bar {
   position: absolute;
   width: 55%;
-  height: 15%;
+  height: 13%;
   background-color: #000;
   top: 27px;
   left: 0;
@@ -167,7 +167,7 @@
     font-size: 14px !important;
   }
   .wetland-black-bar {
- width: 100% !important; 
+ width: 102% !important; 
   }
   .common-names-container .common-names-items{
     margin-left: 0px !important;
