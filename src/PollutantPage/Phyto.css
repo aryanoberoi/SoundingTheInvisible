@@ -304,7 +304,7 @@
   position: absolute;
   top: 0;
   left: 3px; /* Inset from left */
-  right: -7px; /* Inset from right */
+  right: 4px; /* Inset from right */
   bottom: 0;
   background-color: #fff;
   z-index: -1; /* Place behind text */
@@ -315,8 +315,8 @@
   position: absolute;
   left: 3px; /* Match the left inset of the background */
   bottom: 0;
-  width: 111%;
-  height: 12px;
+  width: 115%;
+  height: 7px;
   background-color: #ffffff;
   z-index: -1;
 }
@@ -395,7 +395,7 @@
   }
   .text-wrapper-99 {
     width: 100% !important;
-    top: 9px !important;
+    top: 18px !important;
   }
   .bottom-section4 .box .overlap-group .medium-label {
     right: 23px;

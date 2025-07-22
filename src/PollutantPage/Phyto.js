@@ -22,7 +22,7 @@ export const Phyto = ({ sections, pollutantName }) => {
             <span className="mobile-br">
               <br />
             </span>{" "}
-            {pollutantName} contamination
+            {pollutantName}
           </div>{" "}
         </div>
       </div>
