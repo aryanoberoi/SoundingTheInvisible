@@ -3,7 +3,7 @@
     min-height: 1200px;
     position: relative;
     width: 100%;
-    padding: 50px 0;
+    padding: 0px 0;
     margin-left: calc(3%);
     overflow: hidden;
     background-color: white;
@@ -406,11 +406,12 @@
 .origin-map-image {
     filter: none !important;
     display: block;
-    margin-top: 18em;
+    margin-top: 14em;
     margin-right: auto;
     max-width: 80%;
     position: relative;
     z-index: 0;
+    margin-bottom: 110px;
 }
 @media screen and (max-width:768px) {
     .origin-section-container{
@@ -418,11 +419,11 @@
     }
     .origin-section-container .transparent-border-rectangle {
         /* left: 204px; */
-        left: calc(100% - 197px);
+        left: calc(100% - 160px);
         width: calc(100% - 40px);
-        top: 571px;
-        height: 40% !important;
-        transform: translate(-50%, -18%) !important;
+        top: 585px;
+        height: 67% !important;
+        transform: translate(-50%, -24%) !important;
 
     }
 

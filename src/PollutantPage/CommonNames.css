@@ -59,7 +59,7 @@
     left: 3px; /* Match the left inset of the background */
     bottom: 0;
     width: 120%;
-    height: 12px;
+    height: 8px;
     background-color: #000;
     z-index: -1;
 }
@@ -67,7 +67,7 @@
 .common-names-container .common-names-items {
     position: relative;
     margin-left: 40px;
-    margin-top: calc(5%);
+    margin-top: calc(-5%);
 }
   
 .common-names-container .common-names-item {

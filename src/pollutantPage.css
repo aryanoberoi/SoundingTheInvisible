@@ -2246,7 +2246,7 @@ display: none !important;
   }
   .slider-image-container {
     position: relative !important;
-    top: 0 !important;
+    top: -2 !important;
     width: auto;
     display: block !important;
     transform: rotate(90deg);
