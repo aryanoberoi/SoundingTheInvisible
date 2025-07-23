@@ -264,14 +264,19 @@ export default function Homepage({ audioControls }) {
   return (
     <div className="homepage">
       {/* Add the Audio Enable Popup */}
-      <AudioEnablePopup visible={showAudioPopup} onClick={handleEnableAudio} />
+      {/* <AudioEnablePopup visible={showAudioPopup} onClick={handleEnableAudio} /> */}
 
       {/* Apply blurred class to main content when popup is shown */}
-      <div
+      {/* <div
         className={
           showAudioPopup
             ? "homepage-content homepage-blurred"
             : "homepage-content"
+        }
+      > */}
+        <div
+        className={
+      "homepage-content"
         }
       >
         {/* comment */}
