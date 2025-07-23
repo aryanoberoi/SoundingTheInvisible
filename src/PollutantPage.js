@@ -3440,7 +3440,7 @@ const PollutantPage = ({ categorizedData }) => {
                 marginBottom: "20px",
                 zIndex: 999,
                 background: "#fff",
-                paddingLeft: "calc(100% - 292px)",
+                paddingLeft: "calc(100% - 296px)",
               }}
               onClick={() => handleNavClick("slider-container")}
             >
@@ -3617,7 +3617,7 @@ const PollutantPage = ({ categorizedData }) => {
                     <span
                       className="ml-4 "
                       style={{
-                        background: "#000",
+                        background: "#fff",
 
                         // paddingRight: "1px";
                         paddingRight: "1.5px",
@@ -3649,7 +3649,7 @@ const PollutantPage = ({ categorizedData }) => {
                 <span
                   className="ml-4 "
                   style={{
-                    background: "#000",
+                    background: "#fff",
                     zIndex: 9999,
                     // paddingRight: "1px";
                     paddingRight: "1.5px",

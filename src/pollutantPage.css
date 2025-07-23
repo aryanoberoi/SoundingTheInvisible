@@ -2528,7 +2528,7 @@ body.white-panel-active .close-buttons {
   bottom: 0px;
 }
 .--blackviews {
-  background: #fff;
+  background: #000000;
   z-index: 9999;
   padding-right: 1px;
   padding-right: 1.5px;
