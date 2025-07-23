@@ -2652,11 +2652,12 @@ const PollutantPage = ({ categorizedData }) => {
                         <div className="bottom-section6" id="common-names">
                           <CommonNames sections={commonname} />
                         </div>
-                        <div className="bottom-section7" id="plant-habitat">
-                          <PlantHabitat sections={habitat} />
-                        </div>
+                        
                         <div className="bottom-section8" id="origin">
                           <Origin sections={geographicaldistribution} />
+                        </div>
+                        <div className="bottom-section7" id="plant-habitat">
+                          <PlantHabitat sections={habitat} />
                         </div>
                         <div className="bottom-section9" id="phyto-capacity">
                           <PhytoCapacity sections={sectionphyto} />
@@ -3297,12 +3298,15 @@ const PollutantPage = ({ categorizedData }) => {
                       <div className="bottom-section6" id="common-names">
                         <CommonNames sections={commonname} />
                       </div>
-                      <div className="bottom-section7" id="plant-habitat">
-                        <PlantHabitat sections={habitat} />
-                      </div>
+                      
                       <div className="bottom-section8" id="origin">
                         <Origin sections={geographicaldistribution} />
                       </div>
+
+                      <div className="bottom-section7" id="plant-habitat">
+                        <PlantHabitat sections={habitat} />
+                      </div>
+
                       <div className="bottom-section9" id="phyto-capacity">
                         <PhytoCapacity sections={sectionphyto} />
                       </div>
@@ -3388,11 +3392,13 @@ const PollutantPage = ({ categorizedData }) => {
                   <div className="bottom-section6" id="common-names">
                     <CommonNames sections={commonname} />
                   </div>
-                  <div className="bottom-section7" id="plant-habitat">
-                    <PlantHabitat sections={habitat} />
-                  </div>
+                  
                   <div className="bottom-section8" id="origin">
                     <Origin sections={geographicaldistribution} />
+                  </div>
+
+                  <div className="bottom-section7" id="plant-habitat">
+                    <PlantHabitat sections={habitat} />
                   </div>
                   <div className="bottom-section9" id="phyto-capacity">
                     <PhytoCapacity sections={sectionphyto} />

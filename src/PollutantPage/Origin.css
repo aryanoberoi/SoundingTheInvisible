@@ -23,7 +23,7 @@
 
 .origin-section-container .origin-section-header {
     background-color: #fff;
-    height: 57px;
+    height: 66px;
     position: relative;
     width: fit-content;
     display: inline-block;
@@ -38,7 +38,7 @@
     font-weight: 400;
     left: 0;
     letter-spacing: 3%;
-    line-height: 100%;
+    line-height: 125%;
     position: relative; /* Ensure positioning context */
     top: 10px;
     width: fit-content;
@@ -349,7 +349,7 @@
 .origin-section-container .overlay-text {
     position: absolute;
     left: 360px;
-    top: 455px;
+    top: 425px;
     transform: translate(-180px, -430px);
     color: transparent;
     background: 
@@ -411,7 +411,7 @@
     max-width: 80%;
     position: relative;
     z-index: 0;
-    margin-bottom: 110px;
+    margin-bottom: 200px;
 }
 @media screen and (max-width:768px) {
     .origin-section-container{
@@ -419,10 +419,10 @@
     }
     .origin-section-container .transparent-border-rectangle {
         /* left: 204px; */
-        left: calc(100% - 160px);
-        width: calc(100% - 40px);
-        top: 585px;
-        height: 67% !important;
+        left: calc(100% - 194px);
+        width: calc(100% - 100px);
+        top: 624px;
+        height: 61% !important;
         transform: translate(-50%, -24%) !important;
 
     }
@@ -433,7 +433,7 @@
     }
 
     .origin-section-container img {
-    width: 95% !important;
+    width: 100% !important;
     }
 }
 @media screen and (max-width:550px) {
