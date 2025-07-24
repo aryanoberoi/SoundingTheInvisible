@@ -13,22 +13,6 @@ import AudioEnablePopup from "./AudioPopup.js"; // Import the new component
 import audioService from "./AudioService";
 
 export default function Homepage({ audioControls }) {
-  useEffect(() => {
-    // This code runs once when the component mounts (page loads)
-
-    // Clear localStorage
-    localStorage.clear();
-    console.log('localStorage cleared.');
-
-    // Clear sessionStorage
-    sessionStorage.clear();
-    console.log('sessionStorage cleared.');
-
-    // You can also remove specific items if you don't want to clear everything
-    // localStorage.removeItem('mySpecificItem');
-    // sessionStorage.removeItem('anotherItem');
-
-  }, []); 
   const [showTrapeziumText, setShowTrapeziumText] = useState(false);
   const [showPartneringText, setShowPartneringText] = useState(false);
   const [isFrameHovered, setIsFrameHovered] = useState(false);
@@ -158,21 +142,16 @@ export default function Homepage({ audioControls }) {
   return (
     <div className="homepage">
       {/* Add the Audio Enable Popup */}
-      {/* <AudioEnablePopup visible={showAudioPopup} onClick={handleEnableAudio} /> */}
+      <AudioEnablePopup visible={showAudioPopup} onClick={handleEnableAudio} /> 
 
       {/* Apply blurred class to main content when popup is shown */}
-      {/* <div
+       <div
         className={
           showAudioPopup
             ? "homepage-content homepage-blurred"
             : "homepage-content"
         }
-      > */}
-        <div
-        className={
-      "homepage-content"
-        }
-      >
+      > 
         <SoundToggle
           padNumber={DEFAULT_PAD_NUMBER}
           isInTrapezium={isInTrapezium}

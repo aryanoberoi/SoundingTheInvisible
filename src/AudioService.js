@@ -1,5 +1,5 @@
 // src/services/AudioService.js
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:6000";
+const API_URL = process.env.REACT_APP_API_URL || "https://api.nanditakumar.com";
 
 class AudioService {
   constructor() {
@@ -489,8 +489,15 @@ class AudioService {
     return control;
   }
 
+ // ... existing code ...
+
   // Get audio URL with caching
   async getAudioUrl(padNumber, sendPostRequest = false, tankNumber = null) {
+    // If already cached, return the cached URL
+    if (this.cachedUrls[padNumber]) {
+      return this.cachedUrls[padNumber];
+    }
+
     try {
       const endpoint = `${API_URL}/play_pad?pad=${padNumber}`;
       if (sendPostRequest) {
@@ -498,7 +505,7 @@ class AudioService {
         const body = tankNumber
           ? JSON.stringify({ pad: padNumber, tankNumber })
           : JSON.stringify({ pad: padNumber });
-  
+
         const postResponse = await fetch(endpoint, {
           method: 'POST',
           headers: {
@@ -506,7 +513,7 @@ class AudioService {
           },
           body,
         });
-  
+
         if (!postResponse.ok) {
           throw new Error(`Failed to send POST request for pad ${padNumber}`);
         }
@@ -516,19 +523,24 @@ class AudioService {
           }`
         );
       }
-  
+
       // Always do the GET request to actually fetch the audio
       const response = await fetch(endpoint);
       if (!response.ok) throw new Error(`Failed to fetch sound for pad ${padNumber}`);
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);
+
+      // Cache the URL for future use
+      this.cachedUrls[padNumber] = url;
+
       return url;
     } catch (err) {
       console.error(`Error fetching pad ${padNumber}:`, err);
       throw err;
     }
   }
-  
+
+
 
   // Stop a specific pad sound
   async stopPadSound(padNumber, fadeOutDuration = 2000) {

@@ -19,7 +19,6 @@ import { useParams } from "react-router-dom";
 import { Drawer, styled } from "@mui/material";
 import MobileRightPanel from "./PollutantPage/MobileRightPanel";
 import MobileLeftPanel from "./PollutantPage/MobileLeftPanel";
-import { KnowMoreButton } from "./PollutantPage/Knowmorebutton";
 import SineWaveVisualizer from "./PollutantPage/sinwave";
 import { PlantInfoSection } from "./PollutantPage/PlantInfoSection";
 import tempIcon from "./PollutantPage/temp.png";
