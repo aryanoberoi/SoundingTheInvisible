@@ -85,8 +85,10 @@
 
 .phyto-svg-container img {
   width: auto;
-  height: 100%;
+  height: 55%;
   object-fit: contain;
+  position: relative;
+  top: 70px;
 }
 
 .phyto-content-wrapper,
@@ -126,10 +128,14 @@
 .section-divider {
   border-bottom: 1px solid black;
   margin: 0.5rem 0;
+  width: 19.98em;
 }
 
 .phyto-content-wrapper-reversed .section-divider {
-  margin-left: 150px;
+  margin-left: 21px;
+  position: relative;
+  right: -22px;
+  width: 14em;
 }
 
 .phyto-benefits-heading {
@@ -165,7 +171,7 @@
 
 .vertical-divider-right {
   position: absolute;
-  right: 13px;
+  right: -35px;
   top: 82px;
   bottom: -133px;
   border-right: 1px solid black;

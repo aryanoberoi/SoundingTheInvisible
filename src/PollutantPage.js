@@ -40,6 +40,34 @@ import split_img from "./split_img.png";
 import PreventPullToRefresh from "./PreventPullToRefresh";
 import DownArrow from "./PollutantPage/down-arrow.svg";
 
+const shareToFacebook = () => {
+  const url = encodeURIComponent(window.location.href);
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
+};
+
+const shareToTwitter = () => {
+  const url = encodeURIComponent(window.location.href);
+  const text = encodeURIComponent(document.title);
+  window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, "_blank");
+};
+
+const shareLink = async () => {
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: document.title,
+        text: 'Check this out!',
+        url: window.location.href,
+      });
+      console.log('Link shared successfully');
+    } catch (err) {
+      console.error('Error sharing:', err);
+    }
+  } else {
+    alert('Sharing not supported on this browser. Please copy the link manually.');
+  }
+};
+
 const PollutantPage = ({ categorizedData }) => {
   //this was hell to make
   const { customName } = useParams();
@@ -2003,7 +2031,7 @@ const PollutantPage = ({ categorizedData }) => {
                               color: "#fff",
                               textAlign: "left",
                               margin: 0,
-                              marginTop: "55px",
+                              marginTop: "80px",
                               marginBottom: "12px"
                             }}
                           >
@@ -2040,24 +2068,28 @@ const PollutantPage = ({ categorizedData }) => {
                               src={fb}
                               alt="Pollutant visual"
                               style={{ width: "15px", height: "24px" }}
+                              onClick={shareToFacebook}
                             // className="pollutantVisualImage"
                             />
                             <img
                               src={In}
                               alt="Pollutant visual"
                               style={{ width: "21px", height: "24px" }}
+                              onClick={shareLink}
                             // className="pollutantVisualImage"
                             />
                             <img
                               src={tw}
                               alt="Pollutant visual"
                               style={{ width: "24px", height: "24px" }}
+                              onClick={shareToTwitter}
                             // className="pollutantVisualImage"
                             />
                             <img
                               src={sh}
                               alt="Pollutant visual"
                               style={{ width: "27px", height: "24px" }}
+                              onClick={shareLink}
                             // className="pollutantVisualImage"
                             />
                           </div>
@@ -2139,7 +2171,7 @@ const PollutantPage = ({ categorizedData }) => {
                             fontWeight: "400",
                             margin: "0 0 20px 0"
                           }}>
-                            Remediation of {rightpanelcontent[0].plantName}</p>
+                            Remediation of {leftpanelcontent[0].pollutantName}</p>
                           <p
                             style={{
                               color: "#000",
@@ -2247,24 +2279,28 @@ const PollutantPage = ({ categorizedData }) => {
                               src={fbblack}
                               alt="Pollutant visual"
                               style={{ width: "15px", height: "24px" }}
+                              onClick={shareToFacebook}
                             // className="pollutantVisualImage"
                             />
                             <img
                               src={Inblack}
                               alt="Pollutant visual"
                               style={{ width: "21px", height: "24px" }}
+                              onClick={shareLink}
                             // className="pollutantVisualImage"
                             />
                             <img
                               src={twblack}
                               alt="Pollutant visual"
                               style={{ width: "24px", height: "24px" }}
+                              onClick={shareToTwitter}
                             // className="pollutantVisualImage"
                             />
                             <img
                               src={shblack}
                               alt="Pollutant visual"
                               style={{ width: "27px", height: "24px" }}
+                              onClick={shareLink}
                             // className="pollutantVisualImage"
                             />
                           </div>
@@ -3085,7 +3121,7 @@ const PollutantPage = ({ categorizedData }) => {
                         {/* * time period overlap */}
                         <div
                           className="col-lg-12 pb-5 mb-5"
-                          style={{ marginBottom: "20px", marginTop: "133px" }}
+                          style={{ marginBottom: "10px", marginTop: "125px" }}
                         >
                           <div
                             style={{
@@ -3101,24 +3137,28 @@ const PollutantPage = ({ categorizedData }) => {
                               src={fb}
                               alt="Pollutant visual"
                               style={{ width: "15px", height: "24px" }}
+                              onClick={shareToFacebook}
                             // className="pollutantVisualImage"
                             />
                             <img
                               src={In}
                               alt="Pollutant visual"
                               style={{ width: "21px", height: "24px" }}
+                              onClick={shareLink}
                             // className="pollutantVisualImage"
                             />
                             <img
                               src={tw}
                               alt="Pollutant visual"
                               style={{ width: "24px", height: "24px" }}
+                              onClick={shareToTwitter}
                             // className="pollutantVisualImage"
                             />
                             <img
                               src={sh}
                               alt="Pollutant visual"
                               style={{ width: "27px", height: "24px" }}
+                              onClick={shareLink}
                             // className="pollutantVisualImage"
                             />
                           </div>

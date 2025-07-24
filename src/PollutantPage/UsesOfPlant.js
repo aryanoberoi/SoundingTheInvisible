@@ -13,6 +13,34 @@ import Inblack from "../instagram-brandsblack.png";
 import twblack from "../x-twitter-brandsblack.png";
 import shblack from "../share-from-square-regularblack.png";
 
+const shareToFacebook = () => {
+  const url = encodeURIComponent(window.location.href);
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
+};
+
+const shareToTwitter = () => {
+  const url = encodeURIComponent(window.location.href);
+  const text = encodeURIComponent(document.title);
+  window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, "_blank");
+};
+
+const shareLink = async () => {
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: document.title,
+        text: 'Check this out!',
+        url: window.location.href,
+      });
+      console.log('Link shared successfully');
+    } catch (err) {
+      console.error('Error sharing:', err);
+    }
+  } else {
+    alert('Sharing not supported on this browser. Please copy the link manually.');
+  }
+};
+
 // Helper function to find the scrollable parent container
 const getScrollableParent = (element) => {
   if (!element) return document.body;
@@ -173,7 +201,7 @@ export const UsesOfPlant = ({ sectionsData }) => {
             className="circle-image" 
           />
           </div>
-          <div>
+          <div style={{position:"relative",top:"24px"}}>
 
           <div className={section.id}>{section.title} USES</div>
           <div className={`${section.id}-text-text`}>{section.flavourtext}</div>
@@ -197,7 +225,7 @@ export const UsesOfPlant = ({ sectionsData }) => {
                         width: '33px',
                         height: '33px',
                         position: 'absolute',
-                        left: '-22px',
+                        left: '-23px',
                         top: '50%',
                         transform: 'translateY(-50%)',
                         zIndex: 2
@@ -284,24 +312,28 @@ export const UsesOfPlant = ({ sectionsData }) => {
                               src={fbblack}
                               alt="Pollutant visual"
                               style={{ width: "15px", height: "24px" }}
+                              onClick={shareToFacebook}
                             // className="pollutantVisualImage"
                             />
                             <img
                               src={Inblack}
                               alt="Pollutant visual"
                               style={{ width: "21px", height: "24px" }}
+                              onClick={shareLink}
                             // className="pollutantVisualImage"
                             />
                             <img
                               src={twblack}
                               alt="Pollutant visual"
                               style={{ width: "24px", height: "24px" }}
+                              onClick={shareToTwitter}
                             // className="pollutantVisualImage"
                             />
                             <img
                               src={shblack}
                               alt="Pollutant visual"
                               style={{ width: "27px", height: "24px" }}
+                              onClick={shareLink}
                             // className="pollutantVisualImage"
                             />
                           </div>

@@ -22,6 +22,7 @@
     position: relative;
     padding-top: 100px;
     padding-left: 40px;
+    padding-bottom: 60px;
 }
 
 .uses-of-plant-container .uses-of-plant-header {
@@ -160,7 +161,7 @@
     position: absolute;
     top: 20px;
     left: 20px;
-    width: 2px;
+    width: 1px;
     background-color: #000;
 }
 
@@ -181,7 +182,7 @@
     top: 20px;
     left: 20px;
     width: 66px;
-    height: 2px;
+    height: 1px;
     background-color: #000;
 }
 
@@ -191,7 +192,7 @@
     bottom: 0px;
     left: 20px;
     width: 120px;
-    height: 2px;
+    height: 1px;
     background-color: #000;
 }
 
@@ -212,7 +213,7 @@
 @supports (background: linear-gradient(#000, #000)) {
     .items-content-container .bottom-border-dotted {
         border-top: none;
-        height: 2px;
+        height: 1px;
         background: linear-gradient(to right, #000 10px, transparent 5px);
         background-size: 18px 2px;
         background-repeat: repeat-x;
@@ -328,6 +329,8 @@
     font-size: 28px;
     line-height: 37.8px;
     letter-spacing: 0.03em;
+    position:relative;
+    top: -17px;
 }
 
 .additional-text-header {
@@ -387,6 +390,7 @@
     transition: background-color 0.3s ease;
     margin-top: 20px;
     align-self: flex-start;
+    text-decoration-line: none;
 }
 
 @media screen and (max-width:768px) {
@@ -394,13 +398,13 @@
 padding-left: 0px;
     }
     .circle-inverted{
-        width: 50px;
-        height: 50px;
+        width: 57px;
+        height: 57px;
     
     }
     .circle-image{
-        width: 28px;
-        height: 28px;
+        width: 35px;
+        height: 35px;
     }
     .nutritional-text-text{
         width: 100%;
