@@ -13,6 +13,31 @@ import AudioEnablePopup from "./AudioPopup.js"; // Import the new component
 import audioService from "./AudioService";
 
 export default function Homepage({ audioControls }) {
+  useEffect(() => {
+    console.log('--- Homepage Component Mounted: Performing full page reset ---');
+
+    // 1. Clear browser's persistent storage
+    localStorage.clear();
+    console.log('localStorage cleared.');
+    sessionStorage.clear();
+    console.log('sessionStorage cleared.');
+
+    // 2. IMPORTANT: Reset the AudioService's internal audio playback state
+    // The mapping itself is NOT cleared by this call anymore.
+    audioService.resetAllAudioState();
+    console.log('AudioService state completely reset. Mapping retained.');
+
+    // 3. Reset React's internal state that depends on storage/external state
+    setAudioEnabled(true);
+    // ... (rest of your existing logic for showAudioPopup and audioEnabled initial state) ...
+
+    console.log('--- Reset complete. ---');
+
+    return () => {
+      console.log('Homepage component unmounting.');
+      // ... (optional cleanup when unmounting) ...
+    };
+  }, []);
   const [showTrapeziumText, setShowTrapeziumText] = useState(false);
   const [showPartneringText, setShowPartneringText] = useState(false);
   const [isFrameHovered, setIsFrameHovered] = useState(false);
@@ -94,19 +119,18 @@ export default function Homepage({ audioControls }) {
     console.log("Audio ref initialized:", audioRef.current);
   }, []);
 
-  // Update the useEffect that handles audio state synchronization
-  useEffect(() => {
-    // First, directly update AudioService's mute state
-    console.log(`[Homepage] Setting global audio mute state: ${!audioEnabled}`);
-    audioService.isMuted = !audioEnabled;
-    audioService.toggleMute(!audioEnabled);
+// In Homepage.js
+useEffect(() => {
+  // First, directly update AudioService's mute state
+  console.log(`[Homepage] Setting global audio mute state: ${!audioEnabled}`);
+  audioService.isMuted = !audioEnabled;
+  audioService.toggleMute(!audioEnabled); // This will handle playing/stopping ambient sound
 
-    // Then update usePollutantAudio if it exists
-    if (audioControls && typeof audioControls.setEnabled === "function") {
-      audioControls.setEnabled(audioEnabled);
-    }
-  }, [audioEnabled, audioControls]);
-
+  // Then update usePollutantAudio if it exists
+  if (audioControls && typeof audioControls.setEnabled === "function") {
+    audioControls.setEnabled(audioEnabled);
+  }
+}, [audioEnabled, audioControls]); // DEFAULT_PAD_NUMBER is no longer a direct dependency here
   // Add the new useEffect for handling audio blocking
   useEffect(() => {
     const handleBlocked = () => setShowAudioPopup(true);
@@ -142,16 +166,19 @@ export default function Homepage({ audioControls }) {
   return (
     <div className="homepage">
       {/* Add the Audio Enable Popup */}
-      <AudioEnablePopup visible={showAudioPopup} onClick={handleEnableAudio} /> 
+      {/* <AudioEnablePopup visible={showAudioPopup} onClick={handleEnableAudio} />  */}
 
       {/* Apply blurred class to main content when popup is shown */}
-       <div
+       {/* <div
         className={
           showAudioPopup
             ? "homepage-content homepage-blurred"
             : "homepage-content"
         }
-      > 
+      >  */}
+             <div
+        className={"homepage-content"}
+      >  
         <SoundToggle
           padNumber={DEFAULT_PAD_NUMBER}
           isInTrapezium={isInTrapezium}
