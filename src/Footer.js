@@ -107,7 +107,7 @@ export const Footer = () => {
                   rel="noopener noreferrer"
                   className={`${styles.websiteDevNames}`}
                 >
-                  Aryan Oberoi | Armaan Nayyar | Arham
+                  Aryan Oberoi | Arham
                 </a>
               </div>
             </div>

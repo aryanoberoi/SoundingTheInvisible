@@ -13,126 +13,126 @@ import AudioEnablePopup from "./AudioPopup.js"; // Import the new component
 import audioService from "./AudioService";
 
 // In Homepage.js - Create data-driven audio manager
-const usePollutantAudio = () => {
-  const [audioData, setAudioData] = useState({});
-  const [enabled, setEnabled] = useState(false); // Add enabled state
-  const audioInstancesRef = useRef({});
-  const audioContext = useRef(null);
+// const usePollutantAudio = () => {
+//   const [audioData, setAudioData] = useState({});
+//   const [enabled, setEnabled] = useState(false); // Add enabled state
+//   const audioInstancesRef = useRef({});
+//   const audioContext = useRef(null);
 
-  // Initialize Audio Context and load data
-  useEffect(() => {
-    // Initialize WebAudio API
-    audioContext.current = new (window.AudioContext ||
-      window.webkitAudioContext)();
+//   // Initialize Audio Context and load data
+//   useEffect(() => {
+//     // Initialize WebAudio API
+//     audioContext.current = new (window.AudioContext ||
+//       window.webkitAudioContext)();
 
-    // Load pollutant audio mapping from dataset
-    fetch("/api/pollutant-audio-data")
-      .then((res) => res.json())
-      .then((data) => {
-        setAudioData(data);
-      });
+//     // Load pollutant audio mapping from dataset
+//     fetch("/api/pollutant-audio-data")
+//       .then((res) => res.json())
+//       .then((data) => {
+//         setAudioData(data);
+//       });
 
-    return () => {
-      // Clean up audio on unmount
-      Object.values(audioInstancesRef.current).forEach((instance) => {
-        if (instance.oscillator) instance.oscillator.stop();
-        if (instance.gainNode) instance.gainNode.disconnect();
-      });
-      audioContext.current?.close();
-    };
-  }, []);
+//     return () => {
+//       // Clean up audio on unmount
+//       Object.values(audioInstancesRef.current).forEach((instance) => {
+//         if (instance.oscillator) instance.oscillator.stop();
+//         if (instance.gainNode) instance.gainNode.disconnect();
+//       });
+//       audioContext.current?.close();
+//     };
+//   }, []);
 
-  // Generate sound based on pollutant properties
-  const playPollutantSound = (elementId) => {
-    if (!audioContext.current || !audioData[elementId] || !enabled) return; // Check if enabled
+//   // Generate sound based on pollutant properties
+//   const playPollutantSound = (elementId) => {
+//     if (!audioContext.current || !audioData[elementId] || !enabled) return; // Check if enabled
 
-    // Stop any currently playing element sound
-    stopActiveSounds();
+//     // Stop any currently playing element sound
+//     stopActiveSounds();
 
-    const pollutant = audioData[elementId];
+//     const pollutant = audioData[elementId];
 
-    // Extract audio parameters from dataset
-    const frequency = parseFloat(pollutant.Sound_Frequency) || 440;
-    const audibleFreq =
-      parseFloat(pollutant.SineWaveVisualizer_frequency_audiblefrequency) ||
-      frequency;
-    const enthalpy = parseFloat(pollutant.Enthalpy_) || 0;
+//     // Extract audio parameters from dataset
+//     const frequency = parseFloat(pollutant.Sound_Frequency) || 440;
+//     const audibleFreq =
+//       parseFloat(pollutant.SineWaveVisualizer_frequency_audiblefrequency) ||
+//       frequency;
+//     const enthalpy = parseFloat(pollutant.Enthalpy_) || 0;
 
-    // Create oscillator based on pollutant properties
-    const oscillator = audioContext.current.createOscillator();
-    const gainNode = audioContext.current.createGain();
+//     // Create oscillator based on pollutant properties
+//     const oscillator = audioContext.current.createOscillator();
+//     const gainNode = audioContext.current.createGain();
 
-    // Set frequency characteristics based on chemistry
-    oscillator.type = enthalpy > 0 ? "sine" : "triangle";
-    oscillator.frequency.value = audibleFreq;
+//     // Set frequency characteristics based on chemistry
+//     oscillator.type = enthalpy > 0 ? "sine" : "triangle";
+//     oscillator.frequency.value = audibleFreq;
 
-    // Set envelope based on pollutant type
-    gainNode.gain.setValueAtTime(0, audioContext.current.currentTime);
-    gainNode.gain.linearRampToValueAtTime(
-      0.3,
-      audioContext.current.currentTime + 0.1
-    );
+//     // Set envelope based on pollutant type
+//     gainNode.gain.setValueAtTime(0, audioContext.current.currentTime);
+//     gainNode.gain.linearRampToValueAtTime(
+//       0.3,
+//       audioContext.current.currentTime + 0.1
+//     );
 
-    // Different decay patterns based on pollutant type
-    if (pollutant.type_of_waste === 1) {
-      // Chemical
-      gainNode.gain.exponentialRampToValueAtTime(
-        0.01,
-        audioContext.current.currentTime + 1.5
-      );
-    } else if (pollutant.type_of_waste === 2) {
-      // Heavy metal
-      gainNode.gain.linearRampToValueAtTime(
-        0.01,
-        audioContext.current.currentTime + 2.0
-      );
-    } else {
-      // Other pollutants
-      gainNode.gain.exponentialRampToValueAtTime(
-        0.01,
-        audioContext.current.currentTime + 1.0
-      );
-    }
+//     // Different decay patterns based on pollutant type
+//     if (pollutant.type_of_waste === 1) {
+//       // Chemical
+//       gainNode.gain.exponentialRampToValueAtTime(
+//         0.01,
+//         audioContext.current.currentTime + 1.5
+//       );
+//     } else if (pollutant.type_of_waste === 2) {
+//       // Heavy metal
+//       gainNode.gain.linearRampToValueAtTime(
+//         0.01,
+//         audioContext.current.currentTime + 2.0
+//       );
+//     } else {
+//       // Other pollutants
+//       gainNode.gain.exponentialRampToValueAtTime(
+//         0.01,
+//         audioContext.current.currentTime + 1.0
+//       );
+//     }
 
-    oscillator.connect(gainNode);
-    gainNode.connect(audioContext.current.destination);
+//     oscillator.connect(gainNode);
+//     gainNode.connect(audioContext.current.destination);
 
-    oscillator.start();
+//     oscillator.start();
 
-    // Store for cleanup
-    audioInstancesRef.current[elementId] = { oscillator, gainNode };
+//     // Store for cleanup
+//     audioInstancesRef.current[elementId] = { oscillator, gainNode };
 
-    // Auto-stop after 2 seconds
-    setTimeout(() => {
-      if (audioInstancesRef.current[elementId]) {
-        stopElementSound(elementId);
-      }
-    }, 2000);
-  };
+//     // Auto-stop after 2 seconds
+//     setTimeout(() => {
+//       if (audioInstancesRef.current[elementId]) {
+//         stopElementSound(elementId);
+//       }
+//     }, 2000);
+//   };
 
-  // Stop specific element sound
-  const stopElementSound = (elementId) => {
-    if (audioInstancesRef.current[elementId]) {
-      const { oscillator, gainNode } = audioInstancesRef.current[elementId];
-      oscillator.stop();
-      gainNode.disconnect();
-      delete audioInstancesRef.current[elementId];
-    }
-  };
+//   // Stop specific element sound
+//   const stopElementSound = (elementId) => {
+//     if (audioInstancesRef.current[elementId]) {
+//       const { oscillator, gainNode } = audioInstancesRef.current[elementId];
+//       oscillator.stop();
+//       gainNode.disconnect();
+//       delete audioInstancesRef.current[elementId];
+//     }
+//   };
 
-  // Stop all active sounds
-  const stopActiveSounds = () => {
-    Object.keys(audioInstancesRef.current).forEach(stopElementSound);
-  };
+//   // Stop all active sounds
+//   const stopActiveSounds = () => {
+//     Object.keys(audioInstancesRef.current).forEach(stopElementSound);
+//   };
 
-  return {
-    playPollutantSound,
-    stopElementSound,
-    stopActiveSounds,
-    enabled,
-    setEnabled, // Export the setEnabled function
-  };
-};
+//   return {
+//     playPollutantSound,
+//     stopElementSound,
+//     stopActiveSounds,
+//     enabled,
+//     setEnabled, // Export the setEnabled function
+//   };
+// };
 
 export default function Homepage({ audioControls }) {
   const [showTrapeziumText, setShowTrapeziumText] = useState(false);
