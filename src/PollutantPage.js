@@ -1534,7 +1534,7 @@ const PollutantPage = ({ categorizedData }) => {
                   className="mobile-tab-only"
                   style={{
                     position: "fixed",
-                    top: "88%",
+                    top: "50%",
                     right: 0,
                     transform: "translateY(-50%)",
                     zIndex: 1300,
@@ -3001,7 +3001,7 @@ const PollutantPage = ({ categorizedData }) => {
                   className="mobile-tab-only"
                   style={{
                     position: "fixed",
-                    top: "88%",
+                    top: "50%",
                     right: 0,
                     transform: "translateY(-50%)",
                     zIndex: 1300,
