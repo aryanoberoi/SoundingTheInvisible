@@ -3002,7 +3002,7 @@ const PollutantPage = ({ categorizedData }) => {
                   style={{
                     position: "fixed",
                     top: "50%",
-                    right: 0,
+                    right: 0, 
                     transform: "translateY(-50%)",
                     zIndex: 1300,
                   }}
