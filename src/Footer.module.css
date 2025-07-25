@@ -59,7 +59,7 @@
 
 .nameUnderline {
   composes: name;
-  text-decoration: underline !important;
+  /* text-decoration: underline !important; */
 }
 
 .description {

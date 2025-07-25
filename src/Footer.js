@@ -197,7 +197,7 @@ export const Footer = () => {
       <div className={styles.section}>
         <span className={styles.title}>Project Supported by:</span>
         <p className={styles.description} style={{ maxWidth: '725px' }}>
-          This work was commissioned within the framework of the S+T+ARTS 4Water II residency program by <span style={{ textDecoration: 'underline' }}>TBA21–Academy </span>with the support of <span style={{ textDecoration: 'underline' }}>Konsortium Deutsche Meeresforschung (KDM) </span>within the Prep4Blue project as a contribution to the EU Restore our Ocean and Waters by 2030, and with the collaboration of <span style={{ textDecoration: 'underline' }}>Ca' Foscari, CNR-ISMAR, ETT, and Venice International University.</span>
+          This work was commissioned within the framework of the S+T+ARTS 4Water II residency program by <span >TBA21–Academy </span>with the support of <span >Konsortium Deutsche Meeresforschung (KDM) </span>within the Prep4Blue project as a contribution to the EU Restore our Ocean and Waters by 2030, and with the collaboration of <span >Ca' Foscari, CNR-ISMAR, ETT, and Venice International University.</span>
 
           <br /><br />Initial Support: <a href="https://leonardo.info/imagination-fellowship" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline} >ASU Leonardo Imagination Fellowship</a>, <a href="https://www.unesco.org/en/futures-literacy" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>UNESCO FUTURE Literacy</a>, <a href="https://www.awesomefoundation.org/en/projects/165230-sounding-the-invisible-an-elegant-symbiosis" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>The Awesome Foundation</a>.
         </p>
