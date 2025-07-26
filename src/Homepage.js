@@ -167,7 +167,7 @@ useEffect(() => {
     <div className="homepage">
       {/* Add the Audio Enable Popup */}
       {/* <AudioEnablePopup visible={showAudioPopup} onClick={handleEnableAudio} />  */}
-
+{/* commented out the audio enable popup */}
       {/* Apply blurred class to main content when popup is shown */}
        {/* <div
         className={
