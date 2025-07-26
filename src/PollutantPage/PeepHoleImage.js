@@ -98,7 +98,7 @@ const PeepholeEffect = ({ imageUrl,
           objectFit: "contain",
           position: "relative",
           display: "block",
-          //visibility: "hidden" 
+          visibility: "hidden" 
           // Hide the original image
         }}
       />
