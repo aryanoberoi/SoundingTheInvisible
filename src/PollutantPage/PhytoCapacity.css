@@ -85,10 +85,8 @@
 
 .phyto-svg-container img {
   width: auto;
-  height: 55%;
+  height: 100%;
   object-fit: contain;
-  position: relative;
-  top: 70px;
 }
 
 .phyto-content-wrapper,
@@ -128,14 +126,10 @@
 .section-divider {
   border-bottom: 1px solid black;
   margin: 0.5rem 0;
-  width: 19.98em;
 }
 
 .phyto-content-wrapper-reversed .section-divider {
-  margin-left: 21px;
-  position: relative;
-  right: -22px;
-  width: 14em;
+  margin-left: 150px;
 }
 
 .phyto-benefits-heading {
@@ -153,9 +147,8 @@
   font-size: 14px;
   line-height: 205%;
   letter-spacing: 0%;
-  margin-top: 48px;
+  margin-top: 2rem;
   margin-right: 5%;
-  margin-bottom: 100px;
 }
 
 .phyto-benefits-text {
@@ -171,9 +164,9 @@
 
 .vertical-divider-right {
   position: absolute;
-  right: -35px;
-  top: 82px;
-  bottom: -133px;
+  right: 0;
+  top: 46px;
+  bottom: -97px;
   border-right: 1px solid black;
   transform: translateX(50%);
 }
@@ -244,19 +237,16 @@
   }
   .titleListRightPanel li {
     font: 300 14px "Chivo Mono";
-    margin-bottom: 12px;
   }
   .plantDetails {
     font: 300 14px "Chivo Mono";
-    margin-top: 12px;
-    margin-bottom: 32px;
   }
   .description {
     font: 400 14px "Chivo Mono";
     line-height: 165%;
   }
   .--bullet-points {
-    margin: 8px 0px;
+    margin: 17px 0px;
   }
   .sourcesDescription {
     font: 400 14px "Chivo Mono";
