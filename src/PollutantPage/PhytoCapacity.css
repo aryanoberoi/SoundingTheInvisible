@@ -268,3 +268,99 @@
     width: 117% !important;
   }
 }
+
+
+@media screen and (max-width: 768px) {
+  .phyto-capacity-container .phyto-capacity-title {
+    font-size: 20px;
+    left: -2px !important;
+  }
+
+  .phyto-capacity-container {
+    padding-left: 0px;
+    width: 100%;
+  }
+
+  .phyto-content-wrapper-reversed {
+    width: 98% !important;
+    margin-left: 5.6px !important;
+  }
+
+  .phyto-content-wrapper-reversed .phyto-benefits-heading {
+    display: flex;
+    justify-content: end;
+    padding-right: 9px;
+  }
+
+  /* ✅ Keep Code 1 differences */
+  .titleTextRightPanel {
+    font: 300 14px "Chivo Mono";
+  }
+
+  .titleListRightPanel li {
+    font: 300 14px "Chivo Mono";
+    margin-bottom: 12px; /* ✅ Only in Code 1 */
+  }
+
+  .plantDetails {
+    font: 300 14px "Chivo Mono";
+    margin-top: 12px;   /* ✅ Only in Code 1 */
+    margin-bottom: 32px;/* ✅ Only in Code 1 */
+  }
+
+  .description {
+    font: 400 14px "Chivo Mono";
+    line-height: 165%;
+  }
+
+  .--bullet-points {
+    margin: 8px 0px; /* ✅ Code 1 value (Code 2 had 17px) */
+  }
+
+  .sourcesDescription {
+    font: 400 14px "Chivo Mono";
+    line-height: 165%;
+  }
+
+  .sectionTitleLeftPanel {
+    line-height: normal !important;
+  }
+
+  .sourcesTitle {
+    line-height: normal !important;
+  }
+
+  .titleTextSC {
+    line-height: 227% !important;
+    letter-spacing: 1.96px !important;
+  }
+
+  /* ✅ Apply Code 1 styles for these elements in mobile too */
+  .phyto-svg-container img {
+    height: 55%;
+    position: relative;
+    top: 70px;
+  }
+
+  .section-divider {
+    width: 19.89em; /* ✅ Code 1 width */
+  }
+
+  .phyto-content-wrapper-reversed .section-divider {
+    margin-left: 21px;
+    position: relative;
+    right: -22px;
+    width: 14em;
+  }
+
+  .phyto-intro-text {
+    margin-top: 48px;
+    margin-bottom: 100px;
+  }
+
+  .vertical-divider-right {
+    right: -35px;
+    top: 82px;
+    bottom: -133px;
+  }
+}
