@@ -1,29 +1,36 @@
 /* Add small black circle at the end of the bottom border for expanded state */
 .items-content-container .bottom-border-circle {
     position: absolute;
-    bottom: -2px; /* Slightly lower to center it vertically on the border */
-    left: 140px; /* Position at the end of the 40px bottom border */
+    bottom: -2px;
+    /* Slightly lower to center it vertically on the border */
+    left: 140px;
+    /* Position at the end of the 40px bottom border */
     width: 6px;
     height: 6px;
     border-radius: 50%;
     background-color: #000;
-}/* Add small black circle at the end of the top border */
+}
+
+/* Add small black circle at the end of the top border */
 .items-content-container .top-border-circle {
     position: absolute;
-    top: 18px; /* Slightly higher than the border to center it vertically */
-    left: 86px; /* Position at the end of the 80px top border */
+    top: 18px;
+    /* Slightly higher than the border to center it vertically */
+    left: 86px;
+    /* Position at the end of the 80px top border */
     width: 6px;
     height: 6px;
     border-radius: 50%;
     background-color: #000;
-}.uses-of-plant-container {
+}
+
+.uses-of-plant-container {
     width: 100%;
     height: auto;
     position: relative;
     padding-top: 100px;
     padding-left: 40px;
     padding-bottom: 60px;
-    bottom: -7em;
 }
 
 .uses-of-plant-container .uses-of-plant-header {
@@ -48,19 +55,22 @@
 }
 
 .uses-of-plant-container .uses-of-plant-title {
-    background-color: transparent !important; /* Remove original background */
+    background-color: transparent !important;
+    /* Remove original background */
     color: #fff;
     font: 378 32px 'Nippo-Regular', sans-serif;
     font-weight: 400;
     left: 0;
     letter-spacing: 3%;
     line-height: 100%;
-    position: relative; /* Ensure positioning context */
+    position: relative;
+    /* Ensure positioning context */
     top: 10px;
     width: fit-content;
     text-align: left;
     white-space: nowrap;
-    z-index: 1; /* Keep text above the new background */
+    z-index: 1;
+    /* Keep text above the new background */
     padding-block: 12px;
 }
 
@@ -68,17 +78,21 @@
     content: '';
     position: absolute;
     top: 0;
-    left: 3px !important; /* Inset from left */
-    right: -7px !important; /* Inset from right */
+    left: 3px !important;
+    /* Inset from left */
+    right: -7px !important;
+    /* Inset from right */
     bottom: 0;
     background-color: #000;
-    z-index: -1; /* Place behind text */
+    z-index: -1;
+    /* Place behind text */
 }
 
 .uses-of-plant-container .uses-of-plant-title::after {
     content: '';
     position: absolute;
-    left: 3px; /* Match the left inset of the background */
+    left: 3px;
+    /* Match the left inset of the background */
     bottom: 0;
     width: 118%;
     height: 12px;
@@ -141,7 +155,8 @@
     font-weight: 378;
     font-size: 28px;
     line-height: 37.8px;
-    letter-spacing: 0.03em; /* 3% converted to em units */
+    letter-spacing: 0.03em;
+    /* 3% converted to em units */
 }
 
 /* Removed vector-166 styles and replaced with items-content-container styles */
@@ -173,7 +188,8 @@
 
 /* Taller height for expanded state */
 .text-vector-group.expanded .items-content-container::after {
-    height: calc(100% - 20px); /* Same height as unexpanded state */
+    height: calc(100% - 20px);
+    /* Same height as unexpanded state */
 }
 
 /* Add 80px top border for all states */
@@ -201,11 +217,13 @@
 .items-content-container .bottom-border-dotted {
     position: absolute;
     bottom: 0px;
-    left: 60px; /* Position right after the solid border */
+    left: 60px;
+    /* Position right after the solid border */
     width: 270px;
     height: 0;
     border-top: 2px dashed #000;
-    display: none; /* Hidden by default */
+    display: none;
+    /* Hidden by default */
     /* Customize dash size to make them wider */
     border-spacing: 4px;
 }
@@ -276,7 +294,7 @@
     letter-spacing: 1px;
 }
 
-.read-more-button:hover { 
+.read-more-button:hover {
     background-color: #000;
     color: #fff;
 }
@@ -295,7 +313,8 @@
     font-size: 28px;
     line-height: 37.8px;
     letter-spacing: 0.03em;
-    color: #000000; /* Add specific color if different from nutritional */
+    color: #000000;
+    /* Add specific color if different from nutritional */
 }
 
 .medicine-text-header {
@@ -330,7 +349,7 @@
     font-size: 28px;
     line-height: 37.8px;
     letter-spacing: 0.03em;
-    position:relative;
+    position: relative;
     top: -17px;
 }
 
@@ -364,8 +383,10 @@
 .items-content-container .nutritional-text-text,
 .items-content-container .medicine-text-text,
 .items-content-container .additional-text-text {
-    position: relative; /* Keep relative positioning */
-    left: 20px; /* Apply indentation only to these nested elements */
+    position: relative;
+    /* Keep relative positioning */
+    left: 20px;
+    /* Apply indentation only to these nested elements */
 }
 
 .button-container-bibliography {
@@ -392,39 +413,57 @@
     margin-top: 20px;
     align-self: flex-start;
     text-decoration-line: none;
-    position: relative;
-    right: -15.5em;
 }
 
 @media screen and (max-width:768px) {
-    .uses-of-plant-container{
-padding-left: 0px;
+    .uses-of-plant-container {
+        padding-left: 0px;
     }
-    .circle-inverted{
+
+    .circle-inverted {
         width: 57px;
         height: 57px;
-    
+
     }
-    .circle-image{
+
+    .circle-image {
         width: 35px;
         height: 35px;
     }
-    .nutritional-text-text{
+
+    .nutritional-text-text {
         width: 100%;
     }
-    .medicine-text-text{
+
+    .medicine-text-text {
         width: 100%;
     }
-    .additional-text-text{
+
+    .additional-text-text {
         width: 100%;
     }
+
     .text-vector-group {
         padding-left: 0px;
     }
-    .nutritional-text-header{
+
+    .nutritional-text-header {
         width: 98%;
     }
-    .uses-of-plant-container .uses-of-plant-title{
+
+    .uses-of-plant-container .uses-of-plant-title {
         font-size: 24px !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .button-container-bibliography {
+        display: flex;
+        justify-content: center !important;
+        width: 100%;
+        text-align: center;
+        margin-top: calc(100% + -401px);
+        margin-top: 140px;
+        transform: translateY(calc(100% - 173px));
     }
 }
