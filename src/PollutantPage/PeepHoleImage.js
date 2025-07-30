@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-
+const isMobile = window.innerWidth <= 768; // detect mobile
 const PeepholeEffect = ({ imageUrl,
   plantimagemobile,
   maskedimagemobile,
@@ -98,7 +98,7 @@ const PeepholeEffect = ({ imageUrl,
           objectFit: "contain",
           position: "relative",
           display: "block",
-          visibility: "hidden" 
+          visibility: "hidden"
           // Hide the original image
         }}
       />
@@ -171,12 +171,12 @@ const PeepholeEffect = ({ imageUrl,
           backgroundColor: "rgba(0,0,0,0.5)",
           padding: "5px",
           borderRadius: "5px",
-          opacity: showSlider ? 1 : 0,
+          opacity: isMobile ? 1 : showSlider ? 1 : 0, // ✅ Always visible on mobile
           transition: "opacity 0.3s ease",
           cursor: "pointer",
         }}
-        onMouseEnter={() => setShowSlider(true)}
-        onMouseLeave={() => setShowSlider(false)}
+        onMouseEnter={!isMobile ? () => setShowSlider(true) : undefined} // disable hover for mobile
+        onMouseLeave={!isMobile ? () => setShowSlider(false) : undefined}
       >
         <input
           type="range"
@@ -186,7 +186,8 @@ const PeepholeEffect = ({ imageUrl,
           onChange={(e) => setRadius(parseInt(e.target.value))}
           style={{
             width: "150px",
-            cursor: "pointer"
+            cursor: "pointer",
+            touchAction: "none", // ✅ smoother drag on mobile
           }}
         />
       </div>
