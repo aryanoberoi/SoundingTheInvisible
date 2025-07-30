@@ -1,5 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import downArrow from "./PollutantPage/down-arrow.svg";
+
+
+
 
 // Import the expanded content components directly
 // Assuming these files export React components
@@ -408,7 +412,7 @@ const Navbar = () => {
                           <span className="nav-arrow" data-cursor-invert="true">✕</span>
                         ) : (
                           <img
-                            src="down-arrow.svg"
+                            src={downArrow}
                             alt="Expand"
                             className="nav-arrow"
                             data-cursor-invert="true"
