@@ -382,7 +382,7 @@ const PollutantPage = ({ categorizedData }) => {
       plant_name: wip(dataContext.plant.name),
       description: wip(dataContext.plant.about.description),
       status: wip(dataContext.plant.about.status),
-      peephole: wip(matchedRow.mobile_plant_image)
+      peephole: wip(matchedRow.image_About_plant)
     },
   ];
 
