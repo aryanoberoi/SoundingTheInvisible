@@ -162,35 +162,35 @@ const PeepholeEffect = ({ imageUrl,
 
       {/* Radius Adjuster with hide/show on hover */}
       <div
+      style={{
+        position: "absolute",
+        bottom: "10px",
+        left: "50%",
+        transform: "translateX(-50%)",
+        zIndex: 10,
+        backgroundColor: "rgba(0,0,0,0.5)",
+        padding: "5px",
+        borderRadius: "5px",
+        opacity: isMobile ? 1 : showSlider ? 1 : 0, // ✅ mobile = always 1
+        transition: "opacity 0.3s ease",
+        cursor: "pointer",
+      }}
+      onMouseEnter={!isMobile ? () => setShowSlider(true) : undefined}
+      onMouseLeave={!isMobile ? () => setShowSlider(false) : undefined}
+    >
+      <input
+        type="range"
+        min="50"
+        max="300"
+        value={radius}
+        onChange={(e) => setRadius(parseInt(e.target.value))}
         style={{
-          position: "absolute",
-          bottom: "10px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          zIndex: 10,
-          backgroundColor: "rgba(0,0,0,0.5)",
-          padding: "5px",
-          borderRadius: "5px",
-          opacity: isMobile ? 1 : showSlider ? 1 : 0, // ✅ Always visible on mobile
-          transition: "opacity 0.3s ease",
+          width: "150px",
           cursor: "pointer",
+          touchAction: "none", // ✅ smoother drag on mobile
         }}
-        onMouseEnter={!isMobile ? () => setShowSlider(true) : undefined} // disable hover for mobile
-        onMouseLeave={!isMobile ? () => setShowSlider(false) : undefined}
-      >
-        <input
-          type="range"
-          min="50"
-          max="300"
-          value={radius}
-          onChange={(e) => setRadius(parseInt(e.target.value))}
-          style={{
-            width: "150px",
-            cursor: "pointer",
-            touchAction: "none", // ✅ smoother drag on mobile
-          }}
-        />
-      </div>
+      />
+    </div>
     </div>
   );
 };
