@@ -350,14 +350,14 @@ useEffect(() => {
           style={{ overflow: "visible" }}
         >
           <Cloud
-            top={3350}
+            top={3150}
             left={65}
             distance="short"
             direction="left"
             variant={1}
           />
           <Cloud
-            top={3490}
+            top={3290}
             left={45}
             distance="medium"
             direction="left"
