@@ -95,6 +95,19 @@
   .nitrates-link:hover .original-path {
     opacity: 0.3; /* Optional: fade the original path when hovering */
   }
+  .dimethomorph-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .dimethomorph-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .dimethomorph-link:hover .original-path {
+    opacity: 1; /* Optional: fade the original path when hovering */
+  }
 
   .mercury-link .hover-component {
     opacity: 0;
@@ -263,6 +276,19 @@
   .manganese-link:hover .original-path {
     opacity: 0.3; /* Optional: fade the original path when hovering */
   }
+  .antimony-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .antimony-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .antimony-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
 
   .chromium-link .hover-component {
     opacity: 0;
@@ -303,6 +329,33 @@
   }
   
   .strontium-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+  .uranium-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .uranium-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .uranium-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+
+  .cesium-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .cesium-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .cesium-link:hover .original-path {
     opacity: 0.3; /* Optional: fade the original path when hovering */
   }
 
@@ -499,5 +552,83 @@
   }
   
   .bht-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+  .syntheticdyes-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .syntheticdyes-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .syntheticdyes-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+  .ibuprofen-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .ibuprofen-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .ibuprofen-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+  .ofloxacinantibiotic-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .ofloxacinantibiotic-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .ofloxacinantibiotic-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+  .chlorides-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .chlorides-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .chlorides-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+  .tetracyclineAntibiotic-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .tetracyclineAntibiotic-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .tetracyclineAntibiotic-link:hover .original-path {
+    opacity: 0.3; /* Optional: fade the original path when hovering */
+  }
+  .wastewatersludge-link .hover-component {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Prevents hover component from interfering with clicks */
+  }
+  
+  .wastewatersludge-link:hover .hover-component {
+    opacity: 1;
+  }
+  
+  .wastewatersludge-link:hover .original-path {
     opacity: 0.3; /* Optional: fade the original path when hovering */
   }
