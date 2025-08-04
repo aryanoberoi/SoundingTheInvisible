@@ -9,7 +9,10 @@ const shareToFacebook = () => {
 const shareToTwitter = () => {
   const url = encodeURIComponent(window.location.href);
   const text = encodeURIComponent(document.title);
-  window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, "_blank");
+  window.open(
+    `https://twitter.com/intent/tweet?url=${url}&text=${text}`,
+    "_blank"
+  );
 };
 
 const shareLink = async () => {
@@ -17,32 +20,59 @@ const shareLink = async () => {
     try {
       await navigator.share({
         title: document.title,
-        text: 'Check this out!',
+        text: "Check this out!",
         url: window.location.href,
       });
-      console.log('Link shared successfully');
+      console.log("Link shared successfully");
     } catch (err) {
-      console.error('Error sharing:', err);
+      console.error("Error sharing:", err);
     }
   } else {
-    alert('Sharing not supported on this browser. Please copy the link manually.');
+    alert(
+      "Sharing not supported on this browser. Please copy the link manually."
+    );
   }
 };
 
 export const Footer = () => {
+  React.useEffect(() => {
+    const handleResize = () => {
+      const researcherDiv = document.querySelector(".researcher-inline");
+      if (researcherDiv) {
+        if (window.innerWidth <= 768) {
+          researcherDiv.style.display = "grid";
+          researcherDiv.style.gridTemplateColumns = "repeat(2, auto)";
+          researcherDiv.style.rowGap = "6px";
+          researcherDiv.style.columnGap = "12px";
+        } else {
+          researcherDiv.style.display = "flex";
+          researcherDiv.style.flexWrap = "nowrap";
+        }
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className={styles.footerContainer}>
       <div className={styles.section}>
         <span className={styles.title}>Production Credits</span>
         <div className={styles.group}>
           <div className={styles.subGroup}>
-            <span className={styles.role}>Artist + Conceptualiser + Project Management:</span>
+            <span className={styles.role}>
+              Artist + Conceptualiser + Project Management:
+            </span>
             <span className={styles.name}>Nandita Kumar</span>
           </div>
 
           <br />
 
-          <div className={styles.subGroupRow} style={{ display: "flex", flexDirection: "row", gap: "13.6em" }}>
+          <div
+            className={styles.subGroupRow}
+            style={{ display: "flex", flexDirection: "row", gap: "13.6em" }}
+          >
             <div style={{ display: "flex", flexDirection: "column" }}>
               <span className={styles.role}>Sound Design:</span>
               <a
@@ -55,7 +85,9 @@ export const Footer = () => {
               </a>
             </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <span className={styles.role}>Creative Coder for Sound Engagement:</span>
+              <span className={styles.role}>
+                Creative Coder for Sound Engagement:
+              </span>
               <a
                 href="https://www.linkedin.com/in/khoparzi/?originalSubdomain=in"
                 target="_blank"
@@ -73,11 +105,15 @@ export const Footer = () => {
 
           <br />
 
-
-          <div className={styles.subGroupRow} style={{ display: "flex", flexDirection: "row", gap: "5.5em" }}>
+          <div
+            className={styles.subGroupRow}
+            style={{ display: "flex", flexDirection: "row", gap: "5.5em" }}
+          >
             <div className={styles.subGroup}>
               <span className={styles.role}>UI/UX Design:</span>
-              <div style={{ display: 'flex', gap: '0.5em', alignItems: 'center' }}>
+              <div
+                style={{ display: "flex", gap: "0.5em", alignItems: "center" }}
+              >
                 <a
                   href="https://readymag.website/u3450179796/sanjanakadamportfolio/"
                   target="_blank"
@@ -100,7 +136,9 @@ export const Footer = () => {
 
             <div className={styles.subGroup}>
               <span className={styles.role}>Website Developer:</span>
-              <div style={{ display: 'flex', gap: '0.5em', alignItems: 'center' }}>
+              <div
+                style={{ display: "flex", gap: "0.5em", alignItems: "center" }}
+              >
                 <a
                   href="https://www.linkedin.com/in/aryan-oberoi-1b4358195/"
                   target="_blank"
@@ -113,10 +151,10 @@ export const Footer = () => {
             </div>
           </div>
 
-
-
-
-          <div className={styles.subGroupRow} style={{ display: "flex", flexDirection: "row", gap: "10em" }}>
+          <div
+            className={styles.subGroupRow}
+            style={{ display: "flex", flexDirection: "row", gap: "10em" }}
+          >
             <div className={styles.subGroup}>
               <span className={styles.role}>Book Design:</span>
               <span className={styles.name}>Shikha Sinai Usgaonker</span>
@@ -124,11 +162,21 @@ export const Footer = () => {
 
             <div className={styles.subGroup}>
               <span className={styles.role}>Labels / Poster Design:</span>
-              <a href="https://www.kultureshop.in/collections/aviral-saxena" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Aviral Saxena</a>
+              <a
+                href="https://www.kultureshop.in/collections/aviral-saxena"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.nameUnderline}
+              >
+                Aviral Saxena
+              </a>
             </div>
           </div>
 
-          <div className={styles.subGroupRow} style={{ display: "flex", flexDirection: "row", gap: "7.4em" }}>
+          <div
+            className={styles.subGroupRow}
+            style={{ display: "flex", flexDirection: "row", gap: "7.4em" }}
+          >
             <div className={styles.subGroup}>
               <span className={styles.role}>Plant Illustrations:</span>
               <span className={styles.name}>Nandita Kumar</span>
@@ -138,13 +186,23 @@ export const Footer = () => {
 
             <div className={styles.subGroup}>
               <span className={styles.role}>Pollutant Illustrations:</span>
-              <a href="https://www.behance.net/priyankabagade" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Priyanka Bagade</a>
+              <a
+                href="https://www.behance.net/priyankabagade"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.nameUnderline}
+              >
+                Priyanka Bagade
+              </a>
             </div>
           </div>
 
           <br />
 
-          <div className={styles.subGroupRow} style={{ display: "flex", flexDirection: "row", gap: "8em" }}>
+          <div
+            className={styles.subGroupRow}
+            style={{ display: "flex", flexDirection: "row", gap: "8em" }}
+          >
             <div className={styles.subGroup}>
               <span className={styles.role}>Editor:</span>
               <span className={styles.name}>Anjali Singh Uttamchandani</span>
@@ -152,54 +210,127 @@ export const Footer = () => {
 
             <div className={styles.subGroup}>
               <span className={styles.role}>Introduction Text:</span>
-              <a href="https://www.adwaitsingh.com/" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>Adwait Singh</a>
+              <a
+                href="https://www.adwaitsingh.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.nameUnderline}
+              >
+                Adwait Singh
+              </a>
             </div>
           </div>
 
+          {/* ✅ Updated Researcher Section */}
           <div className={styles.subGroup}>
-            <span className={styles.role}>Researcher:</span>
-            {/* Start of changes for Researcher section */}
-            <div className={styles.researcherList}>
-              <a
-                href="https://www.linkedin.com/in/tamoghno-paul"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.nameUnderline}
-              >
-                Tamoghno Paul
-              </a>
-              <span className={styles.researcherLine}></span> {/* Line separator */}
-              <a
-                href="https://www.linkedin.com/in/mithun-lakshmanan-8695a3199/?originalSubdomain=in"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.nameUnderline}
-              >
-                Mithun Lakshmanan
-              </a>
-              <span className={styles.researcherLine}></span> {/* Line separator */}
-              <span className={styles.name}>Prajakta Bodkhe</span> {/* Changed to span as it's not a link */}
-              <span className={styles.researcherLine}></span> {/* Line separator */}
-              <a
-                href="https://carmelcollegegoa.org/team-members/ms-nezlyn-cressida-dsouza/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.nameUnderline}
-              >
-                Nezlyn D'Souza
-              </a>
-            </div>
-            {/* End of changes for Researcher section */}
-          </div>
+  <span className={styles.role}>Researcher:</span>
+  <div
+    className="researcher-inline"
+    style={{
+      display: "flex",
+      flexWrap: "wrap",
+      gap: "0.5em",
+      marginTop: "4px",
+    }}
+  >
+    {[
+      {
+        name: "Tamoghno Paul",
+        link: "https://www.linkedin.com/in/tamoghno-paul",
+      },
+      {
+        name: "Mithun Lakshmanan",
+        link: "https://www.linkedin.com/in/mithun-lakshmanan-8695a3199/?originalSubdomain=in",
+      },
+      { name: "Prajakta Bodkhe" },
+      {
+        name: "Nezlyn D'Souza",
+        link: "https://carmelcollegegoa.org/team-members/ms-nezlyn-cressida-dsouza/",
+      },
+    ].map((researcher, index) => (
+      <span
+        key={index}
+        style={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        {researcher.link ? (
+          <a
+            href={researcher.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              textDecoration: "none", // ✅ Removed underline
+              color: "inherit",       // ✅ Inherit normal text color
+            }}
+          >
+            {researcher.name}
+          </a>
+        ) : (
+          researcher.name
+        )}
+        {/* Separator - shown only in desktop */}
+        <span
+          className="researcher-separator"
+          style={{
+            marginLeft: "4px",
+            display: "inline",
+          }}
+        >
+          {index < 3 ? "|" : ""}
+        </span>
+      </span>
+    ))}
+  </div>
+</div>
+
         </div>
       </div>
 
       <div className={styles.section}>
         <span className={styles.title}>Project Supported by:</span>
-        <p className={styles.description} style={{ maxWidth: '725px' }}>
-          This work was commissioned within the framework of the S+T+ARTS 4Water II residency program by <span >TBA21–Academy </span>with the support of <span >Konsortium Deutsche Meeresforschung (KDM) </span>within the Prep4Blue project as a contribution to the EU Restore our Ocean and Waters by 2030, and with the collaboration of <span >Ca' Foscari, CNR-ISMAR, ETT, and Venice International University.</span>
-
-          <br /><br />Initial Support: <a href="https://leonardo.info/imagination-fellowship" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline} >ASU Leonardo Imagination Fellowship</a>, <a href="https://www.unesco.org/en/futures-literacy" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>UNESCO FUTURE Literacy</a>, <a href="https://www.awesomefoundation.org/en/projects/165230-sounding-the-invisible-an-elegant-symbiosis" target="_blank" rel="noopener noreferrer" className={styles.nameUnderline}>The Awesome Foundation</a>.
+        <p className={styles.description} style={{ maxWidth: "725px" }}>
+          This work was commissioned within the framework of the S+T+ARTS
+          4Water II residency program by <span>TBA21–Academy </span>with the
+          support of{" "}
+          <span>
+            Konsortium Deutsche Meeresforschung (KDM){" "}
+          </span>within the Prep4Blue project as a contribution to the EU
+          Restore our Ocean and Waters by 2030, and with the collaboration of{" "}
+          <span>
+            Ca' Foscari, CNR-ISMAR, ETT, and Venice International University.
+          </span>
+          <br />
+          <br />
+          Initial Support:{" "}
+          <a
+            href="https://leonardo.info/imagination-fellowship"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.nameUnderline}
+          >
+            ASU Leonardo Imagination Fellowship
+          </a>
+          ,{" "}
+          <a
+            href="https://www.unesco.org/en/futures-literacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.nameUnderline}
+          >
+            UNESCO FUTURE Literacy
+          </a>
+          ,{" "}
+          <a
+            href="https://www.awesomefoundation.org/en/projects/165230-sounding-the-invisible-an-elegant-symbiosis"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.nameUnderline}
+          >
+            The Awesome Foundation
+          </a>
+          .
         </p>
       </div>
       <br />
@@ -209,27 +340,90 @@ export const Footer = () => {
       <center>
         <div className={styles.section}>
           <div className={styles.imageContainer}>
-
-            <button onClick={shareToFacebook} style={{ marginRight: '10px', background: "none", border: "none", padding: 0 }}>
-              <img src="facebook.png" alt="Facebook" className={styles.supporterImage} />
+            <button
+              onClick={shareToFacebook}
+              style={{
+                marginRight: "10px",
+                background: "none",
+                border: "none",
+                padding: 0,
+              }}
+            >
+              <img
+                src="facebook.png"
+                alt="Facebook"
+                className={styles.supporterImage}
+              />
             </button>
-            <button onClick={shareLink} style={{ marginRight: '10px', background: "none", border: "none", padding: 0 }}>
-              <img src="instagram.png" alt="Instagram" className={styles.supporterImage} />
+            <button
+              onClick={shareLink}
+              style={{
+                marginRight: "10px",
+                background: "none",
+                border: "none",
+                padding: 0,
+              }}
+            >
+              <img
+                src="instagram.png"
+                alt="Instagram"
+                className={styles.supporterImage}
+              />
             </button>
-            <button onClick={shareToTwitter} style={{ marginRight: '10px', background: "none", border: "none", padding: 0 }}>
-              <img src="twitter.png" alt="Twitter" className={styles.supporterImage} />
+            <button
+              onClick={shareToTwitter}
+              style={{
+                marginRight: "10px",
+                background: "none",
+                border: "none",
+                padding: 0,
+              }}
+            >
+              <img
+                src="twitter.png"
+                alt="Twitter"
+                className={styles.supporterImage}
+              />
             </button>
-            <button onClick={shareLink} style={{ background: "none", border: "none", padding: 0 }}>
-              <img src="share.png" alt="Share Link" className={styles.supporterImage} />
+            <button
+              onClick={shareLink}
+              style={{ background: "none", border: "none", padding: 0 }}
+            >
+              <img
+                src="share.png"
+                alt="Share Link"
+                className={styles.supporterImage}
+              />
             </button>
           </div>
           <p className={styles.description}>
-            {/* <img src="copyright.png" alt="Copyright" className={styles.supporterImage} style={{ marginRight: '8px', padding }} /> */}
-            <span style={{ marginRight: '5px', fontSize: '29px', paddingTop: '0px' }}>&copy;</span>
-            <span style={{ fontFamily: "nippo", fontWeight: 300, letterSpacing: '1px' }}>NANDITA KUMAR</span> <span style={{ fontFamily: "nippo-light", fontWeight: 200, letterSpacing: '1px' }}>
+            <span
+              style={{
+                marginRight: "5px",
+                fontSize: "29px",
+                paddingTop: "0px",
+              }}
+            >
+              &copy;
+            </span>
+            <span
+              style={{
+                fontFamily: "nippo",
+                fontWeight: 300,
+                letterSpacing: "1px",
+              }}
+            >
+              NANDITA KUMAR
+            </span>{" "}
+            <span
+              style={{
+                fontFamily: "nippo-light",
+                fontWeight: 200,
+                letterSpacing: "1px",
+              }}
+            >
               2025
             </span>
-
           </p>
         </div>
       </center>
