@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Footer.module.css";
 
 const shareToFacebook = () => {
@@ -55,6 +55,15 @@ export const Footer = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const [sheetData, setSheetData] = useState([]);
+
+  useEffect(() => {
+    fetch("https://opensheet.vercel.app/1RY--tShylE4tNaO-jr1utv9uaTHSXabK-UXqr3eORV4/Sheet1")
+      .then((res) => res.json())
+      .then((data) => setSheetData(data))
+      .catch((err) => console.error("Failed to fetch sheet data:", err));
+  }, []);
+
   return (
     <div className={styles.footerContainer}>
       <div className={styles.section}>
@@ -62,9 +71,9 @@ export const Footer = () => {
         <div className={styles.group}>
           <div className={styles.subGroup}>
             <span className={styles.role}>
-              Artist + Conceptualiser + Project Management:
+              {sheetData[0]?.Role_1}
             </span>
-            <span className={styles.name}>Nandita Kumar</span>
+            <span className={styles.name}>{sheetData[0]?.Name_1}</span>
           </div>
 
           <br />
@@ -74,33 +83,32 @@ export const Footer = () => {
             style={{ display: "flex", flexDirection: "row", gap: "13.6em" }}
           >
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <span className={styles.role}>Sound Design:</span>
+              <span className={styles.role}>{sheetData[0]?.Role_2}</span>
               <a
                 href="https://www.kariraeseekins.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.nameUnderline}
               >
-                Kari Rae Seekins
+
+                {sheetData[0]?.Name_2}
               </a>
             </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
               <span className={styles.role}>
-                Creative Coder for Sound Engagement:
-              </span>
+                {sheetData[0]?.Role_3}              </span>
               <a
                 href="https://www.linkedin.com/in/khoparzi/?originalSubdomain=in"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.nameUnderline}
               >
-                Abhinay Khoparzi
-              </a>
+                {sheetData[0]?.Name_3}              </a>
             </div>
           </div>
           <div className={styles.subGroup}>
-            <span className={styles.role}>Circuit Board Design:</span>
-            <span className={styles.name}>Prateek Jha</span>
+            <span className={styles.role}>{sheetData[0]?.Role_4}</span>
+            <span className={styles.name}>{sheetData[0]?.Name_4}</span>
           </div>
 
           <br />
@@ -110,7 +118,7 @@ export const Footer = () => {
             style={{ display: "flex", flexDirection: "row", gap: "5.5em" }}
           >
             <div className={styles.subGroup}>
-              <span className={styles.role}>UI/UX Design:</span>
+              <span className={styles.role}>{sheetData[0]?.Role_5}</span>
               <div
                 style={{ display: "flex", gap: "0.5em", alignItems: "center" }}
               >
@@ -120,22 +128,22 @@ export const Footer = () => {
                   rel="noopener noreferrer"
                   className={styles.nameUnderline}
                 >
-                  Sanjana Kadam
+                  {sheetData[0]?.Name_5i}
                 </a>
-                <span>|</span>
+                {/* <span>|</span> */}
                 <a
                   href="https://bento.me/jimmykano"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.nameUnderline}
                 >
-                  Karan Kanojia
+                  {sheetData[0]?.Name_5ii}
                 </a>
               </div>
             </div>
 
             <div className={styles.subGroup}>
-              <span className={styles.role}>Website Developer:</span>
+              <span className={styles.role}>{sheetData[0]?.Role_6}</span>
               <div
                 style={{ display: "flex", gap: "0.5em", alignItems: "center" }}
               >
@@ -145,7 +153,7 @@ export const Footer = () => {
                   rel="noopener noreferrer"
                   className={`${styles.websiteDevNames}`}
                 >
-                  Aryan Oberoi | Arham
+                  {sheetData[0]?.Name_6}
                 </a>
               </div>
             </div>
@@ -156,19 +164,19 @@ export const Footer = () => {
             style={{ display: "flex", flexDirection: "row", gap: "10em" }}
           >
             <div className={styles.subGroup}>
-              <span className={styles.role}>Book Design:</span>
-              <span className={styles.name}>Shikha Sinai Usgaonker</span>
+              <span className={styles.role}>{sheetData[0]?.Role_7}</span>
+              <span className={styles.name}>{sheetData[0]?.Name_7}</span>
             </div>
 
             <div className={styles.subGroup}>
-              <span className={styles.role}>Labels / Poster Design:</span>
+              <span className={styles.role}>{sheetData[0]?.Role_8}</span>
               <a
                 href="https://www.kultureshop.in/collections/aviral-saxena"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.nameUnderline}
               >
-                Aviral Saxena
+                {sheetData[0]?.Name_8}
               </a>
             </div>
           </div>
@@ -178,21 +186,21 @@ export const Footer = () => {
             style={{ display: "flex", flexDirection: "row", gap: "7.4em" }}
           >
             <div className={styles.subGroup}>
-              <span className={styles.role}>Plant Illustrations:</span>
-              <span className={styles.name}>Nandita Kumar</span>
+              <span className={styles.role}>{sheetData[0]?.Role_9}</span>
+              <span className={styles.name}>{sheetData[0]?.Name_9}</span>
             </div>
 
             <br />
 
             <div className={styles.subGroup}>
-              <span className={styles.role}>Pollutant Illustrations:</span>
+              <span className={styles.role}>{sheetData[0]?.Role_10}</span>
               <a
                 href="https://www.behance.net/priyankabagade"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.nameUnderline}
               >
-                Priyanka Bagade
+                {sheetData[0]?.Name_10}
               </a>
             </div>
           </div>
@@ -204,86 +212,58 @@ export const Footer = () => {
             style={{ display: "flex", flexDirection: "row", gap: "8em" }}
           >
             <div className={styles.subGroup}>
-              <span className={styles.role}>Editor:</span>
-              <span className={styles.name}>Anjali Singh Uttamchandani</span>
+              <span className={styles.role}>{sheetData[0]?.Role_11}</span>
+              <span className={styles.name}>{sheetData[0]?.Name_11}</span>
             </div>
 
             <div className={styles.subGroup}>
-              <span className={styles.role}>Introduction Text:</span>
+              <span className={styles.role}>{sheetData[0]?.Role_12}</span>
               <a
                 href="https://www.adwaitsingh.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.nameUnderline}
               >
-                Adwait Singh
+                {sheetData[0]?.Name_12}
               </a>
             </div>
           </div>
 
-          {/* ✅ Updated Researcher Section */}
-          <div className={styles.subGroup}>
-  <span className={styles.role}>Researcher:</span>
-  <div
-    className="researcher-inline"
-    style={{
-      display: "flex",
-      flexWrap: "wrap",
-      gap: "0.5em",
-      marginTop: "4px",
-    }}
-  >
-    {[
-      {
-        name: "Tamoghno Paul",
-        link: "https://www.linkedin.com/in/tamoghno-paul",
-      },
-      {
-        name: "Mithun Lakshmanan",
-        link: "https://www.linkedin.com/in/mithun-lakshmanan-8695a3199/?originalSubdomain=in",
-      },
-      { name: "Prajakta Bodkhe" },
-      {
-        name: "Nezlyn D'Souza",
-        link: "https://carmelcollegegoa.org/team-members/ms-nezlyn-cressida-dsouza/",
-      },
-    ].map((researcher, index) => (
-      <span
-        key={index}
-        style={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        {researcher.link ? (
-          <a
-            href={researcher.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              textDecoration: "none", // ✅ Removed underline
-              color: "inherit",       // ✅ Inherit normal text color
-            }}
-          >
-            {researcher.name}
-          </a>
-        ) : (
-          researcher.name
-        )}
-        {/* Separator - shown only in desktop */}
-        <span
-          className="researcher-separator"
-          style={{
-            marginLeft: "4px",
-            display: "inline",
-          }}
-        >
-          {index < 3 ? "|" : ""}
-        </span>
-      </span>
-    ))}
-  </div>
-</div>
+                     <div className={styles.subGroup}>
+            <span className={styles.role}>{sheetData[0]?.Role_13}</span>
+            {/* Start of changes for Researcher section */}
+            <div className={styles.researcherList}>
+              <a
+                href="https://www.linkedin.com/in/tamoghno-paul"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.nameUnderline}
+              >
+                {sheetData[0]?.Name_13i}
+              </a>
+              {/* <span className={styles.researcherLine}></span> Line separator */}
+              <a
+                href="https://www.linkedin.com/in/mithun-lakshmanan-8695a3199/?originalSubdomain=in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.nameUnderline}
+              >
+                {sheetData[0]?.Name_13ii}
+              </a>
+              {/* <span className={styles.researcherLine}></span> Line separator */}
+              <span className={styles.name}>{sheetData[0]?.Name_13iii}</span> {/* Changed to span as it's not a link */}
+              {/* <span className={styles.researcherLine}></span> Line separator */}
+              <a
+                href="https://carmelcollegegoa.org/team-members/ms-nezlyn-cressida-dsouza/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.nameUnderline}
+              >
+                {sheetData[0]?.Name_13iv}
+              </a>
+            </div>
+            {/* End of changes for Researcher section */}
+          </div>
 
         </div>
       </div>
