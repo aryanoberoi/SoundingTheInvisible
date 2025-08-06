@@ -76,7 +76,7 @@ const RightPanel = ({ sections = [], pollutantName = "", onLoad, onNavigate }) =
                               <img
                                 src={habitatIcons[lineIndex]}
                                 alt={`icon-${lineIndex}`}
-                                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                                style={{ width: '100%', height: '2em', objectFit: 'contain' }}
                               />
                             </div>
                             <span className="titleTextRightPanel">{line}</span>

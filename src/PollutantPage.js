@@ -2152,7 +2152,7 @@ const PollutantPage = ({ categorizedData }) => {
                           <h3
                             style={{
                               color: "#000",
-                              fontFamily: "Nippo",
+                              fontFamily: "Nippo-Light",
                               fontSize: "32px",
                               fontStyle: "normal",
                               fontWeight: "300",
@@ -2235,7 +2235,7 @@ const PollutantPage = ({ categorizedData }) => {
                                                   alt={`icon-${lineIndex}`}
                                                   style={{
                                                     width: "31.4px",
-                                                    height: "21.43px%",
+                                                    height: "4em",
                                                     objectFit: "contain",
                                                   }}
                                                 />
