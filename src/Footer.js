@@ -271,16 +271,7 @@ export const Footer = () => {
       <div className={styles.section}>
         <span className={styles.title}>Project Supported by:</span>
         <p className={styles.description} style={{ maxWidth: "725px" }}>
-          This work was commissioned within the framework of the S+T+ARTS
-          4Water II residency program by <span>TBA21–Academy </span>with the
-          support of{" "}
-          <span>
-            Konsortium Deutsche Meeresforschung (KDM){" "}
-          </span>within the Prep4Blue project as a contribution to the EU
-          Restore our Ocean and Waters by 2030, and with the collaboration of{" "}
-          <span>
-            Ca' Foscari, CNR-ISMAR, ETT, and Venice International University.
-          </span>
+          {sheetData[0]?.Full_Desc}
           <br />
           <br />
           Initial Support:{" "}
@@ -290,7 +281,7 @@ export const Footer = () => {
             rel="noopener noreferrer"
             className={styles.nameUnderline}
           >
-            ASU Leonardo Imagination Fellowship
+           {sheetData[0]?.ISi}
           </a>
           ,{" "}
           <a
@@ -299,7 +290,7 @@ export const Footer = () => {
             rel="noopener noreferrer"
             className={styles.nameUnderline}
           >
-            UNESCO FUTURE Literacy
+            {sheetData[0]?.ISii}
           </a>
           ,{" "}
           <a
@@ -308,7 +299,7 @@ export const Footer = () => {
             rel="noopener noreferrer"
             className={styles.nameUnderline}
           >
-            The Awesome Foundation
+            {sheetData[0]?.ISiii}
           </a>
           .
         </p>
