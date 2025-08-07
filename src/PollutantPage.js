@@ -92,6 +92,7 @@ const PollutantPage = ({ categorizedData }) => {
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768);
   const [isSplit, setIsSplit] = useState(true);
   const [isSplits, setIsSplits] = useState("slider-container");
+  const [audioEnabled, setAudioEnabled] = useState(true);
 
   // Add a resize observer ref
   const resizeObserverRef = useRef(null);
@@ -1251,6 +1252,7 @@ const PollutantPage = ({ categorizedData }) => {
         sliderPosition={sliderPosition}
         panelMode={sliderPosition < 50 ? "white" : "black"}
         sendPostRequest={true}
+        defaultActive={audioEnabled}
       />
 
       {!isMobileView ? (

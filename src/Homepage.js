@@ -97,11 +97,6 @@ export default function Homepage({ audioControls }) {
           isInTrapezium={isInTrapezium}
           panelMode={isInTrapezium ? "black" : "white"}
           defaultActive={audioEnabled}
-          onToggle={(isActive) => {
-            setAudioEnabled(isActive);
-            audioService.isMuted = !isActive;
-            localStorage.setItem("audioEnabled", isActive.toString());
-          }}
         />
 
         {/* Header */}

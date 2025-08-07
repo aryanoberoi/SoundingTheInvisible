@@ -173,29 +173,42 @@ class AudioService {
    * @param {number} duration - The fade duration in milliseconds.
    * @returns {Promise<void>}
    */
-  fadeOutAudio(activeSound, duration = 2000) { // Note the change in parameter
-    return new Promise(resolve => {
-        // --- FIX: No need to look up the sound anymore ---
-        if (!activeSound || !activeSound.source || !this.audioContext) {
-            return resolve();
-        }
+  fadeOutAudio(padNumber, duration = 2000) {
+      return new Promise(resolve => {
+          const activeSound = (padNumber === this.ambientSoundPad)
+              ? this.ambientAudioSource
+              : this.activeSources[padNumber];
 
-        const { source, gain } = activeSound;
-        const now = this.audioContext.currentTime;
-        
-        gain.gain.cancelScheduledValues(now);
-        gain.gain.setValueAtTime(gain.gain.value, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + duration / 1000);
+          if (!activeSound || !activeSound.source || !this.audioContext) {
+              return resolve();
+          }
 
-        const timeoutId = setTimeout(() => {
-            source.stop(0);
-            // --- FIX: The state cleanup logic is REMOVED from here ---
-            this._removeTimeout(timeoutId);
-            resolve();
-        }, duration);
-        this._addTimeout(timeoutId);
-    });
-}
+          const { source, gain } = activeSound;
+          const now = this.audioContext.currentTime;
+          
+          // Gently cancel any future gain changes and set current value
+          gain.gain.cancelScheduledValues(now);
+          gain.gain.setValueAtTime(gain.gain.value, now);
+          
+          // Ramp down to a value that is effectively silent
+          gain.gain.exponentialRampToValueAtTime(0.001, now + duration / 1000);
+
+          // Schedule the source to stop after the fade completes
+          const timeoutId = setTimeout(() => {
+              source.stop(0);
+              // Clean up reference
+              if (padNumber === this.ambientSoundPad) {
+                  this.ambientAudioSource = null;
+              } else {
+                  delete this.activeSources[padNumber];
+              }
+              this._removeTimeout(timeoutId);
+              resolve();
+          }, duration);
+          this._addTimeout(timeoutId);
+      });
+  }
+
   /**
    * Plays a sound for a given element ID. The public interface is unchanged.
    */
@@ -300,67 +313,37 @@ class AudioService {
    * Fetches and decodes an audio file into an AudioBuffer. Caches the result.
    * @returns {Promise<AudioBuffer|null>}
    */
- /**
- * Fetches and decodes an audio file into an AudioBuffer. Caches the result.
- * @returns {Promise<AudioBuffer|null>}
- */
-async _getAudioBuffer(padNumber) {
-  if (this.cachedBuffers[padNumber]) {
+  async _getAudioBuffer(padNumber) {
+    if (this.cachedBuffers[padNumber]) {
       return this.cachedBuffers[padNumber];
-  }
-  if (!this.audioContext) {
-      console.warn("Cannot fetch buffer, AudioContext is not initialized.");
-      return null;
-  }
-
-
-  fetch(`${API_URL}/play_pad`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ pad: padNumber }),
-  }).catch(err => {
-      // Log API errors silently without stopping the sound playback.
-      console.error(`API command ping failed for pad ${padNumber}:`, err);
-  });
-
-  try {
-      // 2. Fetch the actual sound file from the local public folder.
-      const response = await fetch(`/sounds/${padNumber}.mp3`);
-      if (!response.ok) throw new Error(`Failed to fetch local sound for pad ${padNumber}`);
+    }
+    if (!this.audioContext) {
+        console.warn("Cannot fetch buffer, AudioContext is not initialized.");
+        return null;
+    }
+    
+    try {
+      const response = await fetch(`${API_URL}/play_pad?pad=${padNumber}`);
+      if (!response.ok) throw new Error(`Failed to fetch sound for pad ${padNumber}`);
       const arrayBuffer = await response.arrayBuffer();
       const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
       this.cachedBuffers[padNumber] = audioBuffer;
       return audioBuffer;
-  } catch (err) {
+    } catch (err) {
       console.error(`Error fetching or decoding pad ${padNumber}:`, err);
       return null;
-  }
-}
-/**
- * Stops a specific pad sound with a fade-out.
- */
-async stopPadSound(padNumber, fadeOutDuration = 2000) {
-  // --- FIX: Find the sound source first ---
-  const activeSound = (padNumber === this.ambientSoundPad)
-      ? this.ambientAudioSource
-      : this.activeSources[padNumber];
-
-  // --- FIX: Update the state IMMEDIATELY ---
-  if (this.currentlyPlayingExclusiveLoop === padNumber) {
-      this.currentlyPlayingExclusiveLoop = null;
-  }
-  if (padNumber === this.ambientSoundPad) {
-      this.ambientAudioSource = null;
-  } else {
-      delete this.activeSources[padNumber];
+    }
   }
 
-  // --- FIX: Now, if a sound existed, tell it to fade out ---
-  if (activeSound) {
-      // We pass the object directly, not the padNumber
-      await this.fadeOutAudio(activeSound, fadeOutDuration);
+  /**
+   * Stops a specific pad sound with a fade-out.
+   */
+  async stopPadSound(padNumber, fadeOutDuration = 2000) {
+      await this.fadeOutAudio(padNumber, fadeOutDuration);
+      if (this.currentlyPlayingExclusiveLoop === padNumber) {
+        this.currentlyPlayingExclusiveLoop = null;
+      }
   }
-}
 
   /**
    * Stops all currently playing sounds.
