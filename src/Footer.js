@@ -233,8 +233,8 @@ export const Footer = () => {
             <span className={styles.role}>{sheetData[0]?.Role_13}</span>
             {/* Start of changes for Researcher section */}
             <div className={styles.researcherList}>
-              <a
-                href="https://www.linkedin.com/in/tamoghno-paul"
+               <a
+                href="https://www.linkedin.com/in/mithun-lakshmanan-8695a3199/?originalSubdomain=in"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.nameUnderline}
@@ -268,19 +268,10 @@ export const Footer = () => {
         </div>
       </div>
 
-      <div className={styles.section}>
+      <div className={styles.support}>
         <span className={styles.title}>Project Supported by:</span>
         <p className={styles.description} style={{ maxWidth: "725px" }}>
-          This work was commissioned within the framework of the S+T+ARTS
-          4Water II residency program by <span>TBA21–Academy </span>with the
-          support of{" "}
-          <span>
-            Konsortium Deutsche Meeresforschung (KDM){" "}
-          </span>within the Prep4Blue project as a contribution to the EU
-          Restore our Ocean and Waters by 2030, and with the collaboration of{" "}
-          <span>
-            Ca' Foscari, CNR-ISMAR, ETT, and Venice International University.
-          </span>
+          {sheetData[0]?.Full_Desc}
           <br />
           <br />
           Initial Support:{" "}
@@ -290,7 +281,7 @@ export const Footer = () => {
             rel="noopener noreferrer"
             className={styles.nameUnderline}
           >
-            ASU Leonardo Imagination Fellowship
+           {sheetData[0]?.ISi}
           </a>
           ,{" "}
           <a
@@ -299,7 +290,7 @@ export const Footer = () => {
             rel="noopener noreferrer"
             className={styles.nameUnderline}
           >
-            UNESCO FUTURE Literacy
+            {sheetData[0]?.ISii}
           </a>
           ,{" "}
           <a
@@ -308,7 +299,7 @@ export const Footer = () => {
             rel="noopener noreferrer"
             className={styles.nameUnderline}
           >
-            The Awesome Foundation
+            {sheetData[0]?.ISiii}
           </a>
           .
         </p>
@@ -376,12 +367,14 @@ export const Footer = () => {
               />
             </button>
           </div>
-          <p className={styles.description}>
+          <p className={styles.name1}>
             <span
               style={{
                 marginRight: "5px",
-                fontSize: "29px",
+                fontSize: "25px",
                 paddingTop: "0px",
+                position:'relative',
+                top:"3px"
               }}
             >
               &copy;
