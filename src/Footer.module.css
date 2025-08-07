@@ -144,13 +144,13 @@
   }
 
   .name {
-    font-size: 16px; /* Smaller name text for mobile */
+    font-size: 18px; /* Smaller name text for mobile */
     line-height: 1.4;
     letter-spacing: 0.3px;
   }
 
   .description {
-    font-size: 12px; /* Smaller description for mobile */
+    font-size: 18px; /* Smaller description for mobile */
     line-height: 1.6;
     letter-spacing: 0.3px;
   }
@@ -169,11 +169,24 @@
   }
 
   /* Ensure researcher names remain stacked in a column on mobile */
-  .researcherList {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0; /* Important for the lines */
-  }
+.researcherList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 0rem 0rem !important; /* row-gap and column-gap */
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.nameUnderline{
+  font-size: 18px;
+  white-space: pre-wrap; /* or pre */
+  
+}
+
+.researcherList .name{
+  font-size: 14px;
+}
 
   .namesGrid {
     grid-template-columns: 1fr; /* Stack names into a single column on mobile */
@@ -187,12 +200,30 @@
   }
 
   .supporterImage {
-    width: 20px; /* Slightly smaller icons for mobile */
-    height: 20px;
+    width: 18px; /* Slightly smaller icons for mobile */
+    height: 24px;
   }
   .websiteDevNames {
-    font-size: 16px;
+    font-size: 18px;
+  }
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 10em;
+
   }
 
-  
+  .name1 {
+    font-size: 14px; /* Smaller description for mobile */
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+  }
+
+  .support{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 0em;
+  } 
 }

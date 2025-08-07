@@ -233,8 +233,8 @@ export const Footer = () => {
             <span className={styles.role}>{sheetData[0]?.Role_13}</span>
             {/* Start of changes for Researcher section */}
             <div className={styles.researcherList}>
-              <a
-                href="https://www.linkedin.com/in/tamoghno-paul"
+               <a
+                href="https://www.linkedin.com/in/mithun-lakshmanan-8695a3199/?originalSubdomain=in"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.nameUnderline}
@@ -268,7 +268,7 @@ export const Footer = () => {
         </div>
       </div>
 
-      <div className={styles.section}>
+      <div className={styles.support}>
         <span className={styles.title}>Project Supported by:</span>
         <p className={styles.description} style={{ maxWidth: "725px" }}>
           {sheetData[0]?.Full_Desc}
@@ -367,12 +367,14 @@ export const Footer = () => {
               />
             </button>
           </div>
-          <p className={styles.description}>
+          <p className={styles.name1}>
             <span
               style={{
                 marginRight: "5px",
-                fontSize: "29px",
+                fontSize: "25px",
                 paddingTop: "0px",
+                position:'relative',
+                top:"3px"
               }}
             >
               &copy;

@@ -56,8 +56,8 @@ export const CaseStudies = ({ sections, pollutantName }) => {
           <div className="overlap-group-2">
             <div id="sources-section" className="text-wrapper-3">
               {window.innerWidth <= 768 && pollutantName
-                ? <div>
-                  Case studies of <br/>{pollutantName} pollution &nbsp;
+                ? <div style={{fontSize:'24px',fontFamily:'Nippo-Regular',lineHeight:'normal'}}>
+                  Case studies of {pollutantName} <br/> pollution &nbsp;
                   </div>
                 : pollutantName
                 ? `Case studies of ${pollutantName} pollution`

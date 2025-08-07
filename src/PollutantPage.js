@@ -2234,9 +2234,7 @@ const PollutantPage = ({ categorizedData }) => {
                                                   src={habitatIcons[lineIndex]}
                                                   alt={`icon-${lineIndex}`}
                                                   style={{
-                                                    width: "31.4px",
-                                                    height: "4em",
-                                                    objectFit: "contain",
+                                                    width: '23.4px', height: '3em', objectFit: 'contain', position: 'relative', bottom: '0.4em'
                                                   }}
                                                 />
                                               </div>
@@ -2687,7 +2685,7 @@ const PollutantPage = ({ categorizedData }) => {
                         <div className="bottom-section6" id="common-names">
                           <CommonNames sections={commonname} />
                         </div>
-                        
+
                         <div className="bottom-section8" id="origin">
                           <Origin sections={geographicaldistribution} />
                         </div>
@@ -3002,7 +3000,7 @@ const PollutantPage = ({ categorizedData }) => {
                   style={{
                     position: "fixed",
                     top: "50%",
-                    right: 0, 
+                    right: 0,
                     transform: "translateY(-50%)",
                     zIndex: 1300,
                   }}
@@ -3021,12 +3019,12 @@ const PollutantPage = ({ categorizedData }) => {
               <>
                 {!isSplit ? (
                   <div className="content-sections">
-                    <div
+                    {/* <div
                       style={{ padding: "35px 0px 0px 7px" }}
                       onClick={() => setIsSplit(true)}
                     >
                       <img style={{ marginTop: "18px" }} src={sliderPosition == 20 ? backwhite : back} />
-                    </div>
+                    </div> */}
                     <div style={{ marginTop: "50px" }} className="bottom-section1" id="about-pollutant">
                       <AboutPollutantSection
                         sections={aboutpollutantcontent}
@@ -3054,7 +3052,7 @@ const PollutantPage = ({ categorizedData }) => {
                         pollutantName={leftpanelcontent[0].pollutantName}
                       />
                     </div>
-                    <div className="bottom-section4" id="phytoremediation" style={{ height: "3035px" }}>
+                    <div className="bottom-section4" id="phytoremediation" style={{ height: "3400px" }}>
                       <Phyto
                         sections={phytocontent}
                         pollutantName={leftpanelcontent[0].pollutantName}
@@ -3337,7 +3335,7 @@ const PollutantPage = ({ categorizedData }) => {
                       <div className="bottom-section6" id="common-names">
                         <CommonNames sections={commonname} />
                       </div>
-                      
+
                       <div className="bottom-section8" id="origin">
                         <Origin sections={geographicaldistribution} />
                       </div>
@@ -3431,7 +3429,7 @@ const PollutantPage = ({ categorizedData }) => {
                   <div className="bottom-section6" id="common-names">
                     <CommonNames sections={commonname} />
                   </div>
-                  
+
                   <div className="bottom-section8" id="origin">
                     <Origin sections={geographicaldistribution} />
                   </div>

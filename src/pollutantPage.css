@@ -540,6 +540,7 @@ body.right-panel-active .hamburger-line {
 .nav-links {
   list-style: none;
   padding: 0;
+  padding-bottom: 3em;
   margin: 0px auto 0;
   transition: opacity 0.3s;
   margin-top: 10px;
