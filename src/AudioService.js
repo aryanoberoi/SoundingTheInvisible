@@ -309,31 +309,42 @@ class AudioService {
     }
   }
   
-  /**
-   * Fetches and decodes an audio file into an AudioBuffer. Caches the result.
-   * @returns {Promise<AudioBuffer|null>}
-   */
-  async _getAudioBuffer(padNumber) {
-    if (this.cachedBuffers[padNumber]) {
+ /**
+ * Fetches and decodes an audio file into an AudioBuffer. Caches the result.
+ * @returns {Promise<AudioBuffer|null>}
+ */
+async _getAudioBuffer(padNumber) {
+  if (this.cachedBuffers[padNumber]) {
       return this.cachedBuffers[padNumber];
-    }
-    if (!this.audioContext) {
-        console.warn("Cannot fetch buffer, AudioContext is not initialized.");
-        return null;
-    }
-    
-    try {
-      const response = await fetch(`${API_URL}/play_pad?pad=${padNumber}`);
-      if (!response.ok) throw new Error(`Failed to fetch sound for pad ${padNumber}`);
+  }
+  if (!this.audioContext) {
+      console.warn("Cannot fetch buffer, AudioContext is not initialized.");
+      return null;
+  }
+
+
+  fetch(`${API_URL}/play_pad`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pad: padNumber }),
+  }).catch(err => {
+      // Log API errors silently without stopping the sound playback.
+      console.error(`API command ping failed for pad ${padNumber}:`, err);
+  });
+
+  try {
+      // 2. Fetch the actual sound file from the local public folder.
+      const response = await fetch(`/sounds/${padNumber}.mp3`);
+      if (!response.ok) throw new Error(`Failed to fetch local sound for pad ${padNumber}`);
       const arrayBuffer = await response.arrayBuffer();
       const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
       this.cachedBuffers[padNumber] = audioBuffer;
       return audioBuffer;
-    } catch (err) {
+  } catch (err) {
       console.error(`Error fetching or decoding pad ${padNumber}:`, err);
       return null;
-    }
   }
+}
 
   /**
    * Stops a specific pad sound with a fade-out.
