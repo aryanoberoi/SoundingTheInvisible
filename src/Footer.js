@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Footer.module.css";
+import fbblack from "./facebook-f-brandsblack.png";
+import Inblack from "./instagram-brandsblack.png";
+import twblack from "./x-twitter-brandsblack.png";
+import shblack from "./share-from-square-regularblack.png";
 
 const shareToFacebook = () => {
   const url = encodeURIComponent(window.location.href);
@@ -321,9 +325,10 @@ export const Footer = () => {
               }}
             >
               <img
-                src="facebook.png"
+                src={fbblack}
                 alt="Facebook"
                 className={styles.supporterImage}
+                style={{width:'15', height:'24'}}
               />
             </button>
             <button
@@ -336,9 +341,10 @@ export const Footer = () => {
               }}
             >
               <img
-                src="instagram.png"
+                src={Inblack}
                 alt="Instagram"
                 className={styles.supporterImage}
+                style={{width:'21', height:'24'}}
               />
             </button>
             <button
@@ -351,9 +357,10 @@ export const Footer = () => {
               }}
             >
               <img
-                src="twitter.png"
+                src={twblack}
                 alt="Twitter"
                 className={styles.supporterImage}
+                style={{width:'24', height:'24'}}
               />
             </button>
             <button
@@ -361,9 +368,10 @@ export const Footer = () => {
               style={{ background: "none", border: "none", padding: 0 }}
             >
               <img
-                src="share.png"
+                src={shblack}
                 alt="Share Link"
                 className={styles.supporterImage}
+                style={{width:'27', height:'24'}}
               />
             </button>
           </div>
