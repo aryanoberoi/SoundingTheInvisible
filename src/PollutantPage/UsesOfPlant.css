@@ -28,9 +28,9 @@
     width: 100%;
     height: auto;
     position: relative;
-    padding-top: 100px;
+    padding-top: 0px;
     padding-left: 40px;
-    padding-bottom: 60px;
+    padding-bottom: 0px;
 }
 
 .uses-of-plant-container .uses-of-plant-header {
@@ -393,8 +393,7 @@
     margin-top: 20px;
     display: flex;
     justify-content: flex-start;
-    width: 100%;
-
+    width: 96%;
 }
 
 .bibliography-button {
@@ -415,9 +414,26 @@
     text-decoration-line: none;
 }
 
+.down-arrow-icon{
+    margin-top: 65px;
+    margin-bottom: 160px;
+    margin-left: -43em;
+}
+
+#iconBox{
+    margin-top: 23em;
+    margin-bottom: 25px;
+}
+
 @media screen and (max-width:768px) {
+
     .uses-of-plant-container {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding-top: 100px;
         padding-left: 0px;
+        padding-bottom: 60px;
     }
 
     .circle-inverted {
@@ -454,6 +470,11 @@
     .uses-of-plant-container .uses-of-plant-title {
         font-size: 24px !important;
     }
+    .down-arrow-icon{
+        margin-top: 120px;
+        margin-bottom: 160px;
+        margin-left:16px
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -465,5 +486,9 @@
         margin-top: calc(100% + -401px);
         margin-top: 140px;
         transform: translateY(calc(100% - 173px));
+    }
+    #iconBox{
+        margin-top: 25px;
+        margin-bottom: -20px;
     }
 }

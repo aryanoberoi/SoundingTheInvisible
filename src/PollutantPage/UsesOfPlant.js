@@ -288,7 +288,7 @@ export const UsesOfPlant = ({ sectionsData }) => {
           alt="down arrow"
           src={longDownArrow}
           className="down-arrow-icon"
-          style={{ marginTop: '120px', marginBottom: '160px', marginLeft: '40px' }}
+          // style={{ marginTop: '120px', marginBottom: '160px', marginLeft: '16px' }}
         />
         <div id="references" className="button-container-bibliography">
           <a href={sectionsData.bibliography} className="bibliography-button" target="_blank" rel="noopener noreferrer">
@@ -297,7 +297,8 @@ export const UsesOfPlant = ({ sectionsData }) => {
         </div>
         <div
                           className="col-lg-12 pb-5 mb-5"
-                          style={{ marginBottom: "25px" ,marginTop: "72px" }}
+                          id="iconBox"
+                          // style={{ marginBottom: "25px" ,marginTop: "72px" }}
                         >
                           <div
                             style={{
