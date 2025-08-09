@@ -1629,7 +1629,7 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
   background-color: white;
   color: black;
   min-height: 100vh;
-  padding: 30px 69px 95px 69px;
+  padding: 30px 69px 0px 69px;
 }
 
 /* Ensure all sections take full viewport height */
@@ -1859,6 +1859,13 @@ body.white-panel-active .nav-bar .p.active > span {
     width: 320px !important;
     margin-left: 0;
     padding: 1rem 1rem 0rem 1rem;
+  }
+
+  .bottom-section10 {
+    background-color: white;
+    color: black;
+    min-height: 100vh;
+    padding: 30px 69px 95px 69px;
   }
 
   .bottom-section1,

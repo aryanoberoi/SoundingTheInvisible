@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import './PeepHoleImage.css'
 const isMobile = window.innerWidth <= 768; // detect mobile
 const PeepholeEffect = ({ imageUrl,
   plantimagemobile,
@@ -184,6 +185,7 @@ const PeepholeEffect = ({ imageUrl,
         max="300"
         value={radius}
         onChange={(e) => setRadius(parseInt(e.target.value))}
+        className="custom-slider"
         style={{
           width: "150px",
           cursor: "pointer",

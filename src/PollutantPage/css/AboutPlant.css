@@ -122,7 +122,7 @@
 .rectangle-inv {
   background-color: #000;
   position: absolute;
-  width: 170px;
+  width: 200px;
   height: 60%;
   left: 0;
   top: 0;
@@ -130,7 +130,7 @@
 
 .wetland-black-bar {
   position: absolute;
-  width: 55%;
+  width: 60%;
   height: 13%;
   background-color: #000;
   top: 27px;
@@ -168,6 +168,14 @@
   }
   .wetland-black-bar {
  width: 102% !important; 
+  }
+  .rectangle-inv {
+    background-color: #000;
+    position: absolute;
+    width: 170px;
+    height: 60%;
+    left: 0;
+    top: 0;
   }
   .common-names-container .common-names-items{
     margin-left: 0px !important;
