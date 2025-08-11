@@ -3474,12 +3474,12 @@ const PollutantPage = ({ categorizedData }) => {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: "20px",
+                gap: "1.667em",
                 // paddingRight: "83px",
-                marginBottom: "20px",
+                marginBottom: "1.667em",
                 zIndex: 999,
                 background: "#fff",
-                paddingLeft: "calc(100% - 296px)",
+                paddingLeft: "calc(100% - 24.867em)",
               }}
               onClick={() => handleNavClick("slider-container")}
             >
@@ -3501,11 +3501,11 @@ const PollutantPage = ({ categorizedData }) => {
                 justifyContent: "center",
                 display: "flex",
                 // padding: 0,
-                gap: "55px",
+                gap: "4.5833em",
                 // paddingRight: "86.9px",
                 // paddingLeft: "calc(100% - 303px)",
-                padding: "19px 0px 0px 0",
-                width: "200px",
+                padding: "1.5833em 0px 0px 0",
+                width: "16.667em",
                 transform: `translateX(${window.innerWidth - 307}px)`,
                 // transform: `translateX(${window.innerWidth - 10} px)`,
                 // transform: translateX`390px`,
@@ -3562,11 +3562,11 @@ const PollutantPage = ({ categorizedData }) => {
                 alignItems: "center",
                 justifyContent: "center",
                 // paddingLeft: "60px",
-                paddingLeft: "calc(100% - 292px)",
-                gap: "20px",
+                paddingLeft: "calc(100% - 24.333em)",
+                gap: "1.677em",
                 marginBottom: "1px",
                 // paddingRight: "52px",
-                paddingTop: "20px",
+                paddingTop: "1.677em",
               }}
               onClick={() => handleNavClick("phytoremediation")}
             >
@@ -3593,7 +3593,7 @@ const PollutantPage = ({ categorizedData }) => {
             <div
               style={{
                 gap: "20px",
-                paddingLeft: "calc(100% - 238px)",
+                paddingLeft: "calc(100% - 19.83em)",
               }}
               onClick={() => handleNavClick("slider-container")}
             >
@@ -3615,11 +3615,11 @@ const PollutantPage = ({ categorizedData }) => {
                 justifyContent: "center",
                 display: "flex",
                 // padding: 0,
-                gap: "26px",
+                gap: "2.166em",
                 // paddingRight: "86.9px",
                 // paddingLeft: "calc(100% - 303px)",
-                padding: "19px 0px 0px 0",
-                width: "200px",
+                padding: "1.583em 0px 0px 0",
+                width: "16.667em",
                 transform: `translateX(${window.innerWidth - 308}px)`,
                 top: "0em",
                 position: "relative",
@@ -3635,10 +3635,10 @@ const PollutantPage = ({ categorizedData }) => {
                     className="flex items-center justify-between w-full max-w-xs"
                     style={{
                       alignItems: "baseline",
-                      gap: "10px",
+                      gap: "0.833em",
                       display: "flex",
                       flexDirection: "row-reverse",
-                      width: "260px",
+                      width: "21.667em",
                       zIndex: 999,
                     }}
                   >
