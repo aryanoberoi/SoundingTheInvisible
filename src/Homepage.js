@@ -40,8 +40,6 @@ export default function Homepage({ audioControls }) {
     }
   }, []);
 
-  const DEFAULT_PAD_NUMBER = "999";
-
   useEffect(() => {
     const trapeziumObserver = new IntersectionObserver(
       (entries) => {
@@ -60,14 +58,14 @@ export default function Homepage({ audioControls }) {
     return () => trapeziumObserver.disconnect();
   }, []);
 
-  useEffect(() => {
-    audioService.isMuted = !audioEnabled;
-    audioService.toggleMute(!audioEnabled);
+  // useEffect(() => {
+  //   audioService.isMuted = !audioEnabled;
+  //   audioService.toggleMute(!audioEnabled);
 
-    if (audioControls && typeof audioControls.setEnabled === "function") {
-      audioControls.setEnabled(audioEnabled);
-    }
-  }, [audioEnabled, audioControls]);
+  //   if (audioControls && typeof audioControls.setEnabled === "function") {
+  //     audioControls.setEnabled(audioEnabled);
+  //   }
+  // }, [audioEnabled, audioControls]);
 
   const handleFrameHover = (hovering) => {
     setIsFrameHovered(hovering);
@@ -93,7 +91,7 @@ export default function Homepage({ audioControls }) {
     <div className="homepage">
       <div className="homepage-content">
         <SoundToggle
-          padNumber={DEFAULT_PAD_NUMBER}
+          padNumber={999}
           isInTrapezium={isInTrapezium}
           panelMode={isInTrapezium ? "black" : "white"}
           defaultActive={audioEnabled}

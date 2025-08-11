@@ -62,7 +62,7 @@ const SoundToggle = ({
   // Determine button color based on section and menu state
   const buttonColor = isNavMenuOpen ? "white" : 
                      (isInCombinedSection ? 
-                      (panelMode === "white" ? "black" : "white") :
+                      (panelMode === "white" ? "black" : "black"):
                       (isInTrapezium ? "white" : "black"));
 
   // Play sound on component mount if defaultActive is true

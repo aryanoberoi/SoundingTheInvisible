@@ -67,7 +67,7 @@
 .common-names-container .common-names-items {
     position: relative;
     margin-left: 40px;
-    margin-top: calc(-5%);
+    margin-top: calc(-0%);
 }
   
 .common-names-container .common-names-item {
@@ -185,6 +185,12 @@
     /* .common-names-container .common-names-item:nth-child(3n+2) {
         left: 10px; 2nd, 5th, 8th items
     } */
+
+    .common-names-container .common-names-items {
+        position: relative;
+        margin-left: 40px;
+        margin-top: calc(-5%);
+    }
 }
   
 .common-names-container .wetland-status-container {
