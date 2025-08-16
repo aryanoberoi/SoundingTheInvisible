@@ -102,7 +102,7 @@
 .trapezium-section {
   position: relative;
   background-color: black;
-  clip-path: polygon(0 0, 100% 20%, 100% 80%, 0% 100%);
+  clip-path: polygon(0 0, 100% 26%, 100% 69%, -1.9% 100.1%);
   padding-block: 190px;
   color: white;
   display: flex;
@@ -986,5 +986,26 @@ svg.strategy-image {
 }
   .concept-section{
     padding: 40px 0px !important;
+  }
+}
+
+
+.Homepagexyz{
+  position: relative;
+    transform: scale(1.009);
+    top: -32.46875em;
+    right: 43.48125em;
+}
+
+.homepagexyz1{
+  position: relative;
+  top: 12em;
+  left: 44em;
+}
+
+@media (max-width: 768px) {
+  .Homepagexyz,
+  .homepagexyz1 {
+    display: none;
   }
 }
