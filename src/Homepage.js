@@ -181,6 +181,9 @@ export default function Homepage({ audioControls }) {
           </div>
         </section>
 
+        <img className="Homepagexyz"src={Homepagexyz} />
+
+
         {/* Sound Concept Section */}
         <section className="sound-concept-section" style={{ overflow: "visible" }}>
           <Cloud top={3150} left={65} distance="short" direction="left" variant={1} />
@@ -211,7 +214,7 @@ export default function Homepage({ audioControls }) {
               audioControls={audioControls}
             />
             
-              <img className="Homepagexyz"src={Homepagexyz} />
+              
             
           </div>
         </section>

@@ -102,8 +102,8 @@
 .trapezium-section {
   position: relative;
   background-color: black;
-  clip-path: polygon(0 0, 100% 26%, 100% 69%, -1.9% 100.1%);
-  padding-block: 190px;
+  clip-path: polygon(0px 0px, 100% 150px, 100% calc(100% - 150px), 0px 100%);
+    padding-block: 190px;
   color: white;
   display: flex;
   flex-direction: row;
@@ -992,9 +992,9 @@ svg.strategy-image {
 
 .Homepagexyz{
   position: relative;
-    transform: scale(1.009);
-    top: -32.46875em;
-    right: 43.48125em;
+  transform: scale(1.007);
+  top: -18.16875em;
+  right: -22.95875em;
 }
 
 .homepagexyz1{
