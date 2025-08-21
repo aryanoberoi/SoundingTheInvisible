@@ -102,7 +102,9 @@
 .trapezium-section {
   position: relative;
   background-color: black;
-  clip-path: polygon(0 0, 100% 20%, 100% 80%, 0% 100%);
+  /* Adjust the 15vw values to get the angle you want */
+  /* Example: polygon(top-left, top-right, bottom-right, bottom-left) */
+  clip-path: polygon(0 0, 100% 20vw, 100% 68vw, 0 100vw);
   padding-block: 190px;
   color: white;
   display: flex;
@@ -111,7 +113,8 @@
   gap: 0;
   z-index: 1;
   overflow: visible;
-  min-height: calc(100vh * 0.6);
+  height: 180vh;
+  padding-top: 20vw;
 }
 
 /* SVG container with a pseudo-element approach */
