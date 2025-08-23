@@ -1,463 +1,445 @@
 // src/services/AudioService.js
+// Seamless loop engine — per-source equal-power fades for IN and OUT,
+// no group-level fade that collapses when switching pads.
 
-// Define the API URL for your backend
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:6000";
 
+const clamp = (v, lo, hi) => Math.min(Math.max(v, lo), hi);
+const nowMs = () => performance.now();
+
+/* ---------- equal-power curve builder ---------- */
+function buildEqualPowerCurve(samples, fadeIn = true) {
+  const arr = new Float32Array(samples);
+  for (let i = 0; i < samples; i++) {
+    const t = i / (samples - 1);
+    const theta = t * Math.PI * 0.5; // 0..π/2
+    arr[i] = fadeIn ? Math.sin(theta) : Math.cos(theta);
+  }
+  // avoid exact zeros
+  for (let i = 0; i < samples; i++) arr[i] = Math.max(arr[i], 0.000001);
+  return arr;
+}
+
+/* ---------- LoopPlayer: per-pad crossfading looper ---------- */
+class LoopPlayer {
+  constructor(ctx, masterGain, audioBuffer, {
+    volume = 1.0,
+    fadeInMs = 800,
+    xfadeMs = 450,
+    curveSamples = 128,
+  } = {}) {
+    this.ctx = ctx;
+    // groupGain stays at unity — don't fade it. Per-source gains handle fades.
+    this.groupGain = ctx.createGain();
+    this.groupGain.gain.value = 1.0;
+    this.groupGain.connect(masterGain);
+
+    this.buf = audioBuffer;
+    this.targetVol = clamp(volume, 0, 1);
+    this.fadeInMs = Math.max(10, fadeInMs);
+    this.xfadeMs = Math.max(40, Math.min(5000, xfadeMs));
+    this.curveSamples = Math.max(16, curveSamples);
+
+    this._a = null; // { src, gain, startTime }
+    this._b = null;
+    this._playing = false;
+    this._tickId = null;
+
+    // curves (base 0..1); when applying IN we scale by targetVol
+    this._inCurveBase = buildEqualPowerCurve(this.curveSamples, true);
+    this._outCurveBase = buildEqualPowerCurve(this.curveSamples, false);
+
+    this._scheduled = new WeakSet();
+  }
+
+  _makeSource() {
+    const src = this.ctx.createBufferSource();
+    src.buffer = this.buf;
+    const g = this.ctx.createGain();
+    g.gain.value = 0.000001; // start silent
+    src.connect(g).connect(this.groupGain);
+    return { src, gain: g, startTime: 0 };
+  }
+
+  // Apply a value-curve to the gainNode but scale the curve by a factor (used to scale IN curve to targetVol)
+  _applyScaledCurve(gainNode, baseCurve, scale, atSec, durMs) {
+    const t = atSec;
+    const scaled = new Float32Array(baseCurve.length);
+    for (let i = 0; i < baseCurve.length; i++) scaled[i] = Math.max(baseCurve[i] * scale, 0.000001);
+    try {
+      gainNode.gain.cancelScheduledValues(t);
+      gainNode.gain.setValueCurveAtTime(scaled, t, durMs / 1000);
+    } catch {
+      // fallback: exponential ramp
+      gainNode.gain.setValueAtTime(gainNode.gain.value || 0.000001, t);
+      gainNode.gain.exponentialRampToValueAtTime(Math.max(0.000001, scale), t + durMs / 1000);
+    }
+  }
+
+  start() {
+    if (this._playing) return;
+    this._playing = true;
+
+    // Create and start first source slightly in the future
+    this._a = this._makeSource();
+    const tStart = this.ctx.currentTime + 0.03;
+    this._a.startTime = tStart;
+    this._a.src.start(tStart);
+
+    // Apply IN curve (scaled by targetVol) to the very first source for smooth fade-in
+    this._applyScaledCurve(this._a.gain, this._inCurveBase, this.targetVol, tStart, this.fadeInMs);
+
+    this._tick();
+  }
+
+  _tick() {
+    if (!this._playing) return;
+
+    const durSec = this.buf.duration;
+    const xfadeSec = this.xfadeMs / 1000;
+    const cur = this._b || this._a;
+    if (!cur) return;
+
+    const nextStart = cur.startTime + durSec - xfadeSec;
+
+    // schedule next source within a short look-ahead window
+    if (this.ctx.currentTime >= nextStart - 0.03 && !this._scheduled.has(cur)) {
+      const next = this._makeSource();
+      next.startTime = nextStart;
+      next.src.start(nextStart);
+
+      // Equal-power crossfade: IN curve scaled to targetVol; OUT curve (base) scaled by 1
+      this._applyScaledCurve(next.gain, this._inCurveBase, this.targetVol, nextStart, this.xfadeMs);
+      this._applyScaledCurve(cur.gain,  this._outCurveBase, 1.0,      nextStart, this.xfadeMs);
+
+      // stop old after crossfade completes
+      const stopAtMs = (nextStart + xfadeSec) * 1000;
+      setTimeout(() => { try { cur.src.stop(0); } catch {} }, Math.max(0, stopAtMs - nowMs()));
+
+      // rotate
+      this._scheduled.add(cur);
+      if (cur === this._a) this._b = next; else this._a = next;
+    }
+
+    this._tickId = setTimeout(() => this._tick(), 33);
+  }
+
+  // Stop by fading OUT per-source gains (do NOT touch groupGain)
+  async stop(fadeMs = 700) {
+    if (!this._playing) return;
+    clearTimeout(this._tickId);
+    this._tickId = null;
+    this._playing = false;
+
+    const t = this.ctx.currentTime;
+
+    // Apply OUT curve scaled to current source levels (we assume 1 inside)
+    if (this._a?.gain) this._applyScaledCurve(this._a.gain, this._outCurveBase, 1.0, t, fadeMs);
+    if (this._b?.gain) this._applyScaledCurve(this._b.gain, this._outCurveBase, 1.0, t, fadeMs);
+
+    const doneAt = (t + fadeMs / 1000) * 1000;
+    await new Promise(res => setTimeout(res, Math.max(0, doneAt - nowMs())));
+
+    [this._a, this._b].forEach(r => { if (r?.src) { try { r.src.stop(0); } catch {} } });
+    this._a = this._b = null;
+  }
+
+  // Fade down per-source gains to a new target (used when adjusting volume)
+  setVolume(v, rampMs = 160) {
+    this.targetVol = clamp(v, 0, 1);
+    // Smoothly change future IN scaling by adjusting an immediate tiny ramp on group? 
+    // We keep groupGain at 1 and rely on newly scheduled IN curves to respect new targetVol.
+    // For live adjustment, also scale current sources linearly (approx) for continuity:
+    const t = this.ctx.currentTime;
+    const curA = this._a?.gain, curB = this._b?.gain;
+    [curA, curB].forEach(gNode => {
+      if (!gNode) return;
+      try {
+        gNode.gain.cancelScheduledValues(t);
+        // multiply current value by targetVol (quick linear-ish ramp)
+        gNode.gain.setTargetAtTime(Math.max(0.000001, this.targetVol), t, Math.max(0.02, rampMs / 1000 / 5));
+      } catch {}
+    });
+  }
+}
+
+/* ---------- AudioService (uses LoopPlayer) ---------- */
 class AudioService {
   constructor() {
-    // --- WEB AUDIO API SETUP ---
-    // The core of the Web Audio API, remains null until first user interaction.
     this.audioContext = null;
-    // Master volume control. All sounds route through this node.
-    this.masterGain = null;
-    // Stores decoded AudioBuffer objects to avoid re-fetching and re-decoding.
-    this.cachedBuffers = {};
-    // Stores active playback instances { source: AudioBufferSourceNode, gain: GainNode }.
-    this.activeSources = {};
-    // Reference for the ambient audio's active source and gain nodes.
-    this.ambientAudioSource = null;
-    // --- END WEB AUDIO API SETUP ---
+    this.masterGain = null; // master volume left at 1.0
 
-    // Stores the padNumber of the currently looping sound that is *exclusive*.
+    this.cachedBuffers = {};
+    this.players = {};      // pad -> LoopPlayer
+    this.oneShots = {};     // pad -> { src, gain }
+
     this.currentlyPlayingExclusiveLoop = null;
-    // Stores the padNumber of the persistent ambient background sound.
     this.ambientSoundPad = "999";
 
-    // Global mute state, initialized based on localStorage if available.
     this.isMuted = localStorage.getItem("audioEnabled") === "false";
-    // Maps SVG element IDs to pad numbers. RETAINED on reset.
     this.elementToPadMapping = {};
-
-    // Sets to keep track of active timeouts for proper cleanup (used for post-fade stop actions).
-    this.activeTimeouts = new Set();
     this._categorizedData = null;
   }
 
-  /**
-   * Initializes the AudioContext after a user interaction (e.g., a click).
-   * This is required by modern browsers' autoplay policies.
-   */
   _ensureContextIsRunning() {
     if (!this.audioContext) {
       try {
         this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
         this.masterGain = this.audioContext.createGain();
+        this.masterGain.gain.value = 1.0;
         this.masterGain.connect(this.audioContext.destination);
-        console.log("[AudioService] AudioContext created and initialized.");
       } catch (e) {
-        console.error("[AudioService] Web Audio API is not supported in this browser.", e);
+        console.error("[AudioService] Web Audio unsupported.", e);
         return false;
       }
     }
-
-    if (this.audioContext.state === 'suspended') {
-      this.audioContext.resume();
-      console.log("[AudioService] AudioContext resumed from suspended state.");
-    }
+    if (this.audioContext.state === "suspended") this.audioContext.resume();
     return true;
   }
 
-  /**
-   * Initializes the AudioService with application data.
-   * @param {Array} categorizedData - The data containing pollutant/plant IDs and pad numbers.
-   */
   init(categorizedData) {
-    if (!categorizedData || !Array.isArray(categorizedData) || categorizedData.length === 0) {
-      console.warn("[AudioService] init called with invalid or empty data. Skipping mapping build.");
-      return;
+    if (Array.isArray(categorizedData) && categorizedData.length) {
+      this._categorizedData = categorizedData;
+      this.buildElementToPadMapping(categorizedData);
     }
-    console.log("[AudioService] Initializing service with data.");
-    this._categorizedData = categorizedData;
-    this.buildElementToPadMapping(categorizedData);
-    
-    // Set up a one-time event listener to initialize the AudioContext on first user gesture.
     const initAudio = () => {
-      if (this._ensureContextIsRunning()) {
-        console.log("[AudioService] Audio engine ready. Preloading common sounds.");
-        this.preloadCommonSounds();
-        // Remove the listeners after they've done their job.
-        document.removeEventListener('click', initAudio);
-        document.removeEventListener('keydown', initAudio);
-      }
+      if (this._ensureContextIsRunning()) this.preloadCommonSounds();
+      document.removeEventListener("click", initAudio);
+      document.removeEventListener("keydown", initAudio);
     };
-    document.addEventListener('click', initAudio, { once: true });
-    document.addEventListener('keydown', initAudio, { once: true });
+    document.addEventListener("click", initAudio, { once: true });
+    document.addEventListener("keydown", initAudio, { once: true });
   }
 
-  /**
-   * Resets the entire audio playback state of the service.
-   */
   resetAllAudioState() {
-    console.log('[AudioService] Performing full audio state reset...');
-    this.stopAllSounds(500); // Stop all sounds with a quick fade.
-
-    // Clear all pending timeouts to prevent ghost operations.
-    this.activeTimeouts.forEach(timeoutId => clearTimeout(timeoutId));
-    this.activeTimeouts.clear();
-
+    this.stopAllSounds(500);
     this.currentlyPlayingExclusiveLoop = null;
     this.isMuted = false;
     localStorage.setItem("audioEnabled", "true");
-
     this.dispose();
-    console.log('[AudioService] Audio state reset complete. Element mapping retained.');
   }
 
-  /**
-   * Cleans up all active audio resources.
-   */
   dispose() {
-    console.log('[AudioService] Disposing audio resources...');
-    // Stop all currently playing sources immediately.
-    Object.values(this.activeSources).forEach(src => {
-      if (src && src.source) {
-        src.source.stop(0);
-      }
-    });
-    if (this.ambientAudioSource && this.ambientAudioSource.source) {
-        this.ambientAudioSource.source.stop(0);
-    }
-
-    this.activeSources = {};
-    this.ambientAudioSource = null;
-    // Clears the decoded audio data.
+    Object.values(this.players).forEach(p => { try { p.stop(0); } catch {} });
+    Object.values(this.oneShots).forEach(({ src }) => { try { src.stop(0); } catch {} });
+    this.players = {};
+    this.oneShots = {};
     this.cachedBuffers = {};
   }
-  
-  // --- Timeout tracking helpers for robust cleanup ---
-  _addTimeout(id) { this.activeTimeouts.add(id); }
-  _removeTimeout(id) { this.activeTimeouts.delete(id); }
 
-  /**
-   * Builds a mapping from element IDs to pad numbers. (No changes from original)
-   */
-  buildElementToPadMapping(categorizedData) {
-    if (!categorizedData || !Array.isArray(categorizedData)) return;
-    const spellingVariants = {
-      'aluminum': 'aluminium', 'thalium': 'thallium', 'estrogen-pills': 'estrogen',
-      'organic-matter': 'organicmatter', 'crude': 'crudeoil'
+  buildElementToPadMapping(rows) {
+    const variants = {
+      aluminum: "aluminium", thalium: "thallium",
+      "estrogen-pills": "estrogen", "organic-matter": "organicmatter",
+      crude: "crudeoil"
     };
-    categorizedData.forEach(row => {
-      if (row.id && row.Number) {
-        const id = row.id.trim().toLowerCase();
-        const padNumber = String(row.Number);
-        this.elementToPadMapping[id] = padNumber;
-        this.elementToPadMapping[id.replace(/-/g, '')] = padNumber;
-        this.elementToPadMapping[id.replace(/-/g, ' ')] = padNumber;
-      }
+    rows.forEach(r => {
+      if (!r?.id || !r?.Number) return;
+      const id = String(r.id).trim().toLowerCase();
+      const pad = String(r.Number);
+      this.elementToPadMapping[id] = pad;
+      this.elementToPadMapping[id.replace(/-/g, "")] = pad;
+      this.elementToPadMapping[id.replace(/-/g, " ")] = pad;
     });
-    Object.entries(spellingVariants).forEach(([variant, standard]) => {
-      if (this.elementToPadMapping[standard]) {
-        this.elementToPadMapping[variant] = this.elementToPadMapping[standard];
-      }
+    Object.entries(variants).forEach(([v, s]) => {
+      if (this.elementToPadMapping[s]) this.elementToPadMapping[v] = this.elementToPadMapping[s];
     });
-    console.log("Element to pad mapping built with entries:", Object.keys(this.elementToPadMapping).length);
   }
 
-  /**
-   * Fades in an audio source using Web Audio API's precise scheduling.
-   * @param {GainNode} gainNode - The GainNode controlling the sound's volume.
-   * @param {number} targetVolume - The target volume (0.0 to 1.0).
-   * @param {number} duration - The fade duration in milliseconds.
-   */
-  fadeInAudio(gainNode, targetVolume = 1.0, duration = 1000) {
-    if (!gainNode || !this.audioContext) return;
-    const now = this.audioContext.currentTime;
-    gainNode.gain.setValueAtTime(0.001, now); // Start at near-zero volume
-    gainNode.gain.exponentialRampToValueAtTime(targetVolume, now + duration / 1000);
-  }
-
-  /**
-   * Fades out an audio source and stops it.
-   * @param {string} padNumber - The pad number of the sound to stop.
-   * @param {number} duration - The fade duration in milliseconds.
-   * @returns {Promise<void>}
-   */
-  fadeOutAudio(activeSound, duration = 2000) { // Note the change in parameter
-    return new Promise(resolve => {
-        // --- FIX: No need to look up the sound anymore ---
-        if (!activeSound || !activeSound.source || !this.audioContext) {
-            return resolve();
-        }
-
-        const { source, gain } = activeSound;
-        const now = this.audioContext.currentTime;
-        
-        gain.gain.cancelScheduledValues(now);
-        gain.gain.setValueAtTime(gain.gain.value, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + duration / 1000);
-
-        const timeoutId = setTimeout(() => {
-            source.stop(0);
-            // --- FIX: The state cleanup logic is REMOVED from here ---
-            this._removeTimeout(timeoutId);
-            resolve();
-        }, duration);
-        this._addTimeout(timeoutId);
-    });
-}
-  /**
-   * Plays a sound for a given element ID. The public interface is unchanged.
-   */
-  playElementSound(elementId, options = {}) {
+  async playElementSound(elementId, options = {}) {
     if (this.isMuted) return null;
-    if (!elementId) {
-      console.warn("[AudioService] No elementId provided.");
-      return null;
-    }
-    
-    // Normalize and look up the pad number (logic unchanged)
-    let lookupId = elementId.toLowerCase().replace(/\s+/g, '');
-    const padNumber = this.elementToPadMapping[lookupId];
-    
-    if (!padNumber) {
-      console.warn(`[AudioService] No pad mapping found for element: ${elementId}.`);
-      return null;
-    }
-
-    console.log(`[AudioService] Playing sound for element: ${elementId} (Pad ${padNumber})`);
-    return this.playPadSound(padNumber, options);
+    if (!elementId) return null;
+    const lookup = String(elementId).toLowerCase().replace(/\s+/g, "");
+    const pad = this.elementToPadMapping[lookup];
+    if (!pad) return null;
+    return this.playPadSound(pad, options);
   }
 
-  /**
-   * Stops a sound for a given element ID. The public interface is unchanged.
-   */
-  stopElementSound(elementId, fadeOutDuration = 2500) {
+  stopElementSound(elementId, fadeOutMs = 500) {
     if (!elementId) return Promise.resolve();
-    let lookupId = elementId.toLowerCase().replace(/\s+/g, '');
-    const padNumber = this.elementToPadMapping[lookupId];
-    if (!padNumber) {
-      console.warn(`[AudioService] No pad mapping found to stop element: ${elementId}`);
-      return Promise.resolve();
-    }
-    return this.stopPadSound(padNumber, fadeOutDuration);
+    const lookup = String(elementId).toLowerCase().replace(/\s+/g, "");
+    const pad = this.elementToPadMapping[lookup];
+    if (!pad) return Promise.resolve();
+    return this.stopPadSound(pad, fadeOutMs);
   }
 
-  /**
-   * The core playback function, now using the Web Audio API.
-   * @returns A control object (or null) with a `stop` method.
-   */
   async playPadSound(padNumber, options = {}) {
-    if (this.isMuted || !this._ensureContextIsRunning()) {
-      return null;
-    }
-    
-    const defaultOptions = { loop: false, volume: 1.0, fadeIn: true, fadeInDuration: 1000 };
-    const settings = { ...defaultOptions, ...options };
+    if (this.isMuted || !this._ensureContextIsRunning()) return null;
 
-    // --- Exclusive Loop Logic (Unchanged) ---
+    const {
+      loop = false,
+      volume = 1.0,
+      fadeIn = true,
+      fadeInDuration = 800,
+      xfadeMs = 450,
+    } = options;
+
+    // Exclusive loop policy: if another exclusive loop is playing, we *don't* kill it
+    // by fading its group to zero. Instead, we fade-out its per-source gains only
+    // so the switching crossfade won't collapse.
     if (padNumber !== this.ambientSoundPad) {
       if (this.currentlyPlayingExclusiveLoop && this.currentlyPlayingExclusiveLoop !== padNumber) {
-        await this.stopPadSound(this.currentlyPlayingExclusiveLoop, 500);
+        // fade out existing exclusive player's per-source gains (quick) but allow overlap
+        const prevPad = this.currentlyPlayingExclusiveLoop;
+        const prevPlayer = this.players[prevPad];
+        if (prevPlayer) {
+          // fade prev out gently, but not touching master/group gain
+          prevPlayer.stop(Math.min(1200, fadeInDuration));
+          delete this.players[prevPad];
+        }
       }
-      this.currentlyPlayingExclusiveLoop = settings.loop ? padNumber : null;
+      this.currentlyPlayingExclusiveLoop = loop ? padNumber : null;
     }
+
+    const buffer = await this._getAudioBuffer(padNumber);
+    if (!buffer) return null;
+
+    // Ensure any existing playback for pad is stopped (per-source fade)
+    if (this.players[padNumber]) {
+      await this.players[padNumber].stop(80);
+      delete this.players[padNumber];
+    }
+    if (this.oneShots[padNumber]) {
+      // quick fade out of one-shot
+      const shot = this.oneShots[padNumber];
+      delete this.oneShots[padNumber];
+      shot.gain.gain.cancelScheduledValues(this.audioContext.currentTime);
+      shot.gain.gain.exponentialRampToValueAtTime(0.000001, this.audioContext.currentTime + 0.08);
+      try { shot.src.stop(this.audioContext.currentTime + 0.1); } catch {}
+    }
+
+    if (loop) {
+      const player = new LoopPlayer(this.audioContext, this.masterGain, buffer, {
+        volume,
+        fadeInMs: fadeIn ? fadeInDuration : 10,
+        xfadeMs,
+        curveSamples: 128,
+      });
+      this.players[padNumber] = player;
+      player.start();
+      return { stop: (ms) => this.stopPadSound(padNumber, ms) };
+    }
+
+    // One-shot (non-loop)
+    const src = this.audioContext.createBufferSource();
+    const g = this.audioContext.createGain();
+    g.gain.value = 0.000001;
+    src.buffer = buffer;
+    src.connect(g).connect(this.masterGain);
+    src.start(this.audioContext.currentTime + 0.01);
+
+    const useFadeIn = fadeIn ? fadeInDuration : 0;
+    if (useFadeIn > 0) {
+      // simple exponential ramp to volume (one-shots don't need curves usually)
+      g.gain.cancelScheduledValues(this.audioContext.currentTime);
+      g.gain.setValueAtTime(0.000001, this.audioContext.currentTime);
+      g.gain.exponentialRampToValueAtTime(clamp(volume, 0.001, 1), this.audioContext.currentTime + (useFadeIn / 1000));
+    } else {
+      g.gain.setValueAtTime(clamp(volume, 0, 1), this.audioContext.currentTime);
+    }
+
+    this.oneShots[padNumber] = { src, gain: g };
+    src.onended = () => { if (this.oneShots[padNumber]?.src === src) delete this.oneShots[padNumber]; };
+
+    return { stop: (ms) => this.stopPadSound(padNumber, ms) };
+  }
+
+  async _getAudioBuffer(padNumber) {
+    if (this.cachedBuffers[padNumber]) return this.cachedBuffers[padNumber];
+    if (!this.audioContext) return null;
+
+    // ping backend (fire-and-forget)
+    fetch(`${API_URL}/play_pad`, {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ pad: padNumber })
+    }).catch(() => {});
 
     try {
-      const audioBuffer = await this._getAudioBuffer(padNumber);
-      if (!audioBuffer) throw new Error("Failed to get audio buffer.");
-      
-      // Stop any existing sound on this pad before playing a new one.
-      if (this.activeSources[padNumber]) {
-        await this.stopPadSound(padNumber, 50);
-      }
-
-      // Create the node graph for this sound
-      const source = this.audioContext.createBufferSource();
-      const gain = this.audioContext.createGain();
-      source.buffer = audioBuffer;
-      source.loop = settings.loop;
-      source.connect(gain).connect(this.masterGain);
-
-      // Start playback and apply fade-in
-      source.start(0);
-      if (settings.fadeIn) {
-        this.fadeInAudio(gain, settings.volume, settings.fadeInDuration);
-      } else {
-        gain.gain.setValueAtTime(settings.volume, this.audioContext.currentTime);
-      }
-      
-      // Store the active source and gain nodes
-      const activeSound = { source, gain };
-      if (padNumber === this.ambientSoundPad) {
-        this.ambientAudioSource = activeSound;
-      } else {
-        this.activeSources[padNumber] = activeSound;
-      }
-      
-      // Return a control object with a working stop method
-      return {
-        stop: (fadeOutDuration) => this.stopPadSound(padNumber, fadeOutDuration)
-      };
-
-    } catch (err) {
-      console.error(`Error playing pad ${padNumber}:`, err);
+      const resp = await fetch(`/sounds/${padNumber}.mp3`);
+      if (!resp.ok) throw new Error(`Missing /sounds/${padNumber}.mp3`);
+      const ab = await resp.arrayBuffer();
+      const buf = await this.audioContext.decodeAudioData(ab);
+      this.cachedBuffers[padNumber] = buf;
+      return buf;
+    } catch (e) {
+      console.error(`[AudioService] Failed to load pad ${padNumber}:`, e);
       return null;
     }
   }
-  
-  /**
-   * Fetches and decodes an audio file into an AudioBuffer. Caches the result.
-   * @returns {Promise<AudioBuffer|null>}
-   */
- /**
- * Fetches and decodes an audio file into an AudioBuffer. Caches the result.
- * @returns {Promise<AudioBuffer|null>}
- */
-async _getAudioBuffer(padNumber) {
-  if (this.cachedBuffers[padNumber]) {
-      return this.cachedBuffers[padNumber];
-  }
-  if (!this.audioContext) {
-      console.warn("Cannot fetch buffer, AudioContext is not initialized.");
-      return null;
-  }
 
-
-  fetch(`${API_URL}/play_pad`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ pad: padNumber }),
-  }).catch(err => {
-      // Log API errors silently without stopping the sound playback.
-      console.error(`API command ping failed for pad ${padNumber}:`, err);
-  });
-
-  try {
-      // 2. Fetch the actual sound file from the local public folder.
-      const response = await fetch(`/sounds/${padNumber}.mp3`);
-      if (!response.ok) throw new Error(`Failed to fetch local sound for pad ${padNumber}`);
-      const arrayBuffer = await response.arrayBuffer();
-      const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
-      this.cachedBuffers[padNumber] = audioBuffer;
-      return audioBuffer;
-  } catch (err) {
-      console.error(`Error fetching or decoding pad ${padNumber}:`, err);
-      return null;
-  }
-}
-/**
- * Stops a specific pad sound with a fade-out.
- */
-async stopPadSound(padNumber, fadeOutDuration = 2000) {
-  // --- FIX: Find the sound source first ---
-  const activeSound = (padNumber === this.ambientSoundPad)
-      ? this.ambientAudioSource
-      : this.activeSources[padNumber];
-
-  // --- FIX: Update the state IMMEDIATELY ---
-  if (this.currentlyPlayingExclusiveLoop === padNumber) {
-      this.currentlyPlayingExclusiveLoop = null;
-  }
-  if (padNumber === this.ambientSoundPad) {
-      this.ambientAudioSource = null;
-  } else {
-      delete this.activeSources[padNumber];
-  }
-
-  // --- FIX: Now, if a sound existed, tell it to fade out ---
-  if (activeSound) {
-      // We pass the object directly, not the padNumber
-      await this.fadeOutAudio(activeSound, fadeOutDuration);
-  }
-}
-
-  /**
-   * Stops all currently playing sounds.
-   */
-  async stopAllSounds(fadeOutDuration = 2000) {
-    console.log(`[AudioService] Stopping all sounds...`);
-    const stopPromises = [];
-    
-    // Stop all interactive sounds
-    Object.keys(this.activeSources).forEach(padNumber => {
-      stopPromises.push(this.stopPadSound(padNumber, fadeOutDuration));
-    });
-
-    // Stop the ambient sound
-    if (this.ambientAudioSource) {
-      stopPromises.push(this.stopPadSound(this.ambientSoundPad, fadeOutDuration));
-    }
-
-    await Promise.all(stopPromises);
-    this.currentlyPlayingExclusiveLoop = null;
-    console.log('[AudioService] All sounds stopped.');
-  }
-
-  /**
-   * Toggles the global mute state.
-   */
-  async toggleMute(muted, fadeOutDuration = 1500) {
-    this.isMuted = muted;
-    localStorage.setItem("audioEnabled", String(!muted));
-    console.log(`[AudioService] Global mute toggled to: ${muted}`);
-
-    if (muted) {
-      // Replicates original behavior by stopping all sounds
-      await this.stopAllSounds(fadeOutDuration);
-    } else {
-      // On unmute, restart the ambient sound
-      if (this._ensureContextIsRunning()) {
-        await this.playAmbientSound(1.0, 1000);
-      }
-    }
-  }
-  
-  /**
-   * Plays the designated ambient background sound.
-   */
-  async playAmbientSound(volume = 1.0, fadeInDuration = 1000) {
-    if (this.isMuted || this.ambientAudioSource) {
-      // Don't play if muted or if it's already playing
-      return null;
-    }
-    console.log(`[AudioService] Playing ambient sound (pad ${this.ambientSoundPad})`);
-    return this.playPadSound(this.ambientSoundPad, {
-      loop: true,
-      volume: volume,
-      fadeInDuration: fadeInDuration
-    });
-  }
-
-  /**
-   * Stops the designated ambient background sound.
-   */
-  async stopAmbientSound(fadeOutDuration = 1500) {
-    console.log(`[AudioService] Stopping ambient sound.`);
-    await this.stopPadSound(this.ambientSoundPad, fadeOutDuration);
-  }
-
-  /**
-   * Preloads sounds by fetching and decoding them into the cache.
-   */
-  preloadCommonSounds() {
-    if (!this._categorizedData || Object.keys(this.elementToPadMapping).length === 0 || !this.audioContext) {
-      console.warn("[AudioService] Cannot preload sounds: context or mapping not ready.");
+  async stopPadSound(padNumber, fadeOutMs = 500) {
+    // prefer per-source fade stop for loop players
+    if (this.players[padNumber]) {
+      const p = this.players[padNumber];
+      delete this.players[padNumber];
+      if (this.currentlyPlayingExclusiveLoop === padNumber) this.currentlyPlayingExclusiveLoop = null;
+      await p.stop(fadeOutMs);
       return;
     }
-    const allPads = Array.from({ length: 36 }, (_, i) => String(i + 1));
-    allPads.unshift(this.ambientSoundPad); // Preload ambient sound too
 
-    console.log("Starting sequential preloading of sounds...");
-    
-    let index = 0;
-    const loadNext = async () => {
-        if (index >= allPads.length) {
-            console.log("Finished preloading all sounds.");
-            return;
-        }
-        const padNumber = allPads[index];
-        try {
-            await this._getAudioBuffer(padNumber);
-            console.log(`[AudioService] Preloaded pad ${padNumber}.`);
-        } catch (e) {
-            console.warn(`[AudioService] Failed to preload pad ${padNumber}:`, e);
-        }
-        index++;
-        // Use a short, untracked timeout to prevent blocking the main thread
-        setTimeout(loadNext, 100);
+    const shot = this.oneShots[padNumber];
+    if (shot) {
+      delete this.oneShots[padNumber];
+      shot.gain.gain.cancelScheduledValues(this.audioContext.currentTime);
+      shot.gain.gain.setValueAtTime(Math.max(0.000001, shot.gain.gain.value), this.audioContext.currentTime);
+      shot.gain.gain.exponentialRampToValueAtTime(0.000001, this.audioContext.currentTime + fadeOutMs / 1000);
+      const doneAt = (this.audioContext.currentTime + fadeOutMs / 1000) * 1000;
+      await new Promise(res => setTimeout(res, Math.max(0, doneAt - nowMs())));
+      try { shot.src.stop(0); } catch {}
+    }
+  }
+
+  async stopAllSounds(fadeOutMs = 500) {
+    const promises = [];
+    Object.keys(this.players).forEach(p => promises.push(this.stopPadSound(p, fadeOutMs)));
+    Object.keys(this.oneShots).forEach(p => promises.push(this.stopPadSound(p, fadeOutMs)));
+    await Promise.all(promises);
+    this.currentlyPlayingExclusiveLoop = null;
+  }
+
+  async toggleMute(muted, rampMs = 250) {
+    this.isMuted = muted;
+    localStorage.setItem("audioEnabled", String(!muted));
+    if (!this._ensureContextIsRunning()) return;
+    const t = this.audioContext.currentTime;
+    const g = this.masterGain.gain;
+    g.cancelScheduledValues(t);
+    const target = muted ? 0.000001 : 1.0;
+    g.setTargetAtTime(target, t, rampMs / 1000 / 5);
+
+    if (muted) await this.stopAllSounds(300);
+    else await this.playAmbientSound(0.8, 500);
+  }
+
+  async playAmbientSound(volume = 0.8, fadeInDuration = 700) {
+    if (this.isMuted) return null;
+    if (this.players[this.ambientSoundPad]) {
+      this.players[this.ambientSoundPad].setVolume(volume);
+      return { stop: (ms) => this.stopPadSound(this.ambientSoundPad, ms) };
+    }
+    return this.playPadSound(this.ambientSoundPad, {
+      loop: true,
+      volume,
+      fadeInDuration,
+      xfadeMs: 500,
+    });
+  }
+
+  async stopAmbientSound(fadeOutMs = 600) {
+    await this.stopPadSound(this.ambientSoundPad, fadeOutMs);
+  }
+
+  preloadCommonSounds() {
+    if (!this._categorizedData || !this.audioContext) return;
+    const pads = Array.from({ length: 36 }, (_, i) => String(i + 1));
+    pads.unshift(this.ambientSoundPad);
+    let i = 0;
+    const next = async () => {
+      if (i >= pads.length) return;
+      const pad = pads[i++];
+      try { await this._getAudioBuffer(pad); } catch {}
+      setTimeout(next, 80);
     };
-    loadNext();
+    next();
   }
 }
 
