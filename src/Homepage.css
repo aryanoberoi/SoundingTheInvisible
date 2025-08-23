@@ -991,3 +991,23 @@ svg.strategy-image {
     padding: 40px 0px !important;
   }
 }
+
+.Homepagexyz{
+  position: relative;
+  transform: scale(1.007);
+  top: -18.16875em;
+  right: -22.95875em;
+}
+
+.homepagexyz1{
+  position: relative;
+  top: 12em;
+  left: 44em;
+}
+
+@media (max-width: 768px) {
+  .Homepagexyz,
+  .homepagexyz1 {
+    display: none;
+  }
+}
