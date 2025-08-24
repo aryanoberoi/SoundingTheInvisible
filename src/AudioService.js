@@ -104,6 +104,85 @@ class AudioService {
   }
 
   /**
+ * Creates a new audio source with gain node
+ */
+_createAudioSource(audioBuffer, volume, fadeIn, fadeInDuration) {
+  const source = this.audioContext.createBufferSource();
+  const gain = this.audioContext.createGain();
+  
+  source.buffer = audioBuffer;
+  source.loop = false; // We handle looping manually now
+  source.connect(gain).connect(this.masterGain);
+  
+  source.start(0);
+  
+  if (fadeIn) {
+    this.fadeInAudio(gain, volume, fadeInDuration);
+  } else {
+    gain.gain.setValueAtTime(volume, this.audioContext.currentTime);
+  }
+  
+  return { source, gain };
+}
+
+/**
+ * Schedules the next loop iteration with 1-second overlap
+ */
+_scheduleOverlappingLoop(loopController) {
+  if (loopController.stopped) return;
+  
+  const { audioBuffer, settings, padNumber } = loopController;
+  const overlapTime = 1.0; // 1 second overlap
+  const bufferDuration = audioBuffer.duration;
+  const nextStartTime = bufferDuration - overlapTime;
+  
+  // Schedule the next loop iteration
+  const timeoutId = setTimeout(() => {
+    if (loopController.stopped) return;
+    
+    try {
+      // Create the next overlapping instance
+      const { source: nextSource, gain: nextGain } = this._createAudioSource(
+        audioBuffer, 
+        settings.volume, 
+        settings.fadeIn, 
+        settings.fadeInDuration
+      );
+      
+      // Update the loop controller to point to the new source
+      const oldSource = loopController.source;
+      const oldGain = loopController.gain;
+      
+      loopController.source = nextSource;
+      loopController.gain = nextGain;
+      
+      // Schedule cleanup of the old source after overlap period
+      const cleanupTimeoutId = setTimeout(() => {
+        try {
+          oldSource.stop(0);
+        } catch (e) {
+          // Source might already be stopped, ignore error
+        }
+        this._removeTimeout(cleanupTimeoutId);
+      }, overlapTime * 1000);
+      
+      this._addTimeout(cleanupTimeoutId);
+      
+      // Schedule the next loop
+      this._scheduleOverlappingLoop(loopController);
+      
+    } catch (error) {
+      console.error(`Error in overlapping loop for pad ${padNumber}:`, error);
+    }
+    
+    this._removeTimeout(timeoutId);
+  }, nextStartTime * 1000);
+  
+  this._addTimeout(timeoutId);
+}
+
+
+  /**
    * Cleans up all active audio resources.
    */
   dispose() {
@@ -233,68 +312,71 @@ class AudioService {
     return this.stopPadSound(padNumber, fadeOutDuration);
   }
 
-  /**
-   * The core playback function, now using the Web Audio API.
-   * @returns A control object (or null) with a `stop` method.
-   */
-  async playPadSound(padNumber, options = {}) {
-    if (this.isMuted || !this._ensureContextIsRunning()) {
-      return null;
+ /**
+ * The core playback function with overlapping loop support.
+ * @returns A control object (or null) with a `stop` method.
+ */
+async playPadSound(padNumber, options = {}) {
+  if (this.isMuted || !this._ensureContextIsRunning()) {
+    return null;
+  }
+  
+  const defaultOptions = { loop: false, volume: 1.0, fadeIn: true, fadeInDuration: 1000 };
+  const settings = { ...defaultOptions, ...options };
+
+  // --- Exclusive Loop Logic (Unchanged) ---
+  if (padNumber !== this.ambientSoundPad) {
+    if (this.currentlyPlayingExclusiveLoop && this.currentlyPlayingExclusiveLoop !== padNumber) {
+      await this.stopPadSound(this.currentlyPlayingExclusiveLoop, 500);
+    }
+    this.currentlyPlayingExclusiveLoop = settings.loop ? padNumber : null;
+  }
+
+  try {
+    const audioBuffer = await this._getAudioBuffer(padNumber);
+    if (!audioBuffer) throw new Error("Failed to get audio buffer.");
+    
+    // Stop any existing sound on this pad before playing a new one.
+    if (this.activeSources[padNumber]) {
+      await this.stopPadSound(padNumber, 50);
+    }
+
+    // Create the initial playback instance
+    const { source, gain } = this._createAudioSource(audioBuffer, settings.volume, settings.fadeIn, settings.fadeInDuration);
+    
+    // Store the active source - now we'll store the loop controller
+    const loopController = {
+      source,
+      gain,
+      isLooping: settings.loop,
+      padNumber,
+      audioBuffer,
+      settings,
+      nextScheduled: null,
+      stopped: false
+    };
+
+    if (padNumber === this.ambientSoundPad) {
+      this.ambientAudioSource = loopController;
+    } else {
+      this.activeSources[padNumber] = loopController;
+    }
+
+    // If looping, schedule the overlap
+    if (settings.loop) {
+      this._scheduleOverlappingLoop(loopController);
     }
     
-    const defaultOptions = { loop: false, volume: 1.0, fadeIn: true, fadeInDuration: 1000 };
-    const settings = { ...defaultOptions, ...options };
+    return {
+      stop: (fadeOutDuration) => this.stopPadSound(padNumber, fadeOutDuration)
+    };
 
-    // --- Exclusive Loop Logic (Unchanged) ---
-    if (padNumber !== this.ambientSoundPad) {
-      if (this.currentlyPlayingExclusiveLoop && this.currentlyPlayingExclusiveLoop !== padNumber) {
-        await this.stopPadSound(this.currentlyPlayingExclusiveLoop, 500);
-      }
-      this.currentlyPlayingExclusiveLoop = settings.loop ? padNumber : null;
-    }
-
-    try {
-      const audioBuffer = await this._getAudioBuffer(padNumber);
-      if (!audioBuffer) throw new Error("Failed to get audio buffer.");
-      
-      // Stop any existing sound on this pad before playing a new one.
-      if (this.activeSources[padNumber]) {
-        await this.stopPadSound(padNumber, 50);
-      }
-
-      // Create the node graph for this sound
-      const source = this.audioContext.createBufferSource();
-      const gain = this.audioContext.createGain();
-      source.buffer = audioBuffer;
-      source.loop = settings.loop;
-      source.connect(gain).connect(this.masterGain);
-
-      // Start playback and apply fade-in
-      source.start(0);
-      if (settings.fadeIn) {
-        this.fadeInAudio(gain, settings.volume, settings.fadeInDuration);
-      } else {
-        gain.gain.setValueAtTime(settings.volume, this.audioContext.currentTime);
-      }
-      
-      // Store the active source and gain nodes
-      const activeSound = { source, gain };
-      if (padNumber === this.ambientSoundPad) {
-        this.ambientAudioSource = activeSound;
-      } else {
-        this.activeSources[padNumber] = activeSound;
-      }
-      
-      // Return a control object with a working stop method
-      return {
-        stop: (fadeOutDuration) => this.stopPadSound(padNumber, fadeOutDuration)
-      };
-
-    } catch (err) {
-      console.error(`Error playing pad ${padNumber}:`, err);
-      return null;
-    }
+  } catch (err) {
+    console.error(`Error playing pad ${padNumber}:`, err);
+    return null;
   }
+}
+
   
   /**
    * Fetches and decodes an audio file into an AudioBuffer. Caches the result.
@@ -340,25 +422,30 @@ async _getAudioBuffer(padNumber) {
  * Stops a specific pad sound with a fade-out.
  */
 async stopPadSound(padNumber, fadeOutDuration = 2000) {
-  // --- FIX: Find the sound source first ---
-  const activeSound = (padNumber === this.ambientSoundPad)
-      ? this.ambientAudioSource
-      : this.activeSources[padNumber];
+  // Find the sound source first
+  const loopController = (padNumber === this.ambientSoundPad)
+    ? this.ambientAudioSource
+    : this.activeSources[padNumber];
 
-  // --- FIX: Update the state IMMEDIATELY ---
+  // Update the state IMMEDIATELY
   if (this.currentlyPlayingExclusiveLoop === padNumber) {
-      this.currentlyPlayingExclusiveLoop = null;
+    this.currentlyPlayingExclusiveLoop = null;
   }
   if (padNumber === this.ambientSoundPad) {
-      this.ambientAudioSource = null;
+    this.ambientAudioSource = null;
   } else {
-      delete this.activeSources[padNumber];
+    delete this.activeSources[padNumber];
   }
 
-  // --- FIX: Now, if a sound existed, tell it to fade out ---
-  if (activeSound) {
-      // We pass the object directly, not the padNumber
+  // Stop the loop controller if it exists
+  if (loopController) {
+    loopController.stopped = true; // This prevents further loop scheduling
+    
+    // Fade out the current playing source
+    if (loopController.source && loopController.gain) {
+      const activeSound = { source: loopController.source, gain: loopController.gain };
       await this.fadeOutAudio(activeSound, fadeOutDuration);
+    }
   }
 }
 
