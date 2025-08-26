@@ -11,8 +11,8 @@ import Title from "./title.js";
 import SoundToggle from "./SoundToggle";
 import { Footer } from "./Footer";
 import audioService from "./AudioService";
-import Homepagexyz from "./Homepagexyz.svg"
-import Homepagexyz1 from "./Homepagexyz1.svg"
+// import Homepagexyz from "./Homepagexyz.svg"
+// import Homepagexyz1 from "./Homepagexyz1.svg"
 
 export default function Homepage({ audioControls }) {
   const [showTrapeziumText, setShowTrapeziumText] = useState(false);
@@ -151,7 +151,7 @@ export default function Homepage({ audioControls }) {
           </div>
         </section>
 
-        <img className="homepagexyz1" src={Homepagexyz1}/>
+        {/* <img className="homepagexyz1" src={Homepagexyz1}/> */}
 
 
         {/* Trapezium Section */}
@@ -183,7 +183,7 @@ export default function Homepage({ audioControls }) {
           </div>
         </section>
 
-        <img className="Homepagexyz"src={Homepagexyz} />
+        {/* <img className="Homepagexyz"src={Homepagexyz} /> */}
 
 
         {/* Sound Concept Section */}

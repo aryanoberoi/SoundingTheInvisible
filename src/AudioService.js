@@ -522,7 +522,7 @@ async stopPadSound(padNumber, fadeOutDuration = 2000) {
       console.warn("[AudioService] Cannot preload sounds: context or mapping not ready.");
       return;
     }
-    const allPads = Array.from({ length: 36 }, (_, i) => String(i + 1));
+    const allPads = Array.from({ length: 46 }, (_, i) => String(i + 1));
     allPads.unshift(this.ambientSoundPad); // Preload ambient sound too
 
     console.log("Starting sequential preloading of sounds...");
