@@ -595,6 +595,9 @@ body.right-panel-active .hamburger-line {
   width: auto;
   height: 98px;
   object-fit: contain;
+  position: relative;
+  left: -1em;
+  top: 2px;
 }
 
 /* Arrow button */
@@ -642,7 +645,8 @@ body.right-panel-active .hamburger-line {
 }
 
 .nav-links .nav-item:nth-child(2) .expanded-underline {
-  margin-left: 42px;
+  margin-left: 39px;
+  margin-top: -3px;
 }
 
 .nav-links .nav-item:nth-child(3) .expanded-underline {
