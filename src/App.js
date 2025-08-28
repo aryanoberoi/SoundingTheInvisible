@@ -172,11 +172,10 @@ const AppContent = () => {
 
 const App = () => {
   return (
-    <Analytics>
     <Router>
       <AppContent />
+      <Analytics />
     </Router>
-    </Analytics>
   );
 };
 
