@@ -8,6 +8,7 @@ import PlayPads from "./PlayPads";
 import IsolatedCursor from './IsolatedCursor';
 import audioService from './AudioService';
 import { ScrollToTop, inspectScrollableElements } from './ScrollFix';
+import { Analytics } from "@vercel/analytics/react"
 
 const AppContent = () => {
   const location = useLocation();
@@ -171,9 +172,11 @@ const AppContent = () => {
 
 const App = () => {
   return (
+    <Analytics>
     <Router>
       <AppContent />
     </Router>
+    </Analytics>
   );
 };
 
