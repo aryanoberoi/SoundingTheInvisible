@@ -104,7 +104,7 @@
   background-color: black;
   /* Adjust the 15vw values to get the angle you want */
   /* Example: polygon(top-left, top-right, bottom-right, bottom-left) */
-  clip-path: polygon(0 0, 100% 20vw, 100% 68vw, 0 100vw);
+  clip-path: polygon(0 0, 100% 20vw, 100% 90vw, 0 120vw);
   padding-block: 190px;
   color: white;
   display: flex;
@@ -113,7 +113,7 @@
   gap: 0;
   z-index: 1;
   overflow: visible;
-  height: 180vh;
+  height: 200vh;
   padding-top: 20vw;
 }
 
