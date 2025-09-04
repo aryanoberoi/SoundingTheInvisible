@@ -125,7 +125,7 @@ const PollutantPage = ({ categorizedData }) => {
     lead: { typeOfWaste: 2, atomImage: "heavy-metal-waste-icon.svg" },
     chromium: { typeOfWaste: 2, atomImage: "heavy-metal-waste-icon.svg" },
     cadmium: { typeOfWaste: 2, atomImage: "heavy-metal-waste-icon.svg" },
-    thalium: { typeOfWaste: 2, atomImage: "heavy-metal-waste-icon.svg" },
+    thallium: { typeOfWaste: 2, atomImage: "heavy-metal-waste-icon.svg" },
     thallium: { typeOfWaste: 2, atomImage: "heavy-metal-waste-icon.svg" },
     "Thallium ": { typeOfWaste: 2, atomImage: "heavy-metal-waste-icon.svg" },
     selenium: { typeOfWaste: 2, atomImage: "heavy-metal-waste-icon.svg" },
@@ -134,7 +134,7 @@ const PollutantPage = ({ categorizedData }) => {
     zinc: { typeOfWaste: 2, atomImage: "heavy-metal-waste-icon.svg" },
     iron: { typeOfWaste: 2, atomImage: "heavy-metal-waste-icon.svg" },
     manganese: { typeOfWaste: 2, atomImage: "heavy-metal-waste-icon.svg" },
-    aluminum: { typeOfWaste: 2, atomImage: "heavy-metal-waste-icon.svg" },
+    aluminium: { typeOfWaste: 2, atomImage: "heavy-metal-waste-icon.svg" },
 
     // Type 3: Radioactive Elements
     thorium: { typeOfWaste: 3, atomImage: "radioactive-waste-icon.svg" },
@@ -142,14 +142,14 @@ const PollutantPage = ({ categorizedData }) => {
 
     // Type 4: Organic Pollutants
     benzene: { typeOfWaste: 4, atomImage: "sewage-waste-icon.svg" },
-    "crude-oil": { typeOfWaste: 4, atomImage: "sewage-waste-icon.svg" },
+    "crudeoil": { typeOfWaste: 4, atomImage: "sewage-waste-icon.svg" },
     petrol: { typeOfWaste: 4, atomImage: "sewage-waste-icon.svg" },
     spiralis: { typeOfWaste: 4, atomImage: "sewage-waste-icon.svg" },
     diesel: { typeOfWaste: 4, atomImage: "sewage-waste-icon.svg" },
     sulphide: { typeOfWaste: 4, atomImage: "sewage-waste-icon.svg" },
     ammonium: { typeOfWaste: 4, atomImage: "sewage-waste-icon.svg" },
     phenol: { typeOfWaste: 4, atomImage: "sewage-waste-icon.svg" },
-    "organic-matter": { typeOfWaste: 4, atomImage: "sewage-waste-icon.svg" },
+    "organicmatter": { typeOfWaste: 4, atomImage: "sewage-waste-icon.svg" },
     estrogen: { typeOfWaste: 4, atomImage: "sewage-waste-icon.svg" },
     phthalate: { typeOfWaste: 4, atomImage: "sewage-waste-icon.svg" },
     fragrance: { typeOfWaste: 4, atomImage: "sewage-waste-icon.svg" },

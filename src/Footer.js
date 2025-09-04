@@ -275,7 +275,7 @@ export const Footer = () => {
       <div className={styles.support}>
         <span className={styles.title}>Project Supported by:</span>
         <p className={styles.description} style={{ maxWidth: "725px" }}>
-          {sheetData[0]?.Full_Desc}
+        This work was commissioned within the framework of the S+T+ARTS 4Water II residency program by <a href="https://tba21.org/academy"> TBA21–Academy </a> with the support of <a href="https://www.deutsche-meeresforschung.de/en/">Konsortium Deutsche Meeresforschung (KDM)</a> within the Prep4Blue project as a contribution to the EU Restore our Ocean and Waters by 2030, and with the collaboration of <a href="https://www.unive.it/web/en/497/home">Ca' Foscari</a>, <a href="https://www.ismar.cnr.it/web-content/en/biodiversity-in-venice-lagoon/">CNR-ISMAR</a>, <a href="https://ettsolutions.com/en/">ETT</a>, and <a href="https://www.univiu.org/">Venice International University</a>.
           <br />
           <br />
           Initial Support:{" "}

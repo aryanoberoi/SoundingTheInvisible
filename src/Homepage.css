@@ -289,12 +289,12 @@
   opacity: var(--inactive-opacity) !important;
 }
 
-.organic-matter-group .hover-path {
+.organicmatter-group .hover-path {
   opacity: 0 !important;
   transition: opacity 0.3s ease;
 }
 
-.organic-matter-group:hover .hover-path {
+.organicmatter-group:hover .hover-path {
   opacity: 1 !important;
 }
 
@@ -334,12 +334,12 @@
   opacity: 1 !important;
 }
 
-.thalium-group .hover-path {
+.thallium-group .hover-path {
   opacity: 0 !important;
   transition: opacity 0.3s ease;
 }
 
-.thalium-group:hover .hover-path {
+.thallium-group:hover .hover-path {
   opacity: 1 !important;
 }
 
@@ -379,12 +379,12 @@
   opacity: 1 !important;
 }
 
-.aluminum-group .hover-path {
+.aluminium-group .hover-path {
   opacity: 0 !important;
   transition: opacity 0.3s ease;
 }
 
-.aluminum-group:hover .hover-path {
+.aluminium-group:hover .hover-path {
   opacity: 1 !important;
 }
 
@@ -655,7 +655,7 @@
 .diclofenac-group,
 .crude-group,
 .lead-group,
-.aluminum-group,
+.aluminium-group,
 .simazine-group,
 .zinc-group,
 .benzene-group,
@@ -675,12 +675,12 @@
 .phosphorus-group,
 .bht-group,
 .nitrates-group,
-.organic-matter-group,
+.organicmatter-group,
 .vallisneria-group,
 .cadmium-group,
 .phthalate-group,
 .atrazine-group,
-.thalium-group,
+.thallium-group,
 .estrogen-pills-group,
 .potassium-group {
   isolation: isolate; /* Creates a stacking context for each group */

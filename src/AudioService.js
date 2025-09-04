@@ -213,8 +213,8 @@ _scheduleOverlappingLoop(loopController) {
   buildElementToPadMapping(categorizedData) {
     if (!categorizedData || !Array.isArray(categorizedData)) return;
     const spellingVariants = {
-      'aluminum': 'aluminium', 'thalium': 'thallium', 'estrogen-pills': 'estrogen',
-      'organic-matter': 'organicmatter', 'crude': 'crudeoil'
+      'aluminium': 'aluminium', 'thallium': 'thallium', 'estrogen-pills': 'estrogen',
+      'organicmatter': 'organicmatter', 'crude': 'crudeoil'
     };
     categorizedData.forEach(row => {
       if (row.id && row.Number) {
