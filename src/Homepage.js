@@ -114,8 +114,8 @@ export default function Homepage({ audioControls }) {
 
         {/* Concept Section */}
         <section className="concept-section" style={{ overflow: "visible" }}>
-          <Cloud top={0} left={45} distance="short" direction="left" variant={1} />
-          <Cloud top={90} left={60} distance="medium" direction="left" variant={2} />
+          <Cloud top={-60} left={45} distance="short" direction="left" variant={1} />
+          <Cloud top={10} left={60} distance="medium" direction="left" variant={2} />
           <Cloud top={-170} left={72} distance="long" direction="left" variant={3} />
 
           <div className="concept-text">
