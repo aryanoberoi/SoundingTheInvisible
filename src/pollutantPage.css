@@ -263,6 +263,7 @@ body,
   font-size: 16px;
   color: #fff;
   user-select: none;
+  -webkit-user-select: none;
 }
 
 .left-half .arrow {
@@ -408,6 +409,7 @@ body.sound-panel-active .sound-icon span {
   background: rgba(255, 255, 255, 0) !important; /* semi-transparent white */
   transition: background 0.3s, transform 0.3s;
   backdrop-filter: invert(1) !important;
+  -webkit-backdrop-filter: invert(1) !important;
 }
 
 /* Adjust hamburger color based on background */
@@ -2227,22 +2229,6 @@ html body .combined-section .nav-bar-container .nav-bar {
   .left-panel {
     height: 100vh !important;
   }
-  /* .sideContentWrapper,.sourcesDescription,.sourcesTitle{
-    display: none !important;
-  }
-  .description{
-
-    display: none !important;
-  }
-  .knowone{
-    display: none !important;
-  }
-  .sideContent{
-    display: none !important;
-  }
-  .headerWrapper img{
-display: none !important;
-  } */
   .headerWrapper {
     width: auto !important;
     transform: translateX(110px);

@@ -947,8 +947,6 @@ const PollutantPage = ({ categorizedData }) => {
   }, []);
 
   const handleNavClick = (sectionId) => {
-    console.log("DDSADSDADS", sectionId);
-
     // Only affect isSplit on mobile
     if (isMobileView) {
       setIsSplit(sectionId == "slider-container" ? true : false);
@@ -1265,7 +1263,7 @@ const PollutantPage = ({ categorizedData }) => {
                 ref={sliderContainerRef}
                 style={{ height: containerHeight }}
               >
-                <div ref={leftPanelRef}>
+                <div ref={leftPanelRef} style={{ zIndex: -9999999 }}>
                   <LeftPanel
                     sections={leftpanelcontent}
                     onLoad={() => setLeftPanelLoaded(true)}

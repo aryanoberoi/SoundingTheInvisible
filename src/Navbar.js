@@ -1,13 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import downArrow from "./PollutantPage/down-arrow.svg";
-
-
-
-
-// Import the expanded content components directly
-// Assuming these files export React components
-// If these imports cause errors, check the exact path to your files
 import MobileAgricultureWasteExpanded from './mobileagriculture-waste-expanded';
 import AgricultureWasteExpanded from './agriculture-waste-expanded';
 import HeavyMetalWasteExpanded from './heavy-metal-waste-expanded';
