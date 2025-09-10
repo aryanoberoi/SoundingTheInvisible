@@ -10,6 +10,10 @@ import audioService from './AudioService';
 import { ScrollToTop, inspectScrollableElements } from './ScrollFix';
 import { Analytics } from "@vercel/analytics/react"
 
+const GA_MEASUREMENT_ID = "G-27HKJ5REFB";
+
+
+
 const AppContent = () => {
   const location = useLocation();
   const [dataByCategory, setDataByCategory] = useState({});
@@ -17,6 +21,16 @@ const AppContent = () => {
   const [displayPollutantPage, setDisplayPollutantPage] = useState(false);
   const initialMountRef = useRef(true);
   const previousPathRef = useRef('');
+
+  // 🔹 Track page views in Google Analytics
+  useEffect(() => {
+    if (window.gtag) {
+      window.gtag("config", GA_MEASUREMENT_ID, {
+        page_path: location.pathname + location.search,
+      });
+      console.log(`[GA] Pageview tracked: ${location.pathname}`);
+    }
+  }, [location]);
 
   useEffect(() => {
     inspectScrollableElements();
