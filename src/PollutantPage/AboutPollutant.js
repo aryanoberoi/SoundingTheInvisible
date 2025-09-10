@@ -1,17 +1,56 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../pollutantPage.css';
 
 export const AboutPollutantSection = ({ sections, wasteTypeIcon }) => {
-  if (!sections || sections.length === 0) return null;
-  
-  // Get first section's text
-  const contentText = sections[0].text || '';
-  
-  // Split text at first underscore
-  const [titlePart, descriptionPart] = contentText?.split(/_/, 2);
+  const [aboutImage, setAboutImage] = useState(null);
 
-  // Use wasteTypeIcon passed from parent component
+  // Always define pollutantName, even if sections is empty
+  const contentText = sections?.[0]?.text || '';
+  const [titlePart, descriptionPart] = contentText.split(/_/, 2);
+  const pollutantName = titlePart ? titlePart.slice(titlePart.indexOf(' ') + 1).trim() : '';
+
   const pollutantIcon = wasteTypeIcon || 'agriculture-waste-icon.svg';
+
+  // ✅ Use effect unconditionally
+  useEffect(() => {
+    if (!pollutantName) return;
+
+    const fetchSheetData = async () => {
+      try {
+        const res = await fetch(
+          "https://opensheet.elk.sh/1az7_Vg0GPH2FF393w0sjCmGUxHKEYnIsSDyAJIq8fxs/sheet1"
+        );
+        const data = await res.json();
+
+        const normalizedData = data.map(row => {
+          const newRow = {};
+          for (let key in row) {
+            newRow[key.trim().toLowerCase()] = row[key];
+          }
+          return newRow;
+        });
+
+        const matched = normalizedData.find(
+          row => row['pollutantname_split']?.trim().toLowerCase() === pollutantName.toLowerCase()
+        );
+
+        if (matched && matched['image_about_atom_compound']) {
+          setAboutImage(matched['image_about_atom_compound']);
+        } else {
+          setAboutImage(null);
+        }
+      } catch (err) {
+        console.error("Failed to fetch sheet data:", err);
+        setAboutImage(null);
+      }
+    };
+
+    fetchSheetData();
+  }, [pollutantName]);
+
+  // ✅ Early return after hooks
+  if (!sections || sections.length === 0) return null;
+
 
   return (
       <div style={{paddingTop:"0px"}} className="main-container" id="about-pollutant">
@@ -45,11 +84,12 @@ export const AboutPollutantSection = ({ sections, wasteTypeIcon }) => {
         <span className="lorem-ipsum-dolor">
           {descriptionPart || ''}
         </span>
-        <img 
-          src="g3.png" 
-          alt="graphic element"
-          className="group-3"
-        />
+        <img
+        src={aboutImage || 'g3.png'}
+        alt={`${pollutantName} graphic element`}
+        className="group-3"
+        onError={(e) => { e.target.src = 'g3.png'; }}
+      />
       </div>
   );
 };
