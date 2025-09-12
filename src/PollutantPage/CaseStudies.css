@@ -3,7 +3,7 @@
   height: 1300px;
   width: 80%;
   overflow: hidden;
-  margin: 0px 0px 60px 100px;
+  margin: 0px 0px 234px 100px;
   padding-top: 50px;
 }
 
@@ -82,9 +82,9 @@
   line-height: 200%;
   mix-blend-mode: difference;
   position: absolute;
-  width: 100%;
+  width: 80%;
   /* Reduce width slightly */
-  left: 61%;
+  left: 50%;
   /* Center it within the box */
   top: 4%;
   transform: translateX(-50%);
@@ -167,7 +167,7 @@
 
 .bottom-section3 .box .rectangle-5 {
   height: 518px;
-  left: 100px;
+  left: 90px;
   position: absolute;
   top: 536px;
   width: 100%;

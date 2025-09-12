@@ -5,6 +5,7 @@
   width: 100%;
   padding: 0px 0;
   overflow: visible;
+  margin-bottom: 190px;
 }
 
 .box-content-sections {
@@ -40,7 +41,7 @@
   color: #181818;
   font: 378 32px "Nippo-Regular", sans-serif;
   font-weight: 400;
-  left: 0;
+  left: -43px;
   letter-spacing: 3%;
   line-height: 100%;
   position: relative;

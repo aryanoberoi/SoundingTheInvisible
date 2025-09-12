@@ -1379,7 +1379,7 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
 }
 
 .group-3 {
-  width: 65%;
+  width: 100%;
   max-width: 100%;
   height: auto;
   aspect-ratio: 471/406.233;
@@ -1989,6 +1989,7 @@ img {
 .sound-frequency-section {
   padding-block: 200px !important;
   height: 500px;
+  margin-bottom: 224px;
 }
 
 .optional-text-container {
@@ -2020,8 +2021,8 @@ img {
   content: "";
   position: absolute;
   top: 0;
-  left: 3px; /* Inset from left */
-  right: -40px; /* Inset from right */
+  left: 0px; /* Inset from left */
+  right: -10px; /* Inset from right */
   bottom: 0;
   background-color: #fff;
   z-index: -1; /* Place behind text */
