@@ -393,7 +393,7 @@
     margin-top: 20px;
     display: flex;
     justify-content: flex-start;
-    width: 96%;
+    width: 90%;
 }
 
 .bibliography-button {
@@ -415,9 +415,9 @@
 }
 
 .down-arrow-icon{
-    margin-top: 65px;
-    margin-bottom: 160px;
-    margin-left: -43em;
+    margin-top: 8%;
+    margin-bottom: 17%;
+    margin-left: -73%;
 }
 
 #iconBox{

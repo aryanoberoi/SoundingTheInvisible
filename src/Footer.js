@@ -233,11 +233,11 @@ export const Footer = () => {
             </div>
           </div>
 
-                     <div className={styles.subGroup}>
+          <div className={styles.subGroup}>
             <span className={styles.role}>{sheetData[0]?.Role_13}</span>
             {/* Start of changes for Researcher section */}
             <div className={styles.researcherList}>
-               <a
+              <a
                 href="https://www.linkedin.com/in/mithun-lakshmanan-8695a3199/?originalSubdomain=in"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -275,7 +275,72 @@ export const Footer = () => {
       <div className={styles.support}>
         <span className={styles.title}>Project Supported by:</span>
         <p className={styles.description} style={{ maxWidth: "725px" }}>
-        This work was commissioned within the framework of the S+T+ARTS 4Water II residency program by <a href="https://tba21.org/academy"> TBA21–Academy </a> with the support of <a href="https://www.deutsche-meeresforschung.de/en/">Konsortium Deutsche Meeresforschung (KDM)</a> within the Prep4Blue project as a contribution to the EU Restore our Ocean and Waters by 2030, and with the collaboration of <a href="https://www.unive.it/web/en/497/home">Ca' Foscari</a>, <a href="https://www.ismar.cnr.it/web-content/en/biodiversity-in-venice-lagoon/">CNR-ISMAR</a>, <a href="https://ettsolutions.com/en/">ETT</a>, and <a href="https://www.univiu.org/">Venice International University</a>.
+          This work was commissioned within the framework of the S+T+ARTS 4Water II residency program by{" "}
+          <a
+            href="https://tba21.org/academy"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ cursor: "pointer", textDecoration: "none" }}
+            onMouseOver={e => (e.currentTarget.style.textDecoration = "underline")}
+            onMouseOut={e => (e.currentTarget.style.textDecoration = "none")}
+          >
+            TBA21–Academy
+          </a>{" "}
+          with the support of{" "}
+          <a
+            href="https://www.deutsche-meeresforschung.de/en/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ cursor: "pointer", textDecoration: "none" }}
+            onMouseOver={e => (e.currentTarget.style.textDecoration = "underline")}
+            onMouseOut={e => (e.currentTarget.style.textDecoration = "none")}
+          >
+            Konsortium Deutsche Meeresforschung (KDM)
+          </a>{" "}
+          within the Prep4Blue project as a contribution to the EU Restore our Ocean and Waters by 2030, and with the collaboration of{" "}
+          <a
+            href="https://www.unive.it/web/en/497/home"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ cursor: "pointer", textDecoration: "none" }}
+            onMouseOver={e => (e.currentTarget.style.textDecoration = "underline")}
+            onMouseOut={e => (e.currentTarget.style.textDecoration = "none")}
+          >
+            Ca' Foscari
+          </a>
+          ,{" "}
+          <a
+            href="https://www.ismar.cnr.it/web-content/en/biodiversity-in-venice-lagoon/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ cursor: "pointer", textDecoration: "none" }}
+            onMouseOver={e => (e.currentTarget.style.textDecoration = "underline")}
+            onMouseOut={e => (e.currentTarget.style.textDecoration = "none")}
+          >
+            CNR-ISMAR
+          </a>
+          ,{" "}
+          <a
+            href="https://ettsolutions.com/en/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ cursor: "pointer", textDecoration: "none" }}
+            onMouseOver={e => (e.currentTarget.style.textDecoration = "underline")}
+            onMouseOut={e => (e.currentTarget.style.textDecoration = "none")}
+          >
+            ETT
+          </a>
+          , and{" "}
+          <a
+            href="https://www.univiu.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ cursor: "pointer", textDecoration: "none" }}
+            onMouseOver={e => (e.currentTarget.style.textDecoration = "underline")}
+            onMouseOut={e => (e.currentTarget.style.textDecoration = "none")}
+          >
+            Venice International University
+          </a>.
           <br />
           <br />
           Initial Support:{" "}
@@ -283,15 +348,21 @@ export const Footer = () => {
             href="https://leonardo.info/imagination-fellowship"
             target="_blank"
             rel="noopener noreferrer"
+            style={{ cursor: "pointer", textDecoration: "none" }}
+            onMouseOver={e => (e.currentTarget.style.textDecoration = "underline")}
+            onMouseOut={e => (e.currentTarget.style.textDecoration = "none")}
             className={styles.nameUnderline}
           >
-           {sheetData[0]?.ISi}
+            {sheetData[0]?.ISi}
           </a>
           ,{" "}
           <a
             href="https://www.unesco.org/en/futures-literacy"
             target="_blank"
             rel="noopener noreferrer"
+            style={{ cursor: "pointer", textDecoration: "none" }}
+            onMouseOver={e => (e.currentTarget.style.textDecoration = "underline")}
+            onMouseOut={e => (e.currentTarget.style.textDecoration = "none")}
             className={styles.nameUnderline}
           >
             {sheetData[0]?.ISii}
@@ -301,6 +372,9 @@ export const Footer = () => {
             href="https://www.awesomefoundation.org/en/projects/165230-sounding-the-invisible-an-elegant-symbiosis"
             target="_blank"
             rel="noopener noreferrer"
+            style={{ cursor: "pointer", textDecoration: "none" }}
+            onMouseOver={e => (e.currentTarget.style.textDecoration = "underline")}
+            onMouseOut={e => (e.currentTarget.style.textDecoration = "none")}
             className={styles.nameUnderline}
           >
             {sheetData[0]?.ISiii}
@@ -328,7 +402,7 @@ export const Footer = () => {
                 src={fbblack}
                 alt="Facebook"
                 className={styles.supporterImage}
-                style={{width:'15', height:'24'}}
+                style={{ width: '15', height: '24' }}
               />
             </button>
             <button
@@ -344,7 +418,7 @@ export const Footer = () => {
                 src={Inblack}
                 alt="Instagram"
                 className={styles.supporterImage}
-                style={{width:'21', height:'24'}}
+                style={{ width: '21', height: '24' }}
               />
             </button>
             <button
@@ -360,7 +434,7 @@ export const Footer = () => {
                 src={twblack}
                 alt="Twitter"
                 className={styles.supporterImage}
-                style={{width:'24', height:'24'}}
+                style={{ width: '24', height: '24' }}
               />
             </button>
             <button
@@ -370,8 +444,8 @@ export const Footer = () => {
               <img
                 src={shblack}
                 alt="Share Link"
-                className={styles.supporterImage}
-                style={{width:'27', height:'24'}}
+                // className={styles.supporterImage}
+                style={{ width: '28px', height: '24px' }}
               />
             </button>
           </div>
@@ -381,8 +455,8 @@ export const Footer = () => {
                 marginRight: "5px",
                 fontSize: "25px",
                 paddingTop: "0px",
-                position:'relative',
-                top:"3px"
+                position: 'relative',
+                top: "3px"
               }}
             >
               &copy;
