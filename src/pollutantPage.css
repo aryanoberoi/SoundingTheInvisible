@@ -1300,8 +1300,8 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
   width: 75%;
   height: auto;
   overflow: hidden;
-  margin: 10%;
-  padding-bottom: 70px;
+  margin: 10% 10% 0% 10%;
+  /* padding-bottom: 70px; */
 }
 
 /* Add this new rule for inverted section */
@@ -1387,7 +1387,8 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
   margin: 20px auto 0; /* Changed from margin-top to margin with auto horizontal */
   object-fit: contain;
   background: none;
-  padding-top: 20px;
+  padding-top: 0px;
+  margin-top: 0px;
 }
 
 .nav-bar .text-wrapper,
@@ -1987,9 +1988,9 @@ img {
 }
 
 .sound-frequency-section {
-  padding-block: 200px !important;
+  /* padding-block: 200px !important; */
   height: 500px;
-  margin-bottom: 224px;
+  margin-bottom: 24px;
 }
 
 .optional-text-container {
