@@ -49,7 +49,7 @@ export const Phyto = ({ sections, pollutantName }) => {
                     index % 3 === 1
                       ? window.innerWidth <= 768
                         ? "calc(60%)"
-                        : "calc(64%)"
+                        : "calc(71%)"
                       : "calc(100% - 31%)",
                 }}
               />
@@ -97,7 +97,7 @@ export const Phyto = ({ sections, pollutantName }) => {
                         }
                       : {
                           transform: "scaleX(-1)",
-                          left: "calc(76%)",
+                          left: "calc(83%)",
                         }
                     : {}
                 }
@@ -111,7 +111,7 @@ export const Phyto = ({ sections, pollutantName }) => {
                   index % 3 === 1
                     ? {
                         transform: "scaleX(-1)",
-                        left: "calc(65%)",
+                        left: "calc(73%)",
                       }
                     : {}
                 }
