@@ -402,7 +402,6 @@ export const Footer = () => {
                 src={fbblack}
                 alt="Facebook"
                 className={styles.supporterImageFB}
-                style={{ width: '15', height: '24' }}
               />
             </button>
             <button
@@ -417,8 +416,7 @@ export const Footer = () => {
               <img
                 src={Inblack}
                 alt="Instagram"
-                className={styles.supporterImage}
-                style={{ width: '21', height: '24' }}
+                className={styles.supporterImageIG}
               />
             </button>
             <button
@@ -433,8 +431,7 @@ export const Footer = () => {
               <img
                 src={twblack}
                 alt="Twitter"
-                className={styles.supporterImage}
-                style={{ width: '24', height: '24' }}
+                className={styles.supporterImageX}
               />
             </button>
             <button
@@ -444,8 +441,7 @@ export const Footer = () => {
               <img
                 src={shblack}
                 alt="Share Link"
-                // className={styles.supporterImage}
-                style={{ width: '28px', height: '24px' }}
+                className={styles.supporterImageSH}
               />
             </button>
           </div>

@@ -97,14 +97,24 @@
   gap: 20px;
 }
 
-.supporterImage {
-  width: 23px; /* Adjust size as needed */
+.supporterImageFB {
+  width: 15px; /* Adjust size as needed */
   height: 25px;
 }
 
-.supporterImageFB {
-  /* width: 23px; Adjust size as needed */
-  height: 25px;
+.supporterImageIG {
+  width: 21px; /* Adjust size as needed */
+  height: 24px;
+}
+
+.supporterImageX {
+  width: 24px; /* Adjust size as needed */
+  height: 24px;
+}
+
+.supporterImageSH {
+  width: 27px; /* Adjust size as needed */
+  height: 24px;
 }
 
 /* New styles for researcher list */
