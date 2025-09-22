@@ -1382,23 +1382,23 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
 
 /* Constrain About pollutant image */
 .about-image-wrapper {
-  width: 480px;
+  /* width: 480px;
   height: 480px;
   max-width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  margin: 20px auto 50px;
+  overflow: hidden; */
+  margin: 0px auto 50px 100px;
 }
 
-.about-image-wrapper .group-3 {
+/* .about-image-wrapper .group-3 {
   max-width: 100%;
   max-height: 100%;
   width: 100%;
   height: 100%;
   object-fit: contain;
-}
+} */
 
 .group-3 {
   width: 100%;
