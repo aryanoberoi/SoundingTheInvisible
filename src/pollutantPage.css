@@ -1081,7 +1081,7 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
   content: "";
   position: absolute;
   left: 5px;
-  top: 0;
+  top: 5px;
   bottom: 0; /* New: Ensures line stops at container bottom */
   width: 1px;
   background-color: white;
