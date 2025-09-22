@@ -217,3 +217,14 @@
   margin-top: 20px;
   align-self: flex-end;
 }
+
+/* Increase bottom padding of plantContainer by 20px within the right panel */
+.right-panel .plantContainer {
+  padding-bottom: calc(5% + 20px);
+}
+
+@media (max-width: 991px) {
+  .right-panel .plantContainer {
+    padding-bottom: 20px;
+  }
+}

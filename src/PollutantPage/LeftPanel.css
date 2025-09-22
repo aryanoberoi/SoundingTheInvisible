@@ -234,7 +234,7 @@
 .description {
   flex: 1;
   overflow-y: auto;
-  font: 400 14px Chivo Mono;
+  font: 400 10px Chivo Mono;
   line-height: 165%;
 }
 
