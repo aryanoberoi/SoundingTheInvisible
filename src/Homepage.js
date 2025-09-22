@@ -218,16 +218,16 @@ export default function Homepage({ audioControls }) {
           </div>
         </section>
 
-        <div className="downarrow">
-          <div
+        <div className="vertical-line-section">
+          <div 
             style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              marginTop: "50px",
+              width: "1px",
+              height: "150px",
+              backgroundColor: "#000",
+              marginLeft: "50px"
             }}
-          >
-            <div style={{ border: "1px solid #000", width: 0, height: 83 }} />
-          </div>
+          />
         </div>
 
         <footer className="footer-section mt-0">
