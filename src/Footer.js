@@ -401,7 +401,7 @@ export const Footer = () => {
               <img
                 src={fbblack}
                 alt="Facebook"
-                className={styles.supporterImage}
+                className={styles.supporterImageFB}
                 style={{ width: '15', height: '24' }}
               />
             </button>
