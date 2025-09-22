@@ -82,9 +82,9 @@
   line-height: 200%;
   mix-blend-mode: difference;
   position: absolute;
-  width: 80%;
+  width: 95%;
   /* Reduce width slightly */
-  left: 50%;
+  left: 55%;
   /* Center it within the box */
   top: 4%;
   transform: translateX(-50%);
