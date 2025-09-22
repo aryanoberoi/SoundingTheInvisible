@@ -84,12 +84,14 @@ export const AboutPollutantSection = ({ sections, wasteTypeIcon }) => {
         <span className="lorem-ipsum-dolor">
           {descriptionPart || ''}
         </span>
-        <img
-        src={aboutImage || 'g3.png'}
-        alt={`${pollutantName} graphic element`}
-        className="group-3"
-        onError={(e) => { e.target.src = 'g3.png'; }}
-      />
+        <div className="about-image-wrapper">
+          <img
+            src={aboutImage || 'g3.png'}
+            alt={`${pollutantName} graphic element`}
+            className="group-3"
+            onError={(e) => { e.target.src = 'g3.png'; }}
+          />
+        </div>
       </div>
   );
 };
