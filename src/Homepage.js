@@ -188,8 +188,8 @@ export default function Homepage({ audioControls }) {
 
         {/* Sound Concept Section */}
         <section className="sound-concept-section" style={{ overflow: "visible" }}>
-          <Cloud top={4380} left={65} distance="short" direction="left" variant={1} />
-          <Cloud top={4700} left={45} distance="medium" direction="left" variant={2} />
+          <Cloud top={-230} left={65} distance="short" direction="left" variant={1} />
+          <Cloud top={30} left={45} distance="medium" direction="left" variant={2} />
           <div className="sound-text">
             <h2>{sheetData[0]?.Title_3}</h2>
             <p dangerouslySetInnerHTML={{ __html: renderWithLineBreaks(sheetData[0]?.Para_5) }} />

@@ -179,6 +179,7 @@
 
 /* 🔸 Sound Concept Section - Updated for 1:2 ratio */
 .sound-concept-section {
+  position: relative;
   margin-top: 15%;
   display: flex;
   flex-direction: row;
@@ -187,6 +188,7 @@
   width: 100%;
   gap: 0;
   min-height: calc(100vh * 0.6);
+  overflow: visible;
 }
 
 .sound-text {
