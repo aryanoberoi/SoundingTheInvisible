@@ -368,6 +368,7 @@ const Navbar = () => {
                 <li 
                   key={item.id} 
                   className={`nav-item ${isExpanded ? 'expanded' : ''}`}
+                  style={index === 2 && isExpanded ? { marginBottom: '70px' } : {}}
                   role="menuitem"
                   data-cursor-invert="true"
                 >
