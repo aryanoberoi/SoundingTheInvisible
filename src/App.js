@@ -10,9 +10,87 @@ import audioService from './AudioService';
 import { ScrollToTop, inspectScrollableElements } from './ScrollFix';
 import { Analytics } from "@vercel/analytics/react"
 
-const GA_MEASUREMENT_ID = "G-27HKJ5REFB";
+// Analytics configuration mapping
+const ANALYTICS_CONFIG = {
+  // Homepage
+  homepage: "G-8T2J98QBVF",
+  
+  // Pollutant-specific measurement IDs
+  pollutants: {
+    "potassium": "G-CS2Z7R1Z7T",
+    "simazine": "G-3FXNHT8R7S",
+    "imidacloprid": "G-RVC6EJZML5",
+    "atrazine": "G-WXESRQ4JJR",
+    "glyphosate": "G-C4XFTK6RJ2",
+    "phosphorus": "G-G653J290S3",
+    "nitrates": "G-KEFRVDVFP6",
+    "dimethomorph": "G-FQVTMMWMHF",
+    "mercury": "G-78R22FYCSZ",
+    "copper": "G-HLGK68JPZQ",
+    "lead": "G-6B1NDK82Q3",
+    "chromium": "G-VM4ND8H0N8",
+    "cadmium": "G-3BQJR55ZJL",
+    "thallium": "G-QQQ0WKP4XQ",
+    "selenium": "G-GE9MV451RP",
+    "nickel": "G-NNXFECWPV1",
+    "arsenic": "G-P8H8CLBP6N",
+    "zinc": "G-ZTESVRJB69",
+    "iron": "G-TTV9W4JVGT",
+    "manganese": "G-PNE11XHVG9",
+    "aluminium": "G-D4LQ93KC6B",
+    "antimony": "G-SH9ZBY3SV1",
+    "thorium": "G-E695PBKH7G",
+    "strontium": "G-D3G0E8E3LZ",
+    "uranium": "G-H6KXX6BC05",
+    "cesium": "G-R130QFL12R",
+    "polyaromatichydrocarbon": "G-ZMDR83D42F",
+    "crudeoil": "G-2ZQ07HE3MC",
+    "benzene": "G-BQFYEJ0DCT",
+    "petrol": "G-LF10V9BZW7",
+    "sulphide": "G-KZY08T7QEH",
+    "diesel": "G-84L74GVHRX",
+    "ammonium": "G-REEF8EJZHF",
+    "phenol": "G-VPNNPJSC7F",
+    "organicmatter": "G-M423YNEJCL",
+    "estradiol": "G-JK75D40PCK",
+    "phthalate": "G-8BY80D7YLR",
+    "fragrance": "G-TQMM1Z1652",
+    "diclofenac": "G-KVEXY8PQ0G",
+    "bht": "G-NDBMD8SPM8",
+    "syntheticdyes": "G-ZPXLM0QVTZ",
+    "ibuprofen": "G-JC5T6W54X6",
+    "ofloxacinantibiotic": "G-YF5KRMN9B7",
+    "chlorides": "G-N73Y7NZDRZ",
+    "tetracyclineAntibiotic": "G-GHQZGKTZLK",
+    "wastewatersludge": "G-81WQH91J48"
+  },
+  
+  // Default fallback
+  default: "G-8T2J98QBVF"
+};
 
-
+// Function to determine the appropriate measurement ID
+const getMeasurementId = (pathname, categorizedData) => {
+  // Homepage
+  if (pathname === "/") {
+    return ANALYTICS_CONFIG.homepage;
+  }
+  
+  // Playtest page (use homepage or create separate if needed)
+  if (pathname === "/playtest") {
+    return ANALYTICS_CONFIG.homepage; // Or create separate ID
+  }
+  
+  // Extract pollutant name from path
+  const pollutantName = pathname.substring(1); // Remove leading slash
+  
+  // Check if this pollutant exists in your data
+  if (categorizedData[pollutantName] || Object.keys(categorizedData).includes(pollutantName)) {
+    return ANALYTICS_CONFIG.pollutants[pollutantName] || ANALYTICS_CONFIG.default;
+  }
+  
+  return ANALYTICS_CONFIG.default;
+};
 
 const AppContent = () => {
   const location = useLocation();
@@ -22,15 +100,27 @@ const AppContent = () => {
   const initialMountRef = useRef(true);
   const previousPathRef = useRef('');
 
-  // 🔹 Track page views in Google Analytics
+  // 🔹 Enhanced tracking with multiple GA measurement IDs
   useEffect(() => {
-    if (window.gtag) {
-      window.gtag("config", GA_MEASUREMENT_ID, {
+    if (window.gtag && Object.keys(dataByCategory).length > 0) {
+      const measurementId = getMeasurementId(location.pathname, dataByCategory);
+      
+      window.gtag("config", measurementId, {
         page_path: location.pathname + location.search,
+        page_title: document.title,
       });
-      console.log(`[GA] Pageview tracked: ${location.pathname}`);
+      
+      // Optional: Send a custom event for better tracking
+      window.gtag("event", "page_view", {
+        page_title: document.title,
+        page_location: window.location.href,
+        page_path: location.pathname,
+        measurement_id: measurementId
+      });
+      
+      console.log(`[GA] Pageview tracked for ${location.pathname} using ID: ${measurementId}`);
     }
-  }, [location]);
+  }, [location, dataByCategory]);
 
   useEffect(() => {
     inspectScrollableElements();
@@ -90,7 +180,7 @@ const AppContent = () => {
       setDisplayPollutantPage(false);
       const delayTimer = setTimeout(() => {
         setDisplayPollutantPage(true);
-      }, 1000); // 5-second delay
+      }, 1000);
       return () => clearTimeout(delayTimer);
     } else {
       setDisplayPollutantPage(true);
@@ -125,6 +215,9 @@ const AppContent = () => {
         setDataByCategory(categorizedData);
         audioService.init(rows);
         setPageLoaded(true);
+        
+        // Log available pollutant names for easy GA configuration
+        console.log('[GA] Available pollutant routes:', Object.keys(categorizedData));
       } catch (err) {
         console.error("Error fetching sheet:", err);
         setPageLoaded(true);
@@ -154,7 +247,7 @@ const AppContent = () => {
   }, []);
 
   if (!pageLoaded) {
-    return <div>Loading full page...</div>; // splash screen
+    return <div>Loading full page...</div>;
   }
 
   return (
@@ -169,12 +262,12 @@ const AppContent = () => {
             displayPollutantPage ? (
               <PollutantPage 
                 categorizedData={dataByCategory} 
-                key={location.pathname} // Force remount on route change
+                key={location.pathname}
               />
             ) : (
               <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
                 <p>Loading Data ..</p>
-              </div> // Loader during delay
+              </div>
             )
           } />
           <Route path="/playtest" element={<PlayPads />} />
