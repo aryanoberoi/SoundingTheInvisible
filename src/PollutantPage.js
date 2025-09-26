@@ -1216,10 +1216,18 @@ const PollutantPage = ({ categorizedData }) => {
 
   const getNavPollutantName = (name) => {
     console.log("original name for navbar", name);
-    if (name === "Butylated Hydroxytoluene (BHT)") return "BHT";
-    if (name.toLowerCase === "activated sludge (wastewater)")
-      return "Waste Water";
-    return name;
+    
+    // Remove invisible Unicode characters (Word Joiner U+2060 and similar)
+    const cleanName = name.replace(/[\u2060\u200B\u200C\u200D\uFEFF]/g, '');
+    
+    console.log("cleaned name:", cleanName);
+    console.log("cleaned comparison:", cleanName === "Activated Sludge (Wastewater)");
+    
+    if (cleanName === "Butylated Hydroxytoluene (BHT)") return "BHT";
+    if (cleanName === "Activated Sludge (Wastewater)") return "Activated Sludge";
+    if (cleanName === "Dimethomorph") return "Dimetho morph";
+    
+    return cleanName; // Return the cleaned name
   };
 
   // Add computed variable here
