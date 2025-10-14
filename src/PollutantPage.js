@@ -739,124 +739,124 @@ const PollutantPage = ({ categorizedData }) => {
     setIsDragging(true);
     lastPositionRef.current = sliderPosition;
   };
-  // Replace the current phyto section scroll effect with this updated code for instant transition
-  useEffect(() => {
-    if (activeSection === "phytoremediation") {
-      const section = document.getElementById("phytoremediation");
-      if (!section) return;
+  // // Replace the current phyto section scroll effect with this updated code for instant transition
+  // useEffect(() => {
+  //   if (activeSection === "phytoremediation") {
+  //     const section = document.getElementById("phytoremediation");
+  //     if (!section) return;
 
-      // Create the transition flash element only
-      const flash = document.createElement("div");
-      flash.className = "transition-flash";
-      document.body.appendChild(flash);
+  //     // Create the transition flash element only
+  //     const flash = document.createElement("div");
+  //     flash.className = "transition-flash";
+  //     document.body.appendChild(flash);
 
-      // Add styles with minimal transition time
-      const style = document.createElement("style");
-      style.textContent = `
-      .transition-flash {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: white;
-        z-index: 9999;
-        pointer-events: none;
-        opacity: 0;
-        transition: opacity 0.05s; /* Ultra-fast transition */
-      }
+  //     // Add styles with minimal transition time
+  //     const style = document.createElement("style");
+  //     style.textContent = `
+  //     .transition-flash {
+  //       position: fixed;
+  //       top: 0;
+  //       left: 0;
+  //       right: 0;
+  //       bottom: 0;
+  //       background: white;
+  //       z-index: 9999;
+  //       pointer-events: none;
+  //       opacity: 0;
+  //       transition: opacity 0.05s; /* Ultra-fast transition */
+  //     }
       
-      .transition-flash.active {
-        opacity: 0.7;
-      }
+  //     .transition-flash.active {
+  //       opacity: 0.7;
+  //     }
       
-      /* Hide the indicator entirely since transition will be instant */
-      .phyto-scroll-indicator {
-        display: none;
-      }
+  //     /* Hide the indicator entirely since transition will be instant */
+  //     .phyto-scroll-indicator {
+  //       display: none;
+  //     }
       
-      /* Add style for the slider bar transition */
-      .slider-bar {
-        transition: var(--slider-transition);
-      }
-    `;
-      document.head.appendChild(style);
+  //     /* Add style for the slider bar transition */
+  //     .slider-bar {
+  //       transition: var(--slider-transition);
+  //     }
+  //   `;
+  //     document.head.appendChild(style);
 
-      let isTransitioning = false;
+  //     let isTransitioning = false;
 
-      const handleScroll = () => {
-        if (isTransitioning) return;
+  //     const handleScroll = () => {
+  //       if (isTransitioning) return;
 
-        const rect = section.getBoundingClientRect();
+  //       const rect = section.getBoundingClientRect();
 
-        // Trigger transition as soon as we're near the bottom
-        const distanceToBottom = rect.bottom - window.innerHeight;
-        if (distanceToBottom < 50) {
-          triggerTransition();
-        }
-      };
+  //       // Trigger transition as soon as we're near the bottom
+  //       const distanceToBottom = rect.bottom - window.innerHeight;
+  //       if (distanceToBottom < 50) {
+  //         triggerTransition();
+  //       }
+  //     };
 
-      const handleWheel = (e) => {
-        if (isTransitioning) {
-          e.preventDefault();
-          return;
-        }
+  //     const handleWheel = (e) => {
+  //       if (isTransitioning) {
+  //         e.preventDefault();
+  //         return;
+  //       }
 
-        const rect = section.getBoundingClientRect();
-        const distanceToBottom = rect.bottom - window.innerHeight;
+  //       const rect = section.getBoundingClientRect();
+  //       const distanceToBottom = rect.bottom - window.innerHeight;
 
-        // Immediately trigger on any downward scroll near bottom
-        if (e.deltaY > 0 && distanceToBottom < 100) {
-          triggerTransition();
-          e.preventDefault();
-        }
-      };
+  //       // Immediately trigger on any downward scroll near bottom
+  //       if (e.deltaY > 0 && distanceToBottom < 100) {
+  //         triggerTransition();
+  //         e.preventDefault();
+  //       }
+  //     };
 
-      const handleTouchMove = (e) => {
-        if (isTransitioning) {
-          e.preventDefault();
-          return;
-        }
+  //     const handleTouchMove = (e) => {
+  //       if (isTransitioning) {
+  //         e.preventDefault();
+  //         return;
+  //       }
 
-        const rect = section.getBoundingClientRect();
-        const distanceToBottom = rect.bottom - window.innerHeight;
+  //       const rect = section.getBoundingClientRect();
+  //       const distanceToBottom = rect.bottom - window.innerHeight;
 
-        // Immediately trigger when near bottom
-        if (distanceToBottom < 100) {
-          triggerTransition();
-          e.preventDefault();
-        }
-      };
+  //       // Immediately trigger when near bottom
+  //       if (distanceToBottom < 100) {
+  //         triggerTransition();
+  //         e.preventDefault();
+  //       }
+  //     };
 
-      const triggerTransition = () => {
-        if (isTransitioning) return;
-        isTransitioning = true;
+  //     const triggerTransition = () => {
+  //       if (isTransitioning) return;
+  //       isTransitioning = true;
 
-        // Skip the flash animation delay
-        handleNavClick("plant-name");
+  //       // Skip the flash animation delay
+  //       handleNavClick("plant-name");
 
-        // Reset state after minimal delay
-        setTimeout(() => {
-          flash.classList.remove("active");
-          isTransitioning = false;
-        }, 150);
-      };
+  //       // Reset state after minimal delay
+  //       setTimeout(() => {
+  //         flash.classList.remove("active");
+  //         isTransitioning = false;
+  //       }, 150);
+  //     };
 
-      // Add simplified event listeners
-      window.addEventListener("scroll", handleScroll, { passive: true });
-      window.addEventListener("wheel", handleWheel, { passive: false });
-      window.addEventListener("touchmove", handleTouchMove, { passive: false });
+  //     // Add simplified event listeners
+  //     window.addEventListener("scroll", handleScroll, { passive: true });
+  //     window.addEventListener("wheel", handleWheel, { passive: false });
+  //     window.addEventListener("touchmove", handleTouchMove, { passive: false });
 
-      return () => {
-        // Clean up
-        window.removeEventListener("scroll", handleScroll);
-        window.removeEventListener("wheel", handleWheel);
-        window.removeEventListener("touchmove", handleTouchMove);
-        if (style.parentNode) style.remove();
-        if (flash.parentNode) flash.remove();
-      };
-    }
-  }, [activeSection]);
+  //     return () => {
+  //       // Clean up
+  //       window.removeEventListener("scroll", handleScroll);
+  //       window.removeEventListener("wheel", handleWheel);
+  //       window.removeEventListener("touchmove", handleTouchMove);
+  //       if (style.parentNode) style.remove();
+  //       if (flash.parentNode) flash.remove();
+  //     };
+  //   }
+  // }, [activeSection]);
 
   // Add ResizeObserver implementation in a useEffect
   useEffect(() => {
@@ -1225,7 +1225,7 @@ const PollutantPage = ({ categorizedData }) => {
     
     if (cleanName === "Butylated Hydroxytoluene (BHT)") return "BHT";
     if (cleanName === "Activated Sludge (Wastewater)") return "Activated Sludge";
-    if (cleanName === "Dimethomorph") return "Dimetho morph";
+    if (cleanName === "Dimethomorph") return "Dimetho- morph";
     
     return cleanName; // Return the cleaned name
   };
@@ -1695,7 +1695,38 @@ const PollutantPage = ({ categorizedData }) => {
                   <Phyto
                     sections={phytocontent}
                     pollutantName={leftpanelcontent[0].pollutantName}
-                  />{" "}
+                  />
+                  {/* About Plant Button - Desktop Only */}
+                  {!isMobileView && (
+                    <div
+                      style={{
+                        width: "100%",
+                        display: "flex",
+                        justifyContent: "center",
+                        marginTop: "40px",
+                        marginBottom: "20px"
+                      }}
+                    >
+                      <div
+                        style={{
+                          background: "#fff",
+                          display: "flex",
+                          justifyContent: "center",
+                          padding: "0px 20px",
+                          cursor: "pointer"
+                        }}
+                        onClick={() => handleNavClick("plant-name")}
+                      >
+                        <p
+                          className="bibliograhy"
+                          style={{ color: "#000" }}
+                        >
+                          ABOUT PLANT
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  {/* Bibliography Button */}
                   <div
                     style={{
                       width: "100%",
@@ -1715,13 +1746,15 @@ const PollutantPage = ({ categorizedData }) => {
                           handleNavClick("plant-habitat");
                         }}
                       >
-                        <p className="bibliograhy" style={{ color: "#000" }}>
+                        <p
+                          className="bibliograhy"
+                          style={{ color: "#000" }}
+                        >
                           BIBLIOGRAHY
                         </p>
                       </div>
                     </div>
                   </div>
-                  {/* * time period overlap */}
                 </div>
                 <div className="white-container">
                   {/* <div

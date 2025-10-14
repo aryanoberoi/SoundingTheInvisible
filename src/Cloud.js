@@ -25,8 +25,8 @@ const Cloud = ({ top, left, distance, direction = "left", variant = 1 }) => {
           setIsMovedAway(false);
           
           // Schedule next outward movement after returning (20s duration + pause)
-          setTimeout(animationCycle, 21000); // 20s movement + 1s pause
-        }, 20500); // 20s movement + 0.5s buffer
+          setTimeout(animationCycle, 9000);
+          }, 8500);
       };
       
       // Start first cycle
@@ -62,7 +62,7 @@ const Cloud = ({ top, left, distance, direction = "left", variant = 1 }) => {
     transform: isMovedAway
       ? `translateX(${getTranslateValue().x}px) translateY(${getTranslateValue().y}px)` 
       : `translateX(0) translateY(0)`,
-    transition: "transform 20s ease",
+    transition: "transform 8s ease",
     zIndex: 5,
   };
   
