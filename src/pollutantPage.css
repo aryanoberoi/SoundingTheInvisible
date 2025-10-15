@@ -2180,6 +2180,26 @@ img {
   outline: none;
 }
 
+
+.bibliograhySc {
+  color: #fff;
+  font-family: "Nippo-Light", Helvetica;
+  font-size: 24px;
+  font-weight: 900;
+  left: 44px;
+  letter-spacing: 3%;
+  line-height: 100%;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  padding-bottom: 10px;
+  transition: border-bottom-color 0.3s ease;
+}
+
+.bibliograhySc:hover {
+  border-bottom-color: #fff;
+}
+
+
 /* Add extra specificity to make sure these rules are applied */
 html body .nav-bar {
   position: sticky !important;

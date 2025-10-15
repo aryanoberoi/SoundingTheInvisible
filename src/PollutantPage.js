@@ -1709,18 +1709,15 @@ const PollutantPage = ({ categorizedData }) => {
                     >
                       <div
                         style={{
-                          background: "#fff",
+                          background: "#000",
                           display: "flex",
                           justifyContent: "center",
-                          padding: "0px 20px",
+                          padding: "250px 20px 0px" ,
                           cursor: "pointer"
                         }}
                         onClick={() => handleNavClick("plant-name")}
                       >
-                        <p
-                          className="bibliograhy"
-                          style={{ color: "#000" }}
-                        >
+                        <p className="bibliograhySc">
                           ABOUT PLANT
                         </p>
                       </div>
