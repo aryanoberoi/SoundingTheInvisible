@@ -64,6 +64,20 @@
   left: 60px;
 }
 
+.bottom-section3 .box .text-wrapperBB {
+  color: #ffffff;
+  font-family: "ClashGrotesk-Light", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 215%;
+  mix-blend-mode: difference;
+  position: absolute;
+  text-align: right;
+  top: 68%;
+  left: 30px;
+}
+
 .bottom-section3 .box .rectangle {
   height: 417px;
   left: 20px;
@@ -167,12 +181,10 @@
 
 .bottom-section3 .box .rectangle-5 {
   height: 518px;
-  left: 90px;
+  left: 100px;
   position: absolute;
-  top: 536px;
+  top: 530px;
   width: 100%;
-  transform: scaleX(1.7) rotate(180deg) !important;
-  /* transform-origin: left; */
 }
 
 .bottom-section3 .box .vector-3 {

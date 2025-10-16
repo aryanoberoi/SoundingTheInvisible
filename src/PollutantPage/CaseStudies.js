@@ -1,6 +1,7 @@
 import React from "react";
 import group121 from "./group-121.svg";
 import "./CaseStudies.css";
+// import "./rectangle-bottom.svg"
 
 export const CaseStudies = ({ sections, pollutantName }) => {
   // Helper function to get title and content from text
@@ -17,7 +18,7 @@ export const CaseStudies = ({ sections, pollutantName }) => {
       <div className="group">
         <div className="overlap">
           <div className="overlap-group">
-            <p className="text-wrapper">{location.content}</p>
+            <p className="text-wrapperBB">{location.content}</p>
 
             <img
               className="rectangle"
@@ -40,8 +41,7 @@ export const CaseStudies = ({ sections, pollutantName }) => {
             <img
               className="rectangle-5"
               alt="Rectangle"
-              src="https://c.animaapp.com/2uQFoxD8/img/rectangle-28.svg"
-              // src="https://c.animaapp.com/2uQFoxD8/img/rectangle-28-1.svg"
+              src="/rectangle-bottom.svg"
             />
           </div>
 
