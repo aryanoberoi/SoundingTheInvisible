@@ -220,7 +220,7 @@
 
 /* Increase bottom padding of plantContainer by 20px within the right panel */
 .right-panel .plantContainer {
-  padding-bottom: calc(5% + 20px);
+  padding-bottom: calc(5% + 80px);
 }
 
 @media (max-width: 991px) {
