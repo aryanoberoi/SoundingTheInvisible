@@ -1718,7 +1718,7 @@ const PollutantPage = ({ categorizedData }) => {
                         onClick={() => handleNavClick("plant-name")}
                       >
                         <p className="bibliograhySc">
-                          ABOUT PLANT
+                          About PLANT
                         </p>
                       </div>
                     </div>
