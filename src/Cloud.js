@@ -19,14 +19,14 @@ const Cloud = ({ top, left, distance, direction = "left", variant = 1 }) => {
         console.log(`Cloud ${variant} moving away`);
         setIsMovedAway(true);
         
-        // Schedule return after outward movement (20s duration + buffer)
+        // Wait for outward animation (8s) + stay away time (2s) = 10s total
         setTimeout(() => {
           console.log(`Cloud ${variant} returning`);
           setIsMovedAway(false);
           
-          // Schedule next outward movement after returning (20s duration + pause)
-          setTimeout(animationCycle, 9000);
-          }, 8500);
+          // Wait for return animation (8s) + brief pause (2s) before next cycle = 10s
+          setTimeout(animationCycle, 10000);
+        }, 10000);
       };
       
       // Start first cycle
