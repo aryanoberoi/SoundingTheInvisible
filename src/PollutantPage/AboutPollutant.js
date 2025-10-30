@@ -34,8 +34,8 @@ export const AboutPollutantSection = ({ sections, wasteTypeIcon }) => {
           row => row['pollutantname_split']?.trim().toLowerCase() === pollutantName.toLowerCase()
         );
 
-        if (matched && matched['image_about_atom_compound']) {
-          setAboutImage(matched['image_about_atom_compound']);
+        if (matched && matched['image_about_atom_compound_final_top align']) {
+          setAboutImage(matched['image_about_atom_compound_final_top align']);
         } else {
           setAboutImage(null);
         }
