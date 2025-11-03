@@ -1718,10 +1718,10 @@ const PollutantPage = ({ categorizedData }) => {
                         onClick={() => handleNavClick("plant-name")}
                       >
                         <p className="bibliograhySc">
-                          About {(dataContext.plant.name || dataContext.plant.latinName || 'PLANT')
-                            .split(' ')
+                          About {(dataContext.plant.name || dataContext.plant.latinName || 'PLANT')}
+                            {/* .split(' ')
                             .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-                            .join(' ')}
+                            .join(' ')} */}
                         </p>
                       </div>
                     </div>
