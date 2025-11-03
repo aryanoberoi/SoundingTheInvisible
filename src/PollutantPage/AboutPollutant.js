@@ -3,6 +3,7 @@ import '../pollutantPage.css';
 
 export const AboutPollutantSection = ({ sections, wasteTypeIcon }) => {
   const [aboutImage, setAboutImage] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Always define pollutantName, even if sections is empty
   const contentText = sections?.[0]?.text || '';
@@ -13,7 +14,10 @@ export const AboutPollutantSection = ({ sections, wasteTypeIcon }) => {
 
   // ✅ Use effect unconditionally
   useEffect(() => {
-    if (!pollutantName) return;
+    if (!pollutantName) {
+      setIsLoading(false);
+      return;
+    }
 
     const fetchSheetData = async () => {
       try {
@@ -42,6 +46,8 @@ export const AboutPollutantSection = ({ sections, wasteTypeIcon }) => {
       } catch (err) {
         console.error("Failed to fetch sheet data:", err);
         setAboutImage(null);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -85,12 +91,14 @@ export const AboutPollutantSection = ({ sections, wasteTypeIcon }) => {
           {descriptionPart || ''}
         </span>
         <div className="about-image-wrapper">
-          <img
-            src={aboutImage || 'g3.png'}
-            alt={`${pollutantName} graphic element`}
-            className="group-3"
-            onError={(e) => { e.target.src = 'g3.png'; }}
-          />
+          {!isLoading && (
+            <img
+              src={aboutImage || 'g3.png'}
+              alt={`${pollutantName} graphic element`}
+              className="group-3"
+              onError={(e) => { e.target.src = 'g3.png'; }}
+            />
+          )}
         </div>
       </div>
   );
