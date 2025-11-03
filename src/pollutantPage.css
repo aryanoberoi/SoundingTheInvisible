@@ -1393,7 +1393,7 @@ body.white-panel-active .nav-bar .text-wrapper-combined.active > span {
   width: 40%;
   max-width: 100%;
   height: auto;
-  /* aspect-ratio: 471/406.233; */
+  aspect-ratio: 471/406.233;
   display: block;
   margin: 20px auto 0; /* Changed from margin-top to margin with auto horizontal */
   object-fit: contain;
