@@ -1,6 +1,7 @@
 import React from "react";
 import group121 from "./group-121.svg";
 import "./CaseStudies.css";
+import rect28 from "./rect28.svg"
 // import "./rectangle-bottom.svg"
 
 export const CaseStudies = ({ sections, pollutantName }) => {
@@ -41,8 +42,8 @@ export const CaseStudies = ({ sections, pollutantName }) => {
             <img
               className="rectangle-5"
               alt="Rectangle"
-              src="/rectangle-bottom.svg"
-            />
+              src={window.innerWidth <= 768 ? rect28 : "/rectangle-bottom.svg"}
+              /> 
           </div>
 
           <img
@@ -66,7 +67,7 @@ export const CaseStudies = ({ sections, pollutantName }) => {
           </div>
         </div>
 
-        <div className="text-wrapper-4">{name.title}</div>
+        <div className="text-wrapper-4">{name.title}</div> 
       </div>
     </div>
   );

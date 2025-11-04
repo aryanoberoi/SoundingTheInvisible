@@ -310,12 +310,13 @@
     line-height: 200%;
     mix-blend-mode: difference;
     position: absolute;
-    width: 34%;
+    text-align: left;
+    width: 44%;
     /* Reduce width slightly */
-    left: 19%;
+    left: 25%;
     /* Center it within the box */
-    top: 0%;
-    transform: translateX(-50%);
+    top: -12px;
+    /* transform: translateX(-50%); */
     /* Align to center */
 
     white-space: normal;
@@ -394,17 +395,21 @@
   }
 
   .bottom-section3 .box .rectangle-5 {
-    height: 518px;
-    left: 100px;
+    /* Properties from line 396 */
     position: absolute;
-    top: 536px;
     width: 100%;
-    transform: scaleX(1.7) rotate(180deg) !important;
-    /* transform-origin: left; */
+    transform: scaleX(1.4) scaleY(1.8) !important;
+    transform-origin: left;
+    
+    /* Overrides from line 487 */
+    top: 1130px;
+    left: -367px !important;
+    /* height: 553px;  */
   }
 
   .bottom-section3 .box {
     margin: 0 0px;
+    height: 2100px; 
   }
 
   .bottom-section3 .box .overlap-group-wrapper {
@@ -447,9 +452,10 @@
     height: 529px;
     left: 0px;
     position: absolute;
-    top: -125px;
+    top: -140px;
     width: 41%;
-
+    transform: scaleY(1.9);  /* ✅ Stretch vertically by 1.5x */
+    transform-origin: top;   /* ✅ Scale from the top */
     /* height: 529px;
       left: 0px;
       position: absolute;
@@ -460,7 +466,7 @@
   .bottom-section3 .box .vector-3 {
     left: 11px;
     position: absolute;
-    top: 447px;
+    top: 882px;
     width: 1px;
     transform: scale(2);
   }
@@ -483,31 +489,39 @@
     left: 0px;
   }
 
-  .bottom-section3 .box .rectangle-5 {
-    position: absolute;
-    top: 612px;
-    left: -24px !important;
-    height: 553px;
-  }
-
   .bottom-section3 .box .text-wrapper-2 {
-    height: 484px;
+    height: auto;
     /* right: 194px; */
     position: absolute;
-    top: 490px;
+    top: 1000px;
     /* width: 80%; */
     left: -74px !important;
     /* top: 56%; */
   }
 
   .bottom-section3 .box .text-wrapper-4 {
-    top: 8%;
-    left: 4%;
+    top: 13%;
+    left: 6%;
   }
 
   .bottom-section3 .box .overlap-group {
-    top: 46px;
+    top: 45px;
   }
+
+  .bottom-section3 .box .text-wrapperBB {
+    color: #ffffff;
+    font-family: "ClashGrotesk-Light", Helvetica;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 215%;
+    mix-blend-mode: difference;
+    position: absolute;
+    text-align: right;
+    top: 1055px;
+    left: 0px;
+    width: 44%;
+  }  
 
   .bottom-section3 .box .overlap-2 {
     height: 331px;
@@ -518,6 +532,7 @@
 
   .bottom-section3 .box .group-121 {
     width: 112px;
+    left: -441px;
   }
 }
 
