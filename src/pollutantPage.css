@@ -1888,7 +1888,7 @@ body.white-panel-active .nav-bar .p.active > span {
   .effect-on-health-section,
   .white-container > div {
     padding: 0rem 0rem 0rem 0rem !important;
-    min-height: auto;
+    height: auto;
   }
 
   .sound-frequency-section .wave-container {

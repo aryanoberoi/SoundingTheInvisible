@@ -275,8 +275,8 @@
 
 @media (max-width: 768px) {
   .bottom-section3 {
-    margin: 0px 0px 0px 0px !important;
-    /* padding-top: 20px;    */
+    position: relative;     /* ✓ Changed from absolute */
+    margin: 20px 0px 0px 0px !important;  /* ✓ 20px top margin as requested */
     width: 100%;
     color: #ffffff;
     font-family: "ClashGrotesk-Light", Helvetica;
@@ -285,12 +285,11 @@
     letter-spacing: 0;
     line-height: 215%;
     mix-blend-mode: difference;
-    position: absolute;
     text-align: right;
-    top: 37%;
-    width: calc(100% - -3px);
-    left: 0px;
     height: auto;
+    left: 0px;
+    padding: 20px 5px;      /* ✓ Add some padding */
+    /* REMOVED: top: 37%; */  /* ✓ No longer needed */
   }
 
   .bottom-section3 .box .rectangle {
