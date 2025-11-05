@@ -50,20 +50,42 @@ const PeepholeEffect = ({ imageUrl,
     };
   }, []); // Empty dependency array: setup observer once on mount
 
-  const handleMouseMove = (e) => {
+  // Shared function to update position from either mouse or touch
+  const handlePositionUpdate = (clientX, clientY) => {
     // Only update position if not locked
     if (locked) return;
 
     if (containerRef.current) {
       // Get position relative to the container
       const rect = containerRef.current.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
 
       // Make sure coordinates are within bounds
       if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
         setPosition({ x, y });
       }
+    }
+  };
+
+  const handleMouseMove = (e) => {
+    handlePositionUpdate(e.clientX, e.clientY);
+  };
+
+  // Handle touch move for mobile devices
+  const handleTouchMove = (e) => {
+    e.preventDefault(); // Prevent page scrolling while dragging
+    if (e.touches.length > 0) {
+      const touch = e.touches[0];
+      handlePositionUpdate(touch.clientX, touch.clientY);
+    }
+  };
+
+  // Handle touch start to set initial position on touch
+  const handleTouchStart = (e) => {
+    if (e.touches.length > 0) {
+      const touch = e.touches[0];
+      handlePositionUpdate(touch.clientX, touch.clientY);
     }
   };
 
@@ -87,6 +109,8 @@ const PeepholeEffect = ({ imageUrl,
         cursor: "default", // Use default cursor
       }}
       onMouseMove={handleMouseMove}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
       onClick={toggleLock} // Toggle lock on click
     >
       {/* Hidden SVG image (only visible through peephole) */}
