@@ -281,7 +281,8 @@
       padding-left: 0px !important;
     }
     .plant-habitat-container .plant-svg{
-      height: 1085px !important;
+      /* transform: scaleY(2); */
+      height: 1850px !important;
     }
     .plant-habitat-container .plant-svg-container {
     width: 120px !important;
