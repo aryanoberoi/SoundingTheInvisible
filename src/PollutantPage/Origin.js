@@ -23,11 +23,11 @@ export const Origin = ({ sections }) => {
             </div>
             <div className="transparent-border-rectangle" />
         </div>
-        <img 
+        {/* <img 
             src='map.png'
             alt="Geographical distribution map" 
             className="origin-map-image"
-        />
+        /> */}
         
 
     </div>
